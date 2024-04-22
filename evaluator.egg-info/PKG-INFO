@@ -1,0 +1,18 @@
+Metadata-Version: 2.1
+Name: evaluator
+Version: 0.0.1
+Summary: UNKNOWN
+Home-page: https://github.com/HPI-Information-Systems/NumbER
+Author: Lukas Laskowski
+Author-email: lukas.laskowski@student.hpi.de
+License: MIT
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Requires-Python: >=3.7, <3.10
+
+UNKNOWN
+

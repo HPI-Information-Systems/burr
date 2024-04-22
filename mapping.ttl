@@ -1,0 +1,651 @@
+@prefix d2rq: <http://d2rq/> .
+@prefix map: <http://mapping/> .
+@prefix jdbc: <http://jdbc/> .
+@prefix rdfs: <http://rdfs/> .
+@prefix cmt: <http://cmt/> .
+
+
+map:database a d2rq:Database;
+	d2rq:jdbcDriver "org.postgresql.Driver";
+	d2rq:jdbcDSN "jdbc:postgresql://localhost:5432/test_database_naive?autoReconnect=true";
+	d2rq:username "lukaslaskowski";
+	jdbc:keepAlive "3600";				# sends noop-query every 3600 seconds
+#	jdbc:keepAliveQuery "SELECT 1";		# optional custom noop-query
+	.
+
+#Table User
+map:User a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:uriPattern "#User/@@User.ID@@";
+    d2rq:class cmt:User;
+    d2rq:additionalClassDefinitionProperty map:subClassOfPerson;
+    .
+
+map:subClassOfUser a d2rq:AdditionalProperty;
+	d2rq:propertyName rdfs:subClassOf;
+	d2rq:propertyValue cmt:User;
+	.
+
+#Table Person
+map:Person a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:uriPattern "#Person/@@Person.ID@@";
+    d2rq:class cmt:Person;
+    .
+
+map:subClassOfPerson a d2rq:AdditionalProperty;
+	d2rq:propertyName rdfs:subClassOf;
+	d2rq:propertyValue cmt:Person;
+	.
+
+map:person_email a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:Person;
+	d2rq:property cmt:email;
+	d2rq:column "Person.email";
+    .
+
+map:person_name a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:Person;
+	d2rq:property cmt:name;
+	d2rq:column "Person.name";
+    .
+
+#Table Reviewer
+map:Reviewer a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:uriPattern "#Reviewer/@@Reviewer.ID@@";
+    d2rq:class cmt:Reviewer;
+    d2rq:additionalClassDefinitionProperty map:subClassOfUser;
+    d2rq:additionalClassDefinitionProperty map:subClassOfConferenceMember;
+    .
+
+map:subClassOfReviewer a d2rq:AdditionalProperty;
+	d2rq:propertyName rdfs:subClassOf;
+	d2rq:propertyValue cmt:Reviewer;
+	.
+
+#Table ExternalReviewer
+map:ExternalReviewer a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:uriPattern "#ExternalReviewer/@@ExternalReviewer.ID@@";
+    d2rq:class cmt:ExternalReviewer;
+    d2rq:additionalClassDefinitionProperty map:subClassOfPerson;
+    .
+
+#Table ExternalReviewer.assignedByReviewer
+map:assignedByReviewer a d2rq:PropertyBridge;
+    d2rq:property cmt:assignedByReviewer;
+    d2rq:belongsToClassMap map:ExternalReviewer;
+    d2rq:refersToClassMap map:Reviewer;
+    d2rq:join "ExternalReviewer.assignedByReviewer = Reviewer.ID";
+    .
+
+#Table SubjectArea
+map:SubjectArea a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:uriPattern "#SubjectArea/@@SubjectArea.ID@@";
+    d2rq:class cmt:SubjectArea;
+    .
+
+#Table hasSubjectArea (n:m)
+map:hasSubjectArea a d2rq:PropertyBridge;
+    d2rq:property cmt:hasSubjectArea;
+    d2rq:belongsToClassMap map:ExternalReviewer;
+    d2rq:refersToClassMap map:Reviewer;
+    d2rq:join "hasSubjectArea.Paper = Paper.ID";
+    d2rq:join "hasSubjectArea.SubjectArea = SubjectArea.ID";
+    .
+
+#Table Chairman
+map:Chairman a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:uriPattern "#Chairman/@@Chairman.ID@@";
+    d2rq:class cmt:Chairman;
+    d2rq:additionalClassDefinitionProperty map:subClassOfPerson;
+    .
+
+#Table Administrator
+map:Administrator a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:uriPattern "#Administrator/@@Administrator.ID@@";
+    d2rq:class cmt:Administrator;
+    d2rq:additionalClassDefinitionProperty map:subClassOfUser;
+    .
+
+#Table acceptPaper
+map:acceptPaper a d2rq:PropertyBridge;
+    d2rq:property cmt:acceptPaper;
+    d2rq:belongsToClassMap map:Administrator;
+    d2rq:refersToClassMap map:Paper;
+    d2rq:join "Administrator.acceptPaper = Paper.ID";
+    .
+
+#Table Document
+map:Document a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:uriPattern "#Document/@@Document.ID@@";
+    d2rq:class cmt:Document;
+    .
+
+map:subClassOfDocument a d2rq:AdditionalProperty;
+	d2rq:propertyName rdfs:subClassOf;
+	d2rq:propertyValue cmt:Document;
+	.
+
+#Table Paper
+map:Paper a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:uriPattern "#Paper/@@Paper.ID@@";
+    d2rq:class cmt:Paper;
+    d2rq:additionalClassDefinitionProperty map:subClassOfDocument;
+    .
+
+map:subClassOfPaper a d2rq:AdditionalProperty;
+	d2rq:propertyName rdfs:subClassOf;
+	d2rq:propertyValue cmt:Paper;
+	.
+
+#Table Paper.acceptedBy
+map:acceptedBy a d2rq:PropertyBridge;
+    d2rq:property cmt:acceptedBy;
+    d2rq:belongsToClassMap map:Paper;
+    d2rq:refersToClassMap map:Author;
+    d2rq:join "Paper.acceptedBy = Author.ID";
+    .
+
+#Table Paper.hasAuthor
+map:hasAuthor a d2rq:PropertyBridge;
+    d2rq:property cmt:hasAuthor;
+    d2rq:belongsToClassMap map:Paper;
+    d2rq:refersToClassMap map:Administrator;
+    d2rq:join "Paper.hasAuthor = Administrator.ID";
+    .
+
+#Table Paper.readByMeta-Reviewer
+map:readByMeta-Reviewer a d2rq:PropertyBridge;
+    d2rq:property cmt:readByMeta-Reviewer;
+    d2rq:belongsToClassMap map:Paper;
+    d2rq:refersToClassMap map:Meta-Reviewer;
+    d2rq:join "Paper.readByMeta-Reviewer = Meta-Reviewer.ID";
+    .
+
+#Table Paper.rejectedBy
+map:rejectedBy a d2rq:PropertyBridge;
+    d2rq:property cmt:rejectedBy;
+    d2rq:belongsToClassMap map:Paper;
+    d2rq:refersToClassMap map:Administrator;
+    d2rq:join "Paper.rejectedBy = Administrator.ID";
+    .
+
+#Table PaperFullVersion
+map:PaperFullVersion a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:uriPattern "#PaperFullVersion/@@PaperFullVersion.ID@@";
+    d2rq:class cmt:PaperFullVersion;
+    d2rq:additionalClassDefinitionProperty map:subClassOfPaper;
+    .
+
+#Table PaperAbstract
+map:PaperAbstract a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:uriPattern "#PaperAbstract/@@PaperAbstract.ID@@";
+    d2rq:class cmt:PaperAbstract;
+    d2rq:additionalClassDefinitionProperty map:subClassOfPaper;
+    .
+
+
+map:paper_title a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:Paper;
+	d2rq:property cmt:title;
+	d2rq:column "Paper.title";
+    .
+
+map:paper_paperID a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:Paper;
+	d2rq:property cmt:paperID;
+	d2rq:column "Paper.paperID";
+    .
+
+#Table Conference
+map:Conference a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:uriPattern "#Conference/@@Conference.ID@@";
+    d2rq:class cmt:Conference;
+    .
+
+map:conference_acceptsHardcopySubmissions a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:Conference;
+	d2rq:property cmt:acceptsHardcopySubmissions;
+	d2rq:column "Conference.acceptsHardcopySubmissions";
+    .
+
+map:conference_date a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:Conference;
+	d2rq:property cmt:date;
+	d2rq:column "Conference.date";
+    .
+
+map:conference_logoURL a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:Conference;
+	d2rq:property cmt:logoURL;
+	d2rq:column "Conference.logoURL";
+    .
+
+map:conference_name a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:Conference;
+	d2rq:property cmt:name;
+	d2rq:column "Conference.name";
+    .
+
+map:conference_siteURL a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:Conference;
+	d2rq:property cmt:siteURL;
+	d2rq:column "Conference.siteURL";
+    .
+
+map:conference_reviewsPerPaper a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:Conference;
+	d2rq:property cmt:reviewsPerPaper;
+	d2rq:column "Conference.reviewsPerPaper";
+    .
+
+#Table ConferenceMember
+map:ConferenceMember a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:uriPattern "#ConferenceMember/@@ConferenceMember.ID@@";
+    d2rq:class cmt:ConferenceMember;
+    d2rq:additionalClassDefinitionProperty map:subClassOfPerson;
+    .
+
+map:subClassOfConferenceMember a d2rq:AdditionalProperty;
+	d2rq:propertyName rdfs:subClassOf;
+	d2rq:propertyValue cmt:ConferenceMember;
+	.
+
+#Table ProgramCommitteeMember
+map:ProgramCommitteeMember a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:uriPattern "#ProgramCommitteeMember/@@ProgramCommitteeMember.ID@@";
+    d2rq:class cmt:ProgramCommitteeMember;
+    d2rq:additionalClassDefinitionProperty map:subClassOfConferenceMember;
+    .
+
+map:subClassOfProgramCommitteeMember a d2rq:AdditionalProperty;
+	d2rq:propertyName rdfs:subClassOf;
+	d2rq:propertyValue cmt:ProgramCommitteeMember;
+	.
+
+#Table addedBy
+map:addedBy a d2rq:PropertyBridge;
+    d2rq:property cmt:addedBy;
+    d2rq:belongsToClassMap map:ProgramCommitteeMember;
+    d2rq:refersToClassMap map:Administrator;
+    d2rq:join "ProgramCommitteeMember.addedBy = Administrator.ID";
+    .
+
+map:ProgramCommitteeMember_maxPapers a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:ProgramCommitteeMember;
+	d2rq:property cmt:maxPapers;
+	d2rq:column "ProgramCommitteeMember.maxPapers";
+    .
+
+#Table Author
+map:Author a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:uriPattern "#Author/@@Author.ID@@";
+    d2rq:class cmt:Author;
+    d2rq:additionalClassDefinitionProperty map:subClassOfConferenceMember;
+    d2rq:additionalClassDefinitionProperty map:subClassOfUser;
+    .
+
+map:subClassOfAuthor a d2rq:AdditionalProperty;
+	d2rq:propertyName rdfs:subClassOf;
+	d2rq:propertyValue cmt:Author;
+	.
+
+#Table Co-author
+map:Co-author a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:uriPattern "#Co-author/@@Co-author.ID@@";
+    d2rq:class cmt:Co-author;
+    d2rq:additionalClassDefinitionProperty map:subClassOfAuthor;
+    .
+
+#Table AuthorNotReviewer
+map:AuthorNotReviewer a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:uriPattern "#AuthorNotReviewer/@@AuthorNotReviewer.ID@@";
+    d2rq:class cmt:AuthorNotReviewer;
+    d2rq:additionalClassDefinitionProperty map:subClassOfAuthor;
+    .
+
+#Table Decision
+map:Decision a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:uriPattern "#Decision/@@Decision.ID@@";
+    d2rq:class cmt:Decision;
+    .
+
+map:subClassOfDecision a d2rq:AdditionalProperty;
+	d2rq:propertyName rdfs:subClassOf;
+	d2rq:propertyValue cmt:Decision;
+	.
+
+#Table Acceptance
+map:Acceptance a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:uriPattern "#Acceptance/@@Acceptance.ID@@";
+    d2rq:class cmt:Acceptance;
+    d2rq:additionalClassDefinitionProperty map:subClassOfDecision;
+    .
+
+#Table Rejection
+map:Rejection a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:uriPattern "#Rejection/@@Rejection.ID@@";
+    d2rq:class cmt:Rejection;
+    d2rq:additionalClassDefinitionProperty map:subClassOfDecision;
+    .
+
+#Table ConferenceChair
+map:ConferenceChair a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:uriPattern "#ConferenceChair/@@ConferenceChair.ID@@";
+    d2rq:class cmt:ConferenceChair;
+    d2rq:additionalClassDefinitionProperty map:subClassOfConferenceMember;
+    .
+
+#Table AssociatedChair
+map:AssociatedChair a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:uriPattern "#AssociatedChair/@@AssociatedChair.ID@@";
+    d2rq:class cmt:AssociatedChair;
+    d2rq:additionalClassDefinitionProperty map:subClassOfConferenceMember;
+    .
+
+#Table Bid
+map:Bid a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:uriPattern "#Bid/@@Bid.ID@@";
+    d2rq:class cmt:Bid;
+    .
+
+# hasBid
+map:hasBid a d2rq:PropertyBridge;
+    d2rq:property cmt:hasBid;
+    d2rq:belongsToClassMap map:Bid;
+    d2rq:refersToClassMap map:Paper;
+    d2rq:join "Bid.hasBid_Inv = Paper.ID";
+    .
+
+# adjustedBy
+map:adjustedBy a d2rq:PropertyBridge;
+    d2rq:property cmt:adjustedBy;
+    d2rq:belongsToClassMap map:Bid;
+    d2rq:refersToClassMap map:Reviewer;
+    d2rq:join "Bid.adjustedBy = Reviewer.ID";
+    .
+
+#Table Review
+map:Review a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:uriPattern "#Review/@@Review.ID@@";
+    d2rq:class cmt:Review;
+    d2rq:additionalClassDefinitionProperty map:subClassOfDocument;
+    .
+
+map:subClassOfReview a d2rq:AdditionalProperty;
+	d2rq:propertyName rdfs:subClassOf;
+	d2rq:propertyValue cmt:Review;
+	.
+
+# writtenBy
+map:writtenBy a d2rq:PropertyBridge;
+    d2rq:property cmt:writtenBy;
+    d2rq:belongsToClassMap map:Review;
+    d2rq:refersToClassMap map:Reviewer;
+    d2rq:join "Review.writtenBy = Reviewer.ID";
+    .
+
+map:review_comment a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:Review;
+	d2rq:property cmt:comment;
+	d2rq:column "Review.comment";
+    .
+
+#Table Meta-Review
+map:Meta-Review a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:uriPattern "#Meta-Review/@@Meta-Review.ID@@";
+    d2rq:class cmt:Meta-Review;
+    d2rq:additionalClassDefinitionProperty map:subClassOfReview;
+    .
+
+#Table Meta-Reviewer
+map:Meta-Reviewer a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:uriPattern "#Meta-Reviewer/@@Meta-Reviewer.ID@@";
+    d2rq:class cmt:Meta-Reviewer;
+    d2rq:additionalClassDefinitionProperty map:subClassOfReviewer;
+    .
+
+#Table Preference
+map:Preference a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:uriPattern "#Preference/@@Preference.ID@@";
+    d2rq:class cmt:Preference;
+    .
+
+#Table hasConflictOfInterest (n:m)
+map:hasConflictOfInterest a d2rq:PropertyBridge;
+    d2rq:property cmt:hasConflictOfInterest;
+    d2rq:belongsToClassMap map:Person;
+    d2rq:refersToClassMap map:Document;
+    d2rq:join "hasConflictOfInterest.Person = Person.ID";
+    d2rq:join "hasConflictOfInterest.Document = Document.ID";
+    .
+
+#Table finalizePaperAssignment (n:m)
+map:finalizePaperAssignment a d2rq:PropertyBridge;
+    d2rq:property cmt:finalizePaperAssignment;
+    d2rq:belongsToClassMap map:Administrator;
+    d2rq:refersToClassMap map:Conference;
+    d2rq:join "finalizePaperAssignment.Administrator = Administrator.ID";
+    d2rq:join "finalizePaperAssignment.Conference = Conference.ID";
+    .
+
+#Table enterReviewCriteria (n:m)
+map:enterReviewCriteria a d2rq:PropertyBridge;
+    d2rq:property cmt:enterReviewCriteria;
+    d2rq:belongsToClassMap map:Administrator;
+    d2rq:refersToClassMap map:Conference;
+    d2rq:join "enterReviewCriteria.Administrator = Administrator.ID";
+    d2rq:join "enterReviewCriteria.Conference = Conference.ID";
+    .
+
+#Table reviewerBiddingStartedBy (n:m)
+map:reviewerBiddingStartedBy a d2rq:PropertyBridge;
+    d2rq:property cmt:reviewerBiddingStartedBy;
+    d2rq:belongsToClassMap map:Conference;
+    d2rq:refersToClassMap map:Administrator;
+    d2rq:join "reviewerBiddingStartedBy.Administrator = Administrator.ID";
+    d2rq:join "reviewerBiddingStartedBy.Conference = Conference.ID";
+    .
+
+#Table hardcopyMailingManifestsP (n:m)
+map:hardcopyMailingManifestsPrintedBy a d2rq:PropertyBridge;
+    d2rq:property cmt:hardcopyMailingManifestsPrintedBy;
+    d2rq:belongsToClassMap map:Conference;
+    d2rq:refersToClassMap map:Administrator;
+    d2rq:join "hardcopyMailingManifestsP.Administrator = Administrator.ID";
+    d2rq:join "hardcopyMailingManifestsP.Conference = Conference.ID";
+    .
+
+#Table enableVirtualMeeting (n:m)
+map:enableVirtualMeeting a d2rq:PropertyBridge;
+    d2rq:property cmt:enableVirtualMeeting;
+    d2rq:belongsToClassMap map:Administrator;
+    d2rq:refersToClassMap map:Conference;
+    d2rq:join "enableVirtualMeeting.Administrator = Administrator.ID";
+    d2rq:join "enableVirtualMeeting.Conference = Conference.ID";
+    .
+
+#Table paperAssignmentToolsRunBy (n:m)
+map:paperAssignmentToolsRunBy a d2rq:PropertyBridge;
+    d2rq:property cmt:paperAssignmentToolsRunBy;
+    d2rq:belongsToClassMap map:Conference;
+    d2rq:refersToClassMap map:Administrator;
+    d2rq:join "paperAssignmentToolsRunBy.Administrator = Administrator.ID";
+    d2rq:join "paperAssignmentToolsRunBy.Conference = Conference.ID";
+    .
+
+#Table detailsEnteredBy (n:m)
+map:detailsEnteredBy a d2rq:PropertyBridge;
+    d2rq:property cmt:detailsEnteredBy;
+    d2rq:belongsToClassMap map:Conference;
+    d2rq:refersToClassMap map:Administrator;
+    d2rq:join "detailsEnteredBy.Administrator = Administrator.ID";
+    d2rq:join "detailsEnteredBy.Conference = Conference.ID";
+    .
+
+#Table assignReviewer (n:m)
+map:assignReviewer a d2rq:PropertyBridge;
+    d2rq:property cmt:assignReviewer;
+    d2rq:belongsToClassMap map:Administrator;
+    d2rq:refersToClassMap map:Reviewer;
+    d2rq:join "assignReviewer.Administrator = Administrator.ID";
+    d2rq:join "assignReviewer.Reviewer = Reviewer.ID";
+    .
+
+#Table readByReviewer (n:m)
+map:readByReviewer a d2rq:PropertyBridge;
+    d2rq:property cmt:readByReviewer;
+    d2rq:belongsToClassMap map:Paper;
+    d2rq:refersToClassMap map:Reviewer;
+    d2rq:join "readByReviewer.Paper = Paper.ID";
+    d2rq:join "readByReviewer.Reviewer = Reviewer.ID";
+    .
+
+#Table assignedTo (n:m)
+map:assignedTo a d2rq:PropertyBridge;
+    d2rq:property cmt:assignedTo;
+    d2rq:belongsToClassMap map:Paper;
+    d2rq:refersToClassMap map:Reviewer;
+    d2rq:join "assignedTo.Paper = Paper.ID";
+    d2rq:join "assignedTo.Reviewer = Reviewer.ID";
+    .
+
+#Table co-writePaper (n:m)
+map:co-writePaper a d2rq:PropertyBridge;
+    d2rq:property cmt:co-writePaper;
+    d2rq:belongsToClassMap map:Co-author;
+    d2rq:refersToClassMap map:Paper;
+    d2rq:join "co-writePaper.Paper = Paper.ID";
+    d2rq:join "co-writePaper.Co-author = Co-author.ID";
+    .
+
+#Table submitPaper (n:m)
+map:submitPaper a d2rq:PropertyBridge;
+    d2rq:property cmt:submitPaper;
+    d2rq:belongsToClassMap map:Author;
+    d2rq:refersToClassMap map:Paper;
+    d2rq:join "submitPaper.Paper = Paper.ID";
+    d2rq:join "submitPaper.Author = Author.ID";
+    .
+
+#Table setMaxPapers (n:m)
+map:setMaxPapers a d2rq:PropertyBridge;
+    d2rq:property cmt:setMaxPapers;
+    d2rq:belongsToClassMap map:Administrator;
+    d2rq:refersToClassMap map:ProgramCommitteeMember;
+    d2rq:join "setMaxPapers.Administrator = Administrator.ID";
+    d2rq:join "setMaxPapers.ProgramCommitteeMember = ProgramCommitteeMember.ID";
+    .
+
+#Table markConflictOfInterest (n:m)
+map:markConflictOfInterestReviewer a d2rq:PropertyBridge;
+    d2rq:property cmt:markConflictOfInterest;
+    d2rq:belongsToClassMap map:Paper;
+    d2rq:refersToClassMap map:Reviewer;
+    d2rq:join "markConflictOfInterest.Paper = Paper.ID";
+    d2rq:join "markConflictOfInterest.ConferenceMember = Reviewer.ID";
+    .
+
+map:markConflictOfInterestAuthor a d2rq:PropertyBridge;
+    d2rq:property cmt:markConflictOfInterest;
+    d2rq:belongsToClassMap map:Paper;
+    d2rq:refersToClassMap map:Author;
+    d2rq:join "markConflictOfInterest.Paper = Paper.ID";
+    d2rq:join "markConflictOfInterest.ConferenceMember = Author.ID";
+    .
+
+map:markConflictOfInterestProgramCommitteeChair a d2rq:PropertyBridge;
+    d2rq:property cmt:markConflictOfInterest;
+    d2rq:belongsToClassMap map:Paper;
+    d2rq:refersToClassMap map:ProgramCommitteeChair;
+    d2rq:join "markConflictOfInterest.Paper = Paper.ID";
+    d2rq:join "markConflictOfInterest.ConferenceMember = ProgramCommitteeChair.ID";
+    .
+
+map:markConflictOfInterestAssociatedChair a d2rq:PropertyBridge;
+    d2rq:property cmt:markConflictOfInterest;
+    d2rq:belongsToClassMap map:Paper;
+    d2rq:refersToClassMap map:AssociatedChair;
+    d2rq:join "markConflictOfInterest.Paper = Paper.ID";
+    d2rq:join "markConflictOfInterest.ConferenceMember = AssociatedChair.ID";
+    .
+
+map:markConflictOfInterestConferenceChair a d2rq:PropertyBridge;
+    d2rq:property cmt:markConflictOfInterest;
+    d2rq:belongsToClassMap map:Paper;
+    d2rq:refersToClassMap map:ConferenceChair;
+    d2rq:join "markConflictOfInterest.Paper = Paper.ID";
+    d2rq:join "markConflictOfInterest.ConferenceMember = ConferenceChair.ID";
+    .
+
+#Table ProgramCommittee
+map:ProgramCommittee a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:uriPattern "#ProgramCommittee/@@ProgramCommittee.ID@@";
+    d2rq:class cmt:ProgramCommittee;
+    .
+
+#Table hasConferenceMember (n:m)
+map:hasConferenceMember a d2rq:PropertyBridge;
+    d2rq:property cmt:hasConferenceMember;
+    d2rq:belongsToClassMap map:ProgramCommittee;
+    d2rq:refersToClassMap map:ProgramCommitteeMember;
+    d2rq:join "hasConferenceMember.Conference = Conference.ID";
+    d2rq:join "hasConferenceMember.ConferenceMember = ConferenceMember.ID";
+    .
+
+#Table endReview (n:m)
+map:endReview a d2rq:PropertyBridge;
+    d2rq:property cmt:endReview;
+    d2rq:belongsToClassMap map:ProgramCommitteeChair;
+    d2rq:refersToClassMap map:Review;
+    d2rq:join "endReview.ProgramCommitteeChair = ProgramCommitteeChair.ID";
+    d2rq:join "endReview.Review = Review.ID";
+    .
+
+#Table ProgramCommitteeChair
+map:ProgramCommitteeChair a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:uriPattern "#ProgramCommitteeChair/@@ProgramCommitteeChair.ID@@";
+    d2rq:class cmt:ProgramCommitteeChair;
+    d2rq:additionalClassDefinitionProperty map:subClassOfProgramCommitteeMember;
+    .
+
+#Table AssociatedChair
+map:AssociatedChair a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:uriPattern "#AssociatedChair/@@AssociatedChair.ID@@";
+    d2rq:class cmt:AssociatedChair;
+    d2rq:additionalClassDefinitionProperty map:subClassOfConferenceMember;
+    .
+
+#NOTE setMaxPapers ProgramCommitteeMember FK Constraint is missing SOLUTION: Assuming it’s there in mapping
+#NOTE markConflictOfInterest ConferenceMember (range) FK Constraint is missing 
+#NOTE Furthermore its a join of author chairman and reviewer, which equals to conference member. Decision: I will create a connection to all subclasses of conferencemember and join with conferencemember
+#NOTE hasProgramCommiteeMember ProgramCommitteeMember (range) FK Constraint is missing SOLUTION: Assuming it’s there in mapping
+#NOTE ProgramCommitteeMember attribute label is not property

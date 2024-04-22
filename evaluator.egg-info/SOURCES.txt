@@ -1,0 +1,8 @@
+setup.py
+evaluator/__init__.py
+evaluator/main.py
+evaluator.egg-info/PKG-INFO
+evaluator.egg-info/SOURCES.txt
+evaluator.egg-info/dependency_links.txt
+evaluator.egg-info/not-zip-safe
+evaluator.egg-info/top_level.txt
