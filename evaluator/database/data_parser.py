@@ -1,5 +1,5 @@
 #das ding muss vom datacrawler erben. Damit ich dann mit verschiedenen dateiformaen arbeiten kann. Z.B. Exceldateien
-class DataParser():
+class DataParser:
     def __init__(self) -> None:
         self.data = None
         pass

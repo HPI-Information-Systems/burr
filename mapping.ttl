@@ -2,7 +2,7 @@
 @prefix map: <http://mapping/> .
 @prefix jdbc: <http://jdbc/> .
 @prefix rdfs: <http://rdfs/> .
-@prefix cmt: <http://cmt/> .
+@prefix cmt: <http://cmt#> .
 
 
 map:database a d2rq:Database;
@@ -73,7 +73,8 @@ map:ExternalReviewer a d2rq:ClassMap;
     .
 
 #Table ExternalReviewer.assignedByReviewer
-map:assignedByReviewer a d2rq:PropertyBridge;
+map:assignedByReviewer 
+    a d2rq:PropertyBridge;
     d2rq:property cmt:assignedByReviewer;
     d2rq:belongsToClassMap map:ExternalReviewer;
     d2rq:refersToClassMap map:Reviewer;

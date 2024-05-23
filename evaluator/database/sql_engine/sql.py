@@ -1,13 +1,16 @@
 import psycopg2
 from enum import Enum
+from typing import List
 
 from evaluator.database.data_parser import DataParser
+from evaluator.database.sql_engine.table_context import TableContext, ForeignKeyRelation
 
 class SchemaTypeEnum(Enum):
     Attribute = 1
     NMTable = 2     
     N1Relation = 3
     Table = 4
+    PrimaryKey = 5
 
 class SQLEngine(DataParser):
     def __init__(self, database_name, schema, user="lukaslaskowski", host="127.0.0.1", port="5432") -> None:
@@ -20,15 +23,22 @@ class SQLEngine(DataParser):
                             }
         self.connection = None
         self.cursor = None
-        self.tables = {}
+        self.tables: dict[str, TableContext]  = {}
         
         for table in list(map(lambda x: x[2], self.query_database("SELECT * FROM information_schema.tables WHERE table_schema = 'public'", keep_alive=True))):
-            self.tables[table] = {}
-            self.tables[table]['table_name'] = table
-            self.tables[table]['attributes'] = list(map(lambda x: x[0], self.query_database(f"select column_name from information_schema.columns where table_name = '{table}' AND table_schema = '{self.credentials['schema']}'", keep_alive=True)))
-            self.tables[table]['foreign_keys'] = list(map(lambda x: {'name': x[1], 'origin_table': x[2], 'origin_attribute': x[3], 'reference_table': x[4],'reference_attribute': x[5]}, self.query_database(foreign_key_constraint_query(table, self.credentials['schema']), keep_alive=True)))
-            self.tables[table]['primary_keys'] = list(map(lambda x: x[0], self.query_database(primary_keys_query(table, self.credentials['schema']), keep_alive=True)))
+            attributes = list(map(lambda x: x[0], self.query_database(f"select column_name from information_schema.columns where table_name = '{table}' AND table_schema = '{self.credentials['schema']}'", keep_alive=True)))
+            foreign_keys = list(map(lambda x: ForeignKeyRelation(x[1], x[2], x[3], x[4], x[5]), self.query_database(foreign_key_constraint_query(table, self.credentials['schema']), keep_alive=True)))
+            primary_keys = list(map(lambda x: x[0], self.query_database(primary_keys_query(table, self.credentials['schema']), keep_alive=True)))
+            self.tables[table] = TableContext(table, attributes, foreign_keys, primary_keys)
         self.end_connection()
+
+    def get_tables(self):
+        return self.tables
+    
+    def get_attributes(self, table) -> List[str]: self.tables[table].attributes
+    def get_foreign_keys(self, table) -> List[ForeignKeyRelation]: self.tables[table].foreign_keys
+    def get_primary_keys(self, table) -> List[str]: self.tables[table].primary_keys
+    
 
     def get_context(self, schema_type: SchemaTypeEnum, schema_element):
         if schema_type is SchemaTypeEnum.Attribute:
@@ -51,23 +61,31 @@ class SQLEngine(DataParser):
     
     def get_schema_element_type(self, el, table_name):
         table_context = self.tables[table_name]
-        
-        if self.is_nm_table(table_context):
+        if self.is_part_of_nm_table(table_context):
             return SchemaTypeEnum.NMTable
-        
-        return super().get_schema_element_type(el)
+        elif self.is_n1_relation(el, table_context=table_context):
+            return SchemaTypeEnum.N1Relation
+        elif self.is_primary_key(el, table_context):
+            return SchemaTypeEnum.PrimaryKey
+        else: 
+            return SchemaTypeEnum.Attribute
     
-    def is_nm_table(self, table_context):
-        has_exactly_two_attributes = len(table_context['attributes']) == 2
-        column_has_foreign_key = lambda table_name, attribute: len(list(filter(lambda x: table_name == x['origin_table'] and x['origin_attribute'] == attribute))) == 1
-        primary_key_is_two_attributes = len(table_context['primary_keys']) == 2
+    def is_part_of_nm_table(self, table_context: TableContext):
+        has_exactly_two_attributes = len(table_context.attributes) == 2
+        column_has_foreign_key = lambda table_name, attribute: len(list(filter(lambda x: table_name == x.origin_table and x.origin_attribute == attribute))) == 1
+        primary_key_is_two_attributes = len(table_context.primary_keys) == 2
         return  has_exactly_two_attributes and \
                 primary_key_is_two_attributes and \
-                column_has_foreign_key(table_context['table_name'], table_context['attributes'][0]) and \
-                column_has_foreign_key(table_context['table_name'], table_context['attributes'][1]) 
+                column_has_foreign_key(table_context.table_name, table_context.attributes[0]) and \
+                column_has_foreign_key(table_context.table_name, table_context.attributes[1]) 
     
-    def is_n1_table(self, table_context):
-        pass
+    def is_primary_key(self, attribute, table_context: TableContext):
+        return list(filter(lambda attr: attribute == attr, table_context.primary_keys)) == 1
+
+    def is_n1_relation(self, attribute, table_context: TableContext):
+        attribute_is_in_table = len(list(filter(lambda attr: attr == table_context.attributes))) == 1
+        foreign_key_exists = attribute in list(map(lambda fk: fk.origin_attribute, table_context.foreign_keys))
+        return attribute_is_in_table and foreign_key_exists
 
     def query_database(self, query, keep_alive=False):
         try:
