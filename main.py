@@ -2,17 +2,21 @@
 #from evaluator.validator.base_validator import get_validator
 #from evaluator.mapping_parser.mapping import Mapping
 from evaluator.mapping_parser.mapping import Mapping
-engine = SQLEngine("test_database_naive", "public") #schem selection does not work I guess
+from evaluator.metrics.mapping_based import MappingBasedPrecision, MappingBasedRecall, MappingBasedF1
+#engine = SQLEngine("test_database_naive", "public") #schem selection does not work I guess
 ontology = None
 
-mapping_file ="./mapping.ttl"
+#mapping_file ="./mapping_.ttl"
 #mapping_file ="/Users/lukaslaskowski/Downloads/RODI_benchmark/data/cmt_mixed/mapping.ttl"
-mapping = Mapping(mapping_file)
+mapping_1 = Mapping("./mapping_test_1.ttl")
+mapping_2 = Mapping("./mapping_test_2.ttl")
 
-for o in mapping.classes + mapping.relations:
-
-    pass
-
+precision = MappingBasedPrecision().score(mapping_1, mapping_2)
+recall = MappingBasedRecall().score(mapping_1, mapping_2)
+f1 = MappingBasedF1().score(mapping_1, mapping_2)
+print(f"Precision: {precision}")
+print(f"Recall: {recall}")
+print(f"F1: {f1}")
 # for table in engine.get_tables():
 #     for attribute in engine.get_attributes(table):
 #         context = engine.get_context(engine.get_schema_element_type(attribute, table), attribute)

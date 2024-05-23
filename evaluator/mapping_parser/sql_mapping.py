@@ -1,10 +1,10 @@
 from dataclasses import dataclass
 import re
 
+@dataclass
 class SQLAttribute:
-    def __init__(self, table, attribute):
-        self.table = table
-        self.attribute = attribute
+    table: str
+    attribute: str
 
     def __eq__(self, other):
         return isinstance(other, SQLAttribute) and self.table == other.table and self.attribute == other.attribute
@@ -12,12 +12,12 @@ class SQLAttribute:
     def __hash__(self):
         return hash((self.table, self.attribute))
 
+@dataclass
 class Condition:
-    def __init__(self, sql_attribute, operator, value):
-        self.sql_attribute = sql_attribute
-        self.operator = operator
-        self.value = value
-
+    sql_attribute: SQLAttribute
+    operator: str
+    value: str
+    
     def __eq__(self, other):
         return isinstance(other, Condition) and self.sql_attribute == other.sql_attribute and self.operator == other.operator and self.value == other.value
 
@@ -30,6 +30,14 @@ class Join:
     left_attribute: SQLAttribute
     right_attribute: SQLAttribute
 
+    def __eq__(self, other):
+        if not isinstance(other, Join):
+            return False
+        return (self.left_attribute == other.left_attribute and self.right_attribute == other.right_attribute) or \
+               (self.left_attribute == other.right_attribute and self.right_attribute == other.left_attribute)
+
+    def __hash__(self):
+        return hash(frozenset([self.left_attribute, self.right_attribute]))
 @dataclass
 class Query:
     content: set
@@ -61,9 +69,6 @@ class ClassMap:
                 self.subclasses = self.parse_additionalClassDefinitionProperty(additionalClassDefinitionProperty, graph)
         self.sql_condition = self.parse_condition(condition) if self.condition is not None else None
         self.sql_uri_pattern: SQLAttribute = self.parse_uri_pattern(uriPattern)
-        print(self.sql_condition)
-        print(self.sql_uri_pattern)
-        print(self.subclasses)
     
     def parse_condition(self, condition):
         operator = list(filter(lambda x: x in condition, ["=", ">", "<", "<=", ">=" "!="]))[0]
@@ -86,8 +91,8 @@ class ClassMap:
     def __eq__(self, other: object) -> bool:
         if not isinstance(other, ClassMap):
             return False
-        print("todo add condition for uri\
-        todo handle correctly uripattern in equality check")
+        #print("todo add condition for uri\
+        #todo handle correctly uripattern in equality check")
         return self.sql_condition == other.sql_condition and self.sql_uri_pattern == other.sql_uri_pattern
     
     def __hash__(self) -> int:
@@ -103,30 +108,42 @@ class Relation:
     refersToClassMap: str
     join: str
     column: str
+
     def __init__(self, property, belongsToClassMap, refersToClassMap, join, column) -> None:
         self.property = property
         self.belongsToClassMap = belongsToClassMap
         self.refersToClassMap = refersToClassMap
         self.join = join
         self.column = column
-        self.sql_join = self.parse_join(join) if self.join is not None else None
+        #check if join is list
+        if isinstance(join, list):
+            self.sql_join = [self.parse_join(j) for j in join]
+        else:
+            self.sql_join = [self.parse_join(join)] if self.join is not None else None
         self.sql_column = self.parse_column(column) if self.column is not None else None
-    
+
     def parse_join(self, join):
         join = join.split("=")
         left = join[0].split(".")
         right = join[1].split(".")
         return Join(SQLAttribute(left[0], left[1]), SQLAttribute(right[0], right[1]))
-    
+
     def parse_column(self, column):
         column = column.split(".")
         return SQLAttribute(column[0], column[1])
-    
-    def __eq__(self, value: object) -> bool:
-        #todo is this correct?
-        return join_equal(self.sql_join, value.sql_join) if self.sql_join is not None and value.sql_join is not None else True \
-                and \
-               sql_attribute_equal(self.sql_column, value.sql_column) if self.sql_column is not None and value.sql_column is not None else True
+
+    def __eq__(self, other: object) -> bool:
+        if not isinstance(other, Relation):
+            return False
+        joins_equal = set(self.sql_join) == set(other.sql_join) if self.sql_join is not None and other.sql_join is not None else True
+        columns_equal = self.sql_column == other.sql_column if self.sql_column is not None and other.sql_column is not None else True
+        return joins_equal and columns_equal
 
     def __hash__(self) -> int:
-        pass
+        joins_hash = hash(frozenset(self.sql_join)) if self.sql_join is not None else 0
+        columns_hash = hash(self.sql_column) if self.sql_column is not None else 0
+        return hash((joins_hash, columns_hash))
+
+    def __repr__(self):
+        return f"Relation(property={self.property}, belongsToClassMap={self.belongsToClassMap}, refersToClassMap={self.refersToClassMap})"
+

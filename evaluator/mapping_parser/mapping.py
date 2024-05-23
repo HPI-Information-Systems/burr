@@ -15,13 +15,6 @@ class Mapping:
         self.classes = self.get_classes()
         self.relations = self.get_relations()
 
-    def intersection(self, other):
-        for class_ in self.classes:
-            for other_class in other.classes:
-                if class_ == other_class:
-                    print
-        pass
-
     def get_classes(self) -> List[str]:
         classes = []
         properties = ["d2rq:uriPattern", "d2rq:class", "d2rq:additionalClassDefinitionProperty", "d2rq:condition"]
@@ -87,7 +80,7 @@ class Mapping:
                     for obj in res:
                         objects_of_property.append(obj[0].n3().replace("'", "").replace('"', ""))
                     temp[property] = objects_of_property
-                result.append(temp)
+            result.append(temp)
         return result
     
     def get_attribute_from_mapping(self, attribute, table):
