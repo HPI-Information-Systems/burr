@@ -47,19 +47,22 @@ def join_equal(join1, join2): sql_attribute_equal(join1.left_attribute, join2.le
 def condition_equal(condition1: Condition, condition2: Condition): sql_attribute_equal(condition1.sql_attribute, condition2.sql_attribute) and condition1.operator == condition2.operator and condition1.value == condition2.value
 
 class ClassMap:
-    #Todo classmap can also have a join
+    mapping_id: str
     uriPattern: str
+    join: str
     class_uri: str
     subclass: str# | list[str]
     condition: str
     graph: str
-    def __init__(self, uriPattern, class_uri, additionalClassDefinitionProperty, condition, graph) -> None:
+    def __init__(self, mapping_id, uriPattern, class_uri, additionalClassDefinitionProperty, join, condition, graph) -> None:
         self.uriPattern = uriPattern
+        self.mapping_id = mapping_id
         self.class_uri = class_uri
         self.additionalClassDefinitionProperty = additionalClassDefinitionProperty
         self.condition = condition
+        self.join = join
         self.subclasses = None
-        self.condition = None
+        #self.condition = None #todo das war im code, sieht aber falsch aus
         if self.additionalClassDefinitionProperty is not None:
             self.subclasses = []
             if isinstance(additionalClassDefinitionProperty, list):
@@ -67,6 +70,10 @@ class ClassMap:
                     self.subclasses.append(self.parse_additionalClassDefinitionProperty(el, graph))
             else:
                 self.subclasses = self.parse_additionalClassDefinitionProperty(additionalClassDefinitionProperty, graph)
+        if isinstance(join, list):
+            self.sql_join = [self.parse_join(j) for j in join]
+        else:
+            self.sql_join = [self.parse_join(join)] if self.join is not None else None
         self.sql_condition = self.parse_condition(condition) if self.condition is not None else None
         self.sql_uri_pattern: SQLAttribute = self.parse_uri_pattern(uriPattern)
     
@@ -80,7 +87,13 @@ class ClassMap:
     def parse_uri_pattern(self, uri_pattern):
         uri_pattern = re.search('@@(.*)@@', uri_pattern).group(1).split(".")
         return SQLAttribute(table=uri_pattern[0], attribute=uri_pattern[1])
-        
+
+    def parse_join(self, join):
+        join = join.split("=")
+        left = join[0].split(".")
+        right = join[1].split(".")
+        return Join(SQLAttribute(left[0], left[1]), SQLAttribute(right[0], right[1]))
+
     def parse_additionalClassDefinitionProperty(self, uri, graph):
         query = f"""             
             SELECT DISTINCT ?class
@@ -88,28 +101,29 @@ class ClassMap:
         """
         res = [obj[0].n3() for obj in graph.query(query)]
         return res if len(res)>1 else res[0]
+    
     def __eq__(self, other: object) -> bool:
         if not isinstance(other, ClassMap):
             return False
-        #print("todo add condition for uri\
-        #todo handle correctly uripattern in equality check")
-        return self.sql_condition == other.sql_condition and self.sql_uri_pattern == other.sql_uri_pattern
+        return self.sql_condition == other.sql_condition and self.sql_uri_pattern == other.sql_uri_pattern and self.sql_join == other.sql_join
     
     def __hash__(self) -> int:
-        return hash((self.sql_condition, self.sql_uri_pattern))
+        return hash((self.sql_condition, self.sql_uri_pattern, self.sql_join))
 
     def __repr__(self):
         return f"ClassMap(uriPattern={self.uriPattern}, class_uri={self.class_uri})"
 
 
 class Relation:
+    mapping_id: str
     property: str
     belongsToClassMap: str
     refersToClassMap: str
     join: str
     column: str
 
-    def __init__(self, property, belongsToClassMap, refersToClassMap, join, column) -> None:
+    def __init__(self, mapping_id, property, belongsToClassMap, refersToClassMap, join, column) -> None:
+        self.mapping_id = mapping_id
         self.property = property
         self.belongsToClassMap = belongsToClassMap
         self.refersToClassMap = refersToClassMap

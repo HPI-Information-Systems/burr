@@ -3,20 +3,31 @@
 #from evaluator.mapping_parser.mapping import Mapping
 from evaluator.mapping_parser.mapping import Mapping
 from evaluator.metrics.mapping_based import MappingBasedPrecision, MappingBasedRecall, MappingBasedF1
+from evaluator.metrics.taxonomy_mapping_based import TaxonomyMappingBasedPrecision, TaxonomyMappingBasedRecall, TaxonomyMappingBasedF1
 #engine = SQLEngine("test_database_naive", "public") #schem selection does not work I guess
 ontology = None
 
 #mapping_file ="./mapping_.ttl"
 #mapping_file ="/Users/lukaslaskowski/Downloads/RODI_benchmark/data/cmt_mixed/mapping.ttl"
-mapping_1 = Mapping("./mapping_test_1.ttl")
-mapping_2 = Mapping("./mapping_test_2.ttl")
+mapping_1 = Mapping("./mapping_test_2.ttl")
+mapping_2 = Mapping("./mapping_test_1.ttl")
 
-precision = MappingBasedPrecision().score(mapping_1, mapping_2)
-recall = MappingBasedRecall().score(mapping_1, mapping_2)
-f1 = MappingBasedF1().score(mapping_1, mapping_2)
-print(f"Precision: {precision}")
-print(f"Recall: {recall}")
-print(f"F1: {f1}")
+# precision = MappingBasedPrecision()(mapping_1, mapping_2)
+# recall = MappingBasedRecall()(mapping_1, mapping_2)
+# f1 = MappingBasedF1()(mapping_1, mapping_2)
+# tp = TaxonomyMappingBasedPrecision()(mapping_1, mapping_2)
+tr = TaxonomyMappingBasedRecall()(mapping_1, mapping_2)
+# f1 = TaxonomyMappingBasedF1()(mapping_1, mapping_2)
+
+# print(f"Precision: {precision}")
+# print(f"Recall: {recall}")
+# print(f"F1: {f1}")
+# print(f"Taxonomy Precision: {tp}")
+print(f"Taxonomy Recall: {tr}")
+# print(f"Taxonomy F1: {f1}")
+
+print("REMINDER: I have not considered subclasses yet. How should they be incorporated?")
+print("REMINDER: I have not looked at attributes yet.")
 # for table in engine.get_tables():
 #     for attribute in engine.get_attributes(table):
 #         context = engine.get_context(engine.get_schema_element_type(attribute, table), attribute)

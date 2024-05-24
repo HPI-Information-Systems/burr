@@ -7,6 +7,8 @@ class MappingBasedPrecision(Metric):
 
     def score(self, learned_ontology: Mapping, referenced_ontology: Mapping) -> float:
         classes = set(learned_ontology.classes).intersection(set(referenced_ontology.classes))
+        #print("sda", learned_ontology.classes )
+        #print("sda", learned_ontology.relations )
         relations = set(learned_ontology.relations).intersection(set(referenced_ontology.relations))
         return (len(classes) + len(relations)) / (len(learned_ontology.classes) + len(learned_ontology.relations))
     
