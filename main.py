@@ -2,8 +2,9 @@
 #from evaluator.validator.base_validator import get_validator
 #from evaluator.mapping_parser.mapping import Mapping
 from evaluator.mapping_parser.mapping import Mapping
-from evaluator.metrics.mapping_based import MappingBasedPrecision, MappingBasedRecall, MappingBasedF1
-from evaluator.metrics.taxonomy_mapping_based import TaxonomyMappingBasedPrecision, TaxonomyMappingBasedRecall, TaxonomyMappingBasedF1
+from evaluator.metrics.mapping_based import MappingBasedPrecision, MappingBasedRecall
+from evaluator.metrics.taxonomy_mapping_based import TaxonomyMappingBasedPrecision, TaxonomyMappingBasedRecall
+from evaluator.metrics.metric import F1Score
 #engine = SQLEngine("test_database_naive", "public") #schem selection does not work I guess
 ontology = None
 
@@ -12,19 +13,19 @@ ontology = None
 mapping_1 = Mapping("./mapping_test_2.ttl")
 mapping_2 = Mapping("./mapping_test_1.ttl")
 
-# precision = MappingBasedPrecision()(mapping_1, mapping_2)
-# recall = MappingBasedRecall()(mapping_1, mapping_2)
-# f1 = MappingBasedF1()(mapping_1, mapping_2)
-# tp = TaxonomyMappingBasedPrecision()(mapping_1, mapping_2)
+precision = MappingBasedPrecision()(mapping_1, mapping_2)
+recall = MappingBasedRecall()(mapping_1, mapping_2)
+f1 = F1Score()(precision, recall)
+tp = TaxonomyMappingBasedPrecision()(mapping_1, mapping_2)
 tr = TaxonomyMappingBasedRecall()(mapping_1, mapping_2)
-# f1 = TaxonomyMappingBasedF1()(mapping_1, mapping_2)
+tf1 = F1Score()(tp, tr)
 
-# print(f"Precision: {precision}")
-# print(f"Recall: {recall}")
-# print(f"F1: {f1}")
-# print(f"Taxonomy Precision: {tp}")
+print(f"Precision: {precision}")
+print(f"Recall: {recall}")
+print(f"F1: {f1}")
+print(f"Taxonomy Precision: {tp}")
 print(f"Taxonomy Recall: {tr}")
-# print(f"Taxonomy F1: {f1}")
+print(f"Taxonomy F1: {tf1}")
 
 print("REMINDER: I have not considered subclasses yet. How should they be incorporated?")
 print("REMINDER: I have not looked at attributes yet.")

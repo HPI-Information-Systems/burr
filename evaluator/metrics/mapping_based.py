@@ -26,15 +26,3 @@ class MappingBasedRecall(Metric):
     
     def __str__(self):
         return "MappingBasedRecall"
-    
-class MappingBasedF1(Metric):
-    def __init__(self):
-        super(MappingBasedF1, self).__init__()
-
-    def score(self, learned_ontology: Mapping, referenced_ontology: Mapping) -> float:
-        precision = MappingBasedPrecision().score(learned_ontology, referenced_ontology)
-        recall = MappingBasedRecall().score(learned_ontology, referenced_ontology)
-        return 2 * (precision * recall) / (precision + recall)
-    
-    def __str__(self):
-        return "MappingBasedF1"
