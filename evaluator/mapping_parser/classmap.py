@@ -16,15 +16,15 @@ class ClassMap:
         self.additionalClassDefinitionProperty = additionalClassDefinitionProperty
         self.condition = condition
         self.join = join
-        self.subclasses = None
+        self.parent_classes = None
         #self.condition = None #todo das war im code, sieht aber falsch aus
         if self.additionalClassDefinitionProperty is not None:
-            self.subclasses = []
+            self.parent_classes = []
             if isinstance(additionalClassDefinitionProperty, list):
                 for el in additionalClassDefinitionProperty:
-                    self.subclasses.append(self.parse_additionalClassDefinitionProperty(el, graph))
+                    self.parent_classes.append(self.parse_additionalClassDefinitionProperty(el, graph))
             else:
-                self.subclasses = self.parse_additionalClassDefinitionProperty(additionalClassDefinitionProperty, graph)
+                self.parent_classes = [self.parse_additionalClassDefinitionProperty(additionalClassDefinitionProperty, graph)]
         if isinstance(join, list):
             self.sql_join = [self.parse_join(j) for j in join]
         else:

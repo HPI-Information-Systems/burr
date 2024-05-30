@@ -55,8 +55,20 @@ class Relation:
 def equality_by_edge_query(edge1: Relation, edge2: Relation) -> bool:
     if not isinstance(edge2, Relation):
         return False
-    joins_equal = set(edge1.sql_join) == set(edge2.sql_join) if edge1.sql_join is not None and edge2.sql_join is not None else True
-    columns_equal = edge1.sql_column == edge2.sql_column if edge1.sql_column is not None and edge2.sql_column is not None else True
+    if edge1.sql_join is not None and edge2.sql_join is not None:
+        joins_equal = set(edge1.sql_join) == set(edge2.sql_join)
+    elif edge1.sql_join is None and edge2.sql_join is None:
+        joins_equal = True
+    else:
+        joins_equal = False
+    if edge1.sql_column is not None and edge2.sql_column is not None:
+        columns_equal = edge1.sql_column == edge2.sql_column
+    elif edge1.sql_column is None and edge2.sql_column is None:
+        columns_equal = True
+    else:
+        columns_equal = False
+    #joins_equal = set(edge1.sql_join) == set(edge2.sql_join) if edge1.sql_join is not None and edge2.sql_join is not None else True
+    #columns_equal = edge1.sql_column == edge2.sql_column if edge1.sql_column is not None and edge2.sql_column is not None else True
     return joins_equal and columns_equal
 
 def hash_by_edge_query(edge: Relation) -> int:

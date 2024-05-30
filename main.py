@@ -8,16 +8,16 @@ from evaluator.metrics.metric import F1Score
 #engine = SQLEngine("test_database_naive", "public") #schem selection does not work I guess
 ontology = None
 
-#mapping_file ="./mapping_.ttl"
+mapping_file ="./mapping.ttl"
 #mapping_file ="/Users/lukaslaskowski/Downloads/RODI_benchmark/data/cmt_mixed/mapping.ttl"
-mapping_1 = Mapping("./mapping_test_2.ttl")
-mapping_2 = Mapping("./mapping_test_1.ttl")
+mapping_1 = Mapping(mapping_file)
+mapping_2 = Mapping(mapping_file)
 
 precision = MappingBasedPrecision()(mapping_1, mapping_2)
 recall = MappingBasedRecall()(mapping_1, mapping_2)
 f1 = F1Score()(precision, recall)
 tp = TaxonomyMappingBasedPrecision()(mapping_1, mapping_2)
-tr = TaxonomyMappingBasedRecall()(mapping_1, mapping_2)
+tr = TaxonomyMappingBasedRecall().score(mapping_1, mapping_2)
 tf1 = F1Score()(tp, tr)
 
 print(f"Precision: {precision}")
@@ -27,7 +27,7 @@ print(f"Taxonomy Precision: {tp}")
 print(f"Taxonomy Recall: {tr}")
 print(f"Taxonomy F1: {tf1}")
 
-print("REMINDER: I have not considered subclasses yet. How should they be incorporated?")
+print("REMINDER: I do not consider subclasses because they do not have a mapping but are indirectly covered by")
 print("REMINDER: I have not looked at attributes yet.")
 # for table in engine.get_tables():
 #     for attribute in engine.get_attributes(table):

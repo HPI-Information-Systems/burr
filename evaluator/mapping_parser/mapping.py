@@ -15,6 +15,7 @@ class Mapping:
         self.graph.parse(mapping_file)
         self.classes = self.get_classes()
         self.relations = self.get_relations()
+        #[self.convert_subclass_to_relations(class_) for class_ in self.classes]
     
     def get_context_elements(self, schema_element):
         if isinstance(schema_element, Relation) and schema_element.property == "<http://cmt#CD>":
@@ -30,9 +31,10 @@ class Mapping:
             raise Exception("Schema element not found in mapping")
         return fn(schema_element)
 
-    def __mapping_id_to_class(self, mapping_id):
+    def __mapping_id_to_class(self, id, attribute="mapping_id"):
         for class_ in self.classes:
-            if class_.mapping_id == mapping_id:
+            #print(class_[attribute], id)
+            if getattr(class_, attribute) == id:
                 return class_
         return None
     
@@ -102,6 +104,23 @@ class Mapping:
             )
         return relations
 
+    def convert_subclass_to_relations(self, class_: ClassMap):
+        for parent_class in class_.subclasses if class_.parent_classes is not None else []:
+            parent_class = self.__mapping_id_to_class(parent_class, "class_uri")
+            print(parent_class)
+            print(class_)
+            print("\n")
+            self.relations.append(
+                Relation(
+                    mapping_id=parent_class.mapping_id,
+                    property="SubclassOf",
+                    belongsToClassMap=parent_class,
+                    refersToClassMap=class_,
+                    join=None,
+                    column=None,
+                )
+            )
+            #self.convert_subclass_to_relations(subclass)
     def set_eq_strategy(self, classes=False):
         for relation in self.relations:
             relation.set_eq_strategy(classes)

@@ -23,9 +23,9 @@ class TaxonomyMappingBasedPrecision(Metric):
     def __str__(self):
         return "TaxonomyMappingBasedPrecision"
 
-class TaxonomyMappingBasedRecall(Metric):
-    def __init__(self):
-        super(TaxonomyMappingBasedRecall, self).__init__()
+class TaxonomyMappingBasedRecall():
+    # def __init__(self):
+    #     super(TaxonomyMappingBasedRecall, self).__init__()
 
     def score(self, learned_ontology: Mapping, referenced_ontology: Mapping) -> float:
         #intersect ontology
@@ -34,12 +34,13 @@ class TaxonomyMappingBasedRecall(Metric):
         referenced_ontology.classes = list(shared_classes)
         learned_ontology.set_eq_strategy(classes=False)
         referenced_ontology.set_eq_strategy(classes=False)
-        shared_relations_referenced = set(learned_ontology.relations).intersection(set(referenced_ontology.relations))
+        shared_relations_referenced = set(set(learned_ontology.relations).intersection(set(referenced_ontology.relations)))
         shared_relations_learned = set(referenced_ontology.relations).intersection(set(learned_ontology.relations))
         learned_ontology.relations = list(shared_relations_learned)
         referenced_ontology.relations = list(shared_relations_referenced)
         shared_elements = shared_relations_referenced
-        return np.mean(list(map(lambda el: LocalTaxonomyMappingBasedRecall().score(el, learned_ontology, referenced_ontology), shared_elements)))
+        res = list(map(lambda el: LocalTaxonomyMappingBasedRecall().score(el, learned_ontology, referenced_ontology), shared_elements))
+        return np.mean(res)
     
     def __str__(self):
         return "TaxonomyMappingBasedRecall"
@@ -56,9 +57,9 @@ class TaxonomyMappingBasedF1(Metric):
     def __str__(self):
         return "TaxonomyMappingBasedF1"
     
-class LocalTaxonomyMappingBasedPrecision(Metric):
-    def __init__(self):
-        super(LocalTaxonomyMappingBasedPrecision, self).__init__()
+class LocalTaxonomyMappingBasedPrecision():
+    # def __init__(self):
+    #     super(LocalTaxonomyMappingBasedPrecision, self).__init__()
 
     def score(self, schema_element, learned_ontology: Mapping, referenced_ontology: Mapping) -> float:
         learned_ontology.set_eq_strategy(classes=False)
@@ -78,12 +79,13 @@ class LocalTaxonomyMappingBasedPrecision(Metric):
     def __str__(self):
         return "LocalTaxonomyMappingBasedPrecision"
     
-class LocalTaxonomyMappingBasedRecall(Metric):
-    def __init__(self):
-        super(LocalTaxonomyMappingBasedRecall, self).__init__()
+class LocalTaxonomyMappingBasedRecall():
+    # def __init__(self):
+    #     super(LocalTaxonomyMappingBasedRecall, self).__init__()
 
     def score(self, schema_element, learned_ontology: Mapping, referenced_ontology: Mapping) -> float:
         learned_ontology.set_eq_strategy(classes=False)
+        #print(learned_ontology.relations)
         referenced_ontology.set_eq_strategy(classes=False)
         schema_element_in_learned = list(filter(lambda x: x == schema_element, learned_ontology.classes + learned_ontology.relations))[0]
         learned_context_elements = learned_ontology.get_context_elements(schema_element_in_learned)
@@ -95,6 +97,12 @@ class LocalTaxonomyMappingBasedRecall(Metric):
             return 1
         # print("learned_context_elements", learned_context_elements)
         # print("referenced_context_elements", referenced_context_elements)
+        #print("schema el", schema_element)
+        # if schema_element.property == "<http://cmt#writtenBy>":
+        #     print(schema_element_in_learned)
+        #     print("learned", len(learned_context_elements))
+        #     print("referenced", len(referenced_context_elements))
+        #     print("score", len(set(learned_context_elements).intersection(set(referenced_context_elements))) / len(referenced_context_elements))
         return len(set(learned_context_elements).intersection(set(referenced_context_elements))) / len(referenced_context_elements)
     
     def __str__(self):
