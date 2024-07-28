@@ -17,7 +17,7 @@ class ClassMap:
         self.condition = condition
         self.join = join
         self.parent_classes = None
-        #self.condition = None #todo das war im code, sieht aber falsch aus
+        
         if self.additionalClassDefinitionProperty is not None:
             self.parent_classes = []
             if isinstance(additionalClassDefinitionProperty, list):
@@ -29,7 +29,11 @@ class ClassMap:
             self.sql_join = [self.parse_join(j) for j in join]
         else:
             self.sql_join = [self.parse_join(join)] if self.join is not None else None
-        self.sql_condition = self.parse_condition(condition) if self.condition is not None else None
+        if isinstance(condition, list):
+            self.sql_condition = [self.parse_condition(s) for s in condition]
+        else:
+            self.sql_condition = [self.parse_condition(condition)] if self.condition is not None else None
+        #self.sql_condition = self.parse_condition(condition) if self.condition is not None else None
         self.sql_uri_pattern: SQLAttribute = self.parse_uri_pattern(uriPattern)
     
     def parse_condition(self, condition):
@@ -63,7 +67,8 @@ class ClassMap:
         return self.sql_condition == other.sql_condition and self.sql_uri_pattern == other.sql_uri_pattern and self.sql_join == other.sql_join
     
     def __hash__(self) -> int:
-        return hash((self.sql_condition, self.sql_uri_pattern, self.sql_join))
+        return hash((tuple(self.sql_condition) if isinstance(self.sql_condition, list) else self.sql_condition, self.sql_uri_pattern, self.sql_join))
+        #return hash((self.sql_condition, self.sql_uri_pattern, self.sql_join))
 
     def __repr__(self):
         return f"ClassMap(uriPattern={self.uriPattern}, class_uri={self.class_uri})"

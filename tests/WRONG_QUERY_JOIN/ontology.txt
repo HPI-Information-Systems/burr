@@ -1,0 +1,7 @@
+GT:
+A -> B,C,D
+E -> A
+
+LEARNED:
+A -> B,D
+E -> A

@@ -8,16 +8,20 @@ from evaluator.metrics.metric import F1Score
 #engine = SQLEngine("test_database_naive", "public") #schem selection does not work I guess
 ontology = None
 
-mapping_file ="./mapping.ttl"
+# mapping_file ="./mapping.ttl"
 #mapping_file ="/Users/lukaslaskowski/Downloads/RODI_benchmark/data/cmt_mixed/mapping.ttl"
-mapping_1 = Mapping(mapping_file)
-mapping_2 = Mapping(mapping_file)
+mapping_file_1 ="/Users/lukaslaskowski/Documents/HPI/KG/ontology_mappings/rdb2ontology/mapping_chatgpt.ttl"
+mapping_file_2 ="/Users/lukaslaskowski/Documents/HPI/KG/ontology_mappings/rdb2ontology/mapping_cmt_mixed.ttl"
+mapping_1 = Mapping(mapping_file_1)
+mapping_2 = Mapping(mapping_file_2)
 
 precision = MappingBasedPrecision()(mapping_1, mapping_2)
 recall = MappingBasedRecall()(mapping_1, mapping_2)
+print(precision)
+print(recall)
 f1 = F1Score()(precision, recall)
-tp = TaxonomyMappingBasedPrecision()(mapping_1, mapping_2)
-tr = TaxonomyMappingBasedRecall().score(mapping_1, mapping_2)
+tr = TaxonomyMappingBasedRecall().score(mapping_2, mapping_1)
+tp = TaxonomyMappingBasedPrecision()(mapping_2, mapping_1)
 tf1 = F1Score()(tp, tr)
 
 print(f"Precision: {precision}")

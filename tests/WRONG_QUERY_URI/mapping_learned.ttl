@@ -1,0 +1,77 @@
+@prefix d2rq: <http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#> .
+@prefix cmt: <http://cmt/> .
+@prefix map: <http://mapping/> .
+@prefix jdbc: <http://d2rq.org/terms/jdbc/> .
+@prefix rdfs: <http://rdfs/> .
+@prefix cmt: <http://cmt#> .
+
+map:database a d2rq:Database;
+	d2rq:jdbcDriver "org.postgresql.Driver";
+	d2rq:jdbcDSN "jdbc:postgresql://localhost:5432/test_database_naive?autoReconnect=true";
+	d2rq:username "lukaslaskowski";
+	jdbc:keepAlive "3600";				# sends noop-query every 3600 seconds
+#	jdbc:keepAliveQuery "SELECT 1";		# optional custom noop-query
+	.
+
+#Table A
+map:A a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:uriPattern "#User/@@A.A@@";
+    d2rq:class cmt:A;
+    .
+
+#Table B
+map:B a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:uriPattern "#User/@@B.B@@";
+    d2rq:class cmt:B;
+    .
+
+#Table C
+map:C a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:uriPattern "#User/@@C.C@@";
+    d2rq:class cmt:C;
+    .
+
+#Table D
+map:D a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:uriPattern "#User/@@WRONG.WRONG@@";
+    d2rq:class cmt:D;
+    .
+
+#Table E
+map:E a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:uriPattern "#User/@@E.E@@";
+    d2rq:class cmt:E;
+    .
+
+map:AB a d2rq:PropertyBridge;
+    d2rq:property cmt:AB;
+    d2rq:belongsToClassMap map:A;
+    d2rq:refersToClassMap map:B;
+    d2rq:join "A.A = B.A";
+    .
+
+map:AC a d2rq:PropertyBridge;
+    d2rq:property cmt:AC;
+    d2rq:belongsToClassMap map:A;
+    d2rq:refersToClassMap map:C;
+    d2rq:join "A.A = C.A";
+    .
+
+map:AD a d2rq:PropertyBridge;
+    d2rq:property cmt:AD;
+    d2rq:belongsToClassMap map:A;
+    d2rq:refersToClassMap map:D;
+    d2rq:join "A.A = D.A";
+    .
+
+map:EA a d2rq:PropertyBridge;
+    d2rq:property cmt:EA;
+    d2rq:belongsToClassMap map:E;
+    d2rq:refersToClassMap map:A;
+    d2rq:join "A.E = E.E";
+    .

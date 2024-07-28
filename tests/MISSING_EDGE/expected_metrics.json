@@ -1,0 +1,8 @@
+{
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "taxonomy_precision": 0.92,
+    "taxonomy_recall": 0.58,
+    "taxonomy_f1": 0.71
+}

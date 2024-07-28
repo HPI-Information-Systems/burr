@@ -217,7 +217,7 @@ map:Conference a d2rq:ClassMap;
 map:conference_acceptsHardcopySubmissions a d2rq:PropertyBridge;
 	d2rq:belongsToClassMap map:Conference;
 	d2rq:property cmt:acceptsHardcopySubmissions;
-	d2rq:column "Conference.acceptsHardcopySubmissions";
+	d2rq:column "Conference.accepts_hardcopy_submissions";
     .
 
 map:conference_date a d2rq:PropertyBridge;
@@ -229,7 +229,7 @@ map:conference_date a d2rq:PropertyBridge;
 map:conference_logoURL a d2rq:PropertyBridge;
 	d2rq:belongsToClassMap map:Conference;
 	d2rq:property cmt:logoURL;
-	d2rq:column "Conference.logoURL";
+	d2rq:column "Conference.logo_url";
     .
 
 map:conference_name a d2rq:PropertyBridge;
@@ -241,7 +241,7 @@ map:conference_name a d2rq:PropertyBridge;
 map:conference_siteURL a d2rq:PropertyBridge;
 	d2rq:belongsToClassMap map:Conference;
 	d2rq:property cmt:siteURL;
-	d2rq:column "Conference.siteURL";
+	d2rq:column "conferences.site_url";
     .
 
 map:conference_reviewsPerPaper a d2rq:PropertyBridge;

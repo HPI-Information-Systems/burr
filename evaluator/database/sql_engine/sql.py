@@ -12,6 +12,19 @@ class SchemaTypeEnum(Enum):
     Table = 4
     PrimaryKey = 5
 
+class DatabaseSchema:
+    def __init__(self) -> None:
+        self.tables = {}
+
+    def add_table(self, table: TableContext):
+        self.tables[table.table_name] = table
+
+    def get_table(self, table_name) -> TableContext: return self.tables[table_name]
+    def stringify(self) -> str: " ".join(map(lambda x: x.stringify(), self.tables.values()))
+    def get_attributes(self, table_name) -> List[str]: self.get_table(table_name).attributes
+    def get_foreign_keys(self, table_name) -> List[ForeignKeyRelation]: self.get_table(table_name).foreign_keys
+    def get_primary_keys(self, table_name) -> List[str]: self.get_table(table_name).primary_keys
+
 class SQLEngine(DataParser):
     def __init__(self, database_name, schema, user="lukaslaskowski", host="127.0.0.1", port="5432") -> None:
         super().__init__()
@@ -23,22 +36,17 @@ class SQLEngine(DataParser):
                             }
         self.connection = None
         self.cursor = None
-        self.tables: dict[str, TableContext]  = {}
+        self.database_schema = DatabaseSchema()
         
         for table in list(map(lambda x: x[2], self.query_database("SELECT * FROM information_schema.tables WHERE table_schema = 'public'", keep_alive=True))):
             attributes = list(map(lambda x: x[0], self.query_database(f"select column_name from information_schema.columns where table_name = '{table}' AND table_schema = '{self.credentials['schema']}'", keep_alive=True)))
             foreign_keys = list(map(lambda x: ForeignKeyRelation(x[1], x[2], x[3], x[4], x[5]), self.query_database(foreign_key_constraint_query(table, self.credentials['schema']), keep_alive=True)))
             primary_keys = list(map(lambda x: x[0], self.query_database(primary_keys_query(table, self.credentials['schema']), keep_alive=True)))
-            self.tables[table] = TableContext(table, attributes, foreign_keys, primary_keys)
+            self.database_schema.add_table(TableContext(table, attributes, foreign_keys, primary_keys))
         self.end_connection()
 
     def get_tables(self):
         return self.tables
-    
-    def get_attributes(self, table) -> List[str]: self.tables[table].attributes
-    def get_foreign_keys(self, table) -> List[ForeignKeyRelation]: self.tables[table].foreign_keys
-    def get_primary_keys(self, table) -> List[str]: self.tables[table].primary_keys
-    
 
     def get_context(self, schema_type: SchemaTypeEnum, schema_element):
         if schema_type is SchemaTypeEnum.Attribute:

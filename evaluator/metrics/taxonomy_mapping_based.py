@@ -2,6 +2,8 @@ import numpy as np
 
 from evaluator.metrics.metric import Metric
 from evaluator.mapping_parser.mapping import Mapping
+from evaluator.mapping_parser.relation import Relation
+from evaluator.mapping_parser.classmap import ClassMap
 
 class TaxonomyMappingBasedPrecision(Metric):
     def __init__(self):
@@ -13,10 +15,12 @@ class TaxonomyMappingBasedPrecision(Metric):
         referenced_ontology.classes = list(shared_classes)
         learned_ontology.set_eq_strategy(classes=False)
         referenced_ontology.set_eq_strategy(classes=False)
-        shared_relations_referenced = set(learned_ontology.relations).intersection(set(referenced_ontology.relations))
+        shared_relations_referenced = set(set(learned_ontology.relations).intersection(set(referenced_ontology.relations)))
         shared_relations_learned = set(referenced_ontology.relations).intersection(set(learned_ontology.relations))
-        learned_ontology.relations = list(shared_relations_learned)
-        referenced_ontology.relations = list(shared_relations_referenced)
+        learned_ontology.relations, edges_to_remove = filter_edges_with_missing_classes(list(shared_relations_learned), learned_ontology.classes)
+        shared_relations_learned = list(set(shared_relations_learned) - set(edges_to_remove))
+        referenced_ontology.relations, edges_to_remove = filter_edges_with_missing_classes(list(shared_relations_referenced), referenced_ontology.classes)
+        shared_relations_referenced = list(set(shared_relations_referenced) - set(edges_to_remove))
         shared_elements = shared_relations_referenced
         return np.mean(list(map(lambda el: LocalTaxonomyMappingBasedPrecision().score(el, learned_ontology, referenced_ontology), shared_elements)))
     
@@ -36,8 +40,10 @@ class TaxonomyMappingBasedRecall():
         referenced_ontology.set_eq_strategy(classes=False)
         shared_relations_referenced = set(set(learned_ontology.relations).intersection(set(referenced_ontology.relations)))
         shared_relations_learned = set(referenced_ontology.relations).intersection(set(learned_ontology.relations))
-        learned_ontology.relations = list(shared_relations_learned)
-        referenced_ontology.relations = list(shared_relations_referenced)
+        learned_ontology.relations, edges_to_remove = filter_edges_with_missing_classes(list(shared_relations_learned), learned_ontology.classes)
+        shared_relations_learned = list(set(shared_relations_learned) - set(edges_to_remove))
+        referenced_ontology.relations, edges_to_remove = filter_edges_with_missing_classes(list(shared_relations_referenced), referenced_ontology.classes)
+        shared_relations_referenced = list(set(shared_relations_referenced) - set(edges_to_remove))
         shared_elements = shared_relations_referenced
         res = list(map(lambda el: LocalTaxonomyMappingBasedRecall().score(el, learned_ontology, referenced_ontology), shared_elements))
         return np.mean(res)
@@ -107,3 +113,7 @@ class LocalTaxonomyMappingBasedRecall():
     
     def __str__(self):
         return "LocalTaxonomyMappingBasedRecall"
+    
+def filter_edges_with_missing_classes(edges: list[Relation], classes: list[ClassMap]):
+    return list(filter(lambda edge: edge.belongsToClassMap in classes and edge.refersToClassMap in classes and edge.refersToClassMap is not None, edges)), list(filter(lambda edge: edge.belongsToClassMap not in classes or edge.refersToClassMap not in classes or edge.refersToClassMap is None, edges))
+    #return list(filter(lambda edge: edge.ref in classes and edge[1] in classes, edges))

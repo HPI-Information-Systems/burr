@@ -1,0 +1,20 @@
+{
+    "classes": [
+        {
+            "id": "@@movie.id@@",
+            "class": "Movie"
+        },
+        {
+            "id": "@@director.id@@",
+            "class": "Director"
+        }
+    ],
+    "object_properties": [
+        {
+            "property": "directed",
+            "belongsToClass": "Director",
+            "refersToClass": "Movie"
+        }
+    ],
+    "data_properties": []
+}

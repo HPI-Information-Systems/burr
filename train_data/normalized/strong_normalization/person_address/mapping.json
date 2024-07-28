@@ -1,0 +1,46 @@
+{
+    "classes": [
+        {
+            "id": "@@person.id@@",
+            "class": "Person"
+        }
+    ],
+    "object_properties": [],
+    "data_properties": [
+        {
+            "property": "street",
+            "belongsToClass": "Person",
+            "type": "string",
+            "column": "@@address.street@@",
+            "join": ["@@person.id@@ = @@address.person_id@@"]
+        },
+        {
+            "property": "street",
+            "belongsToClass": "Person",
+            "type": "string",
+            "column": "@@address.street@@",
+            "join": ["@@person.id@@ = @@address.person_id@@"]
+        },
+        {
+            "property": "city",
+            "belongsToClass": "Person",
+            "type": "string",
+            "column": "@@address.city@@",
+            "join": ["@@person.id@@ = @@address.person_id@@"]
+        },
+        {
+            "property": "state",
+            "belongsToClass": "Person",
+            "type": "string",
+            "column": "@@address.state@@",
+            "join": ["@@person.id@@ = @@address.person_id@@"]
+        },
+        {
+            "property": "zip",
+            "belongsToClass": "Person",
+            "type": "string",
+            "column": "@@address.zip@@",
+            "join": ["@@person.id@@ = @@address.person_id@@"]
+        }
+    ]
+}

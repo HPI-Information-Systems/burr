@@ -1,0 +1,518 @@
+@prefix d2rq: <http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#> .
+@prefix cmt: <http://cmt/> .
+@prefix map: <http://mapping/> .
+@prefix jdbc: <http://d2rq.org/terms/jdbc/> .
+@prefix rdfs: <http://rdfs/> .
+@prefix cmt: <http://cmt#> .
+
+map:database a d2rq:Database;
+	d2rq:jdbcDriver "org.postgresql.Driver";
+	d2rq:jdbcDSN "jdbc:postgresql://localhost:5432/test_database_naive?autoReconnect=true";
+	d2rq:username "lukaslaskowski";
+	jdbc:keepAlive "3600";				# sends noop-query every 3600 seconds
+#	jdbc:keepAliveQuery "SELECT 1";		# optional custom noop-query
+	.
+
+#Table Conferences
+map:Conferences a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:uriPattern "#Conference/@@conferences.id@@";
+    d2rq:class cmt:Conference;
+    .
+
+map:conferences_acceptsHardcopySubmissions a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:Conferences;
+	d2rq:property rdfs:acceptsHardcopySubmissions;
+	d2rq:column "conferences.accepts_hardcopy_submissions";
+    .
+
+map:conferences_date a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:Conferences;
+	d2rq:property rdfs:date;
+	d2rq:column "conferences.date";
+    .
+
+map:conferences_logoURL a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:Conferences;
+	d2rq:property rdfs:logoURL;
+	d2rq:column "conferences.logo_url";
+    .
+
+map:conferences_name a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:Conferences;
+	d2rq:property rdfs:name;
+	d2rq:column "conferences.name";
+    .
+
+map:conferences_reviewsPerPaper a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:Conferences;
+	d2rq:property rdfs:reviewsPerPaper;
+	d2rq:column "conferences.reviews_per_paper";
+    .
+
+map:conferences_siteURL a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:Conferences;
+	d2rq:property rdfs:siteURL;
+	d2rq:column "conferences.site_url";
+    .
+
+#Table Administrator
+map:Administrator a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:uriPattern "#Administrator/@@administrators.id@@";
+    d2rq:class cmt:Administrator;
+    d2rq:additionalClassDefinitionProperty map:subClassOfUser;
+    .
+
+map:subClassOfUser a d2rq:AdditionalProperty;
+	d2rq:propertyName rdfs:subClassOf;
+	d2rq:propertyValue cmt:User;
+	.
+
+#Table enable_virtual_meeting (n:m)
+map:enableVirtualMeeting a d2rq:PropertyBridge;
+    d2rq:property rdfs:enableVirtualMeeting;
+    d2rq:belongsToClassMap map:Administrator;
+    d2rq:refersToClassMap map:Conference;
+    d2rq:join "enable_virtual_meeting.cid = conferences.id";
+    d2rq:join "enable_virtual_meeting.aid = administrators.id";
+    .
+
+#Table reviewer_bidding_started (n:m)
+map:reviewerBiddingStartedBy a d2rq:PropertyBridge;
+    d2rq:property rdfs:reviewerBiddingStartedBy;
+    d2rq:belongsToClassMap map:Conference;
+    d2rq:refersToClassMap map:Administrator;
+    d2rq:join "reviewer_bidding_started.cid = conferences.id";
+    d2rq:join "reviewer_bidding_started.aid = administrators.id";
+    .
+
+#Table finalize_paper_assignment (n:m)
+map:finalizePaperAssignment a d2rq:PropertyBridge;
+    d2rq:property rdfs:finalizePaperAssignment;
+    d2rq:belongsToClassMap map:Administrator;
+    d2rq:refersToClassMap map:Conference;
+    d2rq:join "finalize_paper_assignment.cid = conferences.id";
+    d2rq:join "finalize_paper_assignment.aid = administrators.id";
+    .
+
+#Table details_entered (n:m)
+map:detailsEnteredBy a d2rq:PropertyBridge;
+    d2rq:property rdfs:detailsEnteredBy;
+    d2rq:belongsToClassMap map:Conference;
+    d2rq:refersToClassMap map:Administrator;
+    d2rq:join "details_entered.cid = conferences.id";
+    d2rq:join "details_entered.aid = administrators.id";
+    .
+
+#Table enter_review_criteria (n:m)
+map:enterReviewCriteria a d2rq:PropertyBridge;
+    d2rq:property rdfs:enterReviewCriteria;
+    d2rq:belongsToClassMap map:Administrator;
+    d2rq:refersToClassMap map:Conference;
+    d2rq:join "enter_review_criteria.cid = conferences.id";
+    d2rq:join "enter_review_criteria.aid = administrators.id";
+    .
+
+#Table hardcopy_mailing_manifests_p (n:m)
+map:hardcopyMailingManifestsPrintedBy a d2rq:PropertyBridge;
+    d2rq:property rdfs:hardcopyMailingManifestsPrintedBy;
+    d2rq:belongsToClassMap map:Conference;
+    d2rq:refersToClassMap map:Administrator;
+    d2rq:join "hardcopy_mailing_manifests_p.cid = conferences.id";
+    d2rq:join "hardcopy_mailing_manifests_p.aid = administrators.id";
+    .
+
+#Table Documents
+map:Documents a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:uriPattern "#Document/@@documents.id@@";
+    d2rq:class cmt:Document;
+    .
+
+#Table person_document (n:m)
+map:hasConflictOfInterest a d2rq:PropertyBridge;
+    d2rq:property rdfs:hasConflictOfInterest;
+    d2rq:belongsToClassMap map:Persons;
+    d2rq:refersToClassMap map:Documents;
+    d2rq:join "persons.id = person_document.pid";
+    d2rq:join "documents.id = person_document.did";
+    .
+
+map:SubClassOfDocument a d2rq:AdditionalProperty;
+	d2rq:propertyName rdfs:subClassOf;
+	d2rq:propertyValue cmt:Document;
+	.
+
+#ToDo property comment is missing in groundtruth ontology!
+#Table reviews
+map:Reviews a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:uriPattern "#Review/@@reviews.id@@";
+    d2rq:class cmt:Review;
+    d2rq:additionalClassDefinitionProperty map:SubClassOfDocument;
+    .
+
+map:writtenBy a d2rq:PropertyBridge;
+    d2rq:property rdfs:writtenBy;
+    d2rq:belongsToClassMap map:Reviews;
+    d2rq:refersToClassMap map:Persons;
+    d2rq:join "reviews.written = persons.id";
+    .
+
+map:SubClassOfReview a d2rq:AdditionalProperty;
+	d2rq:propertyName rdfs:subClassOf;
+	d2rq:propertyValue cmt:Review;
+	.
+
+#ToDo Nicht sicher ob type = 0 wirklich meta review ist & nicht sicher, ob bei Review noch ein type != 0 hinmuss
+#Table reviews
+map:Meta-Review a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:uriPattern "#Meta-Review/@@reviews.id@@";
+    d2rq:class cmt:Meta-Review;
+    d2rq:additionalClassDefinitionProperty map:SubClassOfReview;
+    d2rq:condition "reviews.type =  0";
+    .
+
+#TODO Brauche ich hier einen Filter irgendwie, damit PaperFullVersion und PaperAbstract (subclasses) genutzt werden?
+#Table Papers
+map:Papers a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:uriPattern "#Paper/@@papers.id@@";
+    d2rq:class cmt:Paper;
+    d2rq:additionalClassDefinitionProperty map:SubClassOfDocument;
+    .
+
+map:papers_title a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:Papers;
+	d2rq:property rdfs:title;
+	d2rq:column "papers.title";
+    .
+
+map:papers_ID a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:Papers;
+	d2rq:property rdfs:paperID;
+	d2rq:column "papers.paper_id";
+    .
+
+#Table papers.accepted_by
+map:acceptPaper a d2rq:PropertyBridge;
+    d2rq:property rdfs:acceptPaper;
+    d2rq:belongsToClassMap map:Administrators;
+    d2rq:refersToClassMap map:Papers; 
+    d2rq:join "papers.accepted = administrators.id";
+    .
+
+#Table co_write_document (n:m)
+map:hasCo-author a d2rq:PropertyBridge;
+    d2rq:property rdfs:hasCo-author;
+    d2rq:belongsToClassMap map:Paper;
+    d2rq:refersToClassMap map:Co-author;
+    d2rq:join "papers.id = co_write_document.paper";
+    d2rq:join "persons.id = co_write_document.co_author";
+    .
+
+#Table persons.reviewer
+map:Reviewers a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:uriPattern "#Reviewer/@@persons.id@@";
+    d2rq:condition "persons.reviewer = True";
+    d2rq:condition "persons.author = False";
+    d2rq:class cmt:Reviewer;
+    d2rq:additionalClassDefinitionProperty map:subClassOfUser;
+    d2rq:additionalClassDefinitionProperty map:subClassOfConferenceMember;
+    .
+
+map:subClassOfReviewer a d2rq:AdditionalProperty;
+	d2rq:propertyName rdfs:subClassOf;
+	d2rq:propertyValue cmt:Reviewer;
+	.
+
+#Table papers.read_by_meta_reviewer
+map:readByMeta-Reviewer a d2rq:PropertyBridge;
+    d2rq:property rdfs:readByMeta-Reviewer;
+    d2rq:belongsToClassMap map:Papers;
+    d2rq:refersToClassMap map:MetaReviewer; #Todo Change to meta reviewer 
+    d2rq:join "papers.read_by_meta_reviewer = persons.id";
+    .
+
+#Table persons.reviewer
+map:MetaReviewer a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:uriPattern "#Meta-Reviewer/@@persons.id@@";
+    d2rq:condition "persons.reviewer = True";
+    d2rq:class cmt:Reviewer;
+    d2rq:additionalClassDefinitionProperty map:subClassOfUser;
+    .
+
+#Table papers.rejected_by
+map:rejected_by a d2rq:PropertyBridge;
+    d2rq:property rdfs:rejectedBy;
+    d2rq:belongsToClassMap map:Papers;
+    d2rq:refersToClassMap map:Administrators; 
+    d2rq:join "papers.rejected = administrators.id";
+    .
+
+#Table papers.decision
+map:Decision a d2rq:ClassMap;
+    d2rq:class cmt:Decision;
+    d2rq:dataStorage map:database;
+    d2rq:uriPattern "#Decision/@@acceptances.id@@";
+    .
+
+#Table subject_areas
+map:subject_areas a d2rq:ClassMap;
+    d2rq:class cmt:SubjectArea;
+    d2rq:dataStorage map:database;
+    d2rq:uriPattern "#SubjectArea/@@subject_areas.id@@";
+    .
+
+#Table paper_subject_area (n:m)
+map:hasSubjectArea a d2rq:PropertyBridge;
+    d2rq:property rdfs:hasSubjectArea;
+    d2rq:belongsToClassMap map:Papers;
+    d2rq:refersToClassMap map:subject_areas;
+    d2rq:join "papers.id = paper_subject_area.pid";
+    d2rq:join "subject_areas.id = paper_subject_area.sid";
+    .
+
+#UNSICHER. Es ist nicht klar, was type=1 und type=2 ist.
+#Table acceptances.reject
+map:Rejection a d2rq:ClassMap;
+    d2rq:class cmt:Rejection;
+    d2rq:dataStorage map:database;
+    d2rq:uriPattern "#Rejection/@@acceptances.id@@";
+    d2rq:condition "acceptances.type = 1";
+    d2rq:additionalClassDefinitionProperty map:SubClassOfDecision;
+    .
+
+#UNSICHER. Es ist nicht klar, was type=1 und type=2 ist.
+#Table acceptances.reject
+map:Acceptance a d2rq:ClassMap;
+    d2rq:class cmt:Acceptance;
+    d2rq:dataStorage map:database;
+    d2rq:uriPattern "#Acceptance/@@acceptances.id@@";
+    d2rq:condition "acceptances.type = 2";
+    d2rq:additionalClassDefinitionProperty map:SubClassOfDecision;
+    .
+
+map:SubClassOfDecision a d2rq:AdditionalProperty;
+	d2rq:propertyName rdfs:subClassOf;
+	d2rq:propertyValue cmt:Decision;
+	.
+
+#Table papers.decision
+map:hasDecision a d2rq:PropertyBridge;
+    d2rq:property rdfs:hasDecision;
+    d2rq:belongsToClassMap map:Papers;
+    d2rq:refersToClassMap map:Decision; 
+    d2rq:join "papers.decision = acceptances.id";
+    .
+
+
+#Table papers.author
+map:hasAuthor a d2rq:PropertyBridge;
+    d2rq:property rdfs:hasAuthor;
+    d2rq:belongsToClassMap map:Papers;
+    d2rq:refersToClassMap map:Persons;
+    d2rq:join "papers.author = persons.id";
+    .
+
+
+#TODO many papers attributes
+
+#Table persons
+map:Persons a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:uriPattern "#Person/@@persons.id@@";
+    d2rq:condition "persons.author = False";
+    d2rq:class cmt:Person;
+    .
+
+map:email a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:Persons;
+	d2rq:property rdfs:email;
+	d2rq:column "persons.email";
+    .
+
+map:SubClassOfPerson a d2rq:AdditionalProperty;
+	d2rq:propertyName rdfs:subClassOf;
+	d2rq:propertyValue cmt:Person;
+	.
+
+map:SubClassOfPaper a d2rq:AdditionalProperty;
+	d2rq:propertyName rdfs:subClassOf;
+	d2rq:propertyValue cmt:Paper;
+	.
+
+#Table PapersAbstract
+map:PapersAbstract a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:uriPattern "#PaperAbstract/@@papers.id@@";
+    d2rq:condition "Papers.type = 1";
+    d2rq:class cmt:PaperAbstract;
+    d2rq:additionalClassDefinitionProperty map:SubClassOfPaper;
+    .
+
+#Table PapersFullVersion
+map:PapersFullVersion a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:uriPattern "#PaperFullVersion/@@papers.id@@";
+    d2rq:condition "Papers.type = 2";
+    d2rq:class cmt:PaperFullVersion;
+    d2rq:additionalClassDefinitionProperty map:SubClassOfPaper;
+    .
+
+#todo_solved why is reviewer == true here? Because there is also the class authorNotReviewer, meaning all authors here are reviewers as well
+#Table authors
+map:Authors a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:uriPattern "#Author/@@persons.id@@";
+    d2rq:condition "persons.author = True";
+    d2rq:condition "persons.reviewer = True";
+    d2rq:class cmt:Author;
+    d2rq:additionalClassDefinitionProperty map:subClassOfUser;
+    d2rq:additionalClassDefinitionProperty map:subClassOfConferenceMember;
+    .
+
+map:subClassOfAuthor a d2rq:AdditionalProperty;
+	d2rq:propertyName rdfs:subClassOf;
+	d2rq:propertyValue cmt:Author;
+	.
+
+#Table person_paper (n:m)
+map:submitPaper a d2rq:PropertyBridge;
+    d2rq:property rdfs:submitPaper;
+    d2rq:belongsToClassMap map:Authors;
+    d2rq:refersToClassMap map:Papers;
+    d2rq:join "authors.id = person_paper.author";
+    d2rq:join "papers.id = person_paper.paper";
+    .
+
+#todo this occurs in the ontology but not explicitly in the database
+map:AuthorsNotReviewer a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:uriPattern "#AuthorNotReviewer/@@persons.id@@";
+    d2rq:condition "persons.author = True";
+    d2rq:condition "persons.reviewer = False";
+    d2rq:class cmt:AuthorNotReviewer;
+    d2rq:additionalClassDefinitionProperty map:subClassOfAuthor; #todo
+    .
+
+#Table Co-authors
+map:Co-author a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:uriPattern "#Co-author/@@persons.id@@";
+    d2rq:condition "persons.co_author = True";
+    d2rq:class cmt:Co-author;
+    d2rq:additionalClassDefinitionProperty map:subClassOfAuthor;
+    .
+
+#Table persons.reviewer
+map:Reviewers a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:uriPattern "#Reviewer/@@persons.id@@";
+    d2rq:condition "persons.reviewer = True";
+    d2rq:condition "persons.author = False";
+    d2rq:class cmt:Reviewer;
+    d2rq:additionalClassDefinitionProperty map:subClassOfUser;
+    .
+
+#Table persons.assigned_by_administrator
+map:assignedByAdministrator a d2rq:PropertyBridge;
+    d2rq:property rdfs:assignedByAdministrator;
+    d2rq:belongsToClassMap map:Reviewers;
+    d2rq:refersToClassMap map:Administrator;
+    d2rq:join "persons.id = persons.assigned_by_administrator";
+    .
+
+#Table read_by_reviewer (n:m)
+map:readPaper a d2rq:PropertyBridge;
+    d2rq:property rdfs:readPaper;
+    d2rq:belongsToClassMap map:Reviewers;
+    d2rq:refersToClassMap map:Papers;
+    d2rq:join "persons.id = read_by_reviewer.reviewer";
+    d2rq:join "papers.id = read_by_reviewer.paper";
+    .
+
+#Table paper_person (n:m)
+map:hasBeenAssigned a d2rq:PropertyBridge;
+    d2rq:property rdfs:hasBeenAssigned;
+    d2rq:belongsToClassMap map:Reviewers;
+    d2rq:refersToClassMap map:Papers;
+    d2rq:join "persons.id = paper_person.reviewer";
+    d2rq:join "papers.id = paper_person.paper";
+    .
+
+#Table bids
+map:bids a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:uriPattern "#Bid/@@bids.id@@";
+    d2rq:class cmt:Bid;
+    .
+
+#Table bids adjustedBy
+map:adjustedBy a d2rq:PropertyBridge;
+    d2rq:property rdfs:adjustedBy;
+    d2rq:belongsToClassMap map:bids;
+    d2rq:refersToClassMap map:Reviewers;
+    d2rq:join "bids.adjusted = persons.id";
+    .
+
+#Table bids hasBid
+map:hasBid a d2rq:PropertyBridge;
+    d2rq:property rdfs:hasBid;
+    d2rq:belongsToClassMap map:Papers;
+    d2rq:refersToClassMap map:bids;
+    d2rq:join "bids.bid = papers.id";
+    .
+
+#Table Meta-Reviewer
+map:MetaReviewer a d2rq:ClassMap;
+    d2rq:class cmt:Meta-Reviewer;
+    d2rq:dataStorage map:database;
+    d2rq:uriPattern "#Meta-Reviewer/@@persons.id@@";
+    d2rq:join "papers.read_by_meta_reviewer = persons.id";
+    d2rq:additionalClassDefinitionProperty map:subClassOfReviewer;
+    .
+
+#Table person_administrator (n:m)
+map:assignedByAdministrator a d2rq:PropertyBridge;
+    d2rq:property rdfs:assignedByAdministrator;
+    d2rq:belongsToClassMap map:Administrator;
+    d2rq:refersToClassMap map:Reviewer;
+    d2rq:join "person_administrator.pid = person.id";
+    d2rq:join "person_administrator.aid = administrators.id";
+    .
+
+#Table Preferences
+map:preferences a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:uriPattern "#Preference/@@preferences.id@@";
+    d2rq:class cmt:Preference;
+    .
+
+#Table ConferenceMember
+map:ConferenceMember a d2rq:ClassMap;
+    d2rq:class cmt:ConferenceMember;
+    d2rq:dataStorage map:database;
+    d2rq:uriPattern "#Meta-Reviewer/@@persons.id@@";
+    d2rq:join "person_conference.pid = persons.id";
+    d2rq:additionalClassDefinitionProperty map:SubClassOfPerson;
+    .
+
+#Table person_conference (n:m)
+map:memberOfConference a d2rq:PropertyBridge;
+    d2rq:property rdfs:memberOfConference;
+    d2rq:belongsToClassMap map:ConferenceMember;
+    d2rq:refersToClassMap map:Conference;
+    d2rq:join "person_conference.pid = persons.id";
+    d2rq:join "person_conference.aid = conferences.id";
+    .
+
+
+map:subClassOfConferenceMember a d2rq:AdditionalProperty;
+	d2rq:propertyName rdfs:subClassOf;
+	d2rq:propertyValue cmt:ConferenceMember;
+	.
