@@ -1,0 +1,52 @@
+{
+    "classes": [
+    {
+        "id": "organizations/@@organization.abbreviation@@",
+        "class": "Organization"
+        },
+        {
+            "id": "Membership__Country_@@ismember.country@@__Organization_@@ismember.Organization@@",
+            "class": "Membership"
+        }
+    ],
+    "object_properties": [
+        {
+            "property": "ofMember",
+            "belongsToClass": "Country",
+            "refersToClass": "Membership",
+            "join": ["@@country.code@@ = @@ismember.country@@"]
+        },
+        {
+            "property": "inOrganization",
+            "belongsToClass": "Organization",
+            "refersToClass": "Membership",
+            "join": ["@@organization.abbreviation@@ = @@ismember.organization@@"]
+        }
+    ],
+    "data_properties": [
+        {
+            "property": "name",
+            "belongsToClass": "Organization",
+            "type": "string",
+            "column": "@@organization.name@@"
+        },
+        {
+            "property": "abbrev",
+            "belongsToClass": "Organization",
+            "type": "string",
+            "column": "@@organization.abbreviation@@"
+        },
+        {
+            "property": "established",
+            "belongsToClass": "Organization",
+            "type": "date",
+            "column": "@@organization.established@@"
+        },
+        {
+            "property": "type",
+            "belongsToClass": "Membership",
+            "type": "string",
+            "column": "ismember.type"
+        }
+    ]
+}

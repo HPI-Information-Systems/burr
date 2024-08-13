@@ -1,0 +1,48 @@
+{
+    "classes": [
+        {
+            "id": "ethnicgroups/@@ethnicgroup.name@@",
+            "class": "EthnicGroup"
+        },
+        {
+            "id": "EthnicProportion__EthnicGroup_@@ethnicgroup.name@@__Country_@@ethnicgroup.country@@",
+            "class": "EthnicProportion"
+        }
+    ],
+    "object_properties": [
+        {
+            "property": "ethnicInfo-",
+            "inverseOf": "ethnicInfo",
+            "belongsToClass": "EthnicProportion",
+            "refersToClass": "Country",
+            "join": ["country.code = ethnicgroup.country"]
+        },
+        {
+            "property": "onEthnicGroup",
+            "belongsToClass": "EthnicProportion",
+            "refersToClass": "EthnicGroup",
+            "inverseOf": "liveInInfo"
+        },
+        {
+            "property": "belongToEthnicGroup",
+            "inverseOf": "liveInCountry",
+            "belongsToClass": "Country",
+            "refersToClass": "EthnicGroup",
+            "join": ["country.code = ethnicgroup.country"]
+        }
+    ],
+    "data_properties": [
+        {
+            "property": "name",
+            "belongsToClass": "EthnicGroup",
+            "type": "string",
+            "column": "@@ethnicgroup.name@@"
+        },
+        {
+            "property": "percentage",
+            "belongsToClass": "EthnicProportion",
+            "type": "decimal",
+            "column": "@@ethnicgroup.percentage@@"
+        }
+    ]
+}

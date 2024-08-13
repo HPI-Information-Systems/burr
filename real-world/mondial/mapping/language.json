@@ -1,0 +1,48 @@
+{
+    "classes": [
+        {
+            "id": "languages/@@language.name@@",
+            "class": "Language"
+        },
+        {
+            "id": "SpokenBy__Language_@@spoken.language@@__Country_@@spoken.country@@",
+            "class": "SpokenBy"
+        }
+    ],
+    "object_properties": [
+        {
+            "property": "languageInfo-",
+            "inverseOf": "languageInfo",
+            "belongsToClass": "SpokenBy",
+            "refersToClass": "Country",
+            "join": ["country.code = spoken.country"]
+        },
+        {
+            "property": "onLanguage",
+            "belongsToClass": "SpokenBy",
+            "refersToClass": "Language",
+            "inverseOf": "spokenInInfo"
+        },
+        {
+            "property": "speakLanguage",
+            "inverseOf": "spokenInCountry",
+            "belongsToClass": "Country",
+            "refersToClass": "Language",
+            "join": ["country.code = spoken.country"]
+        }
+    ],
+    "data_properties": [
+        {
+            "property": "name",
+            "belongsToClass": "Language",
+            "type": "string",
+            "column": "@@language.name@@"
+        },
+        {
+            "property": "percentage",
+            "belongsToClass": "SpokenBy",
+            "type": "decimal",
+            "column": "@@spoken.percentage@@"
+        }
+    ]
+}

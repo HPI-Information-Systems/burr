@@ -1,0 +1,186 @@
+{
+    "classes": [
+        {
+            "id": "countries/@@country.code@@",
+            "class": "Country",
+            "name": "CountryFull"
+        },
+        {
+            "id": "countries/@@politics.country@@",
+            "class": "Country",
+            "name": "CountryPolitics"
+        },
+        {
+            "id": "countries/@@politics.dependent@@",
+            "class": "Country",
+            "name": "CountryDependent"
+        },
+        {
+            "id": "politicalbodies/@@politics.wasdependent@@",
+            "class": "PoliticalBody"
+        }
+    ],
+    "object_properties": [
+        {
+            "property": "wasDependentOf",
+            "belongsToClass": "Country",
+            "refersToClass": "PoliticalBody"
+        },
+        {
+            "property": "dependentOf",
+            "belongsToClassMap": "CountryPolitics",
+            "refersToClassMap": "CountryDependent"
+        },
+        {
+            "property": "isMember",
+            "belongsToClass": "Country",
+            "refersToClass": "Organization",
+            "join": ["country.code = ismember.country", "organization.abbreviation = ismember.organization"],
+            "inverseOf": "hasMember"
+        }, 
+        {
+            "property": "encompassed",
+            "belongsToClass": "Country",
+            "refersToClass": "Continent",
+            "join": ["encompasses.country = country.code", "encompasses.continent = continent.name"],
+            "inverseOf": "encompasses"
+        }, 
+        {
+            "property": "hasCity",
+            "belongsToClass": "Country",
+            "refersToClass": "City",
+            "join": ["city.country = country.code"],
+            "inverseOf": "cityIn"
+        },
+        {
+            "property": "hasProvince",
+            "belongsToClass": "Country",
+            "refersToClass": "Province",
+            "join": ["province.country = country.code"],
+            "inverseOf": "isProvinceOf"
+        },
+        {
+            "property": "capital",
+            "belongsToClass": "Country",
+            "refersToClass": "City",
+            "join": ["country.capital = city.name", "country.code = city.country", "city.province = country.province"],
+            "inverseOf": "isCapitalOf"
+        },
+        {
+            "property": "neighbor",
+            "belongsToClass": "Country",
+            "refersToClass": "Country",
+            "join": ["borders.country1 = country.code", "borders.country2 = country.code"]
+        }
+    ],
+    "data_properties": [
+        {
+            "property": "carCode",
+            "belongsToClass": "Country",
+            "type": "string",
+            "column": "@@Country.Code@@"
+        },
+        {
+            "property": "name",
+            "belongsToClass": "Country",
+            "type": "string",
+            "column": "@@Country.Name@@"
+        },
+        {
+            "property": "area",
+            "belongsToClass": "Country",
+            "type": "decimal",
+            "column": "@@Country.Area@@"
+        },
+        {
+            "property": "population",
+            "belongsToClass": "Country",
+            "type": "integer",
+            "column": "@@Country.Population@@"
+        },
+        {
+            "property": "gdpTotal",
+            "belongsToClass": "Country",
+            "type": "decimal",
+            "column": "@@economy.gdp@@",
+            "join": ["@@country.code@@ = @@economy.country@@"]
+        },
+        {
+            "property": "gdpAgri",
+            "belongsToClass": "Country",
+            "type": "decimal",
+            "column": "@@economy.agriculture@@",
+            "join": ["@@country.code@@ = @@economy.country@@"]
+        },
+        {
+            "property": "gdpInd",
+            "belongsToClass": "Country",
+            "type": "decimal",
+            "column": "@@economy.industry@@",
+            "join": ["@@country.code@@ = @@economy.country@@"]
+        },
+        {
+            "property": "gdpServ",
+            "belongsToClass": "Country",
+            "type": "decimal",
+            "column": "@@economy.service@@",
+            "join": ["@@country.code@@ = @@economy.country@@"]
+        },
+        {
+            "property": "inflation",
+            "belongsToClass": "Country",
+            "type": "decimal",
+            "column": "@@economy.inflation@@",
+            "join": ["@@country.code@@ = @@economy.country@@"]
+        },
+        {
+            "property": "unemployment",
+            "belongsToClass": "Country",
+            "type": "decimal",
+            "column": "@@economy.unemployment@@",
+            "join": ["@@country.code@@ = @@economy.country@@"]
+        },
+        {
+            "property": "populationGrowth",
+            "belongsToClass":"Country",
+            "type": "decimal",
+            "column": "@@population.population_growth@@",
+            "join": ["@@country.code@@ = @@population.country@@"]
+        },
+        {
+            "property": "infantMortality",
+            "belongsToClass":"Country",
+            "type": "decimal",
+            "column": "@@population.infant_mortality@@",
+            "join": ["@@country.code@@ = @@population.country@@"]
+        },
+        {
+            "property": "independenceDate",
+            "belongsToClass":"Country",
+            "type": "date",
+            "column": "@@politics.Independence@@",
+            "join": ["@@country.code@@ = @@politics.country@@"]
+        },
+        {
+            "property": "government",
+            "belongsToClass":"Country",
+            "type": "string",
+            "column": "@@politics.Government@@",
+            "join": ["@@country.code@@ = @@politics.country@@"]
+        },
+        {
+            "property": "othername",
+            "belongsToClass":"Country",
+            "type": "string",
+            "column": "@@countryothername.othername@@",
+            "join": ["@@country.code@@ = @@countryothername.country@@"]
+        },
+        {
+            "property": "localname",
+            "belongsToClass":"Country",
+            "type": "string",
+            "column": "@@countrylocalname.localname@@",
+            "join": ["@@country.code@@ = @@countrylocalname.country@@"]
+        }
+    ]
+}

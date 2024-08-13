@@ -1,0 +1,48 @@
+{
+    "classes": [
+        {
+            "id": "religions/@@religion.name@@",
+            "class": "Religion"
+        },
+        {
+            "id": "BelievedBy__Religion_@@religion.name@@__Country_@@religion.country@@",
+            "class": "BelievedBy"
+        }
+    ],
+    "object_properties": [
+        {
+            "property": "religionInfo-",
+            "inverseOf": "religionInfo",
+            "belongsToClass": "BelievedBy",
+            "refersToClass": "Country",
+            "join": ["country.code = religion.country"]
+        },
+        {
+            "property": "onReligion",
+            "belongsToClass": "BelievedBy",
+            "refersToClass": "Religion",
+            "inverseOf": "followedInInfo"
+        },
+        {
+            "property": "believeInReligion",
+            "inverseOf": "believedInCountry",
+            "belongsToClass": "Country",
+            "refersToClass": "Religion",
+            "join": ["country.code = religion.country"]
+        }
+    ],
+    "data_properties": [
+        {
+            "property": "name",
+            "belongsToClass": "Religion",
+            "type": "string",
+            "column": "@@religion.name@@"
+        },
+        {
+            "property": "percentage",
+            "belongsToClass": "BelievedBy",
+            "type": "decimal",
+            "column": "@@religion.percentage@@"
+        }
+    ]
+}

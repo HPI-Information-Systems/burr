@@ -1,0 +1,30 @@
+{
+    "classes": [
+        {
+            "id": "Border__Country_@@borders.country1@@__Country_@@borders.country2@@",
+            "class": "Border"
+        }
+    ],
+    "object_properties": [
+        {
+            "property": "isBorderOf",
+            "belongsToClass": "Border",
+            "refersToClass": "Country",
+            "join": ["@@borders.country1@@ = @@country.code@@"]
+        },
+        {
+            "property": "isBorderOf",
+            "belongsToClass": "Border",
+            "refersToClass": "Country",
+            "join": ["@@borders.country2@@ = @@country.code@@"]
+        }
+    ],
+    "data_properties": [
+        {
+            "property": "length",
+            "belongsToClass": "Border",
+            "type": "decimal",
+            "column": "@@borders.length@@"
+        }
+    ]
+}
