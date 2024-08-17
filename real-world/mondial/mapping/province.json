@@ -5,7 +5,21 @@
             "class": "Province"
         }
     ],
-    "object_properties": [],
+    "object_properties": [
+        {
+            "property": "hasCity",
+            "belongsToClass": "Province",
+            "refersToClass": "City",
+            "join": ["city.province = province.name", "city.country = province.country"],
+            "inverseOf": "cityIn"
+        },
+        {
+            "property": "capital",
+            "belongsToClass": "Province",
+            "refersToClass": "City",
+            "join": ["province.capital = city.name", "province.country = city.country", "city.capprov = province.name"]
+        }
+    ],
     "data_properties": [
         {
             "property": "name",

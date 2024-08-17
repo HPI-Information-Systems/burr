@@ -5,6 +5,18 @@
             "class": "Mountain"
         },
         {
+            "id": "mountains/@@mountain.range@@",
+            "class": "Volcano",
+            "subclassOf": ["Mountain"],
+            "condition": ["@@mountain.type@@ = 'volcano'"]
+        },
+        {
+            "id": "mountains/@@mountain.range@@",
+            "class": "Volcano",
+            "subclassOf": ["Mountain"],
+            "condition": ["@@mountain.type@@ = 'volcanic'"]
+        },
+        {
             "id": "mountainRanges/@@mountain.mountains@@",
             "class": "MountainRange"
         }

@@ -1,0 +1,66 @@
+{
+    "classes": [
+        {
+            "id": "/RBA/BPM/BusinessProcessSequence/@@BPM.Business_Process_Sequence_1@@",
+            "class": "BusinessProcessSequence",
+            "name": "BusinessProcessSequence_1"
+        },
+        {
+            "id": "/RBA/BPM/BusinessProcessSequence/@@BPM.Business_Process_Sequence_2@@",
+            "class": "BusinessProcessSequence",
+            "name": "BusinessProcessSequence_2"
+        }
+    ],
+    "object_properties": [
+    ],
+    "data_properties": [
+        {
+            "property": "Identifier",
+            "belongsToClassMap": "BusinessProcessSequence_1",
+            "type": "string",
+            "column": "BPM.Business_Process_Sequence_1"
+        },
+        {
+            "property": "Identifier",
+            "belongsToClassMap": "BusinessProcessSequence_2",
+            "type": "string",
+            "column": "BPM.Business_Process_Sequence_2"
+        },
+        {
+            "property": "sequenceID",
+            "belongsToClassMap": "BusinessProcessSequence_1",
+            "type": "string",
+            "column": "BPM.Business_Process_Sequence_1"
+        },
+        {
+            "property": "sequenceID",
+            "belongsToClassMap": "BusinessProcessSequence_2",
+            "type": "string",
+            "column": "BPM.Business_Process_Sequence_2"
+        },
+        {
+            "property": "Title",
+            "belongsToClassMap": "BusinessProcessSequence_1",
+            "type": "string",
+            "sqlExpression": "CONCAT(@@BPM.Business Process Sequence.1@@, CONCAT(' - ', CONCAT(@@BPM.Business_Process_1@@, CONCAT(' (', CONCAT(@@BPM.Business Process ID.1@@, ')')))))"
+        },
+        {
+            "property": "Title",
+            "belongsToClassMap": "BusinessProcessSequence_2",
+            "type": "string",
+            "sqlExpression": "CONCAT(@@BPM.Business Process Sequence.2@@, CONCAT(' - ', CONCAT(@@BPM.Business_Process_2@@, CONCAT(' (', CONCAT(@@BPM.Business Process ID.2@@, ')')))))"
+        },
+        {
+            "property": "Name",
+            "belongsToClassMap": "BusinessProcessSequence_1",
+            "type": "string",
+            "sqlExpression": "CONCAT(@@BPM.Business Process Sequence.1@@, CONCAT(' - ', CONCAT(@@BPM.Business_Process_1@@, CONCAT(' (', CONCAT(@@BPM.Business Process ID.1@@, ')')))))"
+        },
+        {
+            "property": "Name",
+            "belongsToClassMap": "BusinessProcessSequence_2",
+            "type": "string",
+            "sqlExpression": "CONCAT(@@BPM.Business Process Sequence.2@@, CONCAT(' - ', CONCAT(@@BPM.Business_Process_2@@, CONCAT(' (', CONCAT(@@BPM.Business Process ID.2@@, ')')))))"
+        }
+    ]
+}

@@ -1,0 +1,36 @@
+{
+    "classes": [
+        {
+            "id": "/RBA/BCM/EnterpriseDomain@@BCM.Master_ID_Domain@@",
+            "class": "EnterpriseDomain"
+        }
+    ],
+    "object_properties": [
+    ],
+    "data_properties": [
+        {
+            "property": "Identifier",
+            "belongsToClass": "EnterpriseDomain",
+            "type": "string",
+            "column": "BCM.Master_ID_Domain"
+        },
+        {
+            "property": "Title",
+            "belongsToClass": "EnterpriseDomain",
+            "type": "string",
+            "column": "BCM.Enterprise_Domain"
+        },
+        {
+            "property": "Name",
+            "belongsToClass": "EnterpriseDomain",
+            "type": "string",
+            "column": "@@BCM.Enterprise_Domain@@"
+        },
+        {
+            "property": "SequenceID",
+            "belongsToClass": "EnterpriseDomain",
+            "type": "string",
+            "column": "@@BCM.Enterprise_Domain_Seq_ID@@"
+        }
+    ]
+}

@@ -1,0 +1,24 @@
+{
+    "classes": [
+        {
+            "id": "/RBA/BPM/BusinessProcessType/@@BPM.FP_Object_Type@@",
+            "class": "BusinessProcessType"
+        }
+    ],
+    "object_properties": [
+    ],
+    "data_properties": [
+        {
+            "property": "Title",
+            "belongsToClass": "BusinessProcessType",
+            "type": "string",
+            "column": "BPM.FP_Object_Type"
+        },
+        {
+            "property": "Name",
+            "belongsToClass": "BusinessProcessType",
+            "type": "string",
+            "column": "@@BPM.FP_Object_Type@@"
+        }
+    ]
+}

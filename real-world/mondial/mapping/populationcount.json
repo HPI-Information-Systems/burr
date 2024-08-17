@@ -18,19 +18,19 @@
             "property": "hadPopulation",
             "belongsToClass": "Country",
             "refersToClass": "PopulationCount",
-            "join": ["@@country.code@@ = @@countrypops.country@@"]
+            "join": ["country.code = countrypops.country"]
         },
         {
             "property": "hadPopulation",
             "belongsToClass": "Province",
             "refersToClass": "PopulationCount",
-            "join": ["@@province.name@@ = @@provpops.province@@", "@@province.country@@ = @@provpops.country@@"]
+            "join": ["province.name = provpops.province", "province.country = provpops.country"]
         },
         {
             "property": "hadPopulation",
             "belongsToClass": "City",
             "refersToClass": "PopulationCount",
-            "join": ["@@city.name@@ = @@citypops.city@@", "@@city.province@@ = @@citypops.province@@", "@@city.country@@ = @@citypops.country@@"]
+            "join": ["city.name = citypops.city", "city.province = citypops.province", "city.country = citypops.country"]
         }
     ],
     "data_properties": [

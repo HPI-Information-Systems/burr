@@ -1,0 +1,30 @@
+{
+    "classes": [
+        {
+            "id": "/RSA/SCM/Product/@@SCM.PPMS_Product_ID@@",
+            "class": "Product"
+        }
+    ],
+    "object_properties": [
+    ],
+    "data_properties": [
+        {
+            "property": "Identifier",
+            "belongsToClass": "Product",
+            "type": "string",
+            "column": "SCM.PPMS_Product_ID"
+        },
+        {
+            "property": "Title",
+            "belongsToClass": "Product",
+            "type": "string",
+            "column": "SCM.PPMS_Product_Name"
+        },
+        {
+            "property": "Name",
+            "belongsToClass": "Product",
+            "type": "string",
+            "column": "SCM.PPMS_Product_Name"
+        }
+    ]
+}

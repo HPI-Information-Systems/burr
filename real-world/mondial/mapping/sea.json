@@ -10,13 +10,13 @@
             "property": "locatedIn",
             "belongsToClass": "Sea",
             "refersToClass": "Country",
-            "join": ["@@geo_sea.sea@@ = @@sea.name@@", "@@geo_sea.country@@ = @@country.code@@"]
+            "join": ["geo_sea.sea = sea.name", "geo_sea.country = country.code"]
         },
         {
             "property": "locatedIn",
             "belongsToClass": "Sea",
             "refersToClass": "Province",
-            "join": ["@@geo_sea.sea@@ = @@sea.name@@", "@@geo_sea.province@@ = @@province.name@@"]
+            "join": ["geo_sea.sea = sea.name", "geo_sea.province = province.name"]
         },
         {
             "property": "mergesWith",

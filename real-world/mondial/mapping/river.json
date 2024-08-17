@@ -16,13 +16,13 @@
             "property": "locatedIn",
             "belongsToClass": "River",
             "refersToClass": "Country",
-            "join": ["@@geo_river.river@@ = @@river.name@@", "@@geo_river.country@@ = @@country.code@@"]
+            "join": ["geo_river.river = river.name", "geo_river.country = country.code"]
         },
         {
             "property": "locatedIn",
             "belongsToClass": "River",
             "refersToClass": "Province",
-            "join": ["@@geo_river.river@@ = @@river.name@@", "@@geo_river.province@@ = @@province.name@@"]
+            "join": ["geo_river.river = river.name", "geo_river.province = province.name"]
         },
         {
             "property": "flowsThrough",

@@ -10,13 +10,13 @@
             "property": "locatedIn",
             "belongsToClass": "Desert",
             "refersToClass": "Country",
-            "join": ["@@geo_desert.desert@@ = @@desert.name@@", "@@geo_desert.country@@ = @@country.code@@"]
+            "join": ["geo_desert.desert = desert.name", "geo_desert.country = country.code"]
         },
         {
             "property": "locatedIn",
             "belongsToClass": "Desert",
             "refersToClass": "Province",
-            "join": ["@@geo_desert.desert@@ = @@desert.name@@", "@@geo_desert.province@@ = @@province.name@@"]
+            "join": ["geo_desert.desert = desert.name", "geo_desert.province = province.name"]
         }
     ],
     "data_properties": [

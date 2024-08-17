@@ -12,15 +12,30 @@
     "object_properties": [
         {
             "property": "ofMember",
-            "belongsToClass": "Country",
-            "refersToClass": "Membership",
-            "join": ["@@country.code@@ = @@ismember.country@@"]
+            "belongsToClass": "Membership",
+            "refersToClass": "Country",
+            "join": ["country.code = ismember.country"],
+            "inverseOf": "isInMembership"
         },
         {
             "property": "inOrganization",
+            "belongsToClass": "Membership",
+            "refersToClass": "Organization",
+            "join": ["organization.abbreviation = ismember.organization"],
+            "inverseOf": "hasMembership"
+        },
+        {
+            "property": "isMember",
+            "belongsToClass": "Country",
+            "refersToClass": "Organization",
+            "join": ["organization.abbreviation = ismember.organization", "country.code = ismember.country"],
+            "inverseOf": "hasMember"
+        },
+        {
+            "property": "hasHeadq",
             "belongsToClass": "Organization",
-            "refersToClass": "Membership",
-            "join": ["@@organization.abbreviation@@ = @@ismember.organization@@"]
+            "refersToClass": "City",
+            "join": ["organization.city = city.name", "organization.country = city.country", "organization.province = city.province"]
         }
     ],
     "data_properties": [

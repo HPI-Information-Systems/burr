@@ -1,0 +1,30 @@
+{
+    "classes": [
+        {
+            "id": "/RSA/SCM/SolutionArchitectureComponent/@@SCM.@@",
+            "class": "SolutionArchitectureComponent"
+        }
+    ],
+    "object_properties": [
+    ],
+    "data_properties": [
+        {
+            "property": "Identifier",
+            "belongsToClass": "Product",
+            "type": "string",
+            "column": "SCM.PPMS_Product_ID"
+        },
+        {
+            "property": "Title",
+            "belongsToClass": "Product",
+            "type": "string",
+            "column": "SCM.PPMS_Product_Name"
+        },
+        {
+            "property": "Name",
+            "belongsToClass": "Product",
+            "type": "string",
+            "column": "SCM.PPMS_Product_Name"
+        }
+    ]
+}

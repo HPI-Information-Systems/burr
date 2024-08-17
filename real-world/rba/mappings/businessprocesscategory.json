@@ -1,0 +1,80 @@
+{
+    "classes": [
+        {
+            "id": "/RBA/BPM/BusinessProcessCategory/@@BPM.Type@@",
+            "class": "BusinessProcessCategory",
+            "name": "BusinessProcessCategory_0"
+        },
+        {
+            "id": "/RBA/BPM/BusinessProcessCategory/@@BPM.Type_1@@",
+            "class": "BusinessProcessCategory",
+            "name": "BusinessProcessCategory_1"
+        },
+        {
+            "id": "/RBA/BPM/BusinessProcessCategory/@@BPM.Type_2@@",
+            "class": "BusinessProcessCategory",
+            "name": "BusinessProcessCategory_2"
+        }
+    ],
+    "object_properties": [
+    ],
+    "data_properties": [
+        {
+            "property": "Title",
+            "belongsToClassMap": "BusinessProcessCategory_0",
+            "type": "string",
+            "column": "BPM.Type",
+            "translateWith": "TypeConversion"
+        },
+        {
+            "property": "Title",
+            "belongsToClassMap": "BusinessProcessCategory_1",
+            "type": "string",
+            "column": "BPM.Type_1",
+            "translateWith": "TypeConversion"
+        },
+        {
+            "property": "Title",
+            "belongsToClassMap": "BusinessProcessCategory_2",
+            "type": "string",
+            "column": "BPM.Type_2",
+            "translateWith": "TypeConversion"
+        },
+        {
+            "property": "Name",
+            "belongsToClassMap": "BusinessProcessCategory_0",
+            "type": "string",
+            "column": "BPM.Type",
+            "translateWith": "TypeConversion"
+        },
+        {
+            "property": "Name",
+            "belongsToClassMap": "BusinessProcessCategory_1",
+            "type": "string",
+            "column": "BPM.Type_1",
+            "translateWith": "TypeConversion"
+        },
+        {
+            "property": "Name",
+            "belongsToClassMap": "BusinessProcessCategory_2",
+            "type": "string",
+            "column": "BPM.Type_2",
+            "translateWith": "TypeConversion"
+        }
+    ],
+    "translation_tables": [
+        {
+            "name": "TypeConversion",
+            "translations": [
+                {
+                    "databaseValue": "G",
+                    "targetValue": "Generic"
+                },
+                {
+                    "databaseValue": "V",
+                    "targetValue": "Variant"
+                }
+            ]
+        }
+    ]
+}

@@ -10,7 +10,7 @@
             "property": "locatedIn",
             "belongsToClass": "Source",
             "refersToClass": "Country",
-            "join": ["@@geo_source.river@@ = @@river.name@@", "@@geo_source.country@@ = @@country.code@@"]
+            "join": ["geo_source.river = river.name", "geo_source.country = country.code"]
         },
         {
             "property": "locatedIn",

@@ -1,0 +1,77 @@
+{
+    "classes": [
+        {
+            "id": "/RBA/BCM/BusinessCapabilityType/@@BCM.Object_Type@@",
+            "class": "BusinessCapabilityType",
+            "name": "BusinessCapabilityTypeDomain"
+        },
+        {
+            "id": "/RBA/BCM/BusinessCapabilityType/@@BCM.Object_Type.2@@",
+            "class": "BusinessCapabilityType",
+            "name": "BusinessCapabilityTypeArea"
+        },
+        {
+            "id": "/RBA/BCM/BusinessCapabilityType/@@BCM.Object_Type.3@@",
+            "class": "BusinessCapabilityType",
+            "name": "BusinessCapabilityTypeCapability"
+        }
+    ],
+    "object_properties": [
+    ],
+    "data_properties": [
+        {
+            "property": "Identifier",
+            "belongsToClassMap": "BusinessCapabilityTypeDomain",
+            "type": "string",
+            "constantValue": "BCT-001"
+        },
+        {
+            "property": "Title",
+            "belongsToClassMap": "BusinessCapabilityTypeDomain",
+            "type": "string",
+            "column": "BCM.Object_Type"
+        },
+        {
+            "property": "Identifier",
+            "belongsToClassMap": "BusinessCapabilityTypeArea",
+            "type": "string",
+            "constantValue": "BCT-002"
+        },
+        {
+            "property": "Title",
+            "belongsToClassMap": "BusinessCapabilityFromArea",
+            "type": "string",
+            "column": "BCM.Object_Type.2"
+        },
+        {
+            "property": "Identifier",
+            "belongsToClassMap": "BusinessCapabilityFromCapability",
+            "type": "string",
+            "constantValue": "BCT-003"
+        },
+        {
+            "property": "Title",
+            "belongsToClassMap": "BusinessCapabilityFromCapability",
+            "type": "string",
+            "sqlExpression": "CONCAT(@@BCM.Business_Capability@@, CONCAT(' (', CONCAT(@@BCM.Master_ID_BC@@, ')')))"
+        },
+        {
+            "property": "Name",
+            "belongsToClassMap": "BusinessCapabilityFromCapability",
+            "type": "string",
+            "column": "@@BCM.Business_Capability@@"
+        },
+        {
+            "property": "SequenceID",
+            "belongsToClassMap": "BusinessCapabilityFromCapability",
+            "type": "string",
+            "column": "@@BCM.BC_Seq_ID@@"
+        },
+        {
+            "property": "Description",
+            "belongsToClassMap": "BusinessCapabilityFromCapability",
+            "type": "string",
+            "column": "BCM.Business_Capability_Description"
+        }
+    ]
+}

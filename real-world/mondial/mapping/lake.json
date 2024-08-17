@@ -10,13 +10,13 @@
             "property": "locatedIn",
             "belongsToClass": "Lake",
             "refersToClass": "Country",
-            "join": ["@@geo_lake.lake@@ = @@lake.name@@", "@@geo_lake.country@@ = @@country.code@@"]
+            "join": ["geo_lake.lake = lake.name", "geo_lake.country = country.code"]
         },
         {
             "property": "locatedIn",
             "belongsToClass": "Lake",
             "refersToClass": "Province",
-            "join": ["@@geo_lake.lake@@ = @@lake.name@@", "@@geo_lake.province@@ = @@province.name@@"]
+            "join": ["geo_lake.lake = lake.name", "geo_lake.province = province.name"]
         },
         {
             "property": "flowsInto",
