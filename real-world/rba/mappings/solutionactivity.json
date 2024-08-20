@@ -1,0 +1,36 @@
+{
+    "classes": [
+        {
+            "id": "/RSA/SPM/SolutionActivity/@@SPM.Object_ID_Business_Activity_in_Solution_Process@@",
+            "class": "SolutionActivity"
+        }
+    ],
+    "object_properties": [
+        {
+            "property": "references",
+            "belongsToClass": "SolutionActivity",
+            "refersToClassMap": "SolutionCapability_SCM",
+            "join": ["SCM.Object_ID_SC = SPM.Object_ID_SC"]
+        }
+    ],
+    "data_properties": [
+        {
+            "property": "Identifier",
+            "belongsToClass": "SolutionActivity",
+            "type": "string",
+            "column": "SPM.Object_ID_Business_Activity_in_Solution_Process"
+        },
+        {
+            "property": "Title",
+            "belongsToClass": "SolutionActivity",
+            "type": "string",
+            "column": "SPM.Business_Activity_in_Solution_Process"
+        },
+        {
+            "property": "Name",
+            "belongsToClass": "SolutionActivity",
+            "type": "string",
+            "column": "SPM.Business_Activity_in_Solution_Process"
+        }
+    ]
+}

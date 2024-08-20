@@ -1,0 +1,143 @@
+{
+    "classes": [
+        {
+            "id": "/RSA/SPM/SolutionProcess/@@SPM.Solution_Process_ID@@",
+            "class": "SolutionProcess",
+            "name": "SolutionProcess_0"
+        },
+        {
+            "id": "/RSA/SPM/SolutionProcess/@@SPM.Solution_Process_ID_1@@",
+            "class": "SolutionProcess",
+            "name": "SolutionProcess_1"
+        },
+        {
+            "id": "/RSA/SPM/SolutionProcess/@@SPM.Solution_Process_ID_2@@",
+            "class": "SolutionProcess",
+            "name": "SolutionProcess_2"
+        },
+        {
+            "id": "/RSA/SPM/SolutionProcess/@@SPM.Based_on@@",
+            "class": "SolutionProcess",
+            "name": "SolutionProcess_BasedOn_0"
+        },
+        {
+            "id": "/RSA/SPM/SolutionProcess/@@SPM.Based_on_1@@",
+            "class": "SolutionProcess",
+            "name": "SolutionProcess_BasedOn_1"
+        },
+        {
+            "id": "/RSA/SPM/SolutionProcess/@@SPM.Based_on_2@@",
+            "class": "SolutionProcess",
+            "name": "SolutionProcess_BasedOn_2"
+        }
+    ],
+    "object_properties": [
+        {
+            "property": "isMemberOf",
+            "belongsToClassMap": "SolutionProcess_0",
+            "refersToClass": "Industry",
+            "condition": ["SPM.SP_Relevant_for_Cross_Industry = 'Relevant'", "Ind.Industry_ID = 'Ind026'"]
+        },
+        {
+            "property": "isMemberOf",
+            "belongsToClassMap": "SolutionProcess_0",
+            "refersToClass": "Industry",
+            "condition": ["SPM.SP_Relevant_for_Retail_Industry = 'Relevant'", "Ind.Industry_ID = 'Ind001'"]
+        },
+        {
+            "property": "isMemberOf",
+            "belongsToClassMap": "SolutionProcess_0",
+            "refersToClass": "Industry",
+            "condition": ["SPM.SP_Relevant_for_Automotive_Industry = 'Relevant'", "Ind.Industry_ID = 'Ind006'"]
+        },
+        {
+            "property": "isMemberOf",
+            "belongsToClassMap": "SolutionProcess_0",
+            "refersToClass": "Industry",
+            "condition": ["SPM.SP_Relevant_for_Professional_Services_Industry = 'Relevant'", "Ind.Industry_ID = 'Ind022'"]
+        },
+        {
+            "property": "isElementOf",
+            "belongsToClassMap": "SolutionProcess_0",
+            "refersToClassMap": "SolutionProcessCategory_0"
+       },
+       {
+            "property": "isElementOf",
+            "belongsToClassMap": "SolutionProcess_1",
+            "refersToClassMap": "SolutionProcessCategory_1"
+       },
+       {
+            "property": "isElementOf",
+            "belongsToClassMap": "SolutionProcess_2",
+            "refersToClassMap": "SolutionProcessCategory_2"
+       },
+       {
+            "property": "hasVariant",
+            "belongsToClassMap": "SolutionProcess_BasedOn_0",
+            "refersToClassMap": "SolutionProcess_0"
+        },
+        {
+            "property": "hasVariant",
+            "belongsToClassMap": "SolutionProcess_BasedOn_1",
+            "refersToClassMap": "SolutionProcess_1"
+        },
+        {
+            "property": "hasVariant",
+            "belongsToClassMap": "SolutionProcess_BasedOn_2",
+            "refersToClassMap": "SolutionProcess_2"
+        },
+        {
+            "property": "hasComponent",
+            "belongsToClassMap": "SolutionProcess_1",
+            "refersToClassMap": "SolutionProcessSequence_2"
+        },
+        {
+            "property": "hasComponent",
+            "belongsToClassMap": "SolutionProcess_0",
+            "refersToClassMap": "SolutionProcessSequence_1"
+        },
+        {
+            "property": "hasComponent",
+            "belongsToClassMap": "SolutionProcess_2",
+            "refersToClass": "SolutionActivity"
+        }
+    ],
+    "data_properties": [
+        {
+            "property": "Identifier",
+            "belongsToClassMap": "SolutionProcess_0",
+            "type": "string",
+            "column": "SPM.Solution_Process_ID"
+        },
+        {
+            "property": "Identifier",
+            "belongsToClassMap": "SolutionProcess_1",
+            "type": "string",
+            "column": "SPM.Solution_Process_ID_1"   
+        },
+        {
+            "property":"Identifier",
+            "belongsToClassMap": "SolutionProcess_2",
+            "type": "string",
+            "column": "SPM.Solution_Process_ID_2"
+        },
+        {
+            "property": "Name",
+            "belongsToClassMap": "SolutionProcess_0",
+            "type": "string",
+            "column": "SPM.Solution_Process"
+        },
+        {
+            "property": "Name",
+            "belongsToClassMap": "SolutionProcess_1",
+            "type": "string",
+            "column": "SPM.Solution_Process_1"
+        },
+        {
+            "property": "Name",
+            "belongsToClassMap": "SolutionProcess_2",
+            "type": "string",
+            "column": "SPM.Solution_Process_2"
+        }
+    ]
+}

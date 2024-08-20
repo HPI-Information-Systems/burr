@@ -17,6 +17,72 @@
         }
     ],
     "object_properties": [
+        {
+            "property": "isPrerequisiteOf",
+            "belongsToClassMap": "BusinessCapabilityFromCapability",
+            "refersToClassMap": "BusinessActivity_BA"
+        },
+        {
+            "property": "isMemberOf",
+            "belongsToClassMap": "BusinessCapabilityFromCapability",
+            "refersToClass": "Industry",
+            "condition": ["BCM.BC_Relevant_for_Cross_Industry = 'Relevant'", "Ind.Industry_ID = 'Ind026'"]
+        },
+        {
+            "property": "isMemberOf",
+            "belongsToClassMap": "BusinessCapabilityFromCapability",
+            "refersToClass": "Industry",
+            "condition": ["BCM.BC_Relevant_for_Retail_Industry = 'Relevant'", "Ind.Industry_ID = 'Ind001'"]
+        },
+        {
+            "property": "isMemberOf",
+            "belongsToClassMap": "BusinessCapabilityFromCapability",
+            "refersToClass": "Industry",
+            "condition": ["BCM.BC_Relevant_for_Automotive_Industry = 'Relevant'", "Ind.Industry_ID = 'Ind006'"]
+        },
+        {
+            "property": "isMemberOf",
+            "belongsToClassMap": "BusinessCapabilityFromCapability",
+            "refersToClass": "Industry",
+            "condition": ["BCM.BC_Relevant_for_Professional_Services_Industry = 'Relevant'", "Ind.Industry_ID = 'Ind022'"]
+        },
+        {
+            "property": "isMemberOf",
+            "belongsToClassMap": "BusinessCapabilityFromDomain",
+            "refersToClass": "BusinessCapabilityTypeDomain"
+        },
+        {
+            "property": "isMemberOf",
+            "belongsToClassMap": "BusinessCapabilityFromArea",
+            "refersToClass": "BusinessCapabilityTypeArea"
+        },
+        {
+            "property": "isMemberOf",
+            "belongsToClassMap": "BusinessCapabilityFromCapability",
+            "refersToClass": "BusinessCapabilityTypeCapability"
+        },
+        {
+            "property": "hasComponent",
+            "belongsToClassMap": "BusinessCapabilityFromDomain",
+            "refersToClassMap": "BusinessCapabilityFromArea"
+        },
+        {
+            "property": "hasComponent",
+            "belongsToClassMap": "BusinessCapabilityFromArea",
+            "refersToClassMap": "BusinessCapabilityFromCapability"
+        },
+        {
+            "property": "hasImplementation",
+            "belongsToClassMap": "BusinessCapabilityFromCapability",
+            "refersToClassMap": "SolutionCapability_SCM",
+            "join": ["BCM.Master_ID_BC = SCM.Master_ID_BC"]
+        },
+        {
+            "property": "hasImplementation",
+            "belongsToClassMap": "BusinessCapabilityFromCapability",
+            "refersToClassMap": "SolutionCapability_Whitespaces",
+            "join": ["BCM.Master_ID_BC = Whitespaces.Master_ID_BC"]
+        }
     ],
     "data_properties": [
         {

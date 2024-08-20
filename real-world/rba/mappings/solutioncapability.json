@@ -1,0 +1,78 @@
+{
+    "classes": [
+        {
+            "id": "/RSA/SCM/SolutionCapability/@@SCM.Object_ID_SC@@",
+            "class": "SolutionCapability",
+            "name": "SolutionCapability_SCM"
+        },
+        {
+            "id": "/RSA/SCM/SolutionCapability/@@Whitespaces.Object_ID_SC@@",
+            "class": "SolutionCapability",
+            "name": "SolutionCapability_Whitespaces"
+        }
+    ],
+    "object_properties": [
+        {
+            "property": "isMemberOf",
+            "belongsToClassMap": "SolutionCapability_SCM",
+            "refersToClass": "Industry",
+            "condition": ["SCM.BC_Relevant_for_Cross_Industry = 'Relevant'", "Ind.Industry_ID = 'Ind026'"]
+        },
+        {
+            "property": "isMemberOf",
+            "belongsToClassMap": "SolutionCapability_SCM",
+            "refersToClass": "Industry",
+            "condition": ["SCM.BC_Relevant_for_Retail_Industry = 'Relevant'", "Ind.Industry_ID = 'Ind001'"]
+        },
+        {
+            "property": "isMemberOf",
+            "belongsToClassMap": "SolutionCapability_SCM",
+            "refersToClass": "Industry",
+            "condition": ["SCM.BC_Relevant_for_Automotive_Industry = 'Relevant'", "Ind.Industry_ID = 'Ind006'"]
+        },
+        {
+            "property": "isMemberOf",
+            "belongsToClassMap": "SolutionCapability_SCM",
+            "refersToClass": "Industry",
+            "condition": ["SCM.BC_Relevant_for_Professional_Services_Industry = 'Relevant'", "Ind.Industry_ID = 'Ind022'"]
+        }
+    ],
+    "data_properties": [
+        {
+            "property": "Identifier",
+            "belongsToClassMap": "SolutionCapability_SCM",
+            "type": "string",
+            "column": "SCM.Object_ID_SC"
+        },
+        {
+            "property": "Identifier",
+            "belongsToClassMap": "SolutionCapability_Whitespaces",
+            "type": "string",
+            "column": "Whitespaces.Object_ID_SC"
+        },
+        {
+            "property": "Title",
+            "belongsToClassMap": "SolutionCapability_SCM",
+            "type": "string",
+            "column": "SCM.Solution_Capability"
+        },
+        {
+            "property": "Title",
+            "belongsToClassMap": "SolutionCapability_Whitespaces",
+            "type": "string",
+            "column": "Whitespaces.Solution_Capability"
+        },
+        {
+            "property": "Name",
+            "belongsToClassMap": "SolutionCapability_SCM",
+            "type": "string",
+            "column": "SCM.Solution_Capability"
+        },
+        {
+            "property": "Name",
+            "belongsToClassMap": "SolutionCapability_Whitespaces",
+            "type": "string",
+            "column": "Whitespaces.Solution_Capability"
+        }
+    ]
+}

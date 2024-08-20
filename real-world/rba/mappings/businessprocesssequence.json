@@ -1,17 +1,27 @@
 {
     "classes": [
         {
-            "id": "/RBA/BPM/BusinessProcessSequence/@@BPM.Business_Process_Sequence_1@@",
+            "id": "/RBA/BPM/BusinessProcessSequence/@@BPM.Business_Process_Sequence_1@@/@@BPM.Business_Process_1@@/@@BPM.Business_Process_ID_1@@",
             "class": "BusinessProcessSequence",
             "name": "BusinessProcessSequence_1"
         },
         {
-            "id": "/RBA/BPM/BusinessProcessSequence/@@BPM.Business_Process_Sequence_2@@",
+            "id": "/RBA/BPM/BusinessProcessSequence/@@BPM.Business_Process_Sequence_2@@/@@BPM.Business_Process_2@@/@@BPM.Business_Process_ID_2@@",
             "class": "BusinessProcessSequence",
             "name": "BusinessProcessSequence_2"
         }
     ],
     "object_properties": [
+        {
+            "property": "references",
+            "belongsToClassMap": "BusinessProcessSequence_1",
+            "refersToClassMap": "BusinessProcess_1"
+        },
+        {
+            "property": "references",
+            "belongsToClassMap": "BusinessProcessSequence_2",
+            "refersToClassMap": "BusinessProcess_2"
+        }
     ],
     "data_properties": [
         {
@@ -54,13 +64,13 @@
             "property": "Name",
             "belongsToClassMap": "BusinessProcessSequence_1",
             "type": "string",
-            "sqlExpression": "CONCAT(@@BPM.Business Process Sequence.1@@, CONCAT(' - ', CONCAT(@@BPM.Business_Process_1@@, CONCAT(' (', CONCAT(@@BPM.Business Process ID.1@@, ')')))))"
+            "sqlExpression": "CONCAT(@@BPM.Business_Process_Sequence_1@@, CONCAT(' - ', CONCAT(@@BPM.Business_Process_1@@, CONCAT(' (', CONCAT(@@BPM.Business_Process_ID_1@@, ')')))))"
         },
         {
             "property": "Name",
             "belongsToClassMap": "BusinessProcessSequence_2",
             "type": "string",
-            "sqlExpression": "CONCAT(@@BPM.Business Process Sequence.2@@, CONCAT(' - ', CONCAT(@@BPM.Business_Process_2@@, CONCAT(' (', CONCAT(@@BPM.Business Process ID.2@@, ')')))))"
+            "sqlExpression": "CONCAT(@@BPM.Business_Process_Sequence_2@@, CONCAT(' - ', CONCAT(@@BPM.Business_Process_2@@, CONCAT(' (', CONCAT(@@BPM.Business_Process_ID_2@@, ')')))))"
         }
     ]
 }

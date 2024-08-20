@@ -1,0 +1,24 @@
+{
+    "classes": [
+        {
+            "id": "/RSA/SCM/SolutionArchitectureComponentType/@@SCM.Line_Item_Type@@",
+            "class": "SolutionArchitectureComponentType"
+        }
+    ],
+    "object_properties": [
+    ],
+    "data_properties": [
+        {
+            "property": "Identifier",
+            "belongsToClass": "SolutionArchitectureComponentType",
+            "type": "string",
+            "column": "SCM.Line_Item_Type"
+        },
+        {
+            "property": "Name",
+            "belongsToClass": "SolutionArchitectureComponentType",
+            "type": "string",
+            "column": "SCM.Line_Item_Type"
+        }
+    ]
+}

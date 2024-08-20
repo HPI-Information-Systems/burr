@@ -6,6 +6,11 @@
         }
     ],
     "object_properties": [
+        {
+            "property": "hasComponent",
+            "belongsToClass": "EnterpriseDomain",
+            "refersToClassMap": "BusinessCapabilityFromDomain"
+        }
     ],
     "data_properties": [
         {

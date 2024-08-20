@@ -2,7 +2,20 @@
     "classes": [
         {
             "id": "/RBA/BPM/BusinessProcessType/@@BPM.FP_Object_Type@@",
-            "class": "BusinessProcessType"
+            "class": "BusinessProcessType",
+            "name": "BusinessProcessType_Main"
+        },
+        {
+            "id": "/RBA/BPM/BusinessProcessType/@@BPM.Business_Process_Type@@",
+            "class": "BusinessProcessType_0"
+        },
+        {
+            "id": "/RBA/BPM/BusinessProcessType/@@BPM.Business_Process_Type_1@@",
+            "class": "BusinessProcessType_1"
+        },
+        {
+            "id": "/RBA/BPM/BusinessProcessType/@@BPM.Business_Process_Type_2@@",
+            "class": "BusinessProcessType_2"
         }
     ],
     "object_properties": [
@@ -10,13 +23,13 @@
     "data_properties": [
         {
             "property": "Title",
-            "belongsToClass": "BusinessProcessType",
+            "belongsToClassMap": "BusinessProcessType_Main",
             "type": "string",
             "column": "BPM.FP_Object_Type"
         },
         {
             "property": "Name",
-            "belongsToClass": "BusinessProcessType",
+            "belongsToClassMap": "BusinessProcessType_Main",
             "type": "string",
             "column": "@@BPM.FP_Object_Type@@"
         }

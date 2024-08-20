@@ -1,0 +1,49 @@
+{
+    "classes": [
+        {
+            "id": "/RBA/BAR/BusinessActivity/@@BAR.Business_Activity_Code@@",
+            "class": "BusinessActivity",
+            "name": "BusinessActivity_BAR"
+        }
+    ],
+    "object_properties": [
+    ],
+    "data_properties": [
+        {
+            "property": "Identifier",
+            "belongsToClassMap": "BusinessAcity_BAR",
+            "type": "string",
+            "column": "BAR.Business_Activity_Code"
+        },
+        {
+            "property": "Name",
+            "belongsToClassMap": "BusinessAcity_BAR",
+            "type": "string",
+            "column": "BAR.Business_Acitivity"   
+        },
+        {
+            "property":"Description",
+            "belongsToClassMap": "BusinessAcity_BAR",
+            "type": "string",
+            "column": "BAR.Business_Acitivity_Description"
+        },
+        {
+            "property": "APQCReference",
+            "belongsToClassMap": "BusinessAcity_BAR",
+            "type": "string",
+            "column": "BAR.APQC_Reference"
+        },
+        {
+            "property": "Name",
+            "belongsToClassMap": "SolutionProcess_1",
+            "type": "string",
+            "column": "SPM.Solution_Process_1"
+        },
+        {
+            "property": "Name",
+            "belongsToClassMap": "SolutionProcess_2",
+            "type": "string",
+            "column": "SPM.Solution_Process_2"
+        }
+    ]
+}
