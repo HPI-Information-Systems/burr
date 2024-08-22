@@ -11,31 +11,31 @@
             "property": "name",
             "belongsToClass": "Person",
             "type": "string",
-            "column": "@@person.NZQW2ZI=@@"
+            "column": "person.NZQW2ZI="
         },
         {
             "property": "age",
             "belongsToClass": "Person",
             "type": "int",
-            "column": "@@Person.MFTWK===@@"
+            "column": "Person.MFTWK==="
         },
         {
             "property": "address",
             "belongsToClass": "Person",
             "type": "string",
-            "column": "@@person.MFSGI4TFONZQ====@@"
+            "column": "person.MFSGI4TFONZQ===="
         },
         {
             "property": "phone_number",
             "belongsToClass": "Person",
             "type": "int",
-            "column": "@@person.OBUG63TFL5XHK3LCMVZA====@@"
+            "column": "person.OBUG63TFL5XHK3LCMVZA===="
         },
         {
             "property": "email",
             "belongsToClass": "Person",
             "type": "string",
-            "column": "@@person.MVWWC2LM@@"
+            "column": "person.MVWWC2LM"
         }
     ]
 }

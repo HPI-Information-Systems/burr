@@ -14,12 +14,13 @@
             "property": "enrolled_in",
             "belongsToClass": "Student",
             "refersToClass": "Course",
-            "join": ["@@student.planned_graduation_year@@ = @@enrollment.planned_graduation_year@@",
-                     "@@student.first_name@@ = @@enrollment.first_name@@",
-                     "@@student.last_name@@ = @@enrollment.last_name@@",
-                    "@@course.semester@@ = @@enrollment.semester@@",
-                    "@@course.course_name@@ = @@enrollment.course_name@@"
-                    ]
+            "join": [
+                "student.planned_graduation_year = enrollment.planned_graduation_year",
+                "student.first_name = enrollment.first_name",
+                "student.last_name = enrollment.last_name",
+                "course.semester = enrollment.semester",
+                "course.course_name = enrollment.course_name"
+            ]
         }
     ],
     "data_properties": [
@@ -27,7 +28,7 @@
             "property": "credits",
             "belongsToClass": "Course",
             "type": "integer",
-            "column": "@@course.credits@@"
+            "column": "course.credits"
         }
     ]
 }

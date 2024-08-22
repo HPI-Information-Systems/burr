@@ -14,7 +14,10 @@
             "property": "email",
             "belongsToClass": "Author",
             "refersToClass": "Conference",
-            "join": ["@@person.id@@ = @@enable_virtual_meeting.pid@@", "@@conference.id@@ = @@enable_virtual_meeting.cid@@"]
+            "join": [
+                "person.id = enable_virtual_meeting.pid",
+                "conference.id = enable_virtual_meeting.cid"
+            ]
         }
     ],
     "data_properties": []

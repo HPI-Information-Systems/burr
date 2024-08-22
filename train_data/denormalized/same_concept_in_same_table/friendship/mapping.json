@@ -21,25 +21,25 @@
             "property": "name",
             "belongsToClass": "Person",
             "type": "string",
-            "column": "@@friendship.name_A@@"
+            "column": "friendship.name_A"
         },
         {
             "property": "name",
             "belongsToClass": "Person",
             "type": "string",
-            "column": "@@friendship.name_B@@"
+            "column": "friendship.name_B"
         },
         {
             "property": "address",
             "belongsToClass": "Person",
             "type": "string",
-            "column": "@@friendship.address_A@@"
+            "column": "friendship.address_A"
         },
         {
             "property": "address",
             "belongsToClass": "Person",
             "type": "string",
-            "column": "@@friendship.address_B@@"
+            "column": "friendship.address_B"
         }
     ]
 }

@@ -7,14 +7,22 @@
         {
             "id": "@@person.pid@@",
             "class": "Author",
-            "condition": ["@@person.type@@ = 'author'"],
-            "subclassOf": ["Person"]
+            "condition": [
+                "@@person.type@@ = 'author'"
+            ],
+            "subclassOf": [
+                "Person"
+            ]
         },
         {
             "id": "@@person.pid@@",
             "class": "Reviewer",
-            "condition": ["@@person.type@@ = 'reviewer'"],
-            "subclassOf": ["Person"]
+            "condition": [
+                "@@person.type@@ = 'reviewer'"
+            ],
+            "subclassOf": [
+                "Person"
+            ]
         }
     ],
     "object_properties": [],
@@ -23,19 +31,19 @@
             "property": "name",
             "belongsToClass": "Person",
             "type": "string",
-            "column": "@@person.name@@"
+            "column": "person.name"
         },
         {
             "property": "email",
             "belongsToClass": "Author",
             "type": "string",
-            "column": "@@person.e-mail@@"
+            "column": "person.e-mail"
         },
         {
             "property": "area",
             "belongsToClass": "Reviewer",
             "type": "string",
-            "column": "@@person.area@@"
+            "column": "person.area"
         }
     ]
 }

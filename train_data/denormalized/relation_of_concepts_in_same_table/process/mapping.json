@@ -21,25 +21,25 @@
             "property": "name",
             "belongsToClass": "BusinessArea",
             "type": "string",
-            "column": "@@process.area_name@@"
+            "column": "process.area_name"
         },
         {
             "property": "description",
             "belongsToClass": "BusinessArea",
             "type": "string",
-            "column": "@@process.area_description@@"
+            "column": "process.area_description"
         },
         {
             "property": "name",
             "belongsToClass": "BusinessCapability",
             "type": "string",
-            "column": "@@process.capability_name@@"
+            "column": "process.capability_name"
         },
         {
             "property": "description",
             "belongsToClass": "BusinessCapability",
             "type": "string",
-            "column": "@@process.capability_description@@"
-        }   
+            "column": "process.capability_description"
+        }
     ]
 }

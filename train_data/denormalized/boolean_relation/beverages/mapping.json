@@ -78,7 +78,7 @@
             "property": "name",
             "belongsToClass": "Beverage",
             "type": "string",
-            "column": "@@beverage.name@@"
+            "column": "beverage.name"
         }
     ]
 }

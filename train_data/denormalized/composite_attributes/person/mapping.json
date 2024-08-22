@@ -11,11 +11,11 @@
             "property": "name",
             "belongsToClass": "Person",
             "type": "string",
-            "column": "@@person.name@@"
+            "column": "person.name"
         },
         {
-           "property": "address",
-            "belongsToClass": "Person", 
+            "property": "address",
+            "belongsToClass": "Person",
             "type": "string",
             "sqlExpression": "split_part(person.address, ',', 1)"
         },

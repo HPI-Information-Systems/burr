@@ -21,25 +21,25 @@
             "property": "title",
             "belongsToClass": "Movie",
             "type": "string",
-            "column": "@@movie.title@@"
+            "column": "movie.title"
         },
         {
             "property": "year",
             "belongsToClass": "Movie",
             "type": "int",
-            "column": "@@movie.year@@"
+            "column": "movie.year"
         },
         {
             "property": "name",
             "belongsToClass": "Director",
             "type": "string",
-            "column": "@@director.name@@"
+            "column": "director.name"
         },
         {
             "property": "birth_year",
             "belongsToClass": "Director",
             "type": "int",
-            "column": "@@director.birth_year@@"
+            "column": "director.birth_year"
         }
     ]
 }

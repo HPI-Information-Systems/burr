@@ -14,7 +14,10 @@
             "property": "has_skill",
             "belongsToClass": "Employee",
             "refersToClass": "Skill",
-            "join": ["@@employee.id@@ = @@employee_skill.employee_id@@", "@@skill.id@@ = @@employee_skill.skill_id@@"]
+            "join": [
+                "employee.id = employee_skill.employee_id",
+                "skill.id = employee_skill.skill_id"
+            ]
         }
     ],
     "data_properties": [
@@ -22,13 +25,13 @@
             "property": "name",
             "belongsToClass": "Employee",
             "type": "string",
-            "column": "@@employee.name@@"
+            "column": "employee.name"
         },
         {
             "property": "name",
             "belongsToClass": "Skill",
             "type": "string",
-            "column": "@@skill.name@@"
+            "column": "skill.name"
         }
     ]
 }

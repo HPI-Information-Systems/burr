@@ -7,12 +7,16 @@
         {
             "id": "@@author.aid@@",
             "class": "Author",
-            "subclassOf": ["Person"]
+            "subclassOf": [
+                "Person"
+            ]
         },
         {
             "id": "@@reviewer.rid@@",
             "class": "Reviewer",
-            "subclassOf": ["Person"]
+            "subclassOf": [
+                "Person"
+            ]
         }
     ],
     "object_properties": [],
@@ -21,19 +25,19 @@
             "property": "name",
             "belongsToClass": "Person",
             "type": "string",
-            "column": "@@person.name@@"
+            "column": "person.name"
         },
         {
             "property": "email",
             "belongsToClass": "Author",
             "type": "string",
-            "column": "@@author.e-mail@@"
+            "column": "author.e-mail"
         },
         {
             "property": "area",
             "belongsToClass": "Reviewer",
             "type": "string",
-            "column": "@@reviewer.area@@"
+            "column": "reviewer.area"
         }
     ]
 }

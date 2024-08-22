@@ -11,19 +11,19 @@
             "property": "name",
             "belongsToClass": "Person",
             "type": "string",
-            "column": "@@person.name@@"
+            "column": "person.name"
         },
         {
             "property": "address",
             "belongsToClass": "Person",
             "type": "string",
-            "column": "@@person.address@@"
+            "column": "person.address"
         },
         {
             "property": "phone_number",
             "belongsToClass": "Person",
             "type": "integer",
-            "column": "@@person.phone_number@@"
+            "column": "person.phone_number"
         }
     ]
 }

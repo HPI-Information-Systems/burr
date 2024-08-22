@@ -2,23 +2,27 @@
     "classes": [
         {
             "id": "author_@@author.aid@@",
-            "class": "Person", 
+            "class": "Person",
             "name": "AuthorPerson"
         },
         {
             "id": "reviewer_@@reviewer.rid@@",
-            "class": "Person", 
+            "class": "Person",
             "name": "ReviewerPerson"
         },
         {
             "id": "@@author.aid@@",
             "class": "Author",
-            "subclassOf": ["Person"]
+            "subclassOf": [
+                "Person"
+            ]
         },
         {
             "id": "@@reviewer.rid@@",
             "class": "Reviewer",
-            "subclassOf": ["Person"]
+            "subclassOf": [
+                "Person"
+            ]
         }
     ],
     "object_properties": [],
@@ -27,25 +31,25 @@
             "property": "name",
             "belongsToClassMap": "AuthorPerson",
             "type": "string",
-            "column": "@@author.name@@"
+            "column": "author.name"
         },
         {
             "property": "name",
             "belongsToClassMap": "ReviewerPerson",
             "type": "string",
-            "column": "@@reviewer.name@@"
+            "column": "reviewer.name"
         },
         {
             "property": "email",
             "belongsToClass": "Author",
             "type": "string",
-            "column": "@@author.e-mail@@"
+            "column": "author.e-mail"
         },
         {
             "property": "area",
             "belongsToClass": "Reviewer",
             "type": "string",
-            "column": "@@reviewer.area@@"
+            "column": "reviewer.area"
         }
     ]
 }

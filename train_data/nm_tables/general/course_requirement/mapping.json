@@ -14,7 +14,10 @@
             "property": "has_requirement",
             "belongsToClass": "Course",
             "refersToClass": "Requirement",
-            "join": ["@@course.id@@ = @@course_requirement.course_id@@", "@@requirement.id@@ = @@course_requirement.requirement_id@@"]
+            "join": [
+                "course.id = course_requirement.course_id",
+                "requirement.id = course_requirement.requirement_id"
+            ]
         }
     ],
     "data_properties": [
@@ -22,13 +25,13 @@
             "property": "name",
             "belongsToClass": "Course",
             "type": "string",
-            "column": "@@course.name@@"
+            "column": "course.name"
         },
         {
             "property": "name",
             "belongsToClass": "Requirement",
             "type": "string",
-            "column": "@@requirement.name@@"
+            "column": "requirement.name"
         }
     ]
 }

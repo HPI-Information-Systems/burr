@@ -14,7 +14,10 @@
             "property": "has_feature",
             "belongsToClass": "Product",
             "refersToClass": "Feature",
-            "join": ["@@product.id@@ = @@product_feature.product_id@@", "@@feature.id@@ = @@product_feature.feature_id@@"]
+            "join": [
+                "product.id = product_feature.product_id",
+                "feature.id = product_feature.feature_id"
+            ]
         }
     ],
     "data_properties": [
@@ -22,13 +25,13 @@
             "property": "name",
             "belongsToClass": "Product",
             "type": "string",
-            "column": "@@product.name@@"
+            "column": "product.name"
         },
         {
             "property": "name",
             "belongsToClass": "Feature",
             "type": "string",
-            "column": "@@feature.name@@"
+            "column": "feature.name"
         }
     ]
 }

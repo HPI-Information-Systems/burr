@@ -14,7 +14,9 @@
             "property": "receivedBy",
             "belongsToClass": "Receipt",
             "refersToClass": "Person",
-            "join": ["@@person.name@@ = @@receipt.received_by@@"]
+            "join": [
+                "person.name = receipt.received_by"
+            ]
         }
     ],
     "data_properties": [
@@ -22,25 +24,25 @@
             "property": "name",
             "belongsToClass": "Person",
             "type": "string",
-            "column": "@@person.name@@"
+            "column": "person.name"
         },
         {
             "property": "email",
             "belongsToClass": "Person",
             "type": "string",
-            "column": "@@person.email@@"
+            "column": "person.email"
         },
         {
             "property": "date",
             "belongsToClass": "Receipt",
             "type": "date",
-            "column": "@@receipt.date@@"
+            "column": "receipt.date"
         },
         {
             "property": "item",
             "belongsToClass": "Receipt",
             "type": "string",
-            "column": "@@receipt.item@@"
+            "column": "receipt.item"
         }
     ]
 }

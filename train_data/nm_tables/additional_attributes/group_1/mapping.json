@@ -18,13 +18,17 @@
             "property": "belongs_to",
             "belongsToClass": "User",
             "refersToClass": "UserGroup",
-            "join": ["@@user.id@@ = @@user_group.uid@@"]
+            "join": [
+                "user.id = user_group.uid"
+            ]
         },
         {
             "property": "has",
             "belongsToClass": "Group",
             "refersToClass": "UserGroup",
-            "join": ["@@group.id@@ = @@user_group.gid@@"]
+            "join": [
+                "group.id = user_group.gid"
+            ]
         }
     ],
     "data_properties": [
@@ -32,19 +36,19 @@
             "property": "registration_date",
             "belongsToClass": "UserGroup",
             "type": "integer",
-            "column": "@@user_group.registration_date@@"
+            "column": "user_group.registration_date"
         },
         {
             "property": "expiration_duration",
             "belongsToClass": "UserGroup",
             "type": "integer",
-            "column": "@@user_group.expiration_duration@@"
+            "column": "user_group.expiration_duration"
         },
         {
             "property": "access_rights",
             "belongsToClass": "UserGroup",
             "type": "string",
-            "column": "@@user_group.access_rights@@"
+            "column": "user_group.access_rights"
         }
     ]
 }

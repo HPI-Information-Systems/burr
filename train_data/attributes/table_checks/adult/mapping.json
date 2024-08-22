@@ -3,7 +3,9 @@
         {
             "id": "@@adult.id@@",
             "class": "Adult",
-            "constraints": ["@@adult.age@@ >= 18"]
+            "constraints": [
+                "@@adult.age@@ >= 18"
+            ]
         }
     ],
     "object_properties": [],
@@ -12,13 +14,13 @@
             "property": "name",
             "belongsToClass": "Adult",
             "type": "string",
-            "column": "@@adult.name@@"
+            "column": "adult.name"
         },
         {
             "property": "age",
             "belongsToClass": "Adult",
             "type": "int",
-            "column": "@@adult.age@@"
+            "column": "adult.age"
         }
     ]
 }
