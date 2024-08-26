@@ -1,17 +1,20 @@
 {
     "classes": [
         {
-            "id": "/RBA/BPM/BusinessProcessCategory/@@BPM.Type@@",
+            "id": "@@BPM.Type@@",
+            "prefix": "RBA",
             "class": "BusinessProcessCategory",
             "name": "BusinessProcessCategory_0"
         },
         {
-            "id": "/RBA/BPM/BusinessProcessCategory/@@BPM.Type_1@@",
+            "id": "@@BPM.Type_1@@",
+            "prefix": "RBA",
             "class": "BusinessProcessCategory",
             "name": "BusinessProcessCategory_1"
         },
         {
-            "id": "/RBA/BPM/BusinessProcessCategory/@@BPM.Type_2@@",
+            "id": "@@BPM.Type_2@@",
+            "prefix": "RBA",
             "class": "BusinessProcessCategory",
             "name": "BusinessProcessCategory_2"
         }

@@ -1,9 +1,10 @@
 {
     "classes": [
         {
-            "id": "/RBA/BAR/BusinessActivity/@@BAR.Business_Activity_Code@@",
+            "id": "@@BAR.Business_Activity_Code@@",
             "class": "BusinessActivity",
-            "name": "BusinessActivity_BAR"
+            "name": "BusinessActivity_BAR",
+            "prefix": "BAR"
         }
     ],
     "object_properties": [

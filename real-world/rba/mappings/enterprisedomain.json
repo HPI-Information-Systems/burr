@@ -1,7 +1,8 @@
 {
     "classes": [
         {
-            "id": "/RBA/BCM/EnterpriseDomain@@BCM.Master_ID_Domain@@",
+            "id": "@@BCM.Master_ID_Domain@@",
+            "prefix": "RBA",
             "class": "EnterpriseDomain"
         }
     ],

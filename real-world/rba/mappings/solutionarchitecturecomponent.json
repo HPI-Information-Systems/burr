@@ -1,7 +1,8 @@
 {
     "classes": [
         {
-            "id": "/RSA/SCM/SolutionArchitectureComponent/@@SCM.@@",
+            "id": "@@SCM.@@",
+            "prefix": "SCM",
             "class": "SolutionArchitectureComponent"
         }
     ],

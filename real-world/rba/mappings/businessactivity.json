@@ -1,12 +1,15 @@
 {
     "classes": [
-        {
-            "id": "/RBA/BPM/BusinessActivity/@@BPM.Object_ID_Business_Activity@@",
+        {   
+            "id": "@@BPM.Object_ID_Business_Activity@@",
+            "prefix": "RBA",
             "class": "BusinessActivity",
             "name": "BusinessActivity_BA"
         },
         {
-            "id": "/RBA/BPM/BusinessActivity/@@BPM.Based_On.3@@",
+            "id": "@@BPM.Based_On.3@@",
+            "namespace": "RBA",
+            "prefix": "RBA",
             "class": "BusinessActivity",
             "name": "BusinessActivity_BasedOn"
         }
@@ -14,23 +17,27 @@
     "object_properties": [
         {
             "property": "references",
+            "prefix": "RBA",
             "belongsToClassMap": "BusinessActivity_BA",
             "refersToClassMap": "BusinessActivity_BAR",
             "join": ["BPM.Reference_To_BAR_ID = BAR.Business_Activity_Code"]
         },
         {
             "property": "references",
+            "prefix": "RBA",
             "belongsToClassMap": "BusinessActivity_BA",
             "refersToClassMap": "BusinessProcess_fp"
         },
         {
             "property": "hasImplementation",
+            "prefix": "RBA",
             "belongsToClassMap": "BusinessActivity_BA",
             "refersToClassMap": "SolutionActivity",
             "join": ["BPM.Object_ID_Business_Activity = SPM.BA_in_SP_Reference_to_RBA"]
         },
         {
             "property": "hasVariant",
+            "prefix": "RBA",
             "belongsToClassMap": "BusinessActivity_BasedOn",
             "refersToClassMap": "BusinessActivity_BA"
         }

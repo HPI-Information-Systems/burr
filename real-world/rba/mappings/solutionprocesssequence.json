@@ -1,12 +1,14 @@
 {
     "classes": [
         {
-            "id": "/RSA/SPM/SolutionProcessSequence/@@SPM.Solution_Process_Sequence_1@@/@@SPM.Solution_Process_1@@/@@SPM.Solution_Process_ID_1@@",
+            "id": "@@SPM.Solution_Process_Sequence_1@@/@@SPM.Solution_Process_1@@/@@SPM.Solution_Process_ID_1@@",
+            "prefix": "SPM",
             "class": "SolutionProcessSequence",
             "name": "SolutionProcessSequence_1"
         },
         {
-            "id": "/RSA/SPM/SolutionProcessSequence/@@SPM.Solution_Process_Sequence_2@@/@@SPM.Solution_Process_2@@/@@SPM.Solution_Process_ID_2@@",
+            "id": "@@SPM.Solution_Process_Sequence_2@@/@@SPM.Solution_Process_2@@/@@SPM.Solution_Process_ID_2@@",
+            "prefix": "SPM",
             "class": "SolutionProcessSequence",
             "name": "SolutionProcessSequence_2"
         }

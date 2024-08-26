@@ -1,17 +1,20 @@
 {
     "classes": [
         {
-            "id": "/RBA/BCM/BusinessCapability/@@BCM.Business_Domain@@/@@BCM.Master_ID_BD@@",
+            "id": "@@BCM.Business_Domain@@/@@BCM.Master_ID_BD@@",
+            "prefix": "BCM",
             "class": "BusinessCapability",
             "name": "BusinessCapabilityFromDomain"
         },
         {
-            "id": "/RBA/BCM/BusinessCapability/@@BCM.Business_Area@@/@@BCM.Master_ID_BArea@@",
+            "id": "@@BCM.Business_Area@@/@@BCM.Master_ID_BArea@@",
+            "prefix": "BCM",
             "class": "BusinessCapability",
             "name": "BusinessCapabilityFromArea"
         },
         {
-            "id": "/RBA/BCM/BusinessCapability/@@BCM.Business_Capability@@/@@BCM.Master_ID_BC@@",
+            "id": "@@BCM.Business_Capability@@/@@BCM.Master_ID_BC@@",
+            "prefix": "BCM",
             "class": "BusinessCapability",
             "name": "BusinessCapabilityFromCapability"
         }

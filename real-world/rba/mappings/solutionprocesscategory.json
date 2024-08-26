@@ -1,17 +1,20 @@
 {
     "classes": [
         {
-            "id": "/RSA/SPM/SolutionProcessCategory/@@SPM.Type@@",
+            "id": "@@SPM.Type@@",
+            "prefix": "SPM",
             "class": "SolutionProcessCategory",
             "name": "SolutionProcessCategory_0"
         },
         {
-            "id": "/RSA/SPM/SolutionProcessCategory/@@SPM.Type_1@@",
+            "id": "@@SPM.Type_1@@",
+            "prefix": "SPM",
             "class": "SolutionProcessCategory",
             "name": "SolutionProcessCategory_1"
         },
         {
-            "id": "/RSA/SPM/SolutionProcessCategory/@@SPM.Type_2@@",
+            "id": "@@SPM.Type_2@@",
+            "prefix": "SPM",
             "class": "SolutionProcessCategory",
             "name": "SolutionProcessCategory_2"
         }

@@ -1,8 +1,8 @@
 {
-    "namespace": "/RSA/SCM",
     "classes": [
         {
             "id": "@@SCM.Solution_Capability_Reference_Architecture_Hybrid@@",
+            "prefix": "SCM",
             "class": "SolutionArchitecture",
             "name": "SolutionArchitecture_Hybrid_SAR",
             "condition": ["SCM.Solution_Capability_Reference_Architecture_Hybrid = 'TRUE'"],
@@ -10,6 +10,7 @@
         },
         {
             "id": "@@SCM.Solution_Capability_Reference_Architecture_Cloud@@",
+            "prefix": "SCM",
             "class": "SolutionArchitecture",
             "name": "SolutionArchitecture_Cloud_SAR",
             "condition": ["SCM.Solution_Capability_Reference_Architecture_Cloud = 'TRUE'"],
@@ -17,6 +18,7 @@
         },
         {
             "id": "@@SCM.Solution_Capability_Whitespaces_Reference_Architecture_Hybrid@@",
+            "prefix": "SCM",
             "class": "SolutionArchitecture",
             "name": "SolutionArchitecture_Hybrid_Whitespaces",
             "condition": ["Whitespaces.Reference_Architecture_Hybrid_1 = 'TRUE'"],
@@ -24,6 +26,7 @@
         },
         {
             "id": "@@SCM.Solution_Capability_Whitespaces_Reference_Architecture_Cloud@@",
+            "prefix": "SCM",
             "class": "SolutionArchitecture",
             "name": "SolutionArchitecture_Cloud_Whitespaces",
             "condition": ["Whitespaces.Reference_Architecture_Cloud_1 = 'TRUE'"],

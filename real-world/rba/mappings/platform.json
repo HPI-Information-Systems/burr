@@ -1,7 +1,8 @@
 {
     "classes": [
         {
-            "id": "/RSA/SCM/Platform/@@SCM.Platform@@",
+            "id": "@@SCM.Platform@@",
+            "prefix": "SCM",
             "class": "Platform"
         }
     ],

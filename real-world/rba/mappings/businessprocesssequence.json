@@ -1,13 +1,15 @@
 {
     "classes": [
         {
-            "id": "/RBA/BPM/BusinessProcessSequence/@@BPM.Business_Process_Sequence_1@@/@@BPM.Business_Process_1@@/@@BPM.Business_Process_ID_1@@",
+            "id": "@@BPM.Business_Process_Sequence_1@@/@@BPM.Business_Process_1@@/@@BPM.Business_Process_ID_1@@",
+            "prefix": "RBA",
             "class": "BusinessProcessSequence",
             "name": "BusinessProcessSequence_1"
         },
         {
-            "id": "/RBA/BPM/BusinessProcessSequence/@@BPM.Business_Process_Sequence_2@@/@@BPM.Business_Process_2@@/@@BPM.Business_Process_ID_2@@",
+            "id": "@@BPM.Business_Process_Sequence_2@@/@@BPM.Business_Process_2@@/@@BPM.Business_Process_ID_2@@",
             "class": "BusinessProcessSequence",
+            "prefix": "RBA",
             "name": "BusinessProcessSequence_2"
         }
     ],

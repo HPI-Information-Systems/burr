@@ -1,12 +1,14 @@
 {
     "classes": [
         {
-            "id": "/RSA/SCM/SolutionCapability/@@SCM.Object_ID_SC@@",
+            "id": "@@SCM.Object_ID_SC@@",
+            "prefix": "SCM",
             "class": "SolutionCapability",
             "name": "SolutionCapability_SCM"
         },
         {
-            "id": "/RSA/SCM/SolutionCapability/@@Whitespaces.Object_ID_SC@@",
+            "id": "@@Whitespaces.Object_ID_SC@@",
+            "prefix": "SCM",
             "class": "SolutionCapability",
             "name": "SolutionCapability_Whitespaces"
         }

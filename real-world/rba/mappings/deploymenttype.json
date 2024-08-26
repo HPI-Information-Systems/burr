@@ -1,7 +1,8 @@
 {
     "classes": [
         {
-            "id": "/RSA/SCM/DeploymentType/@@SCM.Deployment_Type@@",
+            "id": "@@SCM.Deployment_Type@@",
+            "prefix": "SCM",
             "class": "DeploymentType"
         }
     ],

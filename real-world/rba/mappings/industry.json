@@ -1,7 +1,8 @@
 {
     "classes": [
         {
-            "id": "/RBA/BPM/Industry/@@IND.Industry_ID@@",
+            "id": "@@IND.Industry_ID@@",
+            "prefix": "RBA",
             "class": "Industry"
         }
     ],

@@ -1,37 +1,44 @@
 {
     "classes": [
         {
-            "id": "/RBA/BPM/BusinessProcess/@@BPM.Business_Process_ID@@",
+            "id": "@@BPM.Business_Process_ID@@",
+            "prefix": "RBA",
             "class": "BusinessProcess",
             "name": "BusinessProcess_0"
         },
         {
-            "id": "/RBA/BPM/BusinessProcess/@@BPM.Business_Process_ID_1@@",
+            "id": "@@BPM.Business_Process_ID_1@@",
+            "prefix": "RBA",
             "class": "BusinessProcess",
             "name": "BusinessProcess_1"
         },
         {
-            "id": "/RBA/BPM/BusinessProcess/@@BPM.Business_Process_ID_2@@",
+            "id": "@@BPM.Business_Process_ID_2@@",
+            "prefix": "RBA",
             "class": "BusinessProcess",
             "name": "BusinessProcess_2"
         },
         {
-            "id": "/RBA/BPM/BusinessProcess/@@BPM.Object_ID_FP@@",
+            "id": "@@BPM.Object_ID_FP@@",
+            "prefix": "RBA",
             "class": "BusinessProcess",
             "name": "BusinessProcess_fp"
         },
         {
-            "id": "/RBA/BPM/BusinessProcess/@@BPM.Based_on@@",
+            "id": "@@BPM.Based_on@@",
+            "prefix": "RBA",
             "class": "BusinessProcess",
             "name": "BusinessProcess_BasedOn_0"
         },
         {
-            "id": "/RBA/BPM/BusinessProcess/@@BPM.Based_on_1@@",
+            "id": "@@BPM.Based_on_1@@",
+            "prefix": "RBA",
             "class": "BusinessProcess",
             "name": "BusinessProcess_BasedOn_1"
         },
         {
-            "id": "/RBA/BPM/BusinessProcess/@@BPM.Based_on_2@@",
+            "id": "@@BPM.Based_on_2@@",
+            "prefix": "RBA",
             "class": "BusinessProcess",
             "name": "BusinessProcess_BasedOn_2"
         }

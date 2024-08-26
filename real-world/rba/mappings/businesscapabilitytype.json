@@ -1,17 +1,20 @@
 {
     "classes": [
         {
-            "id": "/RBA/BCM/BusinessCapabilityType/@@BCM.Object_Type@@",
+            "id": "@@BCM.Object_Type@@",
+            "prefix": "BCM",
             "class": "BusinessCapabilityType",
             "name": "BusinessCapabilityTypeDomain"
         },
         {
-            "id": "/RBA/BCM/BusinessCapabilityType/@@BCM.Object_Type.2@@",
+            "id": "@@BCM.Object_Type.2@@",
+            "prefix": "BCM",
             "class": "BusinessCapabilityType",
             "name": "BusinessCapabilityTypeArea"
         },
         {
-            "id": "/RBA/BCM/BusinessCapabilityType/@@BCM.Object_Type.3@@",
+            "id": "@@BCM.Object_Type.3@@",
+            "prefix": "BCM",
             "class": "BusinessCapabilityType",
             "name": "BusinessCapabilityTypeCapability"
         }

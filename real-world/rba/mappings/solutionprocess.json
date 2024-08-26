@@ -1,32 +1,38 @@
 {
     "classes": [
         {
-            "id": "/RSA/SPM/SolutionProcess/@@SPM.Solution_Process_ID@@",
+            "id": "@@SPM.Solution_Process_ID@@",
+            "prefix": "SPM",
             "class": "SolutionProcess",
             "name": "SolutionProcess_0"
         },
         {
-            "id": "/RSA/SPM/SolutionProcess/@@SPM.Solution_Process_ID_1@@",
+            "id": "@@SPM.Solution_Process_ID_1@@",
+            "prefix": "SPM",
             "class": "SolutionProcess",
             "name": "SolutionProcess_1"
         },
         {
-            "id": "/RSA/SPM/SolutionProcess/@@SPM.Solution_Process_ID_2@@",
+            "id": "@@SPM.Solution_Process_ID_2@@",
+            "prefix": "SPM",
             "class": "SolutionProcess",
             "name": "SolutionProcess_2"
         },
         {
-            "id": "/RSA/SPM/SolutionProcess/@@SPM.Based_on@@",
+            "id": "@@SPM.Based_on@@",
+            "prefix": "SPM",
             "class": "SolutionProcess",
             "name": "SolutionProcess_BasedOn_0"
         },
         {
-            "id": "/RSA/SPM/SolutionProcess/@@SPM.Based_on_1@@",
+            "id": "@@SPM.Based_on_1@@",
+            "prefix": "SPM",
             "class": "SolutionProcess",
             "name": "SolutionProcess_BasedOn_1"
         },
         {
-            "id": "/RSA/SPM/SolutionProcess/@@SPM.Based_on_2@@",
+            "id": "@@SPM.Based_on_2@@",
+            "prefix": "SPM",
             "class": "SolutionProcess",
             "name": "SolutionProcess_BasedOn_2"
         }

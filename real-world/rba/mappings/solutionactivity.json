@@ -1,8 +1,9 @@
 {
     "classes": [
         {
-            "id": "/RSA/SPM/SolutionActivity/@@SPM.Object_ID_Business_Activity_in_Solution_Process@@",
-            "class": "SolutionActivity"
+            "id": "@@SPM.Object_ID_Business_Activity_in_Solution_Process@@",
+            "class": "SolutionActivity",
+            "prefix": "SPM"
         }
     ],
     "object_properties": [

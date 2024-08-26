@@ -1,8 +1,9 @@
 {
     "classes": [
         {
-            "id": "/RSA/SCM/Product/@@SCM.PPMS_Product_ID@@",
-            "class": "Product"
+            "id": "@@SCM.PPMS_Product_ID@@",
+            "class": "Product",
+            "prefix": "SCM"
         }
     ],
     "object_properties": [
