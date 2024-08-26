@@ -1,7 +1,7 @@
 map:{% if mapping_name %}{{ mapping_name }}{% else %}{{ class_name }} {% endif %}a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class {{ prefix }}:{{ class_name }};
-    {% if uri_pattern %}d2rq:uriPattern "{{ uri_pattern }}";{% endif %}
+    {% if uri_pattern %}d2rq:uriPattern "{{ class_name }}/{{ uri_pattern }}";{% endif %}
     {% if uri_column %}d2rq:uriColumn "{{ uri_column }}";{% endif %}
-    {% if conditions is not none %}{% for condition in conditions %}d2rq:condition "{{ condition }}";\n{% endfor %}{% else %}
+    {% if conditions is not none %}{% for condition in conditions %}d2rq:condition "{{ condition }}";\n{% endfor %}{% endig %}
     .

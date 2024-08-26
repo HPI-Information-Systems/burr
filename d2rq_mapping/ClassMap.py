@@ -28,4 +28,5 @@ class ClassMap(BaseMap):
         env = self.get_jinja_env()
         return env.get_template('classmap.j2')
 
+
 ClassMap("http://example.org/", "http://example.org/Class", "Class", "ClassMap", uri_pattern="DWKDW").get_d2rq_mapping()
