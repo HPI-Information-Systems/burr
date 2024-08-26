@@ -15,7 +15,9 @@
             "inverseOf": "languageInfo",
             "belongsToClass": "SpokenBy",
             "refersToClass": "Country",
-            "join": ["country.code = spoken.country"]
+            "join": [
+                "country.code = spoken.country"
+            ]
         },
         {
             "property": "onLanguage",
@@ -28,7 +30,9 @@
             "inverseOf": "spokenInCountry",
             "belongsToClass": "Country",
             "refersToClass": "Language",
-            "join": ["country.code = spoken.country"]
+            "join": [
+                "country.code = spoken.country"
+            ]
         }
     ],
     "data_properties": [
@@ -36,13 +40,13 @@
             "property": "name",
             "belongsToClass": "Language",
             "type": "string",
-            "column": "@@language.name@@"
+            "column": "language.name"
         },
         {
             "property": "percentage",
             "belongsToClass": "SpokenBy",
             "type": "decimal",
-            "column": "@@spoken.percentage@@"
+            "column": "spoken.percentage"
         }
     ]
 }

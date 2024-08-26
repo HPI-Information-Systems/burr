@@ -10,13 +10,19 @@
             "property": "locatedIn",
             "belongsToClass": "Estuary",
             "refersToClass": "Country",
-            "join": ["geo_estuary.river = river.name", "geo_estuary.country = country.code"]
+            "join": [
+                "geo_estuary.river = river.name",
+                "geo_estuary.country = country.code"
+            ]
         },
         {
             "property": "locatedIn",
             "belongsToClass": "Estuary",
             "refersToClass": "Province",
-            "join": ["geo_estuary.river = river.name", "geo_estuary.province = province.name"]
+            "join": [
+                "geo_estuary.river = river.name",
+                "geo_estuary.province = province.name"
+            ]
         }
     ],
     "data_properties": [
@@ -24,19 +30,19 @@
             "property": "elevation",
             "belongsToClass": "Estuary",
             "type": "decimal",
-            "column": "@@river.estuaryelevation@@"
+            "column": "river.estuaryelevation"
         },
         {
             "property": "latitude",
             "belongsToClass": "Estuary",
             "type": "decimal",
-            "column": "@@river.estuary.latitude@@"
+            "column": "river.estuary.latitude"
         },
         {
             "property": "longitude",
             "belongsToClass": "Source",
             "type": "decimal",
-            "column": "@@river.estuary.longitude@@"
+            "column": "river.estuary.longitude"
         }
     ]
 }

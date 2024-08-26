@@ -18,19 +18,28 @@
             "property": "hadPopulation",
             "belongsToClass": "Country",
             "refersToClass": "PopulationCount",
-            "join": ["country.code = countrypops.country"]
+            "join": [
+                "country.code = countrypops.country"
+            ]
         },
         {
             "property": "hadPopulation",
             "belongsToClass": "Province",
             "refersToClass": "PopulationCount",
-            "join": ["province.name = provpops.province", "province.country = provpops.country"]
+            "join": [
+                "province.name = provpops.province",
+                "province.country = provpops.country"
+            ]
         },
         {
             "property": "hadPopulation",
             "belongsToClass": "City",
             "refersToClass": "PopulationCount",
-            "join": ["city.name = citypops.city", "city.province = citypops.province", "city.country = citypops.country"]
+            "join": [
+                "city.name = citypops.city",
+                "city.province = citypops.province",
+                "city.country = citypops.country"
+            ]
         }
     ],
     "data_properties": [
@@ -38,37 +47,37 @@
             "property": "year",
             "belongsToClass": "PopulationCount",
             "type": "integer",
-            "column": "@@countrypops.year@@"
+            "column": "countrypops.year"
         },
         {
             "property": "value",
             "belongsToClass": "PopulationCount",
             "type": "integer",
-            "column": "@@countrypops.population@@"
+            "column": "countrypops.population"
         },
         {
             "property": "year",
             "belongsToClass": "PopulationCount",
             "type": "integer",
-            "column": "@@provpops.year@@"
+            "column": "provpops.year"
         },
         {
             "property": "value",
             "belongsToClass": "PopulationCount",
             "type": "integer",
-            "column": "@@provpops.population@@"
+            "column": "provpops.population"
         },
         {
             "property": "year",
             "belongsToClass": "PopulationCount",
             "type": "integer",
-            "column": "@@citypops.year@@"
+            "column": "citypops.year"
         },
         {
             "property": "value",
             "belongsToClass": "PopulationCount",
             "type": "integer",
-            "column": "@@citypops.population@@"
+            "column": "citypops.population"
         }
     ]
 }

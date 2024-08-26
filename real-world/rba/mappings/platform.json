@@ -15,12 +15,6 @@
             "column": "SCM.Platform"
         },
         {
-            "property": "Title",
-            "belongsToClass": "Platform",
-            "type": "string",
-            "column": "SCM.Platform"
-        },
-        {
             "property": "Name",
             "belongsToClass": "Platform",
             "type": "string",

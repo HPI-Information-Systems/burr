@@ -51,18 +51,6 @@
             "column": "Whitespaces.Object_ID_SC"
         },
         {
-            "property": "Title",
-            "belongsToClassMap": "SolutionCapability_SCM",
-            "type": "string",
-            "column": "SCM.Solution_Capability"
-        },
-        {
-            "property": "Title",
-            "belongsToClassMap": "SolutionCapability_Whitespaces",
-            "type": "string",
-            "column": "Whitespaces.Solution_Capability"
-        },
-        {
             "property": "Name",
             "belongsToClassMap": "SolutionCapability_SCM",
             "type": "string",

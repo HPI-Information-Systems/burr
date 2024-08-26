@@ -15,12 +15,6 @@
             "column": "SCM.Deployment_Type"
         },
         {
-            "property": "Title",
-            "belongsToClass": "DeploymentType",
-            "type": "string",
-            "column": "SCM.Deployment_Type"
-        },
-        {
             "property": "Name",
             "belongsToClass": "DeploymentType",
             "type": "string",

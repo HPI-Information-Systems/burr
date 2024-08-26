@@ -7,14 +7,22 @@
         {
             "id": "mountains/@@mountain.range@@",
             "class": "Volcano",
-            "subclassOf": ["Mountain"],
-            "condition": ["@@mountain.type@@ = 'volcano'"]
+            "subclassOf": [
+                "Mountain"
+            ],
+            "condition": [
+                "@@mountain.type@@ = 'volcano'"
+            ]
         },
         {
             "id": "mountains/@@mountain.range@@",
             "class": "Volcano",
-            "subclassOf": ["Mountain"],
-            "condition": ["@@mountain.type@@ = 'volcanic'"]
+            "subclassOf": [
+                "Mountain"
+            ],
+            "condition": [
+                "@@mountain.type@@ = 'volcanic'"
+            ]
         },
         {
             "id": "mountainRanges/@@mountain.mountains@@",
@@ -31,19 +39,28 @@
             "property": "locatedIn",
             "belongsToClass": "Mountain",
             "refersToClass": "Country",
-            "join": ["@@geo_mountain.mountain@@ = @@mountain.name@@", "@@geo_mountain.country@@ = @@country.code@@"]
+            "join": [
+                "geo_mountain.mountain = mountain.name",
+                "geo_mountain.country = country.code"
+            ]
         },
         {
             "property": "locatedIn",
             "belongsToClass": "Mountain",
             "refersToClass": "Province",
-            "join": ["@@geo_mountain.mountain@@ = @@mountain.name@@", "@@geo_mountain.province@@ = @@province.name@@"]
+            "join": [
+                "geo_mountain.mountain = mountain.name",
+                "geo_mountain.province = province.name"
+            ]
         },
         {
             "property": "locatedOnIsland",
             "belongsToClass": "Mountain",
             "refersToClass": "Island",
-            "join": ["mountain.name = mountainonisland.mountain", "mountainonisland.island = island.name"]
+            "join": [
+                "mountain.name = mountainonisland.mountain",
+                "mountainonisland.island = island.name"
+            ]
         }
     ],
     "data_properties": [
@@ -51,37 +68,37 @@
             "property": "type",
             "belongsToClass": "Mountain",
             "type": "string",
-            "column": "@@mountain.type@@"
+            "column": "mountain.type"
         },
         {
             "property": "name",
             "belongsToClass": "MountainRange",
             "type": "string",
-            "column": "@@mountain.mountains@@"
+            "column": "mountain.mountains"
         },
         {
             "property": "name",
             "belongsToClass": "Mountain",
             "type": "string",
-            "column": "@@mountain.name@@"
+            "column": "mountain.name"
         },
         {
             "property": "latitude",
             "belongsToClass": "Mountain",
             "type": "decimal",
-            "column": "@@mountain.latitude@@"
+            "column": "mountain.latitude"
         },
         {
             "property": "longitude",
             "belongsToClass": "Mountain",
             "type": "decimal",
-            "column": "@@mountain.longitude@@"
+            "column": "mountain.longitude"
         },
         {
             "property": "elevation",
             "belongsToClass": "Mountain",
             "type": "decimal",
-            "column": "@@mountain.elevation@@"
+            "column": "mountain.elevation"
         }
     ]
 }

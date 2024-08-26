@@ -15,12 +15,6 @@
             "column": "SCM.PPMS_Product_ID"
         },
         {
-            "property": "Title",
-            "belongsToClass": "Product",
-            "type": "string",
-            "column": "SCM.PPMS_Product_Name"
-        },
-        {
             "property": "Name",
             "belongsToClass": "Product",
             "type": "string",

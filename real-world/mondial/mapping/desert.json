@@ -10,13 +10,19 @@
             "property": "locatedIn",
             "belongsToClass": "Desert",
             "refersToClass": "Country",
-            "join": ["geo_desert.desert = desert.name", "geo_desert.country = country.code"]
+            "join": [
+                "geo_desert.desert = desert.name",
+                "geo_desert.country = country.code"
+            ]
         },
         {
             "property": "locatedIn",
             "belongsToClass": "Desert",
             "refersToClass": "Province",
-            "join": ["geo_desert.desert = desert.name", "geo_desert.province = province.name"]
+            "join": [
+                "geo_desert.desert = desert.name",
+                "geo_desert.province = province.name"
+            ]
         }
     ],
     "data_properties": [
@@ -24,25 +30,25 @@
             "property": "name",
             "belongsToClass": "Desert",
             "type": "string",
-            "column": "@@desert.name@@"
+            "column": "desert.name"
         },
         {
             "property": "latitude",
             "belongsToClass": "Desert",
             "type": "decimal",
-            "column": "@@desert.latitude@@"
+            "column": "desert.latitude"
         },
         {
             "property": "longitude",
             "belongsToClass": "Desert",
             "type": "decimal",
-            "column": "@@desert.longitude@@"
+            "column": "desert.longitude"
         },
         {
             "property": "area",
             "belongsToClass": "Desert",
             "type": "decimal",
-            "column": "@@desert.area@@"
+            "column": "desert.area"
         }
     ]
 }

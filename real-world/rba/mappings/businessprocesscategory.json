@@ -20,27 +20,6 @@
     ],
     "data_properties": [
         {
-            "property": "Title",
-            "belongsToClassMap": "BusinessProcessCategory_0",
-            "type": "string",
-            "column": "BPM.Type",
-            "translateWith": "TypeConversion"
-        },
-        {
-            "property": "Title",
-            "belongsToClassMap": "BusinessProcessCategory_1",
-            "type": "string",
-            "column": "BPM.Type_1",
-            "translateWith": "TypeConversion"
-        },
-        {
-            "property": "Title",
-            "belongsToClassMap": "BusinessProcessCategory_2",
-            "type": "string",
-            "column": "BPM.Type_2",
-            "translateWith": "TypeConversion"
-        },
-        {
             "property": "Name",
             "belongsToClassMap": "BusinessProcessCategory_0",
             "type": "string",

@@ -11,13 +11,13 @@
             "property": "name",
             "belongsToClass": "Continent",
             "type": "string",
-            "column": "@@continent.name@@"
+            "column": "continent.name"
         },
         {
             "property": "area",
             "belongsToClass": "Continent",
             "type": "decimal",
-            "column": "@@continent.area@@"
+            "column": "continent.area"
         }
     ]
 }

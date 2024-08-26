@@ -31,7 +31,7 @@ def process_all_json_files_in_directory(directory):
         process_json_file(file_path)
 
 # Specify the directory to process
-directory_to_process = '/Users/lukaslaskowski/Documents/HPI/KG/ontology_mappings/rdb2ontology/train_data'
+directory_to_process = '/Users/lukaslaskowski/Documents/HPI/KG/ontology_mappings/rdb2ontology/real-world/mondial'
 
 # Process all JSON files in the specified directory and its subdirectories
 process_all_json_files_in_directory(directory_to_process)

@@ -10,19 +10,27 @@
             "property": "locatedIn",
             "belongsToClass": "Source",
             "refersToClass": "Country",
-            "join": ["geo_source.river = river.name", "geo_source.country = country.code"]
+            "join": [
+                "geo_source.river = river.name",
+                "geo_source.country = country.code"
+            ]
         },
         {
             "property": "locatedIn",
             "belongsToClass": "Estuary",
             "refersToClass": "Province",
-            "join": ["geo_source.river = river.name", "geo_source.province = province.name"]
+            "join": [
+                "geo_source.river = river.name",
+                "geo_source.province = province.name"
+            ]
         },
         {
             "property": "inMountains",
             "belongsToClass": "Source",
             "refersToClass": "MountainRange",
-            "join": ["river.mountains = mountain.mountains"]
+            "join": [
+                "river.mountains = mountain.mountains"
+            ]
         }
     ],
     "data_properties": [
@@ -30,19 +38,19 @@
             "property": "elevation",
             "belongsToClass": "Source",
             "type": "decimal",
-            "column": "@@river.sourceelevation@@"
+            "column": "river.sourceelevation"
         },
         {
             "property": "latitude",
             "belongsToClass": "Source",
             "type": "decimal",
-            "column": "@@river.source.latitude@@"
+            "column": "river.source.latitude"
         },
         {
             "property": "longitude",
             "belongsToClass": "Source",
             "type": "decimal",
-            "column": "@@river.source.longitude@@"
+            "column": "river.source.longitude"
         }
     ]
 }

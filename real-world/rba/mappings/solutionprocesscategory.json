@@ -20,27 +20,6 @@
     ],
     "data_properties": [
         {
-            "property": "Title",
-            "belongsToClassMap": "SolutionProcessCategory_0",
-            "type": "string",
-            "column": "SPM.Type",
-            "translateWith": "TypeConversion"
-        },
-        {
-            "property": "Title",
-            "belongsToClassMap": "SolutionProcessCategory_1",
-            "type": "string",
-            "column": "SPM.Type_1",
-            "translateWith": "TypeConversion"
-        },
-        {
-            "property": "Title",
-            "belongsToClassMap": "SolutionProcessCategory_2",
-            "type": "string",
-            "column": "SPM.Type_2",
-            "translateWith": "TypeConversion"
-        },
-        {
             "property": "Name",
             "belongsToClassMap": "SolutionProcessCategory_0",
             "type": "string",

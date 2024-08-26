@@ -21,12 +21,6 @@
             "column": "SPM.Object_ID_Business_Activity_in_Solution_Process"
         },
         {
-            "property": "Title",
-            "belongsToClass": "SolutionActivity",
-            "type": "string",
-            "column": "SPM.Business_Activity_in_Solution_Process"
-        },
-        {
             "property": "Name",
             "belongsToClass": "SolutionActivity",
             "type": "string",

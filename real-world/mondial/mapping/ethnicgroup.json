@@ -15,7 +15,9 @@
             "inverseOf": "ethnicInfo",
             "belongsToClass": "EthnicProportion",
             "refersToClass": "Country",
-            "join": ["country.code = ethnicgroup.country"]
+            "join": [
+                "country.code = ethnicgroup.country"
+            ]
         },
         {
             "property": "onEthnicGroup",
@@ -28,7 +30,9 @@
             "inverseOf": "liveInCountry",
             "belongsToClass": "Country",
             "refersToClass": "EthnicGroup",
-            "join": ["country.code = ethnicgroup.country"]
+            "join": [
+                "country.code = ethnicgroup.country"
+            ]
         }
     ],
     "data_properties": [
@@ -36,13 +40,13 @@
             "property": "name",
             "belongsToClass": "EthnicGroup",
             "type": "string",
-            "column": "@@ethnicgroup.name@@"
+            "column": "ethnicgroup.name"
         },
         {
             "property": "percentage",
             "belongsToClass": "EthnicProportion",
             "type": "decimal",
-            "column": "@@ethnicgroup.percentage@@"
+            "column": "ethnicgroup.percentage"
         }
     ]
 }

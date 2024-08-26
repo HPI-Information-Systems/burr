@@ -10,19 +10,28 @@
             "property": "locatedIn",
             "belongsToClass": "Sea",
             "refersToClass": "Country",
-            "join": ["geo_sea.sea = sea.name", "geo_sea.country = country.code"]
+            "join": [
+                "geo_sea.sea = sea.name",
+                "geo_sea.country = country.code"
+            ]
         },
         {
             "property": "locatedIn",
             "belongsToClass": "Sea",
             "refersToClass": "Province",
-            "join": ["geo_sea.sea = sea.name", "geo_sea.province = province.name"]
+            "join": [
+                "geo_sea.sea = sea.name",
+                "geo_sea.province = province.name"
+            ]
         },
         {
             "property": "mergesWith",
             "belongsToClass": "Sea",
             "refersToClass": "Sea",
-            "join": ["mergesWith.sea1 = sea.name", "mergesWith.sea2 = sea.name"]
+            "join": [
+                "mergesWith.sea1 = sea.name",
+                "mergesWith.sea2 = sea.name"
+            ]
         }
     ],
     "data_properties": [
@@ -30,19 +39,19 @@
             "property": "name",
             "belongsToClass": "Sea",
             "type": "string",
-            "column": "@@sea.name@@"
+            "column": "sea.name"
         },
         {
             "property": "area",
             "belongsToClass": "Sea",
             "type": "decimal",
-            "column": "@@sea.area@@"
+            "column": "sea.area"
         },
         {
             "property": "depth",
             "belongsToClass": "Sea",
             "type": "decimal",
-            "column": "@@sea.depth@@"
+            "column": "sea.depth"
         }
     ]
 }

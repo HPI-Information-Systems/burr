@@ -22,16 +22,10 @@
     ],
     "data_properties": [
         {
-            "property": "Title",
-            "belongsToClassMap": "BusinessProcessType_Main",
-            "type": "string",
-            "column": "BPM.FP_Object_Type"
-        },
-        {
             "property": "Name",
             "belongsToClassMap": "BusinessProcessType_Main",
             "type": "string",
-            "column": "@@BPM.FP_Object_Type@@"
+            "column": "BPM.FP_Object_Type"
         }
     ]
 }

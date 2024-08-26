@@ -10,13 +10,17 @@
             "property": "isBorderOf",
             "belongsToClass": "Border",
             "refersToClass": "Country",
-            "join": ["borders.country1 = country.code"]
+            "join": [
+                "borders.country1 = country.code"
+            ]
         },
         {
             "property": "isBorderOf",
             "belongsToClass": "Border",
             "refersToClass": "Country",
-            "join": ["borders.country2 = country.code"]
+            "join": [
+                "borders.country2 = country.code"
+            ]
         }
     ],
     "data_properties": [
@@ -24,7 +28,7 @@
             "property": "length",
             "belongsToClass": "Border",
             "type": "decimal",
-            "column": "@@borders.length@@"
+            "column": "borders.length"
         }
     ]
 }

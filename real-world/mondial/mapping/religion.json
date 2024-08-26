@@ -15,7 +15,9 @@
             "inverseOf": "religionInfo",
             "belongsToClass": "BelievedBy",
             "refersToClass": "Country",
-            "join": ["country.code = religion.country"]
+            "join": [
+                "country.code = religion.country"
+            ]
         },
         {
             "property": "onReligion",
@@ -28,7 +30,9 @@
             "inverseOf": "believedInCountry",
             "belongsToClass": "Country",
             "refersToClass": "Religion",
-            "join": ["country.code = religion.country"]
+            "join": [
+                "country.code = religion.country"
+            ]
         }
     ],
     "data_properties": [
@@ -36,13 +40,13 @@
             "property": "name",
             "belongsToClass": "Religion",
             "type": "string",
-            "column": "@@religion.name@@"
+            "column": "religion.name"
         },
         {
             "property": "percentage",
             "belongsToClass": "BelievedBy",
             "type": "decimal",
-            "column": "@@religion.percentage@@"
+            "column": "religion.percentage"
         }
     ]
 }

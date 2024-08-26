@@ -10,14 +10,21 @@
             "property": "hasCity",
             "belongsToClass": "Province",
             "refersToClass": "City",
-            "join": ["city.province = province.name", "city.country = province.country"],
+            "join": [
+                "city.province = province.name",
+                "city.country = province.country"
+            ],
             "inverseOf": "cityIn"
         },
         {
             "property": "capital",
             "belongsToClass": "Province",
             "refersToClass": "City",
-            "join": ["province.capital = city.name", "province.country = city.country", "city.capprov = province.name"]
+            "join": [
+                "province.capital = city.name",
+                "province.country = city.country",
+                "city.capprov = province.name"
+            ]
         }
     ],
     "data_properties": [
@@ -25,33 +32,39 @@
             "property": "name",
             "belongsToClass": "Province",
             "type": "string",
-            "column": "@@Province.Name@@"
+            "column": "Province.Name"
         },
         {
             "property": "area",
             "belongsToClass": "Province",
             "type": "decimal",
-            "column": "@@Province.Area@@"
+            "column": "Province.Area"
         },
         {
             "property": "population",
             "belongsToClass": "Province",
             "type": "integer",
-            "column": "@@Province.Population@@"
+            "column": "Province.Population"
         },
         {
             "property": "othername",
-            "belongsToClass":"Province",
+            "belongsToClass": "Province",
             "type": "string",
-            "column": "@@provinceothername.othername@@",
-            "join": ["@@province.name@@ = @@provinceothername.province@@", "@@province.country@@ = @@provinceothername.country@@"]
+            "column": "provinceothername.othername",
+            "join": [
+                "province.name = provinceothername.province",
+                "province.country = provinceothername.country"
+            ]
         },
         {
             "property": "localname",
-            "belongsToClass":"Province",
+            "belongsToClass": "Province",
             "type": "string",
-            "column": "@@provincelocalname.localname@@",
-            "join": ["@@province.name@@ = @@provincelocalname.province@@", "@@province.country@@ = @@provincelocalname.country@@"]
+            "column": "provincelocalname.localname",
+            "join": [
+                "province.name = provincelocalname.province",
+                "province.country = provincelocalname.country"
+            ]
         }
     ]
 }

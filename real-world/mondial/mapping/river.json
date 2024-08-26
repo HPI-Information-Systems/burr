@@ -16,19 +16,28 @@
             "property": "locatedIn",
             "belongsToClass": "River",
             "refersToClass": "Country",
-            "join": ["geo_river.river = river.name", "geo_river.country = country.code"]
+            "join": [
+                "geo_river.river = river.name",
+                "geo_river.country = country.code"
+            ]
         },
         {
             "property": "locatedIn",
             "belongsToClass": "River",
             "refersToClass": "Province",
-            "join": ["geo_river.river = river.name", "geo_river.province = province.name"]
+            "join": [
+                "geo_river.river = river.name",
+                "geo_river.province = province.name"
+            ]
         },
         {
             "property": "flowsThrough",
             "belongsToClass": "River",
             "refersToClass": "Lake",
-            "join": ["riverthrough.lake = lake.name", "riverthrough.river = river.name"]
+            "join": [
+                "riverthrough.lake = lake.name",
+                "riverthrough.river = river.name"
+            ]
         },
         {
             "property": "flowsInto",
@@ -39,25 +48,34 @@
             "property": "flowsInto",
             "belongsToClass": "River",
             "refersToClass": "Sea",
-            "join": ["river.sea = sea.name"]
+            "join": [
+                "river.sea = sea.name"
+            ]
         },
         {
             "property": "flowsInto",
             "belongsToClass": "River",
             "refersToClass": "Lake",
-            "join": ["river.lake = lake.name"]
+            "join": [
+                "river.lake = lake.name"
+            ]
         },
         {
             "property": "hasSource",
             "belongsToClassMap": "River1",
             "refersToClass": "Source",
-            "join": ["river.source = source.river"]
+            "join": [
+                "river.source = source.river"
+            ]
         },
         {
             "property": "locatedOnIsland",
             "belongsToClass": "Mountain",
             "refersToClass": "River",
-            "join": ["river.name = riveronisland.river", "riveronisland.island = island.name"]
+            "join": [
+                "river.name = riveronisland.river",
+                "riveronisland.island = island.name"
+            ]
         }
     ],
     "data_properties": [
@@ -65,19 +83,19 @@
             "property": "name",
             "belongsToClass": "River",
             "type": "string",
-            "column": "@@river.name@@"
+            "column": "river.name"
         },
         {
             "property": "area",
             "belongsToClass": "River",
             "type": "decimal",
-            "column": "@@river.area@@"
+            "column": "river.area"
         },
         {
             "property": "length",
             "belongsToClass": "River",
             "type": "decimal",
-            "column": "@@river.length@@"
+            "column": "river.length"
         }
     ]
 }

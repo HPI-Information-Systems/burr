@@ -1,8 +1,8 @@
 {
     "classes": [
-    {
-        "id": "organizations/@@organization.abbreviation@@",
-        "class": "Organization"
+        {
+            "id": "organizations/@@organization.abbreviation@@",
+            "class": "Organization"
         },
         {
             "id": "Membership__Country_@@ismember.country@@__Organization_@@ismember.Organization@@",
@@ -14,28 +14,39 @@
             "property": "ofMember",
             "belongsToClass": "Membership",
             "refersToClass": "Country",
-            "join": ["country.code = ismember.country"],
+            "join": [
+                "country.code = ismember.country"
+            ],
             "inverseOf": "isInMembership"
         },
         {
             "property": "inOrganization",
             "belongsToClass": "Membership",
             "refersToClass": "Organization",
-            "join": ["organization.abbreviation = ismember.organization"],
+            "join": [
+                "organization.abbreviation = ismember.organization"
+            ],
             "inverseOf": "hasMembership"
         },
         {
             "property": "isMember",
             "belongsToClass": "Country",
             "refersToClass": "Organization",
-            "join": ["organization.abbreviation = ismember.organization", "country.code = ismember.country"],
+            "join": [
+                "organization.abbreviation = ismember.organization",
+                "country.code = ismember.country"
+            ],
             "inverseOf": "hasMember"
         },
         {
             "property": "hasHeadq",
             "belongsToClass": "Organization",
             "refersToClass": "City",
-            "join": ["organization.city = city.name", "organization.country = city.country", "organization.province = city.province"]
+            "join": [
+                "organization.city = city.name",
+                "organization.country = city.country",
+                "organization.province = city.province"
+            ]
         }
     ],
     "data_properties": [
@@ -43,19 +54,19 @@
             "property": "name",
             "belongsToClass": "Organization",
             "type": "string",
-            "column": "@@organization.name@@"
+            "column": "organization.name"
         },
         {
             "property": "abbrev",
             "belongsToClass": "Organization",
             "type": "string",
-            "column": "@@organization.abbreviation@@"
+            "column": "organization.abbreviation"
         },
         {
             "property": "established",
             "belongsToClass": "Organization",
             "type": "date",
-            "column": "@@organization.established@@"
+            "column": "organization.established"
         },
         {
             "property": "type",

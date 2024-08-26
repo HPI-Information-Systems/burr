@@ -19,31 +19,46 @@
             "property": "locatedIn",
             "belongsToClass": "Island",
             "refersToClass": "Country",
-            "join": ["geo_island.island = island.name", "geo_island.country = country.code"]
+            "join": [
+                "geo_island.island = island.name",
+                "geo_island.country = country.code"
+            ]
         },
         {
             "property": "locatedIn",
             "belongsToClass": "Island",
             "refersToClass": "Province",
-            "join": ["geo_island.island = island.name", "geo_island.province = province.name"]
+            "join": [
+                "geo_island.island = island.name",
+                "geo_island.province = province.name"
+            ]
         },
         {
             "property": "locatedInWater",
             "belongsToClass": "Island",
             "refersToClass": "Sea",
-            "join": ["islandin.island = island.name", "island.sea = sea.name"]
+            "join": [
+                "islandin.island = island.name",
+                "island.sea = sea.name"
+            ]
         },
         {
             "property": "locatedInWater",
             "belongsToClass": "Island",
             "refersToClass": "Lake",
-            "join": ["islandin.island = island.name", "island.lake = lake.name"]
+            "join": [
+                "islandin.island = island.name",
+                "island.lake = lake.name"
+            ]
         },
         {
             "property": "locatedInWater",
             "belongsToClass": "Island",
             "refersToClass": "River",
-            "join": ["islandin.island = island.name", "island.river = river.name"]
+            "join": [
+                "islandin.island = island.name",
+                "island.river = river.name"
+            ]
         }
     ],
     "data_properties": [
@@ -51,43 +66,43 @@
             "property": "name",
             "belongsToClass": "Island",
             "type": "string",
-            "column": "@@island.name@@"
+            "column": "island.name"
         },
         {
             "property": "name",
             "belongsToClass": "Archipelago",
             "type": "string",
-            "column": "@@island.islands@@"
+            "column": "island.islands"
         },
         {
             "property": "latitude",
             "belongsToClass": "Island",
             "type": "decimal",
-            "column": "@@island.latitude@@"
+            "column": "island.latitude"
         },
         {
             "property": "longitude",
             "belongsToClass": "Island",
             "type": "decimal",
-            "column": "@@island.longitude@@"
+            "column": "island.longitude"
         },
         {
             "property": "area",
             "belongsToClass": "island",
             "type": "decimal",
-            "column": "@@island.area@@"
+            "column": "island.area"
         },
         {
             "property": "elevation",
             "belongsToClass": "Island",
             "type": "decimal",
-            "column": "@@island.elevation@@"
+            "column": "island.elevation"
         },
         {
             "property": "type",
             "belongsToClass": "Island",
             "type": "string",
-            "column": "@@island.type@@"
+            "column": "island.type"
         }
     ]
 }
