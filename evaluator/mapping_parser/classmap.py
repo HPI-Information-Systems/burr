@@ -1,4 +1,7 @@
 from evaluator.mapping_parser.sql_elements import SQLAttribute, Join, Condition
+from evaluator.utils.get_jinja_env import get_jinja_env
+
+from functools import reduce
 import re
 
 class ClassMap:
@@ -8,23 +11,17 @@ class ClassMap:
     class_uri: str
     subclass: str# | list[str]
     condition: str
-    graph: str
-    def __init__(self, mapping_id, uriPattern, class_uri, additionalClassDefinitionProperty, join, condition, graph) -> None:
+    def __init__(self, mapping_id, uriPattern, class_uri, join, parent_classes, condition, prefix, datastorage, translate_with) -> None:
         self.uriPattern = uriPattern
         self.mapping_id = mapping_id
         self.class_uri = class_uri
-        self.additionalClassDefinitionProperty = additionalClassDefinitionProperty
+        self.prefix = prefix
+        self.datastorage = datastorage
         self.condition = condition
         self.join = join
-        self.parent_classes = None
-        
-        if self.additionalClassDefinitionProperty is not None:
-            self.parent_classes = []
-            if isinstance(additionalClassDefinitionProperty, list):
-                for el in additionalClassDefinitionProperty:
-                    self.parent_classes.append(self.parse_additionalClassDefinitionProperty(el, graph))
-            else:
-                self.parent_classes = [self.parse_additionalClassDefinitionProperty(additionalClassDefinitionProperty, graph)]
+        self.parent_classes = parent_classes
+        self.translate_with = translate_with
+            
         if isinstance(join, list):
             self.sql_join = [self.parse_join(j) for j in join]
         else:
@@ -44,22 +41,30 @@ class ClassMap:
         return Condition(SQLAttribute(sql.split(".")[0], sql.split(".")[1]), operator, value)
 
     def parse_uri_pattern(self, uri_pattern):
-        uri_pattern = re.search('@@(.*)@@', uri_pattern).group(1).split(".")
-        return SQLAttribute(table=uri_pattern[0], attribute=uri_pattern[1])
+        uri_patterns = re.findall('@@(.*?)@@', uri_pattern)#.group(1).split(".") #!TODO This does not work when having more than one database access
+        return [SQLAttribute(table=pattern.split(".")[0], attribute=pattern.split(".")[1]) for pattern in uri_patterns]
 
     def parse_join(self, join):
         join = join.split("=")
         left = join[0].split(".")
         right = join[1].split(".")
         return Join(SQLAttribute(left[0], left[1]), SQLAttribute(right[0], right[1]))
-
-    def parse_additionalClassDefinitionProperty(self, uri, graph):
-        query = f"""             
-            SELECT DISTINCT ?class
-            WHERE {{ {uri} d2rq:propertyValue ?class. }}
-        """
-        res = [obj[0].n3() for obj in graph.query(query)]
-        return res if len(res)>1 else res[0]
+    
+    def get_d2rq_mapping(self):
+        return  get_jinja_env() \
+                .get_template('classmap.j2') \
+                .render(
+                    class_name=self.class_uri,
+                    mapping_name = self.mapping_id,
+                    uri_patterns=self.sql_uri_pattern,
+                    #additional_property=self.additional_property,
+                    conditions=self.sql_condition,
+                    parent_class=self.parent_classes,
+                    joins = self.sql_join,
+                    datastorage=self.datastorage,
+                    prefix = self.prefix,
+                    translate_with=self.translate_with
+                )
     
     def __eq__(self, other: object) -> bool:
         if not isinstance(other, ClassMap):

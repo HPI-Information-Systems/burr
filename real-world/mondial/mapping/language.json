@@ -1,12 +1,14 @@
 {
     "classes": [
         {
-            "id": "languages/@@language.name@@",
-            "class": "Language"
+            "id": "@@language.name@@",
+            "class": "Language",
+            "prefix": "mondial"
         },
         {
-            "id": "SpokenBy__Language_@@spoken.language@@__Country_@@spoken.country@@",
-            "class": "SpokenBy"
+            "id": "S@@spoken.language@@/@@spoken.country@@",
+            "class": "SpokenBy",
+            "prefix": "mondial"
         }
     ],
     "object_properties": [
@@ -14,7 +16,7 @@
             "property": "languageInfo-",
             "inverseOf": "languageInfo",
             "belongsToClass": "SpokenBy",
-            "refersToClass": "Country",
+            "refersToClassMap": "CountryFull",
             "join": [
                 "country.code = spoken.country"
             ]
@@ -28,7 +30,7 @@
         {
             "property": "speakLanguage",
             "inverseOf": "spokenInCountry",
-            "belongsToClass": "Country",
+            "belongsToClassMap": "CountryFull",
             "refersToClass": "Language",
             "join": [
                 "country.code = spoken.country"

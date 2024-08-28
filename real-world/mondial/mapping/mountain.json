@@ -1,32 +1,36 @@
 {
     "classes": [
         {
-            "id": "mountains/@@mountain.name@@",
-            "class": "Mountain"
+            "id": "@@mountain.name@@",
+            "class": "Mountain",
+            "prefix": "mondial"
         },
         {
-            "id": "mountains/@@mountain.range@@",
+            "id": "@@mountain.name@@",
             "class": "Volcano",
             "subclassOf": [
                 "Mountain"
             ],
             "condition": [
-                "@@mountain.type@@ = 'volcano'"
-            ]
+                "mountain.type = 'volcano'"
+            ],
+            "prefix": "mondial"
         },
         {
-            "id": "mountains/@@mountain.range@@",
+            "id": "@@mountain.name@@",
             "class": "Volcano",
             "subclassOf": [
                 "Mountain"
             ],
             "condition": [
-                "@@mountain.type@@ = 'volcanic'"
-            ]
+                "mountain.type = 'volcanic'"
+            ],
+            "prefix": "mondial"
         },
         {
-            "id": "mountainRanges/@@mountain.mountains@@",
-            "class": "MountainRange"
+            "id": "@@mountain.mountains@@",
+            "class": "MountainRange",
+            "prefix": "mondial"
         }
     ],
     "object_properties": [
@@ -38,7 +42,7 @@
         {
             "property": "locatedIn",
             "belongsToClass": "Mountain",
-            "refersToClass": "Country",
+            "refersToClassMap": "CountryFull",
             "join": [
                 "geo_mountain.mountain = mountain.name",
                 "geo_mountain.country = country.code"
@@ -86,13 +90,13 @@
             "property": "latitude",
             "belongsToClass": "Mountain",
             "type": "decimal",
-            "column": "mountain.latitude"
+            "column": "mountain.(coordinates).latitude"
         },
         {
             "property": "longitude",
             "belongsToClass": "Mountain",
             "type": "decimal",
-            "column": "mountain.longitude"
+            "column": "mountain.(coordinates).longitude"
         },
         {
             "property": "elevation",

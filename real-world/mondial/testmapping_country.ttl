@@ -36,3 +36,16 @@ map:dependentOf a d2rq:PropertyBridge;
 	d2rq:refersToClassMap map:Country3;
 	d2rq:property rdfs:dependentOf;
     .
+
+map:othername a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:Country;
+	d2rq:property rdfs:othername;
+    d2rq:column "countryothername.othername";
+    d2rq:join "country.code = countryothername.country";
+    .
+map:gdpServ a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:Country;
+	d2rq:property rdfs:gdpServ;
+    d2rq:column "economy.service";
+    d2rq:join "country.code = economy.country";
+    .

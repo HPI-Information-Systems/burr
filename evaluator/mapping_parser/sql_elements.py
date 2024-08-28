@@ -9,6 +9,9 @@ class SQLAttribute:
 
     def __hash__(self):
         return hash((self.table, self.attribute))
+    
+    def __str__(self):
+        return f"{self.table}.{self.attribute}"
 
 @dataclass
 class Condition:
@@ -21,6 +24,9 @@ class Condition:
 
     def __hash__(self):
         return hash((self.sql_attribute, self.operator, self.value))
+    
+    def __str__(self):
+        return f"{self.sql_attribute} {self.operator} {self.value}"
 
 
 @dataclass
@@ -36,6 +42,9 @@ class Join:
 
     def __hash__(self):
         return hash(frozenset([self.left_attribute, self.right_attribute]))
+    
+    def __str__(self):
+        return f"{self.left_attribute} = {self.right_attribute}"
 @dataclass
 class Query:
     content: set

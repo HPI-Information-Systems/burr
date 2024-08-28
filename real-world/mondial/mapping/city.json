@@ -1,15 +1,16 @@
 {
     "classes": [
         {
-            "id": "countries/@@city.country@@/provinces/@@city.province@@/cities/@@city.name@@",
-            "class": "City"
+            "id": "@@city.country@@/@@city.province@@/@@city.name@@",
+            "class": "City",
+            "prefix": "mondial"
         }
     ],
     "object_properties": [
         {
             "property": "locatedAt",
             "belongsToClass": "City",
-            "refersToClass": "River",
+            "refersToClassMap": "River1",
             "join": [
                 "city.name = located.city",
                 "city.province = located.province",

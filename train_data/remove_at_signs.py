@@ -9,6 +9,8 @@ def remove_at_signs_from_fields(data):
                 data[key] = [item.replace('@@', '') for item in value]
             elif key == 'column' and isinstance(value, str):
                 data[key] = value.replace('@@', '')
+            elif key == 'condition' and isinstance(value, list):
+                data[key] = [item.replace('@@', '') for item in value]
             else:
                 remove_at_signs_from_fields(value)
     elif isinstance(data, list):
@@ -31,7 +33,7 @@ def process_all_json_files_in_directory(directory):
         process_json_file(file_path)
 
 # Specify the directory to process
-directory_to_process = '/Users/lukaslaskowski/Documents/HPI/KG/ontology_mappings/rdb2ontology/real-world/mondial'
+directory_to_process = '/Users/lukaslaskowski/Documents/HPI/KG/ontology_mappings/rdb2ontology/real-world/mondial/'
 
 # Process all JSON files in the specified directory and its subdirectories
 process_all_json_files_in_directory(directory_to_process)

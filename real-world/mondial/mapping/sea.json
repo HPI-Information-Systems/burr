@@ -1,15 +1,16 @@
 {
     "classes": [
         {
-            "id": "seas/@@sea.name@@",
-            "class": "Sea"
+            "id": "@@sea.name@@",
+            "class": "Sea",
+            "prefix": "mondial"
         }
     ],
     "object_properties": [
         {
             "property": "locatedIn",
             "belongsToClass": "Sea",
-            "refersToClass": "Country",
+            "refersToClassMap": "CountryFull",
             "join": [
                 "geo_sea.sea = sea.name",
                 "geo_sea.country = country.code"
@@ -29,8 +30,8 @@
             "belongsToClass": "Sea",
             "refersToClass": "Sea",
             "join": [
-                "mergesWith.sea1 = sea.name",
-                "mergesWith.sea2 = sea.name"
+                "mergeswith.sea1 = sea.name",
+                "mergeswith.sea2 = sea.name"
             ]
         }
     ],

@@ -1,12 +1,14 @@
 {
     "classes": [
         {
-            "id": "ethnicgroups/@@ethnicgroup.name@@",
-            "class": "EthnicGroup"
+            "id": "@@ethnicgroup.name@@",
+            "class": "EthnicGroup",
+            "prefix": "mondial"
         },
         {
-            "id": "EthnicProportion__EthnicGroup_@@ethnicgroup.name@@__Country_@@ethnicgroup.country@@",
-            "class": "EthnicProportion"
+            "id": "@@ethnicgroup.name@@/@@ethnicgroup.country@@",
+            "class": "EthnicProportion",
+            "prefix": "mondial"
         }
     ],
     "object_properties": [
@@ -14,7 +16,7 @@
             "property": "ethnicInfo-",
             "inverseOf": "ethnicInfo",
             "belongsToClass": "EthnicProportion",
-            "refersToClass": "Country",
+            "refersToClassMap": "CountryFull",
             "join": [
                 "country.code = ethnicgroup.country"
             ]
@@ -28,7 +30,7 @@
         {
             "property": "belongToEthnicGroup",
             "inverseOf": "liveInCountry",
-            "belongsToClass": "Country",
+            "belongsToClassMap": "CountryFull",
             "refersToClass": "EthnicGroup",
             "join": [
                 "country.code = ethnicgroup.country"

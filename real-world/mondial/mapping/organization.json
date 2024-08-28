@@ -1,19 +1,21 @@
 {
     "classes": [
         {
-            "id": "organizations/@@organization.abbreviation@@",
-            "class": "Organization"
+            "id": "@@organization.abbreviation@@",
+            "class": "Organization",
+            "prefix": "mondial"
         },
         {
-            "id": "Membership__Country_@@ismember.country@@__Organization_@@ismember.Organization@@",
-            "class": "Membership"
+            "id": "@@ismember.country@@/@@ismember.Organization@@",
+            "class": "Membership",
+            "prefix": "mondial"
         }
     ],
     "object_properties": [
         {
             "property": "ofMember",
             "belongsToClass": "Membership",
-            "refersToClass": "Country",
+            "refersToClassMap": "CountryFull",
             "join": [
                 "country.code = ismember.country"
             ],
@@ -30,7 +32,7 @@
         },
         {
             "property": "isMember",
-            "belongsToClass": "Country",
+            "belongsToClassMap": "CountryFull",
             "refersToClass": "Organization",
             "join": [
                 "organization.abbreviation = ismember.organization",

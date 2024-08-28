@@ -1,12 +1,14 @@
 {
     "classes": [
         {
-            "id": "islands/@@island.name@@",
-            "class": "Island"
+            "id": "@@island.name@@",
+            "class": "Island",
+            "prefix": "mondial"
         },
         {
-            "id": "archipelagos/@@island.islands@@",
-            "class": "Archipelago"
+            "id": "@@island.islands@@",
+            "class": "Archipelago",
+            "prefix": "mondial"
         }
     ],
     "object_properties": [
@@ -18,7 +20,7 @@
         {
             "property": "locatedIn",
             "belongsToClass": "Island",
-            "refersToClass": "Country",
+            "refersToClassMap": "CountryFull",
             "join": [
                 "geo_island.island = island.name",
                 "geo_island.country = country.code"
@@ -39,7 +41,7 @@
             "refersToClass": "Sea",
             "join": [
                 "islandin.island = island.name",
-                "island.sea = sea.name"
+                "islandin.sea = sea.name"
             ]
         },
         {
@@ -48,16 +50,16 @@
             "refersToClass": "Lake",
             "join": [
                 "islandin.island = island.name",
-                "island.lake = lake.name"
+                "islandin.lake = lake.name"
             ]
         },
         {
             "property": "locatedInWater",
             "belongsToClass": "Island",
-            "refersToClass": "River",
+            "refersToClassMap": "River1",
             "join": [
                 "islandin.island = island.name",
-                "island.river = river.name"
+                "islandin.river = river.name"
             ]
         }
     ],
@@ -78,17 +80,17 @@
             "property": "latitude",
             "belongsToClass": "Island",
             "type": "decimal",
-            "column": "island.latitude"
+            "column": "island.(coordinates).latitude"
         },
         {
             "property": "longitude",
             "belongsToClass": "Island",
             "type": "decimal",
-            "column": "island.longitude"
+            "column": "island.(coordinates).longitude"
         },
         {
             "property": "area",
-            "belongsToClass": "island",
+            "belongsToClass": "Island",
             "type": "decimal",
             "column": "island.area"
         },

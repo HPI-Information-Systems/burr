@@ -1,8 +1,9 @@
 {
     "classes": [
         {
-            "id": "Encompassed__Continent_@@encompasses.continent@@__Country_@@encompasses.country@@",
-            "class": "Encompassed"
+            "id": "@@encompasses.continent@@/@@encompasses.country@@",
+            "class": "Encompassed",
+            "prefix": "mondial"
         }
     ],
     "object_properties": [
@@ -18,7 +19,7 @@
         {
             "property": "encompassedArea",
             "belongsToClass": "Encompassed",
-            "refersToClass": "Country",
+            "refersToClassMap": "CountryFull",
             "join": [
                 "encompasses.country = country.code"
             ],
@@ -26,7 +27,7 @@
         },
         {
             "property": "encompassed",
-            "belongsToClass": "Country",
+            "belongsToClassMap": "CountryFull",
             "refersToClass": "Continent",
             "join": [
                 "continent.name = encompasses.continent",

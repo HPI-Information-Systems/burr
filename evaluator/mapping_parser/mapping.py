@@ -18,9 +18,6 @@ class Mapping:
         #[self.convert_subclass_to_relations(class_) for class_ in self.classes]
     
     def get_context_elements(self, schema_element):
-        if isinstance(schema_element, Relation) and schema_element.property == "<http://cmt#CD>":
-            #print("CD")
-            in_relation = schema_element in self.relations
         if schema_element in self.classes:
             return self.get_classes_connected_to_class(schema_element)
         elif schema_element in self.relations:
@@ -29,7 +26,7 @@ class Mapping:
         else:
             #print(schema_element)
             raise Exception("Schema element not found in mapping")
-        return fn(schema_element)
+        #return fn(schema_element)
 
     def __mapping_id_to_class(self, id, attribute="mapping_id"):
         for class_ in self.classes:
@@ -66,6 +63,13 @@ class Mapping:
         properties = ["d2rq:uriPattern", "d2rq:class", "d2rq:additionalClassDefinitionProperty", "d2rq:condition"]
         class_maps = self.query_properties("ClassMap", properties)
         for class_map in class_maps:
+                parent_classes = []
+                if "d2rq:additionalClassDefinitionProperty" in class_map.keys():
+                    if isinstance(class_map["d2rq:additionalClassDefinitionProperty"], list):
+                        for el in class_map["d2rq:additionalClassDefinitionProperty"]:
+                            parent_classes.append(self.parse_additionalClassDefinitionProperty(el, self.graph))
+                    else:
+                        parent_classes = [self.parse_additionalClassDefinitionProperty(class_map["d2rq:additionalClassDefinitionProperty"], self.graph)]
                 classes.append(
                         ClassMap(
                             mapping_id=class_map["mapping_id"],
@@ -74,6 +78,7 @@ class Mapping:
                             additionalClassDefinitionProperty=class_map["d2rq:additionalClassDefinitionProperty"] if "d2rq:additionalClassDefinitionProperty" in class_map.keys() else None,
                             join=class_map["d2rq:join"] if "d2rq:join" in class_map.keys() else None,
                             condition=class_map["d2rq:condition"] if "d2rq:condition" in class_map.keys() else None,
+                            parent_classes=parent_classes,
                             graph = self.graph
                             ),
                         )
@@ -133,6 +138,7 @@ class Mapping:
         """
 
         ids = [obj[0].n3() for obj in self.graph.query(query)]
+        print(ids)
         query_properties = lambda uri, property: f"""             
             SELECT DISTINCT ?classes
             WHERE {{ {uri} {property} ?classes. }}
@@ -151,6 +157,7 @@ class Mapping:
                     temp[property] = objects_of_property
             temp["mapping_id"] = id
             result.append(temp)
+            print(temp)
         return result
     
     def get_attribute_from_mapping(self, attribute, table):

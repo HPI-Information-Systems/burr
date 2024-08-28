@@ -1,8 +1,9 @@
 {
     "classes": [
         {
-            "id": "continents/@@continent.name@@",
-            "class": "Continent"
+            "id": "@@continent.name@@",
+            "class": "Continent",
+            "prefix": "mondial"
         }
     ],
     "object_properties": [],

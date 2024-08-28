@@ -1,15 +1,16 @@
 {
     "classes": [
         {
-            "id": "sources/@@river.name@@",
-            "class": "Source"
+            "id": "@@river.name@@",
+            "class": "Source",
+            "prefix": "mondial"
         }
     ],
     "object_properties": [
         {
             "property": "locatedIn",
             "belongsToClass": "Source",
-            "refersToClass": "Country",
+            "refersToClassMap": "CountryFull",
             "join": [
                 "geo_source.river = river.name",
                 "geo_source.country = country.code"
@@ -17,11 +18,12 @@
         },
         {
             "property": "locatedIn",
-            "belongsToClass": "Estuary",
+            "belongsToClass": "Source",
             "refersToClass": "Province",
             "join": [
                 "geo_source.river = river.name",
-                "geo_source.province = province.name"
+                "geo_source.province = province.name",
+                "geo_source.country = province.country"
             ]
         },
         {
@@ -44,13 +46,13 @@
             "property": "latitude",
             "belongsToClass": "Source",
             "type": "decimal",
-            "column": "river.source.latitude"
+            "column": "river.(source).latitude"
         },
         {
             "property": "longitude",
             "belongsToClass": "Source",
             "type": "decimal",
-            "column": "river.source.longitude"
+            "column": "river.(source).longitude"
         }
     ]
 }

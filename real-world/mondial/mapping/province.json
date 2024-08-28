@@ -1,8 +1,9 @@
 {
     "classes": [
         {
-            "id": "countries/@@Province.Country@@/provinces/@@Province.Name@@",
-            "class": "Province"
+            "id": "@@Province.Country@@/@@Province.Name@@",
+            "class": "Province",
+            "prefix": "mondial"
         }
     ],
     "object_properties": [
@@ -23,7 +24,7 @@
             "join": [
                 "province.capital = city.name",
                 "province.country = city.country",
-                "city.capprov = province.name"
+                "province.capprov = province.name"
             ]
         }
     ],

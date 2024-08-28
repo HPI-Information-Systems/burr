@@ -1,15 +1,16 @@
 {
     "classes": [
         {
-            "id": "deserts/@@desert.name@@",
-            "class": "Desert"
+            "id": "@@desert.name@@",
+            "class": "Desert",
+            "prefix": "mondial"
         }
     ],
     "object_properties": [
         {
             "property": "locatedIn",
             "belongsToClass": "Desert",
-            "refersToClass": "Country",
+            "refersToClassMap": "CountryFull",
             "join": [
                 "geo_desert.desert = desert.name",
                 "geo_desert.country = country.code"
@@ -36,13 +37,13 @@
             "property": "latitude",
             "belongsToClass": "Desert",
             "type": "decimal",
-            "column": "desert.latitude"
+            "column": "desert.(coordinates).latitude"
         },
         {
             "property": "longitude",
             "belongsToClass": "Desert",
             "type": "decimal",
-            "column": "desert.longitude"
+            "column": "desert.(coordinates).longitude"
         },
         {
             "property": "area",

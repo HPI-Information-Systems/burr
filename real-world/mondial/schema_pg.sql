@@ -185,7 +185,6 @@ CREATE TYPE GeoCoord AS
 (Latitude DECIMAL,
  Longitude DECIMAL);
 
-
 CREATE TABLE Mountain
 (Name VARCHAR(50) CONSTRAINT MountainKey PRIMARY KEY,
  Mountains VARCHAR(50),

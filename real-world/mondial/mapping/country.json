@@ -1,29 +1,33 @@
 {
     "classes": [
         {
-            "id": "countries/@@country.code@@",
+            "id": "@@country.code@@",
             "class": "Country",
-            "name": "CountryFull"
+            "name": "CountryFull",
+            "prefix": "mondial"
         },
         {
-            "id": "countries/@@politics.country@@",
+            "id": "@@politics.country@@",
             "class": "Country",
-            "name": "CountryPolitics"
+            "name": "CountryPolitics",
+            "prefix": "mondial"
         },
         {
-            "id": "countries/@@politics.dependent@@",
+            "id": "@@politics.dependent@@",
             "class": "Country",
-            "name": "CountryDependent"
+            "name": "CountryDependent",
+            "prefix": "mondial"
         },
         {
-            "id": "politicalbodies/@@politics.wasdependent@@",
-            "class": "PoliticalBody"
+            "id": "@@politics.wasdependent@@",
+            "class": "PoliticalBody",
+            "prefix": "mondial"
         }
     ],
     "object_properties": [
         {
             "property": "wasDependentOf",
-            "belongsToClass": "Country",
+            "belongsToClassMap": "CountryPolitics",
             "refersToClass": "PoliticalBody"
         },
         {
@@ -33,7 +37,7 @@
         },
         {
             "property": "isMember",
-            "belongsToClass": "Country",
+            "belongsToClassMap": "CountryFull",
             "refersToClass": "Organization",
             "join": [
                 "country.code = ismember.country",
@@ -43,7 +47,7 @@
         },
         {
             "property": "encompassed",
-            "belongsToClass": "Country",
+            "belongsToClassMap": "CountryFull",
             "refersToClass": "Continent",
             "join": [
                 "encompasses.country = country.code",
@@ -53,7 +57,7 @@
         },
         {
             "property": "hasCity",
-            "belongsToClass": "Country",
+            "belongsToClassMap": "CountryFull",
             "refersToClass": "City",
             "join": [
                 "city.country = country.code"
@@ -62,7 +66,7 @@
         },
         {
             "property": "hasProvince",
-            "belongsToClass": "Country",
+            "belongsToClassMap": "CountryFull",
             "refersToClass": "Province",
             "join": [
                 "province.country = country.code"
@@ -71,7 +75,7 @@
         },
         {
             "property": "capital",
-            "belongsToClass": "Country",
+            "belongsToClassMap": "CountryFull",
             "refersToClass": "City",
             "join": [
                 "country.capital = city.name",
@@ -82,8 +86,8 @@
         },
         {
             "property": "neighbor",
-            "belongsToClass": "Country",
-            "refersToClass": "Country",
+            "belongsToClassMap": "CountryFull",
+            "refersToClassMap": "CountryFull",
             "join": [
                 "borders.country1 = country.code",
                 "borders.country2 = country.code"
@@ -93,31 +97,31 @@
     "data_properties": [
         {
             "property": "carCode",
-            "belongsToClass": "Country",
+            "belongsToClassMap": "CountryFull",
             "type": "string",
             "column": "Country.Code"
         },
         {
             "property": "name",
-            "belongsToClass": "Country",
+            "belongsToClassMap": "CountryFull",
             "type": "string",
             "column": "Country.Name"
         },
         {
             "property": "area",
-            "belongsToClass": "Country",
+            "belongsToClassMap": "CountryFull",
             "type": "decimal",
             "column": "Country.Area"
         },
         {
             "property": "population",
-            "belongsToClass": "Country",
+            "belongsToClassMap": "CountryFull",
             "type": "integer",
             "column": "Country.Population"
         },
         {
             "property": "gdpTotal",
-            "belongsToClass": "Country",
+            "belongsToClassMap": "CountryFull",
             "type": "decimal",
             "column": "economy.gdp",
             "join": [
@@ -126,7 +130,7 @@
         },
         {
             "property": "gdpAgri",
-            "belongsToClass": "Country",
+            "belongsToClassMap": "CountryFull",
             "type": "decimal",
             "column": "economy.agriculture",
             "join": [
@@ -135,7 +139,7 @@
         },
         {
             "property": "gdpInd",
-            "belongsToClass": "Country",
+            "belongsToClassMap": "CountryFull",
             "type": "decimal",
             "column": "economy.industry",
             "join": [
@@ -144,7 +148,7 @@
         },
         {
             "property": "gdpServ",
-            "belongsToClass": "Country",
+            "belongsToClassMap": "CountryFull",
             "type": "decimal",
             "column": "economy.service",
             "join": [
@@ -153,7 +157,7 @@
         },
         {
             "property": "inflation",
-            "belongsToClass": "Country",
+            "belongsToClassMap": "CountryFull",
             "type": "decimal",
             "column": "economy.inflation",
             "join": [
@@ -162,7 +166,7 @@
         },
         {
             "property": "unemployment",
-            "belongsToClass": "Country",
+            "belongsToClassMap": "CountryFull",
             "type": "decimal",
             "column": "economy.unemployment",
             "join": [
@@ -171,7 +175,7 @@
         },
         {
             "property": "populationGrowth",
-            "belongsToClass": "Country",
+            "belongsToClassMap": "CountryFull",
             "type": "decimal",
             "column": "population.population_growth",
             "join": [
@@ -180,7 +184,7 @@
         },
         {
             "property": "infantMortality",
-            "belongsToClass": "Country",
+            "belongsToClassMap": "CountryFull",
             "type": "decimal",
             "column": "population.infant_mortality",
             "join": [
@@ -189,7 +193,7 @@
         },
         {
             "property": "independenceDate",
-            "belongsToClass": "Country",
+            "belongsToClassMap": "CountryFull",
             "type": "date",
             "column": "politics.Independence",
             "join": [
@@ -198,7 +202,7 @@
         },
         {
             "property": "government",
-            "belongsToClass": "Country",
+            "belongsToClassMap": "CountryFull",
             "type": "string",
             "column": "politics.Government",
             "join": [
@@ -207,7 +211,7 @@
         },
         {
             "property": "othername",
-            "belongsToClass": "Country",
+            "belongsToClassMap": "CountryFull",
             "type": "string",
             "column": "countryothername.othername",
             "join": [
@@ -216,7 +220,7 @@
         },
         {
             "property": "localname",
-            "belongsToClass": "Country",
+            "belongsToClassMap": "CountryFull",
             "type": "string",
             "column": "countrylocalname.localname",
             "join": [

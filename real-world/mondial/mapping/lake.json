@@ -1,15 +1,16 @@
 {
     "classes": [
         {
-            "id": "lakes/@@lake.name@@",
-            "class": "Lake"
+            "id": "@@lake.name@@",
+            "class": "Lake",
+            "prefix": "mondial"
         }
     ],
     "object_properties": [
         {
             "property": "locatedIn",
             "belongsToClass": "Lake",
-            "refersToClass": "Country",
+            "refersToClassMap": "CountryFull",
             "join": [
                 "geo_lake.lake = lake.name",
                 "geo_lake.country = country.code"
@@ -27,7 +28,7 @@
         {
             "property": "flowsInto",
             "belongsToClass": "Lake",
-            "refersToClass": "River",
+            "refersToClassMap": "River1",
             "join": [
                 "lake.river = river.name"
             ]
@@ -53,13 +54,13 @@
             "property": "latitude",
             "belongsToClass": "Lake",
             "type": "decimal",
-            "column": "lake.latitude"
+            "column": "lake.(coordinates).latitude"
         },
         {
             "property": "longitude",
             "belongsToClass": "Lake",
             "type": "decimal",
-            "column": "lake.longitude"
+            "column": "lake.(coordinates).longitude"
         },
         {
             "property": "area",

@@ -23,7 +23,7 @@ map:{{ mapping_name }} a d2rq:PropertyBridge;
     .
 
 {% if inverse_of -%}
-map:{{ mapping_name }} a d2rq:PropertyBridge;
+map:{{ mapping_name }}_inverse a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:{{ refers_to_class_map }};
     d2rq:refersToClassMap map:{{ belongs_to_class_map }};
     d2rq:property {{ prefix }}:{{ inverse_of }};

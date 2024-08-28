@@ -1,12 +1,14 @@
 {
     "classes": [
         {
-            "id": "religions/@@religion.name@@",
-            "class": "Religion"
+            "id": "@@religion.name@@",
+            "class": "Religion",
+            "prefix": "mondial"
         },
         {
-            "id": "BelievedBy__Religion_@@religion.name@@__Country_@@religion.country@@",
-            "class": "BelievedBy"
+            "id": "@@religion.name@@/@@religion.country@@",
+            "class": "BelievedBy",
+            "prefix": "mondial"
         }
     ],
     "object_properties": [
@@ -14,7 +16,7 @@
             "property": "religionInfo-",
             "inverseOf": "religionInfo",
             "belongsToClass": "BelievedBy",
-            "refersToClass": "Country",
+            "refersToClassMap": "CountryFull",
             "join": [
                 "country.code = religion.country"
             ]
@@ -28,7 +30,7 @@
         {
             "property": "believeInReligion",
             "inverseOf": "believedInCountry",
-            "belongsToClass": "Country",
+            "belongsToClassMap": "CountryFull",
             "refersToClass": "Religion",
             "join": [
                 "country.code = religion.country"

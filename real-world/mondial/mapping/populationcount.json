@@ -1,23 +1,29 @@
 {
     "classes": [
         {
-            "id": "PopulationCount__Country_@@countrypops.country@@__@@countrypops.year@@",
-            "class": "PopulationCount"
+            "id": "@@countrypops.country@@/@@countrypops.year@@",
+            "class": "PopulationCount",
+            "name": "PopulationCountCountry",
+            "prefix": "mondial"
         },
         {
-            "id": "PopulationCount__Province_@@provpops.country@@_@@provpops.province@@__@@provpops.year@@",
-            "class": "PopulationCount"
+            "id": "@@provpops.country@@/@@provpops.province@@/@@provpops.year@@",
+            "class": "PopulationCount",
+            "name": "PopulationCountProvince",
+            "prefix": "mondial"
         },
         {
-            "id": "PopulationCount__City_@@citypops.country@@_@@citypops.province@@_@@citypops.city@@__@@provpops.year@@",
-            "class": "PopulationCount"
+            "id": "@@citypops.country@@/@@citypops.province@@/@@citypops.city@@/@@provpops.year@@",
+            "class": "PopulationCount",
+            "name": "PopulationCountCity",
+            "prefix": "mondial"
         }
     ],
     "object_properties": [
         {
             "property": "hadPopulation",
-            "belongsToClass": "Country",
-            "refersToClass": "PopulationCount",
+            "belongsToClassMap": "CountryFull",
+            "refersToClassMap": "PopulationCountCountry",
             "join": [
                 "country.code = countrypops.country"
             ]
@@ -25,7 +31,7 @@
         {
             "property": "hadPopulation",
             "belongsToClass": "Province",
-            "refersToClass": "PopulationCount",
+            "refersToClassMap": "PopulationCountProvince",
             "join": [
                 "province.name = provpops.province",
                 "province.country = provpops.country"
@@ -34,7 +40,7 @@
         {
             "property": "hadPopulation",
             "belongsToClass": "City",
-            "refersToClass": "PopulationCount",
+            "refersToClassMap": "PopulationCountCity",
             "join": [
                 "city.name = citypops.city",
                 "city.province = citypops.province",
@@ -45,37 +51,37 @@
     "data_properties": [
         {
             "property": "year",
-            "belongsToClass": "PopulationCount",
+            "belongsToClassMap": "PopulationCountCountry",
             "type": "integer",
             "column": "countrypops.year"
         },
         {
             "property": "value",
-            "belongsToClass": "PopulationCount",
+            "belongsToClassMap": "PopulationCountCountry",
             "type": "integer",
             "column": "countrypops.population"
         },
         {
             "property": "year",
-            "belongsToClass": "PopulationCount",
+            "belongsToClassMap": "PopulationCountProvince",
             "type": "integer",
             "column": "provpops.year"
         },
         {
             "property": "value",
-            "belongsToClass": "PopulationCount",
+            "belongsToClassMap": "PopulationCountProvince",
             "type": "integer",
             "column": "provpops.population"
         },
         {
             "property": "year",
-            "belongsToClass": "PopulationCount",
+            "belongsToClassMap": "PopulationCountCity",
             "type": "integer",
             "column": "citypops.year"
         },
         {
             "property": "value",
-            "belongsToClass": "PopulationCount",
+            "belongsToClassMap": "PopulationCountCity",
             "type": "integer",
             "column": "citypops.population"
         }

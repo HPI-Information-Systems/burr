@@ -1,5 +1,6 @@
 from evaluator.mapping_parser.sql_elements import SQLAttribute, Join
 from evaluator.mapping_parser.classmap import ClassMap
+from evaluator.utils.get_jinja_env import get_jinja_env
 
 class Relation:
     mapping_id: str
@@ -9,15 +10,19 @@ class Relation:
     join: str
     column: str
 
-    def __init__(self, mapping_id, property, belongsToClassMap, refersToClassMap, join, column) -> None:
+    def __init__(self, prefix, mapping_id, property, belongsToClassMap, column=None, join=None, condition=None, datatype=None,refersToClassMap=None, inverse_of=None, translate_with=None) -> None:
         self.mapping_id = mapping_id
         self.property = property
         self.belongsToClassMap = belongsToClassMap
         self.refersToClassMap = refersToClassMap
         self.join = join
         self.column = column
+        self.condition = condition
+        self.datatype = datatype
+        self.inverse_of = inverse_of
+        self.prefix = prefix
+        self.translate_with = translate_with
         self.set_eq_strategy(classes=False)
-        #check if join is list
         if isinstance(join, list):
             self.sql_join = [self.parse_join(j) for j in join]
         else:
@@ -33,6 +38,22 @@ class Relation:
     def parse_column(self, column):
         column = column.split(".")
         return SQLAttribute(column[0], column[1])
+
+    def get_d2rq_mapping(self):
+        return  get_jinja_env() \
+                .get_template('propertybridge.j2') \
+                .render(
+                prefix = self.prefix,
+                mapping_name = self.mapping_id,
+                property=self.property,
+                belongs_to_class_map=self.belongsToClassMap,
+                refers_to_class_map=self.refersToClassMap,
+                joins=self.join,
+                conditions=self.condition,
+                column=self.column,
+                datatype=self.datatype,
+                inverse_of=self.inverse_of
+            )
 
     def __eq__(self, other):
         if not isinstance(other, Relation):

@@ -1,21 +1,23 @@
 {
     "classes": [
         {
-            "id": "rivers/@@river.name@@",
+            "id": "@@river.name@@",
             "class": "River",
-            "name": "River1"
+            "name": "River1",
+            "prefix": "mondial"
         },
         {
-            "id": "rivers/@@river.river",
+            "id": "@@river.river@@",
             "class": "River",
-            "name": "River2"
+            "name": "River2",
+            "prefix": "mondial"
         }
     ],
     "object_properties": [
         {
             "property": "locatedIn",
-            "belongsToClass": "River",
-            "refersToClass": "Country",
+            "belongsToClassMap": "River1",
+            "refersToClassMap": "CountryFull",
             "join": [
                 "geo_river.river = river.name",
                 "geo_river.country = country.code"
@@ -23,7 +25,7 @@
         },
         {
             "property": "locatedIn",
-            "belongsToClass": "River",
+            "belongsToClassMap": "River1",
             "refersToClass": "Province",
             "join": [
                 "geo_river.river = river.name",
@@ -32,7 +34,7 @@
         },
         {
             "property": "flowsThrough",
-            "belongsToClass": "River",
+            "belongsToClassMap": "River1",
             "refersToClass": "Lake",
             "join": [
                 "riverthrough.lake = lake.name",
@@ -46,7 +48,7 @@
         },
         {
             "property": "flowsInto",
-            "belongsToClass": "River",
+            "belongsToClassMap": "River1",
             "refersToClass": "Sea",
             "join": [
                 "river.sea = sea.name"
@@ -54,7 +56,7 @@
         },
         {
             "property": "flowsInto",
-            "belongsToClass": "River",
+            "belongsToClassMap": "River1",
             "refersToClass": "Lake",
             "join": [
                 "river.lake = lake.name"
@@ -63,15 +65,17 @@
         {
             "property": "hasSource",
             "belongsToClassMap": "River1",
-            "refersToClass": "Source",
-            "join": [
-                "river.source = source.river"
-            ]
+            "refersToClass": "Source"
+        },
+        {
+            "property": "hasEstuary",
+            "belongsToClassMap": "River1",
+            "refersToClass": "Estuary"
         },
         {
             "property": "locatedOnIsland",
             "belongsToClass": "Mountain",
-            "refersToClass": "River",
+            "refersToClassMap": "River1",
             "join": [
                 "river.name = riveronisland.river",
                 "riveronisland.island = island.name"
@@ -81,19 +85,19 @@
     "data_properties": [
         {
             "property": "name",
-            "belongsToClass": "River",
+            "belongsToClassMap": "River1",
             "type": "string",
             "column": "river.name"
         },
         {
             "property": "area",
-            "belongsToClass": "River",
+            "belongsToClassMap": "River1",
             "type": "decimal",
             "column": "river.area"
         },
         {
             "property": "length",
-            "belongsToClass": "River",
+            "belongsToClassMap": "River1",
             "type": "decimal",
             "column": "river.length"
         }
