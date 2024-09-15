@@ -33,7 +33,8 @@
             "belongsToClassMap": "CountryFull",
             "refersToClass": "Language",
             "join": [
-                "country.code = spoken.country"
+                "country.code = spoken.country",
+                "language.name = spoken.language"
             ]
         }
     ],
