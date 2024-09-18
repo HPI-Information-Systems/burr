@@ -1,25 +1,66 @@
 {
     "classes": [
         {
-            "id": "@@SCM.@@",
+            "id": "@@SCM.PPMS_Product_Name@@/@@SCM.Solution_Component_Reference_Architecture_Cloud@@/@@SCM.Solution_Component_Reference_Architecture_Hybrid@@",
             "prefix": "SCM",
-            "class": "SolutionArchitectureComponent"
+            "class": "SolutionArchitectureComponent",
+            "name": "SolutionArchitectureComponentMap"
         }
     ],
     "object_properties": [
+       { 
+            "property": "hasGranularity",
+            "belongsToClassMap": "SolutionArchitectureComponentMap", #hier muss auch cloud vorkommen
+            "refersToClassMap": "SolutionArchitecture_Cloud_SAR",
+            "condition": ["SCM.Solution_Component_Reference_Architecture_Cloud = 'True'"] #in der cond. filtern wo die property cloud vorkommt also die cloud spalte TRUE ist
+            #braucht m.E. keinen join/cond. da das genau auf alle Cloud kanonen gemappt wird, aber nochmal prüfe 
+       },
+       { 
+            "property": "hasGranularity",
+            "belongsToClassMap": "SolutionArchitectureComponentMap",
+            "refersToClassMap": "SolutionArchitecture_Hybrid_SAR",
+            "condition": ["SCM.Solution_Component_Reference_Architecture_Hybrid = 'True'"]#gleiche wie oben
+       },
+       {
+        "property": "hasGranularity",
+        "belongsToClassMap": "SolutionArchitectureComponentMap",
+        "refersToClassMap": "SolutionArchitectureComponentTypeMap"
+       },
+       {
+        "property": "isDeploymentOf",
+        "belongsToClassMap": "SolutionArchitectureComponentMap",
+        "refersToClassMap": "Product"
+       }
     ],
     "data_properties": [
         {
-            "property": "Identifier",
-            "belongsToClass": "Product",
-            "type": "string",
-            "column": "SCM.PPMS_Product_ID"
+            "property": "name",
+            "belongsToClassMap": "SolutionArchitectureComponentMap",
+            "column": "SCM.PPMS_Product_Name"
         },
         {
-            "property": "Name",
-            "belongsToClass": "Product",
-            "type": "string",
-            "column": "SCM.PPMS_Product_Name"
-        }
+            "property": "partOfReferenceArchitecture", 
+            "constantValue": "Hybrid",
+            "belongsToClassMap": "SolutionArchitectureComponentMap",
+            "condition": ["SCM.Solution_Component_Reference_Architecture_Hybrid = 'True'"]
+        },
+        {
+            "property": "partOfReferenceArchitecture",
+            "constantValue": "Cloud",
+            "belongsToClassMap": "SolutionArchitectureComponentMap",
+            "condition": ["SCM.Solution_Component_Reference_Architecture_Cloud = 'True'"]
+        },
+       {
+        "property": "is",
+        "belongsToClassMap": "SolutionArchitectureComponentMap",
+        "constantValue": "Mandatory",
+        "condition": ["SCM.Line_Item_Type = 'Mandatory Product'", "SCM.PPMS_Product_Name != 'No Recommendation'"]
+       },
+       {
+        "property": "is",
+        "constantValue": "Optional",
+        "belongsToClassMap": "SolutionArchitectureComponentMap",
+        "condition": ["SCM.Line_Item_Type != 'Mandatory Product'", "SCM.PPMS_Product_Name != 'No Recommendation'"]
+       } 
     ]
 }

@@ -3,7 +3,8 @@
         {
             "id": "@@SCM.Line_Item_Type@@",
             "prefix": "SCM",
-            "class": "SolutionArchitectureComponentType"
+            "class": "SolutionArchitectureComponentType",
+            "name": "SolutionArchitectureComponentTypeMap"
         }
     ],
     "object_properties": [

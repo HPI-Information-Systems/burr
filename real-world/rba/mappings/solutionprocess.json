@@ -106,6 +106,18 @@
             "property": "hasComponent",
             "belongsToClassMap": "SolutionProcess_2",
             "refersToClass": "SolutionActivity"
+        },
+        {
+            "property": "hasGranularity",
+            "belongsToClassMap": "SolutionProcess_0",
+            "refersToClassMap": "SolutionArchitecture_Hybrid_SAR",
+            "condition": ["SPM.Reference_Architecture_Type = 'Hybrid'"] #jetzt wird aber das kreuzprodukt gebildet oder??, das sollte nur ein value sein
+        },
+        {
+            "property": "hasGranularity",
+            "belongsToClassMap": "SolutionProcess_0",
+            "refersToClassMap": "SolutionArchitecture_Cloud_SAR",
+            "condition": ["SPM.Reference_Architecture_Type = 'Cloud'"]
         }
     ],
     "data_properties": [
@@ -144,6 +156,21 @@
             "belongsToClassMap": "SolutionProcess_2",
             "type": "string",
             "column": "SPM.Solution_Process_2"
+        },
+        {
+            "property": "isElementOfType",
+            "belongsToClassMap": "SolutionProcess_0",
+            "constantValue": "E2E Solution Process"
+        },
+        {
+            "property": "isElementOfType",
+            "belongsToClassMap": "SolutionProcess_1",
+            "constantValue": "Solution Process Module"
+        },
+        {
+            "property": "isElementOfType",
+            "belongsToClassMap": "SolutionProcess_2",
+            "constantValue": "Solution Process Segment"
         }
     ]
 }

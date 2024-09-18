@@ -1,0 +1,39 @@
+{
+    "classes": [
+        {
+            "id": "@@BCM.Enterprise_Domain@@-L1",
+            "prefix": "RBA",
+            "class": "EnterpriseDomainLevel",
+            "name": "EnterpriseDomainLevel_1"
+        },
+        {
+            "id": "@@BCM.Enterprise_Domain@@-L2",
+            "prefix": "RBA",
+            "class": "EnterpriseDomainLevel",
+            "name": "EnterpriseDomainLevel_2"
+        },
+        {
+            "id": "@@BCM.Enterprise_Domain@@-L3",
+            "prefix": "RBA",
+            "class": "EnterpriseDomainLevel",
+            "name": "EnterpriseDomainLevel_3"
+        },
+        {
+            "id": "@@BCM.Enterprise_Domain@@-L4",
+            "prefix": "RBA",
+            "class": "EnterpriseDomainLevel",
+            "name": "EnterpriseDomainLevel_4"
+        },
+        {
+            "id": "@@BCM.Enterprise_Domain@@-SC",
+            "prefix": "RBA",
+            "class": "EnterpriseDomainLevel",
+            "name": "EnterpriseDomainLevel_5"
+        }
+    ],
+    "object_properties": [
+    ],
+    "data_properties": [
+        
+    ]
+}

@@ -85,6 +85,21 @@
             "belongsToClassMap": "BusinessCapabilityFromCapability",
             "refersToClassMap": "SolutionCapability_Whitespaces",
             "join": ["BCM.Master_ID_BC = Whitespaces.Master_ID_BC"]
+        },
+        {
+            "property": "isMemberOf",
+            "belongsToClassMap": "BusinessCapabilityFromDomain",
+            "refersToClassMap": "EnterpriseDomainLevel_2"
+        },
+        {
+            "property": "isMemberOf",
+            "belongsToClassMap": "BusinessCapabilityFromArea",
+            "refersToClassMap": "EnterpriseDomainLevel_3"
+        },
+        {
+            "property": "isMemberOf",
+            "belongsToClassMap": "BusinessCapabilityFromCapability",
+            "refersToClassMap": "EnterpriseDomainLevel_4"
         }
     ],
     "data_properties": [
