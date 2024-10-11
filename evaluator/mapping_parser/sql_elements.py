@@ -4,6 +4,11 @@ class SQLAttribute:
     table: str
     attribute: str
 
+    def __post_init__(self):
+        # Convert table and attribute to lowercase
+        self.table = self.table.lower()
+        self.attribute = self.attribute.lower()
+
     def __eq__(self, other):
         return isinstance(other, SQLAttribute) and self.table == other.table and self.attribute == other.attribute
 
@@ -11,7 +16,7 @@ class SQLAttribute:
         return hash((self.table, self.attribute))
     
     def __str__(self):
-        return f"{self.table}.{self.attribute}"
+        return f"{self.table.lower()}.{self.attribute.lower()}"
 
 @dataclass
 class Condition:
@@ -26,6 +31,7 @@ class Condition:
         return hash((self.sql_attribute, self.operator, self.value))
     
     def __str__(self):
+        print(f"dadawwaw{self.sql_attribute} {self.operator} {self.value}")
         return f"{self.sql_attribute} {self.operator} {self.value}"
 
 

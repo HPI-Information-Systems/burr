@@ -13,12 +13,12 @@ CREATE TABLE software (
     name varchar(50),
     supports_windows boolean,
     supports_mac boolean,
-    supports_linux boolean,
+    supports_linux boolean
 );
 
 ALTER TABLE ONLY software ADD CONSTRAINT "software_primary_key" PRIMARY KEY (id);
 
-COPY service ("id", "name", "supports_windows", "supports_mac", "supports_linux")
+COPY software ("id", "name", "supports_windows", "supports_mac", "supports_linux")
 FROM stdin
 WITH (FORMAT csv, DELIMITER ',');
 1,Microsoft Word,true,false,false

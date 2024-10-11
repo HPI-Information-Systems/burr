@@ -3,6 +3,9 @@ map:{{ mapping_name }} a d2rq:PropertyBridge;
     {%- if refers_to_class_map %}
     d2rq:refersToClassMap map:{{ refers_to_class_map }};
     {%- endif %}
+    {%- if constant_value %}
+    d2rq:constantValue {{ prefix }}:{{ constant_value }};
+    {%- endif %}
     d2rq:property {{ prefix }}:{{ property }};
     {%- if joins -%}
     {%- for join in joins %}
@@ -14,6 +17,9 @@ map:{{ mapping_name }} a d2rq:PropertyBridge;
     d2rq:condition "{{ condition }}";
     {%- endfor %}
     {%- endif -%}
+    {%- if sqlExpression %}
+    d2rq:sqlExpression "{{ sqlExpression }}";
+    {%- endif %}
     {%- if column %}
     d2rq:column "{{ column }}";
     {%- endif %}

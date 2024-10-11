@@ -1,7 +1,7 @@
-from evaluator.mapping_parser.sql_elements import SQLAttribute, Join
+from evaluator.mapping_parser.sql_elements import SQLAttribute, Join, Condition
 from evaluator.mapping_parser.classmap import ClassMap
 from evaluator.utils.get_jinja_env import get_jinja_env
-
+import re
 class Relation:
     mapping_id: str
     property: str
@@ -10,7 +10,9 @@ class Relation:
     join: str
     column: str
 
-    def __init__(self, prefix, mapping_id, property, belongsToClassMap, column=None, join=None, condition=None, datatype=None,refersToClassMap=None, inverse_of=None, translate_with=None) -> None:
+    def __init__(self, prefix, mapping_id, property, belongsToClassMap, constantValue=None, sqlExpression=None, column=None, join=None, condition=None, datatype=None,refersToClassMap=None, inverse_of=None, translate_with=None) -> None:
+        #print(constantValue, sqlExpression, column)
+        #assert (constantValue is None and sqlExpression is None and column is not None) or (constantValue is not None and sqlExpression is None and column is None) or (constantValue is None and sqlExpression is not None and column is None)
         self.mapping_id = mapping_id
         self.property = property
         self.belongsToClassMap = belongsToClassMap
@@ -22,22 +24,47 @@ class Relation:
         self.inverse_of = inverse_of
         self.prefix = prefix
         self.translate_with = translate_with
+        self.constantValue = constantValue
         self.set_eq_strategy(classes=False)
+        self.sql_sql_expression = self.parse_sql_expression(sqlExpression) if sqlExpression is not None else None
         if isinstance(join, list):
             self.sql_join = [self.parse_join(j) for j in join]
         else:
             self.sql_join = [self.parse_join(join)] if self.join is not None else None
+        if isinstance(condition, list):
+            self.sql_condition = [self.parse_condition(j) for j in condition]
+        else:
+            self.sql_condition = [self.parse_condition(condition)] if self.condition is not None else None    
         self.sql_column = self.parse_column(column) if self.column is not None else None
+
+    def parse_sql_expression(self,sqlExpression):
+        match = re.search(r'\((.*)\)', sqlExpression)
+        if match:
+            attributes = []
+            arguments = match.group(1)
+            for arg in arguments.split(','):
+                arg = arg.strip()
+                pattern = r"(?<!['\"])\b\w+\.\w+\b(?!['\"])"
+                attributes = attributes + re.findall(pattern, arg)
+            return list(map(lambda attr: SQLAttribute(attr.split(".")[0].lower(), attr.split(".")[1].lower()), attributes))
+        return []
 
     def parse_join(self, join):
         join = join.split("=")
         left = join[0].split(".")
         right = join[1].split(".")
-        return Join(SQLAttribute(left[0], left[1]), SQLAttribute(right[0], right[1]))
+        return Join(SQLAttribute(left[0].lower(), left[1].lower()), SQLAttribute(right[0], right[1]))
+    
+    def parse_condition(self, condition):
+        operator = list(filter(lambda x: x in condition, ["=", ">", "<", "<=", ">=" "!="]))[0]
+        condition = condition.replace(" ", "").split(operator)
+        sql = list(filter(lambda x: "." in x, condition))[0]
+        value = list(filter(lambda x: "." not in x, condition))[0]
+        return Condition(SQLAttribute(sql.split(".")[0].lower(), sql.split(".")[1].lower()), operator, value)
 
     def parse_column(self, column):
         column = column.split(".")
-        return SQLAttribute(column[0], column[1])
+        return SQLAttribute(column[0].lower(), column[1].lower())
 
     def get_d2rq_mapping(self):
         return  get_jinja_env() \
@@ -48,11 +75,13 @@ class Relation:
                 property=self.property,
                 belongs_to_class_map=self.belongsToClassMap,
                 refers_to_class_map=self.refersToClassMap,
-                joins=self.join,
-                conditions=self.condition,
+                joins=self.sql_join,
+                conditions=self.sql_condition,
                 column=self.column,
+                sqlExpression = self.sql_expression.lower() if self.sql_expression is not None else None,
                 datatype=self.datatype,
-                inverse_of=self.inverse_of
+                inverse_of=self.inverse_of,
+                constant_value = self.constantValue if self.constantValue is not None else None,
             )
 
     def __eq__(self, other):
@@ -76,20 +105,27 @@ class Relation:
 def equality_by_edge_query(edge1: Relation, edge2: Relation) -> bool:
     if not isinstance(edge2, Relation):
         return False
-    if edge1.sql_join is not None and edge2.sql_join is not None:
+    joins_not_none = edge1.sql_join is not None and edge2.sql_join is not None
+    joins_none = edge1.sql_join is None and edge2.sql_join is None
+    sql_expressions_not_none = edge1.sql_sql_expression is not None and edge2.sql_sql_expression is not None
+    sql_expressions_none = edge1.sql_sql_expression is None and edge2.sql_sql_expression is None
+    columns_not_none = edge1.sql_column is not None and edge2.sql_column is not None
+    columns_none = edge1.sql_column is None and edge2.sql_column is None
+    if joins_not_none:
         joins_equal = set(edge1.sql_join) == set(edge2.sql_join)
-    elif edge1.sql_join is None and edge2.sql_join is None:
+    elif joins_none:
         joins_equal = True
     else:
-        joins_equal = False
-    if edge1.sql_column is not None and edge2.sql_column is not None:
+        return False
+
+    if columns_not_none:
         columns_equal = edge1.sql_column == edge2.sql_column
-    elif edge1.sql_column is None and edge2.sql_column is None:
+    elif columns_none and sql_expressions_not_none:
+        columns_equal = set(edge1.sql_sql_expression) == set(edge2.sql_sql_expression)
+    elif columns_none and sql_expressions_none:
         columns_equal = True
     else:
-        columns_equal = False
-    #joins_equal = set(edge1.sql_join) == set(edge2.sql_join) if edge1.sql_join is not None and edge2.sql_join is not None else True
-    #columns_equal = edge1.sql_column == edge2.sql_column if edge1.sql_column is not None and edge2.sql_column is not None else True
+        return False
     return joins_equal and columns_equal
 
 def hash_by_edge_query(edge: Relation) -> int:

@@ -1,0 +1,47 @@
+@prefix d2rq: <http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#> .
+@prefix cmt: <http://cmt/> .
+@prefix map: <http://mapping/> .
+@prefix jdbc: <http://d2rq.org/terms/jdbc/> .
+@prefix base: </base/> .
+
+map:database a d2rq:Database;
+	d2rq:jdbcDriver "org.postgresql.Driver";
+	d2rq:jdbcDSN "jdbc:postgresql://localhost:5432/nm_tables__general__product_feature";
+	d2rq:username "lukaslaskowski";
+	jdbc:keepAlive "3600";				# sends noop-query every 3600 seconds
+	.
+
+map:Product a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:Product;
+    d2rq:uriPattern "Product/@@product.id@@/";
+    
+    
+    .
+map:Feature a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:Feature;
+    d2rq:uriPattern "Feature/@@feature.id@@/";
+    
+    
+    .
+map:name_Product_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Product;
+    d2rq:property base:name;
+    d2rq:column "product.name";
+    .
+
+map:name_Feature_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Feature;
+    d2rq:property base:name;
+    d2rq:column "feature.name";
+    .
+
+map:has_feature_Product_Feature a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Product;
+    d2rq:refersToClassMap map:Feature;
+    d2rq:property base:has_feature;
+    d2rq:join "product.id  =  product_feature.product_id";
+    d2rq:join "feature.id  =  product_feature.feature_id";
+    .
+

@@ -12,6 +12,7 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 CREATE TABLE process (
+    process_id int,
     business_area_id int,
     area_name varchar(50),
     area_description varchar(50),

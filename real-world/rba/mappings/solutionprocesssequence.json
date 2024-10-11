@@ -54,7 +54,7 @@
             "property": "Name",
             "belongsToClassMap": "SolutionProcessSequence_1",
             "type": "string",
-            "sqlExpression": "CONCAT(@@SPM.Solution_Process_Sequence_1@@, CONCAT(' - ', CONCAT(@@SPM.Solution_Process_1@@, CONCAT(' (', CONCAT(@@SPM.Solution_Process_ID_1@@, ')')))))"
+            "sqlExpression": "CONCAT(@@spm.solution_process_sequence_1@@, CONCAT(' - ', CONCAT(@@spm.solution_process_1@@, CONCAT(' (', CONCAT(@@spm.solution_process_id_1@@, ')')))))"
         },
         {
             "property": "Name",

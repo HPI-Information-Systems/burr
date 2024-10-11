@@ -1,0 +1,57 @@
+@prefix d2rq: <http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#> .
+@prefix cmt: <http://cmt/> .
+@prefix map: <http://mapping/> .
+@prefix jdbc: <http://d2rq.org/terms/jdbc/> .
+@prefix base: </base/> .
+
+map:database a d2rq:Database;
+	d2rq:jdbcDriver "org.postgresql.Driver";
+	d2rq:jdbcDSN "jdbc:postgresql://localhost:5432/denormalized__relation_of_concepts_in_same_table__process";
+	d2rq:username "lukaslaskowski";
+	jdbc:keepAlive "3600";				# sends noop-query every 3600 seconds
+	.
+
+map:BusinessArea a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:BusinessArea;
+    d2rq:uriPattern "BusinessArea/@@process.business_area_id@@/";
+    
+    
+    .
+map:BusinessCapability a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:BusinessCapability;
+    d2rq:uriPattern "BusinessCapability/@@process.business_capability_id@@/";
+    
+    
+    .
+map:name_BusinessArea_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:BusinessArea;
+    d2rq:property base:name;
+    d2rq:column "process.area_name";
+    .
+
+map:description_BusinessArea_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:BusinessArea;
+    d2rq:property base:description;
+    d2rq:column "process.area_description";
+    .
+
+map:name_BusinessCapability_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:BusinessCapability;
+    d2rq:property base:name;
+    d2rq:column "process.capability_name";
+    .
+
+map:description_BusinessCapability_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:BusinessCapability;
+    d2rq:property base:description;
+    d2rq:column "process.capability_description";
+    .
+
+map:hasComponent_BusinessArea_BusinessCapability a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:BusinessArea;
+    d2rq:refersToClassMap map:BusinessCapability;
+    d2rq:property base:hasComponent;
+    .
+

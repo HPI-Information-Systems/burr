@@ -1,0 +1,67 @@
+{
+  "classes" : [ {
+    "id" : "@@person_organization.person_id@@/@@person_organization.organization_id@@/",
+    "name" : "ClassMap_person_organization",
+    "prefix" : "base",
+    "subClassOf" : null,
+    "join" : null,
+    "class" : "person_organization"
+  } ],
+  "data_properties" : [ {
+    "property" : "hasPerson_role",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "person_organization.Person_role",
+    "belongsToClassMap" : "ClassMap_person_organization"
+  }, {
+    "property" : "hasOrganization_address",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "person_organization.Organization_address",
+    "belongsToClassMap" : "ClassMap_person_organization"
+  }, {
+    "property" : "hasOrganization_id",
+    "type" : "xsd:integer",
+    "column" : "person_organization.Organization_id",
+    "belongsToClassMap" : "ClassMap_person_organization"
+  }, {
+    "property" : "hasOrganization_name",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "person_organization.Organization_name",
+    "belongsToClassMap" : "ClassMap_person_organization"
+  }, {
+    "property" : "hasorganization_id",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "person_organization.organization_id",
+    "belongsToClassMap" : "ClassMap_person_organization"
+  }, {
+    "property" : "hasPerson_phone_number",
+    "type" : "xsd:integer",
+    "column" : "person_organization.Person_phone_number",
+    "belongsToClassMap" : "ClassMap_person_organization"
+  }, {
+    "property" : "hasperson_id",
+    "type" : "xsd:integer",
+    "column" : "person_organization.person_id",
+    "belongsToClassMap" : "ClassMap_person_organization"
+  }, {
+    "property" : "hasPerson_name",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "person_organization.Person_name",
+    "belongsToClassMap" : "ClassMap_person_organization"
+  }, {
+    "property" : "hasPerson_id",
+    "type" : "xsd:integer",
+    "column" : "person_organization.Person_id",
+    "belongsToClassMap" : "ClassMap_person_organization"
+  }, {
+    "property" : "hasPerson_address",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "person_organization.Person_address",
+    "belongsToClassMap" : "ClassMap_person_organization"
+  }, {
+    "property" : "hasOrganization_phone_number",
+    "type" : "xsd:integer",
+    "column" : "person_organization.Organization_phone_number",
+    "belongsToClassMap" : "ClassMap_person_organization"
+  } ],
+  "object_properties" : [ ]
+}

@@ -10,7 +10,7 @@ CREATE TABLE adult (
     id INT,
     name VARCHAR(50),
     age INT
-)
+);
 
 ALTER TABLE Only adult
     ADD CONSTRAINT adult_primary_key PRIMARY KEY (id);

@@ -3,13 +3,20 @@
         {
             "id": "@@SPM.Object_ID_Business_Activity_in_Solution_Process@@",
             "class": "SolutionActivity",
-            "prefix": "SPM"
+            "prefix": "SPM",
+            "name": "SolutionActivity"
         }
     ],
     "object_properties": [
         {
             "property": "references",
             "belongsToClass": "SolutionActivity",
+            "refersToClassMap": "SolutionCapability_SCM",
+            "join": ["SCM.Object_ID_SC = SPM.Object_ID_SC"]
+        },
+        {
+            "property": "hasPrerequisite",
+            "belongsToClassMap": "SolutionActivity",
             "refersToClassMap": "SolutionCapability_SCM",
             "join": ["SCM.Object_ID_SC = SPM.Object_ID_SC"]
         }

@@ -1,0 +1,75 @@
+@prefix d2rq: <http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#> .
+@prefix cmt: <http://cmt/> .
+@prefix map: <http://mapping/> .
+@prefix jdbc: <http://d2rq.org/terms/jdbc/> .
+@prefix base: </base/> .
+
+map:database a d2rq:Database;
+	d2rq:jdbcDriver "org.postgresql.Driver";
+	d2rq:jdbcDSN "jdbc:postgresql://localhost:5432/denormalized__multiple_concepts_same_table__person_organisation";
+	d2rq:username "lukaslaskowski";
+	jdbc:keepAlive "3600";				# sends noop-query every 3600 seconds
+	.
+
+map:Person a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:Person;
+    d2rq:uriPattern "Person/@@person_organization.person_id@@/";
+    
+    
+    .
+map:Organization a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:Organization;
+    d2rq:uriPattern "Organization/@@person_organization.organization_id@@/";
+    
+    
+    .
+map:name_Person_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Person;
+    d2rq:property base:name;
+    d2rq:column "person_organization.person_name";
+    .
+
+map:address_Person_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Person;
+    d2rq:property base:address;
+    d2rq:column "person_organization.person_address";
+    .
+
+map:phone_number_Person_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Person;
+    d2rq:property base:phone_number;
+    d2rq:column "person_organization.person_phone_number";
+    .
+
+map:role_Person_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Person;
+    d2rq:property base:role;
+    d2rq:column "person_organization.person_role";
+    .
+
+map:name_Organization_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Organization;
+    d2rq:property base:name;
+    d2rq:column "person_organization.organization_name";
+    .
+
+map:address_Organization_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Organization;
+    d2rq:property base:address;
+    d2rq:column "person_organization.organization_address";
+    .
+
+map:phone_number_Organization_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Organization;
+    d2rq:property base:phone_number;
+    d2rq:column "person_organization.organization_phone_number";
+    .
+
+map:worksFor_Person_Organization a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Person;
+    d2rq:refersToClassMap map:Organization;
+    d2rq:property base:worksFor;
+    .
+

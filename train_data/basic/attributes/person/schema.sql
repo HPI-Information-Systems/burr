@@ -13,7 +13,7 @@ CREATE TABLE person (
     name VARCHAR(50),
     address VARCHAR(50),
     phone VARCHAR(50)
-)
+);
 
 ALTER TABLE Only person
     ADD CONSTRAINT person_primary_key PRIMARY KEY (id);

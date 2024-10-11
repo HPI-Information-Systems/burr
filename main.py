@@ -10,9 +10,18 @@ ontology = None
 
 # mapping_file ="./mapping.ttl"
 #mapping_file ="/Users/lukaslaskowski/Downloads/RODI_benchmark/data/cmt_mixed/mapping.ttl"
-mapping_file_1 ="/Users/lukaslaskowski/Documents/HPI/KG/ontology_mappings/rdb2ontology/mapping_chatgpt.ttl"
-mapping_file_2 ="/Users/lukaslaskowski/Documents/HPI/KG/ontology_mappings/rdb2ontology/mapping_cmt_mixed.ttl"
+mapping_file_2 ="/Users/lukaslaskowski/Documents/HPI/KG/ontology_mappings/rdb2ontology/mondial.ttl"
+mapping_file_1 ="/Users/lukaslaskowski/Documents/HPI/KG/ontology_mappings/rdb2ontology/mondial_rdb2onto.ttl"
+mapping_file_1 ="/Users/lukaslaskowski/Documents/HPI/KG/ontology_mappings/rdb2ontology/output/rdb2onto/groundtruths/sap_groundtruth.ttl"
+mapping_file_2 ="/Users/lukaslaskowski/Documents/HPI/KG/ontology_mappings/rdb2ontology/output/rdb2onto/groundtruths/sap_rdb2onto.ttl"
+
+
+
+
+
+print("TAKING care of goldstandard")
 mapping_1 = Mapping(mapping_file_1)
+print("TAKING care of learned")
 mapping_2 = Mapping(mapping_file_2)
 
 precision = MappingBasedPrecision()(mapping_1, mapping_2)

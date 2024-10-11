@@ -1,0 +1,68 @@
+@prefix d2rq: <http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#> .
+@prefix cmt: <http://cmt/> .
+@prefix map: <http://mapping/> .
+@prefix jdbc: <http://d2rq.org/terms/jdbc/> .
+@prefix base: </base/> .
+
+map:database a d2rq:Database;
+	d2rq:jdbcDriver "org.postgresql.Driver";
+	d2rq:jdbcDSN "jdbc:postgresql://localhost:5432/denormalized__boolean_relation__beverages";
+	d2rq:username "lukaslaskowski";
+	jdbc:keepAlive "3600";				# sends noop-query every 3600 seconds
+	.
+
+map:ClassMap_beverage a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:beverage;
+    d2rq:uriPattern "beverage/@@beverage.id@@/";
+    
+    
+    .
+map:hasName_ClassMap_beverage_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_beverage;
+    d2rq:property base:hasName;
+    d2rq:column "beverage.name";
+    .
+
+map:hasContains_alcohol_ClassMap_beverage_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_beverage;
+    d2rq:property base:hasContains_alcohol;
+    d2rq:column "beverage.contains_alcohol";
+    .
+
+map:hasContains_gluten_ClassMap_beverage_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_beverage;
+    d2rq:property base:hasContains_gluten;
+    d2rq:column "beverage.contains_gluten";
+    .
+
+map:hasContains_nuts_ClassMap_beverage_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_beverage;
+    d2rq:property base:hasContains_nuts;
+    d2rq:column "beverage.contains_nuts";
+    .
+
+map:hasContains_caffeine_ClassMap_beverage_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_beverage;
+    d2rq:property base:hasContains_caffeine;
+    d2rq:column "beverage.contains_caffeine";
+    .
+
+map:hasContains_sugar_ClassMap_beverage_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_beverage;
+    d2rq:property base:hasContains_sugar;
+    d2rq:column "beverage.contains_sugar";
+    .
+
+map:hasContains_dairy_ClassMap_beverage_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_beverage;
+    d2rq:property base:hasContains_dairy;
+    d2rq:column "beverage.contains_dairy";
+    .
+
+map:hasId_ClassMap_beverage_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_beverage;
+    d2rq:property base:hasId;
+    d2rq:column "beverage.id";
+    .
+

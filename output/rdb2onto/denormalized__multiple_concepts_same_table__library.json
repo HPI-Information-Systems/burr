@@ -1,0 +1,52 @@
+{
+  "classes" : [ {
+    "id" : "@@book.isbn@@/",
+    "name" : "ClassMap_book",
+    "prefix" : "base",
+    "subClassOf" : null,
+    "join" : null,
+    "class" : "book"
+  } ],
+  "data_properties" : [ {
+    "property" : "hasAuthor",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "book.Author",
+    "belongsToClassMap" : "ClassMap_book"
+  }, {
+    "property" : "hasCopies_available",
+    "type" : "xsd:integer",
+    "column" : "book.Copies_available",
+    "belongsToClassMap" : "ClassMap_book"
+  }, {
+    "property" : "hasAddress",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "book.Address",
+    "belongsToClassMap" : "ClassMap_book"
+  }, {
+    "property" : "hasName",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "book.Name",
+    "belongsToClassMap" : "ClassMap_book"
+  }, {
+    "property" : "hasPublication_year",
+    "type" : "xsd:integer",
+    "column" : "book.Publication_year",
+    "belongsToClassMap" : "ClassMap_book"
+  }, {
+    "property" : "hasIsbn",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "book.Isbn",
+    "belongsToClassMap" : "ClassMap_book"
+  }, {
+    "property" : "hasBirth_year",
+    "type" : "xsd:integer",
+    "column" : "book.Birth_year",
+    "belongsToClassMap" : "ClassMap_book"
+  }, {
+    "property" : "hasNationality",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "book.Nationality",
+    "belongsToClassMap" : "ClassMap_book"
+  } ],
+  "object_properties" : [ ]
+}

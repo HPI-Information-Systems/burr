@@ -6,9 +6,11 @@ class MappingBasedPrecision(Metric):
         super(MappingBasedPrecision, self).__init__()
 
     def score(self, learned_ontology: Mapping, referenced_ontology: Mapping) -> float:
-        classes = set(learned_ontology.classes).intersection(set(referenced_ontology.classes))
-        relations = set(learned_ontology.relations).intersection(set(referenced_ontology.relations))
-        print(set(referenced_ontology.classes).intersection(set(learned_ontology.classes)))
+        #classes = set(learned_ontology.classes).intersection(set(referenced_ontology.classes)) this does not work because if multiple concepts have the same mapping query they get removed becuase of set creation
+        classes = [x for x in referenced_ontology.classes if x in learned_ontology.classes]
+
+        #relations = set(learned_ontology.relations).intersection(set(referenced_ontology.relations))
+        relations = [x for x in referenced_ontology.relations if x in learned_ontology.relations]
         #oru
         #print(classes)
         #print("\n")
@@ -23,8 +25,10 @@ class MappingBasedRecall(Metric):
         super(MappingBasedRecall, self).__init__()
 
     def score(self, learned_ontology: Mapping, referenced_ontology: Mapping) -> float:
-        classes = set(learned_ontology.classes).intersection(set(referenced_ontology.classes))
-        relations = set(learned_ontology.relations).intersection(set(referenced_ontology.relations))
+        #classes = set(learned_ontology.classes).intersection(set(referenced_ontology.classes))
+        classes = [x for x in referenced_ontology.classes if x in learned_ontology.classes]
+        #relations = set(learned_ontology.relations).intersection(set(referenced_ontology.relations))
+        relations = [x for x in referenced_ontology.relations if x in learned_ontology.relations]
         return (len(classes) + len(relations)) / (len(referenced_ontology.classes) + len(referenced_ontology.relations))
     
     def __str__(self):

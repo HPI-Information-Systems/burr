@@ -29,6 +29,36 @@
             "prefix": "RBA",
             "class": "EnterpriseDomainLevel",
             "name": "EnterpriseDomainLevel_5"
+        },
+        {
+            "id": "@@SCM.Enterprise_Domain@@-L1",
+            "prefix": "SCM",
+            "class": "EnterpriseDomainLevel",
+            "name": "EnterpriseDomainLevel_1"
+        },
+        {
+            "id": "@@SCM.Enterprise_Domain@@-L2",
+            "prefix": "SCM",
+            "class": "EnterpriseDomainLevel",
+            "name": "EnterpriseDomainLevel_2"
+        },
+        {
+            "id": "@@SCM.Enterprise_Domain@@-L3",
+            "prefix": "SCM",
+            "class": "EnterpriseDomainLevel",
+            "name": "EnterpriseDomainLevel_3"
+        },
+        {
+            "id": "@@SCM.Enterprise_Domain@@-L4",
+            "prefix": "SCM",
+            "class": "EnterpriseDomainLevel",
+            "name": "EnterpriseDomainLevel_4"
+        },
+        {
+            "id": "@@SCM.Enterprise_Domain@@-SC",
+            "prefix": "SCM",
+            "class": "EnterpriseDomainLevel",
+            "name": "EnterpriseDomainLevel_5"
         }
     ],
     "object_properties": [

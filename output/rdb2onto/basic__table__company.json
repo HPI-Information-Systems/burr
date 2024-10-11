@@ -1,0 +1,17 @@
+{
+  "classes" : [ {
+    "id" : "@@company.id@@/",
+    "name" : "ClassMap_company",
+    "prefix" : "base",
+    "subClassOf" : null,
+    "join" : null,
+    "class" : "company"
+  } ],
+  "data_properties" : [ {
+    "property" : "hasId",
+    "type" : "xsd:integer",
+    "column" : "company.Id",
+    "belongsToClassMap" : "ClassMap_company"
+  } ],
+  "object_properties" : [ ]
+}

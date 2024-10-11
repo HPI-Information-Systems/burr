@@ -10,7 +10,7 @@ SET default_with_oids = false;
 
 CREATE TABLE stadium (
     id int
-)
+);
 
 ALTER TABLE Only stadium
     ADD CONSTRAINT stadium_primary_key PRIMARY KEY (id);

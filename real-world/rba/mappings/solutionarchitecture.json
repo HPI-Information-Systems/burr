@@ -9,7 +9,7 @@
             "translateWith": "SolutionArchitectureHybridSARConversion"
         },
         {
-            "id": "@@SCM.Solution_Capability_Reference_Architecture_Cloud@@", #todo kann auch die ID von der translationTable translated werden??!!?!
+            "id": "@@SCM.Solution_Capability_Reference_Architecture_Cloud@@",
             "prefix": "SCM",
             "class": "SolutionArchitecture",
             "name": "SolutionArchitecture_Cloud_SAR",
@@ -17,7 +17,7 @@
             "translateWith": "SolutionArchitectureCloudSARConversion"
         },
         {
-            "id": "@@SCM.Solution_Capability_Whitespaces_Reference_Architecture_Hybrid@@",
+            "id": "@@Whitespaces.Reference_Architecture_Hybrid_1@@",
             "prefix": "SCM",
             "class": "SolutionArchitecture",
             "name": "SolutionArchitecture_Hybrid_Whitespaces",
@@ -25,7 +25,7 @@
             "translateWith": "SolutionArchitectureHybridWhitespacesConversion"
         },
         {
-            "id": "@@SCM.Solution_Capability_Whitespaces_Reference_Architecture_Cloud@@",
+            "id": "@@Whitespaces.Reference_Architecture_Cloud_1@@",
             "prefix": "SCM",
             "class": "SolutionArchitecture",
             "name": "SolutionArchitecture_Cloud_Whitespaces",

@@ -12,25 +12,25 @@
     "data_properties": [
         {
             "property": "Identifier",
-            "belongsToClassMap": "BusinessAcity_BAR",
+            "belongsToClassMap": "BusinessActivity_BAR",
             "type": "string",
             "column": "BAR.Business_Activity_Code"
         },
         {
             "property": "Name",
-            "belongsToClassMap": "BusinessAcity_BAR",
+            "belongsToClassMap": "BusinessActivity_BAR",
             "type": "string",
-            "column": "BAR.Business_Acitivity"   
+            "column": "BAR.Business_Activity"   
         },
         {
             "property":"Description",
-            "belongsToClassMap": "BusinessAcity_BAR",
+            "belongsToClassMap": "BusinessActivity_BAR",
             "type": "string",
-            "column": "BAR.Business_Acitivity_Description"
+            "column": "BAR.Business_Activity_Description"
         },
         {
             "property": "APQCReference",
-            "belongsToClassMap": "BusinessAcity_BAR",
+            "belongsToClassMap": "BusinessActivity_BAR",
             "type": "string",
             "column": "BAR.APQC_Reference"
         },

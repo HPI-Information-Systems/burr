@@ -1,0 +1,66 @@
+@prefix d2rq: <http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#> .
+@prefix cmt: <http://cmt/> .
+@prefix map: <http://mapping/> .
+@prefix jdbc: <http://d2rq.org/terms/jdbc/> .
+@prefix base: </base/> .
+
+map:database a d2rq:Database;
+	d2rq:jdbcDriver "org.postgresql.Driver";
+	d2rq:jdbcDSN "jdbc:postgresql://localhost:5432/nm_tables__additional_attributes__group_1";
+	d2rq:username "lukaslaskowski";
+	jdbc:keepAlive "3600";				# sends noop-query every 3600 seconds
+	.
+
+map:User a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:User;
+    d2rq:uriPattern "User/@@user.id@@/";
+    
+    
+    .
+map:Group a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:Group;
+    d2rq:uriPattern "Group/@@group.id@@/";
+    
+    
+    .
+map:UserGroup a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:UserGroup;
+    d2rq:uriPattern "UserGroup/@@user_group.uid@@/@@user_group.gid@@/";
+    
+    
+    .
+map:registration_date_UserGroup_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:UserGroup;
+    d2rq:property base:registration_date;
+    d2rq:column "user_group.registration_date";
+    .
+
+map:expiration_duration_UserGroup_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:UserGroup;
+    d2rq:property base:expiration_duration;
+    d2rq:column "user_group.expiration_duration";
+    .
+
+map:access_rights_UserGroup_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:UserGroup;
+    d2rq:property base:access_rights;
+    d2rq:column "user_group.access_rights";
+    .
+
+map:belongs_to_User_UserGroup a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:User;
+    d2rq:refersToClassMap map:UserGroup;
+    d2rq:property base:belongs_to;
+    d2rq:join "user.id  =  user_group.uid";
+    .
+
+map:has_Group_UserGroup a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Group;
+    d2rq:refersToClassMap map:UserGroup;
+    d2rq:property base:has;
+    d2rq:join "group.id  =  user_group.gid";
+    .
+

@@ -30,7 +30,7 @@
             "property": "isMemberOf",
             "belongsToClassMap": "SolutionCapability_SCM",
             "refersToClass": "Industry",
-            "condition": ["SCM.BC_Relevant_for_Automotive_Industry = 'Relevant'", "Ind.Industry_ID = 'Ind006'"]
+            "condition": ["SCM.BC_Relevant_for_Autmotive_Industry = 'Relevant'", "Ind.Industry_ID = 'Ind006'"]
         },
         {
             "property": "isMemberOf",
@@ -65,7 +65,12 @@
         {
             "property": "deployedBy",
             "belongsToClassMap": "SolutionCapability_SCM",
-            "refersToClassMap": "SolutionArchitectureComponent"
+            "refersToClassMap": "SolutionArchitectureComponentMap"
+        },
+        {
+            "property": "isMemberOf",
+            "belongsToClassMap": "SolutionCapability_SCM",
+            "refersToClassMap": "EnterpriseDomainLevel_5"
         }
     ],
     "data_properties": [

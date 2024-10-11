@@ -1,0 +1,47 @@
+{
+  "classes" : [ {
+    "id" : "@@process.process_id@@/",
+    "name" : "ClassMap_process",
+    "prefix" : "base",
+    "subClassOf" : null,
+    "join" : null,
+    "class" : "process"
+  } ],
+  "data_properties" : [ {
+    "property" : "hasProcess_id",
+    "type" : "xsd:integer",
+    "column" : "process.Process_id",
+    "belongsToClassMap" : "ClassMap_process"
+  }, {
+    "property" : "hasArea_description",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "process.Area_description",
+    "belongsToClassMap" : "ClassMap_process"
+  }, {
+    "property" : "hasBusiness_capability_id",
+    "type" : "xsd:integer",
+    "column" : "process.Business_capability_id",
+    "belongsToClassMap" : "ClassMap_process"
+  }, {
+    "property" : "hasArea_name",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "process.Area_name",
+    "belongsToClassMap" : "ClassMap_process"
+  }, {
+    "property" : "hasCapability_description",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "process.Capability_description",
+    "belongsToClassMap" : "ClassMap_process"
+  }, {
+    "property" : "hasCapability_name",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "process.Capability_name",
+    "belongsToClassMap" : "ClassMap_process"
+  }, {
+    "property" : "hasBusiness_area_id",
+    "type" : "xsd:integer",
+    "column" : "process.Business_area_id",
+    "belongsToClassMap" : "ClassMap_process"
+  } ],
+  "object_properties" : [ ]
+}

@@ -1,0 +1,40 @@
+{
+  "classes" : [ {
+    "id" : "@@movie.id@@/",
+    "name" : "ClassMap_movie",
+    "prefix" : "base",
+    "subClassOf" : null,
+    "join" : null,
+    "class" : "movie"
+  }, {
+    "id" : "@@director.id@@/",
+    "name" : "ClassMap_director",
+    "prefix" : "base",
+    "subClassOf" : null,
+    "join" : null,
+    "class" : "director"
+  } ],
+  "data_properties" : [ {
+    "property" : "hasId",
+    "type" : "xsd:integer",
+    "column" : "director.Id",
+    "belongsToClassMap" : "ClassMap_director"
+  }, {
+    "property" : "hasDirector",
+    "type" : "xsd:integer",
+    "column" : "movie.Director",
+    "belongsToClassMap" : "ClassMap_movie"
+  }, {
+    "property" : "hasId",
+    "type" : "xsd:integer",
+    "column" : "movie.Id",
+    "belongsToClassMap" : "ClassMap_movie"
+  } ],
+  "object_properties" : [ {
+    "property" : "hasDirector",
+    "join" : [ "director.id = movie.director" ],
+    "inverseOf" : null,
+    "belongsToClassMap" : "ClassMap_movie",
+    "refersToClassMap" : "ClassMap_director"
+  } ]
+}

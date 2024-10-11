@@ -10,7 +10,7 @@ SET default_with_oids = false;
 
 CREATE TABLE person (
     id int
-)
+);
 
 ALTER TABLE Only person
     ADD CONSTRAINT person_primary_key PRIMARY KEY (id);

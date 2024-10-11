@@ -1,0 +1,52 @@
+{
+  "classes" : [ {
+    "id" : "@@beverage.id@@/",
+    "name" : "ClassMap_beverage",
+    "prefix" : "base",
+    "subClassOf" : null,
+    "join" : null,
+    "class" : "beverage"
+  } ],
+  "data_properties" : [ {
+    "property" : "hasName",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "beverage.Name",
+    "belongsToClassMap" : "ClassMap_beverage"
+  }, {
+    "property" : "hasContains_alcohol",
+    "type" : "xsd:boolean",
+    "column" : "beverage.Contains_alcohol",
+    "belongsToClassMap" : "ClassMap_beverage"
+  }, {
+    "property" : "hasContains_gluten",
+    "type" : "xsd:boolean",
+    "column" : "beverage.Contains_gluten",
+    "belongsToClassMap" : "ClassMap_beverage"
+  }, {
+    "property" : "hasContains_nuts",
+    "type" : "xsd:boolean",
+    "column" : "beverage.Contains_nuts",
+    "belongsToClassMap" : "ClassMap_beverage"
+  }, {
+    "property" : "hasContains_caffeine",
+    "type" : "xsd:boolean",
+    "column" : "beverage.Contains_caffeine",
+    "belongsToClassMap" : "ClassMap_beverage"
+  }, {
+    "property" : "hasContains_sugar",
+    "type" : "xsd:boolean",
+    "column" : "beverage.Contains_sugar",
+    "belongsToClassMap" : "ClassMap_beverage"
+  }, {
+    "property" : "hasContains_dairy",
+    "type" : "xsd:boolean",
+    "column" : "beverage.Contains_dairy",
+    "belongsToClassMap" : "ClassMap_beverage"
+  }, {
+    "property" : "hasId",
+    "type" : "xsd:integer",
+    "column" : "beverage.Id",
+    "belongsToClassMap" : "ClassMap_beverage"
+  } ],
+  "object_properties" : [ ]
+}

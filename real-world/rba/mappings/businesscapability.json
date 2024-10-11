@@ -23,7 +23,8 @@
         {
             "property": "isPrerequisiteOf",
             "belongsToClassMap": "BusinessCapabilityFromCapability",
-            "refersToClassMap": "BusinessActivity_BA"
+            "refersToClassMap": "BusinessActivity_BA",
+            "join": ["BCM.Master_ID_BC = BPM.Master_ID_BC"]
         },
         {
             "property": "isMemberOf",
@@ -41,7 +42,7 @@
             "property": "isMemberOf",
             "belongsToClassMap": "BusinessCapabilityFromCapability",
             "refersToClass": "Industry",
-            "condition": ["BCM.BC_Relevant_for_Automotive_Industry = 'Relevant'", "Ind.Industry_ID = 'Ind006'"]
+            "condition": ["BCM.BC_Relevant_for_Autmotive_Industry = 'Relevant'", "Ind.Industry_ID = 'Ind006'"]
         },
         {
             "property": "isMemberOf",
@@ -107,55 +108,55 @@
             "property": "Identifier",
             "belongsToClassMap": "BusinessCapabilityFromDomain",
             "type": "string",
-            "column": "@@BCM.Master_ID_BD@@"
+            "column": "BCM.Master_ID_BD"
         },
         {
             "property": "Name",
             "belongsToClassMap": "BusinessCapabilityFromDomain",
             "type": "string",
-            "column": "@@BCM.Business_Domain@@"
+            "column": "BCM.Business_Domain"
         },
         {
             "property": "SequenceID",
             "belongsToClassMap": "BusinessCapabilityFromDomain",
             "type": "string",
-            "column": "@@BCM.Business_Domain_Seq_ID@@"
+            "column": "BCM.Business_Domain_Seq_ID"
         },
         {
             "property": "Identifier",
             "belongsToClassMap": "BusinessCapabilityFromArea",
             "type": "string",
-            "column": "@@BCM.Master_ID_BArea@@"
+            "column": "BCM.Master_ID_BArea"
         },
         {
             "property": "Name",
             "belongsToClassMap": "BusinessCapabilityFromArea",
             "type": "string",
-            "column": "@@BCM.Business_Area@@"
+            "column": "BCM.Business_Area"
         },
         {
             "property": "SequenceID",
             "belongsToClassMap": "BusinessCapabilityFromArea",
             "type": "string",
-            "column": "@@BCM.BArea_Seq_ID@@"
+            "column": "BCM.BArea_Seq_ID"
         },
         {
             "property": "Identifier",
             "belongsToClassMap": "BusinessCapabilityFromCapability",
             "type": "string",
-            "column": "@@BCM.Master_ID_BC@@"
+            "column": "BCM.Master_ID_BC"
         },
         {
             "property": "Name",
             "belongsToClassMap": "BusinessCapabilityFromCapability",
             "type": "string",
-            "column": "@@BCM.Business_Capability@@"
+            "column": "BCM.Business_Capability"
         },
         {
             "property": "SequenceID",
             "belongsToClassMap": "BusinessCapabilityFromCapability",
             "type": "string",
-            "column": "@@BCM.BC_Seq_ID@@"
+            "column": "BCM.BC_Seq_ID"
         },
         {
             "property": "Description",

@@ -12,13 +12,13 @@
     "data_properties": [
         {
             "property": "Identifier",
-            "belongsToClass": "SolutionArchitectureComponentType",
+            "belongsToClassMap": "SolutionArchitectureComponentTypeMap",
             "type": "string",
             "column": "SCM.Line_Item_Type"
         },
         {
             "property": "Name",
-            "belongsToClass": "SolutionArchitectureComponentType",
+            "belongsToClassMap": "SolutionArchitectureComponentTypeMap",
             "type": "string",
             "column": "SCM.Line_Item_Type"
         }

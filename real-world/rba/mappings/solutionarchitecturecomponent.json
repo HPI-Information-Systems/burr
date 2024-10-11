@@ -10,16 +10,15 @@
     "object_properties": [
        { 
             "property": "hasGranularity",
-            "belongsToClassMap": "SolutionArchitectureComponentMap", #hier muss auch cloud vorkommen
+            "belongsToClassMap": "SolutionArchitectureComponentMap",
             "refersToClassMap": "SolutionArchitecture_Cloud_SAR",
-            "condition": ["SCM.Solution_Component_Reference_Architecture_Cloud = 'True'"] #in der cond. filtern wo die property cloud vorkommt also die cloud spalte TRUE ist
-            #braucht m.E. keinen join/cond. da das genau auf alle Cloud kanonen gemappt wird, aber nochmal prüfe 
+            "condition": ["SCM.Solution_Component_Reference_Architecture_Cloud = 'True'"]
        },
        { 
             "property": "hasGranularity",
             "belongsToClassMap": "SolutionArchitectureComponentMap",
             "refersToClassMap": "SolutionArchitecture_Hybrid_SAR",
-            "condition": ["SCM.Solution_Component_Reference_Architecture_Hybrid = 'True'"]#gleiche wie oben
+            "condition": ["SCM.Solution_Component_Reference_Architecture_Hybrid = 'True'"]
        },
        {
         "property": "hasGranularity",
@@ -39,28 +38,46 @@
             "column": "SCM.PPMS_Product_Name"
         },
         {
-            "property": "partOfReferenceArchitecture", 
-            "constantValue": "Hybrid",
+            "property": "partOfReferenceArchitecture",
+            "index": "0",
+            "column": "SCM.Solution_Component_Reference_Architecture_Hybrid",
+            "translateWith": "SolutionArchitectureComponentHybridConversion",
             "belongsToClassMap": "SolutionArchitectureComponentMap",
-            "condition": ["SCM.Solution_Component_Reference_Architecture_Hybrid = 'True'"]
+            "condition": ["SCM.solution_component_reference_architecture_hybrid = 'True'"]
         },
         {
             "property": "partOfReferenceArchitecture",
-            "constantValue": "Cloud",
+            "index": "1",
+            "column": "SCM.Solution_Component_Reference_Architecture_Cloud",
+            "translateWith": "SolutionArchitectureComponentCloudConversion",
             "belongsToClassMap": "SolutionArchitectureComponentMap",
             "condition": ["SCM.Solution_Component_Reference_Architecture_Cloud = 'True'"]
         },
        {
         "property": "is",
         "belongsToClassMap": "SolutionArchitectureComponentMap",
-        "constantValue": "Mandatory",
-        "condition": ["SCM.Line_Item_Type = 'Mandatory Product'", "SCM.PPMS_Product_Name != 'No Recommendation'"]
-       },
-       {
-        "property": "is",
-        "constantValue": "Optional",
-        "belongsToClassMap": "SolutionArchitectureComponentMap",
-        "condition": ["SCM.Line_Item_Type != 'Mandatory Product'", "SCM.PPMS_Product_Name != 'No Recommendation'"]
+        "column": "SCM.Line_Item_Type",
+        "condition": ["SCM.PPMS_Product_Name != 'No Recommendation'"]
        } 
+    ],
+    "translation_tables": [
+        {
+            "name": "SolutionArchitectureComponentHybridConversion",
+            "translations": [
+                {
+                    "databaseValue": "TRUE",
+                    "targetValue": "Reference Architecture Hybrid"
+                }
+            ]
+        },
+        {
+            "name": "SolutionArchitectureComponentCloudConversion",
+            "translations": [
+                {
+                    "databaseValue": "TRUE",
+                    "targetValue": "Reference Architecture Cloud"
+                }
+            ]
+        }
     ]
 }

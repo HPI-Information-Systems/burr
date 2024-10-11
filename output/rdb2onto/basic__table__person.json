@@ -1,0 +1,17 @@
+{
+  "classes" : [ {
+    "id" : "@@person.id@@/",
+    "name" : "ClassMap_person",
+    "prefix" : "base",
+    "subClassOf" : null,
+    "join" : null,
+    "class" : "person"
+  } ],
+  "data_properties" : [ {
+    "property" : "hasId",
+    "type" : "xsd:integer",
+    "column" : "person.Id",
+    "belongsToClassMap" : "ClassMap_person"
+  } ],
+  "object_properties" : [ ]
+}

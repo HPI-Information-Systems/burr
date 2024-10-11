@@ -32,23 +32,31 @@ class ClassMap:
             self.sql_condition = [self.parse_condition(condition)] if self.condition is not None else None
         #self.sql_condition = self.parse_condition(condition) if self.condition is not None else None
         self.sql_uri_pattern: SQLAttribute = self.parse_uri_pattern(uriPattern)
-    
+
     def parse_condition(self, condition):
         operator = list(filter(lambda x: x in condition, ["=", ">", "<", "<=", ">=" "!="]))[0]
         condition = condition.replace(" ", "").split(operator)
         sql = list(filter(lambda x: "." in x, condition))[0]
         value = list(filter(lambda x: "." not in x, condition))[0]
-        return Condition(SQLAttribute(sql.split(".")[0], sql.split(".")[1]), operator, value)
+        # print("dhjksdj", condition)
+        return Condition(SQLAttribute(sql.split(".")[0].lower(), sql.split(".")[1].lower()), operator, value)
+
+    
+
 
     def parse_uri_pattern(self, uri_pattern):
+        # print(uri_pattern)
+        if uri_pattern is None:
+            return None
+        uri_pattern = uri_pattern[0] if isinstance(uri_pattern, list) else uri_pattern # !TODO This is quickfix for the book scenario
         uri_patterns = re.findall('@@(.*?)@@', uri_pattern)#.group(1).split(".") #!TODO This does not work when having more than one database access
-        return [SQLAttribute(table=pattern.split(".")[0], attribute=pattern.split(".")[1]) for pattern in uri_patterns]
+        return [SQLAttribute(table=pattern.split(".")[0].lower(), attribute=pattern.split(".")[1].lower()) for pattern in uri_patterns]
 
     def parse_join(self, join):
         join = join.split("=")
         left = join[0].split(".")
         right = join[1].split(".")
-        return Join(SQLAttribute(left[0], left[1]), SQLAttribute(right[0], right[1]))
+        return Join(SQLAttribute(left[0], left[1].lower()), SQLAttribute(right[0], right[1].lower()))
     
     def get_d2rq_mapping(self):
         return  get_jinja_env() \
@@ -69,10 +77,17 @@ class ClassMap:
     def __eq__(self, other: object) -> bool:
         if not isinstance(other, ClassMap):
             return False
-        return self.sql_condition == other.sql_condition and self.sql_uri_pattern == other.sql_uri_pattern and self.sql_join == other.sql_join
+        same_condition = self.sql_condition == other.sql_condition
+        same_pattern = self.sql_uri_pattern == other.sql_uri_pattern #if self.sql_sql_expression is None else self.sql_sql_expression == other.sql_sql_expression
+        same_join = self.sql_join == other.sql_join
+        return  same_condition and same_pattern and same_join
     
     def __hash__(self) -> int:
-        return hash((tuple(self.sql_condition) if isinstance(self.sql_condition, list) else self.sql_condition, self.sql_uri_pattern, self.sql_join))
+        # print(self.sql_uri_pattern, self.sql_join)
+        return hash((
+            tuple(self.sql_condition) if isinstance(self.sql_condition, list) else self.sql_condition,
+            tuple(self.sql_uri_pattern) if isinstance(self.sql_uri_pattern, list) else self.sql_uri_pattern,
+            self.sql_join))
         #return hash((self.sql_condition, self.sql_uri_pattern, self.sql_join))
 
     def __repr__(self):

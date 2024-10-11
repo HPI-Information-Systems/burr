@@ -9,18 +9,17 @@ SET default_with_oids = false;
 
 --base32 encoded column names
 CREATE TABLE person (
-    NFSA==== int, --id
-    NZQW2ZI= VARCHAR(50), --name
-    MFTWK=== VARCHAR(50), --age
-    MFSGI4TFONZQ==== VARCHAR(100), --address
-    MVWWC2LM VARCHAR(50), --email
-    OBUG63TFL5XHK3LCMVZA==== VARCHAR(50), --phone_number
-)
+    "NFSA====" int, --id
+    "NZQW2ZI=" VARCHAR(50), --name
+    "MFTWK===" VARCHAR(50), --age
+    "MFSGI4TFONZQ====" VARCHAR(100), --address
+    "MVWWC2LM" VARCHAR(50), --email
+    "OBUG63TFL5XHK3LCMVZA====" VARCHAR(50) --phone_number
+);
 
-ALTER TABLE Only person
-    ADD CONSTRAINT person_primary_key PRIMARY KEY (id);
+ALTER TABLE person ADD CONSTRAINT person_primary_key PRIMARY KEY ("NFSA====");
 
-COPY person (NFSA====, NZQW2ZI=, MFTWK===, MFSGI4TFONZQ====, MVWWC2LM, OBUG63TFL5XHK3LCMVZA====)
+COPY person ("NFSA====", "NZQW2ZI=", "MFTWK===", "MFSGI4TFONZQ====", "MVWWC2LM", "OBUG63TFL5XHK3LCMVZA====")
 FROM stdin
 WITH (FORMAT csv, DELIMITER ',');
 1,John Doe,20,Applestreet 2,john.doe@gmail.com,+49132456789

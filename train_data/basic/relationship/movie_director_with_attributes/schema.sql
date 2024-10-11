@@ -13,22 +13,29 @@ CREATE TABLE movie (
     title VARCHAR(50),
     director VARCHAR(50),
     year INT
-)
+);
 
 CREATE TABLE director (
-    id int,
     name VARCHAR(50),
     birth_year INT
-)
+);
 
 ALTER TABLE Only movie
     ADD CONSTRAINT movie_primary_key PRIMARY KEY (id);
 
 ALTER TABLE Only director
-    ADD CONSTRAINT director_primary_key PRIMARY KEY (id);
+    ADD CONSTRAINT director_primary_key PRIMARY KEY (name);
 
 ALTER TABLE ONLY movie
     ADD CONSTRAINT "FKdirector" FOREIGN KEY (director) REFERENCES director(name) ON DELETE CASCADE;
+
+COPY director (name, birth_year)
+FROM stdin
+WITH (FORMAT csv, DELIMITER ',');
+Frank Darabont,1959
+Francis Ford Coppola,1939
+Christopher Nolan,1970
+\.
 
 COPY movie (id, title, director, year)
 FROM stdin
@@ -37,12 +44,4 @@ WITH (FORMAT csv, DELIMITER ',');
 2,The Godfather,Francis Ford Coppola,1972
 3,The Godfather: Part II,Francis Ford Coppola,1974
 4,The Dark Knight,Christopher Nolan,2008
-\.
-
-COPY director (id, name, birth_year)
-FROM stdin
-WITH (FORMAT csv, DELIMITER ',');
-1,Frank Darabont,1959
-2,Francis Ford Coppola,1939
-3,Christopher Nolan,1970
 \.

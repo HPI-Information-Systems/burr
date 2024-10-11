@@ -10,12 +10,12 @@ SET default_with_oids = false;
 
 CREATE TABLE movie (
     id int,
-    director VARCHAR(50)
-)
+    director int
+);
 
 CREATE TABLE director (
     id int
-)
+);
 
 ALTER TABLE Only movie
     ADD CONSTRAINT movie_primary_key PRIMARY KEY (id);
@@ -24,7 +24,15 @@ ALTER TABLE Only director
     ADD CONSTRAINT director_primary_key PRIMARY KEY (id);
 
 ALTER TABLE ONLY movie
-    ADD CONSTRAINT "FKdirector" FOREIGN KEY (director) REFERENCES director(name) ON DELETE CASCADE;
+    ADD CONSTRAINT "FKdirector" FOREIGN KEY (director) REFERENCES director(id) ON DELETE CASCADE;
+
+COPY director (id)
+FROM stdin
+WITH (FORMAT csv, DELIMITER ',');
+1
+2
+3
+\.
 
 COPY movie (id, director)
 FROM stdin
@@ -33,12 +41,4 @@ WITH (FORMAT csv, DELIMITER ',');
 2,2
 3,2
 4,3
-\.
-
-COPY director (id)
-FROM stdin
-WITH (FORMAT csv, DELIMITER ',');
-1
-2
-3
 \.

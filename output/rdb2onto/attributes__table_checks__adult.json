@@ -1,0 +1,27 @@
+{
+  "classes" : [ {
+    "id" : "@@adult.id@@/",
+    "name" : "ClassMap_adult",
+    "prefix" : "base",
+    "subClassOf" : null,
+    "join" : null,
+    "class" : "adult"
+  } ],
+  "data_properties" : [ {
+    "property" : "hasAge",
+    "type" : "xsd:integer",
+    "column" : "adult.Age",
+    "belongsToClassMap" : "ClassMap_adult"
+  }, {
+    "property" : "hasId",
+    "type" : "xsd:integer",
+    "column" : "adult.Id",
+    "belongsToClassMap" : "ClassMap_adult"
+  }, {
+    "property" : "hasName",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "adult.Name",
+    "belongsToClassMap" : "ClassMap_adult"
+  } ],
+  "object_properties" : [ ]
+}

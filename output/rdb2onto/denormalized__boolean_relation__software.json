@@ -1,0 +1,37 @@
+{
+  "classes" : [ {
+    "id" : "@@software.id@@/",
+    "name" : "ClassMap_software",
+    "prefix" : "base",
+    "subClassOf" : null,
+    "join" : null,
+    "class" : "software"
+  } ],
+  "data_properties" : [ {
+    "property" : "hasSupports_windows",
+    "type" : "xsd:boolean",
+    "column" : "software.Supports_windows",
+    "belongsToClassMap" : "ClassMap_software"
+  }, {
+    "property" : "hasSupports_linux",
+    "type" : "xsd:boolean",
+    "column" : "software.Supports_linux",
+    "belongsToClassMap" : "ClassMap_software"
+  }, {
+    "property" : "hasSupports_mac",
+    "type" : "xsd:boolean",
+    "column" : "software.Supports_mac",
+    "belongsToClassMap" : "ClassMap_software"
+  }, {
+    "property" : "hasName",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "software.Name",
+    "belongsToClassMap" : "ClassMap_software"
+  }, {
+    "property" : "hasId",
+    "type" : "xsd:integer",
+    "column" : "software.Id",
+    "belongsToClassMap" : "ClassMap_software"
+  } ],
+  "object_properties" : [ ]
+}

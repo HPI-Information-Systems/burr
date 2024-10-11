@@ -1,0 +1,801 @@
+@prefix d2rq: <http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#> .
+@prefix cmt: <http://cmt/> .
+@prefix map: <http://mapping/> .
+@prefix jdbc: <http://d2rq.org/terms/jdbc/> .
+@prefix base: </base/> .
+
+map:database a d2rq:Database;
+	d2rq:jdbcDriver "org.postgresql.Driver";
+	d2rq:jdbcDSN "jdbc:postgresql://localhost:5432/rdb2onto";
+	d2rq:username "lukaslaskowski";
+	jdbc:keepAlive "3600";				# sends noop-query every 3600 seconds
+	.
+
+map:ClassMap_friendship a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class denormalized_same_concept_in_same_table__friendship:friendship;
+    d2rq:uriPattern "friendship/@@friendship.person_id_a@@/@@friendship.person_id_b@@/";
+    
+    
+    .
+map:hasName_A_ClassMap_friendship_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_friendship;
+    d2rq:property base:hasName_A;
+    d2rq:column "friendship.name_a";
+    .
+
+map:hasAddress_A_ClassMap_friendship_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_friendship;
+    d2rq:property base:hasAddress_A;
+    d2rq:column "friendship.address_a";
+    .
+
+map:hasPerson_id_B_ClassMap_friendship_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_friendship;
+    d2rq:property base:hasPerson_id_B;
+    d2rq:column "friendship.person_id_b";
+    .
+
+map:hasperson_id_B_ClassMap_friendship_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_friendship;
+    d2rq:property base:hasperson_id_B;
+    d2rq:column "friendship.person_id_b";
+    .
+
+map:hasAddress_B_ClassMap_friendship_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_friendship;
+    d2rq:property base:hasAddress_B;
+    d2rq:column "friendship.address_b";
+    .
+
+map:hasPerson_id_A_ClassMap_friendship_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_friendship;
+    d2rq:property base:hasPerson_id_A;
+    d2rq:column "friendship.person_id_a";
+    .
+
+map:hasperson_id_A_ClassMap_friendship_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_friendship;
+    d2rq:property base:hasperson_id_A;
+    d2rq:column "friendship.person_id_a";
+    .
+
+map:hasName_B_ClassMap_friendship_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_friendship;
+    d2rq:property base:hasName_B;
+    d2rq:column "friendship.name_b";
+    .
+
+map:ClassMap_book a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class denormalized__multiple_concepts_same_table__library:book;
+    d2rq:uriPattern "book/@@book.isbn@@/";
+    
+    
+    .
+map:hasAuthor_ClassMap_book_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_book;
+    d2rq:property base:hasAuthor;
+    d2rq:column "book.author";
+    .
+
+map:hasCopies_available_ClassMap_book_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_book;
+    d2rq:property base:hasCopies_available;
+    d2rq:column "book.copies_available";
+    .
+
+map:hasAddress_ClassMap_book_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_book;
+    d2rq:property base:hasAddress;
+    d2rq:column "book.address";
+    .
+
+map:hasName_ClassMap_book_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_book;
+    d2rq:property base:hasName;
+    d2rq:column "book.name";
+    .
+
+map:hasPublication_year_ClassMap_book_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_book;
+    d2rq:property base:hasPublication_year;
+    d2rq:column "book.publication_year";
+    .
+
+map:hasIsbn_ClassMap_book_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_book;
+    d2rq:property base:hasIsbn;
+    d2rq:column "book.isbn";
+    .
+
+map:hasBirth_year_ClassMap_book_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_book;
+    d2rq:property base:hasBirth_year;
+    d2rq:column "book.birth_year";
+    .
+
+map:hasNationality_ClassMap_book_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_book;
+    d2rq:property base:hasNationality;
+    d2rq:column "book.nationality";
+    .
+
+map:ClassMap_process a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class denormalized__relation_of_concepts_in_same_table__process:process;
+    d2rq:uriPattern "process/@@process.process_id@@/";
+    
+    
+    .
+map:hasProcess_id_ClassMap_process_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_process;
+    d2rq:property base:hasProcess_id;
+    d2rq:column "process.process_id";
+    .
+
+map:hasArea_description_ClassMap_process_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_process;
+    d2rq:property base:hasArea_description;
+    d2rq:column "process.area_description";
+    .
+
+map:hasBusiness_capability_id_ClassMap_process_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_process;
+    d2rq:property base:hasBusiness_capability_id;
+    d2rq:column "process.business_capability_id";
+    .
+
+map:hasArea_name_ClassMap_process_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_process;
+    d2rq:property base:hasArea_name;
+    d2rq:column "process.area_name";
+    .
+
+map:hasCapability_description_ClassMap_process_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_process;
+    d2rq:property base:hasCapability_description;
+    d2rq:column "process.capability_description";
+    .
+
+map:hasCapability_name_ClassMap_process_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_process;
+    d2rq:property base:hasCapability_name;
+    d2rq:column "process.capability_name";
+    .
+
+map:hasBusiness_area_id_ClassMap_process_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_process;
+    d2rq:property base:hasBusiness_area_id;
+    d2rq:column "process.business_area_id";
+    .
+
+map:ClassMap_service a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class denormalized__boolean_relation__service:service;
+    d2rq:uriPattern "service/@@service.id@@/";
+    
+    
+    .
+map:hasRelevant_for_chemical_ClassMap_service_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_service;
+    d2rq:property base:hasRelevant_for_chemical;
+    d2rq:column "service.relevant_for_chemical";
+    .
+
+map:hasName_ClassMap_service_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_service;
+    d2rq:property base:hasName;
+    d2rq:column "service.name";
+    .
+
+map:hasId_ClassMap_service_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_service;
+    d2rq:property base:hasId;
+    d2rq:column "service.id";
+    .
+
+map:hasRelevant_for_pharma_ClassMap_service_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_service;
+    d2rq:property base:hasRelevant_for_pharma;
+    d2rq:column "service.relevant_for_pharma";
+    .
+
+map:hasRelevant_for_logistics_ClassMap_service_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_service;
+    d2rq:property base:hasRelevant_for_logistics;
+    d2rq:column "service.relevant_for_logistics";
+    .
+
+map:hasRelevant_for_aviation_ClassMap_service_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_service;
+    d2rq:property base:hasRelevant_for_aviation;
+    d2rq:column "service.relevant_for_aviation";
+    .
+
+map:hasRelevant_for_oil_and_gas_ClassMap_service_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_service;
+    d2rq:property base:hasRelevant_for_oil_and_gas;
+    d2rq:column "service.relevant_for_oil_and_gas";
+    .
+
+map:hasRelevant_for_automotive_ClassMap_service_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_service;
+    d2rq:property base:hasRelevant_for_automotive;
+    d2rq:column "service.relevant_for_automotive";
+    .
+
+map:hasRelevant_for_food_ClassMap_service_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_service;
+    d2rq:property base:hasRelevant_for_food;
+    d2rq:column "service.relevant_for_food";
+    .
+
+map:hasRelevant_for_energy_ClassMap_service_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_service;
+    d2rq:property base:hasRelevant_for_energy;
+    d2rq:column "service.relevant_for_energy";
+    .
+
+map:hasRelevant_for_retail_ClassMap_service_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_service;
+    d2rq:property base:hasRelevant_for_retail;
+    d2rq:column "service.relevant_for_retail";
+    .
+
+map:ClassMap_stadium a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class basic__table__stadium:stadium;
+    d2rq:uriPattern "stadium/@@stadium.id@@/";
+    
+    
+    .
+map:hasId_ClassMap_stadium_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_stadium;
+    d2rq:property base:hasId;
+    d2rq:column "stadium.id";
+    .
+
+map:ClassMap_movie a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class basic__relationship__movie_director_simple:movie;
+    d2rq:uriPattern "movie/@@movie.id@@/";
+    
+    
+    .
+map:ClassMap_director a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class basic__relationship__movie_director_simple:director;
+    d2rq:uriPattern "director/@@director.id@@/";
+    
+    
+    .
+map:hasId_ClassMap_director_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_director;
+    d2rq:property base:hasId;
+    d2rq:column "director.id";
+    .
+
+map:hasDirector_ClassMap_movie_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_movie;
+    d2rq:property base:hasDirector;
+    d2rq:column "movie.director";
+    .
+
+map:hasId_ClassMap_movie_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_movie;
+    d2rq:property base:hasId;
+    d2rq:column "movie.id";
+    .
+
+map:hasDirector_ClassMap_movie_ClassMap_director a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_movie;
+    d2rq:refersToClassMap map:ClassMap_director;
+    d2rq:property base:hasDirector;
+    d2rq:join "director.id  =  movie.director";
+    .
+
+map:ClassMap_shop a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class basic__table__shop:shop;
+    d2rq:uriPattern "shop/@@shop.id@@/";
+    
+    
+    .
+map:hasId_ClassMap_shop_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_shop;
+    d2rq:property base:hasId;
+    d2rq:column "shop.id";
+    .
+
+map:ClassMap_company a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class basic__table__company:company;
+    d2rq:uriPattern "company/@@company.id@@/";
+    
+    
+    .
+map:hasId_ClassMap_company_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_company;
+    d2rq:property base:hasId;
+    d2rq:column "company.id";
+    .
+
+map:ClassMap_person a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class basic__table__person:person;
+    d2rq:uriPattern "person/@@person.id@@/";
+    
+    
+    .
+map:hasId_ClassMap_person_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_person;
+    d2rq:property base:hasId;
+    d2rq:column "person.id";
+    .
+
+map:ClassMap_person a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class attributes__cryptic_attribute_name__person:person;
+    d2rq:uriPattern "person/@@person.nfsa====@@/";
+    
+    
+    .
+map:hasNZQW2ZI=_ClassMap_person_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_person;
+    d2rq:property base:hasNZQW2ZI=;
+    d2rq:column "person.nzqw2zi=";
+    .
+
+map:hasNFSA====_ClassMap_person_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_person;
+    d2rq:property base:hasNFSA====;
+    d2rq:column "person.nfsa====";
+    .
+
+map:hasMFSGI4TFONZQ====_ClassMap_person_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_person;
+    d2rq:property base:hasMFSGI4TFONZQ====;
+    d2rq:column "person.mfsgi4tfonzq====";
+    .
+
+map:hasMVWWC2LM_ClassMap_person_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_person;
+    d2rq:property base:hasMVWWC2LM;
+    d2rq:column "person.mvwwc2lm";
+    .
+
+map:hasOBUG63TFL5XHK3LCMVZA====_ClassMap_person_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_person;
+    d2rq:property base:hasOBUG63TFL5XHK3LCMVZA====;
+    d2rq:column "person.obug63tfl5xhk3lcmvza====";
+    .
+
+map:hasMFTWK===_ClassMap_person_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_person;
+    d2rq:property base:hasMFTWK===;
+    d2rq:column "person.mftwk===";
+    .
+
+map:ClassMap_beverage a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class denormalized__boolean_relation__beverages:beverage;
+    d2rq:uriPattern "beverage/@@beverage.id@@/";
+    
+    
+    .
+map:hasName_ClassMap_beverage_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_beverage;
+    d2rq:property base:hasName;
+    d2rq:column "beverage.name";
+    .
+
+map:hasContains_alcohol_ClassMap_beverage_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_beverage;
+    d2rq:property base:hasContains_alcohol;
+    d2rq:column "beverage.contains_alcohol";
+    .
+
+map:hasContains_gluten_ClassMap_beverage_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_beverage;
+    d2rq:property base:hasContains_gluten;
+    d2rq:column "beverage.contains_gluten";
+    .
+
+map:hasContains_nuts_ClassMap_beverage_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_beverage;
+    d2rq:property base:hasContains_nuts;
+    d2rq:column "beverage.contains_nuts";
+    .
+
+map:hasContains_caffeine_ClassMap_beverage_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_beverage;
+    d2rq:property base:hasContains_caffeine;
+    d2rq:column "beverage.contains_caffeine";
+    .
+
+map:hasContains_sugar_ClassMap_beverage_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_beverage;
+    d2rq:property base:hasContains_sugar;
+    d2rq:column "beverage.contains_sugar";
+    .
+
+map:hasContains_dairy_ClassMap_beverage_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_beverage;
+    d2rq:property base:hasContains_dairy;
+    d2rq:column "beverage.contains_dairy";
+    .
+
+map:hasId_ClassMap_beverage_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_beverage;
+    d2rq:property base:hasId;
+    d2rq:column "beverage.id";
+    .
+
+map:ClassMap_person a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class denormalized__composite_attributes__person:person;
+    d2rq:uriPattern "person/@@person.id@@/";
+    
+    
+    .
+map:hasAddress_ClassMap_person_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_person;
+    d2rq:property base:hasAddress;
+    d2rq:column "person.address";
+    .
+
+map:hasName_ClassMap_person_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_person;
+    d2rq:property base:hasName;
+    d2rq:column "person.name";
+    .
+
+map:hasId_ClassMap_person_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_person;
+    d2rq:property base:hasId;
+    d2rq:column "person.id";
+    .
+
+map:ClassMap_person a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class attributes__fk_pk_descriptive__receipt:person;
+    d2rq:uriPattern "person/@@person.name@@/";
+    
+    
+    .
+map:ClassMap_receipt a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class attributes__fk_pk_descriptive__receipt:receipt;
+    d2rq:uriPattern "receipt/@@receipt.id@@/";
+    
+    
+    .
+map:hasItem_ClassMap_receipt_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_receipt;
+    d2rq:property base:hasItem;
+    d2rq:column "receipt.item";
+    .
+
+map:hasName_ClassMap_person_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_person;
+    d2rq:property base:hasName;
+    d2rq:column "person.name";
+    .
+
+map:hasDate_ClassMap_receipt_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_receipt;
+    d2rq:property base:hasDate;
+    d2rq:column "receipt.date";
+    .
+
+map:hasId_ClassMap_receipt_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_receipt;
+    d2rq:property base:hasId;
+    d2rq:column "receipt.id";
+    .
+
+map:hasEmail_ClassMap_person_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_person;
+    d2rq:property base:hasEmail;
+    d2rq:column "person.email";
+    .
+
+map:hasReceived_by_ClassMap_receipt_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_receipt;
+    d2rq:property base:hasReceived_by;
+    d2rq:column "receipt.received_by";
+    .
+
+map:hasReceived_by_ClassMap_receipt_ClassMap_person a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_receipt;
+    d2rq:refersToClassMap map:ClassMap_person;
+    d2rq:property base:hasReceived_by;
+    d2rq:join "person.name  =  receipt.received_by";
+    .
+
+map:ClassMap_book a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class denormalized__same_concept_multiple_tables__library:book;
+    d2rq:uriPattern "book/@@book.isbn@@/";
+    
+    
+    .
+map:ClassMap_book_2 a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class denormalized__same_concept_multiple_tables__library:book_2;
+    d2rq:uriPattern "book_2/@@book_2.isbn@@/";
+    
+    
+    .
+map:hasCopies_available_ClassMap_book_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_book;
+    d2rq:property base:hasCopies_available;
+    d2rq:column "book.copies_available";
+    .
+
+map:hasCopies_available_ClassMap_book_2_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_book_2;
+    d2rq:property base:hasCopies_available;
+    d2rq:column "book_2.copies_available";
+    .
+
+map:hasName_ClassMap_book_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_book;
+    d2rq:property base:hasName;
+    d2rq:column "book.name";
+    .
+
+map:hasPublication_year_ClassMap_book_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_book;
+    d2rq:property base:hasPublication_year;
+    d2rq:column "book.publication_year";
+    .
+
+map:hasIsbn_ClassMap_book_2_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_book_2;
+    d2rq:property base:hasIsbn;
+    d2rq:column "book_2.isbn";
+    .
+
+map:hasPublication_year_ClassMap_book_2_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_book_2;
+    d2rq:property base:hasPublication_year;
+    d2rq:column "book_2.publication_year";
+    .
+
+map:hasIsbn_ClassMap_book_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_book;
+    d2rq:property base:hasIsbn;
+    d2rq:column "book.isbn";
+    .
+
+map:hasName_ClassMap_book_2_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_book_2;
+    d2rq:property base:hasName;
+    d2rq:column "book_2.name";
+    .
+
+map:ClassMap_software a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class denormalized__boolean_relation__software:software;
+    d2rq:uriPattern "software/@@software.id@@/";
+    
+    
+    .
+map:hasSupports_windows_ClassMap_software_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_software;
+    d2rq:property base:hasSupports_windows;
+    d2rq:column "software.supports_windows";
+    .
+
+map:hasSupports_linux_ClassMap_software_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_software;
+    d2rq:property base:hasSupports_linux;
+    d2rq:column "software.supports_linux";
+    .
+
+map:hasSupports_mac_ClassMap_software_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_software;
+    d2rq:property base:hasSupports_mac;
+    d2rq:column "software.supports_mac";
+    .
+
+map:hasName_ClassMap_software_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_software;
+    d2rq:property base:hasName;
+    d2rq:column "software.name";
+    .
+
+map:hasId_ClassMap_software_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_software;
+    d2rq:property base:hasId;
+    d2rq:column "software.id";
+    .
+
+map:ClassMap_adult a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class attributes__table_checks__adult:adult;
+    d2rq:uriPattern "adult/@@adult.id@@/";
+    
+    
+    .
+map:hasAge_ClassMap_adult_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_adult;
+    d2rq:property base:hasAge;
+    d2rq:column "adult.age";
+    .
+
+map:hasId_ClassMap_adult_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_adult;
+    d2rq:property base:hasId;
+    d2rq:column "adult.id";
+    .
+
+map:hasName_ClassMap_adult_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_adult;
+    d2rq:property base:hasName;
+    d2rq:column "adult.name";
+    .
+
+map:ClassMap_person_organization a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class denormalized__multiple_concepts_same_table__person_organization:person_organization;
+    d2rq:uriPattern "person_organization/@@person_organization.person_id@@/@@person_organization.organization_id@@/";
+    
+    
+    .
+map:hasPerson_role_ClassMap_person_organization_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_person_organization;
+    d2rq:property base:hasPerson_role;
+    d2rq:column "person_organization.person_role";
+    .
+
+map:hasOrganization_address_ClassMap_person_organization_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_person_organization;
+    d2rq:property base:hasOrganization_address;
+    d2rq:column "person_organization.organization_address";
+    .
+
+map:hasOrganization_id_ClassMap_person_organization_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_person_organization;
+    d2rq:property base:hasOrganization_id;
+    d2rq:column "person_organization.organization_id";
+    .
+
+map:hasOrganization_name_ClassMap_person_organization_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_person_organization;
+    d2rq:property base:hasOrganization_name;
+    d2rq:column "person_organization.organization_name";
+    .
+
+map:hasorganization_id_ClassMap_person_organization_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_person_organization;
+    d2rq:property base:hasorganization_id;
+    d2rq:column "person_organization.organization_id";
+    .
+
+map:hasPerson_phone_number_ClassMap_person_organization_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_person_organization;
+    d2rq:property base:hasPerson_phone_number;
+    d2rq:column "person_organization.person_phone_number";
+    .
+
+map:hasperson_id_ClassMap_person_organization_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_person_organization;
+    d2rq:property base:hasperson_id;
+    d2rq:column "person_organization.person_id";
+    .
+
+map:hasPerson_name_ClassMap_person_organization_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_person_organization;
+    d2rq:property base:hasPerson_name;
+    d2rq:column "person_organization.person_name";
+    .
+
+map:hasPerson_id_ClassMap_person_organization_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_person_organization;
+    d2rq:property base:hasPerson_id;
+    d2rq:column "person_organization.person_id";
+    .
+
+map:hasPerson_address_ClassMap_person_organization_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_person_organization;
+    d2rq:property base:hasPerson_address;
+    d2rq:column "person_organization.person_address";
+    .
+
+map:hasOrganization_phone_number_ClassMap_person_organization_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_person_organization;
+    d2rq:property base:hasOrganization_phone_number;
+    d2rq:column "person_organization.organization_phone_number";
+    .
+
+map:ClassMap_movie a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class basic__relationship__movie_director_with_attributes:movie;
+    d2rq:uriPattern "movie/@@movie.id@@/";
+    
+    
+    .
+map:ClassMap_director a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class basic__relationship__movie_director_with_attributes:director;
+    d2rq:uriPattern "director/@@director.name@@/";
+    
+    
+    .
+map:hasDirector_ClassMap_movie_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_movie;
+    d2rq:property base:hasDirector;
+    d2rq:column "movie.director";
+    .
+
+map:hasYear_ClassMap_movie_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_movie;
+    d2rq:property base:hasYear;
+    d2rq:column "movie.year";
+    .
+
+map:hasName_ClassMap_director_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_director;
+    d2rq:property base:hasName;
+    d2rq:column "director.name";
+    .
+
+map:hasBirth_year_ClassMap_director_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_director;
+    d2rq:property base:hasBirth_year;
+    d2rq:column "director.birth_year";
+    .
+
+map:hasId_ClassMap_movie_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_movie;
+    d2rq:property base:hasId;
+    d2rq:column "movie.id";
+    .
+
+map:hasTitle_ClassMap_movie_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_movie;
+    d2rq:property base:hasTitle;
+    d2rq:column "movie.title";
+    .
+
+map:hasDirector_ClassMap_movie_ClassMap_director a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_movie;
+    d2rq:refersToClassMap map:ClassMap_director;
+    d2rq:property base:hasDirector;
+    d2rq:join "director.name  =  movie.director";
+    .
+
+map:ClassMap_person a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class basic__attributes__person:person;
+    d2rq:uriPattern "person/@@person.id@@/";
+    
+    
+    .
+map:hasAddress_ClassMap_person_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_person;
+    d2rq:property base:hasAddress;
+    d2rq:column "person.address";
+    .
+
+map:hasName_ClassMap_person_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_person;
+    d2rq:property base:hasName;
+    d2rq:column "person.name";
+    .
+
+map:hasId_ClassMap_person_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_person;
+    d2rq:property base:hasId;
+    d2rq:column "person.id";
+    .
+
+map:hasPhone_ClassMap_person_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_person;
+    d2rq:property base:hasPhone;
+    d2rq:column "person.phone";
+    .
+

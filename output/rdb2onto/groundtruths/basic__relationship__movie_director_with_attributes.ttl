@@ -1,0 +1,57 @@
+@prefix d2rq: <http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#> .
+@prefix cmt: <http://cmt/> .
+@prefix map: <http://mapping/> .
+@prefix jdbc: <http://d2rq.org/terms/jdbc/> .
+@prefix base: </base/> .
+
+map:database a d2rq:Database;
+	d2rq:jdbcDriver "org.postgresql.Driver";
+	d2rq:jdbcDSN "jdbc:postgresql://localhost:5432/basic__relationship__movie_director_with_attributes";
+	d2rq:username "lukaslaskowski";
+	jdbc:keepAlive "3600";				# sends noop-query every 3600 seconds
+	.
+
+map:Movie a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:Movie;
+    d2rq:uriPattern "Movie/@@movie.id@@/";
+    
+    
+    .
+map:Director a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:Director;
+    d2rq:uriPattern "Director/@@director.id@@/";
+    
+    
+    .
+map:title_Movie_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Movie;
+    d2rq:property base:title;
+    d2rq:column "movie.title";
+    .
+
+map:year_Movie_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Movie;
+    d2rq:property base:year;
+    d2rq:column "movie.year";
+    .
+
+map:name_Director_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Director;
+    d2rq:property base:name;
+    d2rq:column "director.name";
+    .
+
+map:birth_year_Director_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Director;
+    d2rq:property base:birth_year;
+    d2rq:column "director.birth_year";
+    .
+
+map:directed_Director_Movie a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Director;
+    d2rq:refersToClassMap map:Movie;
+    d2rq:property base:directed;
+    .
+

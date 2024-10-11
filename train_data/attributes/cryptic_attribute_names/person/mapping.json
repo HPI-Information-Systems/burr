@@ -2,20 +2,22 @@
     "classes": [
         {
             "id": "@@person.NFSA====@@",
-            "class": "Person"
+            "class": "Person",
+            "name": "Person",
+            "prefix": "base"
         }
     ],
     "object_properties": [],
     "data_properties": [
         {
             "property": "name",
-            "belongsToClass": "Person",
+            "belongsToClassMap": "Person",
             "type": "string",
             "column": "person.NZQW2ZI="
         },
         {
             "property": "age",
-            "belongsToClass": "Person",
+            "belongsToClassMap": "Person",
             "type": "int",
             "column": "Person.MFTWK==="
         },

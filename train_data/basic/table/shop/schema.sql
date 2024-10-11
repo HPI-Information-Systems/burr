@@ -10,7 +10,7 @@ SET default_with_oids = false;
 
 CREATE TABLE shop (
     id int
-)
+);
 
 ALTER TABLE Only shop
     ADD CONSTRAINT shop_primary_key PRIMARY KEY (id);

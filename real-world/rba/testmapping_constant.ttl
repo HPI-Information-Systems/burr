@@ -4,6 +4,9 @@
 @prefix jdbc: <http://d2rq.org/terms/jdbc/> .
 @prefix rdfs: <http://rdfs/> .
 @prefix cmt: <http://cmt#> .
+@prefix : <http://example.org/> .
+
+:red a :Color.
 
 map:database a d2rq:Database;
 	d2rq:jdbcDriver "org.postgresql.Driver";
@@ -13,20 +16,15 @@ map:database a d2rq:Database;
 #	jdbc:keepAliveQuery "SELECT 1";		# optional custom noop-query
 	.
 
-map:BusinessCapability a d2rq:ClassMap;
-    d2rq:dataStorage map:database;
-    d2rq:uriPattern "#businesscapability/@@businesscapability.object_id_bc@@";
-    d2rq:class cmt:BusinessCapability;
-    .
 map:Test a d2rq:ClassMap;
     d2rq:dataStorage map:database;
-    d2rq:constantValue "#businesscapability/businesscapability.object_id_bc";
+    d2rq:constantValue :Color;
     d2rq:class cmt:Test;
     .
 
 map:hasBCCrossIndustry a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:BusinessCapability;
-    d2rq:refersToClassMap map:Test;
+    d2rq:belongsToClassMap map:Test;
+    d2rq:constantValue cmt:Test;
     d2rq:property cmt:hasBC;
     .
 

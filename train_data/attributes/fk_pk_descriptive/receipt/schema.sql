@@ -8,25 +8,21 @@ SET default_with_oids = false;
 
 CREATE TABLE person (
     name VARCHAR(50),
-    email VARCHAR(50),
-)
+    email VARCHAR(50)
+);
 
 CREATE TABLE receipt (
     id int,
     received_by VARCHAR(50),
     date DATE,
     item VARCHAR(50)
-)
+);
 
-ALTER TABLE Only person
-    ADD CONSTRAINT person_primary_key PRIMARY KEY (name);
+ALTER TABLE Only person ADD CONSTRAINT person_primary_key PRIMARY KEY (name);
 
-ALTER TABLE Only receipt
-    ADD CONSTRAINT receipt_primary_key PRIMARY KEY (id);
+ALTER TABLE Only receipt ADD CONSTRAINT receipt_primary_key PRIMARY KEY (id);
 
-
-ALTER TABLE ONLY receipt
-    ADD CONSTRAINT "FKpersonName" FOREIGN KEY (received_by) REFERENCES person(name) ON DELETE CASCADE;
+ALTER TABLE ONLY receipt ADD CONSTRAINT "FKpersonName" FOREIGN KEY (received_by) REFERENCES person(name) ON DELETE CASCADE;
 
 COPY person (name, email)
 FROM stdin
@@ -40,7 +36,7 @@ COPY receipt (id, received_by, date, item)
 FROM stdin
 WITH (FORMAT csv, DELIMITER ',');
 1,John Doe,2020-01-01,Ibuprofen
-1,John Doe,2022-01-01,Aspirin
-2,Jane Doe,2020-01-02,Citerizin
-3,Jim Doe,2020-01-03,Paracetamol
+2,John Doe,2022-01-01,Aspirin
+3,Jane Doe,2020-01-02,Citerizin
+4,Jim Doe,2020-01-03,Paracetamol
 \.

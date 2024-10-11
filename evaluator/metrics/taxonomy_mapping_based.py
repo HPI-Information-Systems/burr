@@ -33,18 +33,34 @@ class TaxonomyMappingBasedRecall():
 
     def score(self, learned_ontology: Mapping, referenced_ontology: Mapping) -> float:
         #intersect ontology
+        #todo alle gemeinsamen konzepte, basierend auf uripattern, sqljoin, sqlconiditon -> check sql column!
         shared_classes = set(learned_ontology.classes).intersection(set(referenced_ontology.classes))
         learned_ontology.classes = list(shared_classes)
         referenced_ontology.classes = list(shared_classes)
         learned_ontology.set_eq_strategy(classes=False)
         referenced_ontology.set_eq_strategy(classes=False)
+
+        #gleiche mit relationen -> alle gleichen relationen aber ohne domain und range
+        # was ist mit denen die keinen join oder so haben? -> wie werden die behandelt?
         shared_relations_referenced = set(set(learned_ontology.relations).intersection(set(referenced_ontology.relations)))
         shared_relations_learned = set(referenced_ontology.relations).intersection(set(learned_ontology.relations))
+
+        #shared classes that are at edges but not in the class list are removed
+        # es wird nur noch der subgraph betrachtet, der auch in den klassen vorkommt
+        # print(shared_relations_learned)
         learned_ontology.relations, edges_to_remove = filter_edges_with_missing_classes(list(shared_relations_learned), learned_ontology.classes)
+        # print("edges to remove", edges_to_remove)
         shared_relations_learned = list(set(shared_relations_learned) - set(edges_to_remove))
         referenced_ontology.relations, edges_to_remove = filter_edges_with_missing_classes(list(shared_relations_referenced), referenced_ontology.classes)
         shared_relations_referenced = list(set(shared_relations_referenced) - set(edges_to_remove))
         shared_elements = shared_relations_referenced
+        # print("shared_classes", shared_classes)
+        # auf diesen subgraphen wird nun precision und recall berechnet
+        for el in shared_elements:
+            # print("el", el)
+            # print("learned",learned_ontology)
+            # print("referenced",referenced_ontology)
+            print(LocalTaxonomyMappingBasedRecall().score(el, learned_ontology, referenced_ontology))
         res = list(map(lambda el: LocalTaxonomyMappingBasedRecall().score(el, learned_ontology, referenced_ontology), shared_elements))
         return np.mean(res)
     
@@ -115,5 +131,6 @@ class LocalTaxonomyMappingBasedRecall():
         return "LocalTaxonomyMappingBasedRecall"
     
 def filter_edges_with_missing_classes(edges: list[Relation], classes: list[ClassMap]):
+    #I do not deal with attributes (dataproperties) as I filter everything that has not a range. Does this make sense?
     return list(filter(lambda edge: edge.belongsToClassMap in classes and edge.refersToClassMap in classes and edge.refersToClassMap is not None, edges)), list(filter(lambda edge: edge.belongsToClassMap not in classes or edge.refersToClassMap not in classes or edge.refersToClassMap is None, edges))
     #return list(filter(lambda edge: edge.ref in classes and edge[1] in classes, edges))

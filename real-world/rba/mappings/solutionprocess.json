@@ -54,13 +54,13 @@
             "property": "isMemberOf",
             "belongsToClassMap": "SolutionProcess_0",
             "refersToClass": "Industry",
-            "condition": ["SPM.SP_Relevant_for_Automotive_Industry = 'Relevant'", "Ind.Industry_ID = 'Ind006'"]
+            "condition": ["SPM.SP_Relevant_for_Automotive = 'Relevant'", "Ind.Industry_ID = 'Ind006'"]
         },
         {
             "property": "isMemberOf",
             "belongsToClassMap": "SolutionProcess_0",
             "refersToClass": "Industry",
-            "condition": ["SPM.SP_Relevant_for_Professional_Services_Industry = 'Relevant'", "Ind.Industry_ID = 'Ind022'"]
+            "condition": ["SPM.SP_Relevant_for_Professional_Services = 'Relevant'", "Ind.Industry_ID = 'Ind022'"]
         },
         {
             "property": "isElementOf",
@@ -111,7 +111,7 @@
             "property": "hasGranularity",
             "belongsToClassMap": "SolutionProcess_0",
             "refersToClassMap": "SolutionArchitecture_Hybrid_SAR",
-            "condition": ["SPM.Reference_Architecture_Type = 'Hybrid'"] #jetzt wird aber das kreuzprodukt gebildet oder??, das sollte nur ein value sein
+            "condition": ["SPM.Reference_Architecture_Type = 'Hybrid'"]
         },
         {
             "property": "hasGranularity",
@@ -134,7 +134,7 @@
             "column": "SPM.Solution_Process_ID_1"   
         },
         {
-            "property":"Identifier",
+            "property": "Identifier",
             "belongsToClassMap": "SolutionProcess_2",
             "type": "string",
             "column": "SPM.Solution_Process_ID_2"
@@ -160,17 +160,17 @@
         {
             "property": "isElementOfType",
             "belongsToClassMap": "SolutionProcess_0",
-            "constantValue": "E2E Solution Process"
+            "constantValue": "E2E_Solution_Process"
         },
         {
             "property": "isElementOfType",
             "belongsToClassMap": "SolutionProcess_1",
-            "constantValue": "Solution Process Module"
+            "constantValue": "Solution_Process_Module"
         },
         {
             "property": "isElementOfType",
             "belongsToClassMap": "SolutionProcess_2",
-            "constantValue": "Solution Process Segment"
+            "constantValue": "Solution_Process_Segment"
         }
     ]
 }
