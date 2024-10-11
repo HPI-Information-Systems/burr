@@ -16,6 +16,10 @@ map:{% if mapping_name %}{{ mapping_name }}{% else %}{{ class_name }} {% endif %
     d2rq:join "{{ join }}";
     {%- endfor %}
     {%- endif %}
-    {% if parent_class %}d2rq:additionalClassDefinitionProperty map:{{ parent_class }}SubClassOf; ;{%- endif %}
+    {% if parent_classes %}
+    {%- for parent_class in parent_classes %}
+    d2rq:additionalClassDefinitionProperty map:{{mapping_name}}_SubClassOf_{{ parent_class }};
+    {%- endfor %}
+    {%- endif %}
     .
 

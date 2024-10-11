@@ -23,7 +23,10 @@ def parse_mapping_file(directory, database, output_name):
                 with open(os.path.join(directory, file), 'r') as f:
                     data = json.load(f)
                     for _cls in data["classes"]:
-                        text_file.write(parse_class_entry(_cls))
+                        cls_map = parse_class_entry(_cls)
+                        for cls_ in cls_map:
+                            print(cls_)
+                            text_file.write(cls_)
                     for data_prop in data["data_properties"]:
                         text_file.write(parse_property_bridge_entry(data_prop, meta["relation_prefix"]))
                     for obj_prop in data["object_properties"]:
@@ -45,10 +48,12 @@ def parse_class_entry(entry):
     #print("conditions", conditions) if "condition" in entry else None
     joins = entry["join"] if "join" in entry else None
     translate_with = entry["translateWith"] if "translateWith" in entry else None
-    parent_class = entry["subclassOf"][0] if "subclassOf" in entry else None
-    parent_class=None
+    parent_classes = entry["subclassOf"] if "subclassOf" in entry else None
+    print(parent_classes)
     datastorage = "database"
-    return ClassMap(mapping_id=mapping_name, prefix=prefix, class_uri=cls_, uriPattern=uri_pattern, condition=conditions, join=joins, datastorage=datastorage, parent_classes=parent_class, translate_with=translate_with).get_d2rq_mapping()
+    s = ClassMap(mapping_id=mapping_name, prefix=prefix, class_uri=cls_, uriPattern=uri_pattern, condition=conditions, join=joins, datastorage=datastorage, parent_classes=parent_classes, translate_with=translate_with).get_d2rq_mapping()
+    #print(s)
+    return s
 
 def parse_property_bridge_entry(entry, prefix):
     ##print("sdda",entry)
@@ -74,8 +79,9 @@ def parse_property_bridge_entry(entry, prefix):
     constant_value = entry["constantValue"] if "constantValue" in entry else None
     return Relation(prefix=prefix, mapping_id=mapping_name, property=property, constantValue=constant_value,belongsToClassMap=belongs_to_class_map, refersToClassMap=refers_to_class_map, join=joins, condition=conditions, column=column, datatype=datatype, inverse_of=inverse_of, translate_with=translate_with, sqlExpression=sqlExpression).get_d2rq_mapping()
 
-# parse_mapping_file("/Users/lukaslaskowski/Documents/HPI/KG/ontology_mappings/rdb2ontology/real-world/rba/mappings", "sap", "sap")
-parse_mapping_file("/Users/lukaslaskowski/Documents/HPI/KG/ontology_mappings/rdb2ontology/output/rdb2onto/sap.json", "sap", "sap_rdb2onto")
+# parse_mapping_file("/Users/lukaslaskowski/Documents/HPI/KG/ontology_mappings/rdb2ontology/real-world/mondial/mappings", "sap", "sap")
+parse_mapping_file("/Users/lukaslaskowski/Documents/HPI/KG/ontology_mappings/rdb2ontology/real-world/mondial/mappings", "mondialfk", "mondialtest")
+# parse_mapping_file("/Users/lukaslaskowski/Documents/HPI/KG/ontology_mappings/rdb2ontology/output/rdb2onto/sap.json", "sap", "sap_rdb2onto")
 # path = "/Users/lukaslaskowski/Documents/HPI/KG/ontology_mappings/rdb2ontology/output/rdb2onto"
 # for file in os.listdir(path):
 #     #print(os.path.splitext(os.path.basename(os.path.join(path, file)))[0])

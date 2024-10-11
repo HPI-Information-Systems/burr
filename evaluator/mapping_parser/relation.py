@@ -26,6 +26,7 @@ class Relation:
         self.translate_with = translate_with
         self.constantValue = constantValue
         self.set_eq_strategy(classes=False)
+        self.sql_expression = sqlExpression
         self.sql_sql_expression = self.parse_sql_expression(sqlExpression) if sqlExpression is not None else None
         if isinstance(join, list):
             self.sql_join = [self.parse_join(j) for j in join]

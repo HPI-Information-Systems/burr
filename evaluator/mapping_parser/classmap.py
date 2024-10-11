@@ -9,7 +9,6 @@ class ClassMap:
     uriPattern: str
     join: str
     class_uri: str
-    subclass: str# | list[str]
     condition: str
     def __init__(self, mapping_id, uriPattern, class_uri, join, parent_classes, condition, prefix, datastorage, translate_with) -> None:
         self.uriPattern = uriPattern
@@ -59,7 +58,18 @@ class ClassMap:
         return Join(SQLAttribute(left[0], left[1].lower()), SQLAttribute(right[0], right[1].lower()))
     
     def get_d2rq_mapping(self):
-        return  get_jinja_env() \
+        renders = []
+        if self.parent_classes is not None:
+            for parent in self.parent_classes:
+                renders.append(get_jinja_env() \
+                    .get_template('subclass.j2') \
+                    .render(
+                        mapping_name=self.mapping_id,
+                        parent_class = parent,
+                        class_name = self.mapping_id,
+                        prefix = self.prefix
+                    ))
+        classmap_render = get_jinja_env() \
                 .get_template('classmap.j2') \
                 .render(
                     class_name=self.class_uri,
@@ -67,12 +77,13 @@ class ClassMap:
                     uri_patterns=self.sql_uri_pattern,
                     #additional_property=self.additional_property,
                     conditions=self.sql_condition,
-                    parent_class=self.parent_classes,
+                    parent_classes=self.parent_classes,
                     joins = self.sql_join,
                     datastorage=self.datastorage,
                     prefix = self.prefix,
                     translate_with=self.translate_with
                 )
+        return renders + [classmap_render]
     
     def __eq__(self, other: object) -> bool:
         if not isinstance(other, ClassMap):

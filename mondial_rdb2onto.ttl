@@ -7,7 +7,7 @@
 
 map:database a d2rq:Database;
 	d2rq:jdbcDriver "org.postgresql.Driver";
-	d2rq:jdbcDSN "jdbc:postgresql://localhost:5432/mondialfk";
+	d2rq:jdbcDSN "jdbc:postgresql://localhost:5432/mondial";
 	d2rq:username "lukaslaskowski";
 	jdbc:keepAlive "3600";				# sends noop-query every 3600 seconds
 	.

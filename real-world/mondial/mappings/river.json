@@ -74,8 +74,8 @@
         },
         {
             "property": "locatedOnIsland",
-            "belongsToClass": "Mountain",
-            "refersToClassMap": "River1",
+            "belongsToClass": "River1",
+            "refersToClassMap": "Island",
             "join": [
                 "river.name = riveronisland.river",
                 "riveronisland.island = island.name"

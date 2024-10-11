@@ -2,6 +2,7 @@
 @prefix cmt: <http://cmt/> .
 @prefix map: <http://mapping/> .
 @prefix jdbc: <http://d2rq.org/terms/jdbc/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix mondial: </mondial/> .
 
 map:database a d2rq:Database;
@@ -14,7 +15,7 @@ map:database a d2rq:Database;
 map:Lake a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class mondial:Lake;
-    d2rq:uriPattern "Lake/@@lake.name@@/";
+    d2rq:uriPattern "/@@lake.name@@/";
     
     
     .
@@ -88,14 +89,14 @@ map:locatedOnIsland_Lake_Island a d2rq:PropertyBridge;
 map:Religion a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class mondial:Religion;
-    d2rq:uriPattern "Religion/@@religion.name@@/";
+    d2rq:uriPattern "/@@religion.name@@/";
     
     
     .
 map:BelievedBy a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class mondial:BelievedBy;
-    d2rq:uriPattern "BelievedBy/@@religion.name@@/@@religion.country@@/";
+    d2rq:uriPattern "/@@religion.name@@/@@religion.country@@/";
     
     
     .
@@ -148,7 +149,7 @@ map:believeInReligion_CountryFull_Religion_inverse a d2rq:PropertyBridge;
     .map:Sea a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class mondial:Sea;
-    d2rq:uriPattern "Sea/@@sea.name@@/";
+    d2rq:uriPattern "/@@sea.name@@/";
     
     
     .
@@ -197,14 +198,14 @@ map:mergesWith_Sea_Sea a d2rq:PropertyBridge;
 map:Language a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class mondial:Language;
-    d2rq:uriPattern "Language/@@language.name@@/";
+    d2rq:uriPattern "/@@language.name@@/";
     
     
     .
 map:SpokenBy a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class mondial:SpokenBy;
-    d2rq:uriPattern "SpokenBy/@@spoken.language@@/@@spoken.country@@/";
+    d2rq:uriPattern "/@@spoken.language@@/@@spoken.country@@/";
     
     
     .
@@ -256,11 +257,10 @@ map:speakLanguage_CountryFull_Language_inverse a d2rq:PropertyBridge;
     d2rq:property mondial:spokenInCountry;
     d2rq:join "country.code  =  spoken.country";
     d2rq:join "language.name  =  spoken.language";
-    .
-map:Source a d2rq:ClassMap;
+    .map:Source a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class mondial:Source;
-    d2rq:uriPattern "Source/@@river.name@@/";
+    d2rq:uriPattern "/@@river.name@@/";
     
     
     .
@@ -297,7 +297,7 @@ map:inMountains_Source_MountainRange a d2rq:PropertyBridge;
 map:City a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class mondial:City;
-    d2rq:uriPattern "City/@@city.country@@/@@city.province@@/@@city.name@@/";
+    d2rq:uriPattern "/@@city.country@@/@@city.province@@/@@city.name@@/";
     
     
     .
@@ -380,7 +380,7 @@ map:locatedOnIsland_City_Island a d2rq:PropertyBridge;
 map:Province a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class mondial:Province;
-    d2rq:uriPattern "Province/@@province.country@@/@@province.name@@/";
+    d2rq:uriPattern "/@@province.country@@/@@province.name@@/";
     
     
     .
@@ -444,9 +444,10 @@ map:hasCity_Province_City_inverse a d2rq:PropertyBridge;
 map:Estuary a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class mondial:Estuary;
-    d2rq:uriPattern "Estuary/@@river.name@@/";
+    d2rq:uriPattern "/@@river.name@@/";
+    
+    
     .
-
 map:elevation_Estuary_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:Estuary;
     d2rq:property mondial:elevation;
@@ -473,21 +474,21 @@ map:locatedIn_Estuary_Province a d2rq:PropertyBridge;
 map:PopulationCountCountry a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class mondial:PopulationCount;
-    d2rq:uriPattern "PopulationCount/@@countrypops.country@@/@@countrypops.year@@/";
+    d2rq:uriPattern "/@@countrypops.country@@/@@countrypops.year@@/";
     
     
     .
 map:PopulationCountProvince a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class mondial:PopulationCount;
-    d2rq:uriPattern "PopulationCount/@@provpops.country@@/@@provpops.province@@/@@provpops.year@@/";
+    d2rq:uriPattern "/@@provpops.country@@/@@provpops.province@@/@@provpops.year@@/";
     
     
     .
 map:PopulationCountCity a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class mondial:PopulationCount;
-    d2rq:uriPattern "PopulationCount/@@citypops.country@@/@@citypops.province@@/@@citypops.city@@/@@provpops.year@@/";
+    d2rq:uriPattern "/@@citypops.country@@/@@citypops.province@@/@@citypops.city@@/@@provpops.year@@/";
     
     
     .
@@ -554,14 +555,14 @@ map:hadPopulation_City_PopulationCountCity a d2rq:PropertyBridge;
 map:Island a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class mondial:Island;
-    d2rq:uriPattern "Island/@@island.name@@/";
+    d2rq:uriPattern "/@@island.name@@/";
     
     
     .
 map:Archipelago a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class mondial:Archipelago;
-    d2rq:uriPattern "Archipelago/@@island.islands@@/";
+    d2rq:uriPattern "/@@island.islands@@/";
     
     
     .
@@ -644,7 +645,7 @@ map:locatedInWater_Island_River1 a d2rq:PropertyBridge;
 map:Continent a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class mondial:Continent;
-    d2rq:uriPattern "Continent/@@continent.name@@/";
+    d2rq:uriPattern "/@@continent.name@@/";
     
     
     .
@@ -663,7 +664,7 @@ map:area_Continent_None a d2rq:PropertyBridge;
 map:Encompassed a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class mondial:Encompassed;
-    d2rq:uriPattern "Encompassed/@@encompasses.continent@@/@@encompasses.country@@/";
+    d2rq:uriPattern "/@@encompasses.continent@@/@@encompasses.country@@/";
     
     
     .
@@ -714,30 +715,38 @@ map:encompassed_CountryFull_Continent_inverse a d2rq:PropertyBridge;
     .map:Mountain a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class mondial:Mountain;
-    d2rq:uriPattern "Mountain/@@mountain.name@@/";
+    d2rq:uriPattern "/@@mountain.name@@/";
     
     
     .
-map:Volcano a d2rq:ClassMap;
+map:Volcano1_SubClassOf_Mountain a d2rq:AdditionalProperty;
+	d2rq:propertyName rdfs:SubClassOf;
+	d2rq:propertyValue mondial:Mountain;
+	.map:Volcano1 a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class mondial:Volcano;
-    d2rq:uriPattern "Volcano/@@mountain.name@@/";
+    d2rq:uriPattern "/@@mountain.name@@/";
     
     d2rq:condition "mountain.type = 'volcano'";
     
+    d2rq:additionalClassDefinitionProperty map:Volcano1_SubClassOf_Mountain;
     .
-map:Volcano a d2rq:ClassMap;
+map:Volcano2_SubClassOf_Mountain a d2rq:AdditionalProperty;
+	d2rq:propertyName rdfs:SubClassOf;
+	d2rq:propertyValue mondial:Mountain;
+	.map:Volcano2 a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class mondial:Volcano;
-    d2rq:uriPattern "Volcano/@@mountain.name@@/";
+    d2rq:uriPattern "/@@mountain.name@@/";
     
     d2rq:condition "mountain.type = 'volcanic'";
     
+    d2rq:additionalClassDefinitionProperty map:Volcano2_SubClassOf_Mountain;
     .
 map:MountainRange a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class mondial:MountainRange;
-    d2rq:uriPattern "MountainRange/@@mountain.mountains@@/";
+    d2rq:uriPattern "/@@mountain.mountains@@/";
     
     
     .
@@ -791,21 +800,21 @@ map:locatedOnIsland_Mountain_Island a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:Mountain;
     d2rq:refersToClassMap map:Island;
     d2rq:property mondial:locatedOnIsland;
-    d2rq:join "mountain.name = mountainonisland.mountain";
-    d2rq:join "mountainonisland.island = island.name";
+    d2rq:join "mountain.name  =  mountainonisland.mountain";
+    d2rq:join "mountainonisland.island  =  island.name";
     .
 
 map:Organization a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class mondial:Organization;
-    d2rq:uriPattern "Organization/@@organization.abbreviation@@/";
+    d2rq:uriPattern "/@@organization.abbreviation@@/";
     
     
     .
 map:Membership a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class mondial:Membership;
-    d2rq:uriPattern "Membership/@@ismember.country@@/@@ismember.organization@@/";
+    d2rq:uriPattern "/@@ismember.country@@/@@ismember.organization@@/";
     
     
     .
@@ -883,13 +892,14 @@ map:isMember_CountryFull_Organization_inverse a d2rq:PropertyBridge;
 map:River1 a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class mondial:River;
-    d2rq:uriPattern "River/@@river.name@@/";
+    d2rq:uriPattern "/@@river.name@@/";
+    
+    
     .
-
 map:River2 a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class mondial:River;
-    d2rq:uriPattern "River/@@river.river@@/";
+    d2rq:uriPattern "/@@river.river@@/";
     
     
     .
@@ -967,9 +977,9 @@ map:hasEstuary_River1_Estuary a d2rq:PropertyBridge;
     d2rq:property mondial:hasEstuary;
     .
 
-map:locatedOnIsland_Mountain_River1 a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:Mountain;
-    d2rq:refersToClassMap map:River1;
+map:locatedOnIsland_River1_Island a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:River1;
+    d2rq:refersToClassMap map:Island;
     d2rq:property mondial:locatedOnIsland;
     d2rq:join "river.name  =  riveronisland.river";
     d2rq:join "riveronisland.island  =  island.name";
@@ -978,7 +988,7 @@ map:locatedOnIsland_Mountain_River1 a d2rq:PropertyBridge;
 map:Border a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class mondial:Border;
-    d2rq:uriPattern "Border/@@borders.country1@@/@@borders.country2@@/";
+    d2rq:uriPattern "/@@borders.country1@@/@@borders.country2@@/";
     
     
     .
@@ -1005,7 +1015,7 @@ map:isBorderOf_Border_CountryFull a d2rq:PropertyBridge;
 map:Desert a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class mondial:Desert;
-    d2rq:uriPattern "Desert/@@desert.name@@/";
+    d2rq:uriPattern "/@@desert.name@@/";
     
     
     .
@@ -1040,14 +1050,14 @@ map:locatedIn_Desert_Province a d2rq:PropertyBridge;
 map:EthnicGroup a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class mondial:EthnicGroup;
-    d2rq:uriPattern "EthnicGroup/@@ethnicgroup.name@@/";
+    d2rq:uriPattern "/@@ethnicgroup.name@@/";
     
     
     .
 map:EthnicProportion a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class mondial:EthnicProportion;
-    d2rq:uriPattern "EthnicProportion/@@ethnicgroup.name@@/@@ethnicgroup.country@@/";
+    d2rq:uriPattern "/@@ethnicgroup.name@@/@@ethnicgroup.country@@/";
     
     
     .
@@ -1100,28 +1110,28 @@ map:belongToEthnicGroup_CountryFull_EthnicGroup_inverse a d2rq:PropertyBridge;
     .map:CountryFull a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class mondial:Country;
-    d2rq:uriPattern "Country/@@country.code@@/";
+    d2rq:uriPattern "/@@country.code@@/";
     
     
     .
 map:CountryPolitics a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class mondial:Country;
-    d2rq:uriPattern "Country/@@politics.country@@/";
+    d2rq:uriPattern "/@@politics.country@@/";
     
     
     .
 map:CountryDependent a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class mondial:Country;
-    d2rq:uriPattern "Country/@@politics.dependent@@/";
+    d2rq:uriPattern "/@@politics.dependent@@/";
     
     
     .
 map:PoliticalBody a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class mondial:PoliticalBody;
-    d2rq:uriPattern "PoliticalBody/@@politics.wasdependent@@/";
+    d2rq:uriPattern "/@@politics.wasdependent@@/";
     
     
     .
