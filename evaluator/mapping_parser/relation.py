@@ -1,5 +1,6 @@
 from evaluator.mapping_parser.sql_elements import SQLAttribute, Join, Condition
 from evaluator.mapping_parser.classmap import ClassMap
+from evaluator.mapping_parser.utils import parse_condition
 from evaluator.utils.get_jinja_env import get_jinja_env
 import re
 class Relation:
@@ -57,11 +58,7 @@ class Relation:
         return Join(SQLAttribute(left[0].lower(), left[1].lower()), SQLAttribute(right[0], right[1]))
     
     def parse_condition(self, condition):
-        operator = list(filter(lambda x: x in condition, ["=", ">", "<", "<=", ">=" "!="]))[0]
-        condition = condition.replace(" ", "").split(operator)
-        sql = list(filter(lambda x: "." in x, condition))[0]
-        value = list(filter(lambda x: "." not in x, condition))[0]
-        return Condition(SQLAttribute(sql.split(".")[0].lower(), sql.split(".")[1].lower()), operator, value)
+        return parse_condition(condition)
 
     def parse_column(self, column):
         column = column.split(".")

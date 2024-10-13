@@ -1,5 +1,7 @@
 from evaluator.mapping_parser.sql_elements import SQLAttribute, Join, Condition
 from evaluator.utils.get_jinja_env import get_jinja_env
+from evaluator.mapping_parser.utils import parse_condition
+
 
 from functools import reduce
 import re
@@ -33,13 +35,7 @@ class ClassMap:
         self.sql_uri_pattern: SQLAttribute = self.parse_uri_pattern(uriPattern)
 
     def parse_condition(self, condition):
-        operator = list(filter(lambda x: x in condition, ["=", ">", "<", "<=", ">=" "!="]))[0]
-        condition = condition.replace(" ", "").split(operator)
-        sql = list(filter(lambda x: "." in x, condition))[0]
-        value = list(filter(lambda x: "." not in x, condition))[0]
-        # print("dhjksdj", condition)
-        return Condition(SQLAttribute(sql.split(".")[0].lower(), sql.split(".")[1].lower()), operator, value)
-
+        return parse_condition(condition)
     
 
 

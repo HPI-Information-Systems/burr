@@ -25,19 +25,19 @@
             "property": "operates_on",
             "belongsToClass": "Software",
             "refersToClassMap": "OperatingSystemWindows",
-            "condition": "@@software.supports_windows@@ == True"
+            "condition": "@@software.supports_windows@@ = True"
         },
         {
             "property": "operates_on",
             "belongsToClass": "Software",
             "refersToClassMap": "OperatingSystemMacOS",
-            "condition": "@@software.supports_macos@@ == True"
+            "condition": "@@software.supports_macos@@ = True"
         },
         {
             "property": "operates_on",
             "belongsToClass": "Software",
             "refersToClassMap": "OperatingSystemLinux",
-            "condition": "@@software.supports_linux@@ == True"
+            "condition": "@@software.supports_linux@@ = True"
         }
     ],
     "data_properties": [

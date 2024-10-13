@@ -80,8 +80,8 @@ def parse_property_bridge_entry(entry, prefix):
     return Relation(prefix=prefix, mapping_id=mapping_name, property=property, constantValue=constant_value,belongsToClassMap=belongs_to_class_map, refersToClassMap=refers_to_class_map, join=joins, condition=conditions, column=column, datatype=datatype, inverse_of=inverse_of, translate_with=translate_with, sqlExpression=sqlExpression).get_d2rq_mapping()
 
 # parse_mapping_file("/Users/lukaslaskowski/Documents/HPI/KG/ontology_mappings/rdb2ontology/real-world/mondial/mappings", "sap", "sap")
-parse_mapping_file("/Users/lukaslaskowski/Documents/HPI/KG/ontology_mappings/rdb2ontology/real-world/mondial/mappings", "mondialfk", "mondialtest")
-# parse_mapping_file("/Users/lukaslaskowski/Documents/HPI/KG/ontology_mappings/rdb2ontology/output/rdb2onto/sap.json", "sap", "sap_rdb2onto")
+# parse_mapping_file("/Users/lukaslaskowski/Documents/HPI/KG/ontology_mappings/rdb2ontology/real-world/mondial/mappings", "mondialfk", "mondialtest")
+parse_mapping_file("/Users/lukaslaskowski/Documents/HPI/KG/ontology_mappings/rdb2ontology/train_data/denormalized/boolean_relation/beverages/mapping.json", "denormalized__boolean_relation__beverages", "denormalized__boolean_relation__beverages")
 # path = "/Users/lukaslaskowski/Documents/HPI/KG/ontology_mappings/rdb2ontology/output/rdb2onto"
 # for file in os.listdir(path):
 #     #print(os.path.splitext(os.path.basename(os.path.join(path, file)))[0])

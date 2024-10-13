@@ -730,6 +730,7 @@ map:Volcano1_SubClassOf_Mountain a d2rq:AdditionalProperty;
     d2rq:condition "mountain.type = 'volcano'";
     
     d2rq:additionalClassDefinitionProperty map:Volcano1_SubClassOf_Mountain;
+    d2rq:additionalClassDefinitionProperty map:Volcano2_SubClassOf_Mountain;
     .
 map:Volcano2_SubClassOf_Mountain a d2rq:AdditionalProperty;
 	d2rq:propertyName rdfs:SubClassOf;

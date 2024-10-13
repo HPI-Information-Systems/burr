@@ -15,7 +15,8 @@ class Mapping:
         self.graph.parse(mapping_file)
         self.classes = self.get_classes()
         self.relations = self.get_relations()
-        #[self.convert_subclass_to_relations(class_) for class_ in self.classes]
+        for class_ in self.classes:
+            self.convert_subclass_to_relations(class_) 
     
     def get_context_elements(self, schema_element):
         if schema_element in self.classes:
@@ -34,6 +35,15 @@ class Mapping:
             if getattr(class_, attribute) == id:
                 return class_
         return None
+    
+    def get_classes(self):
+        return self.classes
+    
+    def get_attributes(self):
+        return list(filter(lambda rel: rel.refersToClassMap is None, self.relations))
+    
+    def get_relations(self):
+        return list(filter(lambda rel: rel.refersToClassMap is not None, self.relations))
     
     def get_classes_connected_to_class(self, class_: ClassMap):
         outgoing_classes = [relation.refersToClassMap for relation in self.relations if relation.belongsToClassMap == class_]
@@ -67,12 +77,10 @@ class Mapping:
                 if "d2rq:additionalClassDefinitionProperty" in class_map.keys():
                     if isinstance(class_map["d2rq:additionalClassDefinitionProperty"], list):
                         for el in class_map["d2rq:additionalClassDefinitionProperty"]:
-                            parent_classes.append(self.parse_additionalClassDefinitionProperty(el, self.graph))
+                            parent_classes.append(self.parse_additionalClassDefinitionProperty(el))
                     else:
-                        parent_classes = [self.parse_additionalClassDefinitionProperty(class_map["d2rq:additionalClassDefinitionProperty"], self.graph)]
-                print(class_map)
-                classes.append(
-                        ClassMap(
+                        parent_classes = [self.parse_additionalClassDefinitionProperty(class_map["d2rq:additionalClassDefinitionProperty"])]
+                classes.append(ClassMap(
                             #fix first three
                             prefix="mondial",
                             datastorage="database",
@@ -80,14 +88,13 @@ class Mapping:
                             mapping_id=class_map["mapping_id"],
                             uriPattern=class_map["d2rq:uriPattern"] if "d2rq:uriPattern" in class_map.keys() else None,
                             class_uri=class_map["d2rq:class"] if "d2rq:class" in class_map.keys() else None,
-
                             #additionalClassDefinitionProperty=class_map["d2rq:additionalClassDefinitionProperty"] if "d2rq:additionalClassDefinitionProperty" in class_map.keys() else None,
                             join=class_map["d2rq:join"] if "d2rq:join" in class_map.keys() else None,
                             condition=class_map["d2rq:condition"] if "d2rq:condition" in class_map.keys() else None,
                             parent_classes=parent_classes,
                             #graph = self.graph
-                            ),
-                        )
+                            ))
+                        
         return classes
     
     def parse_additionalClassDefinitionProperty(self, uri):
@@ -103,8 +110,7 @@ class Mapping:
         properties = ["d2rq:property", "d2rq:belongsToClassMap", "d2rq:refersToClassMap", "d2rq:join", "d2rq:column", "d2rq:sqlExpression"]
         property_bridges = self.query_properties("PropertyBridge", properties)
         for property_bridge in property_bridges:
-            relations.append(
-                Relation(
+            relations.append(Relation(
                     prefix="mondial",
                     mapping_id=property_bridge["mapping_id"],
                     property=property_bridge["d2rq:property"] if "d2rq:property" in property_bridge.keys() else None,
@@ -113,22 +119,22 @@ class Mapping:
                     sqlExpression=property_bridge["d2rq:sqlExpression"] if "d2rq:sqlExpression" in property_bridge.keys() else None,
                     join=property_bridge["d2rq:join"] if "d2rq:join" in property_bridge.keys() else None,
                     column=property_bridge["d2rq:column"] if "d2rq:column" in property_bridge.keys() else None,
-                )
-            )
+                ))
         return relations
 
     def convert_subclass_to_relations(self, class_: ClassMap):
-        for parent_class in class_.subclasses if class_.parent_classes is not None else []:
+        for parent_class in class_.parent_classes if class_.parent_classes is not None else []:
             parent_class = self.__mapping_id_to_class(parent_class, "class_uri")
             # print(parent_class)
             # print(class_)
             # print("\n")
             self.relations.append(
                 Relation(
+                    prefix="base",
                     mapping_id=parent_class.mapping_id,
-                    property="SubclassOf",
-                    belongsToClassMap=parent_class,
-                    refersToClassMap=class_,
+                    property="subclassOf",
+                    belongsToClassMap=class_,
+                    refersToClassMap=parent_class,
                     join=None,
                     column=None,
                 )

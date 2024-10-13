@@ -5,17 +5,9 @@ class MappingBasedPrecision(Metric):
     def __init__(self):
         super(MappingBasedPrecision, self).__init__()
 
-    def score(self, learned_ontology: Mapping, referenced_ontology: Mapping) -> float:
-        #classes = set(learned_ontology.classes).intersection(set(referenced_ontology.classes)) this does not work because if multiple concepts have the same mapping query they get removed becuase of set creation
-        classes = [x for x in referenced_ontology.classes if x in learned_ontology.classes]
-
-        #relations = set(learned_ontology.relations).intersection(set(referenced_ontology.relations))
-        relations = [x for x in referenced_ontology.relations if x in learned_ontology.relations]
-        #oru
-        #print(classes)
-        #print("\n")
-        #print(relations)
-        return (len(classes) + len(relations)) / (len(learned_ontology.classes) + len(learned_ontology.relations))
+    def score(self, el1: Mapping, el2: Mapping) -> float:
+        shared_elements = [x for x in el2.classes if x in el1.classes]
+        return len(shared_elements) / (len(el1) + len(el1))
     
     def __str__(self):
         return "MappingBasedPrecision"
@@ -24,12 +16,9 @@ class MappingBasedRecall(Metric):
     def __init__(self):
         super(MappingBasedRecall, self).__init__()
 
-    def score(self, learned_ontology: Mapping, referenced_ontology: Mapping) -> float:
-        #classes = set(learned_ontology.classes).intersection(set(referenced_ontology.classes))
-        classes = [x for x in referenced_ontology.classes if x in learned_ontology.classes]
-        #relations = set(learned_ontology.relations).intersection(set(referenced_ontology.relations))
-        relations = [x for x in referenced_ontology.relations if x in learned_ontology.relations]
-        return (len(classes) + len(relations)) / (len(referenced_ontology.classes) + len(referenced_ontology.relations))
+    def score(self, el1, el2) -> float:
+        shared_elements = [x for x in el2.classes if x in el1.classes]
+        return len(shared_elements) / (len(el2) + len(el2))
     
     def __str__(self):
         return "MappingBasedRecall"

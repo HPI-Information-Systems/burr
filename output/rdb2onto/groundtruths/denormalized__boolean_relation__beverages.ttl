@@ -2,6 +2,7 @@
 @prefix cmt: <http://cmt/> .
 @prefix map: <http://mapping/> .
 @prefix jdbc: <http://d2rq.org/terms/jdbc/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix base: </base/> .
 
 map:database a d2rq:Database;
@@ -14,7 +15,7 @@ map:database a d2rq:Database;
 map:Beverage a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:Beverage;
-    d2rq:uriPattern "Beverage/@@beverage.id@@/";
+    d2rq:uriPattern "/@@beverage.id@@/";
     
     
     .
@@ -64,41 +65,41 @@ map:contains_Beverage_IngredientAlcohol a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:Beverage;
     d2rq:refersToClassMap map:IngredientAlcohol;
     d2rq:property base:contains;
-    d2rq:condition "@@beverage.contains_alcohol@@ = ";
+    d2rq:condition "@@beverage.contains_alcohol@@ = True";
     .
 
 map:contains_Beverage_IngredientCaffeine a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:Beverage;
     d2rq:refersToClassMap map:IngredientCaffeine;
     d2rq:property base:contains;
-    d2rq:condition "@@beverage.contains_caffeine@@ = ";
+    d2rq:condition "@@beverage.contains_caffeine@@ = True";
     .
 
 map:contains_Beverage_IngredientSugar a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:Beverage;
     d2rq:refersToClassMap map:IngredientSugar;
     d2rq:property base:contains;
-    d2rq:condition "@@beverage.contains_sugar@@ = ";
+    d2rq:condition "@@beverage.contains_sugar@@ = True";
     .
 
 map:contains_Beverage_IngredientDairy a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:Beverage;
     d2rq:refersToClassMap map:IngredientDairy;
     d2rq:property base:contains;
-    d2rq:condition "@@beverage.contains_dairy@@ = ";
+    d2rq:condition "@@beverage.contains_dairy@@ = True";
     .
 
 map:contains_Beverage_IngredientGluten a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:Beverage;
     d2rq:refersToClassMap map:IngredientGluten;
     d2rq:property base:contains;
-    d2rq:condition "@@beverage.contains_gluten@@ = ";
+    d2rq:condition "@@beverage.contains_gluten@@ = True";
     .
 
 map:contains_Beverage_IngredientNuts a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:Beverage;
     d2rq:refersToClassMap map:IngredientNuts;
     d2rq:property base:contains;
-    d2rq:condition "@@beverage.contains_nuts@@ = ";
+    d2rq:condition "@@beverage.contains_nuts@@ = True";
     .
 
