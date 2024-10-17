@@ -3,19 +3,18 @@ from typing import List
 
 from evaluator.mapping_parser.classmap import ClassMap
 from evaluator.mapping_parser.relation import Relation
+from evaluator.mapping_parser.mapping.BaseMapping import BaseMapping
 
-class Mapping:
-    def __init__(self, mapping_file) -> None:
-        self.classes: List[ClassMap]
-        self.relations: List[Relation]
-        self.__parse_mapping(mapping_file)
+class D2RQMapping(BaseMapping):
+    def __init__(self, mapping_content, database) -> None:
+        super.__init__(mapping_content, database)
 
-    def __parse_mapping(self, mapping_file):
+    def parse_mapping(self, mapping_content):
         self.graph = Graph()
-        self.graph.parse(mapping_file)
-        self.classes = self.get_classes()
-        self.relations = self.get_relations()
-        for class_ in self.classes:
+        self.graph.parse(mapping_content)
+        self.classes = self.parse_classes()
+        self.relations = self.parse_relations()
+        for class_ in self.get_classes():
             self.convert_subclass_to_relations(class_) 
     
     def get_context_elements(self, schema_element):
@@ -68,7 +67,7 @@ class Mapping:
         # ingoing_relations = [mapping_id_to_relation(relation.belongsToClassMap) for relation in self.relations if relation.refersToClassMap == relation.mapping_id]
         return list(set(relations_of_outgoing_class + relations_of_ingoing_class))
     
-    def get_classes(self) -> List[str]:
+    def parse_classes(self) -> List[str]:
         classes = []
         properties = ["d2rq:uriPattern", "d2rq:class", "d2rq:additionalClassDefinitionProperty", "d2rq:condition"]
         class_maps = self.query_properties("ClassMap", properties)
@@ -105,7 +104,7 @@ class Mapping:
         res = [obj[0].n3() for obj in self.graph.query(query)]
         return res if len(res)>1 else res[0]
 
-    def get_relations(self):
+    def parse_relations(self):
         relations = []
         properties = ["d2rq:property", "d2rq:belongsToClassMap", "d2rq:refersToClassMap", "d2rq:join", "d2rq:column", "d2rq:sqlExpression"]
         property_bridges = self.query_properties("PropertyBridge", properties)

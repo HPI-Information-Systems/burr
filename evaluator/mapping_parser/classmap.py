@@ -1,9 +1,7 @@
-from evaluator.mapping_parser.sql_elements import SQLAttribute, Join, Condition
+from evaluator.mapping_parser.sql_elements import SQLAttribute, Join
 from evaluator.utils.get_jinja_env import get_jinja_env
 from evaluator.mapping_parser.utils import parse_condition
 
-
-from functools import reduce
 import re
 
 class ClassMap:
@@ -96,6 +94,9 @@ class ClassMap:
             tuple(self.sql_uri_pattern) if isinstance(self.sql_uri_pattern, list) else self.sql_uri_pattern,
             self.sql_join))
         #return hash((self.sql_condition, self.sql_uri_pattern, self.sql_join))
+
+    def __str__(self):
+        return self.get_d2rq_mapping()
 
     def __repr__(self):
         return f"ClassMap(uriPattern={self.uriPattern}, class_uri={self.class_uri})"

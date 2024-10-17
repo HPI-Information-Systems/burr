@@ -95,6 +95,9 @@ class Relation:
         columns_hash = hash(self.sql_column) if self.sql_column is not None else 0
         return hash((joins_hash, columns_hash))
     
+    def __str__(self):
+        return self.get_d2rq_mapping()
+
     def __repr__(self):
         return f"Relation(property={self.property}, belongsToClassMap={self.belongsToClassMap}, refersToClassMap={self.refersToClassMap}, eq_strategy={self._eq_strategy})"
     
