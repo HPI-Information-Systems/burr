@@ -1,0 +1,1 @@
+{"cls_precision": 0.5, "cls_recall": 0.5, "cls_f1": 0.5, "rel_precision": 0.5, "rel_recall": 0.5, "rel_f1": 0.5, "attr_precision": 0.3333333333333333, "attr_recall": 0.5, "attr_f1": 0.4, "_timestamp": 1729172878.844474, "_runtime": 15.653272151947021, "_step": 0, "_wandb": {"runtime": 15}}

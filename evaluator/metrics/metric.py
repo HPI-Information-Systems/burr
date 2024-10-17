@@ -1,13 +1,13 @@
 from abc import ABC, abstractmethod
 from typing import Any
-from evaluator.mapping_parser.mapping import Mapping
+from evaluator.mapping_parser.mapping import D2RQMapping
 
 class Metric(ABC):
     def __call__(self, learned_ontology, referenced_ontology, **kwargs) -> float:
         return self.score(learned_ontology, referenced_ontology)#
     
     @abstractmethod
-    def score(self, learned_ontology: Mapping, referenced_ontology: Mapping) -> float:
+    def score(self, learned_ontology: D2RQMapping, referenced_ontology: D2RQMapping) -> float:
         ...
 
 class F1Score():

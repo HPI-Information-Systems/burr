@@ -6,14 +6,15 @@ from evaluator.mapping_parser.relation import Relation
 from evaluator.mapping_parser.mapping.BaseMapping import BaseMapping
 
 class D2RQMapping(BaseMapping):
-    def __init__(self, mapping_content, database) -> None:
-        super.__init__(mapping_content, database)
+    def __init__(self, mapping_content, database, meta) -> None:
+        super().__init__(mapping_content, database, meta)
 
     def parse_mapping(self, mapping_content):
         self.graph = Graph()
-        self.graph.parse(mapping_content)
+        self.graph.parse(data=mapping_content, format="turtle")
         self.classes = self.parse_classes()
         self.relations = self.parse_relations()
+        self.translation_tables = []
         for class_ in self.get_classes():
             self.convert_subclass_to_relations(class_) 
     
@@ -33,16 +34,7 @@ class D2RQMapping(BaseMapping):
             #print(class_[attribute], id)
             if getattr(class_, attribute) == id:
                 return class_
-        return None
-    
-    def get_classes(self):
-        return self.classes
-    
-    def get_attributes(self):
-        return list(filter(lambda rel: rel.refersToClassMap is None, self.relations))
-    
-    def get_relations(self):
-        return list(filter(lambda rel: rel.refersToClassMap is not None, self.relations))
+        return None 
     
     def get_classes_connected_to_class(self, class_: ClassMap):
         outgoing_classes = [relation.refersToClassMap for relation in self.relations if relation.belongsToClassMap == class_]

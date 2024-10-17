@@ -1,0 +1,48 @@
+{
+    "os": "macOS-13.5-x86_64-i386-64bit",
+    "python": "3.9.16",
+    "heartbeatAt": "2024-10-17T12:55:56.923475",
+    "startedAt": "2024-10-17T12:55:56.082494",
+    "docker": null,
+    "cuda": null,
+    "args": [
+        "--scenario",
+        "base_experiment",
+        "--tag",
+        "test",
+        "--wandb"
+    ],
+    "state": "running",
+    "program": "/Users/lukaslaskowski/Documents/HPI/KG/ontology_mappings/rdb2ontology/evaluator/experimenter/experiment_script.py",
+    "codePath": "evaluator/experimenter/experiment_script.py",
+    "git": {
+        "remote": "git@github.com:HPI-Information-Systems/rdb2ontology.git",
+        "commit": "59e1b1c59b5d02c0bdca3520af77e7988ad828e6"
+    },
+    "email": "lasklu@gmail.com",
+    "root": "/Users/lukaslaskowski/Documents/HPI/KG/ontology_mappings/rdb2ontology",
+    "host": "Lukass-MacBook-Air.local",
+    "username": "lukaslaskowski",
+    "executable": "/usr/local/Caskroom/miniconda/base/envs/py39/bin/python3",
+    "cpu_count": 8,
+    "cpu_count_logical": 8,
+    "cpu_freq": {
+        "current": 2400,
+        "min": 2400,
+        "max": 2400
+    },
+    "cpu_freq_per_core": [
+        {
+            "current": 2400,
+            "min": 2400,
+            "max": 2400
+        }
+    ],
+    "disk": {
+        "total": 460.4317207336426,
+        "used": 11.119464874267578
+    },
+    "memory": {
+        "total": 24.0
+    }
+}

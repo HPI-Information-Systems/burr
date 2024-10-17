@@ -6,28 +6,23 @@ from rdflib import Graph
 from evaluator.mapping_parser.classmap import ClassMap
 from evaluator.mapping_parser.relation import Relation
 from evaluator.mapping_parser.translationtable import TranslationTable
-from evaluator.utils.get_jinja_env import get_jinja_env
 from evaluator.mapping_parser.mapping.D2RQMapping import D2RQMapping
 from evaluator.mapping_parser.mapping.BaseMapping import BaseMapping
 
 
 class JsonMapping(BaseMapping):
     def __init__(self, mapping_content, database, meta) -> None:
-        super.__init__(mapping_content, database)
-        self.classes = []
-        self.relations = []
-        self.translation_tables = []
-        # self.meta = self.parse_meta(meta, is_directory) #is this really mapping_file?
         self.meta = meta
         self.database = database
-        self.ttl = self.create_ttl_string()
+        super().__init__(mapping_content, database, meta)
+        # self.meta = self.parse_meta(meta, is_directory) #is this really mapping_file?
+        self.ttl = self.create_ttl_string(self.database)
 
     def parse_mapping(self, data):
         for _cls in data["classes"]:
-            cls_map = self.parse_class_entry(_cls)
-            for cls_ in cls_map:
-                self.classes.append(cls_)
+            self.classes.append(self.parse_class_entry(_cls))
         for data_prop in data["data_properties"]:
+            print(data_prop, self.meta["relation_prefix"])
             attribute = self.parse_property_bridge_entry(data_prop, self.meta["relation_prefix"])
             self.relations.append(attribute)
         for obj_prop in data["object_properties"]:
@@ -49,21 +44,9 @@ class JsonMapping(BaseMapping):
         graph.serialize(destination=output_file, format="turtle")
     
     def to_D2RQ_Mapping(self):
-        return D2RQMapping(self.create_ttl_string(self.meta, self.database), self.database)
+        return D2RQMapping(self.create_ttl_string(self.database), self.database, self.meta)
 
-    def create_ttl_string(self, meta, database):
-        output = ""
-        prefixes = meta["prefixes"]
-        output += self.build_meta_data(prefixes, database)
-        for _cls in self.classes:
-            output += str(_cls)
-        for prop in self.relations:
-            output += str(prop)
-        for translation_table in self.translation_tables:
-            output += str(translation_table)
-
-    def build_meta_data(self, database): return get_jinja_env().get_template('meta.j2').render(prefixes=self.meta["prefixes"], database=database, database_username="lukaslaskowski") 
-
+    
     def parse_translation_table(self, table):
         translation_table = TranslationTable(mapping_name=table["name"], translation_table=table["translations"])
         self.translation_tables.append(translation_table)

@@ -1,41 +1,63 @@
 import wandb
 import json
 
-from evaluator.metrics import MappingBasedPrecision, MappingBasedRecall, TaxonomyMappingBasedRecall, TaxonomyMappingBasedPrecision, F1Score
+from evaluator.metrics.caclulate_metrics import calculate_metrics
 from evaluator.mapping_parser.mapping import JsonMapping, D2RQMapping
 
 class Experiment:
-    def __init__(self, name, database_name, database, solution, evaluator):
+    def __init__(self, name, database_name, database, solution, sql_file_path, meta_file_path, groundtruth_mapping_path, tag, use_wandb=False):
+        run = wandb.init(
+            project="rdb2onto",
+            mode = "online" if use_wandb else "disabled",
+            tags=[tag],
+    		entity="Lasklu",
+            config={
+                "system": solution.solution_name,
+                "scenario": database_name,
+                "sql_file_path": sql_file_path,
+                "groundtruth_mapping_path": groundtruth_mapping_path,
+                "meta_file_path": meta_file_path
+            })
         self.name = name
         self.database = database
         self.database_name = database_name
+        self.sql_file_path = sql_file_path
+        self.groundtruth_mapping_path = groundtruth_mapping_path
+        with open(meta_file_path) as json_file:
+                self.meta = json.load(json_file)
         self.solution = solution
-        self.evaluator = evaluator
 
-    def setup(self, sql_file_path, groundtruth_mapping_path):
-        file_ending_is_json =  groundtruth_mapping_path.endswith(".json")
+    def setup(self):
+        print("Setting up experiment")
+        file_ending_is_json =  self.groundtruth_mapping_path.endswith(".json")
+        print("Loading groundtruth mapping")
         if file_ending_is_json:
-            data = json.load(groundtruth_mapping_path)
-            self.groundtruth_mapping = JsonMapping(data, self.database_name, meta).to_D2RQ_Mapping()
-        elif groundtruth_mapping_path.endswith(".ttl"):
-            self.groundtruth_mapping = D2RQMapping(groundtruth_mapping_path, self.database_name)
+            with open(self.groundtruth_mapping_path) as json_file:
+                data = json.load(json_file)
+            
+            self.groundtruth_mapping = JsonMapping(data, self.database_name, self.meta).to_D2RQ_Mapping()
+            print("JSONGroundtruth mapping loaded")
+        elif self.groundtruth_mapping_path.endswith(".ttl"):
+            self.groundtruth_mapping = D2RQMapping(self.groundtruth_mapping_path, self.database_name)
+            print("TTLGroundtruth mapping loaded")
         else:
             raise ValueError("File ending not supported")
-        self.database.update_database(sql_file_path)        
+        print("Rewriting database")
+        self.database.update_database(self.sql_file_path)        
+        print("Experiment setup complete")
     
-    def run(self, solution_config, sql_file_path):
-        self.setup(sql_file_path, )
-        output_mapping = self.solution.run(**solution_config)
+    def run(self, solution_config):
+        self.setup()
+        train_config = solution_config["train"]
+        test_config = solution_config["test"]
+        trained_model, training_time = self.solution.train(**train_config)
+        print(test_config)
+        print(self.database_name)
+        output_mapping, inference_time = self.solution.test(**test_config, model=trained_model, meta=self.meta, database_name=self.database_name)
         metrics = self.evaluate(self.groundtruth_mapping, output_mapping)    
-        return {"output_mapping": output_mapping, "metrics": metrics}  
+        return {"output_mapping": output_mapping, "metrics": metrics, "runtime": {"training": training_time, "inference": inference_time}}  
     
-    def evaluate(self, groundtruth_mapping, output_mapping):
-        precision = MappingBasedPrecision()(groundtruth_mapping, output_mapping)
-        recall = MappingBasedRecall()(groundtruth_mapping, output_mapping)
-        f1 = F1Score()(precision, recall)
-        tr = TaxonomyMappingBasedRecall().score(groundtruth_mapping, output_mapping)
-        tp = TaxonomyMappingBasedPrecision()(groundtruth_mapping, output_mapping)
-        tf1 = F1Score()(tp, tr)
-        metrics = {"precision": precision, "recall": recall, "f1": f1, "taxonomy_precision": tp, "taxonomy_recall": tr, "taxonomy_f1": tf1}
+    def evaluate(self, groundtruth_mapping: D2RQMapping, output_mapping: D2RQMapping):
+        metrics = calculate_metrics(groundtruth_mapping, output_mapping)
         wandb.log(metrics)
         return metrics

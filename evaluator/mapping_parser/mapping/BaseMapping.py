@@ -1,14 +1,14 @@
 from abc import ABC, abstractmethod
-from typing import List
+from evaluator.utils.get_jinja_env import get_jinja_env
 
-from evaluator.mapping_parser.classmap import ClassMap
-from evaluator.mapping_parser.relation import Relation
 
 class BaseMapping(ABC):
-    def __init__(self, mapping_content, database):
+    def __init__(self, mapping_content, database, meta):
+        self.classes = []
+        self.relations = []
+        self.translation_tables = []
+        self.meta = meta
         self.parse_mapping(mapping_content)
-        self.classes: List[ClassMap]
-        self.relations: List[Relation]
         self.mapping_content = mapping_content
         self.database = database
     
@@ -16,14 +16,24 @@ class BaseMapping(ABC):
     def parse_mapping(self):
         raise NotImplementedError
     
-    @abstractmethod
     def get_classes(self):
-        raise NotImplementedError
+        return self.classes
     
-    @abstractmethod
     def get_attributes(self):
-        raise NotImplementedError
+        return list(filter(lambda rel: rel.refersToClassMap is None, self.relations))
     
-    @abstractmethod
     def get_relations(self):
-        raise NotImplementedError
+        return list(filter(lambda rel: rel.refersToClassMap is not None, self.relations))
+    
+    def create_ttl_string(self, database):
+        output = ""
+        output += self.build_meta_data(database)
+        for _cls in self.classes:
+            output += str(_cls)
+        for prop in self.relations:
+            output += str(prop)
+        for translation_table in self.translation_tables:
+            output += str(translation_table)
+        return output
+
+    def build_meta_data(self, database): return get_jinja_env().get_template('meta.j2').render(prefixes=self.meta["prefixes"], database=database, database_username="lukaslaskowski") 

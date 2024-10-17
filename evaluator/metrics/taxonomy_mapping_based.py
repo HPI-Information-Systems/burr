@@ -1,7 +1,7 @@
 import numpy as np
 
 from evaluator.metrics.metric import Metric
-from evaluator.mapping_parser.mapping import Mapping
+from evaluator.mapping_parser.mapping import D2RQMapping
 from evaluator.mapping_parser.relation import Relation
 from evaluator.mapping_parser.classmap import ClassMap
 
@@ -9,7 +9,7 @@ class TaxonomyMappingBasedPrecision(Metric):
     def __init__(self):
         super(TaxonomyMappingBasedPrecision, self).__init__()
 
-    def score(self, learned_ontology: Mapping, referenced_ontology: Mapping) -> float:
+    def score(self, learned_ontology: D2RQMapping, referenced_ontology: D2RQMapping) -> float:
         shared_classes = set(learned_ontology.classes).intersection(set(referenced_ontology.classes))
         learned_ontology.classes = list(shared_classes)
         referenced_ontology.classes = list(shared_classes)
@@ -31,7 +31,7 @@ class TaxonomyMappingBasedRecall():
     # def __init__(self):
     #     super(TaxonomyMappingBasedRecall, self).__init__()
 
-    def score(self, learned_ontology: Mapping, referenced_ontology: Mapping) -> float:
+    def score(self, learned_ontology: D2RQMapping, referenced_ontology: D2RQMapping) -> float:
         #intersect ontology
         #todo alle gemeinsamen konzepte, basierend auf uripattern, sqljoin, sqlconiditon -> check sql column!
         shared_classes = set(learned_ontology.classes).intersection(set(referenced_ontology.classes))
@@ -71,7 +71,7 @@ class TaxonomyMappingBasedF1(Metric):
     def __init__(self):
         super(TaxonomyMappingBasedF1, self).__init__()
 
-    def score(self, learned_ontology: Mapping, referenced_ontology: Mapping) -> float:
+    def score(self, learned_ontology: D2RQMapping, referenced_ontology: D2RQMapping) -> float:
         precision = TaxonomyMappingBasedPrecision().score(learned_ontology, referenced_ontology)
         recall = TaxonomyMappingBasedRecall().score(learned_ontology, referenced_ontology)
         return 2 * (precision * recall) / (precision + recall)
@@ -83,7 +83,7 @@ class LocalTaxonomyMappingBasedPrecision():
     # def __init__(self):
     #     super(LocalTaxonomyMappingBasedPrecision, self).__init__()
 
-    def score(self, schema_element, learned_ontology: Mapping, referenced_ontology: Mapping) -> float:
+    def score(self, schema_element, learned_ontology: D2RQMapping, referenced_ontology: D2RQMapping) -> float:
         learned_ontology.set_eq_strategy(classes=False)
         referenced_ontology.set_eq_strategy(classes=False)
         schema_element_in_learned = list(filter(lambda x: x == schema_element, learned_ontology.classes + learned_ontology.relations))[0]
@@ -105,7 +105,7 @@ class LocalTaxonomyMappingBasedRecall():
     # def __init__(self):
     #     super(LocalTaxonomyMappingBasedRecall, self).__init__()
 
-    def score(self, schema_element, learned_ontology: Mapping, referenced_ontology: Mapping) -> float:
+    def score(self, schema_element, learned_ontology: D2RQMapping, referenced_ontology: D2RQMapping) -> float:
         learned_ontology.set_eq_strategy(classes=False)
         #print(learned_ontology.relations)
         referenced_ontology.set_eq_strategy(classes=False)

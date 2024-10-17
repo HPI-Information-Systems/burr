@@ -1,0 +1,39 @@
+wandb_version: 1
+
+_wandb:
+  desc: null
+  value:
+    cli_version: 0.13.10
+    is_jupyter_run: false
+    is_kaggle_kernel: false
+    python_version: 3.9.16
+    start_time: 1729172863.191202
+    t:
+      1:
+      - 55
+      2:
+      - 55
+      3:
+      - 3
+      - 15
+      - 16
+      - 23
+      4: 3.9.16
+      5: 0.13.10
+      8:
+      - 5
+groundtruth_mapping_path:
+  desc: null
+  value: train_data/attributes/fk_pk_descriptive/receipt/mapping.json
+meta_file_path:
+  desc: null
+  value: /Users/lukaslaskowski/Documents/HPI/KG/ontology_mappings/rdb2ontology/evaluator/mapping_parser/d2rq_mapping/base_meta.json
+scenario:
+  desc: null
+  value: attributes__fk_pk_descriptive__receipt
+sql_file_path:
+  desc: null
+  value: train_data/attributes/fk_pk_descriptive/receipt/schema.sql
+system:
+  desc: null
+  value: rdb2onto

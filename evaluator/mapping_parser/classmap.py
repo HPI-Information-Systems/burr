@@ -96,7 +96,8 @@ class ClassMap:
         #return hash((self.sql_condition, self.sql_uri_pattern, self.sql_join))
 
     def __str__(self):
-        return self.get_d2rq_mapping()
+        class_maps = self.get_d2rq_mapping()
+        return "\n".join(class_maps)
 
     def __repr__(self):
         return f"ClassMap(uriPattern={self.uriPattern}, class_uri={self.class_uri})"

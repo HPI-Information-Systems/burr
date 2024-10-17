@@ -1,0 +1,1 @@
+/Users/lukaslaskowski/Documents/HPI/KG/ontology_mappings/rdb2ontology/train_data/attributes/fk_pk_descriptive/receipt/schema.sql

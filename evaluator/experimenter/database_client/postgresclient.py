@@ -12,6 +12,7 @@ class PostgresClient:
     def update_database(self, script_path):
         wandb.save(script_path)
         command = ['psql', '-f', script_path, '-U', self.user, '-d', self.database]
+        print(command)
         result = subprocess.run(command, capture_output=True, text=True)
         if result.returncode == 0:
             return True
@@ -19,3 +20,4 @@ class PostgresClient:
             print("Databaseupload execution failed with return code:", result.returncode)
             print("Error output:")
             print(result.stderr)
+            raise ValueError("Database upload failed")
