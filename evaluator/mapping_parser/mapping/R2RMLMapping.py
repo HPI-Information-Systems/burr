@@ -5,65 +5,39 @@ from evaluator.mapping_parser.classmap import ClassMap
 from evaluator.mapping_parser.relation import Relation
 from evaluator.mapping_parser.mapping.BaseMapping import BaseMapping
 
-class D2RQMapping(BaseMapping):
+class R2RMLMapping(BaseMapping):
     def __init__(self, mapping_content, database, meta) -> None:
         super().__init__(mapping_content, database, meta)
 
     def parse_mapping(self, mapping_content):
         self.graph = Graph()
-        self.graph.parse(data=mapping_content, format="turtle")
+        print(mapping_content)
+        self.graph.parse(mapping_content, format="turtle")
         self.classes = self.parse_classes()
-        self.relations = self.parse_relations()
-        self.translation_tables = []
-        for class_ in self.get_classes():
-            self.convert_subclass_to_relations(class_) 
+        print(self.classes)
+        # self.relations = self.parse_relations()
+        # self.translation_tables = []
+        # for class_ in self.get_classes():
+        #     self.convert_subclass_to_relations(class_) 
     
     def get_context_elements(self, schema_element):
         if schema_element in self.classes:
             return self.get_classes_connected_to_class(schema_element)
         elif schema_element in self.relations:
-            #print("schema", schema_element)
             return self.get_relations_connected_to_relation(schema_element)
         else:
-            #print(schema_element)
             raise Exception("Schema element not found in mapping")
-        #return fn(schema_element)
-
-    def __mapping_id_to_class(self, id, attribute="mapping_id"):
-        for class_ in self.classes:
-            #print(class_[attribute], id)
-            if getattr(class_, attribute) == id:
-                return class_
-        return None 
     
     def get_classes_connected_to_class(self, class_: ClassMap):
         outgoing_classes = [relation.refersToClassMap for relation in self.relations if relation.belongsToClassMap == class_]
         ingoing_classes = [relation.belongsToClassMap for relation in self.relations if relation.refersToClassMap == class_]
         return list(set(outgoing_classes + ingoing_classes))
-
-    def get_relations_connected_to_relation(self, relation: Relation):
-        def mapping_id_to_relation(mapping_id):
-            for rel in self.relations:
-                if rel.mapping_id == mapping_id:
-                    return rel
-            return None
-        #für 
-        #outgoing_class = self.__mapping_id_to_class(relation.belongsToClassMap)
-        #ingoing_class = self.__mapping_id_to_class(relation.refersToClassMap)
-        relations = list(set(self.relations) - set([relation]))
-        relations_of_outgoing_class = [mapping_id_to_relation(rel.mapping_id) for rel in relations if rel.belongsToClassMap == relation.belongsToClassMap or rel.refersToClassMap == relation.belongsToClassMap]
-        relations_of_ingoing_class = [mapping_id_to_relation(rel.mapping_id) for rel in relations if rel.belongsToClassMap == relation.refersToClassMap or rel.refersToClassMap == relation.refersToClassMap]
-        # print("outgoing", relations_of_outgoing_class)
-        # print("ingoing", relations_of_ingoing_class)
-        # outgoing_relations = [mapping_id_to_relation(relation.refersToClassMap) for relation in self.relations if relation.belongsToClassMap == relation.mapping_id]
-        # ingoing_relations = [mapping_id_to_relation(relation.belongsToClassMap) for relation in self.relations if relation.refersToClassMap == relation.mapping_id]
-        return list(set(relations_of_outgoing_class + relations_of_ingoing_class))
     
     def parse_classes(self) -> List[str]:
         classes = []
-        properties = ["d2rq:uriPattern", "d2rq:class", "d2rq:additionalClassDefinitionProperty", "d2rq:condition"]
-        class_maps = self.query_properties("ClassMap", properties)
-
+        properties = ["rr:class"]
+        class_maps = self.query_properties("subjectMap", properties)
+        print(class_maps)
         for class_map in class_maps:
                 parent_classes = []
                 if "d2rq:additionalClassDefinitionProperty" in class_map.keys():
@@ -85,18 +59,8 @@ class D2RQMapping(BaseMapping):
                             condition=class_map["d2rq:condition"] if "d2rq:condition" in class_map.keys() else None,
                             parent_classes=parent_classes,
                             #graph = self.graph
-                            ))
-                        
+                            ))      
         return classes    
-
-
-    def parse_additionalClassDefinitionProperty(self, uri):
-        query = f"""             
-            SELECT DISTINCT ?class
-            WHERE {{ {uri} d2rq:propertyValue ?class. }}
-        """
-        res = [obj[0].n3() for obj in self.graph.query(query)]
-        return res if len(res)>1 else res[0]
 
     def parse_relations(self):
         relations = []
@@ -115,52 +79,14 @@ class D2RQMapping(BaseMapping):
                 ))
         return relations
 
-    def convert_subclass_to_relations(self, class_: ClassMap):
-        for parent_class in class_.parent_classes if class_.parent_classes is not None else []:
-            parent_class = self.__mapping_id_to_class(parent_class, "class_uri")
-            # print(parent_class)
-            # print(class_)
-            # print("\n")
-            self.relations.append(
-                Relation(
-                    prefix="base",
-                    mapping_id=parent_class.mapping_id,
-                    property="subclassOf",
-                    belongsToClassMap=class_,
-                    refersToClassMap=parent_class,
-                    join=None,
-                    column=None,
-                )
-            )
-            #self.convert_subclass_to_relations(subclass)
-
-    def shorten_uri(uri):
-        uri = str(URIRef(uri)).replace("<", "").replace(">", "").replace(" ", "")
-        for prefix, namespace in graph.namespaces():
-            print(namespace)
-            if str(uri).startswith(namespace):
-                return str(uri)[len(namespace):]
-        return uri
-
-    def expand_uri(self, prefixed_uri, graph):
-        prefix, name = prefixed_uri.split(":", 1)
-        namespace = dict(graph.namespaces()).get(prefix)
-        if namespace:
-            return URIRef(namespace + name)
-        else:
-            raise ValueError(f"Prefix '{prefix}' not found in the graph namespaces.")
-
-    def set_eq_strategy(self, classes=False):
-        for relation in self.relations:
-            relation.set_eq_strategy(classes)
-
     def query_properties(self, id, properties):
         result = []
         query = f"""             
-            SELECT DISTINCT ?mapping_id
-            WHERE {{ ?mapping_id a d2rq:{id}. }}
-        """
-
+                SELECT DISTINCT ?mapping_id
+                WHERE {{ ?mapping_id a ?o . }}
+            """
+        s = self.graph.query(query)
+        print(s)
         ids = [obj[0].n3() for obj in self.graph.query(query)]
         query_properties = lambda uri, property: f"""             
             SELECT DISTINCT ?classes
@@ -181,9 +107,3 @@ class D2RQMapping(BaseMapping):
             temp["mapping_id"] = id
             result.append(temp)
         return result
-    
-    def get_attribute_from_mapping(self, attribute, table):
-        for class_ in self.classes:
-            if class_.sql_uri_pattern.table == table and class_.sql_uri_pattern.attribute == attribute:
-                return class_
-        return None

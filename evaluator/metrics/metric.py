@@ -12,7 +12,7 @@ class Metric(ABC):
 
 class F1Score():
     def __call__(self, precision, recall) -> float:
-        return 2 * (precision * recall) / (precision + recall)
+        return 2 * (precision * recall) / (precision + recall) if precision + recall > 0 else 0.0
 
     def __str__(self):
         return "F1Score"

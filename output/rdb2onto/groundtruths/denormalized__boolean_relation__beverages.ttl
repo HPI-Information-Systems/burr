@@ -16,8 +16,6 @@ map:Beverage a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:Beverage;
     d2rq:uriPattern "/@@beverage.id@@/";
-    
-    
     .
 map:IngredientCaffeine a d2rq:ClassMap;
     d2rq:dataStorage map:database;

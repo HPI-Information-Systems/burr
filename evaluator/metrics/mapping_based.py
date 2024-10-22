@@ -7,18 +7,19 @@ class MappingBasedPrecision(Metric):
 
     def score(self, el1: D2RQMapping, el2: D2RQMapping) -> float:
         shared_elements = [x for x in el2 if x in el1]
-        return len(shared_elements) / (len(el1) + len(el1))
-    
+        return len(shared_elements) / len(el2) if len(el2) > 0 else 0.0
+
     def __str__(self):
         return "MappingBasedPrecision"
+
 
 class MappingBasedRecall(Metric):
     def __init__(self):
         super(MappingBasedRecall, self).__init__()
 
-    def score(self, el1, el2) -> float:
+    def score(self, el1: D2RQMapping, el2: D2RQMapping) -> float:
         shared_elements = [x for x in el2 if x in el1]
-        return len(shared_elements) / (len(el2) + len(el2))
-    
+        return len(shared_elements) / len(el1) if len(el1) > 0 else 0.0
+
     def __str__(self):
         return "MappingBasedRecall"

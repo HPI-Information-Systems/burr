@@ -1,25 +1,31 @@
 import wandb
 import json
+import rdflib
+from io import BytesIO
 
 from evaluator.metrics.caclulate_metrics import calculate_metrics
 from evaluator.mapping_parser.mapping import JsonMapping, D2RQMapping
 
 class Experiment:
-    def __init__(self, name, database_name, database, solution, sql_file_path, meta_file_path, groundtruth_mapping_path, tag, use_wandb=False):
+    def __init__(self, name, database_name, database, scenario_id, group, base_scenario, scenario, solution, sql_file_path, meta_file_path, groundtruth_mapping_path, tag, use_wandb=False):
         run = wandb.init(
             project="rdb2onto",
             mode = "online" if use_wandb else "disabled",
             tags=[tag],
     		entity="Lasklu",
             config={
+                "database_name": database_name,
+                "group": group,
                 "system": solution.solution_name,
-                "scenario": database_name,
+                "scenario": scenario,
+                "base_scenario": base_scenario,
                 "sql_file_path": sql_file_path,
                 "groundtruth_mapping_path": groundtruth_mapping_path,
                 "meta_file_path": meta_file_path
             })
         self.name = name
         self.database = database
+        self.scenario_id = scenario_id
         self.database_name = database_name
         self.sql_file_path = sql_file_path
         self.groundtruth_mapping_path = groundtruth_mapping_path
@@ -51,13 +57,24 @@ class Experiment:
         train_config = solution_config["train"]
         test_config = solution_config["test"]
         trained_model, training_time = self.solution.train(**train_config)
-        print(test_config)
-        print(self.database_name)
         output_mapping, inference_time = self.solution.test(**test_config, model=trained_model, meta=self.meta, database_name=self.database_name)
+        print(output_mapping)
         metrics = self.evaluate(self.groundtruth_mapping, output_mapping)    
+        self.save_ttl_to_wandb(output_mapping.create_ttl_string(self.database_name))
         return {"output_mapping": output_mapping, "metrics": metrics, "runtime": {"training": training_time, "inference": inference_time}}  
     
     def evaluate(self, groundtruth_mapping: D2RQMapping, output_mapping: D2RQMapping):
         metrics = calculate_metrics(groundtruth_mapping, output_mapping)
         wandb.log(metrics)
         return metrics
+    
+    def save_ttl_to_wandb(self, ttl):
+        file_like_object = BytesIO()
+        graph = rdflib.Graph()
+        graph.parse(data=ttl, format="turtle")
+        graph.serialize(file_like_object, format='turtle')
+        with open("graph.ttl", "wb") as f:
+            f.write(file_like_object.getvalue())
+        wandb.save("graph.ttl")
+        artifact = wandb.Artifact("graph.ttl", type='dataset')
+        artifact.add_file("./graph.ttl", file_like_object)

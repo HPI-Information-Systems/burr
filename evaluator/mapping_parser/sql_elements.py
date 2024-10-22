@@ -31,7 +31,6 @@ class Condition:
         return hash((self.sql_attribute, self.operator, self.value))
     
     def __str__(self):
-        print(f"dadawwaw{self.sql_attribute} {self.operator} {self.value}")
         return f"{self.sql_attribute} {self.operator} {self.value}"
 
 

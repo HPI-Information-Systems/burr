@@ -9,9 +9,6 @@ file_path = "/Users/lukaslaskowski/Documents/HPI/KG/ontology_mappings/rdb2ontolo
 g = rdflib.Graph()
 g.parse(file_path, format="turtle")
 
-# Define the D2RQ namespace
-D2RQ = rdflib.Namespace("http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#")
-
 # Function to get the local name from a URI using rdflib's split_uri()
 def get_local_name(uri):
     try:
@@ -29,12 +26,8 @@ graph.graph_attr.update(size="8,8!", dpi=600, ranksep="2.0", nodesep="1.0")
 graph.node_attr.update(shape="ellipse", style="filled", fillcolor="#add8e6", fontname="Helvetica", fontsize="12")
 graph.edge_attr.update(color="#7a7a7a", fontname="Helvetica", fontsize="10")
 
-# Add nodes and edges to the graph, ignoring triples with d2rq:Database
+# Add nodes and edges to the graph with shortened labels
 for s, p, o in g:
-    # Ignore triples where the object is of type d2rq:Database
-    if (o, rdflib.RDF.type, D2RQ.Database) in g:
-        continue
-    
     s_label = get_local_name(str(s))
     o_label = get_local_name(str(o))
     p_label = get_local_name(str(p))

@@ -38,7 +38,7 @@
         {
             "property": "isMember",
             "belongsToClassMap": "CountryFull",
-            "refersToClass": "Organization",
+            "refersToClassMap": "Organization",
             "join": [
                 "country.code = ismember.country",
                 "organization.abbreviation = ismember.organization"

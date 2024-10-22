@@ -22,7 +22,6 @@ class JsonMapping(BaseMapping):
         for _cls in data["classes"]:
             self.classes.append(self.parse_class_entry(_cls))
         for data_prop in data["data_properties"]:
-            print(data_prop, self.meta["relation_prefix"])
             attribute = self.parse_property_bridge_entry(data_prop, self.meta["relation_prefix"])
             self.relations.append(attribute)
         for obj_prop in data["object_properties"]:
@@ -44,7 +43,10 @@ class JsonMapping(BaseMapping):
         graph.serialize(destination=output_file, format="turtle")
     
     def to_D2RQ_Mapping(self):
-        return D2RQMapping(self.create_ttl_string(self.database), self.database, self.meta)
+        #print(self.create_ttl_string(self.database))
+        x = self.create_ttl_string(self.database)
+        print(x)
+        return D2RQMapping(x, self.database, self.meta)
 
     
     def parse_translation_table(self, table):
@@ -80,7 +82,9 @@ class JsonMapping(BaseMapping):
         inverse_of = entry["inverseOf"] if "inverseOf" in entry else None
         sqlExpression = entry["sqlExpression"] if "sqlExpression" in entry else None
         translate_with = entry["translateWith"] if "translateWith" in entry else None
-        constant_value = entry["constantValue"] if "constantValue" in entry else None
+        constant_value = entry["constantValue"] if "constantValue" in entry else None#
+        
+
         return Relation(prefix=prefix, mapping_id=mapping_name, property=property, constantValue=constant_value,belongsToClassMap=belongs_to_class_map, refersToClassMap=refers_to_class_map, join=joins, condition=conditions, column=column, datatype=datatype, inverse_of=inverse_of, translate_with=translate_with, sqlExpression=sqlExpression)#.get_d2rq_mapping()
 
 
