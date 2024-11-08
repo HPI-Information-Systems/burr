@@ -40,8 +40,8 @@ class Experiment:
         if file_ending_is_json:
             with open(self.groundtruth_mapping_path) as json_file:
                 data = json.load(json_file)
-            
             self.groundtruth_mapping = JsonMapping(data, self.database_name, self.meta).to_D2RQ_Mapping()
+            self.save_to_file(self.groundtruth_mapping.create_ttl_string(self.database_name), f"/Users/lukaslaskowski/Documents/HPI/KG/ontology_mappings/rdb2ontology/output/groundtruths/{self.scenario_id}.ttl")
             print("JSONGroundtruth mapping loaded")
         elif self.groundtruth_mapping_path.endswith(".ttl"):
             self.groundtruth_mapping = D2RQMapping(self.groundtruth_mapping_path, self.database_name)
@@ -68,6 +68,14 @@ class Experiment:
         wandb.log(metrics)
         return metrics
     
+    def save_to_file(self, ttl, filepath):
+        file_like_object = BytesIO()
+        graph = rdflib.Graph()
+        graph.parse(data=ttl, format="turtle")
+        graph.serialize(file_like_object, format='turtle')
+        with open(filepath, "wb") as f:
+            f.write(file_like_object.getvalue())
+
     def save_ttl_to_wandb(self, ttl):
         file_like_object = BytesIO()
         graph = rdflib.Graph()

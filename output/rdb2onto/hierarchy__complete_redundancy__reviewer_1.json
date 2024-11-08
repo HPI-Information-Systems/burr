@@ -1,0 +1,66 @@
+{
+  "classes" : [ {
+    "id" : "@@author.aid@@/",
+    "name" : "ClassMap_author",
+    "prefix" : "base",
+    "subClassOf" : null,
+    "join" : null,
+    "class" : "author"
+  }, {
+    "id" : "@@person.pid@@/",
+    "name" : "ClassMap_person",
+    "prefix" : "base",
+    "subClassOf" : null,
+    "join" : null,
+    "class" : "person"
+  }, {
+    "id" : "@@reviewer.rid@@/",
+    "name" : "ClassMap_reviewer",
+    "prefix" : "base",
+    "subClassOf" : null,
+    "join" : null,
+    "class" : "reviewer"
+  } ],
+  "data_properties" : [ {
+    "property" : "hasName",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "reviewer.Name",
+    "belongsToClassMap" : "ClassMap_reviewer"
+  }, {
+    "property" : "hasName",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "person.Name",
+    "belongsToClassMap" : "ClassMap_person"
+  }, {
+    "property" : "hasArea",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "reviewer.Area",
+    "belongsToClassMap" : "ClassMap_reviewer"
+  }, {
+    "property" : "hasName",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "author.Name",
+    "belongsToClassMap" : "ClassMap_author"
+  }, {
+    "property" : "hasPid",
+    "type" : "xsd:integer",
+    "column" : "person.Pid",
+    "belongsToClassMap" : "ClassMap_person"
+  }, {
+    "property" : "hasRid",
+    "type" : "xsd:integer",
+    "column" : "reviewer.Rid",
+    "belongsToClassMap" : "ClassMap_reviewer"
+  }, {
+    "property" : "hasAid",
+    "type" : "xsd:integer",
+    "column" : "author.Aid",
+    "belongsToClassMap" : "ClassMap_author"
+  }, {
+    "property" : "hasEmail",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "author.Email",
+    "belongsToClassMap" : "ClassMap_author"
+  } ],
+  "object_properties" : [ ]
+}

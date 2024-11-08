@@ -1,11 +1,11 @@
 {
     "classes": [
         {
-            "id": "@@User.id@@",
+            "id": "@@user_.id@@",
             "class": "User"
         },
         {
-            "id": "@@group.id@@",
+            "id": "@@group_.id@@",
             "class": "Group"
         },
         {
@@ -19,7 +19,7 @@
             "belongsToClass": "User",
             "refersToClass": "UserGroup",
             "join": [
-                "user.id = user_group.uid"
+                "user_.id = user_group.uid"
             ]
         },
         {
@@ -27,7 +27,7 @@
             "belongsToClass": "Group",
             "refersToClass": "UserGroup",
             "join": [
-                "group.id = user_group.gid"
+                "group_.id = user_group.gid"
             ]
         }
     ],

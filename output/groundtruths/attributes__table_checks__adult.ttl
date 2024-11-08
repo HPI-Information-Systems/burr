@@ -1,0 +1,26 @@
+@prefix base: <file:///base/> .
+@prefix d2rq: <http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#> .
+@prefix jdbc: <http://d2rq.org/terms/jdbc/> .
+@prefix map: <http://mapping/> .
+
+map:age_Adult_None a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Adult ;
+    d2rq:column "adult.age" ;
+    d2rq:property base:age .
+
+map:name_Adult_None a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Adult ;
+    d2rq:column "adult.name" ;
+    d2rq:property base:name .
+
+map:database a d2rq:Database ;
+    jdbc:keepAlive "3600" ;
+    d2rq:jdbcDSN "jdbc:postgresql://localhost:5432/attributes__table_checks__adult" ;
+    d2rq:jdbcDriver "org.postgresql.Driver" ;
+    d2rq:username "lukaslaskowski" .
+
+map:Adult a d2rq:ClassMap ;
+    d2rq:class base:Adult ;
+    d2rq:dataStorage map:database ;
+    d2rq:uriPattern "/@@adult.id@@/" .
+

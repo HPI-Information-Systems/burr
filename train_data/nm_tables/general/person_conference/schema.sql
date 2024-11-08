@@ -8,17 +8,17 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 CREATE TABLE conference (
-    id SERIAL,
-)
+    id INT
+);
 
 CREATE TABLE person (
-    id SERIAL,
-)
+    id INT
+);
 
 CREATE TABLE enable_virtual_meeting (
-    pid SERIAL,
-    cid SERIAL
-)
+    pid INT,
+    cid INT
+);
 
 ALTER TABLE Only conference
     ADD CONSTRAINT conference_primary_key PRIMARY KEY (id);

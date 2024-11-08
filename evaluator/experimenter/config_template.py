@@ -9,12 +9,12 @@ systems = {
     }
 
 single_scenario = {
-    "attributes": {
-        "cryptic_attribute_names": {
-                "person": {
-                    "database_name": "attributes__cryptic_attribute_name__person",
-                    "sql_file": "train_data/attributes/cryptic_attribute_names/person/schema.sql",
-                    "groundtruth_mapping": "train_data/attributes/cryptic_attribute_names/person/mapping.json",
+    "nm_tables": {
+        "trinary_relation": {
+                "student_instructor_1": {
+                    #"database_name": "hierarchy__two_tables__reviewer_1",
+                    "sql_file": "train_data/nm_tables/trinary_relation/student_instructor_1/schema.sql",
+                    "groundtruth_mapping": "train_data/nm_tables/trinary_relation/student_instructor_1/mapping.json",
                     "meta_file_path": "/Users/lukaslaskowski/Documents/HPI/KG/ontology_mappings/rdb2ontology/evaluator/mapping_parser/d2rq_mapping/base_meta.json"
                 },
         }

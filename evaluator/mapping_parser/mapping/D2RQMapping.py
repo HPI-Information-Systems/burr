@@ -63,29 +63,28 @@ class D2RQMapping(BaseMapping):
         classes = []
         properties = ["d2rq:uriPattern", "d2rq:class", "d2rq:additionalClassDefinitionProperty", "d2rq:condition"]
         class_maps = self.query_properties("ClassMap", properties)
-
         for class_map in class_maps:
-                parent_classes = []
-                if "d2rq:additionalClassDefinitionProperty" in class_map.keys():
-                    if isinstance(class_map["d2rq:additionalClassDefinitionProperty"], list):
-                        for el in class_map["d2rq:additionalClassDefinitionProperty"]:
-                            parent_classes.append(self.parse_additionalClassDefinitionProperty(el))
-                    else:
-                        parent_classes = [self.parse_additionalClassDefinitionProperty(class_map["d2rq:additionalClassDefinitionProperty"])]
-                classes.append(ClassMap(
-                            #fix first three
-                            prefix="base",
-                            datastorage="database",
-                            translate_with=None,
-                            mapping_id=self.shorten_uri(class_map["mapping_id"]),
-                            uriPattern=class_map["d2rq:uriPattern"] if "d2rq:uriPattern" in class_map.keys() else None,
-                            class_uri=self.shorten_uri(class_map["d2rq:class"]) if "d2rq:class" in class_map.keys() else None,
-                            #additionalClassDefinitionProperty=class_map["d2rq:additionalClassDefinitionProperty"] if "d2rq:additionalClassDefinitionProperty" in class_map.keys() else None,
-                            join=class_map["d2rq:join"] if "d2rq:join" in class_map.keys() else None,
-                            condition=class_map["d2rq:condition"] if "d2rq:condition" in class_map.keys() else None,
-                            parent_classes=parent_classes,
-                            #graph = self.graph
-                            ))
+            parent_classes = []
+            if "d2rq:additionalClassDefinitionProperty" in class_map.keys():
+                if isinstance(class_map["d2rq:additionalClassDefinitionProperty"], list):
+                    for el in class_map["d2rq:additionalClassDefinitionProperty"]:
+                        parent_classes.append(self.shorten_uri(self.parse_additionalClassDefinitionProperty(el)))
+                else:
+                    parent_classes = [self.shorten_uri(self.parse_additionalClassDefinitionProperty(class_map["d2rq:additionalClassDefinitionProperty"]))]
+            classes.append(ClassMap(
+                        #fix first three
+                        prefix="base",
+                        datastorage="database",
+                        translate_with=None,
+                        mapping_id=self.shorten_uri(class_map["mapping_id"]),
+                        uriPattern=class_map["d2rq:uriPattern"] if "d2rq:uriPattern" in class_map.keys() else None,
+                        class_uri=self.shorten_uri(class_map["d2rq:class"]) if "d2rq:class" in class_map.keys() else None,
+                        #additionalClassDefinitionProperty=class_map["d2rq:additionalClassDefinitionProperty"] if "d2rq:additionalClassDefinitionProperty" in class_map.keys() else None,
+                        join=class_map["d2rq:join"] if "d2rq:join" in class_map.keys() else None,
+                        condition=class_map["d2rq:condition"] if "d2rq:condition" in class_map.keys() else None,
+                        parent_classes=parent_classes,
+                        #graph = self.graph
+                        ))
                         
         return classes    
 
@@ -117,7 +116,7 @@ class D2RQMapping(BaseMapping):
 
     def convert_subclass_to_relations(self, class_: ClassMap):
         for parent_class in class_.parent_classes if class_.parent_classes is not None else []:
-            parent_class = self.__mapping_id_to_class(parent_class, "class_uri")
+            parent_class = self.__mapping_id_to_class(self.shorten_uri(parent_class), "class_uri")
             # print(parent_class)
             # print(class_)
             # print("\n")
@@ -134,14 +133,6 @@ class D2RQMapping(BaseMapping):
             )
             #self.convert_subclass_to_relations(subclass)
 
-    def shorten_uri(uri):
-        uri = str(URIRef(uri)).replace("<", "").replace(">", "").replace(" ", "")
-        for prefix, namespace in graph.namespaces():
-            print(namespace)
-            if str(uri).startswith(namespace):
-                return str(uri)[len(namespace):]
-        return uri
-
     def expand_uri(self, prefixed_uri, graph):
         prefix, name = prefixed_uri.split(":", 1)
         namespace = dict(graph.namespaces()).get(prefix)
@@ -153,6 +144,9 @@ class D2RQMapping(BaseMapping):
     def set_eq_strategy(self, classes=False):
         for relation in self.relations:
             relation.set_eq_strategy(classes)
+
+    def set_concept_eq_strategy(self, name_based=False):
+        [classmap.set_eq_strategy(name_based) for classmap in self.classes]
 
     def query_properties(self, id, properties):
         result = []

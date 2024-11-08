@@ -2,60 +2,62 @@
     "classes": [
         {
             "id": "@@book.isbn@@",
-            "class": "Book"
+            "class": "Book",
+            "name": "BookA"
         },
         {
             "id": "@@book_2.isbn@@",
-            "class": "Book"
+            "class": "Book",
+            "name": "BookB"
         }
     ],
     "object_properties": [],
     "data_properties": [
         {
             "property": "name",
-            "belongsToClass": "Book",
+            "belongsToClassMap": "BookA",
             "type": "string",
             "column": "book.name"
         },
         {
             "property": "publicationYear",
-            "belongsToClass": "Book",
+            "belongsToClassMap": "BookA",
             "type": "integer",
             "column": "book.publication_year"
         },
         {
             "property": "copiesAvailable",
-            "belongsToClass": "Book",
+            "belongsToClassMap": "BookA",
             "type": "integer",
             "column": "book.copies_available"
         },
         {
             "property": "isbn",
-            "belongsToClass": "Book",
+            "belongsToClassMap": "BookA",
             "type": "string",
             "column": "book.isbn"
         },
         {
             "property": "name",
-            "belongsToClass": "Book",
+            "belongsToClassMap": "BookB",
             "type": "string",
             "column": "book_2.name"
         },
         {
             "property": "publicationYear",
-            "belongsToClass": "Book",
+            "belongsToClassMap": "BookB",
             "type": "integer",
             "column": "book_2.publication_year"
         },
         {
             "property": "copiesAvailable",
-            "belongsToClass": "Book",
+            "belongsToClassMap": "BookB",
             "type": "integer",
             "column": "book_2.copies_available"
         },
         {
             "property": "isbn",
-            "belongsToClass": "Book",
+            "belongsToClassMap": "BookB",
             "type": "string",
             "column": "book_2.isbn"
         }

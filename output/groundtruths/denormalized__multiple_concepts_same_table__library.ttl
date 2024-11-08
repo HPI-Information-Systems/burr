@@ -1,0 +1,66 @@
+@prefix base: <file:///base/> .
+@prefix d2rq: <http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#> .
+@prefix jdbc: <http://d2rq.org/terms/jdbc/> .
+@prefix map: <http://mapping/> .
+
+map:address_Author_None a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Author ;
+    d2rq:column "book.address" ;
+    d2rq:property base:address .
+
+map:birthYear_Author_None a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Author ;
+    d2rq:column "book.birth_year" ;
+    d2rq:property base:birthYear .
+
+map:copiesAvailable_Book_None a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Book ;
+    d2rq:column "book.copies_available" ;
+    d2rq:property base:copiesAvailable .
+
+map:isbn_Book_None a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Book ;
+    d2rq:column "book.isbn" ;
+    d2rq:property base:isbn .
+
+map:name_Author_None a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Author ;
+    d2rq:column "book.author" ;
+    d2rq:property base:name .
+
+map:name_Book_None a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Book ;
+    d2rq:column "book.name" ;
+    d2rq:property base:name .
+
+map:nationality_Author_None a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Author ;
+    d2rq:column "book.nationality" ;
+    d2rq:property base:nationality .
+
+map:publicationYear_Book_None a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Book ;
+    d2rq:column "book.publication_year" ;
+    d2rq:property base:publicationYear .
+
+map:writtenBy_Book_Author a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Book ;
+    d2rq:property base:writtenBy ;
+    d2rq:refersToClassMap map:Author .
+
+map:database a d2rq:Database ;
+    jdbc:keepAlive "3600" ;
+    d2rq:jdbcDSN "jdbc:postgresql://localhost:5432/denormalized__multiple_concepts_same_table__library" ;
+    d2rq:jdbcDriver "org.postgresql.Driver" ;
+    d2rq:username "lukaslaskowski" .
+
+map:Author a d2rq:ClassMap ;
+    d2rq:class base:Author ;
+    d2rq:dataStorage map:database ;
+    d2rq:uriPattern "/@@book.author@@/" .
+
+map:Book a d2rq:ClassMap ;
+    d2rq:class base:Book ;
+    d2rq:dataStorage map:database ;
+    d2rq:uriPattern "/@@book.isbn@@/" .
+

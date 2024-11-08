@@ -1,0 +1,35 @@
+{
+  "classes" : [ {
+    "id" : "@@conference.id@@/",
+    "name" : "ClassMap_conference",
+    "prefix" : "base",
+    "subClassOf" : null,
+    "join" : null,
+    "class" : "conference"
+  }, {
+    "id" : "@@person.id@@/",
+    "name" : "ClassMap_person",
+    "prefix" : "base",
+    "subClassOf" : null,
+    "join" : null,
+    "class" : "person"
+  } ],
+  "data_properties" : [ {
+    "property" : "hasId",
+    "type" : "xsd:integer",
+    "column" : "conference.Id",
+    "belongsToClassMap" : "ClassMap_conference"
+  }, {
+    "property" : "hasId",
+    "type" : "xsd:integer",
+    "column" : "person.Id",
+    "belongsToClassMap" : "ClassMap_person"
+  } ],
+  "object_properties" : [ {
+    "property" : "hasConferencePerson",
+    "join" : [ "conference.id = enable_virtual_meeting.cid", "person.id = enable_virtual_meeting.pid" ],
+    "inverseOf" : "hasPersonConference",
+    "belongsToClassMap" : "ClassMap_person",
+    "refersToClassMap" : "ClassMap_conference"
+  } ]
+}

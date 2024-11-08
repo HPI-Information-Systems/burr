@@ -12,7 +12,7 @@
     "object_properties": [
         {
             "property": "email",
-            "belongsToClass": "Author",
+            "belongsToClass": "Person",
             "refersToClass": "Conference",
             "join": [
                 "person.id = enable_virtual_meeting.pid",

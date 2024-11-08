@@ -1,45 +1,47 @@
 {
     "classes": [
         {
-            "id": "@@friendship.person_id_A@@",
-            "class": "Person"
+            "id": "@@friendship.person_id_a@@",
+            "class": "Person",
+            "name": "PersonA"
         },
         {
-            "id": "@@friendship.person_id_B@@",
-            "class": "Person"
+            "id": "@@friendship.person_id_b@@",
+            "class": "Person",
+            "name": "PersonB"
         }
     ],
     "object_properties": [
         {
             "property": "is_friend",
-            "belongsToClass": "Person",
-            "refersToClass": "Person"
+            "belongsToClassMap": "PersonA",
+            "refersToClassMap": "PersonB"
         }
     ],
     "data_properties": [
         {
             "property": "name",
-            "belongsToClass": "Person",
+            "belongsToClassMap": "PersonA",
             "type": "string",
-            "column": "friendship.name_A"
+            "column": "friendship.name_a"
         },
         {
             "property": "name",
-            "belongsToClass": "Person",
+            "belongsToClassMap": "PersonB",
             "type": "string",
-            "column": "friendship.name_B"
+            "column": "friendship.name_b"
         },
         {
             "property": "address",
-            "belongsToClass": "Person",
+            "belongsToClassMap": "PersonA",
             "type": "string",
-            "column": "friendship.address_A"
+            "column": "friendship.address_a"
         },
         {
             "property": "address",
-            "belongsToClass": "Person",
+            "belongsToClassMap": "PersonB",
             "type": "string",
-            "column": "friendship.address_B"
+            "column": "friendship.address_b"
         }
     ]
 }

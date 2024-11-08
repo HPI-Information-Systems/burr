@@ -16,7 +16,7 @@ CREATE TABLE student (
 CREATE TABLE course (
     semester VARCHAR(50),
     course_name VARCHAR(100),
-    credits INT,
+    credits INT
 );
 
 

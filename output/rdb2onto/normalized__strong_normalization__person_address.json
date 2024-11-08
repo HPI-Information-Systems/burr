@@ -1,0 +1,75 @@
+{
+  "classes" : [ {
+    "id" : "@@address.id@@/",
+    "name" : "ClassMap_address",
+    "prefix" : "base",
+    "subClassOf" : null,
+    "join" : null,
+    "class" : "address"
+  }, {
+    "id" : "@@person.id@@/",
+    "name" : "ClassMap_person",
+    "prefix" : "base",
+    "subClassOf" : null,
+    "join" : null,
+    "class" : "person"
+  } ],
+  "data_properties" : [ {
+    "property" : "hasStreet",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "address.Street",
+    "belongsToClassMap" : "ClassMap_address"
+  }, {
+    "property" : "hasLast_name",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "person.Last_name",
+    "belongsToClassMap" : "ClassMap_person"
+  }, {
+    "property" : "hasFirst_name",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "person.First_name",
+    "belongsToClassMap" : "ClassMap_person"
+  }, {
+    "property" : "hasPerson_id",
+    "type" : "xsd:integer",
+    "column" : "address.Person_id",
+    "belongsToClassMap" : "ClassMap_address"
+  }, {
+    "property" : "hasZip",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "address.Zip",
+    "belongsToClassMap" : "ClassMap_address"
+  }, {
+    "property" : "hasCity",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "address.City",
+    "belongsToClassMap" : "ClassMap_address"
+  }, {
+    "property" : "hasState",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "address.State",
+    "belongsToClassMap" : "ClassMap_address"
+  }, {
+    "property" : "hasId",
+    "type" : "xsd:integer",
+    "column" : "address.Id",
+    "belongsToClassMap" : "ClassMap_address"
+  }, {
+    "property" : "hasId",
+    "type" : "xsd:integer",
+    "column" : "person.Id",
+    "belongsToClassMap" : "ClassMap_person"
+  }, {
+    "property" : "hasEmail",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "person.Email",
+    "belongsToClassMap" : "ClassMap_person"
+  } ],
+  "object_properties" : [ {
+    "property" : "hasPerson_id",
+    "join" : [ "person.id = address.person_id" ],
+    "inverseOf" : null,
+    "belongsToClassMap" : "ClassMap_address",
+    "refersToClassMap" : "ClassMap_person"
+  } ]
+}

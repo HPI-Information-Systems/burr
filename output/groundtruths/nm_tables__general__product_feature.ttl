@@ -1,0 +1,38 @@
+@prefix base: <file:///base/> .
+@prefix d2rq: <http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#> .
+@prefix jdbc: <http://d2rq.org/terms/jdbc/> .
+@prefix map: <http://mapping/> .
+
+map:has_feature_Product_Feature a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Product ;
+    d2rq:join "feature.id   =   product_feature.feature_id",
+        "product.id   =   product_feature.product_id" ;
+    d2rq:property base:has_feature ;
+    d2rq:refersToClassMap map:Feature .
+
+map:name_Feature_None a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Feature ;
+    d2rq:column "feature.name" ;
+    d2rq:property base:name .
+
+map:name_Product_None a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Product ;
+    d2rq:column "product.name" ;
+    d2rq:property base:name .
+
+map:Feature a d2rq:ClassMap ;
+    d2rq:class base:Feature ;
+    d2rq:dataStorage map:database ;
+    d2rq:uriPattern "/@@feature.id@@/" .
+
+map:Product a d2rq:ClassMap ;
+    d2rq:class base:Product ;
+    d2rq:dataStorage map:database ;
+    d2rq:uriPattern "/@@product.id@@/" .
+
+map:database a d2rq:Database ;
+    jdbc:keepAlive "3600" ;
+    d2rq:jdbcDSN "jdbc:postgresql://localhost:5432/nm_tables__general__product_feature" ;
+    d2rq:jdbcDriver "org.postgresql.Driver" ;
+    d2rq:username "lukaslaskowski" .
+

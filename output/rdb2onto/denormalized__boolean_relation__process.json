@@ -1,0 +1,67 @@
+{
+  "classes" : [ {
+    "id" : "@@service.id@@/",
+    "name" : "ClassMap_service",
+    "prefix" : "base",
+    "subClassOf" : null,
+    "join" : null,
+    "class" : "service"
+  } ],
+  "data_properties" : [ {
+    "property" : "hasRelevant_for_chemical",
+    "type" : "xsd:boolean",
+    "column" : "service.Relevant_for_chemical",
+    "belongsToClassMap" : "ClassMap_service"
+  }, {
+    "property" : "hasName",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "service.Name",
+    "belongsToClassMap" : "ClassMap_service"
+  }, {
+    "property" : "hasId",
+    "type" : "xsd:integer",
+    "column" : "service.Id",
+    "belongsToClassMap" : "ClassMap_service"
+  }, {
+    "property" : "hasRelevant_for_pharma",
+    "type" : "xsd:boolean",
+    "column" : "service.Relevant_for_pharma",
+    "belongsToClassMap" : "ClassMap_service"
+  }, {
+    "property" : "hasRelevant_for_logistics",
+    "type" : "xsd:boolean",
+    "column" : "service.Relevant_for_logistics",
+    "belongsToClassMap" : "ClassMap_service"
+  }, {
+    "property" : "hasRelevant_for_aviation",
+    "type" : "xsd:boolean",
+    "column" : "service.Relevant_for_aviation",
+    "belongsToClassMap" : "ClassMap_service"
+  }, {
+    "property" : "hasRelevant_for_oil_and_gas",
+    "type" : "xsd:boolean",
+    "column" : "service.Relevant_for_oil_and_gas",
+    "belongsToClassMap" : "ClassMap_service"
+  }, {
+    "property" : "hasRelevant_for_automotive",
+    "type" : "xsd:boolean",
+    "column" : "service.Relevant_for_automotive",
+    "belongsToClassMap" : "ClassMap_service"
+  }, {
+    "property" : "hasRelevant_for_food",
+    "type" : "xsd:boolean",
+    "column" : "service.Relevant_for_food",
+    "belongsToClassMap" : "ClassMap_service"
+  }, {
+    "property" : "hasRelevant_for_energy",
+    "type" : "xsd:boolean",
+    "column" : "service.Relevant_for_energy",
+    "belongsToClassMap" : "ClassMap_service"
+  }, {
+    "property" : "hasRelevant_for_retail",
+    "type" : "xsd:boolean",
+    "column" : "service.Relevant_for_retail",
+    "belongsToClassMap" : "ClassMap_service"
+  } ],
+  "object_properties" : [ ]
+}

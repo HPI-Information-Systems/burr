@@ -1,0 +1,53 @@
+@prefix base: <file:///base/> .
+@prefix d2rq: <http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#> .
+@prefix jdbc: <http://d2rq.org/terms/jdbc/> .
+@prefix map: <http://mapping/> .
+
+map:access_rights_UserGroup_None a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:UserGroup ;
+    d2rq:column "user_group.access_rights" ;
+    d2rq:property base:access_rights .
+
+map:belongs_to_User_UserGroup a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:User ;
+    d2rq:join "user_.id   =   user_group.uid" ;
+    d2rq:property base:belongs_to ;
+    d2rq:refersToClassMap map:UserGroup .
+
+map:expiration_duration_UserGroup_None a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:UserGroup ;
+    d2rq:column "user_group.expiration_duration" ;
+    d2rq:property base:expiration_duration .
+
+map:has_Group_UserGroup a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Group ;
+    d2rq:join "group_.id   =   user_group.gid" ;
+    d2rq:property base:has ;
+    d2rq:refersToClassMap map:UserGroup .
+
+map:registration_date_UserGroup_None a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:UserGroup ;
+    d2rq:column "user_group.registration_date" ;
+    d2rq:property base:registration_date .
+
+map:Group a d2rq:ClassMap ;
+    d2rq:class base:Group ;
+    d2rq:dataStorage map:database ;
+    d2rq:uriPattern "/@@group_.id@@/" .
+
+map:User a d2rq:ClassMap ;
+    d2rq:class base:User ;
+    d2rq:dataStorage map:database ;
+    d2rq:uriPattern "/@@user_.id@@/" .
+
+map:database a d2rq:Database ;
+    jdbc:keepAlive "3600" ;
+    d2rq:jdbcDSN "jdbc:postgresql://localhost:5432/nm_tables__additional_attributes__group_1" ;
+    d2rq:jdbcDriver "org.postgresql.Driver" ;
+    d2rq:username "lukaslaskowski" .
+
+map:UserGroup a d2rq:ClassMap ;
+    d2rq:class base:UserGroup ;
+    d2rq:dataStorage map:database ;
+    d2rq:uriPattern "/@@user_group.uid@@/@@user_group.gid@@/" .
+

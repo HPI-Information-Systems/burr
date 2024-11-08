@@ -1,0 +1,109 @@
+{
+  "classes" : [ {
+    "id" : "@@student.planned_graduation_year@@/@@student.first_name@@/@@student.last_name@@/",
+    "name" : "ClassMap_student",
+    "prefix" : "base",
+    "subClassOf" : null,
+    "join" : null,
+    "class" : "student"
+  }, {
+    "id" : "@@course.semester@@/@@course.course_name@@/",
+    "name" : "ClassMap_course",
+    "prefix" : "base",
+    "subClassOf" : null,
+    "join" : null,
+    "class" : "course"
+  }, {
+    "id" : "@@enrollment.planned_graduation_year@@/@@enrollment.first_name@@/@@enrollment.last_name@@/@@enrollment.semester@@/@@enrollment.course_name@@/",
+    "name" : "ClassMap_enrollment",
+    "prefix" : "base",
+    "subClassOf" : null,
+    "join" : null,
+    "class" : "enrollment"
+  } ],
+  "data_properties" : [ {
+    "property" : "hasSemester",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "enrollment.Semester",
+    "belongsToClassMap" : "ClassMap_enrollment"
+  }, {
+    "property" : "hasfirst_name",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "student.first_name",
+    "belongsToClassMap" : "ClassMap_student"
+  }, {
+    "property" : "hasLast_name",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "student.Last_name",
+    "belongsToClassMap" : "ClassMap_student"
+  }, {
+    "property" : "hasCourse_name",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "course.Course_name",
+    "belongsToClassMap" : "ClassMap_course"
+  }, {
+    "property" : "hasFirst_name",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "student.First_name",
+    "belongsToClassMap" : "ClassMap_student"
+  }, {
+    "property" : "hasSemester",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "course.Semester",
+    "belongsToClassMap" : "ClassMap_course"
+  }, {
+    "property" : "hascourse_name",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "course.course_name",
+    "belongsToClassMap" : "ClassMap_course"
+  }, {
+    "property" : "hasPlanned_graduation_year",
+    "type" : "xsd:integer",
+    "column" : "student.Planned_graduation_year",
+    "belongsToClassMap" : "ClassMap_student"
+  }, {
+    "property" : "hasplanned_graduation_year",
+    "type" : "xsd:integer",
+    "column" : "student.planned_graduation_year",
+    "belongsToClassMap" : "ClassMap_student"
+  }, {
+    "property" : "hassemester",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "course.semester",
+    "belongsToClassMap" : "ClassMap_course"
+  }, {
+    "property" : "hasCourse_name",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "enrollment.Course_name",
+    "belongsToClassMap" : "ClassMap_enrollment"
+  }, {
+    "property" : "haslast_name",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "student.last_name",
+    "belongsToClassMap" : "ClassMap_student"
+  }, {
+    "property" : "hasCredits",
+    "type" : "xsd:integer",
+    "column" : "course.Credits",
+    "belongsToClassMap" : "ClassMap_course"
+  } ],
+  "object_properties" : [ {
+    "property" : "hasFirst_name",
+    "join" : [ "student.first_name = enrollment.first_name" ],
+    "inverseOf" : null,
+    "belongsToClassMap" : "ClassMap_enrollment",
+    "refersToClassMap" : "ClassMap_student"
+  }, {
+    "property" : "hasLast_name",
+    "join" : [ "student.last_name = enrollment.last_name" ],
+    "inverseOf" : null,
+    "belongsToClassMap" : "ClassMap_enrollment",
+    "refersToClassMap" : "ClassMap_student"
+  }, {
+    "property" : "hasPlanned_graduation_year",
+    "join" : [ "student.planned_graduation_year = enrollment.planned_graduation_year" ],
+    "inverseOf" : null,
+    "belongsToClassMap" : "ClassMap_enrollment",
+    "refersToClassMap" : "ClassMap_student"
+  } ]
+}

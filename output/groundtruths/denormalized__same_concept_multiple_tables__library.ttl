@@ -1,0 +1,61 @@
+@prefix base: <file:///base/> .
+@prefix d2rq: <http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#> .
+@prefix jdbc: <http://d2rq.org/terms/jdbc/> .
+@prefix map: <http://mapping/> .
+
+map:copiesAvailable_BookA_None a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:BookA ;
+    d2rq:column "book.copies_available" ;
+    d2rq:property base:copiesAvailable .
+
+map:copiesAvailable_BookB_None a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:BookB ;
+    d2rq:column "book_2.copies_available" ;
+    d2rq:property base:copiesAvailable .
+
+map:isbn_BookA_None a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:BookA ;
+    d2rq:column "book.isbn" ;
+    d2rq:property base:isbn .
+
+map:isbn_BookB_None a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:BookB ;
+    d2rq:column "book_2.isbn" ;
+    d2rq:property base:isbn .
+
+map:name_BookA_None a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:BookA ;
+    d2rq:column "book.name" ;
+    d2rq:property base:name .
+
+map:name_BookB_None a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:BookB ;
+    d2rq:column "book_2.name" ;
+    d2rq:property base:name .
+
+map:publicationYear_BookA_None a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:BookA ;
+    d2rq:column "book.publication_year" ;
+    d2rq:property base:publicationYear .
+
+map:publicationYear_BookB_None a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:BookB ;
+    d2rq:column "book_2.publication_year" ;
+    d2rq:property base:publicationYear .
+
+map:database a d2rq:Database ;
+    jdbc:keepAlive "3600" ;
+    d2rq:jdbcDSN "jdbc:postgresql://localhost:5432/denormalized__same_concept_multiple_tables__library" ;
+    d2rq:jdbcDriver "org.postgresql.Driver" ;
+    d2rq:username "lukaslaskowski" .
+
+map:BookA a d2rq:ClassMap ;
+    d2rq:class base:Book ;
+    d2rq:dataStorage map:database ;
+    d2rq:uriPattern "/@@book.isbn@@/" .
+
+map:BookB a d2rq:ClassMap ;
+    d2rq:class base:Book ;
+    d2rq:dataStorage map:database ;
+    d2rq:uriPattern "/@@book_2.isbn@@/" .
+

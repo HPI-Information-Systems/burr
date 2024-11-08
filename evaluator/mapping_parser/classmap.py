@@ -18,6 +18,7 @@ class ClassMap:
         self.datastorage = datastorage
         self.condition = condition
         self.join = join
+        self.set_eq_strategy()
         self.parent_classes = parent_classes
         self.translate_with = translate_with
             
@@ -79,13 +80,10 @@ class ClassMap:
                 )
         return renders + [classmap_render]
     
-    def __eq__(self, other: object) -> bool:
+    def __eq__(self, other):
         if not isinstance(other, ClassMap):
             return False
-        same_condition = self.sql_condition == other.sql_condition
-        same_pattern = self.sql_uri_pattern == other.sql_uri_pattern #if self.sql_sql_expression is None else self.sql_sql_expression == other.sql_sql_expression
-        same_join = self.sql_join == other.sql_join
-        return  same_condition and same_pattern and same_join
+        return self._eq_strategy(self, other)
     
     def __hash__(self) -> int:
         # print(self.sql_uri_pattern, self.sql_join)
@@ -94,10 +92,23 @@ class ClassMap:
             tuple(self.sql_uri_pattern) if isinstance(self.sql_uri_pattern, list) else self.sql_uri_pattern,
             self.sql_join))
         #return hash((self.sql_condition, self.sql_uri_pattern, self.sql_join))
+    
+    def set_eq_strategy(self, name_based=False):
+        self._eq_strategy = name_based_equality if name_based else concept_based_equality
 
     def __str__(self):
         class_maps = self.get_d2rq_mapping()
         return "\n".join(class_maps)
 
     def __repr__(self):
-        return f"ClassMap(uriPattern={self.uriPattern}, class_uri={self.class_uri})"
+        return f"ClassMap(uriPattern={self.uriPattern}, class_uri={self.class_uri}, eq_strategy={self._eq_strategy})"
+
+def concept_based_equality(concept1: ClassMap, concept2: ClassMap) -> bool:
+    same_condition = concept1.sql_condition == concept2.sql_condition
+    same_pattern = concept1.sql_uri_pattern == concept2.sql_uri_pattern #if self.sql_sql_expression is None else self.sql_sql_expression == other.sql_sql_expression
+    same_join = concept1.sql_join == concept2.sql_join
+    return  same_condition and same_pattern and same_join
+
+def name_based_equality(concept1: ClassMap, concept2: ClassMap) -> bool:
+    same_name = concept1.class_uri == concept2.class_uri #do i need to shorten?
+    return same_name

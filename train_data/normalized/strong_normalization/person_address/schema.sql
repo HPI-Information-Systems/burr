@@ -11,7 +11,7 @@ CREATE TABLE person (
     first_name VARCHAR(50),
     last_name VARCHAR(50),
     email VARCHAR(50)
-)
+);
 
 CREATE TABLE address (
     id int,
@@ -20,7 +20,7 @@ CREATE TABLE address (
     city VARCHAR(50),
     state VARCHAR(50),
     zip VARCHAR(50)
-)
+);
 
 ALTER TABLE Only person
     ADD CONSTRAINT person_primary_key PRIMARY KEY (id);

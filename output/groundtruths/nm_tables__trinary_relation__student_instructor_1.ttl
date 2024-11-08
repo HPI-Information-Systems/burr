@@ -1,0 +1,50 @@
+@prefix base: <file:///base/> .
+@prefix d2rq: <http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#> .
+@prefix jdbc: <http://d2rq.org/terms/jdbc/> .
+@prefix map: <http://mapping/> .
+
+map:PersonInstructor a d2rq:ClassMap ;
+    d2rq:class base:Person ;
+    d2rq:dataStorage map:database ;
+    d2rq:uriPattern "/@@instructor.id@@/" .
+
+map:PersonStudent a d2rq:ClassMap ;
+    d2rq:class base:Person ;
+    d2rq:dataStorage map:database ;
+    d2rq:uriPattern "/@@student.id@@/" .
+
+map:teaches_Instructor_Course a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Instructor ;
+    d2rq:join "course.id   =   student_course_instructor.cid",
+        "instructor.id   =   student_course_instructor.iid" ;
+    d2rq:property base:teaches ;
+    d2rq:refersToClassMap map:Course .
+
+map:teaches_Instructor_Student a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Instructor ;
+    d2rq:join "instructor.id   =   student_course_instructor.iid",
+        "student.id   =   student_course_instructor.sid" ;
+    d2rq:property base:teaches ;
+    d2rq:refersToClassMap map:Student .
+
+map:Course a d2rq:ClassMap ;
+    d2rq:class base:Course ;
+    d2rq:dataStorage map:database ;
+    d2rq:uriPattern "/@@course.id@@/" .
+
+map:Student a d2rq:ClassMap ;
+    d2rq:class base:Student ;
+    d2rq:dataStorage map:database ;
+    d2rq:uriPattern "/@@student.id@@/" .
+
+map:Instructor a d2rq:ClassMap ;
+    d2rq:class base:Instructor ;
+    d2rq:dataStorage map:database ;
+    d2rq:uriPattern "/@@instructor.id@@/" .
+
+map:database a d2rq:Database ;
+    jdbc:keepAlive "3600" ;
+    d2rq:jdbcDSN "jdbc:postgresql://localhost:5432/nm_tables__trinary_relation__student_instructor_1" ;
+    d2rq:jdbcDriver "org.postgresql.Driver" ;
+    d2rq:username "lukaslaskowski" .
+

@@ -1,35 +1,52 @@
 {
     "classes": [
         {
-            "id": "@@UnionOf[instructor.id, student.id]@@",
-            "class": "Person"
+            "id": "@@instructor.id@@",
+            "class": "Person",
+            "name": "PersonInstructor"
+        },
+        {
+            "id": "@@student.id@@",
+            "class": "Person",
+            "name": "PersonStudent"
         },
         {
             "id": "@@student.id@@",
             "class": "Student",
-            "subclassOf": [
+            "name": "Student",
+            "subClassOf": [
                 "Person"
             ]
         },
         {
             "id": "@@instructor.id@@",
             "class": "Instructor",
-            "subclassOf": [
+            "name": "Instructor",
+            "subClassOf": [
                 "Person"
             ]
         },
         {
             "id": "@@course.id@@",
-            "class": "Course"
+            "class": "Course",
+            "name": "Course"
         }
     ],
     "object_properties": [
         {
             "property": "teaches",
-            "belongsToClass": "@@IntersectionOf[Instructor, Course]@@",
-            "refersToClass": "Student",
+            "belongsToClassMap": "Instructor",
+            "refersToClassMap": "Student",
             "join": [
                 "student.id = student_course_instructor.sid",
+                "instructor.id = student_course_instructor.iid"
+            ]
+        },
+        {
+            "property": "teaches",
+            "belongsToClassMap": "Instructor",
+            "refersToClassMap": "Course",
+            "join": [
                 "instructor.id = student_course_instructor.iid",
                 "course.id = student_course_instructor.cid"
             ]

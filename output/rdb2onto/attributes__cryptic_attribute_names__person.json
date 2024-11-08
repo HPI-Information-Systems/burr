@@ -1,0 +1,42 @@
+{
+  "classes" : [ {
+    "id" : "@@person.NFSA====@@/",
+    "name" : "ClassMap_person",
+    "prefix" : "base",
+    "subClassOf" : null,
+    "join" : null,
+    "class" : "person"
+  } ],
+  "data_properties" : [ {
+    "property" : "hasNZQW2ZI=",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "person.NZQW2ZI=",
+    "belongsToClassMap" : "ClassMap_person"
+  }, {
+    "property" : "hasNFSA====",
+    "type" : "xsd:integer",
+    "column" : "person.NFSA====",
+    "belongsToClassMap" : "ClassMap_person"
+  }, {
+    "property" : "hasMFSGI4TFONZQ====",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "person.MFSGI4TFONZQ====",
+    "belongsToClassMap" : "ClassMap_person"
+  }, {
+    "property" : "hasMVWWC2LM",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "person.MVWWC2LM",
+    "belongsToClassMap" : "ClassMap_person"
+  }, {
+    "property" : "hasOBUG63TFL5XHK3LCMVZA====",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "person.OBUG63TFL5XHK3LCMVZA====",
+    "belongsToClassMap" : "ClassMap_person"
+  }, {
+    "property" : "hasMFTWK===",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "person.MFTWK===",
+    "belongsToClassMap" : "ClassMap_person"
+  } ],
+  "object_properties" : [ ]
+}

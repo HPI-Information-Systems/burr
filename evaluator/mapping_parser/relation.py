@@ -87,7 +87,7 @@ class Relation:
             return False
         return self._eq_strategy(self, other)
     
-    def set_eq_strategy(self, classes=False):
+    def set_eq_strategy(self, classes=False, name_based=False):
         self._eq_strategy = equality_by_edge_query_and_classes if classes else equality_by_edge_query
 
     def __hash__(self) -> int:
@@ -101,7 +101,8 @@ class Relation:
     def __repr__(self):
         return f"Relation(property={self.property}, belongsToClassMap={self.belongsToClassMap}, refersToClassMap={self.refersToClassMap}, eq_strategy={self._eq_strategy})"
     
-
+def equality_by_property_name(edge1: Relation, edge2: Relation) -> bool:
+    return edge1.property == edge2.property 
 
 def equality_by_edge_query(edge1: Relation, edge2: Relation) -> bool:
     if not isinstance(edge2, Relation):

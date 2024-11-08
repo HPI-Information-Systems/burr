@@ -1,0 +1,42 @@
+{
+  "classes" : [ {
+    "id" : "",
+    "name" : "ClassMap_friendship",
+    "prefix" : "base",
+    "subClassOf" : null,
+    "join" : null,
+    "class" : "friendship"
+  } ],
+  "data_properties" : [ {
+    "property" : "hasPerson_id_a",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "friendship.Person_id_a",
+    "belongsToClassMap" : "ClassMap_friendship"
+  }, {
+    "property" : "hasPerson_id_b",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "friendship.Person_id_b",
+    "belongsToClassMap" : "ClassMap_friendship"
+  }, {
+    "property" : "hasAddress_b",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "friendship.Address_b",
+    "belongsToClassMap" : "ClassMap_friendship"
+  }, {
+    "property" : "hasName_b",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "friendship.Name_b",
+    "belongsToClassMap" : "ClassMap_friendship"
+  }, {
+    "property" : "hasName_a",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "friendship.Name_a",
+    "belongsToClassMap" : "ClassMap_friendship"
+  }, {
+    "property" : "hasAddress_a",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "friendship.Address_a",
+    "belongsToClassMap" : "ClassMap_friendship"
+  } ],
+  "object_properties" : [ ]
+}

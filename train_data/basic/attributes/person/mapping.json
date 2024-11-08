@@ -23,7 +23,7 @@
             "property": "phone_number",
             "belongsToClass": "Person",
             "type": "integer",
-            "column": "person.phone_number"
+            "column": "person.phone"
         }
     ]
 }

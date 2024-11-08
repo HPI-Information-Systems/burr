@@ -1,0 +1,41 @@
+@prefix base: <file:///base/> .
+@prefix d2rq: <http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#> .
+@prefix jdbc: <http://d2rq.org/terms/jdbc/> .
+@prefix map: <http://mapping/> .
+
+map:address_Person_None a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Person ;
+    d2rq:column "person.mfsgi4tfonzq====" ;
+    d2rq:property base:address .
+
+map:age_Person_None a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Person ;
+    d2rq:column "person.mftwk===" ;
+    d2rq:property base:age .
+
+map:email_Person_None a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Person ;
+    d2rq:column "person.mvwwc2lm" ;
+    d2rq:property base:email .
+
+map:name_Person_None a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Person ;
+    d2rq:column "person.nzqw2zi=" ;
+    d2rq:property base:name .
+
+map:phone_number_Person_None a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Person ;
+    d2rq:column "person.obug63tfl5xhk3lcmvza====" ;
+    d2rq:property base:phone_number .
+
+map:database a d2rq:Database ;
+    jdbc:keepAlive "3600" ;
+    d2rq:jdbcDSN "jdbc:postgresql://localhost:5432/attributes__cryptic_attribute_names__person" ;
+    d2rq:jdbcDriver "org.postgresql.Driver" ;
+    d2rq:username "lukaslaskowski" .
+
+map:Person a d2rq:ClassMap ;
+    d2rq:class base:Person ;
+    d2rq:dataStorage map:database ;
+    d2rq:uriPattern "/@@person.nfsa====@@/" .
+

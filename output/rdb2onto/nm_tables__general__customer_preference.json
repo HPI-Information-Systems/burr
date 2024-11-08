@@ -1,0 +1,45 @@
+{
+  "classes" : [ {
+    "id" : "@@preference.id@@/",
+    "name" : "ClassMap_preference",
+    "prefix" : "base",
+    "subClassOf" : null,
+    "join" : null,
+    "class" : "preference"
+  }, {
+    "id" : "@@customer.id@@/",
+    "name" : "ClassMap_customer",
+    "prefix" : "base",
+    "subClassOf" : null,
+    "join" : null,
+    "class" : "customer"
+  } ],
+  "data_properties" : [ {
+    "property" : "hasId",
+    "type" : "xsd:integer",
+    "column" : "customer.Id",
+    "belongsToClassMap" : "ClassMap_customer"
+  }, {
+    "property" : "hasName",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "customer.Name",
+    "belongsToClassMap" : "ClassMap_customer"
+  }, {
+    "property" : "hasName",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "preference.Name",
+    "belongsToClassMap" : "ClassMap_preference"
+  }, {
+    "property" : "hasId",
+    "type" : "xsd:integer",
+    "column" : "preference.Id",
+    "belongsToClassMap" : "ClassMap_preference"
+  } ],
+  "object_properties" : [ {
+    "property" : "hasCustomerPreference",
+    "join" : [ "customer.id = customer_preference.customer_id", "preference.id = customer_preference.preference_id" ],
+    "inverseOf" : "hasPreferenceCustomer",
+    "belongsToClassMap" : "ClassMap_preference",
+    "refersToClassMap" : "ClassMap_customer"
+  } ]
+}

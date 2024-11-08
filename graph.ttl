@@ -3,54 +3,85 @@
 @prefix jdbc: <http://d2rq.org/terms/jdbc/> .
 @prefix map: <http://mapping/> .
 
-map:hasContains_alcohol_ClassMap_beverage_None a d2rq:PropertyBridge ;
-    d2rq:belongsToClassMap map:ClassMap_beverage ;
-    d2rq:column "beverage.contains_alcohol" ;
-    d2rq:property base:hasContains_alcohol .
+map:hasCid_ClassMap_student_course_instructor_ClassMap_course a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:ClassMap_student_course_instructor ;
+    d2rq:join "course.id   =   student_course_instructor.cid" ;
+    d2rq:property base:hasCid ;
+    d2rq:refersToClassMap map:ClassMap_course .
 
-map:hasContains_caffeine_ClassMap_beverage_None a d2rq:PropertyBridge ;
-    d2rq:belongsToClassMap map:ClassMap_beverage ;
-    d2rq:column "beverage.contains_caffeine" ;
-    d2rq:property base:hasContains_caffeine .
+map:hasCredits_ClassMap_course_None a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:ClassMap_course ;
+    d2rq:column "course.credits" ;
+    d2rq:property base:hasCredits .
 
-map:hasContains_dairy_ClassMap_beverage_None a d2rq:PropertyBridge ;
-    d2rq:belongsToClassMap map:ClassMap_beverage ;
-    d2rq:column "beverage.contains_dairy" ;
-    d2rq:property base:hasContains_dairy .
-
-map:hasContains_gluten_ClassMap_beverage_None a d2rq:PropertyBridge ;
-    d2rq:belongsToClassMap map:ClassMap_beverage ;
-    d2rq:column "beverage.contains_gluten" ;
-    d2rq:property base:hasContains_gluten .
-
-map:hasContains_nuts_ClassMap_beverage_None a d2rq:PropertyBridge ;
-    d2rq:belongsToClassMap map:ClassMap_beverage ;
-    d2rq:column "beverage.contains_nuts" ;
-    d2rq:property base:hasContains_nuts .
-
-map:hasContains_sugar_ClassMap_beverage_None a d2rq:PropertyBridge ;
-    d2rq:belongsToClassMap map:ClassMap_beverage ;
-    d2rq:column "beverage.contains_sugar" ;
-    d2rq:property base:hasContains_sugar .
-
-map:hasId_ClassMap_beverage_None a d2rq:PropertyBridge ;
-    d2rq:belongsToClassMap map:ClassMap_beverage ;
-    d2rq:column "beverage.id" ;
+map:hasId_ClassMap_course_None a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:ClassMap_course ;
+    d2rq:column "course.id" ;
     d2rq:property base:hasId .
 
-map:hasName_ClassMap_beverage_None a d2rq:PropertyBridge ;
-    d2rq:belongsToClassMap map:ClassMap_beverage ;
-    d2rq:column "beverage.name" ;
+map:hasId_ClassMap_instructor_None a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:ClassMap_instructor ;
+    d2rq:column "instructor.id" ;
+    d2rq:property base:hasId .
+
+map:hasId_ClassMap_student_None a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:ClassMap_student ;
+    d2rq:column "student.id" ;
+    d2rq:property base:hasId .
+
+map:hasIid_ClassMap_student_course_instructor_ClassMap_instructor a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:ClassMap_student_course_instructor ;
+    d2rq:join "instructor.id   =   student_course_instructor.iid" ;
+    d2rq:property base:hasIid ;
+    d2rq:refersToClassMap map:ClassMap_instructor .
+
+map:hasMax_students_ClassMap_course_None a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:ClassMap_course ;
+    d2rq:column "course.max_students" ;
+    d2rq:property base:hasMax_students .
+
+map:hasName_ClassMap_course_None a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:ClassMap_course ;
+    d2rq:column "course.name" ;
     d2rq:property base:hasName .
+
+map:hasName_ClassMap_instructor_None a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:ClassMap_instructor ;
+    d2rq:column "instructor.name" ;
+    d2rq:property base:hasName .
+
+map:hasName_ClassMap_student_None a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:ClassMap_student ;
+    d2rq:column "student.name" ;
+    d2rq:property base:hasName .
+
+map:hasSid_ClassMap_student_course_instructor_None a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:ClassMap_student_course_instructor ;
+    d2rq:column "student_course_instructor.sid" ;
+    d2rq:property base:hasSid .
+
+map:ClassMap_student a d2rq:ClassMap ;
+    d2rq:class base:student ;
+    d2rq:dataStorage map:database .
+
+map:ClassMap_instructor a d2rq:ClassMap ;
+    d2rq:class base:instructor ;
+    d2rq:dataStorage map:database ;
+    d2rq:uriPattern "/@@instructor.id@@/" .
+
+map:ClassMap_student_course_instructor a d2rq:ClassMap ;
+    d2rq:class base:student_course_instructor ;
+    d2rq:dataStorage map:database ;
+    d2rq:uriPattern "/@@student_course_instructor.sid@@/@@student_course_instructor.iid@@/@@student_course_instructor.cid@@/" .
 
 map:database a d2rq:Database ;
     jdbc:keepAlive "3600" ;
-    d2rq:jdbcDSN "jdbc:postgresql://localhost:5432/denormalized__boolean_relation__beverages" ;
+    d2rq:jdbcDSN "jdbc:postgresql://localhost:5432/nm_tables__trinary_relation__student_instructor_1" ;
     d2rq:jdbcDriver "org.postgresql.Driver" ;
     d2rq:username "lukaslaskowski" .
 
-map:ClassMap_beverage a d2rq:ClassMap ;
-    d2rq:class base:beverage ;
+map:ClassMap_course a d2rq:ClassMap ;
+    d2rq:class base:course ;
     d2rq:dataStorage map:database ;
-    d2rq:uriPattern "/@@beverage.id@@/" .
+    d2rq:uriPattern "/@@course.id@@/" .
 

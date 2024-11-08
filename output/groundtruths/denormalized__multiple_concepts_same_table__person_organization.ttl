@@ -1,0 +1,61 @@
+@prefix base: <file:///base/> .
+@prefix d2rq: <http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#> .
+@prefix jdbc: <http://d2rq.org/terms/jdbc/> .
+@prefix map: <http://mapping/> .
+
+map:address_Organization_None a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Organization ;
+    d2rq:column "person_organization.organization_address" ;
+    d2rq:property base:address .
+
+map:address_Person_None a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Person ;
+    d2rq:column "person_organization.person_address" ;
+    d2rq:property base:address .
+
+map:name_Organization_None a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Organization ;
+    d2rq:column "person_organization.organization_name" ;
+    d2rq:property base:name .
+
+map:name_Person_None a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Person ;
+    d2rq:column "person_organization.person_name" ;
+    d2rq:property base:name .
+
+map:phone_number_Organization_None a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Organization ;
+    d2rq:column "person_organization.organization_phone_number" ;
+    d2rq:property base:phone_number .
+
+map:phone_number_Person_None a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Person ;
+    d2rq:column "person_organization.person_phone_number" ;
+    d2rq:property base:phone_number .
+
+map:role_Person_None a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Person ;
+    d2rq:column "person_organization.person_role" ;
+    d2rq:property base:role .
+
+map:worksFor_Person_Organization a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Person ;
+    d2rq:property base:worksFor ;
+    d2rq:refersToClassMap map:Organization .
+
+map:database a d2rq:Database ;
+    jdbc:keepAlive "3600" ;
+    d2rq:jdbcDSN "jdbc:postgresql://localhost:5432/denormalized__multiple_concepts_same_table__person_organization" ;
+    d2rq:jdbcDriver "org.postgresql.Driver" ;
+    d2rq:username "lukaslaskowski" .
+
+map:Organization a d2rq:ClassMap ;
+    d2rq:class base:Organization ;
+    d2rq:dataStorage map:database ;
+    d2rq:uriPattern "/@@person_organization.organization_id@@/" .
+
+map:Person a d2rq:ClassMap ;
+    d2rq:class base:Person ;
+    d2rq:dataStorage map:database ;
+    d2rq:uriPattern "/@@person_organization.person_id@@/" .
+

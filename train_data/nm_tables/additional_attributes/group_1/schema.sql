@@ -7,33 +7,28 @@ CREATE DATABASE :database_name;
 SET default_tablespace = '';
 SET default_with_oids = false;
 
-CREATE TABLE user (
-    id integer,
-)
+CREATE TABLE user_ (
+    "id" int
+);
 
-CREATE TABLE group (
-    id integer,
-)
+CREATE TABLE group_ (
+    "id" INT
+);
 
 CREATE TABLE user_group (
-    uid integer,
-    gid integer,
-    registration_date integer,
-    expiration_duration integer,
+    uid INT,
+    gid INT,
+    registration_date INT,
+    expiration_duration INT,
     access_rights VARCHAR(50)
-)
+);
 
-ALTER TABLE Only user
-    ADD CONSTRAINT user_primary_key PRIMARY KEY (id);
+ALTER TABLE Only "user_" ADD CONSTRAINT "user_primary_key" PRIMARY KEY (id);
 
-ALTER TABLE Only group
-    ADD CONSTRAINT group_primary_key PRIMARY KEY (id);
+ALTER TABLE Only "group_" ADD CONSTRAINT "group_primary_key" PRIMARY KEY (id);
 
-ALTER TABLE ONLY user_group
-    ADD CONSTRAINT "enableUserGroupPK" PRIMARY KEY (uid, gid);
+ALTER TABLE ONLY "user_group" ADD CONSTRAINT "enableUserGroupPK" PRIMARY KEY (uid, gid);
 
-ALTER TABLE ONLY user_group
-    ADD CONSTRAINT "FKusergroupUser" FOREIGN KEY (uid) REFERENCES user(id) ON DELETE CASCADE;
+ALTER TABLE ONLY "user_group" ADD CONSTRAINT "FKusergroupUser" FOREIGN KEY (uid) REFERENCES user_(id) ON DELETE CASCADE;
 
-ALTER TABLE ONLY user_group
-    ADD CONSTRAINT "FKusergroupGroup" FOREIGN KEY (gid) REFERENCES group(id) ON DELETE CASCADE;
+ALTER TABLE ONLY "user_group" ADD CONSTRAINT "FKusergroupGroup" FOREIGN KEY (gid) REFERENCES group_(id) ON DELETE CASCADE;

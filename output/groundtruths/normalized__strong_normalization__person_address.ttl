@@ -1,0 +1,40 @@
+@prefix base: <file:///base/> .
+@prefix d2rq: <http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#> .
+@prefix jdbc: <http://d2rq.org/terms/jdbc/> .
+@prefix map: <http://mapping/> .
+
+map:city_Person_None a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Person ;
+    d2rq:column "address.city" ;
+    d2rq:join "person.id   =   address.person_id" ;
+    d2rq:property base:city .
+
+map:state_Person_None a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Person ;
+    d2rq:column "address.state" ;
+    d2rq:join "person.id   =   address.person_id" ;
+    d2rq:property base:state .
+
+map:street_Person_None a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Person ;
+    d2rq:column "address.street" ;
+    d2rq:join "person.id   =   address.person_id" ;
+    d2rq:property base:street .
+
+map:zip_Person_None a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Person ;
+    d2rq:column "address.zip" ;
+    d2rq:join "person.id   =   address.person_id" ;
+    d2rq:property base:zip .
+
+map:database a d2rq:Database ;
+    jdbc:keepAlive "3600" ;
+    d2rq:jdbcDSN "jdbc:postgresql://localhost:5432/normalized__strong_normalization__person_address" ;
+    d2rq:jdbcDriver "org.postgresql.Driver" ;
+    d2rq:username "lukaslaskowski" .
+
+map:Person a d2rq:ClassMap ;
+    d2rq:class base:Person ;
+    d2rq:dataStorage map:database ;
+    d2rq:uriPattern "/@@person.id@@/" .
+

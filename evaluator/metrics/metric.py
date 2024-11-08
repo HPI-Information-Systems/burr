@@ -16,3 +16,29 @@ class F1Score():
 
     def __str__(self):
         return "F1Score"
+    
+from evaluator.metrics.metric import Metric
+from evaluator.mapping_parser.mapping import D2RQMapping
+
+class Precision(Metric):
+    def __init__(self):
+        super(Precision, self).__init__()
+
+    def score(self, el1, el2) -> float:
+        shared_elements = [x for x in el2 if x in el1]
+        return len(shared_elements) / len(el2) if len(el2) > 0 else 0.0
+
+    def __str__(self):
+        return "Precision"
+
+
+class Recall(Metric):
+    def __init__(self):
+        super(Recall, self).__init__()
+
+    def score(self, el1, el2) -> float:
+        shared_elements = [x for x in el2 if x in el1]
+        return len(shared_elements) / len(el1) if len(el1) > 0 else 0.0
+
+    def __str__(self):
+        return "Recall"

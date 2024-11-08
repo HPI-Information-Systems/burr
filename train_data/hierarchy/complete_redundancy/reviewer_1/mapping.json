@@ -1,0 +1,46 @@
+{
+    "classes": [
+        {
+            "id": "@@person.pid@@",
+            "class": "Person",
+            "name": "PersonMap"
+        },
+        {
+            "id": "@@author.aid@@",
+            "class": "Author",
+            "name": "Author",
+            "subClassOf": [
+                "Person"
+            ]
+        },
+        {
+            "id": "@@reviewer.rid@@",
+            "class": "Reviewer",
+            "name": "Reviewer",
+            "subClassOf": [
+                "Person"
+            ]
+        }
+    ],
+    "object_properties": [],
+    "data_properties": [
+        {
+            "property": "name",
+            "belongsToClassMap": "PersonMap",
+            "type": "string",
+            "column": "person.name"
+        },
+        {
+            "property": "email",
+            "belongsToClassMap": "Author",
+            "type": "string",
+            "column": "author.email"
+        },
+        {
+            "property": "area",
+            "belongsToClassMap": "Reviewer",
+            "type": "string",
+            "column": "reviewer.area"
+        }
+    ]
+}

@@ -1,0 +1,15 @@
+@prefix d2rq: <http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#> .
+
+<http://mapping/Person> a d2rq:ClassMap ;
+    d2rq:property <file:///base/address>,
+        <file:///base/name>,
+        <file:///base/phone_number> ;
+    d2rq:uriPattern "@@http://mapping/Person_LogicalTable@@",
+        "Person/@@id@@/" .
+
+<http://mapping/address_Person_None> d2rq:column "address" .
+
+<http://mapping/name_Person_None> d2rq:column "name" .
+
+<http://mapping/phone_number_Person_None> d2rq:column "phone_number" .
+

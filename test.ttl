@@ -1,31 +1,29 @@
 @prefix d2rq: <http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#> .
-@prefix cmt: <http://cmt/> .
-@prefix map: <http://mapping/> .
-@prefix jdbc: <http://d2rq.org/terms/jdbc/> .
-@prefix rba: </SAP/RBA/BPM/> .
-@prefix scm: </SAP/RSA/SCM/> .
-@prefix spm: </SAP/RSA/SPM/> .
-@prefix bar: </SAP/RBA/BAR/> .
-@prefix sap: </SAP/> .
-@prefix bcm: </SAP/RBA/BCM/> .
+@prefix geo: <http://www.opengis.net/ont/geosparql#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
-map:database a d2rq:Database;
-	d2rq:jdbcDriver "org.postgresql.Driver";
-	d2rq:jdbcDSN "jdbc:postgresql://localhost:5432/sap";
-	d2rq:username "lukaslaskowski";
-	jdbc:keepAlive "3600";				# sends noop-query every 3600 seconds
-	.
+<file:///Users/lukaslaskowski/Documents/HPI/KG/ontology_mappings/rdb2ontology/evaluator/r2rml.ttl#Geometries> a d2rq:ClassMap ;
+    d2rq:property geo:asWKT ;
+    d2rq:uriPattern "@@n3a480062d5e0452a9aa8071ab5590c97b15@@",
+        "http://data.example.org/geom/@@LONG@@/@@LAT@@" .
 
-map:SolutionArchitectureComponentMap a d2rq:ClassMap;
-    d2rq:dataStorage map:database;
-    d2rq:class scm:SolutionArchitectureComponent;
-    d2rq:uriPattern "SolutionArchitectureComponent/@@scm.ppms_product_name@@/@@scm.solution_component_reference_architecture_cloud@@/@@scm.solution_component_reference_architecture_hybrid@@/";
-    
-    
-    .
-map:partOfReferenceArchitecture_SolutionArchitectureComponentMap_None_0 a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:SolutionArchitectureComponentMap;
-    d2rq:property sap:partOfReferenceArchitecture;
-    d2rq:condition "scm.solution_component_reference_architecture_hybrid = 'True'";
-    d2rq:column "scm.solution_component_reference_architecture_hybrid";
-    .
+<file:///Users/lukaslaskowski/Documents/HPI/KG/ontology_mappings/rdb2ontology/evaluator/r2rml.ttl#WeatherStation> a d2rq:ClassMap ;
+    d2rq:property <http://www.example.org/ont#withWeatherReading>,
+        geo:hasGeometry,
+        rdfs:label,
+        rdfs:seeAlso,
+        <http://www.w3.org/2003/01/geo/wgs84_pos#lat>,
+        <http://www.w3.org/2003/01/geo/wgs84_pos#long> ;
+    d2rq:uriPattern "@@n3a480062d5e0452a9aa8071ab5590c97b1@@",
+        "http://data.example.org/ws/@@NAME@@" .
+
+[] d2rq:column "WEATHER_READING" .
+
+[] d2rq:uriPattern "POINT(@@LONG@@ @@LAT@@)" .
+
+[] d2rq:column "NAME" .
+
+[] d2rq:column "LAT" .
+
+[] d2rq:column "LONG" .
+

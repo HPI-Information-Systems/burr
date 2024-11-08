@@ -1,4 +1,4 @@
-\set database_name nm_tables__trinary_relation__student_intructor_1
+\set database_name nm_tables__trinary_relation__student_instructor_1
 SELECT pg_terminate_backend(pg_stat_activity.pid) FROM pg_stat_activity WHERE pg_stat_activity.datname = :'database_name' AND pid <> pg_backend_pid();
 DROP DATABASE IF EXISTS :database_name;
 CREATE DATABASE :database_name;
@@ -10,25 +10,25 @@ SET default_with_oids = false;
 CREATE TABLE student (
     id integer,
     name VARCHAR(50)
-)
+);
 
 CREATE TABLE instructor (
     id integer,
-    name VARCHAR(50),
-)
+    name VARCHAR(50)
+);
 
 CREATE TABLE course (
     id integer,
     name VARCHAR(50),
     credits integer,
-    max_students integer,
-)
+    max_students integer
+);
 
 CREATE TABLE student_course_instructor (
     sid integer,
     iid integer,
     cid integer
-)
+);
 
 ALTER TABLE Only user
     ADD CONSTRAINT user_primary_key PRIMARY KEY (id);

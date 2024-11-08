@@ -1,0 +1,46 @@
+@prefix base: <file:///base/> .
+@prefix d2rq: <http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#> .
+@prefix jdbc: <http://d2rq.org/terms/jdbc/> .
+@prefix map: <http://mapping/> .
+
+map:address_PersonA_None a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:PersonA ;
+    d2rq:column "friendship.address_a" ;
+    d2rq:property base:address .
+
+map:address_PersonB_None a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:PersonB ;
+    d2rq:column "friendship.address_b" ;
+    d2rq:property base:address .
+
+map:is_friend_PersonA_PersonB a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:PersonA ;
+    d2rq:property base:is_friend ;
+    d2rq:refersToClassMap map:PersonB .
+
+map:name_PersonA_None a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:PersonA ;
+    d2rq:column "friendship.name_a" ;
+    d2rq:property base:name .
+
+map:name_PersonB_None a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:PersonB ;
+    d2rq:column "friendship.name_b" ;
+    d2rq:property base:name .
+
+map:database a d2rq:Database ;
+    jdbc:keepAlive "3600" ;
+    d2rq:jdbcDSN "jdbc:postgresql://localhost:5432/denormalized__same_concept_in_same_table__friendship" ;
+    d2rq:jdbcDriver "org.postgresql.Driver" ;
+    d2rq:username "lukaslaskowski" .
+
+map:PersonA a d2rq:ClassMap ;
+    d2rq:class base:Person ;
+    d2rq:dataStorage map:database ;
+    d2rq:uriPattern "/@@friendship.person_id_a@@/" .
+
+map:PersonB a d2rq:ClassMap ;
+    d2rq:class base:Person ;
+    d2rq:dataStorage map:database ;
+    d2rq:uriPattern "/@@friendship.person_id_b@@/" .
+

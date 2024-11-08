@@ -1,4 +1,4 @@
-\set database_name nm_tables__general__smartphone_employee_skill
+\set database_name nm_tables__general__employee_skill
 SELECT pg_terminate_backend(pg_stat_activity.pid) FROM pg_stat_activity WHERE pg_stat_activity.datname = :'database_name' AND pid <> pg_backend_pid();
 DROP DATABASE IF EXISTS :database_name;
 CREATE DATABASE :database_name;
