@@ -1,0 +1,305 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix schema: <http://schema.org/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix base: <http://purl.org/dc/terms/> .
+
+base:age a owl:DatatypeProperty ;
+    rdfs:label "Age" ;
+    rdfs:comment "The age of the customer" ;
+    rdfs:domain foaf:Person ;
+    rdfs:range xsd:integer .
+
+base:arrivalDelay a owl:DatatypeProperty ;
+    rdfs:label "Arrival Delay in Minutes" ;
+    rdfs:comment "The delay in minutes for the arrival of the flight" ;
+    rdfs:domain schema:Flight ;
+    rdfs:range xsd:integer .
+
+base:baggage a owl:DatatypeProperty ;
+    rdfs:label "Baggage handling" ;
+    rdfs:comment "Rating for baggage handling service" ;
+    rdfs:domain schema:Service ;
+    rdfs:range xsd:integer .
+
+base:checkin a owl:DatatypeProperty ;
+    rdfs:label "Checkin service" ;
+    rdfs:comment "Rating for checkin service" ;
+    rdfs:domain schema:Service ;
+    rdfs:range xsd:integer .
+
+base:cleanliness a owl:DatatypeProperty ;
+    rdfs:label "Cleanliness" ;
+    rdfs:comment "Rating for cleanliness" ;
+    rdfs:domain schema:Service ;
+    rdfs:range xsd:integer .
+
+base:departureDelay a owl:DatatypeProperty ;
+    rdfs:label "Departure Delay in Minutes" ;
+    rdfs:comment "The delay in minutes for the departure of the flight" ;
+    rdfs:domain schema:Flight ;
+    rdfs:range xsd:integer .
+
+base:departureArrivalTime a owl:DatatypeProperty ;
+    rdfs:label "Departure/Arrival time convenient" ;
+    rdfs:comment "Rating for the convenience of departure/arrival time" ;
+    rdfs:domain schema:Service ;
+    rdfs:range xsd:integer .
+
+base:booking a owl:DatatypeProperty ;
+    rdfs:label "Ease of Online booking" ;
+    rdfs:comment "Rating for the ease of online booking" ;
+    rdfs:domain schema:Service ;
+    rdfs:range xsd:integer .
+
+base:distance a owl:DatatypeProperty ;
+    rdfs:label "Flight Distance" ;
+    rdfs:comment "The distance of the flight" ;
+    rdfs:domain schema:Flight ;
+    rdfs:range xsd:integer .
+
+base:foodEvent a owl:DatatypeProperty ;
+    rdfs:label "Food and drink" ;
+    rdfs:comment "Rating for food and drink service" ;
+    rdfs:domain schema:Service ;
+    rdfs:range xsd:integer .
+
+base:gate a owl:DatatypeProperty ;
+    rdfs:label "Gate location" ;
+    rdfs:comment "Rating for gate location" ;
+    rdfs:domain schema:Service ;
+    rdfs:range xsd:integer .
+
+base:entertainment a owl:DatatypeProperty ;
+    rdfs:label "Inflight entertainment" ;
+    rdfs:comment "Rating for inflight entertainment" ;
+    rdfs:domain schema:Service ;
+    rdfs:range xsd:integer .
+
+base:wifi a owl:DatatypeProperty ;
+    rdfs:label "Inflight wifi service" ;
+    rdfs:comment "Rating for inflight wifi service" ;
+    rdfs:domain schema:Service ;
+    rdfs:range xsd:integer .
+
+base:legRoom a owl:DatatypeProperty ;
+    rdfs:label "Leg room service" ;
+    rdfs:comment "Rating for leg room service" ;
+    rdfs:domain schema:Service ;
+    rdfs:range xsd:integer .
+
+base:service a owl:DatatypeProperty ;
+    rdfs:label "On-board service" ;
+    rdfs:comment "Rating for on-board service" ;
+    rdfs:domain schema:Service ;
+    rdfs:range xsd:integer .
+
+base:boardingPolicy a owl:DatatypeProperty ;
+    rdfs:label "Online boarding" ;
+    rdfs:comment "Rating for online boarding" ;
+    rdfs:domain schema:Service ;
+    rdfs:range xsd:integer .
+
+base:support a owl:DatatypeProperty ;
+    rdfs:label "Online support" ;
+    rdfs:comment "Rating for online support" ;
+    rdfs:domain schema:Service ;
+    rdfs:range xsd:integer .
+
+base:seat a owl:DatatypeProperty ;
+    rdfs:label "Seat comfort" ;
+    rdfs:comment "Rating for seat comfort" ;
+    rdfs:domain schema:Service ;
+    rdfs:range xsd:integer .
+
+base:customerSatisfaction a owl:DatatypeProperty ;
+    rdfs:label "satisfaction" ;
+    rdfs:comment "Customer satisfaction rating" ;
+    rdfs:domain foaf:Person ;
+    rdfs:range xsd:integer .
+
+base:gender a owl:DatatypeProperty ;
+    rdfs:label "Gender" ;
+    rdfs:comment "The gender of the customer" ;
+    rdfs:domain foaf:Person ;
+    rdfs:range xsd:string .
+
+base:customerType a owl:DatatypeProperty ;
+    rdfs:label "Customer Type" ;
+    rdfs:comment "The type of customer" ;
+    rdfs:domain foaf:Person ;
+    rdfs:range xsd:string .
+
+base:tripType a owl:DatatypeProperty ;
+    rdfs:label "Type of Travel" ;
+    rdfs:comment "The type of travel" ;
+    rdfs:domain schema:Flight ;
+    rdfs:range xsd:string .
+
+base:flightClass a owl:DatatypeProperty ;
+    rdfs:label "Class" ;
+    rdfs:comment "The class of the flight" ;
+    rdfs:domain schema:Flight ;
+    rdfs:range xsd:string .
+
+base:hasService a owl:ObjectProperty ;
+    rdfs:label "has service" ;
+    rdfs:comment "Indicates a service provided during the flight" ;
+    rdfs:domain schema:Flight ;
+    rdfs:range schema:Service .
+
+base:hasRating a owl:ObjectProperty ;
+    rdfs:label "has rating" ;
+    rdfs:comment "Indicates a rating given by the customer" ;
+    rdfs:domain schema:Service ;
+    rdfs:range schema:Rating .
+
+base:hasCustomer a owl:ObjectProperty ;
+    rdfs:label "has customer" ;
+    rdfs:comment "Indicates the customer associated with the flight" ;
+    rdfs:domain schema:Flight ;
+    rdfs:range foaf:Person .
+
+base:hasFlight a owl:ObjectProperty ;
+    rdfs:label "has flight" ;
+    rdfs:comment "Indicates the flight associated with the customer" ;
+    rdfs:domain foaf:Person ;
+    rdfs:range schema:Flight .
+
+foaf:Person a owl:Class ;
+    rdfs:label "Person" ;
+    rdfs:comment "A person" ;
+    skos:definition "A person, living or dead" .
+
+schema:Flight a owl:Class ;
+    rdfs:label "Flight" ;
+    rdfs:comment "A flight" ;
+    skos:definition "An instance of a flight" .
+
+schema:Service a owl:Class ;
+    rdfs:label "Service" ;
+    rdfs:comment "A service" ;
+    skos:definition "An instance of a service provided during the flight" .
+
+schema:Rating a owl:Class ;
+    rdfs:label "Rating" ;
+    rdfs:comment "A rating" ;
+    skos:definition "An instance of a rating given by the customer" .
+
+foaf:Person rdfs:subClassOf [
+    a owl:Restriction ;
+    owl:onProperty base:age ;
+    owl:allValuesFrom xsd:integer
+], [
+    a owl:Restriction ;
+    owl:onProperty base:gender ;
+    owl:allValuesFrom xsd:string
+], [
+    a owl:Restriction ;
+    owl:onProperty base:customerType ;
+    owl:allValuesFrom xsd:string
+], [
+    a owl:Restriction ;
+    owl:onProperty base:customerSatisfaction ;
+    owl:allValuesFrom xsd:integer
+], [
+    a owl:Restriction ;
+    owl:onProperty base:hasFlight ;
+    owl:allValuesFrom schema:Flight
+] .
+
+schema:Flight rdfs:subClassOf [
+    a owl:Restriction ;
+    owl:onProperty base:arrivalDelay ;
+    owl:allValuesFrom xsd:integer
+], [
+    a owl:Restriction ;
+    owl:onProperty base:departureDelay ;
+    owl:allValuesFrom xsd:integer
+], [
+    a owl:Restriction ;
+    owl:onProperty base:distance ;
+    owl:allValuesFrom xsd:integer
+], [
+    a owl:Restriction ;
+    owl:onProperty base:tripType ;
+    owl:allValuesFrom xsd:string
+], [
+    a owl:Restriction ;
+    owl:onProperty base:flightClass ;
+    owl:allValuesFrom xsd:string
+], [
+    a owl:Restriction ;
+    owl:onProperty base:hasService ;
+    owl:allValuesFrom schema:Service
+], [
+    a owl:Restriction ;
+    owl:onProperty base:hasCustomer ;
+    owl:allValuesFrom foaf:Person
+] .
+
+schema:Service rdfs:subClassOf [
+    a owl:Restriction ;
+    owl:onProperty base:baggage ;
+    owl:allValuesFrom xsd:integer
+], [
+    a owl:Restriction ;
+    owl:onProperty base:checkin ;
+    owl:allValuesFrom xsd:integer
+], [
+    a owl:Restriction ;
+    owl:onProperty base:cleanliness ;
+    owl:allValuesFrom xsd:integer
+], [
+    a owl:Restriction ;
+    owl:onProperty base:departureArrivalTime ;
+    owl:allValuesFrom xsd:integer
+], [
+    a owl:Restriction ;
+    owl:onProperty base:booking ;
+    owl:allValuesFrom xsd:integer
+], [
+    a owl:Restriction ;
+    owl:onProperty base:foodEvent ;
+    owl:allValuesFrom xsd:integer
+], [
+    a owl:Restriction ;
+    owl:onProperty base:gate ;
+    owl:allValuesFrom xsd:integer
+], [
+    a owl:Restriction ;
+    owl:onProperty base:entertainment ;
+    owl:allValuesFrom xsd:integer
+], [
+    a owl:Restriction ;
+    owl:onProperty base:wifi ;
+    owl:allValuesFrom xsd:integer
+], [
+    a owl:Restriction ;
+    owl:onProperty base:legRoom ;
+    owl:allValuesFrom xsd:integer
+], [
+    a owl:Restriction ;
+    owl:onProperty base:service ;
+    owl:allValuesFrom xsd:integer
+], [
+    a owl:Restriction ;
+    owl:onProperty base:boardingPolicy ;
+    owl:allValuesFrom xsd:integer
+], [
+    a owl:Restriction ;
+    owl:onProperty base:support ;
+    owl:allValuesFrom xsd:integer
+], [
+    a owl:Restriction ;
+    owl:onProperty base:seat ;
+    owl:allValuesFrom xsd:integer
+], [
+    a owl:Restriction ;
+    owl:onProperty base:hasRating ;
+    owl:allValuesFrom schema:Rating
+] .
