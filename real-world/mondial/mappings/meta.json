@@ -4,6 +4,10 @@
         {
             "prefix": "mondial",
             "uri": "/mondial/"
+        },
+        {
+            "prefix": "base",
+            "uri": "/base/"
         }
     ]
 }

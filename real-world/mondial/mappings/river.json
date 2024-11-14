@@ -100,6 +100,30 @@
             "belongsToClassMap": "River1",
             "type": "decimal",
             "column": "river.length"
+        },
+        {
+            "property": "sourcelatitude",
+            "belongsToClassMap": "River1",
+            "type": "decimal",
+            "column": "river.sourcelatitude"
+        },
+        {
+            "property": "sourcelongitude",
+            "belongsToClassMap": "River1",
+            "type": "decimal",
+            "column": "river.sourcelongitude"
+        },
+        {
+            "property": "estuarylatitude",
+            "belongsToClassMap": "River1",
+            "type": "decimal",
+            "column": "river.estuarylatitude"
+        },
+        {
+            "property": "estuarylongitude",
+            "belongsToClassMap": "River1",
+            "type": "decimal",
+            "column": "river.estuarylongitude"
         }
     ]
 }

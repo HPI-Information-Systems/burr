@@ -1,39 +1,29 @@
-import subprocess
-import json
-import os
+import wandb
 import time
 
 from evaluator.experimenter.solutions.base_solution import BaseSolution
-from evaluator.mapping_parser.mapping import JsonMapping, D2RQMapping
+from evaluator.mapping_parser.mapping import R2RMLMapping, D2RQMapping
+
+from evaluator.experimenter.solutions.OntoGenix_CLI.GUI.ontogenix import OntoGenix as OntoGenix_CLI
 
 class OntoGenix(BaseSolution):
     solution_name = "ontogenix"
-    def __init__(self, jar_path):
+    def __init__(self):
         super(OntoGenix, self).__init__()
-        self.jar_path = jar_path
 
-    def run(self, database_name, output_path="/Users/lukaslaskowski/Documents/HPI/KG/ontology_mappings/rdb2ontology/output/rdb2onto/") -> D2RQMapping:
+    def run(self, database_name) -> D2RQMapping:
         self.train(database_name)
-        return self.test(database_name, output_path)
+        return self.test(database_name)
     
     def train(self):
-        print("Training not required for RDB2Onto")
+        print("Training not required for Ontogenix")
         return None, 0
 
-    def test(self, database_name, output_path, meta, model):
-        command = ['java', '-jar', self.jar_path, database_name, output_path]
-        print("Running RDB2Onto: ", command)
-
+    def test(self, database_name, meta, chatbot, model):
+        print("Running OntoGenix with model: ", chatbot)
         start_time = time.time()
-        result = subprocess.run(command, capture_output=True, text=True)
+        mapping = OntoGenix_CLI(database_name, api_model=chatbot).run()
         end_time = time.time()
-        if result.returncode == 0:
-            print("RDB2Onto finished")
-            data_path = os.path.join(output_path, f"{database_name}.json")
-            with open(data_path) as data:
-                data = json.load(data)
-            return JsonMapping(data, database_name, meta).to_D2RQ_Mapping(), end_time - start_time
-        else:
-            print("JAR execution failed with return code:", result.returncode)
-            print("Error output:")
-            print(result.stderr)
+        print("OntoGenix finished")
+        #fix this
+        return R2RMLMapping(mapping, database_name, meta).to_D2RQ_Mapping(), end_time - start_time

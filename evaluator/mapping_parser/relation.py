@@ -52,6 +52,7 @@ class Relation:
         return []
 
     def parse_join(self, join):
+        join = join.replace(" ", "").replace(">", "").replace("<", "")
         join = join.split("=")
         left = join[0].split(".")
         right = join[1].split(".")
@@ -88,7 +89,16 @@ class Relation:
         return self._eq_strategy(self, other)
     
     def set_eq_strategy(self, classes=False, name_based=False):
-        self._eq_strategy = equality_by_edge_query_and_classes if classes else equality_by_edge_query
+        if classes:
+            self._eq_strategy = equality_by_edge_query_and_classes
+            self._hash_strategy = hash_by_edge_query_and_classes
+        elif name_based:
+            self._eq_strategy = equality_by_property_name
+            self._hash_strategy = hash
+        else:
+            self._eq_strategy = equality_by_edge_query
+            self._hash_strategy = hash_by_edge_query
+        #self._eq_strategy = equality_by_edge_query_and_classes if classes else equality_by_edge_query
 
     def __hash__(self) -> int:
         joins_hash = hash(frozenset(self.sql_join)) if self.sql_join is not None else 0
@@ -102,7 +112,8 @@ class Relation:
         return f"Relation(property={self.property}, belongsToClassMap={self.belongsToClassMap}, refersToClassMap={self.refersToClassMap}, eq_strategy={self._eq_strategy})"
     
 def equality_by_property_name(edge1: Relation, edge2: Relation) -> bool:
-    return edge1.property == edge2.property 
+    #print(edge1.property, edge2.property)
+    return edge1.property.strip().lower() == edge2.property.strip().lower()
 
 def equality_by_edge_query(edge1: Relation, edge2: Relation) -> bool:
     if not isinstance(edge2, Relation):

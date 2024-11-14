@@ -3,76 +3,79 @@
 @prefix jdbc: <http://d2rq.org/terms/jdbc/> .
 @prefix map: <http://mapping/> .
 
-map:hasCid_ClassMap_student_course_instructor_ClassMap_course a d2rq:PropertyBridge ;
-    d2rq:belongsToClassMap map:ClassMap_student_course_instructor ;
-    d2rq:join "course.id   =   student_course_instructor.cid" ;
-    d2rq:property base:hasCid ;
-    d2rq:refersToClassMap map:ClassMap_course .
+map:course__label a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:course ;
+    d2rq:property base:rdf-schemalabel .
 
-map:hasCredits_ClassMap_course_None a d2rq:PropertyBridge ;
-    d2rq:belongsToClassMap map:ClassMap_course ;
+map:course_credits a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:course ;
     d2rq:column "course.credits" ;
-    d2rq:property base:hasCredits .
+    d2rq:property base:course_credits .
 
-map:hasId_ClassMap_course_None a d2rq:PropertyBridge ;
-    d2rq:belongsToClassMap map:ClassMap_course ;
+map:course_id a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:course ;
     d2rq:column "course.id" ;
-    d2rq:property base:hasId .
+    d2rq:property base:course_id .
 
-map:hasId_ClassMap_instructor_None a d2rq:PropertyBridge ;
-    d2rq:belongsToClassMap map:ClassMap_instructor ;
-    d2rq:column "instructor.id" ;
-    d2rq:property base:hasId .
-
-map:hasId_ClassMap_student_None a d2rq:PropertyBridge ;
-    d2rq:belongsToClassMap map:ClassMap_student ;
-    d2rq:column "student.id" ;
-    d2rq:property base:hasId .
-
-map:hasIid_ClassMap_student_course_instructor_ClassMap_instructor a d2rq:PropertyBridge ;
-    d2rq:belongsToClassMap map:ClassMap_student_course_instructor ;
-    d2rq:join "instructor.id   =   student_course_instructor.iid" ;
-    d2rq:property base:hasIid ;
-    d2rq:refersToClassMap map:ClassMap_instructor .
-
-map:hasMax_students_ClassMap_course_None a d2rq:PropertyBridge ;
-    d2rq:belongsToClassMap map:ClassMap_course ;
+map:course_max_students a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:course ;
     d2rq:column "course.max_students" ;
-    d2rq:property base:hasMax_students .
+    d2rq:property base:course_max_students .
 
-map:hasName_ClassMap_course_None a d2rq:PropertyBridge ;
-    d2rq:belongsToClassMap map:ClassMap_course ;
+map:course_name a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:course ;
     d2rq:column "course.name" ;
-    d2rq:property base:hasName .
+    d2rq:property base:course_name .
 
-map:hasName_ClassMap_instructor_None a d2rq:PropertyBridge ;
-    d2rq:belongsToClassMap map:ClassMap_instructor ;
+map:instructor__label a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:instructor ;
+    d2rq:property base:rdf-schemalabel .
+
+map:instructor_id a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:instructor ;
+    d2rq:column "instructor.id" ;
+    d2rq:property base:instructor_id .
+
+map:instructor_name a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:instructor ;
     d2rq:column "instructor.name" ;
-    d2rq:property base:hasName .
+    d2rq:property base:instructor_name .
 
-map:hasName_ClassMap_student_None a d2rq:PropertyBridge ;
-    d2rq:belongsToClassMap map:ClassMap_student ;
+map:student__label a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:student ;
+    d2rq:property base:rdf-schemalabel .
+
+map:student_course_instructor__label a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:student_course_instructor ;
+    d2rq:property base:rdf-schemalabel .
+
+map:student_course_instructor_cid__ref a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:student_course_instructor ;
+    d2rq:join "student_course_instructor.cid  = > course.id" ;
+    d2rq:property base:student_course_instructor_cid ;
+    d2rq:refersToClassMap map:course .
+
+map:student_course_instructor_iid__ref a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:student_course_instructor ;
+    d2rq:join "student_course_instructor.iid  = > instructor.id" ;
+    d2rq:property base:student_course_instructor_iid ;
+    d2rq:refersToClassMap map:instructor .
+
+map:student_course_instructor_sid__ref a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:student_course_instructor ;
+    d2rq:join "student_course_instructor.sid  = > student.id" ;
+    d2rq:property base:student_course_instructor_sid ;
+    d2rq:refersToClassMap map:student .
+
+map:student_id a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:student ;
+    d2rq:column "student.id" ;
+    d2rq:property base:student_id .
+
+map:student_name a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:student ;
     d2rq:column "student.name" ;
-    d2rq:property base:hasName .
-
-map:hasSid_ClassMap_student_course_instructor_None a d2rq:PropertyBridge ;
-    d2rq:belongsToClassMap map:ClassMap_student_course_instructor ;
-    d2rq:column "student_course_instructor.sid" ;
-    d2rq:property base:hasSid .
-
-map:ClassMap_student a d2rq:ClassMap ;
-    d2rq:class base:student ;
-    d2rq:dataStorage map:database .
-
-map:ClassMap_instructor a d2rq:ClassMap ;
-    d2rq:class base:instructor ;
-    d2rq:dataStorage map:database ;
-    d2rq:uriPattern "/@@instructor.id@@/" .
-
-map:ClassMap_student_course_instructor a d2rq:ClassMap ;
-    d2rq:class base:student_course_instructor ;
-    d2rq:dataStorage map:database ;
-    d2rq:uriPattern "/@@student_course_instructor.sid@@/@@student_course_instructor.iid@@/@@student_course_instructor.cid@@/" .
+    d2rq:property base:student_name .
 
 map:database a d2rq:Database ;
     jdbc:keepAlive "3600" ;
@@ -80,7 +83,22 @@ map:database a d2rq:Database ;
     d2rq:jdbcDriver "org.postgresql.Driver" ;
     d2rq:username "lukaslaskowski" .
 
-map:ClassMap_course a d2rq:ClassMap ;
+map:instructor a d2rq:ClassMap ;
+    d2rq:class base:instructor ;
+    d2rq:dataStorage map:database ;
+    d2rq:uriPattern "/@@instructor.id@@/" .
+
+map:student a d2rq:ClassMap ;
+    d2rq:class base:student ;
+    d2rq:dataStorage map:database ;
+    d2rq:uriPattern "/@@student.id@@/" .
+
+map:student_course_instructor a d2rq:ClassMap ;
+    d2rq:class base:student_course_instructor ;
+    d2rq:dataStorage map:database ;
+    d2rq:uriPattern "/@@student_course_instructor.sid@@/@@student_course_instructor.iid@@/@@student_course_instructor.cid@@/" .
+
+map:course a d2rq:ClassMap ;
     d2rq:class base:course ;
     d2rq:dataStorage map:database ;
     d2rq:uriPattern "/@@course.id@@/" .

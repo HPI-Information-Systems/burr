@@ -30,7 +30,12 @@ class JsonMapping(BaseMapping):
         for translation_table in data["translation_tables"] if "translation_tables" in data else []:
             translation_table = self.parse_translation_table(translation_table)
             self.translation_tables.append(translation_table)
+            
+    def get_attributes(self):
+        return list(filter(lambda rel: rel.refersToClassMap is None, self.relations))
     
+    def get_relations(self):
+        return list(filter(lambda rel: rel.refersToClassMap is not None, self.relations)) 
     def parse_meta(self, directory):
         meta_file = os.path.join(directory, "meta.json")
         meta_file = meta_file if os.path.exists(meta_file) else './evaluator/mapping_parser/d2rq_mapping/base_meta.json'
@@ -45,13 +50,15 @@ class JsonMapping(BaseMapping):
     def to_D2RQ_Mapping(self):
         #print(self.create_ttl_string(self.database))
         x = self.create_ttl_string(self.database)
-        print(x)
+        #dump content to file
+        with open("output.ttl", "w") as f:
+            f.write(x)
+        #print(x)
         return D2RQMapping(x, self.database, self.meta)
 
     
     def parse_translation_table(self, table):
-        translation_table = TranslationTable(mapping_name=table["name"], translation_table=table["translations"])
-        self.translation_tables.append(translation_table)
+        return TranslationTable(mapping_name=table["name"], translation_table=table["translations"])
 
     def parse_class_entry(self, entry):
         mapping_name = entry["name"] if "name" in entry else entry["class"]
@@ -73,8 +80,6 @@ class JsonMapping(BaseMapping):
         index = entry["index"] if "index" in entry else None
         mapping_name = f"{entry['property']}_{belongs_to_class_map}_{refers_to_class_map}" + (f"_{index}" if index else "")
         property = entry["property"]
-        if property in ["longitude", "latitude"]:
-            return ""
         joins = entry["join"] if "join" in entry else None
         conditions = entry["condition"] if "condition" in entry else None
         column = entry["column"].lower() if "column" in entry else None
@@ -83,8 +88,6 @@ class JsonMapping(BaseMapping):
         sqlExpression = entry["sqlExpression"] if "sqlExpression" in entry else None
         translate_with = entry["translateWith"] if "translateWith" in entry else None
         constant_value = entry["constantValue"] if "constantValue" in entry else None#
-        
-
         return Relation(prefix=prefix, mapping_id=mapping_name, property=property, constantValue=constant_value,belongsToClassMap=belongs_to_class_map, refersToClassMap=refers_to_class_map, join=joins, condition=conditions, column=column, datatype=datatype, inverse_of=inverse_of, translate_with=translate_with, sqlExpression=sqlExpression)#.get_d2rq_mapping()
 
 

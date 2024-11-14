@@ -1,17 +1,22 @@
 from rdflib import Graph, URIRef
 from typing import List
-
+import os
 from evaluator.mapping_parser.classmap import ClassMap
 from evaluator.mapping_parser.relation import Relation
 from evaluator.mapping_parser.mapping.BaseMapping import BaseMapping
+import logging
 
 class D2RQMapping(BaseMapping):
     def __init__(self, mapping_content, database, meta) -> None:
+        logging.getLogger("rdflib.term").setLevel(logging.ERROR)
         super().__init__(mapping_content, database, meta)
 
     def parse_mapping(self, mapping_content):
         self.graph = Graph()
-        self.graph.parse(data=mapping_content, format="turtle")
+        if os.path.isfile(mapping_content):
+            self.graph.parse(mapping_content)
+        else:
+            self.graph.parse(data=mapping_content, format="turtle")
         self.classes = self.parse_classes()
         self.relations = self.parse_relations()
         self.translation_tables = []
@@ -22,16 +27,12 @@ class D2RQMapping(BaseMapping):
         if schema_element in self.classes:
             return self.get_classes_connected_to_class(schema_element)
         elif schema_element in self.relations:
-            #print("schema", schema_element)
             return self.get_relations_connected_to_relation(schema_element)
         else:
-            #print(schema_element)
             raise Exception("Schema element not found in mapping")
-        #return fn(schema_element)
 
     def __mapping_id_to_class(self, id, attribute="mapping_id"):
         for class_ in self.classes:
-            #print(class_[attribute], id)
             if getattr(class_, attribute) == id:
                 return class_
         return None 
@@ -71,6 +72,7 @@ class D2RQMapping(BaseMapping):
                         parent_classes.append(self.shorten_uri(self.parse_additionalClassDefinitionProperty(el)))
                 else:
                     parent_classes = [self.shorten_uri(self.parse_additionalClassDefinitionProperty(class_map["d2rq:additionalClassDefinitionProperty"]))]
+            self.shorten_uri(class_map["d2rq:class"])
             classes.append(ClassMap(
                         #fix first three
                         prefix="base",
@@ -147,6 +149,12 @@ class D2RQMapping(BaseMapping):
 
     def set_concept_eq_strategy(self, name_based=False):
         [classmap.set_eq_strategy(name_based) for classmap in self.classes]
+
+    def get_attributes(self):
+        return list(filter(lambda rel: rel.refersToClassMap is None, self.relations))
+    
+    def get_relations(self):
+        return list(filter(lambda rel: rel.refersToClassMap is not None, self.relations))
 
     def query_properties(self, id, properties):
         result = []

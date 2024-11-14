@@ -7,7 +7,7 @@ class TranslationTable:
         self.translation_table = translation_table
         
     def get_d2rq_mapping(self):
-        return get_jinja_env().get_template('translationtable.j2').render(mapping_name = self.mapping_name, translations=self.mapping_name)
+        return get_jinja_env().get_template('translationtable.j2').render(mapping_name = self.mapping_name, translations=self.translation_table)
     
     def __str__(self):
         return self.get_d2rq_mapping()

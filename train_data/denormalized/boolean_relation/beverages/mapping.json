@@ -3,13 +3,43 @@
         {
             "id": "@@beverage.id@@",
             "class": "Beverage"
+        },
+        {
+            "id": "Caffeine",
+            "class": "Ingredient",
+            "name": "IngredientCaffeine"
+        },
+        {
+            "id": "Sugar",
+            "class": "Ingredient",
+            "name": "IngredientSugar"
+        },
+        {
+            "id": "Alcohol",
+            "class": "Ingredient",
+            "name": "IngredientAlcohol"
+        },
+        {
+            "id": "Dairy",
+            "class": "Ingredient",
+            "name": "IngredientDairy"
+        },
+        {
+            "id": "Gluten",
+            "class": "Ingredient",
+            "name": "IngredientGluten"
+        },
+        {
+            "id": "Nuts",
+            "class": "Ingredient",
+            "name": "IngredientNuts"
         }
     ],
     "object_properties": [
         {
             "property": "contains",
             "belongsToClass": "Beverage",
-            "constantValue": "Alcohol",
+            "refersToClassMap": "IngredientAlcohol",
             "condition": "@@beverage.contains_alcohol@@ = True"
         },
         {

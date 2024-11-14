@@ -52,5 +52,34 @@
             ]
         }
     ],
-    "data_properties": []
+    "data_properties": [
+        {
+            "property": "name",
+            "belongsToClassMap": "Student",
+            "column": "student.name"
+        },
+        {
+            "property": "name",
+            "belongsToClassMap": "Instructor",
+            "column": "instructor.name"
+        },
+        {
+            "property": "name",
+            "belongsToClassMap": "Course",
+            "column": "course.name",
+            "type": "string"
+        },
+        {
+            "property": "credits",
+            "belongsToClassMap": "Course",
+            "column": "course.credits",
+            "type": "integer"
+        }, 
+        {
+            "property": "max_students",
+            "belongsToClassMap": "Course",
+            "column": "course.max_students",
+            "type": "integer"
+        }
+    ]
 }

@@ -25,6 +25,8 @@ class Precision(Metric):
         super(Precision, self).__init__()
 
     def score(self, el1, el2) -> float:
+        el1 = list(set(el1))
+        el2 = list(set(el2))
         shared_elements = [x for x in el2 if x in el1]
         return len(shared_elements) / len(el2) if len(el2) > 0 else 0.0
 
@@ -37,6 +39,8 @@ class Recall(Metric):
         super(Recall, self).__init__()
 
     def score(self, el1, el2) -> float:
+        el1 = list(set(el1))
+        el2 = list(set(el2))
         shared_elements = [x for x in el2 if x in el1]
         return len(shared_elements) / len(el1) if len(el1) > 0 else 0.0
 

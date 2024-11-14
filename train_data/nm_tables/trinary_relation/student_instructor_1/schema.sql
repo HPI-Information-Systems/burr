@@ -1,3 +1,4 @@
+\c postgres
 \set database_name nm_tables__trinary_relation__student_instructor_1
 SELECT pg_terminate_backend(pg_stat_activity.pid) FROM pg_stat_activity WHERE pg_stat_activity.datname = :'database_name' AND pid <> pg_backend_pid();
 DROP DATABASE IF EXISTS :database_name;
@@ -30,8 +31,8 @@ CREATE TABLE student_course_instructor (
     cid integer
 );
 
-ALTER TABLE Only user
-    ADD CONSTRAINT user_primary_key PRIMARY KEY (id);
+ALTER TABLE Only student
+    ADD CONSTRAINT student_primary_key PRIMARY KEY (id);
 
 ALTER TABLE Only instructor
     ADD CONSTRAINT instructor_primary_key PRIMARY KEY (id);

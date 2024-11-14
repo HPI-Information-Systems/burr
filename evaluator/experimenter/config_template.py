@@ -5,8 +5,23 @@ systems = {
             "test": {
                 "output_path": "/Users/lukaslaskowski/Documents/HPI/KG/ontology_mappings/rdb2ontology/output/rdb2onto/"
             }
-        }
-    }
+        }, 
+        "ontogenix": {
+            "train": {
+            },
+            "test": {
+                "chatbot": "gpt-4o-2024-05-13",
+            }
+        },
+        "d2rmapper": {
+            "train": {
+            },
+            "test": {
+                "script_path": "/Users/lukaslaskowski/Documents/HPI/KG/ontology_mappings/d2rq/generate-mapping",
+                "output_path": "/Users/lukaslaskowski/Documents/HPI/KG/ontology_mappings/rdb2ontology/output/d2rmapper/mapping.ttl",
+            }
+        }   
+}
 
 single_scenario = {
     "nm_tables": {
@@ -39,13 +54,13 @@ scenarios = {
                 "meta_file_path": "/Users/lukaslaskowski/Documents/HPI/KG/ontology_mappings/rdb2ontology/evaluator/mapping_parser/d2rq_mapping/base_meta.json"
             }
         },
-        "cryptic_attribute_names": {
-            "person": {
-                "sql_file": "train_data/attributes/cryptic_attribute_names/person/schema.sql",
-                "groundtruth_mapping": "train_data/attributes/cryptic_attribute_names/person/mapping.json",
-                "meta_file_path": "/Users/lukaslaskowski/Documents/HPI/KG/ontology_mappings/rdb2ontology/evaluator/mapping_parser/d2rq_mapping/base_meta.json"
-            }
-        },
+        # "cryptic_attribute_names": {
+        #     "person": {
+        #         "sql_file": "train_data/attributes/cryptic_attribute_names/person/schema.sql",
+        #         "groundtruth_mapping": "train_data/attributes/cryptic_attribute_names/person/mapping.json",
+        #         "meta_file_path": "/Users/lukaslaskowski/Documents/HPI/KG/ontology_mappings/rdb2ontology/evaluator/mapping_parser/d2rq_mapping/base_meta.json"
+        #     }
+        # },
     },
     "basic": {
         "attributes": {
@@ -89,24 +104,25 @@ scenarios = {
                 "meta_file_path": "/Users/lukaslaskowski/Documents/HPI/KG/ontology_mappings/rdb2ontology/evaluator/mapping_parser/d2rq_mapping/base_meta.json"
             },
         },
+    },
     "denormalized": {
         "boolean_relation": {
-                "beverages": {
-                    "sql_file": "train_data/denormalized/boolean_relation/beverages/schema.sql",
-                    "groundtruth_mapping": "train_data/denormalized/boolean_relation/beverages/mapping.json",
-                    "meta_file_path": "/Users/lukaslaskowski/Documents/HPI/KG/ontology_mappings/rdb2ontology/evaluator/mapping_parser/d2rq_mapping/base_meta.json"
-                },
-                "process": {
-                        "sql_file": "train_data/denormalized/boolean_relation/process/schema.sql",
-                        "groundtruth_mapping": "train_data/denormalized/boolean_relation/process/mapping.json",
-                        "meta_file_path": "/Users/lukaslaskowski/Documents/HPI/KG/ontology_mappings/rdb2ontology/evaluator/mapping_parser/d2rq_mapping/base_meta.json"
-                },
-                "software": {
-                        "sql_file": "train_data/denormalized/boolean_relation/software/schema.sql",
-                        "groundtruth_mapping": "train_data/denormalized/boolean_relation/software/mapping.json",
-                        "meta_file_path": "/Users/lukaslaskowski/Documents/HPI/KG/ontology_mappings/rdb2ontology/evaluator/mapping_parser/d2rq_mapping/base_meta.json"
-                }
+            "beverages": {
+                "sql_file": "train_data/denormalized/boolean_relation/beverages/schema.sql",
+                "groundtruth_mapping": "train_data/denormalized/boolean_relation/beverages/mapping.json",
+                "meta_file_path": "/Users/lukaslaskowski/Documents/HPI/KG/ontology_mappings/rdb2ontology/evaluator/mapping_parser/d2rq_mapping/base_meta.json"
             },
+            "process": {
+                "sql_file": "train_data/denormalized/boolean_relation/process/schema.sql",
+                "groundtruth_mapping": "train_data/denormalized/boolean_relation/process/mapping.json",
+                "meta_file_path": "/Users/lukaslaskowski/Documents/HPI/KG/ontology_mappings/rdb2ontology/evaluator/mapping_parser/d2rq_mapping/base_meta.json"
+            },
+            "software": {
+                "sql_file": "train_data/denormalized/boolean_relation/software/schema.sql",
+                "groundtruth_mapping": "train_data/denormalized/boolean_relation/software/mapping.json",
+                "meta_file_path": "/Users/lukaslaskowski/Documents/HPI/KG/ontology_mappings/rdb2ontology/evaluator/mapping_parser/d2rq_mapping/base_meta.json"
+            }
+        },
             "composite_attributes": {
                 "person": {
                     "sql_file": "train_data/denormalized/composite_attributes/person/schema.sql",
@@ -148,7 +164,7 @@ scenarios = {
                 }
             }
         },
-        "nm_tables": {
+    "nm_tables": {
             "additional_attributes": {
                 "group_1": {
                     "sql_file": "train_data/nm_tables/additional_attributes/group_1/schema.sql",
@@ -203,7 +219,7 @@ scenarios = {
                 }
             }
         },
-        "normalized": {
+    "normalized": {
             "strong_normalization": {
                 "person_address": {
                     "sql_file": "train_data/normalized/strong_normalization/person_address/schema.sql",
@@ -212,56 +228,92 @@ scenarios = {
                 }
             }
         },
-        "reviewer_1_hierarchy": {
+    "hierarchy": {
             "complete_redundancy": {
                 "mapping": {
                     "database_name": "hierarchy__complete_redundancy__reviewer_1",
-                    "sql_file": "train_data/reviewer_1_hierarchy/complete_redundancy/schema.sql",
-                    "groundtruth_mapping": "train_data/reviewer_1_hierarchy/complete_redundancy/mapping.json",
+                    "sql_file": "train_data/hierarchy/complete_redundancy/reviewer_1/schema.sql",
+                    "groundtruth_mapping": "train_data/hierarchy/complete_redundancy/reviewer_1/mapping.json",
                     "meta_file_path": "/Users/lukaslaskowski/Documents/HPI/KG/ontology_mappings/rdb2ontology/evaluator/mapping_parser/d2rq_mapping/base_meta.json"
                 }
             },
             "denormalized": {
                 "mapping": {
                     "database_name": "hierarchy__denormalized__reviewer_1",
-                    "sql_file": "train_data/reviewer_1_hierarchy/denormalized/schema.sql",
-                    "groundtruth_mapping": "train_data/reviewer_1_hierarchy/denormalized/mapping.json",
+                    "sql_file": "train_data/hierarchy/denormalized/reviewer_1/schema.sql",
+                    "groundtruth_mapping": "train_data/hierarchy/denormalized/reviewer_1/mapping.json",
                     "meta_file_path": "/Users/lukaslaskowski/Documents/HPI/KG/ontology_mappings/rdb2ontology/evaluator/mapping_parser/d2rq_mapping/base_meta.json"
                 }
             },
             "normalized": {
                 "mapping": {
                     "database_name": "hierarchy__normalized__reviewer_1",
-                    "sql_file": "train_data/reviewer_1_hierarchy/normalized/schema.sql",
-                    "groundtruth_mapping": "train_data/reviewer_1_hierarchy/normalized/mapping.json",
+                    "sql_file": "train_data/hierarchy/normalized/reviewer_1/schema.sql",
+                    "groundtruth_mapping": "train_data/hierarchy/normalized/reviewer_1/mapping.json",
                     "meta_file_path": "/Users/lukaslaskowski/Documents/HPI/KG/ontology_mappings/rdb2ontology/evaluator/mapping_parser/d2rq_mapping/base_meta.json"
                 }
             },
             "two_tables": {
                 "mapping": {
                     "database_name": "hierarchy__two_tables__reviewer_1",
-                    "sql_file": "train_data/reviewer_1_hierarchy/two_tables/schema.sql",
-                    "groundtruth_mapping": "train_data/reviewer_1_hierarchy/two_tables/mapping.json",
+                    "sql_file": "train_data/hierarchy/two_tables/reviewer_1/schema.sql",
+                    "groundtruth_mapping": "train_data/hierarchy/two_tables/reviewer_1/mapping.json",
                     "meta_file_path": "/Users/lukaslaskowski/Documents/HPI/KG/ontology_mappings/rdb2ontology/evaluator/mapping_parser/d2rq_mapping/base_meta.json"
                 }
             }
-        }
+        },
+    "real_world": {
+        "rba": {
+            "original": {
+                "sql_file": "/Users/lukaslaskowski/Documents/HPI/KG/ontology_mappings/rdb2ontology/real-world/rba/create.sql",
+                "groundtruth_mapping": "/Users/lukaslaskowski/Documents/HPI/KG/ontology_mappings/rdb2ontology/real-world/rba/mappings",
+                "meta_file_path": "/Users/lukaslaskowski/Documents/HPI/KG/ontology_mappings/rdb2ontology/real-world/rba/mappings/meta.json"
+            },
+        },
+        "mondial": {
+            "original": {
+                "sql_file": "/Users/lukaslaskowski/Documents/HPI/KG/ontology_mappings/rdb2ontology/real-world/mondial/real_world__mondial__original.sql",
+                "groundtruth_mapping": "/Users/lukaslaskowski/Documents/HPI/KG/ontology_mappings/rdb2ontology/real-world/mondial/mappings",
+                "meta_file_path": "/Users/lukaslaskowski/Documents/HPI/KG/ontology_mappings/rdb2ontology/real-world/mondial/mappings/meta.json"
+            },
+            "fk": {
+                "sql_file": "/Users/lukaslaskowski/Documents/HPI/KG/ontology_mappings/rdb2ontology/real-world/mondial/real_world__mondial__fk.sql",
+                "groundtruth_mapping": "/Users/lukaslaskowski/Documents/HPI/KG/ontology_mappings/rdb2ontology/real-world/mondial/mappings",
+                "meta_file_path": "/Users/lukaslaskowski/Documents/HPI/KG/ontology_mappings/rdb2ontology/real-world/mondial/mappings/meta.json"
+            }
+        },
+        # "iswc": {
+        #     "original": {
+        #         "sql_file": "/Users/lukaslaskowski/Documents/HPI/KG/ontology_mappings/rdb2ontology/real-world/iswc/real_world__iswc__original.sql",
+        #         "groundtruth_mapping": "/Users/lukaslaskowski/Documents/HPI/KG/ontology_mappings/rdb2ontology/real-world/iswc/groundtruth.ttl",
+        #         "meta_file_path": "/Users/lukaslaskowski/Documents/HPI/KG/ontology_mappings/rdb2ontology/real-world/iswc/meta.json"
+        #     }
+        # }
     }
-}
+    
+    }
 
 experiment_config = {
     "scenarios": scenarios,
     "systems": [
+        # {
+        #     "name": "ontogenix",
+        #     "config": systems["ontogenix"]
+        # },
         {
             "name": "rdb2onto",
             "config": systems["rdb2onto"]
+        }, 
+        {
+            "name": "d2rmapper",
+            "config": systems["d2rmapper"]
         }
     ]
 }
 
-dynamic_config = lambda scenario: { "scenarios": scenario, "systems": [ { "name": "rdb2onto", "config": systems["rdb2onto"] } ] }
+dynamic_config = lambda scenario, system: { "scenarios": scenario, "systems": [ { "name": system, "config": systems[system] } ] }
 
 experiment_configs = {
     "base_experiment": experiment_config,
-    "single_scenario": dynamic_config(single_scenario)
+    "single_scenario": dynamic_config(single_scenario, "d2rmapper")
 }

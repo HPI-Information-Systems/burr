@@ -1,0 +1,357 @@
+@prefix base: <https://base_ontology.com#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix dbpedia: <http://dbpedia.org/resource/> .
+@prefix geonames: <http://sws.geonames.org/> .
+@prefix wikidata: <http://www.wikidata.org/entity/> .
+
+<https://base_ontology.com#area> a owl:DatatypeProperty ;
+    rdfs:domain base:Country, base:Province, base:Continent, base:Desert, base:Island, base:Lake, base:Sea, base:River ;
+    rdfs:range xsd:float ;
+    rdfs:label "area" ;
+    skos:definition "The area of the geographical entity." .
+
+<https://base_ontology.com#population> a owl:DatatypeProperty ;
+    rdfs:domain base:Country, base:City, base:Province, base:Population ;
+    rdfs:range xsd:float ;
+    rdfs:label "population" ;
+    skos:definition "The population of the geographical entity." .
+
+<https://base_ontology.com#capital> a owl:DatatypeProperty ;
+    rdfs:domain base:Country, base:Province ;
+    rdfs:range xsd:string ;
+    rdfs:label "capital" ;
+    skos:definition "The capital of the geographical entity." .
+
+<https://base_ontology.com#code> a owl:DatatypeProperty ;
+    rdfs:domain base:Country ;
+    rdfs:range xsd:string ;
+    rdfs:label "code" ;
+    skos:definition "The code of the country." .
+
+<https://base_ontology.com#name> a owl:DatatypeProperty ;
+    rdfs:domain base:Country, base:City, base:Province, base:Religion, base:EthnicGroup, base:Language, base:Continent, base:Mountain, base:Desert, base:Island, base:Lake, base:Sea, base:River, base:Organization ;
+    rdfs:range xsd:string ;
+    rdfs:label "name" ;
+    skos:definition "The name of the entity." .
+
+<https://base_ontology.com#province> a owl:DatatypeProperty ;
+    rdfs:domain base:Country, base:City, base:Province ;
+    rdfs:range xsd:string ;
+    rdfs:label "province" ;
+    skos:definition "The province of the geographical entity." .
+
+<https://base_ontology.com#elevation> a owl:DatatypeProperty ;
+    rdfs:domain base:City, base:Mountain, base:Island, base:Lake ;
+    rdfs:range xsd:float ;
+    rdfs:label "elevation" ;
+    skos:definition "The elevation of the geographical entity." .
+
+<https://base_ontology.com#latitude> a owl:DatatypeProperty ;
+    rdfs:domain base:City, base:Mountain, base:Desert, base:Island, base:Lake, base:River ;
+    rdfs:range xsd:float ;
+    rdfs:label "latitude" ;
+    skos:definition "The latitude of the geographical entity." .
+
+<https://base_ontology.com#longitude> a owl:DatatypeProperty ;
+    rdfs:domain base:City, base:Mountain, base:Desert, base:Island, base:Lake, base:River ;
+    rdfs:range xsd:float ;
+    rdfs:label "longitude" ;
+    skos:definition "The longitude of the geographical entity." .
+
+<https://base_ontology.com#infant_mortality> a owl:DatatypeProperty ;
+    rdfs:domain base:Population ;
+    rdfs:range xsd:float ;
+    rdfs:label "infant mortality" ;
+    skos:definition "The infant mortality rate of the population." .
+
+<https://base_ontology.com#population_growth> a owl:DatatypeProperty ;
+    rdfs:domain base:Population ;
+    rdfs:range xsd:float ;
+    rdfs:label "population growth" ;
+    skos:definition "The population growth rate." .
+
+<https://base_ontology.com#agriculture> a owl:DatatypeProperty ;
+    rdfs:domain base:Economy ;
+    rdfs:range xsd:float ;
+    rdfs:label "agriculture" ;
+    skos:definition "The percentage of GDP from agriculture." .
+
+<https://base_ontology.com#gdp> a owl:DatatypeProperty ;
+    rdfs:domain base:Economy ;
+    rdfs:range xsd:float ;
+    rdfs:label "GDP" ;
+    skos:definition "The Gross Domestic Product." .
+
+<https://base_ontology.com#industry> a owl:DatatypeProperty ;
+    rdfs:domain base:Economy ;
+    rdfs:range xsd:float ;
+    rdfs:label "industry" ;
+    skos:definition "The percentage of GDP from industry." .
+
+<https://base_ontology.com#inflation> a owl:DatatypeProperty ;
+    rdfs:domain base:Economy ;
+    rdfs:range xsd:float ;
+    rdfs:label "inflation" ;
+    skos:definition "The inflation rate." .
+
+<https://base_ontology.com#service> a owl:DatatypeProperty ;
+    rdfs:domain base:Economy ;
+    rdfs:range xsd:float ;
+    rdfs:label "service" ;
+    skos:definition "The percentage of GDP from services." .
+
+<https://base_ontology.com#unemployment> a owl:DatatypeProperty ;
+    rdfs:domain base:Economy ;
+    rdfs:range xsd:float ;
+    rdfs:label "unemployment" ;
+    skos:definition "The unemployment rate." .
+
+<https://base_ontology.com#dependent> a owl:DatatypeProperty ;
+    rdfs:domain base:Politics ;
+    rdfs:range xsd:string ;
+    rdfs:label "dependent" ;
+    skos:definition "The dependent status of the country." .
+
+<https://base_ontology.com#government> a owl:DatatypeProperty ;
+    rdfs:domain base:Politics ;
+    rdfs:range xsd:string ;
+    rdfs:label "government" ;
+    skos:definition "The type of government." .
+
+<https://base_ontology.com#independence> a owl:DatatypeProperty ;
+    rdfs:domain base:Politics ;
+    rdfs:range xsd:date ;
+    rdfs:label "independence" ;
+    skos:definition "The date of independence." .
+
+<https://base_ontology.com#wasdependent> a owl:DatatypeProperty ;
+    rdfs:domain base:Politics ;
+    rdfs:range xsd:string ;
+    rdfs:label "was dependent" ;
+    skos:definition "The previous dependent status of the country." .
+
+<https://base_ontology.com#percentage> a owl:DatatypeProperty ;
+    rdfs:domain base:Religion, base:EthnicGroup, base:Spoken, base:Encompass ;
+    rdfs:range xsd:float ;
+    rdfs:label "percentage" ;
+    skos:definition "The percentage of the population." .
+
+<https://base_ontology.com#superlanguage> a owl:DatatypeProperty ;
+    rdfs:domain base:Language ;
+    rdfs:range xsd:string ;
+    rdfs:label "superlanguage" ;
+    skos:definition "The superlanguage of the language." .
+
+<https://base_ontology.com#year> a owl:DatatypeProperty ;
+    rdfs:domain base:CountryPops, base:ProvPops, base:CityPops ;
+    rdfs:range xsd:gYear ;
+    rdfs:label "year" ;
+    skos:definition "The year of the population data." .
+
+<https://base_ontology.com#length> a owl:DatatypeProperty ;
+    rdfs:domain base:Border, base:River ;
+    rdfs:range xsd:float ;
+    rdfs:label "length" ;
+    skos:definition "The length of the border or river." .
+
+<https://base_ontology.com#depth> a owl:DatatypeProperty ;
+    rdfs:domain base:Lake, base:Sea ;
+    rdfs:range xsd:float ;
+    rdfs:label "depth" ;
+    skos:definition "The depth of the lake or sea." .
+
+<https://base_ontology.com#height> a owl:DatatypeProperty ;
+    rdfs:domain base:Lake ;
+    rdfs:range xsd:float ;
+    rdfs:label "height" ;
+    skos:definition "The height of the lake." .
+
+<https://base_ontology.com#estuaryelevation> a owl:DatatypeProperty ;
+    rdfs:domain base:River ;
+    rdfs:range xsd:float ;
+    rdfs:label "estuary elevation" ;
+    skos:definition "The elevation of the river estuary." .
+
+<https://base_ontology.com#estuarylatitude> a owl:DatatypeProperty ;
+    rdfs:domain base:River ;
+    rdfs:range xsd:float ;
+    rdfs:label "estuary latitude" ;
+    skos:definition "The latitude of the river estuary." .
+
+<https://base_ontology.com#estuarylongitude> a owl:DatatypeProperty ;
+    rdfs:domain base:River ;
+    rdfs:range xsd:float ;
+    rdfs:label "estuary longitude" ;
+    skos:definition "The longitude of the river estuary." .
+
+<https://base_ontology.com#sourceelevation> a owl:DatatypeProperty ;
+    rdfs:domain base:River ;
+    rdfs:range xsd:float ;
+    rdfs:label "source elevation" ;
+    skos:definition "The elevation of the river source." .
+
+<https://base_ontology.com#sourcelatitude> a owl:DatatypeProperty ;
+    rdfs:domain base:River ;
+    rdfs:range xsd:float ;
+    rdfs:label "source latitude" ;
+    skos:definition "The latitude of the river source." .
+
+<https://base_ontology.com#sourcelongitude> a owl:DatatypeProperty ;
+    rdfs:domain base:River ;
+    rdfs:range xsd:float ;
+    rdfs:label "source longitude" ;
+    skos:definition "The longitude of the river source." .
+
+<https://base_ontology.com#established> a owl:DatatypeProperty ;
+    rdfs:domain base:Organization ;
+    rdfs:range xsd:date ;
+    rdfs:label "established" ;
+    skos:definition "The date the organization was established." .
+
+<https://base_ontology.com#abbreviation> a owl:DatatypeProperty ;
+    rdfs:domain base:Organization ;
+    rdfs:range xsd:string ;
+    rdfs:label "abbreviation" ;
+    skos:definition "The abbreviation of the organization." .
+
+<https://base_ontology.com#country> a owl:ObjectProperty ;
+    rdfs:domain base:City, base:Province, base:Population, base:Economy, base:Politics, base:Religion, base:EthnicGroup, base:Spoken, base:CountryPops, base:ProvinceOtherName, base:ProvinceLocalName, base:CityPops, base:CityOtherName, base:CityLocalName, base:Border, base:Encompass, base:GeoDesert, base:GeoMountain, base:GeoIsland, base:GeoRiver, base:GeoSea, base:GeoLake, base:GeoSource, base:GeoEstuary, base:Located, base:LocatedOn, base:IslandIn, base:MountainOnIsland, base:LakeOnIsland, base:RiverOnIsland ;
+    rdfs:range base:Country ;
+    rdfs:label "country" ;
+    skos:definition "The country associated with the entity." .
+
+<https://base_ontology.com#province> a owl:ObjectProperty ;
+    rdfs:domain base:City, base:Province, base:ProvinceOtherName, base:ProvinceLocalName, base:CityPops, base:CityOtherName, base:CityLocalName, base:GeoDesert, base:GeoMountain, base:GeoIsland, base:GeoRiver, base:GeoSea, base:GeoLake, base:GeoSource, base:GeoEstuary, base:Located, base:LocatedOn ;
+    rdfs:range base:Province ;
+    rdfs:label "province" ;
+    skos:definition "The province associated with the entity." .
+
+<https://base_ontology.com#city> a owl:ObjectProperty ;
+    rdfs:domain base:CityPops, base:CityOtherName, base:CityLocalName, base:Located, base:LocatedOn ;
+    rdfs:range base:City ;
+    rdfs:label "city" ;
+    skos:definition "The city associated with the entity." .
+
+<https://base_ontology.com#language> a owl:ObjectProperty ;
+    rdfs:domain base:Spoken ;
+    rdfs:range base:Language ;
+    rdfs:label "language" ;
+    skos:definition "The language spoken in the entity." .
+
+<https://base_ontology.com#lake> a owl:ObjectProperty ;
+    rdfs:domain base:River, base:RiverThrough, base:Located, base:IslandIn, base:LakeOnIsland ;
+    rdfs:range base:Lake ;
+    rdfs:label "lake" ;
+    skos:definition "The lake associated with the entity." .
+
+<https://base_ontology.com#river> a owl:ObjectProperty ;
+    rdfs:domain base:RiverThrough, base:Located, base:IslandIn, base:RiverOnIsland ;
+    rdfs:range base:River ;
+    rdfs:label "river" ;
+    skos:definition "The river associated with the entity." .
+
+<https://base_ontology.com#sea> a owl:ObjectProperty ;
+    rdfs:domain base:River, base:Located, base:IslandIn ;
+    rdfs:range base:Sea ;
+    rdfs:label "sea" ;
+    skos:definition "The sea associated with the entity." .
+
+<https://base_ontology.com#island> a owl:ObjectProperty ;
+    rdfs:domain base:LocatedOn, base:IslandIn, base:MountainOnIsland, base:LakeOnIsland, base:RiverOnIsland ;
+    rdfs:range base:Island ;
+    rdfs:label "island" ;
+    skos:definition "The island associated with the entity." .
+
+<https://base_ontology.com#mountain> a owl:ObjectProperty ;
+    rdfs:domain base:GeoMountain, base:MountainOnIsland ;
+    rdfs:range base:Mountain ;
+    rdfs:label "mountain" ;
+    skos:definition "The mountain associated with the entity." .
+
+<https://base_ontology.com#continent> a owl:ObjectProperty ;
+    rdfs:domain base:Encompass ;
+    rdfs:range base:Continent ;
+    rdfs:label "continent" ;
+    skos:definition "The continent associated with the entity." .
+
+<https://base_ontology.com#organization> a owl:ObjectProperty ;
+    rdfs:domain base:IsMember ;
+    rdfs:range base:Organization ;
+    rdfs:label "organization" ;
+    skos:definition "The organization associated with the entity." .
+
+<https://base_ontology.com#type> a owl:ObjectProperty ;
+    rdfs:domain base:Politics, base:Mountain, base:Island, base:Lake, base:River, base:IsMember ;
+    rdfs:range xsd:string ;
+    rdfs:label "type" ;
+    skos:definition "The type of the entity." .
+
+<https://base_ontology.com#Country> a owl:Class ;
+    rdfs:label "Country" ;
+    skos:definition "A country entity." ;
+    owl:equivalentClass dbpedia:Country .
+
+<https://base_ontology.com#City> a owl:Class ;
+    rdfs:label "City" ;
+    skos:definition "A city entity." ;
+    owl:equivalentClass dbpedia:City .
+
+<https://base_ontology.com#Province> a owl:Class ;
+    rdfs:label "Province" ;
+    skos:definition "A province entity." ;
+    owl:equivalentClass dbpedia:Province .
+
+<https://base_ontology.com#Economy> a owl:Class ;
+    rdfs:label "Economy" ;
+    skos:definition "An economy entity." ;
+    owl:equivalentClass dbpedia:Economy .
+
+<https://base_ontology.com#Politics> a owl:Class ;
+    rdfs:label "Politics" ;
+    skos:definition "A politics entity." ;
+    owl:equivalentClass dbpedia:Politics .
+
+<https://base_ontology.com#Religion> a owl:Class ;
+    rdfs:label "Religion" ;
+    skos:definition "A religion entity." ;
+    owl:equivalentClass dbpedia:Religion .
+
+<https://base_ontology.com#EthnicGroup> a owl:Class ;
+    rdfs:label "Ethnic Group" ;
+    skos:definition "An ethnic group entity." ;
+    owl:equivalentClass dbpedia:Ethnic_group .
+
+<https://base_ontology.com#Language> a owl:Class ;
+    rdfs:label "Language" ;
+    skos:definition "A language entity." ;
+    owl:equivalentClass dbpedia:Language .
+
+<https://base_ontology.com#Continent> a owl:Class ;
+    rdfs:label "Continent" ;
+    skos:definition "A continent entity." ;
+    owl:equivalentClass dbpedia:Continent .
+
+<https://base_ontology.com#Border> a owl:Class ;
+    rdfs:label "Border" ;
+    skos:definition "A border entity." ;
+    owl:equivalentClass dbpedia:Border .
+
+<https://base_ontology.com#Encompass> a owl:Class ;
+    rdfs:label "Encompass" ;
+    skos:definition "An encompass entity." ;
+    owl:equivalentClass dbpedia:Encompass .
+
+<https://base_ontology.com#Organization> a owl:Class ;
+    rdfs:label "Organization" ;
+    skos:definition "An organization entity." ;
+    owl:equivalentClass dbpedia:Organization .
+
+<https://base_ontology.com#IsMember> a owl:Class ;
+    rdfs:label "Membership" ;
+    skos:definition "A membership entity." ;
+    owl:equivalentClass dbpedia:Membership .
+

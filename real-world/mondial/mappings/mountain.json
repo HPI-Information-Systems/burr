@@ -92,13 +92,13 @@
             "property": "latitude",
             "belongsToClass": "Mountain",
             "type": "decimal",
-            "column": "mountain.(coordinates).latitude"
+            "column": "mountain.latitude"
         },
         {
             "property": "longitude",
             "belongsToClass": "Mountain",
             "type": "decimal",
-            "column": "mountain.(coordinates).longitude"
+            "column": "mountain.longitude"
         },
         {
             "property": "elevation",

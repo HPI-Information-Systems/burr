@@ -13,6 +13,31 @@ map:PersonStudent a d2rq:ClassMap ;
     d2rq:dataStorage map:database ;
     d2rq:uriPattern "/@@student.id@@/" .
 
+map:credits_Course_None a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Course ;
+    d2rq:column "course.credits" ;
+    d2rq:property base:credits .
+
+map:max_students_Course_None a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Course ;
+    d2rq:column "course.max_students" ;
+    d2rq:property base:max_students .
+
+map:name_Course_None a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Course ;
+    d2rq:column "course.name" ;
+    d2rq:property base:name .
+
+map:name_Instructor_None a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Instructor ;
+    d2rq:column "instructor.name" ;
+    d2rq:property base:name .
+
+map:name_Student_None a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Student ;
+    d2rq:column "student.name" ;
+    d2rq:property base:name .
+
 map:teaches_Instructor_Course a d2rq:PropertyBridge ;
     d2rq:belongsToClassMap map:Instructor ;
     d2rq:join "course.id   =   student_course_instructor.cid",
@@ -27,11 +52,6 @@ map:teaches_Instructor_Student a d2rq:PropertyBridge ;
     d2rq:property base:teaches ;
     d2rq:refersToClassMap map:Student .
 
-map:Course a d2rq:ClassMap ;
-    d2rq:class base:Course ;
-    d2rq:dataStorage map:database ;
-    d2rq:uriPattern "/@@course.id@@/" .
-
 map:Student a d2rq:ClassMap ;
     d2rq:class base:Student ;
     d2rq:dataStorage map:database ;
@@ -41,6 +61,11 @@ map:Instructor a d2rq:ClassMap ;
     d2rq:class base:Instructor ;
     d2rq:dataStorage map:database ;
     d2rq:uriPattern "/@@instructor.id@@/" .
+
+map:Course a d2rq:ClassMap ;
+    d2rq:class base:Course ;
+    d2rq:dataStorage map:database ;
+    d2rq:uriPattern "/@@course.id@@/" .
 
 map:database a d2rq:Database ;
     jdbc:keepAlive "3600" ;

@@ -1,0 +1,42 @@
+@prefix d2rq: <http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#> .
+@prefix cmt: <http://cmt/> .
+@prefix map: <http://mapping/> .
+@prefix jdbc: <http://d2rq.org/terms/jdbc/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix base: </base/> .
+
+map:database a d2rq:Database;
+        d2rq:jdbcDriver "org.postgresql.Driver";
+        d2rq:jdbcDSN "jdbc:postgresql://localhost:5432/nm_tables__trinary_relation__student_instructor_1";
+        d2rq:username "lukaslaskowski";
+        jdbc:keepAlive "3600";                          # sends noop-query every 3600 seconds
+        .
+
+map:0TriplesMapStudentCourseInstructor a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:base#StudentCourseInstructor;
+    d2rq:uriPattern "/@@studentcourseinstructor.student_id@@/@@studentcourseinstructor.course_id@@/@@studentcourseinstructor.instructor_id@@/";
+    
+    
+    .
+map:1TriplesMapStudent a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:base#Student;
+    d2rq:uriPattern "/@@student.student_id@@/";
+    
+    
+    .
+map:2TriplesMapInstructor a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:base#Instructor;
+    d2rq:uriPattern "/@@instructor.instructor_id@@/";
+    
+    
+    .
+map:3TriplesMapCourse a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:baseCourse;
+    d2rq:uriPattern "/@@course.course_id@@/";
+    
+    
+    . 

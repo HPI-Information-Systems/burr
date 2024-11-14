@@ -1,3 +1,4 @@
+\c postgres
 \set database_name denormalized__same_concept_multiple_tables__library
 SELECT pg_terminate_backend(pg_stat_activity.pid) FROM pg_stat_activity WHERE pg_stat_activity.datname = :'database_name' AND pid <> pg_backend_pid();
 DROP DATABASE IF EXISTS :database_name;

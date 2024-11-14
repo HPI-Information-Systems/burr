@@ -21,27 +21,28 @@ class BaseMapping(ABC):
     def get_classes(self):
         return self.classes
     
-    def get_attributes(self):
-        return list(filter(lambda rel: rel.refersToClassMap is None, self.relations))
     
-    def get_relations(self):
-        return list(filter(lambda rel: rel.refersToClassMap is not None, self.relations))
     
     def shorten_uri(self, uri):
-        uri = str(URIRef(uri)).replace("<", "").replace(">", "").replace(" ", "")
+        uri = str(URIRef(uri)).replace("<", "").replace(">", "").replace(" ", "").replace("#", "")
         for _, namespace in self.graph.namespaces():
             if str(uri).startswith(namespace):
                 return str(uri)[len(namespace):]
+        print("WARNING - URI could not be shortened: ", uri, " - returning last part of URI, divided by /")
+        uri = uri.split("/")[-1]
         return uri
     
     def create_ttl_string(self, database):
         output = ""
         output += self.build_meta_data(database)
         for _cls in self.classes:
-            output += str(_cls)
-        for prop in self.relations:
-            output += str(prop)
+            output += _cls.get_ttl_string()
+        for prop in self.get_relations():
+            output += prop.get_d2rq_mapping()
+        for attr in self.get_attributes():
+            output += attr.get_d2rq_mapping()
         for translation_table in self.translation_tables:
+            print("TRANSLATION TABLE", translation_table)
             output += str(translation_table)
         return output
 

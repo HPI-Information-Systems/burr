@@ -1,4 +1,4 @@
-\c mondialmysql
+\c real_world__mondial__fk
 
  INSERT INTO country VALUES ('Albania','AL','Tirane','Albania',28750,3249136);
  INSERT INTO country VALUES ('Greece','GR','Athens','Attiki',131940,10538594);

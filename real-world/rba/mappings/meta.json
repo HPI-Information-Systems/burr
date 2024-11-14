@@ -24,6 +24,10 @@
         {
             "prefix": "bcm",
             "uri": "/SAP/RBA/BCM/"
+        },
+        {
+            "prefix": "base",
+            "uri": "/base/"
         }
     ]  
 }

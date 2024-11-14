@@ -11,9 +11,10 @@ def shorten_uri(g, uri):
             if str(uri).startswith(namespace):
                 return str(uri)[len(namespace):]
         return uri
+
 def extract_concepts(r2rml_file):
     g = Graph()
-    g.parse(r2rml_file, format="ttl")
+    g.parse(data=r2rml_file, format="ttl")
 
     concepts = []
 
@@ -103,6 +104,59 @@ def extract_properties_with_local_ids(r2rml_file):
 # Usage
 r2rml_file = "/Users/lukaslaskowski/Documents/HPI/KG/ontology_mappings/rdb2ontology/r2rmloutput.ttl"  # Replace with your R2RML file path
 r2rml_file = "/Users/lukaslaskowski/Documents/HPI/KG/ontology_mappings/rdb2ontology/evaluator/r2rml.ttl"
-concepts = extract_concepts(r2rml_file)
+rdf = """
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix ex: <http://example.org/> .
+@prefix base: <http://example.org/base#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix schema: <http://schema.org/> .
+
+<#TriplesMapStudent> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "Students" ];
+    rr:subjectMap [
+        rr:template "http://example.org/base/Student/{{student_id}}";
+        rr:class foaf:Person;
+    ].
+
+<#TriplesMapInstructor> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "Instructors" ];
+    rr:subjectMap [
+        rr:template "http://example.org/base/Instructor/{{instructor_id}}";
+        rr:class schema:Person;
+    ].
+
+<#TriplesMapCourse> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "Courses" ];
+    rr:subjectMap [
+        rr:template "http://example.org/base/Course/{{course_id}}";
+        rr:class schema:Course;
+    ].
+
+<#TriplesMapStudentCourseInstructorRelation> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "StudentCourseInstructorRelations" ];
+    rr:subjectMap [
+        rr:template "http://example.org/base/StudentCourseInstructorRelation/{{relation_id}}";
+        rr:class base:StudentCourseInstructorRelation;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:StudentCourseInstructorRelation;
+        rr:objectMap [
+            rr:parentTriplesMap <#TriplesMapStudent>;
+        ]
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:InstructorTeachesCourse;
+        rr:objectMap [
+            rr:parentTriplesMap <#TriplesMapInstructor>;
+        ]
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:StudentCourseInstructorRelation;
+        rr:objectMap [
+            rr:parentTriplesMap <#TriplesMapCourse>;
+        ]
+    ].
+"""
+concepts = extract_concepts(rdf)
 for concept in concepts:
     print(concept)

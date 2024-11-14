@@ -1,0 +1,1464 @@
+@prefix d2rq: <http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#> .
+@prefix cmt: <http://cmt/> .
+@prefix map: <http://mapping/> .
+@prefix jdbc: <http://d2rq.org/terms/jdbc/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix mondial: </mondial/> .
+@prefix base: </base/> .
+
+map:database a d2rq:Database;
+	d2rq:jdbcDriver "org.postgresql.Driver";
+	d2rq:jdbcDSN "jdbc:postgresql://localhost:5432/real_world__mondial__fk";
+	d2rq:username "lukaslaskowski";
+	jdbc:keepAlive "3600";				# sends noop-query every 3600 seconds
+	.
+
+map:Lake a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:Lake;
+    d2rq:uriPattern "/@@lake.name@@/";
+    
+    
+    .
+map:Religion a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:Religion;
+    d2rq:uriPattern "/@@religion.name@@/";
+    
+    
+    .
+map:BelievedBy a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:BelievedBy;
+    d2rq:uriPattern "/@@religion.name@@/@@religion.country@@/";
+    
+    
+    .
+map:Sea a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:Sea;
+    d2rq:uriPattern "/@@sea.name@@/";
+    
+    
+    .
+map:Language a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:Language;
+    d2rq:uriPattern "/@@language.name@@/";
+    
+    
+    .
+map:SpokenBy a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:SpokenBy;
+    d2rq:uriPattern "/@@spoken.language@@/@@spoken.country@@/";
+    
+    
+    .
+map:Source a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:Source;
+    d2rq:uriPattern "/@@river.name@@/";
+    
+    
+    .
+map:City a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:City;
+    d2rq:uriPattern "/@@city.country@@/@@city.province@@/@@city.name@@/";
+    
+    
+    .
+map:Province a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:Province;
+    d2rq:uriPattern "/@@province.country@@/@@province.name@@/";
+    
+    
+    .
+map:Estuary a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:Estuary;
+    d2rq:uriPattern "/@@river.name@@/";
+    
+    
+    .
+map:PopulationCountCountry a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:PopulationCount;
+    d2rq:uriPattern "/@@countrypops.country@@/@@countrypops.year@@/";
+    
+    
+    .
+map:PopulationCountProvince a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:PopulationCount;
+    d2rq:uriPattern "/@@provpops.country@@/@@provpops.province@@/@@provpops.year@@/";
+    
+    
+    .
+map:PopulationCountCity a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:PopulationCount;
+    d2rq:uriPattern "/@@citypops.country@@/@@citypops.province@@/@@citypops.city@@/@@provpops.year@@/";
+    
+    
+    .
+map:Island a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:Island;
+    d2rq:uriPattern "/@@island.name@@/";
+    
+    
+    .
+map:Archipelago a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:Archipelago;
+    d2rq:uriPattern "/@@island.islands@@/";
+    
+    
+    .
+map:Continent a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:Continent;
+    d2rq:uriPattern "/@@continent.name@@/";
+    
+    
+    .
+map:Encompassed a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:Encompassed;
+    d2rq:uriPattern "/@@encompasses.continent@@/@@encompasses.country@@/";
+    
+    
+    .
+map:Mountain a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:Mountain;
+    d2rq:uriPattern "/@@mountain.name@@/";
+    
+    
+    .
+map:Volcano1_SubClassOf_Mountain a d2rq:AdditionalProperty;
+	d2rq:propertyName rdfs:SubClassOf;
+	d2rq:propertyValue base:Mountain;
+	.
+map:Volcano1 a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:Volcano;
+    d2rq:uriPattern "/@@mountain.name@@/";
+    
+    d2rq:condition "mountain.type = volcano";
+    
+    d2rq:additionalClassDefinitionProperty map:Volcano1_SubClassOf_Mountain;
+    .
+map:Volcano2_SubClassOf_Mountain a d2rq:AdditionalProperty;
+	d2rq:propertyName rdfs:SubClassOf;
+	d2rq:propertyValue base:Mountain;
+	.
+map:Volcano2 a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:Volcano;
+    d2rq:uriPattern "/@@mountain.name@@/";
+    
+    d2rq:condition "mountain.type = volcanic";
+    
+    d2rq:additionalClassDefinitionProperty map:Volcano2_SubClassOf_Mountain;
+    .
+map:MountainRange a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:MountainRange;
+    d2rq:uriPattern "/@@mountain.mountains@@/";
+    
+    
+    .
+map:Organization a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:Organization;
+    d2rq:uriPattern "/@@organization.abbreviation@@/";
+    
+    
+    .
+map:Membership a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:Membership;
+    d2rq:uriPattern "/@@ismember.country@@/@@ismember.organization@@/";
+    
+    
+    .
+map:River1 a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:River;
+    d2rq:uriPattern "/@@river.name@@/";
+    
+    
+    .
+map:River2 a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:River;
+    d2rq:uriPattern "/@@river.river@@/";
+    
+    
+    .
+map:Border a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:Border;
+    d2rq:uriPattern "/@@borders.country1@@/@@borders.country2@@/";
+    
+    
+    .
+map:Desert a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:Desert;
+    d2rq:uriPattern "/@@desert.name@@/";
+    
+    
+    .
+map:EthnicGroup a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:EthnicGroup;
+    d2rq:uriPattern "/@@ethnicgroup.name@@/";
+    
+    
+    .
+map:EthnicProportion a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:EthnicProportion;
+    d2rq:uriPattern "/@@ethnicgroup.name@@/@@ethnicgroup.country@@/";
+    
+    
+    .
+map:CountryFull a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:Country;
+    d2rq:uriPattern "/@@country.code@@/";
+    
+    
+    .
+map:CountryPolitics a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:Country;
+    d2rq:uriPattern "/@@politics.country@@/";
+    
+    
+    .
+map:CountryDependent a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:Country;
+    d2rq:uriPattern "/@@politics.dependent@@/";
+    
+    
+    .
+map:PoliticalBody a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:PoliticalBody;
+    d2rq:uriPattern "/@@politics.wasdependent@@/";
+    
+    
+    .
+map:locatedIn_Lake_CountryFull a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Lake;
+    d2rq:refersToClassMap map:CountryFull;
+    d2rq:property base:locatedIn;
+    d2rq:join "geo_lake.lake   =   lake.name";
+    d2rq:join "geo_lake.country   =   country.code";
+    .
+
+map:locatedIn_Lake_Province a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Lake;
+    d2rq:refersToClassMap map:Province;
+    d2rq:property base:locatedIn;
+    d2rq:join "geo_lake.lake   =   lake.name";
+    d2rq:join "geo_lake.province   =   province.name";
+    .
+
+map:flowsInto_Lake_River1 a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Lake;
+    d2rq:refersToClassMap map:River1;
+    d2rq:property base:flowsInto;
+    d2rq:join "lake.river   =   river.name";
+    .
+
+map:locatedOnIsland_Lake_Island a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Lake;
+    d2rq:refersToClassMap map:Island;
+    d2rq:property base:locatedOnIsland;
+    d2rq:join "lake.name   =   lakeonisland.lake";
+    d2rq:join "lakeonisland.island   =   island.name";
+    .
+
+map:religionInfo-_BelievedBy_CountryFull a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:BelievedBy;
+    d2rq:refersToClassMap map:CountryFull;
+    d2rq:property base:religionInfo-;
+    d2rq:join "country.code   =   religion.country";
+    .
+
+map:religionInfo-_BelievedBy_CountryFull_inverse a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:CountryFull;
+    d2rq:refersToClassMap map:BelievedBy;
+    d2rq:property base:religionInfo;
+    d2rq:join "country.code   =   religion.country";
+    .
+
+map:onReligion_BelievedBy_Religion a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:BelievedBy;
+    d2rq:refersToClassMap map:Religion;
+    d2rq:property base:onReligion;
+    .
+
+map:onReligion_BelievedBy_Religion_inverse a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Religion;
+    d2rq:refersToClassMap map:BelievedBy;
+    d2rq:property base:followedInInfo;
+    .
+
+map:believeInReligion_CountryFull_Religion a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:CountryFull;
+    d2rq:refersToClassMap map:Religion;
+    d2rq:property base:believeInReligion;
+    d2rq:join "country.code   =   religion.country";
+    .
+
+map:believeInReligion_CountryFull_Religion_inverse a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Religion;
+    d2rq:refersToClassMap map:CountryFull;
+    d2rq:property base:believedInCountry;
+    d2rq:join "country.code   =   religion.country";
+    .
+
+map:locatedIn_Sea_CountryFull a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Sea;
+    d2rq:refersToClassMap map:CountryFull;
+    d2rq:property base:locatedIn;
+    d2rq:join "geo_sea.sea   =   sea.name";
+    d2rq:join "geo_sea.country   =   country.code";
+    .
+
+map:locatedIn_Sea_Province a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Sea;
+    d2rq:refersToClassMap map:Province;
+    d2rq:property base:locatedIn;
+    d2rq:join "geo_sea.sea   =   sea.name";
+    d2rq:join "geo_sea.province   =   province.name";
+    .
+
+map:mergesWith_Sea_Sea a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Sea;
+    d2rq:refersToClassMap map:Sea;
+    d2rq:property base:mergesWith;
+    d2rq:join "mergeswith.sea1   =   sea.name";
+    d2rq:join "mergeswith.sea2   =   sea.name";
+    .
+
+map:languageInfo-_SpokenBy_CountryFull a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:SpokenBy;
+    d2rq:refersToClassMap map:CountryFull;
+    d2rq:property base:languageInfo-;
+    d2rq:join "country.code   =   spoken.country";
+    .
+
+map:languageInfo-_SpokenBy_CountryFull_inverse a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:CountryFull;
+    d2rq:refersToClassMap map:SpokenBy;
+    d2rq:property base:languageInfo;
+    d2rq:join "country.code   =   spoken.country";
+    .
+
+map:onLanguage_SpokenBy_Language a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:SpokenBy;
+    d2rq:refersToClassMap map:Language;
+    d2rq:property base:onLanguage;
+    .
+
+map:onLanguage_SpokenBy_Language_inverse a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Language;
+    d2rq:refersToClassMap map:SpokenBy;
+    d2rq:property base:spokenInInfo;
+    .
+
+map:speakLanguage_CountryFull_Language a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:CountryFull;
+    d2rq:refersToClassMap map:Language;
+    d2rq:property base:speakLanguage;
+    d2rq:join "country.code   =   spoken.country";
+    d2rq:join "language.name   =   spoken.language";
+    .
+
+map:speakLanguage_CountryFull_Language_inverse a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Language;
+    d2rq:refersToClassMap map:CountryFull;
+    d2rq:property base:spokenInCountry;
+    d2rq:join "country.code   =   spoken.country";
+    d2rq:join "language.name   =   spoken.language";
+    .
+
+map:locatedIn_Source_CountryFull a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Source;
+    d2rq:refersToClassMap map:CountryFull;
+    d2rq:property base:locatedIn;
+    d2rq:join "geo_source.river   =   river.name";
+    d2rq:join "geo_source.country   =   country.code";
+    .
+
+map:locatedIn_Source_Province a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Source;
+    d2rq:refersToClassMap map:Province;
+    d2rq:property base:locatedIn;
+    d2rq:join "geo_source.river   =   river.name";
+    d2rq:join "geo_source.province   =   province.name";
+    d2rq:join "geo_source.country   =   province.country";
+    .
+
+map:inMountains_Source_MountainRange a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Source;
+    d2rq:refersToClassMap map:MountainRange;
+    d2rq:property base:inMountains;
+    d2rq:join "river.mountains   =   mountain.mountains";
+    .
+
+map:locatedAt_City_River1 a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:City;
+    d2rq:refersToClassMap map:River1;
+    d2rq:property base:locatedAt;
+    d2rq:join "city.name   =   located.city";
+    d2rq:join "city.province   =   located.province";
+    d2rq:join "city.country   =   located.country";
+    d2rq:join "river.name   =   located.river";
+    .
+
+map:locatedAt_City_Lake a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:City;
+    d2rq:refersToClassMap map:Lake;
+    d2rq:property base:locatedAt;
+    d2rq:join "city.name   =   located.city";
+    d2rq:join "city.province   =   located.province";
+    d2rq:join "city.country   =   located.country";
+    d2rq:join "lake.name   =   located.lake";
+    .
+
+map:locatedAt_City_Sea a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:City;
+    d2rq:refersToClassMap map:Sea;
+    d2rq:property base:locatedAt;
+    d2rq:join "city.name   =   located.city";
+    d2rq:join "city.province   =   located.province";
+    d2rq:join "city.country   =   located.country";
+    d2rq:join "sea.name   =   located.sea";
+    .
+
+map:locatedOnIsland_City_Island a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:City;
+    d2rq:refersToClassMap map:Island;
+    d2rq:property base:locatedOnIsland;
+    d2rq:join "city.name   =   locatedon.city";
+    d2rq:join "city.province   =   locatedon.province";
+    d2rq:join "city.country   =   locatedon.country";
+    d2rq:join "island.name   =   locatedon.island";
+    .
+
+map:hasCity_Province_City a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Province;
+    d2rq:refersToClassMap map:City;
+    d2rq:property base:hasCity;
+    d2rq:join "city.province   =   province.name";
+    d2rq:join "city.country   =   province.country";
+    .
+
+map:hasCity_Province_City_inverse a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:City;
+    d2rq:refersToClassMap map:Province;
+    d2rq:property base:cityIn;
+    d2rq:join "city.province   =   province.name";
+    d2rq:join "city.country   =   province.country";
+    .
+
+map:capital_Province_City a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Province;
+    d2rq:refersToClassMap map:City;
+    d2rq:property base:capital;
+    d2rq:join "province.capital   =   city.name";
+    d2rq:join "province.country   =   city.country";
+    d2rq:join "province.capprov   =   province.name";
+    .
+
+map:locatedIn_Estuary_CountryFull a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Estuary;
+    d2rq:refersToClassMap map:CountryFull;
+    d2rq:property base:locatedIn;
+    d2rq:join "geo_estuary.river   =   river.name";
+    d2rq:join "geo_estuary.country   =   country.code";
+    .
+
+map:locatedIn_Estuary_Province a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Estuary;
+    d2rq:refersToClassMap map:Province;
+    d2rq:property base:locatedIn;
+    d2rq:join "geo_estuary.river   =   river.name";
+    d2rq:join "geo_estuary.province   =   province.name";
+    d2rq:join "geo_estuary.country   =   province.country";
+    .
+
+map:hadPopulation_CountryFull_PopulationCountCountry a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:CountryFull;
+    d2rq:refersToClassMap map:PopulationCountCountry;
+    d2rq:property base:hadPopulation;
+    d2rq:join "country.code   =   countrypops.country";
+    .
+
+map:hadPopulation_Province_PopulationCountProvince a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Province;
+    d2rq:refersToClassMap map:PopulationCountProvince;
+    d2rq:property base:hadPopulation;
+    d2rq:join "province.name   =   provpops.province";
+    d2rq:join "province.country   =   provpops.country";
+    .
+
+map:hadPopulation_City_PopulationCountCity a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:City;
+    d2rq:refersToClassMap map:PopulationCountCity;
+    d2rq:property base:hadPopulation;
+    d2rq:join "city.name   =   citypops.city";
+    d2rq:join "city.province   =   citypops.province";
+    d2rq:join "city.country   =   citypops.country";
+    .
+
+map:belongsToArchipelago_Island_Archipelago a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Island;
+    d2rq:refersToClassMap map:Archipelago;
+    d2rq:property base:belongsToArchipelago;
+    .
+
+map:locatedIn_Island_CountryFull a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Island;
+    d2rq:refersToClassMap map:CountryFull;
+    d2rq:property base:locatedIn;
+    d2rq:join "geo_island.island   =   island.name";
+    d2rq:join "geo_island.country   =   country.code";
+    .
+
+map:locatedIn_Island_Province a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Island;
+    d2rq:refersToClassMap map:Province;
+    d2rq:property base:locatedIn;
+    d2rq:join "geo_island.island   =   island.name";
+    d2rq:join "geo_island.province   =   province.name";
+    .
+
+map:locatedInWater_Island_Sea a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Island;
+    d2rq:refersToClassMap map:Sea;
+    d2rq:property base:locatedInWater;
+    d2rq:join "islandin.island   =   island.name";
+    d2rq:join "islandin.sea   =   sea.name";
+    .
+
+map:locatedInWater_Island_Lake a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Island;
+    d2rq:refersToClassMap map:Lake;
+    d2rq:property base:locatedInWater;
+    d2rq:join "islandin.island   =   island.name";
+    d2rq:join "islandin.lake   =   lake.name";
+    .
+
+map:locatedInWater_Island_River1 a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Island;
+    d2rq:refersToClassMap map:River1;
+    d2rq:property base:locatedInWater;
+    d2rq:join "islandin.island   =   island.name";
+    d2rq:join "islandin.river   =   river.name";
+    .
+
+map:encompassedBy_Encompassed_Continent a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Encompassed;
+    d2rq:refersToClassMap map:Continent;
+    d2rq:property base:encompassedBy;
+    d2rq:join "encompasses.continent   =   continent.name";
+    .
+
+map:encompassedBy_Encompassed_Continent_inverse a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Continent;
+    d2rq:refersToClassMap map:Encompassed;
+    d2rq:property base:encompassesInfo;
+    d2rq:join "encompasses.continent   =   continent.name";
+    .
+
+map:encompassedArea_Encompassed_CountryFull a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Encompassed;
+    d2rq:refersToClassMap map:CountryFull;
+    d2rq:property base:encompassedArea;
+    d2rq:join "encompasses.country   =   country.code";
+    .
+
+map:encompassedArea_Encompassed_CountryFull_inverse a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:CountryFull;
+    d2rq:refersToClassMap map:Encompassed;
+    d2rq:property base:encompassedByInfo;
+    d2rq:join "encompasses.country   =   country.code";
+    .
+
+map:encompassed_CountryFull_Continent a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:CountryFull;
+    d2rq:refersToClassMap map:Continent;
+    d2rq:property base:encompassed;
+    d2rq:join "continent.name   =   encompasses.continent";
+    d2rq:join "country.code   =   encompasses.country";
+    d2rq:join "encompasses.country   =   country.code";
+    d2rq:join "encompasses.continent   =   continent.name";
+    .
+
+map:encompassed_CountryFull_Continent_inverse a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Continent;
+    d2rq:refersToClassMap map:CountryFull;
+    d2rq:property base:encompasses;
+    d2rq:join "continent.name   =   encompasses.continent";
+    d2rq:join "country.code   =   encompasses.country";
+    d2rq:join "encompasses.country   =   country.code";
+    d2rq:join "encompasses.continent   =   continent.name";
+    .
+
+map:inMountains_Mountain_MountainRange a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Mountain;
+    d2rq:refersToClassMap map:MountainRange;
+    d2rq:property base:inMountains;
+    .
+
+map:locatedIn_Mountain_CountryFull a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Mountain;
+    d2rq:refersToClassMap map:CountryFull;
+    d2rq:property base:locatedIn;
+    d2rq:join "geo_mountain.mountain   =   mountain.name";
+    d2rq:join "geo_mountain.country   =   country.code";
+    .
+
+map:locatedIn_Mountain_Province a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Mountain;
+    d2rq:refersToClassMap map:Province;
+    d2rq:property base:locatedIn;
+    d2rq:join "geo_mountain.mountain   =   mountain.name";
+    d2rq:join "geo_mountain.province   =   province.name";
+    .
+
+map:locatedOnIsland_Mountain_Island a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Mountain;
+    d2rq:refersToClassMap map:Island;
+    d2rq:property base:locatedOnIsland;
+    d2rq:join "mountain.name   =   mountainonisland.mountain";
+    d2rq:join "mountainonisland.island   =   island.name";
+    .
+
+map:ofMember_Membership_CountryFull a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Membership;
+    d2rq:refersToClassMap map:CountryFull;
+    d2rq:property base:ofMember;
+    d2rq:join "country.code   =   ismember.country";
+    .
+
+map:ofMember_Membership_CountryFull_inverse a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:CountryFull;
+    d2rq:refersToClassMap map:Membership;
+    d2rq:property base:isInMembership;
+    d2rq:join "country.code   =   ismember.country";
+    .
+
+map:inOrganization_Membership_Organization a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Membership;
+    d2rq:refersToClassMap map:Organization;
+    d2rq:property base:inOrganization;
+    d2rq:join "organization.abbreviation   =   ismember.organization";
+    .
+
+map:inOrganization_Membership_Organization_inverse a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Organization;
+    d2rq:refersToClassMap map:Membership;
+    d2rq:property base:hasMembership;
+    d2rq:join "organization.abbreviation   =   ismember.organization";
+    .
+
+map:isMember_CountryFull_Organization a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:CountryFull;
+    d2rq:refersToClassMap map:Organization;
+    d2rq:property base:isMember;
+    d2rq:join "organization.abbreviation   =   ismember.organization";
+    d2rq:join "country.code   =   ismember.country";
+    .
+
+map:isMember_CountryFull_Organization_inverse a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Organization;
+    d2rq:refersToClassMap map:CountryFull;
+    d2rq:property base:hasMember;
+    d2rq:join "organization.abbreviation   =   ismember.organization";
+    d2rq:join "country.code   =   ismember.country";
+    .
+
+map:hasHeadq_Organization_City a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Organization;
+    d2rq:refersToClassMap map:City;
+    d2rq:property base:hasHeadq;
+    d2rq:join "organization.city   =   city.name";
+    d2rq:join "organization.country   =   city.country";
+    d2rq:join "organization.province   =   city.province";
+    .
+
+map:locatedIn_River1_CountryFull a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:River1;
+    d2rq:refersToClassMap map:CountryFull;
+    d2rq:property base:locatedIn;
+    d2rq:join "geo_river.river   =   river.name";
+    d2rq:join "geo_river.country   =   country.code";
+    .
+
+map:locatedIn_River1_Province a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:River1;
+    d2rq:refersToClassMap map:Province;
+    d2rq:property base:locatedIn;
+    d2rq:join "geo_river.river   =   river.name";
+    d2rq:join "geo_river.province   =   province.name";
+    .
+
+map:flowsThrough_River1_Lake a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:River1;
+    d2rq:refersToClassMap map:Lake;
+    d2rq:property base:flowsThrough;
+    d2rq:join "riverthrough.lake   =   lake.name";
+    d2rq:join "riverthrough.river   =   river.name";
+    .
+
+map:flowsInto_River1_River2 a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:River1;
+    d2rq:refersToClassMap map:River2;
+    d2rq:property base:flowsInto;
+    .
+
+map:flowsInto_River1_Sea a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:River1;
+    d2rq:refersToClassMap map:Sea;
+    d2rq:property base:flowsInto;
+    d2rq:join "river.sea   =   sea.name";
+    .
+
+map:flowsInto_River1_Lake a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:River1;
+    d2rq:refersToClassMap map:Lake;
+    d2rq:property base:flowsInto;
+    d2rq:join "river.lake   =   lake.name";
+    .
+
+map:hasSource_River1_Source a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:River1;
+    d2rq:refersToClassMap map:Source;
+    d2rq:property base:hasSource;
+    .
+
+map:hasEstuary_River1_Estuary a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:River1;
+    d2rq:refersToClassMap map:Estuary;
+    d2rq:property base:hasEstuary;
+    .
+
+map:locatedOnIsland_River1_Island a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:River1;
+    d2rq:refersToClassMap map:Island;
+    d2rq:property base:locatedOnIsland;
+    d2rq:join "river.name   =   riveronisland.river";
+    d2rq:join "riveronisland.island   =   island.name";
+    .
+
+map:isBorderOf_Border_CountryFull a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Border;
+    d2rq:refersToClassMap map:CountryFull;
+    d2rq:property base:isBorderOf;
+    d2rq:join "borders.country1   =   country.code";
+    d2rq:join "borders.country2   =   country.code";
+    .
+
+map:locatedIn_Desert_CountryFull a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Desert;
+    d2rq:refersToClassMap map:CountryFull;
+    d2rq:property base:locatedIn;
+    d2rq:join "geo_desert.desert   =   desert.name";
+    d2rq:join "geo_desert.country   =   country.code";
+    .
+
+map:locatedIn_Desert_Province a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Desert;
+    d2rq:refersToClassMap map:Province;
+    d2rq:property base:locatedIn;
+    d2rq:join "geo_desert.desert   =   desert.name";
+    d2rq:join "geo_desert.province   =   province.name";
+    .
+
+map:ethnicInfo-_EthnicProportion_CountryFull a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:EthnicProportion;
+    d2rq:refersToClassMap map:CountryFull;
+    d2rq:property base:ethnicInfo-;
+    d2rq:join "country.code   =   ethnicgroup.country";
+    .
+
+map:ethnicInfo-_EthnicProportion_CountryFull_inverse a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:CountryFull;
+    d2rq:refersToClassMap map:EthnicProportion;
+    d2rq:property base:ethnicInfo;
+    d2rq:join "country.code   =   ethnicgroup.country";
+    .
+
+map:onEthnicGroup_EthnicProportion_EthnicGroup a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:EthnicProportion;
+    d2rq:refersToClassMap map:EthnicGroup;
+    d2rq:property base:onEthnicGroup;
+    .
+
+map:onEthnicGroup_EthnicProportion_EthnicGroup_inverse a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:EthnicGroup;
+    d2rq:refersToClassMap map:EthnicProportion;
+    d2rq:property base:liveInInfo;
+    .
+
+map:belongToEthnicGroup_CountryFull_EthnicGroup a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:CountryFull;
+    d2rq:refersToClassMap map:EthnicGroup;
+    d2rq:property base:belongToEthnicGroup;
+    d2rq:join "country.code   =   ethnicgroup.country";
+    .
+
+map:belongToEthnicGroup_CountryFull_EthnicGroup_inverse a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:EthnicGroup;
+    d2rq:refersToClassMap map:CountryFull;
+    d2rq:property base:liveInCountry;
+    d2rq:join "country.code   =   ethnicgroup.country";
+    .
+
+map:wasDependentOf_CountryPolitics_PoliticalBody a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:CountryPolitics;
+    d2rq:refersToClassMap map:PoliticalBody;
+    d2rq:property base:wasDependentOf;
+    .
+
+map:dependentOf_CountryPolitics_CountryDependent a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:CountryPolitics;
+    d2rq:refersToClassMap map:CountryDependent;
+    d2rq:property base:dependentOf;
+    .
+
+map:hasCity_CountryFull_City a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:CountryFull;
+    d2rq:refersToClassMap map:City;
+    d2rq:property base:hasCity;
+    d2rq:join "city.country   =   country.code";
+    .
+
+map:hasCity_CountryFull_City_inverse a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:City;
+    d2rq:refersToClassMap map:CountryFull;
+    d2rq:property base:cityIn;
+    d2rq:join "city.country   =   country.code";
+    .
+
+map:hasProvince_CountryFull_Province a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:CountryFull;
+    d2rq:refersToClassMap map:Province;
+    d2rq:property base:hasProvince;
+    d2rq:join "province.country   =   country.code";
+    .
+
+map:hasProvince_CountryFull_Province_inverse a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Province;
+    d2rq:refersToClassMap map:CountryFull;
+    d2rq:property base:isProvinceOf;
+    d2rq:join "province.country   =   country.code";
+    .
+
+map:capital_CountryFull_City a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:CountryFull;
+    d2rq:refersToClassMap map:City;
+    d2rq:property base:capital;
+    d2rq:join "country.capital   =   city.name";
+    d2rq:join "country.code   =   city.country";
+    d2rq:join "city.province   =   country.province";
+    .
+
+map:capital_CountryFull_City_inverse a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:City;
+    d2rq:refersToClassMap map:CountryFull;
+    d2rq:property base:isCapitalOf;
+    d2rq:join "country.capital   =   city.name";
+    d2rq:join "country.code   =   city.country";
+    d2rq:join "city.province   =   country.province";
+    .
+
+map:neighbor_CountryFull_CountryFull a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:CountryFull;
+    d2rq:refersToClassMap map:CountryFull;
+    d2rq:property base:neighbor;
+    d2rq:join "borders.country1   =   country.code";
+    d2rq:join "borders.country2   =   country.code";
+    .
+
+map:Mountain a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Volcano1;
+    d2rq:refersToClassMap map:Mountain;
+    d2rq:property base:subclassOf;
+    .
+
+map:Mountain a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Volcano2;
+    d2rq:refersToClassMap map:Mountain;
+    d2rq:property base:subclassOf;
+    .
+
+map:name_Lake_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Lake;
+    d2rq:property base:name;
+    d2rq:column "lake.name";
+    .
+
+map:latitude_Lake_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Lake;
+    d2rq:property base:latitude;
+    d2rq:column "lake.latitude";
+    .
+
+map:longitude_Lake_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Lake;
+    d2rq:property base:longitude;
+    d2rq:column "lake.longitude";
+    .
+
+map:area_Lake_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Lake;
+    d2rq:property base:area;
+    d2rq:column "lake.area";
+    .
+
+map:elevation_Lake_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Lake;
+    d2rq:property base:elevation;
+    d2rq:column "lake.elevation";
+    .
+
+map:type_Lake_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Lake;
+    d2rq:property base:type;
+    d2rq:column "lake.type";
+    .
+
+map:depth_Lake_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Lake;
+    d2rq:property base:depth;
+    d2rq:column "lake.depth";
+    .
+
+map:height_Lake_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Lake;
+    d2rq:property base:height;
+    d2rq:column "lake.height";
+    .
+
+map:name_Religion_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Religion;
+    d2rq:property base:name;
+    d2rq:column "religion.name";
+    .
+
+map:percentage_BelievedBy_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:BelievedBy;
+    d2rq:property base:percentage;
+    d2rq:column "religion.percentage";
+    .
+
+map:name_Sea_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Sea;
+    d2rq:property base:name;
+    d2rq:column "sea.name";
+    .
+
+map:area_Sea_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Sea;
+    d2rq:property base:area;
+    d2rq:column "sea.area";
+    .
+
+map:depth_Sea_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Sea;
+    d2rq:property base:depth;
+    d2rq:column "sea.depth";
+    .
+
+map:name_Language_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Language;
+    d2rq:property base:name;
+    d2rq:column "language.name";
+    .
+
+map:percentage_SpokenBy_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:SpokenBy;
+    d2rq:property base:percentage;
+    d2rq:column "spoken.percentage";
+    .
+
+map:elevation_Source_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Source;
+    d2rq:property base:elevation;
+    d2rq:column "river.sourceelevation";
+    .
+
+map:latitude_Source_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Source;
+    d2rq:property base:latitude;
+    d2rq:column "river.(source).latitude";
+    .
+
+map:longitude_Source_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Source;
+    d2rq:property base:longitude;
+    d2rq:column "river.(source).longitude";
+    .
+
+map:name_City_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:City;
+    d2rq:property base:name;
+    d2rq:column "city.name";
+    .
+
+map:population_City_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:City;
+    d2rq:property base:population;
+    d2rq:column "city.population";
+    .
+
+map:longitude_City_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:City;
+    d2rq:property base:longitude;
+    d2rq:column "city.longitude";
+    .
+
+map:latitude_City_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:City;
+    d2rq:property base:latitude;
+    d2rq:column "city.latitude";
+    .
+
+map:elevation_City_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:City;
+    d2rq:property base:elevation;
+    d2rq:column "city.elevation";
+    .
+
+map:othername_City_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:City;
+    d2rq:property base:othername;
+    d2rq:join "city.name   =   cityothername.city";
+    d2rq:join "city.province   =   cityothername.province";
+    d2rq:join "city.country   =   cityothername.country";
+    d2rq:column "cityothername.othername";
+    .
+
+map:localname_City_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:City;
+    d2rq:property base:localname;
+    d2rq:join "city.name   =   citylocalname.city";
+    d2rq:join "city.province   =   citylocalname.province";
+    d2rq:join "province.country   =   provincelocalname.country";
+    d2rq:column "citylocalname.localname";
+    .
+
+map:name_Province_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Province;
+    d2rq:property base:name;
+    d2rq:column "province.name";
+    .
+
+map:area_Province_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Province;
+    d2rq:property base:area;
+    d2rq:column "province.area";
+    .
+
+map:population_Province_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Province;
+    d2rq:property base:population;
+    d2rq:column "province.population";
+    .
+
+map:othername_Province_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Province;
+    d2rq:property base:othername;
+    d2rq:join "province.name   =   provinceothername.province";
+    d2rq:join "province.country   =   provinceothername.country";
+    d2rq:column "provinceothername.othername";
+    .
+
+map:localname_Province_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Province;
+    d2rq:property base:localname;
+    d2rq:join "province.name   =   provincelocalname.province";
+    d2rq:join "province.country   =   provincelocalname.country";
+    d2rq:column "provincelocalname.localname";
+    .
+
+map:elevation_Estuary_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Estuary;
+    d2rq:property base:elevation;
+    d2rq:column "river.estuaryelevation";
+    .
+
+map:latitude_Estuary_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Estuary;
+    d2rq:property base:latitude;
+    d2rq:column "river.(estuary).latitude";
+    .
+
+map:longitude_Estuary_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Estuary;
+    d2rq:property base:longitude;
+    d2rq:column "river.(estuary).longitude";
+    .
+
+map:year_PopulationCountCountry_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:PopulationCountCountry;
+    d2rq:property base:year;
+    d2rq:column "countrypops.year";
+    .
+
+map:value_PopulationCountCountry_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:PopulationCountCountry;
+    d2rq:property base:value;
+    d2rq:column "countrypops.population";
+    .
+
+map:year_PopulationCountProvince_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:PopulationCountProvince;
+    d2rq:property base:year;
+    d2rq:column "provpops.year";
+    .
+
+map:value_PopulationCountProvince_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:PopulationCountProvince;
+    d2rq:property base:value;
+    d2rq:column "provpops.population";
+    .
+
+map:year_PopulationCountCity_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:PopulationCountCity;
+    d2rq:property base:year;
+    d2rq:column "citypops.year";
+    .
+
+map:value_PopulationCountCity_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:PopulationCountCity;
+    d2rq:property base:value;
+    d2rq:column "citypops.population";
+    .
+
+map:name_Island_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Island;
+    d2rq:property base:name;
+    d2rq:column "island.name";
+    .
+
+map:name_Archipelago_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Archipelago;
+    d2rq:property base:name;
+    d2rq:column "island.islands";
+    .
+
+map:latitude_Island_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Island;
+    d2rq:property base:latitude;
+    d2rq:column "island.latitude";
+    .
+
+map:longitude_Island_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Island;
+    d2rq:property base:longitude;
+    d2rq:column "island.longitude";
+    .
+
+map:area_Island_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Island;
+    d2rq:property base:area;
+    d2rq:column "island.area";
+    .
+
+map:elevation_Island_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Island;
+    d2rq:property base:elevation;
+    d2rq:column "island.elevation";
+    .
+
+map:type_Island_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Island;
+    d2rq:property base:type;
+    d2rq:column "island.type";
+    .
+
+map:name_Continent_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Continent;
+    d2rq:property base:name;
+    d2rq:column "continent.name";
+    .
+
+map:area_Continent_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Continent;
+    d2rq:property base:area;
+    d2rq:column "continent.area";
+    .
+
+map:percent_Encompassed_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Encompassed;
+    d2rq:property base:percent;
+    d2rq:column "encompasses.percentage";
+    .
+
+map:type_Mountain_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Mountain;
+    d2rq:property base:type;
+    d2rq:column "mountain.type";
+    .
+
+map:name_MountainRange_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:MountainRange;
+    d2rq:property base:name;
+    d2rq:column "mountain.mountains";
+    .
+
+map:name_Mountain_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Mountain;
+    d2rq:property base:name;
+    d2rq:column "mountain.name";
+    .
+
+map:latitude_Mountain_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Mountain;
+    d2rq:property base:latitude;
+    d2rq:column "mountain.latitude";
+    .
+
+map:longitude_Mountain_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Mountain;
+    d2rq:property base:longitude;
+    d2rq:column "mountain.longitude";
+    .
+
+map:elevation_Mountain_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Mountain;
+    d2rq:property base:elevation;
+    d2rq:column "mountain.elevation";
+    .
+
+map:name_Organization_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Organization;
+    d2rq:property base:name;
+    d2rq:column "organization.name";
+    .
+
+map:abbrev_Organization_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Organization;
+    d2rq:property base:abbrev;
+    d2rq:column "organization.abbreviation";
+    .
+
+map:established_Organization_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Organization;
+    d2rq:property base:established;
+    d2rq:column "organization.established";
+    .
+
+map:type_Membership_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Membership;
+    d2rq:property base:type;
+    d2rq:column "ismember.type";
+    .
+
+map:name_River1_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:River1;
+    d2rq:property base:name;
+    d2rq:column "river.name";
+    .
+
+map:area_River1_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:River1;
+    d2rq:property base:area;
+    d2rq:column "river.area";
+    .
+
+map:length_River1_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:River1;
+    d2rq:property base:length;
+    d2rq:column "river.length";
+    .
+
+map:sourcelatitude_River1_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:River1;
+    d2rq:property base:sourcelatitude;
+    d2rq:column "river.sourcelatitude";
+    .
+
+map:sourcelongitude_River1_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:River1;
+    d2rq:property base:sourcelongitude;
+    d2rq:column "river.sourcelongitude";
+    .
+
+map:estuarylatitude_River1_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:River1;
+    d2rq:property base:estuarylatitude;
+    d2rq:column "river.estuarylatitude";
+    .
+
+map:estuarylongitude_River1_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:River1;
+    d2rq:property base:estuarylongitude;
+    d2rq:column "river.estuarylongitude";
+    .
+
+map:length_Border_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Border;
+    d2rq:property base:length;
+    d2rq:column "borders.length";
+    .
+
+map:name_Desert_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Desert;
+    d2rq:property base:name;
+    d2rq:column "desert.name";
+    .
+
+map:latitude_Desert_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Desert;
+    d2rq:property base:latitude;
+    d2rq:column "desert.latitude";
+    .
+
+map:longitude_Desert_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Desert;
+    d2rq:property base:longitude;
+    d2rq:column "desert.longitude";
+    .
+
+map:area_Desert_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Desert;
+    d2rq:property base:area;
+    d2rq:column "desert.area";
+    .
+
+map:name_EthnicGroup_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:EthnicGroup;
+    d2rq:property base:name;
+    d2rq:column "ethnicgroup.name";
+    .
+
+map:percentage_EthnicProportion_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:EthnicProportion;
+    d2rq:property base:percentage;
+    d2rq:column "ethnicgroup.percentage";
+    .
+
+map:carCode_CountryFull_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:CountryFull;
+    d2rq:property base:carCode;
+    d2rq:column "country.code";
+    .
+
+map:name_CountryFull_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:CountryFull;
+    d2rq:property base:name;
+    d2rq:column "country.name";
+    .
+
+map:area_CountryFull_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:CountryFull;
+    d2rq:property base:area;
+    d2rq:column "country.area";
+    .
+
+map:population_CountryFull_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:CountryFull;
+    d2rq:property base:population;
+    d2rq:column "country.population";
+    .
+
+map:gdpTotal_CountryFull_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:CountryFull;
+    d2rq:property base:gdpTotal;
+    d2rq:join "country.code   =   economy.country";
+    d2rq:column "economy.gdp";
+    .
+
+map:gdpAgri_CountryFull_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:CountryFull;
+    d2rq:property base:gdpAgri;
+    d2rq:join "country.code   =   economy.country";
+    d2rq:column "economy.agriculture";
+    .
+
+map:gdpInd_CountryFull_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:CountryFull;
+    d2rq:property base:gdpInd;
+    d2rq:join "country.code   =   economy.country";
+    d2rq:column "economy.industry";
+    .
+
+map:gdpServ_CountryFull_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:CountryFull;
+    d2rq:property base:gdpServ;
+    d2rq:join "country.code   =   economy.country";
+    d2rq:column "economy.service";
+    .
+
+map:inflation_CountryFull_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:CountryFull;
+    d2rq:property base:inflation;
+    d2rq:join "country.code   =   economy.country";
+    d2rq:column "economy.inflation";
+    .
+
+map:unemployment_CountryFull_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:CountryFull;
+    d2rq:property base:unemployment;
+    d2rq:join "country.code   =   economy.country";
+    d2rq:column "economy.unemployment";
+    .
+
+map:populationGrowth_CountryFull_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:CountryFull;
+    d2rq:property base:populationGrowth;
+    d2rq:join "country.code   =   population.country";
+    d2rq:column "population.population_growth";
+    .
+
+map:infantMortality_CountryFull_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:CountryFull;
+    d2rq:property base:infantMortality;
+    d2rq:join "country.code   =   population.country";
+    d2rq:column "population.infant_mortality";
+    .
+
+map:independenceDate_CountryFull_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:CountryFull;
+    d2rq:property base:independenceDate;
+    d2rq:join "country.code   =   politics.country";
+    d2rq:column "politics.independence";
+    .
+
+map:government_CountryFull_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:CountryFull;
+    d2rq:property base:government;
+    d2rq:join "country.code   =   politics.country";
+    d2rq:column "politics.government";
+    .
+
+map:othername_CountryFull_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:CountryFull;
+    d2rq:property base:othername;
+    d2rq:join "country.code   =   countryothername.country";
+    d2rq:column "countryothername.othername";
+    .
+
+map:localname_CountryFull_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:CountryFull;
+    d2rq:property base:localname;
+    d2rq:join "country.code   =   countrylocalname.country";
+    d2rq:column "countrylocalname.localname";
+    .
+

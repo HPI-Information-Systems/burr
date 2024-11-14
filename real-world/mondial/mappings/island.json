@@ -80,13 +80,13 @@
             "property": "latitude",
             "belongsToClass": "Island",
             "type": "decimal",
-            "column": "island.(coordinates).latitude"
+            "column": "island.latitude"
         },
         {
             "property": "longitude",
             "belongsToClass": "Island",
             "type": "decimal",
-            "column": "island.(coordinates).longitude"
+            "column": "island.longitude"
         },
         {
             "property": "area",

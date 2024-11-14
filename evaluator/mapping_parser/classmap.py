@@ -35,8 +35,6 @@ class ClassMap:
 
     def parse_condition(self, condition):
         return parse_condition(condition)
-    
-
 
     def parse_uri_pattern(self, uri_pattern):
         # print(uri_pattern)
@@ -44,6 +42,8 @@ class ClassMap:
             return None
         uri_pattern = uri_pattern[0] if isinstance(uri_pattern, list) else uri_pattern # !TODO This is quickfix for the book scenario
         uri_patterns = re.findall('@@(.*?)@@', uri_pattern)#.group(1).split(".") #!TODO This does not work when having more than one database access
+        # replace |urlify with ""
+        uri_patterns = [pattern.replace("|urlify", "") for pattern in uri_patterns]
         return [SQLAttribute(table=pattern.split(".")[0].lower(), attribute=pattern.split(".")[1].lower()) for pattern in uri_patterns]
 
     def parse_join(self, join):
@@ -96,9 +96,13 @@ class ClassMap:
     def set_eq_strategy(self, name_based=False):
         self._eq_strategy = name_based_equality if name_based else concept_based_equality
 
-    def __str__(self):
+    # def __str__(self):
+    #     class_maps = self.get_d2rq_mapping()
+    #     return "\n".join(class_maps)
+
+    def get_ttl_string(self):
         class_maps = self.get_d2rq_mapping()
-        return "\n".join(class_maps)
+        return "\n".join(class_maps)       
 
     def __repr__(self):
         return f"ClassMap(uriPattern={self.uriPattern}, class_uri={self.class_uri}, eq_strategy={self._eq_strategy})"
@@ -110,5 +114,5 @@ def concept_based_equality(concept1: ClassMap, concept2: ClassMap) -> bool:
     return  same_condition and same_pattern and same_join
 
 def name_based_equality(concept1: ClassMap, concept2: ClassMap) -> bool:
-    same_name = concept1.class_uri == concept2.class_uri #do i need to shorten?
+    same_name = concept1.class_uri.strip().lower() == concept2.class_uri.strip().lower()
     return same_name

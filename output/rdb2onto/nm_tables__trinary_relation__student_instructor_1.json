@@ -14,7 +14,7 @@
     "join" : null,
     "class" : "instructor"
   }, {
-    "id" : "",
+    "id" : "@@student.id@@/",
     "name" : "ClassMap_student",
     "prefix" : "base",
     "subClassOf" : null,
@@ -68,23 +68,6 @@
     "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
     "column" : "student.Name",
     "belongsToClassMap" : "ClassMap_student"
-  }, {
-    "property" : "hasSid",
-    "type" : "xsd:integer",
-    "column" : "student_course_instructor.Sid",
-    "belongsToClassMap" : "ClassMap_student_course_instructor"
   } ],
-  "object_properties" : [ {
-    "property" : "hasIid",
-    "join" : [ "instructor.id = student_course_instructor.iid" ],
-    "inverseOf" : null,
-    "belongsToClassMap" : "ClassMap_student_course_instructor",
-    "refersToClassMap" : "ClassMap_instructor"
-  }, {
-    "property" : "hasCid",
-    "join" : [ "course.id = student_course_instructor.cid" ],
-    "inverseOf" : null,
-    "belongsToClassMap" : "ClassMap_student_course_instructor",
-    "refersToClassMap" : "ClassMap_course"
-  } ]
+  "object_properties" : [ ]
 }

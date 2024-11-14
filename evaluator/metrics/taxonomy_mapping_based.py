@@ -10,6 +10,8 @@ class TaxonomyMappingBasedPrecision(Metric):
         super(TaxonomyMappingBasedPrecision, self).__init__()
 
     def score(self, learned_ontology: D2RQMapping, referenced_ontology: D2RQMapping) -> float:
+        learned_ontology.set_concept_eq_strategy(name_based=False)
+        referenced_ontology.set_concept_eq_strategy(name_based=False)
         shared_classes = set(learned_ontology.classes).intersection(set(referenced_ontology.classes))
         learned_ontology.classes = list(shared_classes)
         referenced_ontology.classes = list(shared_classes)
@@ -22,7 +24,7 @@ class TaxonomyMappingBasedPrecision(Metric):
         referenced_ontology.relations, edges_to_remove = filter_edges_with_missing_classes(list(shared_relations_referenced), referenced_ontology.classes)
         shared_relations_referenced = list(set(shared_relations_referenced) - set(edges_to_remove))
         shared_elements = shared_relations_referenced
-        return np.mean(list(map(lambda el: LocalTaxonomyMappingBasedPrecision().score(el, learned_ontology, referenced_ontology), shared_elements)))
+        return np.mean(list(map(lambda el: LocalTaxonomyMappingBasedPrecision().score(el, learned_ontology, referenced_ontology), shared_elements))) if len(shared_elements) > 0 else 0.0
     
     def __str__(self):
         return "TaxonomyMappingBasedPrecision"
@@ -34,6 +36,8 @@ class TaxonomyMappingBasedRecall():
     def score(self, learned_ontology: D2RQMapping, referenced_ontology: D2RQMapping) -> float:
         #intersect ontology
         #todo alle gemeinsamen konzepte, basierend auf uripattern, sqljoin, sqlconiditon -> check sql column!
+        learned_ontology.set_concept_eq_strategy(name_based=False)
+        referenced_ontology.set_concept_eq_strategy(name_based=False)
         shared_classes = set(learned_ontology.classes).intersection(set(referenced_ontology.classes))
         learned_ontology.classes = list(shared_classes)
         referenced_ontology.classes = list(shared_classes)
@@ -62,7 +66,7 @@ class TaxonomyMappingBasedRecall():
             # print("referenced",referenced_ontology)
             print(LocalTaxonomyMappingBasedRecall().score(el, learned_ontology, referenced_ontology))
         res = list(map(lambda el: LocalTaxonomyMappingBasedRecall().score(el, learned_ontology, referenced_ontology), shared_elements))
-        return np.mean(res)
+        return np.mean(res) if len(res) > 0 else 0.0
     
     def __str__(self):
         return "TaxonomyMappingBasedRecall"

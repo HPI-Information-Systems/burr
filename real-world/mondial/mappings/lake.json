@@ -54,13 +54,13 @@
             "property": "latitude",
             "belongsToClass": "Lake",
             "type": "decimal",
-            "column": "lake.(coordinates).latitude"
+            "column": "lake.latitude"
         },
         {
             "property": "longitude",
             "belongsToClass": "Lake",
             "type": "decimal",
-            "column": "lake.(coordinates).longitude"
+            "column": "lake.longitude"
         },
         {
             "property": "area",

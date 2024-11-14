@@ -8,7 +8,7 @@ function run_experiment {
 	echo Doing it for $1
 	echo Tagging with $2
 	conda activate py39
-	python3 evaluator/experimenter/experiment_script.py --scenario $1 --tag $2 #--wandb #> output_2.out
+	python3 evaluator/experimenter/experiment_script.py --scenario $1 --tag $2 --wandb #> output_2.out
 }
 
 set -e
