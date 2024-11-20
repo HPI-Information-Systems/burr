@@ -23,8 +23,8 @@ Summarize the provided json data content in a structured manner:
 Define it as an owl type>
 
 **Data Description:**
-Enumerate for each column in the json data:
-1. column data name: type - short description of the column data meaning - possible range
+Enumerate for each table in the json data:
+1. table name: type of the table - short description of the table data meaning - attributes belonging to the table
 
 **classes:**
 Enumerate the classes:

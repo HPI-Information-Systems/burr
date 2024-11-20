@@ -1,47 +1,59 @@
-@prefix base: <file:///base/> .
 @prefix d2rq: <http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#> .
-@prefix jdbc: <http://d2rq.org/terms/jdbc/> .
+@prefix cmt: <http://cmt/> .
 @prefix map: <http://mapping/> .
+@prefix jdbc: <http://d2rq.org/terms/jdbc/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix base: </base/> .
 
-map:date_Receipt_None a d2rq:PropertyBridge ;
-    d2rq:belongsToClassMap map:Receipt ;
-    d2rq:column "receipt.date" ;
-    d2rq:property base:date .
+map:database a d2rq:Database;
+	d2rq:jdbcDriver "org.postgresql.Driver";
+	d2rq:jdbcDSN "jdbc:postgresql://localhost:5432/attributes__fk_pk_descriptive__receipt";
+	d2rq:username "lukaslaskowski";
+	jdbc:keepAlive "3600";				# sends noop-query every 3600 seconds
+	.
 
-map:email_Person_None a d2rq:PropertyBridge ;
-    d2rq:belongsToClassMap map:Person ;
-    d2rq:column "person.email" ;
-    d2rq:property base:email .
+map:Person a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:Person;
+    d2rq:uriPattern "/@@person.name@@/";
+    
+    
+    .
+map:Receipt a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:Receipt;
+    d2rq:uriPattern "/@@receipt.id@@/";
+    
+    
+    .
+map:receivedBy_Receipt_Person a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Receipt;
+    d2rq:refersToClassMap map:Person;
+    d2rq:property base:receivedBy;
+    d2rq:join "person.name = receipt.received_by";
+    .
 
-map:item_Receipt_None a d2rq:PropertyBridge ;
-    d2rq:belongsToClassMap map:Receipt ;
-    d2rq:column "receipt.item" ;
-    d2rq:property base:item .
+map:name_Person_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Person;
+    d2rq:property base:name;
+    d2rq:column "person.name";
+    .
 
-map:name_Person_None a d2rq:PropertyBridge ;
-    d2rq:belongsToClassMap map:Person ;
-    d2rq:column "person.name" ;
-    d2rq:property base:name .
+map:email_Person_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Person;
+    d2rq:property base:email;
+    d2rq:column "person.email";
+    .
 
-map:receivedBy_Receipt_Person a d2rq:PropertyBridge ;
-    d2rq:belongsToClassMap map:Receipt ;
-    d2rq:join "person.name   =   receipt.received_by" ;
-    d2rq:property base:receivedBy ;
-    d2rq:refersToClassMap map:Person .
+map:date_Receipt_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Receipt;
+    d2rq:property base:date;
+    d2rq:column "receipt.date";
+    .
 
-map:database a d2rq:Database ;
-    jdbc:keepAlive "3600" ;
-    d2rq:jdbcDSN "jdbc:postgresql://localhost:5432/attributes__fk_pk_descriptive__receipt" ;
-    d2rq:jdbcDriver "org.postgresql.Driver" ;
-    d2rq:username "lukaslaskowski" .
-
-map:Person a d2rq:ClassMap ;
-    d2rq:class base:Person ;
-    d2rq:dataStorage map:database ;
-    d2rq:uriPattern "/@@person.name@@/" .
-
-map:Receipt a d2rq:ClassMap ;
-    d2rq:class base:Receipt ;
-    d2rq:dataStorage map:database ;
-    d2rq:uriPattern "/@@receipt.id@@/" .
+map:item_Receipt_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Receipt;
+    d2rq:property base:item;
+    d2rq:column "receipt.item";
+    .
 

@@ -51,6 +51,7 @@ class LlmPromptCrafter(AbstractLlm, ABC):
                 start_marker="**Prompt:**",
                 end_marker="**Critique:**"
             )
+            print(f"Crafted prompt: {self.crafted_prompt}")
         except GeneratorExit as ge:
             print(f"Process stopped/cancelled by user: {ge}")
             return

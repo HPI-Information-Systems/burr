@@ -57,12 +57,12 @@ class GuiBehavior():
         self._update_context(self.metadata_manager)
         
     def run(self):
-        self._start_manage_action("Introduce yourself and explain your role to the future users.")
-        # self.load_csv_data("/Users/lukaslaskowski/Documents/HPI/KG/ontology_mappings/OntoGenix_Tools/OntoGenix_CLI/datasets/AirlinesCustomerSatisfaction/base/Chunk_AirlinesCustomerSatisfaction.csv")
         pg_client = PostgresClient(database=self.database_name)
         constraint_description = pg_client.generate_description(pg_client.get_constraints())
         #self.json_data = None
         self.json_data = {table_name: dataframe2prettyjson(csv_data_preprocessing(table)) for table_name, table in pg_client.get_all_tables().items()}
+        self._start_manage_action("Introduce yourself and explain your role to the future users.")
+        # self.load_csv_data("/Users/lukaslaskowski/Documents/HPI/KG/ontology_mappings/OntoGenix_Tools/OntoGenix_CLI/datasets/AirlinesCustomerSatisfaction/base/Chunk_AirlinesCustomerSatisfaction.csv")
         with open("json_data.json", "w") as f:
             f.write(str(self.json_data))
         wandb.save("json_data.json")

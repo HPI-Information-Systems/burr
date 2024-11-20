@@ -62,7 +62,6 @@ class R2RMLMapping(BaseMapping):
         return classes
     
     def get_attributes(self):
-        print(self.relations)
         return list(filter(lambda rel: rel.refersToClassMap is None, self.relations))
     
     def get_relations(self):
@@ -84,14 +83,14 @@ class R2RMLMapping(BaseMapping):
         relations = []
         triples = self.graph.subjects(RDF.type, RR.TriplesMap)
         print("TRIPLES", triples)
-        for idx, triples_map in enumerate(triples):
-            print(idx, triples_map)
-            mapping_id = f"{idx}{str(triples_map).split('/')[-1].replace('#', '')}"
+        for triples_map in triples:
+            print(triples_map)
             logicalTable = self.graph.value(subject=triples_map, predicate=RR.logicalTable)
             subject_map = self.graph.value(subject=triples_map, predicate=RR.subjectMap)
             class_uri = self.shorten_uri(self.graph.value(subject=subject_map, predicate=RR["class"]))
             table_name = self.graph.value(subject=logicalTable, predicate=RR.tableName)
-            for pred_obj_map in self.graph.objects(subject=triples_map, predicate=RR.predicateObjectMap):
+            for idx, pred_obj_map in enumerate(self.graph.objects(subject=triples_map, predicate=RR.predicateObjectMap)):
+                mapping_id = f"{idx}{str(triples_map).split('/')[-1].replace('#', '')}"
                 predicate = self.graph.value(subject=pred_obj_map, predicate=RR.predicate)
                 property = self.shorten_uri(predicate) if predicate else None
                 belongs_to_class_map = self.shorten_uri(class_uri)
@@ -114,14 +113,14 @@ class R2RMLMapping(BaseMapping):
                 else:   
                     join = None
 
-            relations.append(Relation(
-                    prefix="base",
-                    mapping_id=mapping_id, #not unique
-                    property=property,
-                    belongsToClassMap=belongs_to_class_map,
-                    refersToClassMap=refers_to_class_map,
-                    #sqlExpression=#property_bridge["d2rq:sqlExpression"] if "d2rq:sqlExpression" in property_bridge.keys() else None,
-                    join=join,
-                    column=column
-                ))
+                relations.append(Relation(
+                        prefix="base",
+                        mapping_id=mapping_id, #not unique
+                        property=property,
+                        belongsToClassMap=belongs_to_class_map,
+                        refersToClassMap=refers_to_class_map,
+                        #sqlExpression=#property_bridge["d2rq:sqlExpression"] if "d2rq:sqlExpression" in property_bridge.keys() else None,
+                        join=join,
+                        column=column
+                    ))
         return relations

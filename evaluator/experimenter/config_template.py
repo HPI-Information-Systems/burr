@@ -296,10 +296,6 @@ scenarios = {
 experiment_config = {
     "scenarios": scenarios,
     "systems": [
-        # {
-        #     "name": "ontogenix",
-        #     "config": systems["ontogenix"]
-        # },
         {
             "name": "rdb2onto",
             "config": systems["rdb2onto"]
@@ -307,6 +303,10 @@ experiment_config = {
         {
             "name": "d2rmapper",
             "config": systems["d2rmapper"]
+        },
+        {
+            "name": "ontogenix",
+            "config": systems["ontogenix"]
         }
     ]
 }

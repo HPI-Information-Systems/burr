@@ -112,8 +112,14 @@ class Relation:
         return f"Relation(property={self.property}, belongsToClassMap={self.belongsToClassMap}, refersToClassMap={self.refersToClassMap}, eq_strategy={self._eq_strategy})"
     
 def equality_by_property_name(edge1: Relation, edge2: Relation) -> bool:
-    #print(edge1.property, edge2.property)
-    return edge1.property.strip().lower() == edge2.property.strip().lower()
+    def clean_property_name(property):
+        fillers = [" ", "_", "-", "has", "is", "of", "the", "a", "an"]
+        for filler in fillers:
+            property = property.replace(filler, "")
+        return property.strip().lower()
+    cleaned_equality = clean_property_name(edge1.property) == clean_property_name(edge2.property)
+    regular_equality = edge1.property.strip().lower() == edge2.property.strip().lower()
+    return cleaned_equality or regular_equality
 
 def equality_by_edge_query(edge1: Relation, edge2: Relation) -> bool:
     if not isinstance(edge2, Relation):

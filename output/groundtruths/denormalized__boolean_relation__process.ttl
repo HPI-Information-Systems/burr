@@ -1,102 +1,135 @@
-@prefix base: <file:///base/> .
 @prefix d2rq: <http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#> .
-@prefix jdbc: <http://d2rq.org/terms/jdbc/> .
+@prefix cmt: <http://cmt/> .
 @prefix map: <http://mapping/> .
+@prefix jdbc: <http://d2rq.org/terms/jdbc/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix base: </base/> .
 
-map:isMemberOf_Service_IndustryAutomotive a d2rq:PropertyBridge ;
-    d2rq:belongsToClassMap map:Service ;
-    d2rq:property base:isMemberOf ;
-    d2rq:refersToClassMap map:IndustryAutomotive .
+map:database a d2rq:Database;
+	d2rq:jdbcDriver "org.postgresql.Driver";
+	d2rq:jdbcDSN "jdbc:postgresql://localhost:5432/denormalized__boolean_relation__process";
+	d2rq:username "lukaslaskowski";
+	jdbc:keepAlive "3600";				# sends noop-query every 3600 seconds
+	.
 
-map:isMemberOf_Service_IndustryAviation a d2rq:PropertyBridge ;
-    d2rq:belongsToClassMap map:Service ;
-    d2rq:property base:isMemberOf ;
-    d2rq:refersToClassMap map:IndustryAviation .
+map:Service a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:Service;
+    d2rq:uriPattern "/@@service.id@@/";
+    
+    
+    .
+map:IndustryOilGas a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:Industry;
+    
+    
+    .
+map:IndustryAutomotive a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:Industry;
+    
+    
+    .
+map:IndustryChemical a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:Industry;
+    
+    
+    .
+map:IndustryPharma a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:Industry;
+    
+    
+    .
+map:IndustryFood a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:Industry;
+    
+    
+    .
+map:IndustryRetail a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:Industry;
+    
+    
+    .
+map:IndustryLogistics a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:Industry;
+    
+    
+    .
+map:IndustryAviation a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:Industry;
+    
+    
+    .
+map:IndustryEnergy a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:Industry;
+    
+    
+    .
+map:isMemberOf_Service_IndustryOilGas a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Service;
+    d2rq:refersToClassMap map:IndustryOilGas;
+    d2rq:property base:isMemberOf;
+    .
 
-map:isMemberOf_Service_IndustryChemical a d2rq:PropertyBridge ;
-    d2rq:belongsToClassMap map:Service ;
-    d2rq:property base:isMemberOf ;
-    d2rq:refersToClassMap map:IndustryChemical .
+map:isMemberOf_Service_IndustryAutomotive a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Service;
+    d2rq:refersToClassMap map:IndustryAutomotive;
+    d2rq:property base:isMemberOf;
+    .
 
-map:isMemberOf_Service_IndustryEnergy a d2rq:PropertyBridge ;
-    d2rq:belongsToClassMap map:Service ;
-    d2rq:property base:isMemberOf ;
-    d2rq:refersToClassMap map:IndustryEnergy .
+map:isMemberOf_Service_IndustryChemical a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Service;
+    d2rq:refersToClassMap map:IndustryChemical;
+    d2rq:property base:isMemberOf;
+    .
 
-map:isMemberOf_Service_IndustryFood a d2rq:PropertyBridge ;
-    d2rq:belongsToClassMap map:Service ;
-    d2rq:property base:isMemberOf ;
-    d2rq:refersToClassMap map:IndustryFood .
+map:isMemberOf_Service_IndustryPharma a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Service;
+    d2rq:refersToClassMap map:IndustryPharma;
+    d2rq:property base:isMemberOf;
+    .
 
-map:isMemberOf_Service_IndustryLogistics a d2rq:PropertyBridge ;
-    d2rq:belongsToClassMap map:Service ;
-    d2rq:property base:isMemberOf ;
-    d2rq:refersToClassMap map:IndustryLogistics .
+map:isMemberOf_Service_IndustryFood a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Service;
+    d2rq:refersToClassMap map:IndustryFood;
+    d2rq:property base:isMemberOf;
+    .
 
-map:isMemberOf_Service_IndustryOilGas a d2rq:PropertyBridge ;
-    d2rq:belongsToClassMap map:Service ;
-    d2rq:property base:isMemberOf ;
-    d2rq:refersToClassMap map:IndustryOilGas .
+map:isMemberOf_Service_IndustryRetail a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Service;
+    d2rq:refersToClassMap map:IndustryRetail;
+    d2rq:property base:isMemberOf;
+    .
 
-map:isMemberOf_Service_IndustryPharma a d2rq:PropertyBridge ;
-    d2rq:belongsToClassMap map:Service ;
-    d2rq:property base:isMemberOf ;
-    d2rq:refersToClassMap map:IndustryPharma .
+map:isMemberOf_Service_IndustryLogistics a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Service;
+    d2rq:refersToClassMap map:IndustryLogistics;
+    d2rq:property base:isMemberOf;
+    .
 
-map:isMemberOf_Service_IndustryRetail a d2rq:PropertyBridge ;
-    d2rq:belongsToClassMap map:Service ;
-    d2rq:property base:isMemberOf ;
-    d2rq:refersToClassMap map:IndustryRetail .
+map:isMemberOf_Service_IndustryAviation a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Service;
+    d2rq:refersToClassMap map:IndustryAviation;
+    d2rq:property base:isMemberOf;
+    .
 
-map:name_Service_None a d2rq:PropertyBridge ;
-    d2rq:belongsToClassMap map:Service ;
-    d2rq:column "service.name" ;
-    d2rq:property base:name .
+map:isMemberOf_Service_IndustryEnergy a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Service;
+    d2rq:refersToClassMap map:IndustryEnergy;
+    d2rq:property base:isMemberOf;
+    .
 
-map:IndustryAutomotive a d2rq:ClassMap ;
-    d2rq:class base:Industry ;
-    d2rq:dataStorage map:database .
-
-map:IndustryAviation a d2rq:ClassMap ;
-    d2rq:class base:Industry ;
-    d2rq:dataStorage map:database .
-
-map:IndustryChemical a d2rq:ClassMap ;
-    d2rq:class base:Industry ;
-    d2rq:dataStorage map:database .
-
-map:IndustryEnergy a d2rq:ClassMap ;
-    d2rq:class base:Industry ;
-    d2rq:dataStorage map:database .
-
-map:IndustryFood a d2rq:ClassMap ;
-    d2rq:class base:Industry ;
-    d2rq:dataStorage map:database .
-
-map:IndustryLogistics a d2rq:ClassMap ;
-    d2rq:class base:Industry ;
-    d2rq:dataStorage map:database .
-
-map:IndustryOilGas a d2rq:ClassMap ;
-    d2rq:class base:Industry ;
-    d2rq:dataStorage map:database .
-
-map:IndustryPharma a d2rq:ClassMap ;
-    d2rq:class base:Industry ;
-    d2rq:dataStorage map:database .
-
-map:IndustryRetail a d2rq:ClassMap ;
-    d2rq:class base:Industry ;
-    d2rq:dataStorage map:database .
-
-map:Service a d2rq:ClassMap ;
-    d2rq:class base:Service ;
-    d2rq:dataStorage map:database ;
-    d2rq:uriPattern "/@@service.id@@/" .
-
-map:database a d2rq:Database ;
-    jdbc:keepAlive "3600" ;
-    d2rq:jdbcDSN "jdbc:postgresql://localhost:5432/denormalized__boolean_relation__process" ;
-    d2rq:jdbcDriver "org.postgresql.Driver" ;
-    d2rq:username "lukaslaskowski" .
+map:name_Service_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Service;
+    d2rq:property base:name;
+    d2rq:column "service.name";
+    .
 

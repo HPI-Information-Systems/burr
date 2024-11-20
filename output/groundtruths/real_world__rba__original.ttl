@@ -489,21 +489,21 @@ map:hasImplementation_BusinessProcess_0_SolutionProcess_0 a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:BusinessProcess_0;
     d2rq:refersToClassMap map:SolutionProcess_0;
     d2rq:property base:hasImplementation;
-    d2rq:join "bpm.business_process_id   =   spm.business_process_id";
+    d2rq:join "bpm.business_process_id = spm.business_process_id";
     .
 
 map:hasImplementation_BusinessProcess_1_SolutionProcess_1 a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:BusinessProcess_1;
     d2rq:refersToClassMap map:SolutionProcess_1;
     d2rq:property base:hasImplementation;
-    d2rq:join "bpm.business_process_id_1   =   spm.business_process_id_1";
+    d2rq:join "bpm.business_process_id_1 = spm.business_process_id_1";
     .
 
 map:hasImplementation_BusinessProcess_2_SolutionProcess_2 a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:BusinessProcess_2;
     d2rq:refersToClassMap map:SolutionProcess_2;
     d2rq:property base:hasImplementation;
-    d2rq:join "bpm.business_process_id_2   =   spm.business_process_id_2";
+    d2rq:join "bpm.business_process_id_2 = spm.business_process_id_2";
     .
 
 map:isElementOf_BusinessProcess_0_BusinessProcessCategory_0 a d2rq:PropertyBridge;
@@ -582,7 +582,7 @@ map:isPrerequisiteOf_BusinessCapabilityFromCapability_BusinessActivity_BA a d2rq
     d2rq:belongsToClassMap map:BusinessCapabilityFromCapability;
     d2rq:refersToClassMap map:BusinessActivity_BA;
     d2rq:property base:isPrerequisiteOf;
-    d2rq:join "bcm.master_id_bc   =   bpm.master_id_bc";
+    d2rq:join "bcm.master_id_bc = bpm.master_id_bc";
     .
 
 map:isMemberOf_BusinessCapabilityFromCapability_Industry a d2rq:PropertyBridge;
@@ -625,14 +625,14 @@ map:hasImplementation_BusinessCapabilityFromCapability_SolutionCapability_SCM a 
     d2rq:belongsToClassMap map:BusinessCapabilityFromCapability;
     d2rq:refersToClassMap map:SolutionCapability_SCM;
     d2rq:property base:hasImplementation;
-    d2rq:join "bcm.master_id_bc   =   scm.master_id_bc";
+    d2rq:join "bcm.master_id_bc = scm.master_id_bc";
     .
 
 map:hasImplementation_BusinessCapabilityFromCapability_SolutionCapability_Whitespaces a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:BusinessCapabilityFromCapability;
     d2rq:refersToClassMap map:SolutionCapability_Whitespaces;
     d2rq:property base:hasImplementation;
-    d2rq:join "bcm.master_id_bc   =   whitespaces.master_id_bc";
+    d2rq:join "bcm.master_id_bc = whitespaces.master_id_bc";
     .
 
 map:isMemberOf_BusinessCapabilityFromDomain_EnterpriseDomainLevel_2 a d2rq:PropertyBridge;
@@ -669,7 +669,7 @@ map:references_BusinessActivity_BA_BusinessActivity_BAR a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:BusinessActivity_BA;
     d2rq:refersToClassMap map:BusinessActivity_BAR;
     d2rq:property base:references;
-    d2rq:join "bpm.reference_to_bar_id   =   bar.business_activity_code";
+    d2rq:join "bpm.reference_to_bar_id = bar.business_activity_code";
     .
 
 map:references_BusinessActivity_BA_BusinessProcess_fp a d2rq:PropertyBridge;
@@ -682,7 +682,7 @@ map:hasImplementation_BusinessActivity_BA_SolutionActivity a d2rq:PropertyBridge
     d2rq:belongsToClassMap map:BusinessActivity_BA;
     d2rq:refersToClassMap map:SolutionActivity;
     d2rq:property base:hasImplementation;
-    d2rq:join "bpm.object_id_business_activity   =   spm.ba_in_sp_reference_to_rba";
+    d2rq:join "bpm.object_id_business_activity = spm.ba_in_sp_reference_to_rba";
     .
 
 map:hasVariant_BusinessActivity_BasedOn_BusinessActivity_BA a d2rq:PropertyBridge;
@@ -695,14 +695,14 @@ map:references_SolutionActivity_SolutionCapability_SCM a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:SolutionActivity;
     d2rq:refersToClassMap map:SolutionCapability_SCM;
     d2rq:property base:references;
-    d2rq:join "scm.object_id_sc   =   spm.object_id_sc";
+    d2rq:join "scm.object_id_sc = spm.object_id_sc";
     .
 
 map:hasPrerequisite_SolutionActivity_SolutionCapability_SCM a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:SolutionActivity;
     d2rq:refersToClassMap map:SolutionCapability_SCM;
     d2rq:property base:hasPrerequisite;
-    d2rq:join "scm.object_id_sc   =   spm.object_id_sc";
+    d2rq:join "scm.object_id_sc = spm.object_id_sc";
     .
 
 map:isMemberOf_Product_DeploymentType a d2rq:PropertyBridge;

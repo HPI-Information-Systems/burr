@@ -1,51 +1,66 @@
-@prefix base: <file:///base/> .
 @prefix d2rq: <http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#> .
-@prefix jdbc: <http://d2rq.org/terms/jdbc/> .
+@prefix cmt: <http://cmt/> .
 @prefix map: <http://mapping/> .
+@prefix jdbc: <http://d2rq.org/terms/jdbc/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix base: </base/> .
 
-map:area_Reviewer_None a d2rq:PropertyBridge ;
-    d2rq:belongsToClassMap map:Reviewer ;
-    d2rq:column "reviewer.area" ;
-    d2rq:property base:area .
+map:database a d2rq:Database;
+	d2rq:jdbcDriver "org.postgresql.Driver";
+	d2rq:jdbcDSN "jdbc:postgresql://localhost:5432/hierarchy__two_tables__reviewer_1";
+	d2rq:username "lukaslaskowski";
+	jdbc:keepAlive "3600";				# sends noop-query every 3600 seconds
+	.
 
-map:email_Author_None a d2rq:PropertyBridge ;
-    d2rq:belongsToClassMap map:Author ;
-    d2rq:column "author.email" ;
-    d2rq:property base:email .
+map:AuthorPerson a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:Person;
+    d2rq:uriPattern "/@@author.aid@@/";
+    
+    
+    .
+map:ReviewerPerson a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:Person;
+    d2rq:uriPattern "/@@reviewer.rid@@/";
+    
+    
+    .
+map:Author a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:Author;
+    d2rq:uriPattern "/@@author.aid@@/";
+    
+    
+    .
+map:Reviewer a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:Reviewer;
+    d2rq:uriPattern "/@@reviewer.rid@@/";
+    
+    
+    .
+map:name_AuthorPerson_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:AuthorPerson;
+    d2rq:property base:name;
+    d2rq:column "author.name";
+    .
 
-map:name_AuthorPerson_None a d2rq:PropertyBridge ;
-    d2rq:belongsToClassMap map:AuthorPerson ;
-    d2rq:column "author.name" ;
-    d2rq:property base:name .
+map:name_ReviewerPerson_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ReviewerPerson;
+    d2rq:property base:name;
+    d2rq:column "reviewer.name";
+    .
 
-map:name_ReviewerPerson_None a d2rq:PropertyBridge ;
-    d2rq:belongsToClassMap map:ReviewerPerson ;
-    d2rq:column "reviewer.name" ;
-    d2rq:property base:name .
+map:email_Author_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Author;
+    d2rq:property base:email;
+    d2rq:column "author.email";
+    .
 
-map:Author a d2rq:ClassMap ;
-    d2rq:class base:Author ;
-    d2rq:dataStorage map:database ;
-    d2rq:uriPattern "/@@author.aid@@/" .
-
-map:AuthorPerson a d2rq:ClassMap ;
-    d2rq:class base:Person ;
-    d2rq:dataStorage map:database ;
-    d2rq:uriPattern "/@@author.aid@@/" .
-
-map:Reviewer a d2rq:ClassMap ;
-    d2rq:class base:Reviewer ;
-    d2rq:dataStorage map:database ;
-    d2rq:uriPattern "/@@reviewer.rid@@/" .
-
-map:ReviewerPerson a d2rq:ClassMap ;
-    d2rq:class base:Person ;
-    d2rq:dataStorage map:database ;
-    d2rq:uriPattern "/@@reviewer.rid@@/" .
-
-map:database a d2rq:Database ;
-    jdbc:keepAlive "3600" ;
-    d2rq:jdbcDSN "jdbc:postgresql://localhost:5432/hierarchy__two_tables__reviewer_1" ;
-    d2rq:jdbcDriver "org.postgresql.Driver" ;
-    d2rq:username "lukaslaskowski" .
+map:area_Reviewer_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Reviewer;
+    d2rq:property base:area;
+    d2rq:column "reviewer.area";
+    .
 

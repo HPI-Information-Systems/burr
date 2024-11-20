@@ -87,6 +87,7 @@ class LlmOntology(AbstractLlm):
             ValueError: Catches and prints any ValueError that occurs during the interaction.
         """
         error = error or self.error_message
+        print("DATA DESCRIPTION", data_description)
         try:
             if state == "ONTOLOGY" and not error:
                 self.current_prompt = self.ontology_instructions.format(

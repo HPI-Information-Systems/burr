@@ -1,38 +1,48 @@
-@prefix base: <file:///base/> .
 @prefix d2rq: <http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#> .
-@prefix jdbc: <http://d2rq.org/terms/jdbc/> .
+@prefix cmt: <http://cmt/> .
 @prefix map: <http://mapping/> .
+@prefix jdbc: <http://d2rq.org/terms/jdbc/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix base: </base/> .
 
-map:has_skill_Employee_Skill a d2rq:PropertyBridge ;
-    d2rq:belongsToClassMap map:Employee ;
-    d2rq:join "employee.id   =   employee_skill.employee_id",
-        "skill.id   =   employee_skill.skill_id" ;
-    d2rq:property base:has_skill ;
-    d2rq:refersToClassMap map:Skill .
+map:database a d2rq:Database;
+	d2rq:jdbcDriver "org.postgresql.Driver";
+	d2rq:jdbcDSN "jdbc:postgresql://localhost:5432/nm_tables__general__employee_skill";
+	d2rq:username "lukaslaskowski";
+	jdbc:keepAlive "3600";				# sends noop-query every 3600 seconds
+	.
 
-map:name_Employee_None a d2rq:PropertyBridge ;
-    d2rq:belongsToClassMap map:Employee ;
-    d2rq:column "employee.name" ;
-    d2rq:property base:name .
+map:Employee a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:Employee;
+    d2rq:uriPattern "/@@employee.id@@/";
+    
+    
+    .
+map:Skill a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:Skill;
+    d2rq:uriPattern "/@@skill.id@@/";
+    
+    
+    .
+map:has_skill_Employee_Skill a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Employee;
+    d2rq:refersToClassMap map:Skill;
+    d2rq:property base:has_skill;
+    d2rq:join "employee.id = employee_skill.employee_id";
+    d2rq:join "skill.id = employee_skill.skill_id";
+    .
 
-map:name_Skill_None a d2rq:PropertyBridge ;
-    d2rq:belongsToClassMap map:Skill ;
-    d2rq:column "skill.name" ;
-    d2rq:property base:name .
+map:name_Employee_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Employee;
+    d2rq:property base:name;
+    d2rq:column "employee.name";
+    .
 
-map:Employee a d2rq:ClassMap ;
-    d2rq:class base:Employee ;
-    d2rq:dataStorage map:database ;
-    d2rq:uriPattern "/@@employee.id@@/" .
-
-map:Skill a d2rq:ClassMap ;
-    d2rq:class base:Skill ;
-    d2rq:dataStorage map:database ;
-    d2rq:uriPattern "/@@skill.id@@/" .
-
-map:database a d2rq:Database ;
-    jdbc:keepAlive "3600" ;
-    d2rq:jdbcDSN "jdbc:postgresql://localhost:5432/nm_tables__general__employee_skill" ;
-    d2rq:jdbcDriver "org.postgresql.Driver" ;
-    d2rq:username "lukaslaskowski" .
+map:name_Skill_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Skill;
+    d2rq:property base:name;
+    d2rq:column "skill.name";
+    .
 

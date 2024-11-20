@@ -119,7 +119,7 @@ class LlmPlanner(AbstractLlm, ABC):
             self.get_api_response(self.current_prompt, seed=self.seed)
             # permanently store the generated data description answer
             self._data_description = '\n' + self.answer
-            print("Data description", self.answer)
+            print("Data descriptiond", self.answer)
         except GeneratorExit as ge:
             print(f"Process stopped/cancelled by user: {ge}")
             return

@@ -4,377 +4,50 @@
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
-@prefix dbpedia: <http://dbpedia.org/resource/> .
-@prefix geonames: <http://sws.geonames.org/> .
-@prefix wikidata: <http://www.wikidata.org/entity/> .
-
-### Datatype Properties
-base:area a owl:DatatypeProperty ;
-    rdfs:domain [ a owl:Class ] ;
-    rdfs:range xsd:float ;
-    rdfs:label "area" ;
-    skos:definition "The area of a geographical entity." .
-
-base:population a owl:DatatypeProperty ;
-    rdfs:domain [ a owl:Class ] ;
-    rdfs:range xsd:integer ;
-    rdfs:label "population" ;
-    skos:definition "The population of a geographical entity." .
-
-base:elevation a owl:DatatypeProperty ;
-    rdfs:domain [ a owl:Class ] ;
-    rdfs:range xsd:float ;
-    rdfs:label "elevation" ;
-    skos:definition "The elevation of a geographical entity." .
-
-base:latitude a owl:DatatypeProperty ;
-    rdfs:domain [ a owl:Class ] ;
-    rdfs:range xsd:float ;
-    rdfs:label "latitude" ;
-    skos:definition "The latitude of a geographical entity." .
-
-base:longitude a owl:DatatypeProperty ;
-    rdfs:domain [ a owl:Class ] ;
-    rdfs:range xsd:float ;
-    rdfs:label "longitude" ;
-    skos:definition "The longitude of a geographical entity." .
-
-base:percentage a owl:DatatypeProperty ;
-    rdfs:domain [ a owl:Class ] ;
-    rdfs:range xsd:float ;
-    rdfs:label "percentage" ;
-    skos:definition "The percentage value related to a geographical entity." .
-
-base:depth a owl:DatatypeProperty ;
-    rdfs:domain [ a owl:Class ] ;
-    rdfs:range xsd:float ;
-    rdfs:label "depth" ;
-    skos:definition "The depth of a geographical entity." .
-
-base:year a owl:DatatypeProperty ;
-    rdfs:domain [ a owl:Class ] ;
-    rdfs:range xsd:gYear ;
-    rdfs:label "year" ;
-    skos:definition "The year associated with a geographical entity." .
-
-### Object Properties
-base:hasCountry a owl:ObjectProperty ;
-    rdfs:domain [ a owl:Class ] ;
-    rdfs:range dbpedia:Country ;
-    rdfs:label "has country" ;
-    skos:definition "Relates an entity to a country." .
-
-base:hasProvince a owl:ObjectProperty ;
-    rdfs:domain [ a owl:Class ] ;
-    rdfs:range dbpedia:Province ;
-    rdfs:label "has province" ;
-    skos:definition "Relates an entity to a province." .
-
-base:hasCity a owl:ObjectProperty ;
-    rdfs:domain [ a owl:Class ] ;
-    rdfs:range dbpedia:City ;
-    rdfs:label "has city" ;
-    skos:definition "Relates an entity to a city." .
-
-base:hasEconomy a owl:ObjectProperty ;
-    rdfs:domain dbpedia:Country ;
-    rdfs:range dbpedia:Economy ;
-    rdfs:label "has economy" ;
-    skos:definition "Relates a country to its economy." .
-
-base:hasPolitics a owl:ObjectProperty ;
-    rdfs:domain dbpedia:Country ;
-    rdfs:range dbpedia:Politics ;
-    rdfs:label "has politics" ;
-    skos:definition "Relates a country to its politics." .
-
-base:hasReligion a owl:ObjectProperty ;
-    rdfs:domain dbpedia:Country ;
-    rdfs:range dbpedia:Religion ;
-    rdfs:label "has religion" ;
-    skos:definition "Relates a country to its religion." .
-
-base:hasEthnicGroup a owl:ObjectProperty ;
-    rdfs:domain dbpedia:Country ;
-    rdfs:range dbpedia:Ethnic_group ;
-    rdfs:label "has ethnic group" ;
-    skos:definition "Relates a country to its ethnic groups." .
-
-base:hasLanguage a owl:ObjectProperty ;
-    rdfs:domain dbpedia:Country ;
-    rdfs:range dbpedia:Language ;
-    rdfs:label "has language" ;
-    skos:definition "Relates a country to its languages." .
-
-base:hasPopulation a owl:ObjectProperty ;
-    rdfs:domain dbpedia:Country ;
-    rdfs:range dbpedia:Population ;
-    rdfs:label "has population" ;
-    skos:definition "Relates a country to its population." .
-
-base:hasContinent a owl:ObjectProperty ;
-    rdfs:domain dbpedia:Country ;
-    rdfs:range dbpedia:Continent ;
-    rdfs:label "has continent" ;
-    skos:definition "Relates a country to its continent." .
-
-base:hasBorder a owl:ObjectProperty ;
-    rdfs:domain dbpedia:Country ;
-    rdfs:range dbpedia:Border ;
-    rdfs:label "has border" ;
-    skos:definition "Relates a country to its borders." .
-
-base:hasEncompass a owl:ObjectProperty ;
-    rdfs:domain dbpedia:Continent ;
-    rdfs:range dbpedia:Encompass ;
-    rdfs:label "has encompass" ;
-    skos:definition "Relates a continent to the countries it encompasses." .
-
-base:hasOrganization a owl:ObjectProperty ;
-    rdfs:domain dbpedia:Country ;
-    rdfs:range dbpedia:Organization ;
-    rdfs:label "has organization" ;
-    skos:definition "Relates a country to an organization." .
-
-base:hasMembership a owl:ObjectProperty ;
-    rdfs:domain dbpedia:Country ;
-    rdfs:range dbpedia:Membership ;
-    rdfs:label "has membership" ;
-    skos:definition "Relates a country to its memberships." .
-
-base:hasMountain a owl:ObjectProperty ;
-    rdfs:domain dbpedia:Country ;
-    rdfs:range dbpedia:Mountain ;
-    rdfs:label "has mountain" ;
-    skos:definition "Relates a country to its mountains." .
-
-base:hasDesert a owl:ObjectProperty ;
-    rdfs:domain dbpedia:Country ;
-    rdfs:range dbpedia:Desert ;
-    rdfs:label "has desert" ;
-    skos:definition "Relates a country to its deserts." .
-
-base:hasIsland a owl:ObjectProperty ;
-    rdfs:domain dbpedia:Country ;
-    rdfs:range dbpedia:Island ;
-    rdfs:label "has island" ;
-    skos:definition "Relates a country to its islands." .
-
-base:hasLake a owl:ObjectProperty ;
-    rdfs:domain dbpedia:Country ;
-    rdfs:range dbpedia:Lake ;
-    rdfs:label "has lake" ;
-    skos:definition "Relates a country to its lakes." .
-
-base:hasSea a owl:ObjectProperty ;
-    rdfs:domain dbpedia:Country ;
-    rdfs:range dbpedia:Sea ;
-    rdfs:label "has sea" ;
-    skos:definition "Relates a country to its seas." .
-
-base:hasRiver a owl:ObjectProperty ;
-    rdfs:domain dbpedia:Country ;
-    rdfs:range dbpedia:River ;
-    rdfs:label "has river" ;
-    skos:definition "Relates a country to its rivers." .
-
-base:hasGeoDesert a owl:ObjectProperty ;
-    rdfs:domain dbpedia:Country ;
-    rdfs:range geonames:Desert ;
-    rdfs:label "has geo desert" ;
-    skos:definition "Relates a country to its geographical deserts." .
-
-base:hasGeoMountain a owl:ObjectProperty ;
-    rdfs:domain dbpedia:Country ;
-    rdfs:range geonames:Mountain ;
-    rdfs:label "has geo mountain" ;
-    skos:definition "Relates a country to its geographical mountains." .
-
-base:hasGeoIsland a owl:ObjectProperty ;
-    rdfs:domain dbpedia:Country ;
-    rdfs:range geonames:Island ;
-    rdfs:label "has geo island" ;
-    skos:definition "Relates a country to its geographical islands." .
-
-base:hasGeoRiver a owl:ObjectProperty ;
-    rdfs:domain dbpedia:Country ;
-    rdfs:range geonames:River ;
-    rdfs:label "has geo river" ;
-    skos:definition "Relates a country to its geographical rivers." .
-
-base:hasGeoSea a owl:ObjectProperty ;
-    rdfs:domain dbpedia:Country ;
-    rdfs:range geonames:Sea ;
-    rdfs:label "has geo sea" ;
-    skos:definition "Relates a country to its geographical seas." .
-
-base:hasGeoLake a owl:ObjectProperty ;
-    rdfs:domain dbpedia:Country ;
-    rdfs:range geonames:Lake ;
-    rdfs:label "has geo lake" ;
-    skos:definition "Relates a country to its geographical lakes." .
-
-base:hasGeoSource a owl:ObjectProperty ;
-    rdfs:domain dbpedia:Country ;
-    rdfs:range geonames:Source ;
-    rdfs:label "has geo source" ;
-    skos:definition "Relates a country to its geographical sources." .
-
-base:hasGeoEstuary a owl:ObjectProperty ;
-    rdfs:domain dbpedia:Country ;
-    rdfs:range geonames:Estuary ;
-    rdfs:label "has geo estuary" ;
-    skos:definition "Relates a country to its geographical estuaries." .
-
-base:locatedIn a owl:ObjectProperty ;
-    rdfs:domain [ a owl:Class ] ;
-    rdfs:range dbpedia:Location ;
-    rdfs:label "located in" ;
-    skos:definition "Relates an entity to its location." .
-
-base:locatedOn a owl:ObjectProperty ;
-    rdfs:domain [ a owl:Class ] ;
-    rdfs:range dbpedia:Location ;
-    rdfs:label "located on" ;
-    skos:definition "Relates an entity to its location on another entity." .
-
-base:islandIn a owl:ObjectProperty ;
-    rdfs:domain dbpedia:Island ;
-    rdfs:range [ a owl:Class ] ;
-    rdfs:label "island in" ;
-    skos:definition "Relates an island to the body of water it is in." .
-
-base:mountainOnIsland a owl:ObjectProperty ;
-    rdfs:domain dbpedia:Mountain ;
-    rdfs:range dbpedia:Island ;
-    rdfs:label "mountain on island" ;
-    skos:definition "Relates a mountain to the island it is on." .
-
-base:lakeOnIsland a owl:ObjectProperty ;
-    rdfs:domain dbpedia:Lake ;
-    rdfs:range dbpedia:Island ;
-    rdfs:label "lake on island" ;
-    skos:definition "Relates a lake to the island it is on." .
-
-base:riverOnIsland a owl:ObjectProperty ;
-    rdfs:domain dbpedia:River ;
-    rdfs:range dbpedia:Island ;
-    rdfs:label "river on island" ;
-    skos:definition "Relates a river to the island it is on." .
-
-### Classes
-dbpedia:Country a owl:Class ;
-    rdfs:label "Country" ;
-    skos:definition "A country is a distinct territorial body or political entity." .
-
-dbpedia:City a owl:Class ;
-    rdfs:label "City" ;
-    skos:definition "A city is a large human settlement." .
-
-dbpedia:Province a owl:Class ;
-    rdfs:label "Province" ;
-    skos:definition "A province is a principal administrative division of certain countries or empires." .
-
-dbpedia:Economy a owl:Class ;
-    rdfs:label "Economy" ;
-    skos:definition "An economy is an area of the production, distribution, and trade, as well as consumption of goods and services by different agents." .
-
-dbpedia:Politics a owl:Class ;
-    rdfs:label "Politics" ;
-    skos:definition "Politics is the set of activities that are associated with making decisions in groups, or other forms of power relations among individuals, such as the distribution of resources or status." .
-
-dbpedia:Religion a owl:Class ;
-    rdfs:label "Religion" ;
-    skos:definition "Religion is a social-cultural system of designated behaviors and practices, morals, beliefs, worldviews, texts, sanctified places, prophecies, ethics, or organizations, that generally relates humanity to supernatural, transcendental, and spiritual elements." .
-
-dbpedia:Ethnic_group a owl:Class ;
-    rdfs:label "Ethnic Group" ;
-    skos:definition "An ethnic group or ethnicity is a category of people who identify with each other, usually on the basis of presumed similarities such as common language, ancestry, history, society, culture, nation, religion, or social treatment within their residing area." .
-
-dbpedia:Language a owl:Class ;
-    rdfs:label "Language" ;
-    skos:definition "A language is a structured system of communication used by humans, consisting of speech (spoken language), gestures (sign language), and writing." .
-
-dbpedia:Population a owl:Class ;
-    rdfs:label "Population" ;
-    skos:definition "Population refers to the number of people living in a particular area, country, or city." .
-
-dbpedia:Continent a owl:Class ;
-    rdfs:label "Continent" ;
-    skos:definition "A continent is one of several very large landmasses on Earth." .
-
-dbpedia:Border a owl:Class ;
-    rdfs:label "Border" ;
-    skos:definition "A border is a real or artificial line that separates geographic areas." .
-
-dbpedia:Encompass a owl:Class ;
-    rdfs:label "Encompass" ;
-    skos:definition "To encompass means to include comprehensively." .
-
-dbpedia:Organization a owl:Class ;
-    rdfs:label "Organization" ;
-    skos:definition "An organization is an entity comprising multiple people, such as an institution or an association, that has a particular purpose." .
-
-dbpedia:Membership a owl:Class ;
-    rdfs:label "Membership" ;
-    skos:definition "Membership refers to the state of being a member of a group or organization." .
-
-dbpedia:Mountain a owl:Class ;
-    rdfs:label "Mountain" ;
-    skos:definition "A mountain is a large landform that rises prominently above its surroundings, generally exhibiting steep slopes, a relatively confined summit area, and considerable local relief." .
-
-dbpedia:Desert a owl:Class ;
-    rdfs:label "Desert" ;
-    skos:definition "A desert is a barren area of landscape where little precipitation occurs and, consequently, living conditions are hostile for plant and animal life." .
-
-dbpedia:Island a owl:Class ;
-    rdfs:label "Island" ;
-    skos:definition "An island is a piece of sub-continental land that is surrounded by water." .
-
-dbpedia:Lake a owl:Class ;
-    rdfs:label "Lake" ;
-    skos:definition "A lake is an area filled with water, localized in a basin, surrounded by land, apart from any river or other outlet that serves to feed or drain the lake." .
-
-dbpedia:Sea a owl:Class ;
-    rdfs:label "Sea" ;
-    skos:definition "A sea is a large body of salt water that is surrounded in whole or in part by land." .
-
-dbpedia:River a owl:Class ;
-    rdfs:label "River" ;
-    skos:definition "A river is a natural flowing watercourse, usually freshwater, flowing towards an ocean, sea, lake, or another river." .
-
-geonames:Desert a owl:Class ;
-    rdfs:label "Geo Desert" ;
-    skos:definition "A geographical desert is a barren area of landscape where little precipitation occurs and, consequently, living conditions are hostile for plant and animal life." .
-
-geonames:Mountain a owl:Class ;
-    rdfs:label "Geo Mountain" ;
-    skos:definition "A geographical mountain is a large landform that rises prominently above its surroundings, generally exhibiting steep slopes, a relatively confined summit area, and considerable local relief." .
-
-geonames:Island a owl:Class ;
-    rdfs:label "Geo Island" ;
-    skos:definition "A geographical island is a piece of sub-continental land that is surrounded by water." .
-
-geonames:River a owl:Class ;
-    rdfs:label "Geo River" ;
-    skos:definition "A geographical river is a natural flowing watercourse, usually freshwater, flowing towards an ocean, sea, lake, or another river." .
-
-geonames:Sea a owl:Class ;
-    rdfs:label "Geo Sea" ;
-    skos:definition "A geographical sea is a large body of salt water that is surrounded in whole or in part by land." .
-
-geonames:Lake a owl:Class ;
-    rdfs:label "Geo Lake" ;
-    skos:definition "A geographical lake is an area filled with water, localized in a basin, surrounded by land, apart from any river or other outlet that serves to feed or drain the lake." .
-
-geonames:Source a owl:Class ;
-    rdfs:label "Geo Source" ;
-    skos:definition "A geographical source is the original point from which a river flows." .
-
-geonames:Estuary a owl:Class ;
-    rdfs:label "Geo Estuary" ;
-    skos:definition "A geographical estuary is the tidal mouth of a large river, where the tide meets the stream." .
-
-dbpedia:Location a owl:Class ;
-    rdfs:label "Location" ;
-    skos:definition "A location is a particular place or position." .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix schema: <http://schema.org/> .
+
+base:address a owl:DatatypeProperty ;
+    rdfs:domain base:Person ;
+    rdfs:range xsd:string ;
+    rdfs:label "address" ;
+    skos:definition "The address of the person." .
+
+base:id a owl:DatatypeProperty ;
+    rdfs:domain base:Person ;
+    rdfs:range xsd:string ;
+    rdfs:label "identifier" ;
+    skos:definition "The unique identifier of the person." .
+
+base:name a owl:DatatypeProperty ;
+    rdfs:domain base:Person ;
+    rdfs:range xsd:string ;
+    rdfs:label "name" ;
+    skos:definition "The name of the person." .
+
+base:phone a owl:DatatypeProperty ;
+    rdfs:domain base:Person ;
+    rdfs:range xsd:string ;
+    rdfs:label "telephone" ;
+    skos:definition "The telephone number of the person." .
+
+base:Person a owl:Class ;
+    rdfs:label "Person" ;
+    skos:definition "A class representing a person." ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty base:address ;
+        owl:allValuesFrom xsd:string
+    ], [
+        a owl:Restriction ;
+        owl:onProperty base:id ;
+        owl:allValuesFrom xsd:string
+    ], [
+        a owl:Restriction ;
+        owl:onProperty base:name ;
+        owl:allValuesFrom xsd:string
+    ], [
+        a owl:Restriction ;
+        owl:onProperty base:phone ;
+        owl:allValuesFrom xsd:string
+    ] .

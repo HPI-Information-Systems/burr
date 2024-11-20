@@ -2,18 +2,20 @@
     "classes": [
         {
             "id": "@@process.business_area_id@@",
-            "class": "BusinessArea"
+            "class": "BusinessArea",
+            "name": "BusinessArea"
         },
         {
             "id": "@@process.business_capability_id@@",
-            "class": "BusinessCapability"
+            "class": "BusinessCapability",
+            "name": "BusinessCapability"
         }
     ],
     "object_properties": [
         {
             "property": "hasComponent",
-            "belongsToClass": "BusinessArea",
-            "refersToClass": "BusinessCapability"
+            "belongsToClassMap": "BusinessArea",
+            "refersToClassMap": "BusinessCapability"
         }
     ],
     "data_properties": [

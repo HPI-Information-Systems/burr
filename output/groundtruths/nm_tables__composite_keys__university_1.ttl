@@ -1,36 +1,45 @@
-@prefix base: <file:///base/> .
 @prefix d2rq: <http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#> .
-@prefix jdbc: <http://d2rq.org/terms/jdbc/> .
+@prefix cmt: <http://cmt/> .
 @prefix map: <http://mapping/> .
+@prefix jdbc: <http://d2rq.org/terms/jdbc/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix base: </base/> .
 
-map:credits_Course_None a d2rq:PropertyBridge ;
-    d2rq:belongsToClassMap map:Course ;
-    d2rq:column "course.credits" ;
-    d2rq:property base:credits .
+map:database a d2rq:Database;
+	d2rq:jdbcDriver "org.postgresql.Driver";
+	d2rq:jdbcDSN "jdbc:postgresql://localhost:5432/nm_tables__composite_keys__university_1";
+	d2rq:username "lukaslaskowski";
+	jdbc:keepAlive "3600";				# sends noop-query every 3600 seconds
+	.
 
-map:enrolled_in_Student_Course a d2rq:PropertyBridge ;
-    d2rq:belongsToClassMap map:Student ;
-    d2rq:join "course.course_name   =   enrollment.course_name",
-        "course.semester   =   enrollment.semester",
-        "student.first_name   =   enrollment.first_name",
-        "student.last_name   =   enrollment.last_name",
-        "student.planned_graduation_year   =   enrollment.planned_graduation_year" ;
-    d2rq:property base:enrolled_in ;
-    d2rq:refersToClassMap map:Course .
+map:Student a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:Student;
+    d2rq:uriPattern "/@@student.first_name@@/@@student.last_name@@/@@student.planned_graduation_year@@/";
+    
+    
+    .
+map:Course a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:Course;
+    d2rq:uriPattern "/@@course.semester@@/@@course.course_name@@/";
+    
+    
+    .
+map:enrolled_in_Student_Course a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Student;
+    d2rq:refersToClassMap map:Course;
+    d2rq:property base:enrolled_in;
+    d2rq:join "student.planned_graduation_year = enrollment.planned_graduation_year";
+    d2rq:join "student.first_name = enrollment.first_name";
+    d2rq:join "student.last_name = enrollment.last_name";
+    d2rq:join "course.semester = enrollment.semester";
+    d2rq:join "course.course_name = enrollment.course_name";
+    .
 
-map:Student a d2rq:ClassMap ;
-    d2rq:class base:Student ;
-    d2rq:dataStorage map:database ;
-    d2rq:uriPattern "/@@student.first_name@@/@@student.last_name@@/@@student.planned_graduation_year@@/" .
-
-map:Course a d2rq:ClassMap ;
-    d2rq:class base:Course ;
-    d2rq:dataStorage map:database ;
-    d2rq:uriPattern "/@@course.semester@@/@@course.course_name@@/" .
-
-map:database a d2rq:Database ;
-    jdbc:keepAlive "3600" ;
-    d2rq:jdbcDSN "jdbc:postgresql://localhost:5432/nm_tables__composite_keys__university_1" ;
-    d2rq:jdbcDriver "org.postgresql.Driver" ;
-    d2rq:username "lukaslaskowski" .
+map:credits_Course_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Course;
+    d2rq:property base:credits;
+    d2rq:column "course.credits";
+    .
 

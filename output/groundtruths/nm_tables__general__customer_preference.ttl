@@ -1,38 +1,48 @@
-@prefix base: <file:///base/> .
 @prefix d2rq: <http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#> .
-@prefix jdbc: <http://d2rq.org/terms/jdbc/> .
+@prefix cmt: <http://cmt/> .
 @prefix map: <http://mapping/> .
+@prefix jdbc: <http://d2rq.org/terms/jdbc/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix base: </base/> .
 
-map:has_preference_Customer_Preference a d2rq:PropertyBridge ;
-    d2rq:belongsToClassMap map:Customer ;
-    d2rq:join "customer.id   =   customer_preference.customer_id",
-        "preference.id   =   customer_preference.preference_id" ;
-    d2rq:property base:has_preference ;
-    d2rq:refersToClassMap map:Preference .
+map:database a d2rq:Database;
+	d2rq:jdbcDriver "org.postgresql.Driver";
+	d2rq:jdbcDSN "jdbc:postgresql://localhost:5432/nm_tables__general__customer_preference";
+	d2rq:username "lukaslaskowski";
+	jdbc:keepAlive "3600";				# sends noop-query every 3600 seconds
+	.
 
-map:name_Customer_None a d2rq:PropertyBridge ;
-    d2rq:belongsToClassMap map:Customer ;
-    d2rq:column "customer.name" ;
-    d2rq:property base:name .
+map:Customer a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:Customer;
+    d2rq:uriPattern "/@@customer.id@@/";
+    
+    
+    .
+map:Preference a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:Preference;
+    d2rq:uriPattern "/@@preference.id@@/";
+    
+    
+    .
+map:has_preference_Customer_Preference a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Customer;
+    d2rq:refersToClassMap map:Preference;
+    d2rq:property base:has_preference;
+    d2rq:join "customer.id = customer_preference.customer_id";
+    d2rq:join "preference.id = customer_preference.preference_id";
+    .
 
-map:name_Preference_None a d2rq:PropertyBridge ;
-    d2rq:belongsToClassMap map:Preference ;
-    d2rq:column "preference.name" ;
-    d2rq:property base:name .
+map:name_Customer_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Customer;
+    d2rq:property base:name;
+    d2rq:column "customer.name";
+    .
 
-map:Customer a d2rq:ClassMap ;
-    d2rq:class base:Customer ;
-    d2rq:dataStorage map:database ;
-    d2rq:uriPattern "/@@customer.id@@/" .
-
-map:Preference a d2rq:ClassMap ;
-    d2rq:class base:Preference ;
-    d2rq:dataStorage map:database ;
-    d2rq:uriPattern "/@@preference.id@@/" .
-
-map:database a d2rq:Database ;
-    jdbc:keepAlive "3600" ;
-    d2rq:jdbcDSN "jdbc:postgresql://localhost:5432/nm_tables__general__customer_preference" ;
-    d2rq:jdbcDriver "org.postgresql.Driver" ;
-    d2rq:username "lukaslaskowski" .
+map:name_Preference_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Preference;
+    d2rq:property base:name;
+    d2rq:column "preference.name";
+    .
 

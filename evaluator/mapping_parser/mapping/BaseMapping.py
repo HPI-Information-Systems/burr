@@ -24,12 +24,15 @@ class BaseMapping(ABC):
     
     
     def shorten_uri(self, uri):
-        uri = str(URIRef(uri)).replace("<", "").replace(">", "").replace(" ", "").replace("#", "")
+        uri = str(URIRef(uri)).replace("<", "").replace(">", "").replace(" ", "")#.replace("#", "")
         for _, namespace in self.graph.namespaces():
             if str(uri).startswith(namespace):
                 return str(uri)[len(namespace):]
-        print("WARNING - URI could not be shortened: ", uri, " - returning last part of URI, divided by /")
-        uri = uri.split("/")[-1]
+        print("WARNING - URI could not be shortened: ", uri, " - returning last part of URI, divided by / or #")
+        if "#" in uri:
+            uri = uri.split("#")[-1]
+        else:
+            uri = uri.split("/")[-1]
         return uri
     
     def create_ttl_string(self, database):

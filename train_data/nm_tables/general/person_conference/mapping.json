@@ -11,7 +11,7 @@
     ],
     "object_properties": [
         {
-            "property": "email",
+            "property": "enable_virtual_meeting",
             "belongsToClass": "Person",
             "refersToClass": "Conference",
             "join": [

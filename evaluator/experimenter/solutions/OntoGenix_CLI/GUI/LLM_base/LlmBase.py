@@ -75,6 +75,7 @@ class AbstractLlm(ABC):
                 stream=False,
                 seed=seed or self.seed
         )
+        print("Completion: ", completion)
         # print("MESSAGE: ", completion.choices[0].message.content)
         try:
             self.answer = completion.choices[0].message.content
