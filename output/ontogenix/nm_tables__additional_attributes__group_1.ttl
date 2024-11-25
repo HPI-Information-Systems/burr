@@ -1,0 +1,60 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix base: <https://base_ontology.com#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<#TriplesMapUser> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "User" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com#User/{id}";
+        rr:class base:User;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:id;
+        rr:objectMap [ rr:column "id" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasUserGroup;
+        rr:objectMap [ rr:parentTriplesMap <#TriplesMapUserGroup> ];
+    ].
+
+<#TriplesMapUserGroup> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "UserGroup" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com#UserGroup/{gid}";
+        rr:class base:UserGroup;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:access_rights;
+        rr:objectMap [ rr:column "access_rights" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:expiration_duration;
+        rr:objectMap [ rr:column "expiration_duration" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:gid;
+        rr:objectMap [ rr:column "gid" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:registration_date;
+        rr:objectMap [ rr:column "registration_date" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:uid;
+        rr:objectMap [ rr:column "uid" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:belongsToGroup;
+        rr:objectMap [ rr:parentTriplesMap <#TriplesMapGroup> ];
+    ].
+
+<#TriplesMapGroup> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "Group" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com#Group/{id}";
+        rr:class base:Group;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:id;
+        rr:objectMap [ rr:column "id" ];
+    ].

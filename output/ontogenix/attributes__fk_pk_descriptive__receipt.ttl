@@ -1,0 +1,51 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix base: <https://base_ontology.com#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<#TriplesMapPerson> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "PersonTable" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com#Person/{id}";
+        rr:class base:Person;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:email;
+        rr:objectMap [ rr:column "email" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:name;
+        rr:objectMap [ rr:column "name" ];
+    ].
+
+<#TriplesMapReceipt> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "ReceiptTable" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com#Receipt/{id}";
+        rr:class base:Receipt;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:date;
+        rr:objectMap [ rr:column "date" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:id;
+        rr:objectMap [ rr:column "id" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:item;
+        rr:objectMap [ rr:column "item" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:received_by;
+        rr:objectMap [ rr:column "received_by" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:receivedBy;
+        rr:objectMap [
+            rr:parentTriplesMap <#TriplesMapPerson>;
+            rr:joinCondition [
+                rr:child "received_by";
+                rr:parent "id";
+            ];
+        ];
+    ].

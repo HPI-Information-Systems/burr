@@ -1,0 +1,41 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix base: <https://base_ontology.com#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix schema: <http://schema.org/> .
+
+<#TriplesMapBeverage> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "BeverageTable" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com/beverage/{id}";
+        rr:class base:beverage;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:id;
+        rr:objectMap [ rr:column "id" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:name;
+        rr:objectMap [ rr:column "name" ];
+    ].
+
+<#TriplesMapId> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "BeverageTable" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com/beverage/{id}";
+        rr:class base:beverage;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:id;
+        rr:objectMap [ rr:column "id" ];
+    ].
+
+<#TriplesMapName> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "BeverageTable" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com/beverage/{id}";
+        rr:class base:beverage;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:name;
+        rr:objectMap [ rr:column "name" ];
+    ].

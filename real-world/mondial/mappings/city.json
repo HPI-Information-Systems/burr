@@ -56,7 +56,7 @@
         {
             "property": "name",
             "belongsToClass": "City",
-            "type": "integer",
+            "type": "string",
             "column": "City.Name"
         },
         {

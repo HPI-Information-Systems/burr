@@ -239,17 +239,17 @@
         {
             "property": "isMemberOf",
             "belongsToClassMap": "BusinessProcess_0",
-            "refersToClassMap": "EnterpriseDomainLevel_1"
+            "refersToClassMap": "EnterpriseDomainLevel_1_BCM"
         },
         {
             "property": "isMemberOf",
             "belongsToClassMap": "BusinessProcess_1",
-            "refersToClassMap": "EnterpriseDomainLevel_2"
+            "refersToClassMap": "EnterpriseDomainLevel_2_BCM"
         },
         {
             "property": "isMemberOf",
             "belongsToClassMap": "BusinessProcess_2",
-            "refersToClassMap": "EnterpriseDomainLevel_3"
+            "refersToClassMap": "EnterpriseDomainLevel_3_BCM"
         }
     ],
     "translation_tables": [

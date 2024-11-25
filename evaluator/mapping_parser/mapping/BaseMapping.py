@@ -25,6 +25,8 @@ class BaseMapping(ABC):
     
     def shorten_uri(self, uri):
         uri = str(URIRef(uri)).replace("<", "").replace(">", "").replace(" ", "")#.replace("#", "")
+        if "EnterpriseDomainLevel" in uri:
+            print("DHAJKSHDA")
         for _, namespace in self.graph.namespaces():
             if str(uri).startswith(namespace):
                 return str(uri)[len(namespace):]

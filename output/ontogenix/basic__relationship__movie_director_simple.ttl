@@ -1,0 +1,39 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix base: <https://base_ontology.com#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<#TriplesMapDirector> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "DirectorTable" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com#Director/{id}";
+        rr:class base:Director;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:id;
+        rr:objectMap [ rr:column "id" ];
+    ].
+
+<#TriplesMapMovie> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "MovieTable" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com#Movie/{id}";
+        rr:class base:Movie;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:id;
+        rr:objectMap [ rr:column "id" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:director;
+        rr:objectMap [ rr:column "director" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasDirector;
+        rr:objectMap [
+            rr:parentTriplesMap <#TriplesMapDirector>;
+            rr:joinCondition [
+                rr:child "director";
+                rr:parent "id";
+            ]
+        ]
+    ].

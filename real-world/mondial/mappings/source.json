@@ -46,13 +46,13 @@
             "property": "latitude",
             "belongsToClass": "Source",
             "type": "decimal",
-            "column": "river.(source).latitude"
+            "column": "river.sourcelatitude"
         },
         {
             "property": "longitude",
             "belongsToClass": "Source",
             "type": "decimal",
-            "column": "river.(source).longitude"
+            "column": "river.sourcelongitude"
         }
     ]
 }

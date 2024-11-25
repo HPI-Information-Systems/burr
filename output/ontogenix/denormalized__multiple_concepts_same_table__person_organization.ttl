@@ -1,0 +1,82 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix base: <https://base_ontology.com#> .
+@prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+
+<#TriplesMapOrganization> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "organization" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com/organization/{organization_id}";
+        rr:class base:organization;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:organization_address;
+        rr:objectMap [ rr:column "organization_address" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:organization_id;
+        rr:objectMap [ rr:column "organization_id" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:organization_name;
+        rr:objectMap [ rr:column "organization_name" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:organization_phone_number;
+        rr:objectMap [ rr:column "organization_phone_number" ];
+    ].
+
+<#TriplesMapPerson> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "person" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com/person/{person_id}";
+        rr:class base:person;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:person_address;
+        rr:objectMap [ rr:column "person_address" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:person_id;
+        rr:objectMap [ rr:column "person_id" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:person_name;
+        rr:objectMap [ rr:column "person_name" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:person_phone_number;
+        rr:objectMap [ rr:column "person_phone_number" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:person_role;
+        rr:objectMap [ rr:column "person_role" ];
+    ].
+
+<#TriplesMapPersonOrganization> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "person_organization" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com/person_organization/{person_id}_{organization_id}";
+        rr:class base:person_organization;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasPerson;
+        rr:objectMap [
+            rr:parentTriplesMap <#TriplesMapPerson>;
+            rr:joinCondition [
+                rr:child "person_id";
+                rr:parent "person_id";
+            ];
+        ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasOrganization;
+        rr:objectMap [
+            rr:parentTriplesMap <#TriplesMapOrganization>;
+            rr:joinCondition [
+                rr:child "organization_id";
+                rr:parent "organization_id";
+            ];
+        ];
+    ].

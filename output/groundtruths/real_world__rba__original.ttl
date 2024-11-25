@@ -79,7 +79,7 @@ map:SolutionArchitecture_Hybrid_SAR a d2rq:ClassMap;
     d2rq:class base:SolutionArchitecture;
     d2rq:uriPattern "/@@scm.solution_capability_reference_architecture_hybrid@@/";
     
-    d2rq:condition "scm.solution_capability_reference_architecture_hybrid = TRUE";
+    d2rq:condition "scm.solution_capability_reference_architecture_hybrid = 'TRUE'";
     
     .
 map:SolutionArchitecture_Cloud_SAR a d2rq:ClassMap;
@@ -87,7 +87,7 @@ map:SolutionArchitecture_Cloud_SAR a d2rq:ClassMap;
     d2rq:class base:SolutionArchitecture;
     d2rq:uriPattern "/@@scm.solution_capability_reference_architecture_cloud@@/";
     
-    d2rq:condition "scm.solution_capability_reference_architecture_cloud = TRUE";
+    d2rq:condition "scm.solution_capability_reference_architecture_cloud = 'TRUE'";
     
     .
 map:SolutionArchitecture_Hybrid_Whitespaces a d2rq:ClassMap;
@@ -95,7 +95,7 @@ map:SolutionArchitecture_Hybrid_Whitespaces a d2rq:ClassMap;
     d2rq:class base:SolutionArchitecture;
     d2rq:uriPattern "/@@whitespaces.reference_architecture_hybrid_1@@/";
     
-    d2rq:condition "whitespaces.reference_architecture_hybrid_1 = TRUE";
+    d2rq:condition "whitespaces.reference_architecture_hybrid_1 = 'TRUE'";
     
     .
 map:SolutionArchitecture_Cloud_Whitespaces a d2rq:ClassMap;
@@ -103,7 +103,7 @@ map:SolutionArchitecture_Cloud_Whitespaces a d2rq:ClassMap;
     d2rq:class base:SolutionArchitecture;
     d2rq:uriPattern "/@@whitespaces.reference_architecture_cloud_1@@/";
     
-    d2rq:condition "whitespaces.reference_architecture_cloud_1 = TRUE";
+    d2rq:condition "whitespaces.reference_architecture_cloud_1 = 'TRUE'";
     
     .
 map:BusinessActivity_BAR a d2rq:ClassMap;
@@ -260,38 +260,73 @@ map:SolutionProcessSequence_2 a d2rq:ClassMap;
     
     
     .
-map:EnterpriseDomainLevel_1 a d2rq:ClassMap;
+map:EnterpriseDomainLevel_1_BCM a d2rq:ClassMap;
     d2rq:dataStorage map:database;
-    d2rq:class base:EnterpriseDomainLevel'];
+    d2rq:class base:EnterpriseDomainLevel;
     d2rq:uriPattern "/@@bcm.enterprise_domain@@/";
     
     
     .
-map:EnterpriseDomainLevel_2 a d2rq:ClassMap;
+map:EnterpriseDomainLevel_2_BCM a d2rq:ClassMap;
     d2rq:dataStorage map:database;
-    d2rq:class base:EnterpriseDomainLevel'];
+    d2rq:class base:EnterpriseDomainLevel;
     d2rq:uriPattern "/@@bcm.enterprise_domain@@/";
     
     
     .
-map:EnterpriseDomainLevel_3 a d2rq:ClassMap;
+map:EnterpriseDomainLevel_3_BCM a d2rq:ClassMap;
     d2rq:dataStorage map:database;
-    d2rq:class base:EnterpriseDomainLevel'];
+    d2rq:class base:EnterpriseDomainLevel;
     d2rq:uriPattern "/@@bcm.enterprise_domain@@/";
     
     
     .
-map:EnterpriseDomainLevel_4 a d2rq:ClassMap;
+map:EnterpriseDomainLevel_4_BCM a d2rq:ClassMap;
     d2rq:dataStorage map:database;
-    d2rq:class base:EnterpriseDomainLevel'];
+    d2rq:class base:EnterpriseDomainLevel;
     d2rq:uriPattern "/@@bcm.enterprise_domain@@/";
     
     
     .
-map:EnterpriseDomainLevel_5 a d2rq:ClassMap;
+map:EnterpriseDomainLevel_5_BCM a d2rq:ClassMap;
     d2rq:dataStorage map:database;
-    d2rq:class base:EnterpriseDomainLevel'];
+    d2rq:class base:EnterpriseDomainLevel;
     d2rq:uriPattern "/@@bcm.enterprise_domain@@/";
+    
+    
+    .
+map:EnterpriseDomainLevel_1_SCM a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:EnterpriseDomainLevel;
+    d2rq:uriPattern "/@@scm.enterprise_domain@@/";
+    
+    
+    .
+map:EnterpriseDomainLevel_2_SCM a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:EnterpriseDomainLevel;
+    d2rq:uriPattern "/@@scm.enterprise_domain@@/";
+    
+    
+    .
+map:EnterpriseDomainLevel_3_SCM a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:EnterpriseDomainLevel;
+    d2rq:uriPattern "/@@scm.enterprise_domain@@/";
+    
+    
+    .
+map:EnterpriseDomainLevel_4_SCM a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:EnterpriseDomainLevel;
+    d2rq:uriPattern "/@@scm.enterprise_domain@@/";
+    
+    
+    .
+map:EnterpriseDomainLevel_5_SCM a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:EnterpriseDomainLevel;
+    d2rq:uriPattern "/@@scm.enterprise_domain@@/";
     
     
     .
@@ -407,21 +442,21 @@ map:SolutionArchitectureComponentMap a d2rq:ClassMap;
     
     
     .
-map:isMemberOf_BusinessProcess_0_EnterpriseDomainLevel_1 a d2rq:PropertyBridge;
+map:isMemberOf_BusinessProcess_0_EnterpriseDomainLevel_1_BCM a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:BusinessProcess_0;
-    d2rq:refersToClassMap map:EnterpriseDomainLevel_1;
+    d2rq:refersToClassMap map:EnterpriseDomainLevel_1_BCM;
     d2rq:property base:isMemberOf;
     .
 
-map:isMemberOf_BusinessProcess_1_EnterpriseDomainLevel_2 a d2rq:PropertyBridge;
+map:isMemberOf_BusinessProcess_1_EnterpriseDomainLevel_2_BCM a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:BusinessProcess_1;
-    d2rq:refersToClassMap map:EnterpriseDomainLevel_2;
+    d2rq:refersToClassMap map:EnterpriseDomainLevel_2_BCM;
     d2rq:property base:isMemberOf;
     .
 
-map:isMemberOf_BusinessProcess_2_EnterpriseDomainLevel_3 a d2rq:PropertyBridge;
+map:isMemberOf_BusinessProcess_2_EnterpriseDomainLevel_3_BCM a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:BusinessProcess_2;
-    d2rq:refersToClassMap map:EnterpriseDomainLevel_3;
+    d2rq:refersToClassMap map:EnterpriseDomainLevel_3_BCM;
     d2rq:property base:isMemberOf;
     .
 
@@ -572,9 +607,9 @@ map:deployedBy_SolutionCapability_SCM_SolutionArchitectureComponentMap a d2rq:Pr
     d2rq:property base:deployedBy;
     .
 
-map:isMemberOf_SolutionCapability_SCM_EnterpriseDomainLevel_5 a d2rq:PropertyBridge;
+map:isMemberOf_SolutionCapability_SCM_EnterpriseDomainLevel_5_SCM a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:SolutionCapability_SCM;
-    d2rq:refersToClassMap map:EnterpriseDomainLevel_5;
+    d2rq:refersToClassMap map:EnterpriseDomainLevel_5_SCM;
     d2rq:property base:isMemberOf;
     .
 
@@ -635,21 +670,21 @@ map:hasImplementation_BusinessCapabilityFromCapability_SolutionCapability_Whites
     d2rq:join "bcm.master_id_bc = whitespaces.master_id_bc";
     .
 
-map:isMemberOf_BusinessCapabilityFromDomain_EnterpriseDomainLevel_2 a d2rq:PropertyBridge;
+map:isMemberOf_BusinessCapabilityFromDomain_EnterpriseDomainLevel_2_BCM a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:BusinessCapabilityFromDomain;
-    d2rq:refersToClassMap map:EnterpriseDomainLevel_2;
+    d2rq:refersToClassMap map:EnterpriseDomainLevel_2_BCM;
     d2rq:property base:isMemberOf;
     .
 
-map:isMemberOf_BusinessCapabilityFromArea_EnterpriseDomainLevel_3 a d2rq:PropertyBridge;
+map:isMemberOf_BusinessCapabilityFromArea_EnterpriseDomainLevel_3_BCM a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:BusinessCapabilityFromArea;
-    d2rq:refersToClassMap map:EnterpriseDomainLevel_3;
+    d2rq:refersToClassMap map:EnterpriseDomainLevel_3_BCM;
     d2rq:property base:isMemberOf;
     .
 
-map:isMemberOf_BusinessCapabilityFromCapability_EnterpriseDomainLevel_4 a d2rq:PropertyBridge;
+map:isMemberOf_BusinessCapabilityFromCapability_EnterpriseDomainLevel_4_BCM a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:BusinessCapabilityFromCapability;
-    d2rq:refersToClassMap map:EnterpriseDomainLevel_4;
+    d2rq:refersToClassMap map:EnterpriseDomainLevel_4_BCM;
     d2rq:property base:isMemberOf;
     .
 
@@ -795,26 +830,26 @@ map:hasComponent_EnterpriseDomain_BusinessCapabilityFromDomain a d2rq:PropertyBr
     d2rq:property base:hasComponent;
     .
 
-map:hasGranularity_EnterpriseDomainLevel_1_EnterpriseDomain a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:EnterpriseDomainLevel_1;
+map:hasGranularity_EnterpriseDomainLevel_1_BCM_EnterpriseDomain a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:EnterpriseDomainLevel_1_BCM;
     d2rq:refersToClassMap map:EnterpriseDomain;
     d2rq:property base:hasGranularity;
     .
 
-map:hasGranularity_EnterpriseDomainLevel_2_EnterpriseDomain a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:EnterpriseDomainLevel_2;
+map:hasGranularity_EnterpriseDomainLevel_2_BCM_EnterpriseDomain a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:EnterpriseDomainLevel_2_BCM;
     d2rq:refersToClassMap map:EnterpriseDomain;
     d2rq:property base:hasGranularity;
     .
 
-map:hasGranularity_EnterpriseDomainLevel_3_EnterpriseDomain a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:EnterpriseDomainLevel_3;
+map:hasGranularity_EnterpriseDomainLevel_3_BCM_EnterpriseDomain a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:EnterpriseDomainLevel_3_BCM;
     d2rq:refersToClassMap map:EnterpriseDomain;
     d2rq:property base:hasGranularity;
     .
 
-map:hasGranularity_EnterpriseDomainLevel_4_EnterpriseDomain a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:EnterpriseDomainLevel_4;
+map:hasGranularity_EnterpriseDomainLevel_4_BCM_EnterpriseDomain a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:EnterpriseDomainLevel_4_BCM;
     d2rq:refersToClassMap map:EnterpriseDomain;
     d2rq:property base:hasGranularity;
     .

@@ -1,0 +1,67 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix base: <https://base_ontology.com#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<#TriplesMapPerson> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "Person" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com#Person/{id}";
+        rr:class base:Person;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:id;
+        rr:objectMap [ rr:column "id" ]
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:first_name;
+        rr:objectMap [ rr:column "first_name" ]
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:last_name;
+        rr:objectMap [ rr:column "last_name" ]
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:email;
+        rr:objectMap [ rr:column "email" ]
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasAddress;
+        rr:objectMap [
+            rr:parentTriplesMap <#TriplesMapAddress>;
+            rr:joinCondition [
+                rr:child "id";
+                rr:parent "person_id"
+            ]
+        ]
+    ].
+
+<#TriplesMapAddress> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "Address" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com#Address/{address_id}";
+        rr:class base:Address;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:address_id;
+        rr:objectMap [ rr:column "address_id" ]
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:person_id;
+        rr:objectMap [ rr:column "person_id" ]
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:city;
+        rr:objectMap [ rr:column "city" ]
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:state;
+        rr:objectMap [ rr:column "state" ]
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:street;
+        rr:objectMap [ rr:column "street" ]
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:zip;
+        rr:objectMap [ rr:column "zip" ]
+    ].

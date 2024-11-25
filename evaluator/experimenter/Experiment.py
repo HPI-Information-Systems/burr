@@ -64,10 +64,24 @@ class Experiment:
                             else:
                                 merged_data[key] = value
             self.groundtruth_mapping = JsonMapping(merged_data, self.database_name, self.meta).to_D2RQ_Mapping()
+            #calculate distinct attributes by having attributes that have the same name and belong to same class
         else:
             raise ValueError("File ending not supported")
+        # all_attributes = self.groundtruth_mapping.get_attributes()
+        # for relation in self.groundtruth_mapping.relations:
+        #     relation.set_eq_strategy(distinct=True)
+        # distinct_attributes = []
+        # for attribute in all_attributes:
+        #     if attribute not in distinct_attributes:
+        #         # print(attribute)
+        #         # print("\n")
+        #         distinct_attributes.append(attribute)
+        # # print(all_attributes)
+        # #print(distinct_attributes)
+        # print("AMOUNT OF all RELATIONS", len(all_attributes))
+        # print("AMOUNT OF DISTINCT RELATIONS", len(distinct_attributes))
+
         with open(f"/Users/lukaslaskowski/Documents/HPI/KG/ontology_mappings/rdb2ontology/output/groundtruths/{self.scenario_id}.ttl", "w") as f:
-            
             f.write(self.groundtruth_mapping.create_ttl_string(self.database_name))
         wandb.save(f"/Users/lukaslaskowski/Documents/HPI/KG/ontology_mappings/rdb2ontology/output/groundtruths/{self.scenario_id}.ttl")
         print("Rewriting database")

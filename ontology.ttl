@@ -4,50 +4,305 @@
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
-@prefix foaf: <http://xmlns.com/foaf/0.1/> .
-@prefix schema: <http://schema.org/> .
+@prefix dbpedia: <http://dbpedia.org/resource/> .
+@prefix geonames: <http://www.geonames.org/ontology#> .
+@prefix wikidata: <http://www.wikidata.org/entity/> .
 
-base:address a owl:DatatypeProperty ;
-    rdfs:domain base:Person ;
-    rdfs:range xsd:string ;
-    rdfs:label "address" ;
-    skos:definition "The address of the person." .
+base:area a owl:DatatypeProperty ;
+    rdfs:domain [ a owl:Class ;
+            owl:unionOf ( base:Country base:Province base:Continent base:Desert base:Island base:Lake base:Sea base:River ) ] ;
+    rdfs:range xsd:float ;
+    rdfs:label "area" ;
+    skos:definition "The area of the geographical entity." .
 
-base:id a owl:DatatypeProperty ;
-    rdfs:domain base:Person ;
-    rdfs:range xsd:string ;
-    rdfs:label "identifier" ;
-    skos:definition "The unique identifier of the person." .
+base:population a owl:DatatypeProperty ;
+    rdfs:domain [ a owl:Class ;
+            owl:unionOf ( base:Country base:City base:Province base:Population ) ] ;
+    rdfs:range xsd:integer ;
+    rdfs:label "population" ;
+    skos:definition "The population of the geographical entity." .
 
-base:name a owl:DatatypeProperty ;
-    rdfs:domain base:Person ;
-    rdfs:range xsd:string ;
-    rdfs:label "name" ;
-    skos:definition "The name of the person." .
+base:elevation a owl:DatatypeProperty ;
+    rdfs:domain [ a owl:Class ;
+            owl:unionOf ( base:City base:Mountain base:Island base:Lake ) ] ;
+    rdfs:range xsd:float ;
+    rdfs:label "elevation" ;
+    skos:definition "The elevation of the geographical entity." .
 
-base:phone a owl:DatatypeProperty ;
-    rdfs:domain base:Person ;
-    rdfs:range xsd:string ;
-    rdfs:label "telephone" ;
-    skos:definition "The telephone number of the person." .
+base:latitude a owl:DatatypeProperty ;
+    rdfs:domain [ a owl:Class ;
+            owl:unionOf ( base:City base:Mountain base:Island base:Lake base:Desert base:River ) ] ;
+    rdfs:range xsd:float ;
+    rdfs:label "latitude" ;
+    skos:definition "The latitude of the geographical entity." .
 
-base:Person a owl:Class ;
-    rdfs:label "Person" ;
-    skos:definition "A class representing a person." ;
-    rdfs:subClassOf [
-        a owl:Restriction ;
-        owl:onProperty base:address ;
-        owl:allValuesFrom xsd:string
-    ], [
-        a owl:Restriction ;
-        owl:onProperty base:id ;
-        owl:allValuesFrom xsd:string
-    ], [
-        a owl:Restriction ;
-        owl:onProperty base:name ;
-        owl:allValuesFrom xsd:string
-    ], [
-        a owl:Restriction ;
-        owl:onProperty base:phone ;
-        owl:allValuesFrom xsd:string
-    ] .
+base:longitude a owl:DatatypeProperty ;
+    rdfs:domain [ a owl:Class ;
+            owl:unionOf ( base:City base:Mountain base:Island base:Lake base:Desert base:River ) ] ;
+    rdfs:range xsd:float ;
+    rdfs:label "longitude" ;
+    skos:definition "The longitude of the geographical entity." .
+
+base:percentage a owl:DatatypeProperty ;
+    rdfs:domain [ a owl:Class ;
+            owl:unionOf ( base:Religion base:EthnicGroup base:Encompasses ) ] ;
+    rdfs:range xsd:float ;
+    rdfs:label "percentage" ;
+    skos:definition "The percentage value associated with the entity." .
+
+base:depth a owl:DatatypeProperty ;
+    rdfs:domain [ a owl:Class ;
+            owl:unionOf ( base:Lake base:Sea ) ] ;
+    rdfs:range xsd:float ;
+    rdfs:label "depth" ;
+    skos:definition "The depth of the water body." .
+
+base:length a owl:DatatypeProperty ;
+    rdfs:domain base:Border ;
+    rdfs:range xsd:float ;
+    rdfs:label "length" ;
+    skos:definition "The length of the border." .
+
+base:established a owl:DatatypeProperty ;
+    rdfs:domain base:Organization ;
+    rdfs:range xsd:date ;
+    rdfs:label "established" ;
+    skos:definition "The date when the organization was established." .
+
+base:country a owl:ObjectProperty ;
+    rdfs:domain [ a owl:Class ;
+            owl:unionOf ( base:City base:Province base:Population base:Economy base:Politics base:Religion base:EthnicGroup base:Language base:GeoDesert base:GeoMountain base:GeoIsland base:GeoRiver base:GeoSea base:GeoLake base:GeoSource base:GeoEstuary base:Located base:LocatedOn base:IslandIn base:MountainOnIsland base:LakeOnIsland base:RiverOnIsland ) ] ;
+    rdfs:range base:Country ;
+    rdfs:label "country" ;
+    skos:definition "The country associated with the entity." .
+
+base:province a owl:ObjectProperty ;
+    rdfs:domain [ a owl:Class ;
+            owl:unionOf ( base:City base:Population base:GeoDesert base:GeoMountain base:GeoIsland base:GeoRiver base:GeoSea base:GeoLake base:GeoSource base:GeoEstuary base:Located base:LocatedOn base:IslandIn base:MountainOnIsland base:LakeOnIsland base:RiverOnIsland ) ] ;
+    rdfs:range base:Province ;
+    rdfs:label "province" ;
+    skos:definition "The province associated with the entity." .
+
+base:city a owl:ObjectProperty ;
+    rdfs:domain [ a owl:Class ;
+            owl:unionOf ( base:Located base:LocatedOn ) ] ;
+    rdfs:range base:City ;
+    rdfs:label "city" ;
+    skos:definition "The city associated with the entity." .
+
+base:lake a owl:ObjectProperty ;
+    rdfs:domain [ a owl:Class ;
+            owl:unionOf ( base:River base:Located base:IslandIn base:RiverThrough ) ] ;
+    rdfs:range base:Lake ;
+    rdfs:label "lake" ;
+    skos:definition "The lake associated with the entity." .
+
+base:river a owl:ObjectProperty ;
+    rdfs:domain [ a owl:Class ;
+            owl:unionOf ( base:Located base:IslandIn base:RiverThrough ) ] ;
+    rdfs:range base:River ;
+    rdfs:label "river" ;
+    skos:definition "The river associated with the entity." .
+
+base:sea a owl:ObjectProperty ;
+    rdfs:domain [ a owl:Class ;
+            owl:unionOf ( base:Located base:IslandIn base:MergesWith ) ] ;
+    rdfs:range base:Sea ;
+    rdfs:label "sea" ;
+    skos:definition "The sea associated with the entity." .
+
+base:island a owl:ObjectProperty ;
+    rdfs:domain [ a owl:Class ;
+            owl:unionOf ( base:LocatedOn base:IslandIn base:MountainOnIsland base:LakeOnIsland base:RiverOnIsland ) ] ;
+    rdfs:range base:Island ;
+    rdfs:label "island" ;
+    skos:definition "The island associated with the entity." .
+
+base:continent a owl:ObjectProperty ;
+    rdfs:domain base:Encompasses ;
+    rdfs:range base:Continent ;
+    rdfs:label "continent" ;
+    skos:definition "The continent associated with the entity." .
+
+base:organization a owl:ObjectProperty ;
+    rdfs:domain base:IsMember ;
+    rdfs:range base:Organization ;
+    rdfs:label "organization" ;
+    skos:definition "The organization associated with the entity." .
+
+base:dependent a owl:ObjectProperty ;
+    rdfs:domain base:Politics ;
+    rdfs:range base:Country ;
+    rdfs:label "dependent" ;
+    skos:definition "The dependent country associated with the entity." .
+
+base:wasdependent a owl:ObjectProperty ;
+    rdfs:domain base:Politics ;
+    rdfs:range base:Country ;
+    rdfs:label "was dependent" ;
+    skos:definition "The country that was dependent associated with the entity." .
+
+base:Country a owl:Class ;
+    rdfs:label "Country" ;
+    skos:definition "A country entity." ;
+    owl:equivalentClass dbpedia:Country .
+
+base:City a owl:Class ;
+    rdfs:label "City" ;
+    skos:definition "A city entity." ;
+    owl:equivalentClass dbpedia:City .
+
+base:Province a owl:Class ;
+    rdfs:label "Province" ;
+    skos:definition "A province entity." ;
+    owl:equivalentClass dbpedia:Administrative_division .
+
+base:Population a owl:Class ;
+    rdfs:label "Population" ;
+    skos:definition "A population entity." ;
+    owl:equivalentClass dbpedia:Demographics .
+
+base:Economy a owl:Class ;
+    rdfs:label "Economy" ;
+    skos:definition "An economy entity." ;
+    owl:equivalentClass dbpedia:Economy .
+
+base:Politics a owl:Class ;
+    rdfs:label "Politics" ;
+    skos:definition "A politics entity." ;
+    owl:equivalentClass dbpedia:Politics .
+
+base:Religion a owl:Class ;
+    rdfs:label "Religion" ;
+    skos:definition "A religion entity." ;
+    owl:equivalentClass dbpedia:Religion .
+
+base:EthnicGroup a owl:Class ;
+    rdfs:label "Ethnic Group" ;
+    skos:definition "An ethnic group entity." ;
+    owl:equivalentClass dbpedia:Ethnic_group .
+
+base:Language a owl:Class ;
+    rdfs:label "Language" ;
+    skos:definition "A language entity." ;
+    owl:equivalentClass dbpedia:Language .
+
+base:Continent a owl:Class ;
+    rdfs:label "Continent" ;
+    skos:definition "A continent entity." ;
+    owl:equivalentClass dbpedia:Continent .
+
+base:Border a owl:Class ;
+    rdfs:label "Border" ;
+    skos:definition "A border entity." ;
+    owl:equivalentClass dbpedia:Border .
+
+base:Organization a owl:Class ;
+    rdfs:label "Organization" ;
+    skos:definition "An organization entity." ;
+    owl:equivalentClass dbpedia:Organization .
+
+base:IsMember a owl:Class ;
+    rdfs:label "Membership" ;
+    skos:definition "A membership entity." ;
+    owl:equivalentClass dbpedia:Membership .
+
+base:Mountain a owl:Class ;
+    rdfs:label "Mountain" ;
+    skos:definition "A mountain entity." ;
+    owl:equivalentClass dbpedia:Mountain .
+
+base:Desert a owl:Class ;
+    rdfs:label "Desert" ;
+    skos:definition "A desert entity." ;
+    owl:equivalentClass dbpedia:Desert .
+
+base:Island a owl:Class ;
+    rdfs:label "Island" ;
+    skos:definition "An island entity." ;
+    owl:equivalentClass dbpedia:Island .
+
+base:Lake a owl:Class ;
+    rdfs:label "Lake" ;
+    skos:definition "A lake entity." ;
+    owl:equivalentClass dbpedia:Lake .
+
+base:Sea a owl:Class ;
+    rdfs:label "Sea" ;
+    skos:definition "A sea entity." ;
+    owl:equivalentClass dbpedia:Sea .
+
+base:River a owl:Class ;
+    rdfs:label "River" ;
+    skos:definition "A river entity." ;
+    owl:equivalentClass dbpedia:River .
+
+base:GeoDesert a owl:Class ;
+    rdfs:label "GeoDesert" ;
+    skos:definition "A geographical desert entity." ;
+    owl:equivalentClass geonames:Desert .
+
+base:GeoMountain a owl:Class ;
+    rdfs:label "GeoMountain" ;
+    skos:definition "A geographical mountain entity." ;
+    owl:equivalentClass geonames:Mountain .
+
+base:GeoIsland a owl:Class ;
+    rdfs:label "GeoIsland" ;
+    skos:definition "A geographical island entity." ;
+    owl:equivalentClass geonames:Island .
+
+base:GeoRiver a owl:Class ;
+    rdfs:label "GeoRiver" ;
+    skos:definition "A geographical river entity." ;
+    owl:equivalentClass geonames:River .
+
+base:GeoSea a owl:Class ;
+    rdfs:label "GeoSea" ;
+    skos:definition "A geographical sea entity." ;
+    owl:equivalentClass geonames:Sea .
+
+base:GeoLake a owl:Class ;
+    rdfs:label "GeoLake" ;
+    skos:definition "A geographical lake entity." ;
+    owl:equivalentClass geonames:Lake .
+
+base:GeoSource a owl:Class ;
+    rdfs:label "GeoSource" ;
+    skos:definition "A geographical river source entity." ;
+    owl:equivalentClass geonames:River .
+
+base:GeoEstuary a owl:Class ;
+    rdfs:label "GeoEstuary" ;
+    skos:definition "A geographical river estuary entity." ;
+    owl:equivalentClass geonames:River .
+
+base:Located a owl:Class ;
+    rdfs:label "Located" ;
+    skos:definition "A located entity." ;
+    owl:equivalentClass geonames:Feature .
+
+base:LocatedOn a owl:Class ;
+    rdfs:label "LocatedOn" ;
+    skos:definition "A located on entity." ;
+    owl:equivalentClass geonames:Feature .
+
+base:IslandIn a owl:Class ;
+    rdfs:label "IslandIn" ;
+    skos:definition "An island in entity." ;
+    owl:equivalentClass geonames:Feature .
+
+base:MountainOnIsland a owl:Class ;
+    rdfs:label "MountainOnIsland" ;
+    skos:definition "A mountain on island entity." ;
+    owl:equivalentClass geonames:Feature .
+
+base:LakeOnIsland a owl:Class ;
+    rdfs:label "LakeOnIsland" ;
+    skos:definition "A lake on island entity." ;
+    owl:equivalentClass geonames:Feature .
+
+base:RiverOnIsland a owl:Class ;
+    rdfs:label "RiverOnIsland" ;
+    skos:definition "A river on island entity." ;
+    owl:equivalentClass geonames:Feature .

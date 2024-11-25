@@ -36,10 +36,19 @@
         {
             "property": "teaches",
             "belongsToClassMap": "Instructor",
-            "refersToClassMap": "Student",
+            "refersToClassMap": "Course",
             "join": [
                 "student.id = student_course_instructor.sid",
                 "instructor.id = student_course_instructor.iid"
+            ]
+        },
+        {
+            "property": "participates",
+            "belongsToClassMap": "Student",
+            "refersToClassMap": "Course",
+            "join": [
+                "student.id = student_course_instructor.sid",
+                "course.id = student_course_instructor.cid"
             ]
         },
         {

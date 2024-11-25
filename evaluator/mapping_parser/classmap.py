@@ -32,6 +32,7 @@ class ClassMap:
             self.sql_condition = [self.parse_condition(condition)] if self.condition is not None else None
         #self.sql_condition = self.parse_condition(condition) if self.condition is not None else None
         self.sql_uri_pattern: SQLAttribute = self.parse_uri_pattern(uriPattern)
+        self.uri_pattern = uriPattern
 
     def parse_condition(self, condition):
         return parse_condition(condition)

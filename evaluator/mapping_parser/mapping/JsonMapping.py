@@ -84,7 +84,7 @@ class JsonMapping(BaseMapping):
         conditions = entry["condition"] if "condition" in entry else None
         column = entry["column"].lower() if "column" in entry else None
         datatype = entry["datatype"] if "datatype" in entry else None
-        inverse_of = entry["inverseOf"] if "inverseOf" in entry else None
+        inverse_of = None#entry["inverseOf"] if "inverseOf" in entry else None
         sqlExpression = entry["sqlExpression"] if "sqlExpression" in entry else None
         translate_with = entry["translateWith"] if "translateWith" in entry else None
         constant_value = entry["constantValue"] if "constantValue" in entry else None#

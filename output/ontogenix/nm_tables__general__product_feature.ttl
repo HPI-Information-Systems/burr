@@ -1,0 +1,58 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix base: <https://base_ontology.com#> .
+@prefix schema: <http://schema.org/> .
+
+<#TriplesMapProduct> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "Product" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com/Product/{id}";
+        rr:class schema:Product;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:id;
+        rr:objectMap [ rr:column "id" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:name;
+        rr:objectMap [ rr:column "name" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasFeature;
+        rr:objectMap [
+            rr:parentTriplesMap <#TriplesMapFeature>;
+            rr:joinCondition [
+                rr:child "id";
+                rr:parent "product_id";
+            ]
+        ]
+    ].
+
+<#TriplesMapFeature> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "Feature" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com/Feature/{id}";
+        rr:class schema:PropertyValue;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:id;
+        rr:objectMap [ rr:column "id" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:name;
+        rr:objectMap [ rr:column "name" ];
+    ].
+
+<#TriplesMapProductFeature> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "ProductFeature" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com/ProductFeature/{product_id}/{feature_id}";
+        rr:class base:ProductFeature;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:product_id;
+        rr:objectMap [ rr:column "product_id" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:feature_id;
+        rr:objectMap [ rr:column "feature_id" ];
+    ].

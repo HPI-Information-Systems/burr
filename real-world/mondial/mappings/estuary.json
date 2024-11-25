@@ -38,13 +38,13 @@
             "property": "latitude",
             "belongsToClass": "Estuary",
             "type": "decimal",
-            "column": "river.(estuary).latitude"
+            "column": "river.estuarylatitude"
         },
         {
             "property": "longitude",
             "belongsToClass": "Estuary",
             "type": "decimal",
-            "column": "river.(estuary).longitude"
+            "column": "river.estuarylongitude"
         }
     ]
 }

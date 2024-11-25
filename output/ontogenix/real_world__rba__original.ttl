@@ -1,0 +1,91 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix base: <https://base_ontology.com#> .
+@prefix schema: <http://schema.org/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+
+<#TriplesMapDataset> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "Dataset" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com/Dataset/{id}";
+        rr:class schema:Dataset;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:non_null_count;
+        rr:objectMap [ rr:column "non_null_count" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:type;
+        rr:objectMap [ rr:column "type" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:unique_count;
+        rr:objectMap [ rr:column "unique_count" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:annotation;
+        rr:objectMap [ rr:column "annotation" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:apqc_reference;
+        rr:objectMap [ rr:column "apqc_reference" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:business_activity;
+        rr:objectMap [ rr:column "business_activity" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:business_activity_code;
+        rr:objectMap [ rr:column "business_activity_code" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:business_activity_description;
+        rr:objectMap [ rr:column "business_activity_description" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:enterprise_domain;
+        rr:objectMap [ rr:column "enterprise_domain" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:count;
+        rr:objectMap [ rr:column "count" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:freq;
+        rr:objectMap [ rr:column "freq" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:top;
+        rr:objectMap [ rr:column "top" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:unique;
+        rr:objectMap [ rr:column "unique" ];
+    ].
+
+<#TriplesMapBusinessFunction> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "BusinessFunction" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com/BusinessFunction/{id}";
+        rr:class base:BusinessFunction;
+    ].
+
+<#TriplesMapOrganization> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "Organization" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com/Organization/{id}";
+        rr:class base:Organization;
+    ].
+
+<#TriplesMapText> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "Text" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com/Text/{id}";
+        rr:class base:Text;
+    ].
+
+<#TriplesMapInteger> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "Integer" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com/Integer/{id}";
+        rr:class base:Integer;
+    ].

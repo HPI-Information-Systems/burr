@@ -1,0 +1,60 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix base: <https://base_ontology.com#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<#TriplesMapPerson> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "PersonTable" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com#person/{id}";
+        rr:class base:person;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:id;
+        rr:objectMap [ rr:column "id" ];
+    ].
+
+<#TriplesMapConference> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "ConferenceTable" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com#conference/{id}";
+        rr:class base:conference;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:id;
+        rr:objectMap [ rr:column "id" ];
+    ].
+
+<#TriplesMapEnableVirtualMeeting> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "EnableVirtualMeetingTable" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com#enable_virtual_meeting/{cid}/{pid}";
+        rr:class base:enable_virtual_meeting;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:cid;
+        rr:objectMap [ rr:column "cid" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:pid;
+        rr:objectMap [ rr:column "pid" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasConference;
+        rr:objectMap [
+            rr:parentTriplesMap <#TriplesMapConference>;
+            rr:joinCondition [
+                rr:child "cid";
+                rr:parent "id";
+            ]
+        ]
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasPerson;
+        rr:objectMap [
+            rr:parentTriplesMap <#TriplesMapPerson>;
+            rr:joinCondition [
+                rr:child "pid";
+                rr:parent "id";
+            ]
+        ]
+    ].

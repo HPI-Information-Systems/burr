@@ -13,7 +13,7 @@
     ],
     "object_properties": [
         {
-            "property": "religionInfo-",
+            "property": "religionInfo",
             "inverseOf": "religionInfo",
             "belongsToClass": "BelievedBy",
             "refersToClassMap": "CountryFull",

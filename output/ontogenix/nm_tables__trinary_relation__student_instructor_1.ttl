@@ -1,0 +1,107 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix base: <https://base_ontology.com#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<#TriplesMapStudent> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "Student" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com#Student/{id}";
+        rr:class base:Student;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:id;
+        rr:objectMap [ rr:column "id" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:name;
+        rr:objectMap [ rr:column "name" ];
+    ].
+
+<#TriplesMapInstructor> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "Instructor" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com#Instructor/{id}";
+        rr:class base:Instructor;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:id;
+        rr:objectMap [ rr:column "id" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:name;
+        rr:objectMap [ rr:column "name" ];
+    ].
+
+<#TriplesMapCourse> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "Course" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com#Course/{id}";
+        rr:class base:Course;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:id;
+        rr:objectMap [ rr:column "id" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:name;
+        rr:objectMap [ rr:column "name" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:credits;
+        rr:objectMap [ rr:column "credits" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:max_students;
+        rr:objectMap [ rr:column "max_students" ];
+    ].
+
+<#TriplesMapTeaches> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "Teaches" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com#Instructor/{instructor_id}";
+        rr:class base:Instructor;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:teaches;
+        rr:objectMap [
+            rr:parentTriplesMap <#TriplesMapCourse>;
+            rr:joinCondition [
+                rr:child "course_id";
+                rr:parent "id";
+            ];
+        ];
+    ].
+
+<#TriplesMapEnrolledIn> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "EnrolledIn" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com#Student/{student_id}";
+        rr:class base:Student;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:enrolledIn;
+        rr:objectMap [
+            rr:parentTriplesMap <#TriplesMapCourse>;
+            rr:joinCondition [
+                rr:child "course_id";
+                rr:parent "id";
+            ];
+        ];
+    ].
+
+<#TriplesMapHasInstructor> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "HasInstructor" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com#Course/{course_id}";
+        rr:class base:Course;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasInstructor;
+        rr:objectMap [
+            rr:parentTriplesMap <#TriplesMapInstructor>;
+            rr:joinCondition [
+                rr:child "instructor_id";
+                rr:parent "id";
+            ];
+        ];
+    ].

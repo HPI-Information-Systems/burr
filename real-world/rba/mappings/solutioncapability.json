@@ -70,7 +70,7 @@
         {
             "property": "isMemberOf",
             "belongsToClassMap": "SolutionCapability_SCM",
-            "refersToClassMap": "EnterpriseDomainLevel_5"
+            "refersToClassMap": "EnterpriseDomainLevel_5_SCM"
         }
     ],
     "data_properties": [

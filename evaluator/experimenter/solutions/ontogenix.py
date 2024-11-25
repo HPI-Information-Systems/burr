@@ -23,6 +23,10 @@ class OntoGenix(BaseSolution):
         print("Running OntoGenix with model: ", chatbot)
         start_time = time.time()
         mapping = OntoGenix_CLI(database_name, api_model=chatbot).run()
+        #write mapping to file
+        path = f"output/ontogenix/{database_name}.ttl"
+        with open(path, "w") as f:
+            f.write(mapping)
         end_time = time.time()
         print("OntoGenix finished")
         #fix this

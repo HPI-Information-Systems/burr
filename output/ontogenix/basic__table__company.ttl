@@ -1,0 +1,14 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix base: <https://base_ontology.com#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<#TriplesMapCompany> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "company" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com#company/{id}";
+        rr:class base:company;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:id;
+        rr:objectMap [ rr:column "id" ];
+    ].

@@ -117,7 +117,7 @@ class D2RQMapping(BaseMapping):
         return relations
 
     def convert_subclass_to_relations(self, class_: ClassMap):
-        for parent_class in class_.parent_classes if class_.parent_classes is not None else []:
+        for idx, parent_class in enumerate(class_.parent_classes) if class_.parent_classes is not None else []:
             parent_class = self.__mapping_id_to_class(self.shorten_uri(parent_class), "class_uri")
             # print(parent_class)
             # print(class_)
@@ -125,7 +125,7 @@ class D2RQMapping(BaseMapping):
             self.relations.append(
                 Relation(
                     prefix="base",
-                    mapping_id=parent_class.mapping_id,
+                    mapping_id=f"{parent_class.mapping_id}_{class_.mapping_id}_{idx}",
                     property="subclassOf",
                     belongsToClassMap=class_,
                     refersToClassMap=parent_class,

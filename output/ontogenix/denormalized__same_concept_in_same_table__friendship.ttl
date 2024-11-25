@@ -1,0 +1,66 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix schema: <http://schema.org/> .
+@prefix base: <https://base_ontology.com#> .
+
+<#TriplesMapFriendship> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "friendship" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com#friendship/{person_id_a}/{person_id_b}";
+        rr:class base:friendship;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:non_null_count;
+        rr:objectMap [ rr:column "non_null_count" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:type;
+        rr:objectMap [ rr:column "type" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:unique_count;
+        rr:objectMap [ rr:column "unique_count" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:count;
+        rr:objectMap [ rr:column "count" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:freq;
+        rr:objectMap [ rr:column "freq" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:top;
+        rr:objectMap [ rr:column "top" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:unique;
+        rr:objectMap [ rr:column "unique" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:address_a;
+        rr:objectMap [ rr:column "address_a" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:address_b;
+        rr:objectMap [ rr:column "address_b" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:name_a;
+        rr:objectMap [ rr:column "name_a" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:name_b;
+        rr:objectMap [ rr:column "name_b" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:person_id_a;
+        rr:objectMap [ rr:column "person_id_a" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:person_id_b;
+        rr:objectMap [ rr:column "person_id_b" ];
+    ].

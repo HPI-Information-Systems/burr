@@ -88,12 +88,15 @@ class Relation:
             return False
         return self._eq_strategy(self, other)
     
-    def set_eq_strategy(self, classes=False, name_based=False):
+    def set_eq_strategy(self, classes=False, name_based=False, distinct=False):
         if classes:
             self._eq_strategy = equality_by_edge_query_and_classes
             self._hash_strategy = hash_by_edge_query_and_classes
         elif name_based:
             self._eq_strategy = equality_by_property_name
+            self._hash_strategy = hash
+        elif distinct:
+            self._eq_strategy = equality_by_property_name_and_classes
             self._hash_strategy = hash
         else:
             self._eq_strategy = equality_by_edge_query
@@ -109,17 +112,28 @@ class Relation:
         return self.get_d2rq_mapping()
 
     def __repr__(self):
-        return f"Relation(property={self.property}, belongsToClassMap={self.belongsToClassMap}, refersToClassMap={self.refersToClassMap}, eq_strategy={self._eq_strategy})"
-    
+        return f"Relation(property={self.property}, belongsToClassMap={self.belongsToClassMap}, refersToClassMap={self.refersToClassMap}, eq_strategy={self._eq_strategy}, joins={self.sql_join}, column={self.sql_column}, condition={self.sql_condition}, sql_expression={self.sql_expression})"
+
 def equality_by_property_name(edge1: Relation, edge2: Relation) -> bool:
+    print("Checking equality for ", edge1.property, edge2.property)
     def clean_property_name(property):
-        fillers = [" ", "_", "-", "has", "is", "of", "the", "a", "an"]
+        fillers = [" ", "_", "-", "has", "is", "of", "the"]
+        #work with fillers "a" or "an" only when they follow a capital letter
+        
         for filler in fillers:
             property = property.replace(filler, "")
+        property = re.sub(r"\b(a|an)\s+(?=[A-Z])", "", property)
         return property.strip().lower()
+    print(clean_property_name(edge1.property), clean_property_name(edge2.property))
     cleaned_equality = clean_property_name(edge1.property) == clean_property_name(edge2.property)
     regular_equality = edge1.property.strip().lower() == edge2.property.strip().lower()
     return cleaned_equality or regular_equality
+
+def equality_by_property_name_and_classes(edge1: Relation, edge2: Relation) -> bool:
+    same_property = edge1.property == edge2.property
+    ingoing_class_equal = edge1.belongsToClassMap == edge2.belongsToClassMap
+    outgoing_class_equal = edge1.refersToClassMap == edge2.refersToClassMap if edge1.refersToClassMap is not None and edge2.refersToClassMap is not None else True
+    return same_property and outgoing_class_equal and ingoing_class_equal
 
 def equality_by_edge_query(edge1: Relation, edge2: Relation) -> bool:
     if not isinstance(edge2, Relation):

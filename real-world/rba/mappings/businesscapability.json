@@ -90,17 +90,17 @@
         {
             "property": "isMemberOf",
             "belongsToClassMap": "BusinessCapabilityFromDomain",
-            "refersToClassMap": "EnterpriseDomainLevel_2"
+            "refersToClassMap": "EnterpriseDomainLevel_2_BCM"
         },
         {
             "property": "isMemberOf",
             "belongsToClassMap": "BusinessCapabilityFromArea",
-            "refersToClassMap": "EnterpriseDomainLevel_3"
+            "refersToClassMap": "EnterpriseDomainLevel_3_BCM"
         },
         {
             "property": "isMemberOf",
             "belongsToClassMap": "BusinessCapabilityFromCapability",
-            "refersToClassMap": "EnterpriseDomainLevel_4"
+            "refersToClassMap": "EnterpriseDomainLevel_4_BCM"
         }
     ],
     "data_properties": [

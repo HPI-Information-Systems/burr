@@ -15,25 +15,25 @@
         },
         {
             "property": "hasGranularity",
-            "belongsToClassMap": "EnterpriseDomainLevel_1",
+            "belongsToClassMap": "EnterpriseDomainLevel_1_BCM",
             "refersToClassMap": "EnterpriseDomain",
             "condition": ["BCM.Master_ID_Domain = 'D4'"]
         },
         {
             "property": "hasGranularity",
-            "belongsToClassMap": "EnterpriseDomainLevel_2",
+            "belongsToClassMap": "EnterpriseDomainLevel_2_BCM",
             "refersToClassMap": "EnterpriseDomain",
             "condition": ["BCM.Master_ID_Domain = 'D2'"]
         },
         {
             "property": "hasGranularity",
-            "belongsToClassMap": "EnterpriseDomainLevel_3",
+            "belongsToClassMap": "EnterpriseDomainLevel_3_BCM",
             "refersToClassMap": "EnterpriseDomain",
             "condition": ["BCM.Master_ID_Domain = 'D1'"]
         },
         {
             "property": "hasGranularity",
-            "belongsToClassMap": "EnterpriseDomainLevel_4",
+            "belongsToClassMap": "EnterpriseDomainLevel_4_BCM",
             "refersToClassMap": "EnterpriseDomain",
             "condition": ["BCM.Master_ID_Domain = 'D3'"]
         }

@@ -1,0 +1,136 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix base: <https://base_ontology.com#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<#TriplesMapProcess> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "ProcessTable" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com#Process/{process_id}";
+        rr:class base:Process;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasProcessID;
+        rr:objectMap [
+            rr:parentTriplesMap <#TriplesMapProcessID>;
+            rr:column "process_id";
+        ]
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasAreaDescription;
+        rr:objectMap [
+            rr:parentTriplesMap <#TriplesMapAreaDescription>;
+            rr:column "area_description";
+        ]
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasAreaName;
+        rr:objectMap [
+            rr:parentTriplesMap <#TriplesMapAreaName>;
+            rr:column "area_name";
+        ]
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasBusinessAreaID;
+        rr:objectMap [
+            rr:parentTriplesMap <#TriplesMapBusinessAreaID>;
+            rr:column "business_area_id";
+        ]
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasBusinessCapabilityID;
+        rr:objectMap [
+            rr:parentTriplesMap <#TriplesMapBusinessCapabilityID>;
+            rr:column "business_capability_id";
+        ]
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasCapabilityDescription;
+        rr:objectMap [
+            rr:parentTriplesMap <#TriplesMapCapabilityDescription>;
+            rr:column "capability_description";
+        ]
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasCapabilityName;
+        rr:objectMap [
+            rr:parentTriplesMap <#TriplesMapCapabilityName>;
+            rr:column "capability_name";
+        ]
+    ].
+
+<#TriplesMapAreaDescription> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "AreaDescriptionTable" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com#AreaDescription/{area_description}";
+        rr:class base:AreaDescription;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:area_description;
+        rr:objectMap [ rr:column "area_description" ];
+    ].
+
+<#TriplesMapAreaName> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "AreaNameTable" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com#AreaName/{area_name}";
+        rr:class base:AreaName;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:area_name;
+        rr:objectMap [ rr:column "area_name" ];
+    ].
+
+<#TriplesMapBusinessAreaID> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "BusinessAreaIDTable" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com#BusinessAreaID/{business_area_id}";
+        rr:class base:BusinessAreaID;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:business_area_id;
+        rr:objectMap [ rr:column "business_area_id" ];
+    ].
+
+<#TriplesMapBusinessCapabilityID> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "BusinessCapabilityIDTable" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com#BusinessCapabilityID/{business_capability_id}";
+        rr:class base:BusinessCapabilityID;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:business_capability_id;
+        rr:objectMap [ rr:column "business_capability_id" ];
+    ].
+
+<#TriplesMapCapabilityDescription> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "CapabilityDescriptionTable" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com#CapabilityDescription/{capability_description}";
+        rr:class base:CapabilityDescription;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:capability_description;
+        rr:objectMap [ rr:column "capability_description" ];
+    ].
+
+<#TriplesMapCapabilityName> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "CapabilityNameTable" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com#CapabilityName/{capability_name}";
+        rr:class base:CapabilityName;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:capability_name;
+        rr:objectMap [ rr:column "capability_name" ];
+    ].
+
+<#TriplesMapProcessID> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "ProcessIDTable" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com#ProcessID/{process_id}";
+        rr:class base:ProcessID;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:process_id;
+        rr:objectMap [ rr:column "process_id" ];
+    ].

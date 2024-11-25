@@ -1,0 +1,80 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix base: <https://base_ontology.com#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix schema: <http://schema.org/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<#TriplesMapPerson> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "Person" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com#Person/{id}";
+        rr:class foaf:Person;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:id;
+        rr:objectMap [ rr:column "id" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:name;
+        rr:objectMap [ rr:column "name" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasPreference;
+        rr:objectMap [
+            rr:parentTriplesMap <#TriplesMapCustomerPreference>;
+            rr:joinCondition [
+                rr:child "id";
+                rr:parent "customer_id";
+            ]
+        ]
+    ].
+
+<#TriplesMapCustomerPreference> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "CustomerPreference" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com#CustomerPreference/{customer_id}/{preference_id}";
+        rr:class base:CustomerPreference;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:customer_id;
+        rr:objectMap [ rr:column "customer_id" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:preference_id;
+        rr:objectMap [ rr:column "preference_id" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:isPreferredBy;
+        rr:objectMap [
+            rr:parentTriplesMap <#TriplesMapIntangible>;
+            rr:joinCondition [
+                rr:child "preference_id";
+                rr:parent "id";
+            ]
+        ]
+    ].
+
+<#TriplesMapIntangible> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "Intangible" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com#Intangible/{id}";
+        rr:class schema:Intangible;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:id;
+        rr:objectMap [ rr:column "id" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:name;
+        rr:objectMap [ rr:column "name" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:isPreferredBy;
+        rr:objectMap [
+            rr:parentTriplesMap <#TriplesMapPerson>;
+            rr:joinCondition [
+                rr:child "id";
+                rr:parent "preference_id";
+            ]
+        ]
+    ].
