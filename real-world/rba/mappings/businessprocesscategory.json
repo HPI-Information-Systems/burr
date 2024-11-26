@@ -27,26 +27,26 @@
             "belongsToClassMap": "BusinessProcessCategory_0",
             "type": "string",
             "column": "BPM.Type",
-            "translateWith": "TypeConversion"
+            "translateWith": "TypeConversionBPC"
         },
         {
             "property": "Name",
             "belongsToClassMap": "BusinessProcessCategory_1",
             "type": "string",
             "column": "BPM.Type_1",
-            "translateWith": "TypeConversion"
+            "translateWith": "TypeConversionBPC"
         },
         {
             "property": "Name",
             "belongsToClassMap": "BusinessProcessCategory_2",
             "type": "string",
             "column": "BPM.Type_2",
-            "translateWith": "TypeConversion"
+            "translateWith": "TypeConversionBPC"
         }
     ],
     "translation_tables": [
         {
-            "name": "TypeConversion",
+            "name": "TypeConversionBPC",
             "translations": [
                 {
                     "databaseValue": "G",

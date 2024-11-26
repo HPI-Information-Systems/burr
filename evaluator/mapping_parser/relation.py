@@ -28,6 +28,7 @@ class Relation:
         self.constantValue = constantValue
         self.set_eq_strategy(classes=False)
         self.sql_expression = sqlExpression
+        self.translate_with = translate_with
         self.sql_sql_expression = self.parse_sql_expression(sqlExpression) if sqlExpression is not None else None
         if isinstance(join, list):
             self.sql_join = [self.parse_join(j) for j in join]
@@ -66,7 +67,7 @@ class Relation:
         return SQLAttribute(column[0].lower(), column[1].lower())
 
     def get_d2rq_mapping(self):
-        return  get_jinja_env() \
+        return get_jinja_env() \
                 .get_template('propertybridge.j2') \
                 .render(
                 prefix = self.prefix,
@@ -76,8 +77,10 @@ class Relation:
                 refers_to_class_map=self.refersToClassMap.mapping_id if type(self.refersToClassMap) == ClassMap else self.refersToClassMap,
                 joins=self.sql_join,
                 conditions=self.sql_condition,
+                translate_with=self.translate_with,
                 column=self.column,
                 sqlExpression = self.sql_expression.lower() if self.sql_expression is not None else None,
+
                 datatype=self.datatype,
                 inverse_of=self.inverse_of,
                 constant_value = self.constantValue if self.constantValue is not None else None,

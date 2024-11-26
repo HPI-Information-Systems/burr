@@ -74,36 +74,20 @@ map:BusinessProcessCategory_2 a d2rq:ClassMap;
     
     
     .
-map:SolutionArchitecture_Hybrid_SAR a d2rq:ClassMap;
+map:SolutionArchitecture_Hybrid a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:SolutionArchitecture;
-    d2rq:uriPattern "@@scm.solution_capability_reference_architecture_hybrid@@";
+    d2rq:uriPattern "hybrid";
     
-    d2rq:condition "scm.solution_capability_reference_architecture_hybrid = 'TRUE'";
+    d2rq:condition "scm.solution_capability_reference_architecture_hybrid = 'True'";
     
     .
-map:SolutionArchitecture_Cloud_SAR a d2rq:ClassMap;
+map:SolutionArchitecture_Cloud a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:SolutionArchitecture;
-    d2rq:uriPattern "@@scm.solution_capability_reference_architecture_cloud@@";
+    d2rq:uriPattern "cloud";
     
-    d2rq:condition "scm.solution_capability_reference_architecture_cloud = 'TRUE'";
-    
-    .
-map:SolutionArchitecture_Hybrid_Whitespaces a d2rq:ClassMap;
-    d2rq:dataStorage map:database;
-    d2rq:class base:SolutionArchitecture;
-    d2rq:uriPattern "@@whitespaces.reference_architecture_hybrid_1@@";
-    
-    d2rq:condition "whitespaces.reference_architecture_hybrid_1 = 'TRUE'";
-    
-    .
-map:SolutionArchitecture_Cloud_Whitespaces a d2rq:ClassMap;
-    d2rq:dataStorage map:database;
-    d2rq:class base:SolutionArchitecture;
-    d2rq:uriPattern "@@whitespaces.reference_architecture_cloud_1@@";
-    
-    d2rq:condition "whitespaces.reference_architecture_cloud_1 = 'TRUE'";
+    d2rq:condition "scm.solution_capability_reference_architecture_cloud = 'True'";
     
     .
 map:BusinessActivity_BAR a d2rq:ClassMap;
@@ -446,84 +430,106 @@ map:isMemberOf_BusinessProcess_0_EnterpriseDomainLevel_1_BCM a d2rq:PropertyBrid
     d2rq:belongsToClassMap map:BusinessProcess_0;
     d2rq:refersToClassMap map:EnterpriseDomainLevel_1_BCM;
     d2rq:property base:isMemberOf;
+    
     .
 
 map:isMemberOf_BusinessProcess_1_EnterpriseDomainLevel_2_BCM a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:BusinessProcess_1;
     d2rq:refersToClassMap map:EnterpriseDomainLevel_2_BCM;
     d2rq:property base:isMemberOf;
+    
     .
 
 map:isMemberOf_BusinessProcess_2_EnterpriseDomainLevel_3_BCM a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:BusinessProcess_2;
     d2rq:refersToClassMap map:EnterpriseDomainLevel_3_BCM;
     d2rq:property base:isMemberOf;
+    
     .
 
 map:references_BusinessProcessSequence_1_BusinessProcess_1 a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:BusinessProcessSequence_1;
     d2rq:refersToClassMap map:BusinessProcess_1;
     d2rq:property base:references;
+    
     .
 
 map:references_BusinessProcessSequence_2_BusinessProcess_2 a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:BusinessProcessSequence_2;
     d2rq:refersToClassMap map:BusinessProcess_2;
     d2rq:property base:references;
+    
     .
 
 map:hasVariant_BusinessProcess_BasedOn_0_BusinessProcess_0 a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:BusinessProcess_BasedOn_0;
     d2rq:refersToClassMap map:BusinessProcess_0;
     d2rq:property base:hasVariant;
+    
     .
 
 map:hasVariant_BusinessProcess_BasedOn_1_BusinessProcess_1 a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:BusinessProcess_BasedOn_1;
     d2rq:refersToClassMap map:BusinessProcess_1;
     d2rq:property base:hasVariant;
+    
     .
 
 map:hasVariant_BusinessProcess_BasedOn_2_BusinessProcess_2 a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:BusinessProcess_BasedOn_2;
     d2rq:refersToClassMap map:BusinessProcess_2;
     d2rq:property base:hasVariant;
+    
     .
 
 map:isElementOf_BusinessProcess_0_BusinessProcessType_0 a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:BusinessProcess_0;
     d2rq:refersToClassMap map:BusinessProcessType_0;
     d2rq:property base:isElementOf;
+    
     .
 
 map:isElementOf_BusinessProcess_1_BusinessProcessType_1 a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:BusinessProcess_1;
     d2rq:refersToClassMap map:BusinessProcessType_1;
     d2rq:property base:isElementOf;
+    
     .
 
 map:isElementOf_BusinessProcess_2_BusinessProcessType_2 a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:BusinessProcess_2;
     d2rq:refersToClassMap map:BusinessProcessType_2;
     d2rq:property base:isElementOf;
+    
     .
 
 map:hasComponent_BusinessProcess_2_BusinessActivity_BA a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:BusinessProcess_2;
     d2rq:refersToClassMap map:BusinessActivity_BA;
     d2rq:property base:hasComponent;
+    
     .
 
 map:isMemberOf_BusinessProcess_0_Industry a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:BusinessProcess_0;
     d2rq:refersToClassMap map:Industry;
     d2rq:property base:isMemberOf;
+    
+    d2rq:condition "bpm.bp_relevant_for_cross_industry = 'Relevant'";
+    d2rq:condition "ind.industry_id = 'Ind026'";
+    d2rq:condition "bpm.bp_relevant_for_retail_industry = 'Relevant'";
+    d2rq:condition "ind.industry_id = 'Ind001'";
+    d2rq:condition "bpm.bp_relevant_for_automotive = 'Relevant'";
+    d2rq:condition "ind.industry_id = 'Ind006'";
+    d2rq:condition "bpm.bp_relevant_for_professional_services = 'Relevant'";
+    d2rq:condition "ind.industry_id = 'Ind022'";
     .
 
 map:hasImplementation_BusinessProcess_0_SolutionProcess_0 a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:BusinessProcess_0;
     d2rq:refersToClassMap map:SolutionProcess_0;
     d2rq:property base:hasImplementation;
+    
     d2rq:join "bpm.business_process_id = spm.business_process_id";
     .
 
@@ -531,6 +537,7 @@ map:hasImplementation_BusinessProcess_1_SolutionProcess_1 a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:BusinessProcess_1;
     d2rq:refersToClassMap map:SolutionProcess_1;
     d2rq:property base:hasImplementation;
+    
     d2rq:join "bpm.business_process_id_1 = spm.business_process_id_1";
     .
 
@@ -538,6 +545,7 @@ map:hasImplementation_BusinessProcess_2_SolutionProcess_2 a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:BusinessProcess_2;
     d2rq:refersToClassMap map:SolutionProcess_2;
     d2rq:property base:hasImplementation;
+    
     d2rq:join "bpm.business_process_id_2 = spm.business_process_id_2";
     .
 
@@ -545,78 +553,103 @@ map:isElementOf_BusinessProcess_0_BusinessProcessCategory_0 a d2rq:PropertyBridg
     d2rq:belongsToClassMap map:BusinessProcess_0;
     d2rq:refersToClassMap map:BusinessProcessCategory_0;
     d2rq:property base:isElementOf;
+    
     .
 
 map:isElementOf_BusinessProcess_1_BusinessProcessCategory_1 a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:BusinessProcess_1;
     d2rq:refersToClassMap map:BusinessProcessCategory_1;
     d2rq:property base:isElementOf;
+    
     .
 
 map:isElementOf_BusinessProcess_2_BusinessProcessCategory_2 a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:BusinessProcess_2;
     d2rq:refersToClassMap map:BusinessProcessCategory_2;
     d2rq:property base:isElementOf;
+    
     .
 
 map:hasComponent_BusinessProcess_1_BusinessProcessSequence_2 a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:BusinessProcess_1;
     d2rq:refersToClassMap map:BusinessProcessSequence_2;
     d2rq:property base:hasComponent;
+    
     .
 
 map:hasComponent_BusinessProcess_0_BusinessProcessSequence_1 a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:BusinessProcess_0;
     d2rq:refersToClassMap map:BusinessProcessSequence_1;
     d2rq:property base:hasComponent;
+    
     .
 
 map:isMemberOf_SolutionCapability_SCM_Industry a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:SolutionCapability_SCM;
     d2rq:refersToClassMap map:Industry;
     d2rq:property base:isMemberOf;
+    
+    d2rq:condition "scm.bc_relevant_for_cross_industry = 'Relevant'";
+    d2rq:condition "ind.industry_id = 'Ind026'";
+    d2rq:condition "scm.bc_relevant_for_retail_industry = 'Relevant'";
+    d2rq:condition "ind.industry_id = 'Ind001'";
+    d2rq:condition "scm.bc_relevant_for_autmotive_industry = 'Relevant'";
+    d2rq:condition "ind.industry_id = 'Ind006'";
+    d2rq:condition "scm.bc_relevant_for_professional_services_industry = 'Relevant'";
+    d2rq:condition "ind.industry_id = 'Ind022'";
     .
 
-map:isMemberOf_SolutionCapability_SCM_SolutionArchitecture_Cloud_SAR a d2rq:PropertyBridge;
+map:isMemberOf_SolutionCapability_SCM_SolutionArchitecture_Cloud a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:SolutionCapability_SCM;
-    d2rq:refersToClassMap map:SolutionArchitecture_Cloud_SAR;
+    d2rq:refersToClassMap map:SolutionArchitecture_Cloud;
     d2rq:property base:isMemberOf;
+    
+    d2rq:condition "scm.solution_capability_reference_architecture_cloud = 'TRUE'";
     .
 
-map:isMemberOf_SolutionCapability_SCM_SolutionArchitecture_Hybrid_SAR a d2rq:PropertyBridge;
+map:isMemberOf_SolutionCapability_SCM_SolutionArchitecture_Hybrid a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:SolutionCapability_SCM;
-    d2rq:refersToClassMap map:SolutionArchitecture_Hybrid_SAR;
+    d2rq:refersToClassMap map:SolutionArchitecture_Hybrid;
     d2rq:property base:isMemberOf;
+    
+    d2rq:condition "scm.solution_capability_reference_architecture_hybrid = 'TRUE'";
     .
 
-map:isMemberOf_SolutionCapability_Whitespaces_SolutionArchitecture_Hybrid_Whitespaces a d2rq:PropertyBridge;
+map:isMemberOf_SolutionCapability_Whitespaces_SolutionArchitecture_Hybrid a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:SolutionCapability_Whitespaces;
-    d2rq:refersToClassMap map:SolutionArchitecture_Hybrid_Whitespaces;
+    d2rq:refersToClassMap map:SolutionArchitecture_Hybrid;
     d2rq:property base:isMemberOf;
+    
+    d2rq:condition "whitespaces.reference_architecture_hybrid_1 = 'TRUE'";
     .
 
-map:isMemberOf_SolutionCapability_Whitespaces_SolutionArchitecture_Cloud_Whitespaces a d2rq:PropertyBridge;
+map:isMemberOf_SolutionCapability_Whitespaces_SolutionArchitecture_Cloud a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:SolutionCapability_Whitespaces;
-    d2rq:refersToClassMap map:SolutionArchitecture_Cloud_Whitespaces;
+    d2rq:refersToClassMap map:SolutionArchitecture_Cloud;
     d2rq:property base:isMemberOf;
+    
+    d2rq:condition "whitespaces.reference_architecture_cloud_1 = 'TRUE'";
     .
 
 map:deployedBy_SolutionCapability_SCM_SolutionArchitectureComponentMap a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:SolutionCapability_SCM;
     d2rq:refersToClassMap map:SolutionArchitectureComponentMap;
     d2rq:property base:deployedBy;
+    
     .
 
 map:isMemberOf_SolutionCapability_SCM_EnterpriseDomainLevel_5_SCM a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:SolutionCapability_SCM;
     d2rq:refersToClassMap map:EnterpriseDomainLevel_5_SCM;
     d2rq:property base:isMemberOf;
+    
     .
 
 map:isPrerequisiteOf_BusinessCapabilityFromCapability_BusinessActivity_BA a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:BusinessCapabilityFromCapability;
     d2rq:refersToClassMap map:BusinessActivity_BA;
     d2rq:property base:isPrerequisiteOf;
+    
     d2rq:join "bcm.master_id_bc = bpm.master_id_bc";
     .
 
@@ -624,42 +657,57 @@ map:isMemberOf_BusinessCapabilityFromCapability_Industry a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:BusinessCapabilityFromCapability;
     d2rq:refersToClassMap map:Industry;
     d2rq:property base:isMemberOf;
+    
+    d2rq:condition "bcm.bc_relevant_for_cross_industry = 'Relevant'";
+    d2rq:condition "ind.industry_id = 'Ind026'";
+    d2rq:condition "bcm.bc_relevant_for_retail_industry = 'Relevant'";
+    d2rq:condition "ind.industry_id = 'Ind001'";
+    d2rq:condition "bcm.bc_relevant_for_autmotive_industry = 'Relevant'";
+    d2rq:condition "ind.industry_id = 'Ind006'";
+    d2rq:condition "bcm.bc_relevant_for_professional_services_industry = 'Relevant'";
+    d2rq:condition "ind.industry_id = 'Ind022'";
     .
 
 map:isMemberOf_BusinessCapabilityFromDomain_BusinessCapabilityTypeDomain a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:BusinessCapabilityFromDomain;
     d2rq:refersToClassMap map:BusinessCapabilityTypeDomain;
     d2rq:property base:isMemberOf;
+    
     .
 
 map:isMemberOf_BusinessCapabilityFromArea_BusinessCapabilityTypeArea a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:BusinessCapabilityFromArea;
     d2rq:refersToClassMap map:BusinessCapabilityTypeArea;
     d2rq:property base:isMemberOf;
+    
     .
 
 map:isMemberOf_BusinessCapabilityFromCapability_BusinessCapabilityTypeCapability a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:BusinessCapabilityFromCapability;
     d2rq:refersToClassMap map:BusinessCapabilityTypeCapability;
     d2rq:property base:isMemberOf;
+    
     .
 
 map:hasComponent_BusinessCapabilityFromDomain_BusinessCapabilityFromArea a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:BusinessCapabilityFromDomain;
     d2rq:refersToClassMap map:BusinessCapabilityFromArea;
     d2rq:property base:hasComponent;
+    
     .
 
 map:hasComponent_BusinessCapabilityFromArea_BusinessCapabilityFromCapability a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:BusinessCapabilityFromArea;
     d2rq:refersToClassMap map:BusinessCapabilityFromCapability;
     d2rq:property base:hasComponent;
+    
     .
 
 map:hasImplementation_BusinessCapabilityFromCapability_SolutionCapability_SCM a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:BusinessCapabilityFromCapability;
     d2rq:refersToClassMap map:SolutionCapability_SCM;
     d2rq:property base:hasImplementation;
+    
     d2rq:join "bcm.master_id_bc = scm.master_id_bc";
     .
 
@@ -667,6 +715,7 @@ map:hasImplementation_BusinessCapabilityFromCapability_SolutionCapability_Whites
     d2rq:belongsToClassMap map:BusinessCapabilityFromCapability;
     d2rq:refersToClassMap map:SolutionCapability_Whitespaces;
     d2rq:property base:hasImplementation;
+    
     d2rq:join "bcm.master_id_bc = whitespaces.master_id_bc";
     .
 
@@ -674,36 +723,42 @@ map:isMemberOf_BusinessCapabilityFromDomain_EnterpriseDomainLevel_2_BCM a d2rq:P
     d2rq:belongsToClassMap map:BusinessCapabilityFromDomain;
     d2rq:refersToClassMap map:EnterpriseDomainLevel_2_BCM;
     d2rq:property base:isMemberOf;
+    
     .
 
 map:isMemberOf_BusinessCapabilityFromArea_EnterpriseDomainLevel_3_BCM a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:BusinessCapabilityFromArea;
     d2rq:refersToClassMap map:EnterpriseDomainLevel_3_BCM;
     d2rq:property base:isMemberOf;
+    
     .
 
 map:isMemberOf_BusinessCapabilityFromCapability_EnterpriseDomainLevel_4_BCM a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:BusinessCapabilityFromCapability;
     d2rq:refersToClassMap map:EnterpriseDomainLevel_4_BCM;
     d2rq:property base:isMemberOf;
+    
     .
 
 map:references_SolutionProcessSequence_1_SolutionProcess_1 a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:SolutionProcessSequence_1;
     d2rq:refersToClassMap map:SolutionProcess_1;
     d2rq:property base:references;
+    
     .
 
 map:references_SolutionProcessSequence_2_SolutionProcess_2 a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:SolutionProcessSequence_2;
     d2rq:refersToClassMap map:SolutionProcess_2;
     d2rq:property base:references;
+    
     .
 
 map:references_BusinessActivity_BA_BusinessActivity_BAR a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:BusinessActivity_BA;
     d2rq:refersToClassMap map:BusinessActivity_BAR;
     d2rq:property base:references;
+    
     d2rq:join "bpm.reference_to_bar_id = bar.business_activity_code";
     .
 
@@ -711,12 +766,14 @@ map:references_BusinessActivity_BA_BusinessProcess_fp a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:BusinessActivity_BA;
     d2rq:refersToClassMap map:BusinessProcess_fp;
     d2rq:property base:references;
+    
     .
 
 map:hasImplementation_BusinessActivity_BA_SolutionActivity a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:BusinessActivity_BA;
     d2rq:refersToClassMap map:SolutionActivity;
     d2rq:property base:hasImplementation;
+    
     d2rq:join "bpm.object_id_business_activity = spm.ba_in_sp_reference_to_rba";
     .
 
@@ -724,12 +781,14 @@ map:hasVariant_BusinessActivity_BasedOn_BusinessActivity_BA a d2rq:PropertyBridg
     d2rq:belongsToClassMap map:BusinessActivity_BasedOn;
     d2rq:refersToClassMap map:BusinessActivity_BA;
     d2rq:property base:hasVariant;
+    
     .
 
 map:references_SolutionActivity_SolutionCapability_SCM a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:SolutionActivity;
     d2rq:refersToClassMap map:SolutionCapability_SCM;
     d2rq:property base:references;
+    
     d2rq:join "scm.object_id_sc = spm.object_id_sc";
     .
 
@@ -737,6 +796,7 @@ map:hasPrerequisite_SolutionActivity_SolutionCapability_SCM a d2rq:PropertyBridg
     d2rq:belongsToClassMap map:SolutionActivity;
     d2rq:refersToClassMap map:SolutionCapability_SCM;
     d2rq:property base:hasPrerequisite;
+    
     d2rq:join "scm.object_id_sc = spm.object_id_sc";
     .
 
@@ -744,581 +804,687 @@ map:isMemberOf_Product_DeploymentType a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:Product;
     d2rq:refersToClassMap map:DeploymentType;
     d2rq:property base:isMemberOf;
+    
     .
 
 map:isMemberOf_Product_Platform a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:Product;
     d2rq:refersToClassMap map:Platform;
     d2rq:property base:isMemberOf;
+    
     .
 
 map:isMemberOf_SolutionProcess_0_Industry a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:SolutionProcess_0;
     d2rq:refersToClassMap map:Industry;
     d2rq:property base:isMemberOf;
+    
+    d2rq:condition "spm.sp_relevant_for_cross_industry = 'Relevant'";
+    d2rq:condition "ind.industry_id = 'Ind026'";
+    d2rq:condition "spm.sp_relevant_for_retail_industry = 'Relevant'";
+    d2rq:condition "ind.industry_id = 'Ind001'";
+    d2rq:condition "spm.sp_relevant_for_automotive = 'Relevant'";
+    d2rq:condition "ind.industry_id = 'Ind006'";
+    d2rq:condition "spm.sp_relevant_for_professional_services = 'Relevant'";
+    d2rq:condition "ind.industry_id = 'Ind022'";
     .
 
 map:isElementOf_SolutionProcess_0_SolutionProcessCategory_0 a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:SolutionProcess_0;
     d2rq:refersToClassMap map:SolutionProcessCategory_0;
     d2rq:property base:isElementOf;
+    
     .
 
 map:isElementOf_SolutionProcess_1_SolutionProcessCategory_1 a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:SolutionProcess_1;
     d2rq:refersToClassMap map:SolutionProcessCategory_1;
     d2rq:property base:isElementOf;
+    
     .
 
 map:isElementOf_SolutionProcess_2_SolutionProcessCategory_2 a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:SolutionProcess_2;
     d2rq:refersToClassMap map:SolutionProcessCategory_2;
     d2rq:property base:isElementOf;
+    
     .
 
 map:hasVariant_SolutionProcess_BasedOn_0_SolutionProcess_0 a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:SolutionProcess_BasedOn_0;
     d2rq:refersToClassMap map:SolutionProcess_0;
     d2rq:property base:hasVariant;
+    
     .
 
 map:hasVariant_SolutionProcess_BasedOn_1_SolutionProcess_1 a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:SolutionProcess_BasedOn_1;
     d2rq:refersToClassMap map:SolutionProcess_1;
     d2rq:property base:hasVariant;
+    
     .
 
 map:hasVariant_SolutionProcess_BasedOn_2_SolutionProcess_2 a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:SolutionProcess_BasedOn_2;
     d2rq:refersToClassMap map:SolutionProcess_2;
     d2rq:property base:hasVariant;
+    
     .
 
 map:hasComponent_SolutionProcess_1_SolutionProcessSequence_2 a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:SolutionProcess_1;
     d2rq:refersToClassMap map:SolutionProcessSequence_2;
     d2rq:property base:hasComponent;
+    
     .
 
 map:hasComponent_SolutionProcess_0_SolutionProcessSequence_1 a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:SolutionProcess_0;
     d2rq:refersToClassMap map:SolutionProcessSequence_1;
     d2rq:property base:hasComponent;
+    
     .
 
 map:hasComponent_SolutionProcess_2_SolutionActivity a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:SolutionProcess_2;
     d2rq:refersToClassMap map:SolutionActivity;
     d2rq:property base:hasComponent;
+    
     .
 
-map:hasGranularity_SolutionProcess_0_SolutionArchitecture_Hybrid_SAR a d2rq:PropertyBridge;
+map:hasGranularity_SolutionProcess_0_SolutionArchitecture_Hybrid a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:SolutionProcess_0;
-    d2rq:refersToClassMap map:SolutionArchitecture_Hybrid_SAR;
+    d2rq:refersToClassMap map:SolutionArchitecture_Hybrid;
     d2rq:property base:hasGranularity;
+    
+    d2rq:condition "spm.reference_architecture_type = 'Hybrid'";
     .
 
-map:hasGranularity_SolutionProcess_0_SolutionArchitecture_Cloud_SAR a d2rq:PropertyBridge;
+map:hasGranularity_SolutionProcess_0_SolutionArchitecture_Cloud a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:SolutionProcess_0;
-    d2rq:refersToClassMap map:SolutionArchitecture_Cloud_SAR;
+    d2rq:refersToClassMap map:SolutionArchitecture_Cloud;
     d2rq:property base:hasGranularity;
+    
+    d2rq:condition "spm.reference_architecture_type = 'Cloud'";
     .
 
 map:hasComponent_EnterpriseDomain_BusinessCapabilityFromDomain a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:EnterpriseDomain;
     d2rq:refersToClassMap map:BusinessCapabilityFromDomain;
     d2rq:property base:hasComponent;
+    
     .
 
 map:hasGranularity_EnterpriseDomainLevel_1_BCM_EnterpriseDomain a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:EnterpriseDomainLevel_1_BCM;
     d2rq:refersToClassMap map:EnterpriseDomain;
     d2rq:property base:hasGranularity;
+    
+    d2rq:condition "bcm.master_id_domain = 'D4'";
     .
 
 map:hasGranularity_EnterpriseDomainLevel_2_BCM_EnterpriseDomain a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:EnterpriseDomainLevel_2_BCM;
     d2rq:refersToClassMap map:EnterpriseDomain;
     d2rq:property base:hasGranularity;
+    
+    d2rq:condition "bcm.master_id_domain = 'D2'";
     .
 
 map:hasGranularity_EnterpriseDomainLevel_3_BCM_EnterpriseDomain a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:EnterpriseDomainLevel_3_BCM;
     d2rq:refersToClassMap map:EnterpriseDomain;
     d2rq:property base:hasGranularity;
+    
+    d2rq:condition "bcm.master_id_domain = 'D1'";
     .
 
 map:hasGranularity_EnterpriseDomainLevel_4_BCM_EnterpriseDomain a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:EnterpriseDomainLevel_4_BCM;
     d2rq:refersToClassMap map:EnterpriseDomain;
     d2rq:property base:hasGranularity;
+    
+    d2rq:condition "bcm.master_id_domain = 'D3'";
     .
 
-map:hasGranularity_SolutionArchitectureComponentMap_SolutionArchitecture_Cloud_SAR a d2rq:PropertyBridge;
+map:hasGranularity_SolutionArchitectureComponentMap_SolutionArchitecture_Cloud a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:SolutionArchitectureComponentMap;
-    d2rq:refersToClassMap map:SolutionArchitecture_Cloud_SAR;
+    d2rq:refersToClassMap map:SolutionArchitecture_Cloud;
     d2rq:property base:hasGranularity;
+    
+    d2rq:condition "scm.solution_component_reference_architecture_cloud = 'True'";
     .
 
-map:hasGranularity_SolutionArchitectureComponentMap_SolutionArchitecture_Hybrid_SAR a d2rq:PropertyBridge;
+map:hasGranularity_SolutionArchitectureComponentMap_SolutionArchitecture_Hybrid a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:SolutionArchitectureComponentMap;
-    d2rq:refersToClassMap map:SolutionArchitecture_Hybrid_SAR;
+    d2rq:refersToClassMap map:SolutionArchitecture_Hybrid;
     d2rq:property base:hasGranularity;
+    
+    d2rq:condition "scm.solution_component_reference_architecture_hybrid = 'True'";
     .
 
 map:hasGranularity_SolutionArchitectureComponentMap_SolutionArchitectureComponentTypeMap a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:SolutionArchitectureComponentMap;
     d2rq:refersToClassMap map:SolutionArchitectureComponentTypeMap;
     d2rq:property base:hasGranularity;
+    
     .
 
 map:isDeploymentOf_SolutionArchitectureComponentMap_Product a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:SolutionArchitectureComponentMap;
     d2rq:refersToClassMap map:Product;
     d2rq:property base:isDeploymentOf;
+    
     .
 
 map:Identifier_Industry_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:Industry;
     d2rq:property base:Identifier;
+    
     d2rq:column "ind.industry_id";
     .
 
 map:Name_Industry_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:Industry;
     d2rq:property base:Name;
+    
     d2rq:column "ind.industry_name";
     .
 
 map:Description_Industry_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:Industry;
     d2rq:property base:Description;
+    
     d2rq:column "ind.industry_name";
     .
 
 map:Name_BusinessProcessType_Main_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:BusinessProcessType_Main;
     d2rq:property base:Name;
+    
     d2rq:column "bpm.fp_object_type";
     .
 
 map:Name_BusinessProcessCategory_0_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:BusinessProcessCategory_0;
     d2rq:property base:Name;
+    d2rq:translateWith map:TypeConversionBPC;
     d2rq:column "bpm.type";
     .
 
 map:Name_BusinessProcessCategory_1_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:BusinessProcessCategory_1;
     d2rq:property base:Name;
+    d2rq:translateWith map:TypeConversionBPC;
     d2rq:column "bpm.type_1";
     .
 
 map:Name_BusinessProcessCategory_2_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:BusinessProcessCategory_2;
     d2rq:property base:Name;
+    d2rq:translateWith map:TypeConversionBPC;
     d2rq:column "bpm.type_2";
     .
 
 map:Identifier_BusinessActivity_BAR_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:BusinessActivity_BAR;
     d2rq:property base:Identifier;
+    
     d2rq:column "bar.business_activity_code";
     .
 
 map:Name_BusinessActivity_BAR_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:BusinessActivity_BAR;
     d2rq:property base:Name;
+    
     d2rq:column "bar.business_activity";
     .
 
 map:Description_BusinessActivity_BAR_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:BusinessActivity_BAR;
     d2rq:property base:Description;
+    
     d2rq:column "bar.business_activity_description";
     .
 
 map:APQCReference_BusinessActivity_BAR_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:BusinessActivity_BAR;
     d2rq:property base:APQCReference;
+    
     d2rq:column "bar.apqc_reference";
     .
 
 map:Name_SolutionProcess_1_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:SolutionProcess_1;
     d2rq:property base:Name;
+    
     d2rq:column "spm.solution_process_1";
     .
 
 map:Name_SolutionProcess_2_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:SolutionProcess_2;
     d2rq:property base:Name;
+    
     d2rq:column "spm.solution_process_2";
     .
 
 map:ID_BusinessProcessSequence_1_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:BusinessProcessSequence_1;
     d2rq:property base:ID;
+    
     d2rq:column "bpm.business_process_id_1";
     .
 
 map:ID_BusinessProcessSequence_2_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:BusinessProcessSequence_2;
     d2rq:property base:ID;
+    
     d2rq:column "bpm.business_process_id_2";
     .
 
 map:sequenceID_BusinessProcessSequence_1_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:BusinessProcessSequence_1;
     d2rq:property base:sequenceID;
+    
     d2rq:column "bpm.business_process_sequence_1";
     .
 
 map:sequenceID_BusinessProcessSequence_2_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:BusinessProcessSequence_2;
     d2rq:property base:sequenceID;
+    
     d2rq:column "bpm.business_process_sequence_2";
     .
 
 map:Name_BusinessProcessSequence_1_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:BusinessProcessSequence_1;
     d2rq:property base:Name;
+    
     d2rq:column "bpm.business_process_1";
     .
 
 map:Name_BusinessProcessSequence_2_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:BusinessProcessSequence_2;
     d2rq:property base:Name;
+    
     d2rq:column "bpm.business_process_2";
     .
 
 map:Identifier_Platform_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:Platform;
     d2rq:property base:Identifier;
+    
     d2rq:column "scm.platform";
     .
 
 map:Name_Platform_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:Platform;
     d2rq:property base:Name;
+    
     d2rq:column "scm.platform";
     .
 
 map:Identifier_DeploymentType_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:DeploymentType;
     d2rq:property base:Identifier;
+    
     d2rq:column "scm.deployment_type";
     .
 
 map:Name_DeploymentType_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:DeploymentType;
     d2rq:property base:Name;
+    
     d2rq:column "scm.deployment_type";
     .
 
 map:Identifier_BusinessProcess_0_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:BusinessProcess_0;
     d2rq:property base:Identifier;
+    
     d2rq:column "bpm.business_process_id";
     .
 
 map:Identifier_BusinessProcess_1_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:BusinessProcess_1;
     d2rq:property base:Identifier;
+    
     d2rq:column "bpm.business_process_id_1";
     .
 
 map:Identifier_BusinessProcess_2_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:BusinessProcess_2;
     d2rq:property base:Identifier;
+    
     d2rq:column "bpm.business_process_id_2";
     .
 
 map:Identifier_BusinessProcess_fp_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:BusinessProcess_fp;
     d2rq:property base:Identifier;
+    
     d2rq:column "bpm.object_id_fp";
     .
 
 map:Name_BusinessProcess_0_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:BusinessProcess_0;
     d2rq:property base:Name;
+    
     d2rq:column "bpm.business_process";
     .
 
 map:Name_BusinessProcess_1_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:BusinessProcess_1;
     d2rq:property base:Name;
+    
     d2rq:column "bpm.business_process_1";
     .
 
 map:Name_BusinessProcess_2_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:BusinessProcess_2;
     d2rq:property base:Name;
+    
     d2rq:column "bpm.business_process_2";
     .
 
 map:Name_BusinessProcess_fp_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:BusinessProcess_fp;
     d2rq:property base:Name;
+    
     d2rq:column "bpm.forward_pointer";
     .
 
 map:Description_BusinessProcess_0_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:BusinessProcess_0;
     d2rq:property base:Description;
+    
     d2rq:column "bpm.bp_description";
     .
 
 map:Description_BusinessProcess_1_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:BusinessProcess_1;
     d2rq:property base:Description;
+    
     d2rq:column "bpm.business_process_description_1";
     .
 
 map:Level_BusinessProcess_0_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:BusinessProcess_0;
     d2rq:property base:Level;
+    d2rq:translateWith map:LevelConversion;
     d2rq:column "bpm.business_process_type";
     .
 
 map:Level_BusinessProcess_1_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:BusinessProcess_1;
     d2rq:property base:Level;
+    d2rq:translateWith map:LevelConversion;
     d2rq:column "bpm.business_process_type_1";
     .
 
 map:Level_BusinessProcess_2_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:BusinessProcess_2;
     d2rq:property base:Level;
+    d2rq:translateWith map:LevelConversion;
     d2rq:column "bpm.business_process_type_2";
     .
 
 map:Level_BusinessProcess_fp_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:BusinessProcess_fp;
     d2rq:property base:Level;
+    d2rq:translateWith map:LevelConversion;
     d2rq:column "bpm.fp_object_type";
     .
 
 map:Identifier_SolutionCapability_SCM_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:SolutionCapability_SCM;
     d2rq:property base:Identifier;
+    
     d2rq:column "scm.object_id_sc";
     .
 
 map:Identifier_SolutionCapability_Whitespaces_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:SolutionCapability_Whitespaces;
     d2rq:property base:Identifier;
+    
     d2rq:column "whitespaces.object_id_sc";
     .
 
 map:Name_SolutionCapability_SCM_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:SolutionCapability_SCM;
     d2rq:property base:Name;
+    
     d2rq:column "scm.solution_capability";
     .
 
 map:Name_SolutionCapability_Whitespaces_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:SolutionCapability_Whitespaces;
     d2rq:property base:Name;
+    
     d2rq:column "whitespaces.solution_capability";
     .
 
 map:Identifier_BusinessCapabilityFromDomain_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:BusinessCapabilityFromDomain;
     d2rq:property base:Identifier;
+    
     d2rq:column "bcm.master_id_bd";
     .
 
 map:Name_BusinessCapabilityFromDomain_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:BusinessCapabilityFromDomain;
     d2rq:property base:Name;
+    
     d2rq:column "bcm.business_domain";
     .
 
 map:SequenceID_BusinessCapabilityFromDomain_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:BusinessCapabilityFromDomain;
     d2rq:property base:SequenceID;
+    
     d2rq:column "bcm.business_domain_seq_id";
     .
 
 map:Identifier_BusinessCapabilityFromArea_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:BusinessCapabilityFromArea;
     d2rq:property base:Identifier;
+    
     d2rq:column "bcm.master_id_barea";
     .
 
 map:Name_BusinessCapabilityFromArea_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:BusinessCapabilityFromArea;
     d2rq:property base:Name;
+    
     d2rq:column "bcm.business_area";
     .
 
 map:SequenceID_BusinessCapabilityFromArea_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:BusinessCapabilityFromArea;
     d2rq:property base:SequenceID;
+    
     d2rq:column "bcm.barea_seq_id";
     .
 
 map:Identifier_BusinessCapabilityFromCapability_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:BusinessCapabilityFromCapability;
     d2rq:property base:Identifier;
+    
     d2rq:column "bcm.master_id_bc";
     .
 
 map:Name_BusinessCapabilityFromCapability_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:BusinessCapabilityFromCapability;
     d2rq:property base:Name;
+    
     d2rq:column "bcm.business_capability";
     .
 
 map:SequenceID_BusinessCapabilityFromCapability_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:BusinessCapabilityFromCapability;
     d2rq:property base:SequenceID;
+    
     d2rq:column "bcm.bc_seq_id";
     .
 
 map:Description_BusinessCapabilityFromCapability_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:BusinessCapabilityFromCapability;
     d2rq:property base:Description;
+    
     d2rq:column "bcm.business_capability_description";
     .
 
 map:Name_BusinessCapabilityTypeDomain_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:BusinessCapabilityTypeDomain;
     d2rq:property base:Name;
+    
     d2rq:column "bcm.object_type";
     .
 
 map:Name_BusinessCapabilityTypeArea_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:BusinessCapabilityTypeArea;
     d2rq:property base:Name;
+    
     d2rq:column "bcm.object_type_2";
     .
 
 map:Name_BusinessCapabilityTypeCapability_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:BusinessCapabilityTypeCapability;
     d2rq:property base:Name;
+    
     d2rq:column "bcm.object_type_3";
     .
 
 map:Identifier_SolutionProcessSequence_1_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:SolutionProcessSequence_1;
     d2rq:property base:Identifier;
+    
     d2rq:column "spm.solution_process_sequence_1";
     .
 
 map:Identifier_SolutionProcessSequence_2_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:SolutionProcessSequence_2;
     d2rq:property base:Identifier;
+    
     d2rq:column "spm.solution_process_sequence_2";
     .
 
 map:sequenceID_SolutionProcessSequence_1_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:SolutionProcessSequence_1;
     d2rq:property base:sequenceID;
+    
     d2rq:column "spm.solution_process_sequence_1";
     .
 
 map:sequenceID_SolutionProcessSequence_2_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:SolutionProcessSequence_2;
     d2rq:property base:sequenceID;
+    
     d2rq:column "spm.solution_process_sequence_2";
     .
 
 map:Name_SolutionProcessSequence_1_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:SolutionProcessSequence_1;
     d2rq:property base:Name;
+    
     d2rq:sqlExpression "concat(@@spm.solution_process_sequence_1@@, concat( - , concat(@@spm.solution_process_1@@, concat( (, concat(@@spm.solution_process_id_1@@, ))))))";
     .
 
 map:Name_SolutionProcessSequence_2_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:SolutionProcessSequence_2;
     d2rq:property base:Name;
+    
     d2rq:sqlExpression "concat(@@spm.solution_process_sequence_2@@, concat( - , concat(@@spm.solution_process_2@@, concat( (, concat(@@spm.solution_process_id_2@@, ))))))";
     .
 
 map:Identifier_BusinessActivity_BA_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:BusinessActivity_BA;
     d2rq:property base:Identifier;
+    
     d2rq:column "bpm.object_id_business_activity";
     .
 
 map:Description_BusinessActivity_BA_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:BusinessActivity_BA;
     d2rq:property base:Description;
+    
     d2rq:column "bpm.description";
     .
 
 map:Name_BusinessActivity_BA_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:BusinessActivity_BA;
     d2rq:property base:Name;
+    
     d2rq:column "bpm.business_activity";
     .
 
 map:SequenceID_BusinessActivity_BA_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:BusinessActivity_BA;
     d2rq:property base:SequenceID;
+    
     d2rq:column "bpm.ba_sequence";
     .
 
 map:Identifier_SolutionActivity_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:SolutionActivity;
     d2rq:property base:Identifier;
+    
     d2rq:column "spm.object_id_business_activity_in_solution_process";
     .
 
 map:Name_SolutionActivity_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:SolutionActivity;
     d2rq:property base:Name;
+    
     d2rq:column "spm.business_activity_in_solution_process";
     .
 
 map:Identifier_Product_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:Product;
     d2rq:property base:Identifier;
+    
     d2rq:column "scm.ppms_product_id";
     .
 
 map:Name_Product_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:Product;
     d2rq:property base:Name;
+    
     d2rq:column "scm.ppms_product_name";
-    .
-
-map:Identifier_SolutionArchitectureComponentTypeMap_None a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:SolutionArchitectureComponentTypeMap;
-    d2rq:property base:Identifier;
-    d2rq:column "scm.line_item_type";
     .
 
 map:Name_SolutionArchitectureComponentTypeMap_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:SolutionArchitectureComponentTypeMap;
     d2rq:property base:Name;
+    
     d2rq:column "scm.line_item_type";
     .
 
 map:Identifier_SolutionProcess_0_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:SolutionProcess_0;
     d2rq:property base:Identifier;
+    
     d2rq:column "spm.solution_process_id";
     .
 
 map:Identifier_SolutionProcess_1_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:SolutionProcess_1;
     d2rq:property base:Identifier;
+    
     d2rq:column "spm.solution_process_id_1";
     .
 
 map:Identifier_SolutionProcess_2_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:SolutionProcess_2;
     d2rq:property base:Identifier;
+    
     d2rq:column "spm.solution_process_id_2";
     .
 
 map:Name_SolutionProcess_0_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:SolutionProcess_0;
     d2rq:property base:Name;
+    
     d2rq:column "spm.solution_process";
     .
 
@@ -1326,77 +1492,117 @@ map:isElementOfType_SolutionProcess_0_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:SolutionProcess_0;
     d2rq:constantValue base:E2E_Solution_Process;
     d2rq:property base:isElementOfType;
+    
     .
 
 map:isElementOfType_SolutionProcess_1_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:SolutionProcess_1;
     d2rq:constantValue base:Solution_Process_Module;
     d2rq:property base:isElementOfType;
+    
     .
 
 map:isElementOfType_SolutionProcess_2_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:SolutionProcess_2;
     d2rq:constantValue base:Solution_Process_Segment;
     d2rq:property base:isElementOfType;
+    
     .
 
 map:Name_SolutionProcessCategory_0_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:SolutionProcessCategory_0;
     d2rq:property base:Name;
+    d2rq:translateWith map:TypeConversion;
     d2rq:column "spm.type";
     .
 
 map:Name_SolutionProcessCategory_1_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:SolutionProcessCategory_1;
     d2rq:property base:Name;
+    d2rq:translateWith map:TypeConversion;
     d2rq:column "spm.type_1";
     .
 
 map:Name_SolutionProcessCategory_2_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:SolutionProcessCategory_2;
     d2rq:property base:Name;
+    d2rq:translateWith map:TypeConversion;
     d2rq:column "spm.type_2";
     .
 
 map:Identifier_EnterpriseDomain_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:EnterpriseDomain;
     d2rq:property base:Identifier;
+    
     d2rq:column "bcm.master_id_domain";
     .
 
 map:Name_EnterpriseDomain_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:EnterpriseDomain;
     d2rq:property base:Name;
+    
     d2rq:column "bcm.enterprise_domain";
     .
 
 map:SequenceID_EnterpriseDomain_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:EnterpriseDomain;
     d2rq:property base:SequenceID;
+    
     d2rq:column "bcm.enterprise_domain_seq_id";
     .
 
 map:name_SolutionArchitectureComponentMap_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:SolutionArchitectureComponentMap;
     d2rq:property base:name;
+    
     d2rq:column "scm.ppms_product_name";
     .
 
 map:partOfReferenceArchitecture_SolutionArchitectureComponentMap_None_0 a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:SolutionArchitectureComponentMap;
     d2rq:property base:partOfReferenceArchitecture;
+    d2rq:translateWith map:SolutionArchitectureComponentHybridConversion;
+    d2rq:condition "scm.solution_component_reference_architecture_hybrid = 'True'";
     d2rq:column "scm.solution_component_reference_architecture_hybrid";
     .
 
 map:partOfReferenceArchitecture_SolutionArchitectureComponentMap_None_1 a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:SolutionArchitectureComponentMap;
     d2rq:property base:partOfReferenceArchitecture;
+    d2rq:translateWith map:SolutionArchitectureComponentCloudConversion;
+    d2rq:condition "scm.solution_component_reference_architecture_cloud = 'True'";
     d2rq:column "scm.solution_component_reference_architecture_cloud";
     .
 
 map:is_SolutionArchitectureComponentMap_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:SolutionArchitectureComponentMap;
     d2rq:property base:is;
+    
+    d2rq:condition "scm.ppms_product_name! = 'NoRecommendation'";
     d2rq:column "scm.line_item_type";
     .
 
+map:TypeConversionBPC a d2rq:TranslationTable;
+    d2rq:translation [ d2rq:databaseValue "G"; d2rq:rdfValue "Generic"; ];
+    d2rq:translation [ d2rq:databaseValue "V"; d2rq:rdfValue "Variant"; ];
+    .
+map:LevelConversion a d2rq:TranslationTable;
+    d2rq:translation [ d2rq:databaseValue "Generic E2E Business Process"; d2rq:rdfValue "1"; ];
+    d2rq:translation [ d2rq:databaseValue "E2E Generic Business Process"; d2rq:rdfValue "1"; ];
+    d2rq:translation [ d2rq:databaseValue "Business Process"; d2rq:rdfValue "1"; ];
+    d2rq:translation [ d2rq:databaseValue "Modular Business Process"; d2rq:rdfValue "2"; ];
+    d2rq:translation [ d2rq:databaseValue "Business Process Module"; d2rq:rdfValue "2"; ];
+    d2rq:translation [ d2rq:databaseValue "Business Process Modular"; d2rq:rdfValue "2"; ];
+    d2rq:translation [ d2rq:databaseValue "Business Process Segment"; d2rq:rdfValue "3"; ];
+    d2rq:translation [ d2rq:databaseValue "Sub Process"; d2rq:rdfValue "4"; ];
+    .
+map:TypeConversion a d2rq:TranslationTable;
+    d2rq:translation [ d2rq:databaseValue "G"; d2rq:rdfValue "Generic"; ];
+    d2rq:translation [ d2rq:databaseValue "V"; d2rq:rdfValue "Variant"; ];
+    .
+map:SolutionArchitectureComponentHybridConversion a d2rq:TranslationTable;
+    d2rq:translation [ d2rq:databaseValue "TRUE"; d2rq:rdfValue "Reference Architecture Hybrid"; ];
+    .
+map:SolutionArchitectureComponentCloudConversion a d2rq:TranslationTable;
+    d2rq:translation [ d2rq:databaseValue "TRUE"; d2rq:rdfValue "Reference Architecture Cloud"; ];
+    .

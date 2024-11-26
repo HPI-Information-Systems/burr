@@ -11,12 +11,6 @@
     ],
     "data_properties": [
         {
-            "property": "Identifier",
-            "belongsToClassMap": "SolutionArchitectureComponentTypeMap",
-            "type": "string",
-            "column": "SCM.Line_Item_Type"
-        },
-        {
             "property": "Name",
             "belongsToClassMap": "SolutionArchitectureComponentTypeMap",
             "type": "string",

@@ -11,13 +11,13 @@
        { 
             "property": "hasGranularity",
             "belongsToClassMap": "SolutionArchitectureComponentMap",
-            "refersToClassMap": "SolutionArchitecture_Cloud_SAR",
+            "refersToClassMap": "SolutionArchitecture_Cloud",
             "condition": ["SCM.Solution_Component_Reference_Architecture_Cloud = 'True'"]
        },
        { 
             "property": "hasGranularity",
             "belongsToClassMap": "SolutionArchitectureComponentMap",
-            "refersToClassMap": "SolutionArchitecture_Hybrid_SAR",
+            "refersToClassMap": "SolutionArchitecture_Hybrid",
             "condition": ["SCM.Solution_Component_Reference_Architecture_Hybrid = 'True'"]
        },
        {

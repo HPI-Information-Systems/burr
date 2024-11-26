@@ -77,1092 +77,1274 @@ map:mapping.ttl a d2rq:ClassMap;
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:bar_enterprise_domain;
+    
     d2rq:column "bar.enterprise_domain";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:bar_business_activity;
+    
     d2rq:column "bar.business_activity";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:bar_business_activity_code;
+    
     d2rq:column "bar.business_activity_code";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:bar_apqc_reference;
+    
     d2rq:column "bar.apqc_reference";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:bar_business_activity_description;
+    
     d2rq:column "bar.business_activity_description";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:bar_annotation;
+    
     d2rq:column "bar.annotation";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:bc_to_sc_object_id_sc;
+    
     d2rq:column "bc_to_sc.object_id_sc";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:bc_to_sc_master_id_bc;
+    
     d2rq:column "bc_to_sc.master_id_bc";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:bc_to_sc_solution_capability;
+    
     d2rq:column "bc_to_sc.solution_capability";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:bc_to_sc_reference_architecture_hybrid;
+    
     d2rq:column "bc_to_sc.reference_architecture_hybrid";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:bc_to_sc_reference_architecture_cloud;
+    
     d2rq:column "bc_to_sc.reference_architecture_cloud";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:bc_to_sc_type;
+    
     d2rq:column "bc_to_sc.type";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:bc_to_sc_ppms_product_id;
+    
     d2rq:column "bc_to_sc.ppms_product_id";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:bc_to_sc_line_item_type;
+    
     d2rq:column "bc_to_sc.line_item_type";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:bc_to_sc_reference_architecture_hybrid_1;
+    
     d2rq:column "bc_to_sc.reference_architecture_hybrid_1";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:bc_to_sc_reference_architecture_cloud_1;
+    
     d2rq:column "bc_to_sc.reference_architecture_cloud_1";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:bc_to_sc_ppms_product_name;
+    
     d2rq:column "bc_to_sc.ppms_product_name";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:bc_to_sc_deployment_type;
+    
     d2rq:column "bc_to_sc.deployment_type";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:bc_to_sc_platform;
+    
     d2rq:column "bc_to_sc.platform";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:bc_to_sc_alternative_hybrid;
+    
     d2rq:column "bc_to_sc.alternative_hybrid";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:bc_to_sc_alternative_cloud;
+    
     d2rq:column "bc_to_sc.alternative_cloud";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:bcm_hierarchy_id;
+    
     d2rq:column "bcm.hierarchy_id";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:bcm_enterprise_domain;
+    
     d2rq:column "bcm.enterprise_domain";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:bcm_enterprise_domain_seq_id;
+    
     d2rq:column "bcm.enterprise_domain_seq_id";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:bcm_master_id_domain;
+    
     d2rq:column "bcm.master_id_domain";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:bcm_business_domain;
+    
     d2rq:column "bcm.business_domain";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:bcm_object_type;
+    
     d2rq:column "bcm.object_type";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:bcm_business_domain_seq_id;
+    
     d2rq:column "bcm.business_domain_seq_id";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:bcm_master_id_bd;
+    
     d2rq:column "bcm.master_id_bd";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:bcm_business_area;
+    
     d2rq:column "bcm.business_area";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:bcm_object_type_2;
+    
     d2rq:column "bcm.object_type_2";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:bcm_barea_seq_id;
+    
     d2rq:column "bcm.barea_seq_id";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:bcm_master_id_barea;
+    
     d2rq:column "bcm.master_id_barea";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:bcm_business_capability;
+    
     d2rq:column "bcm.business_capability";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:bcm_object_type_3;
+    
     d2rq:column "bcm.object_type_3";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:bcm_master_id_bc;
+    
     d2rq:column "bcm.master_id_bc";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:bcm_business_capability_description;
+    
     d2rq:column "bcm.business_capability_description";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:bcm_bc_relevant_for_cross_industry;
+    
     d2rq:column "bcm.bc_relevant_for_cross_industry";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:bcm_bc_relevant_for_retail_industry;
+    
     d2rq:column "bcm.bc_relevant_for_retail_industry";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:bcm_bc_relevant_for_autmotive_industry;
+    
     d2rq:column "bcm.bc_relevant_for_autmotive_industry";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:bcm_bc_relevant_for_professional_services_industry;
+    
     d2rq:column "bcm.bc_relevant_for_professional_services_industry";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:bcm_bc_relevant_for_industrial_machinery_and_components;
+    
     d2rq:column "bcm.bc_relevant_for_industrial_machinery_and_components";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:bcm_bc_relevant_for_oil_and_gas;
+    
     d2rq:column "bcm.bc_relevant_for_oil_and_gas";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:bcm_bc_relevant_for_utilities;
+    
     d2rq:column "bcm.bc_relevant_for_utilities";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:bcm_bc_seq_id;
+    
     d2rq:column "bcm.bc_seq_id";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:bpm_business_process_id;
+    
     d2rq:column "bpm.business_process_id";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:bpm_based_on;
+    
     d2rq:column "bpm.based_on";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:bpm_business_process;
+    
     d2rq:column "bpm.business_process";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:bpm_bp_relevant_for_cross_industry;
+    
     d2rq:column "bpm.bp_relevant_for_cross_industry";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:bpm_bp_relevant_for_retail_industry;
+    
     d2rq:column "bpm.bp_relevant_for_retail_industry";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:bpm_bp_relevant_for_automotive;
+    
     d2rq:column "bpm.bp_relevant_for_automotive";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:bpm_bp_relevant_for_professional_services;
+    
     d2rq:column "bpm.bp_relevant_for_professional_services";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:bpm_bp_relevant_for_industrial_machinery_and_components;
+    
     d2rq:column "bpm.bp_relevant_for_industrial_machinery_and_components";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:bpm_bp_relevant_for_oil_and_gas;
+    
     d2rq:column "bpm.bp_relevant_for_oil_and_gas";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:bpm_bp_relevant_for_utilities;
+    
     d2rq:column "bpm.bp_relevant_for_utilities";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:bpm_business_process_type;
+    
     d2rq:column "bpm.business_process_type";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:bpm_type;
+    
     d2rq:column "bpm.type";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:bpm_enterprise_domain;
+    
     d2rq:column "bpm.enterprise_domain";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:bpm_bp_description;
+    
     d2rq:column "bpm.bp_description";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:bpm_business_process_id_1;
+    
     d2rq:column "bpm.business_process_id_1";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:bpm_based_on_1;
+    
     d2rq:column "bpm.based_on_1";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:bpm_business_process_1;
+    
     d2rq:column "bpm.business_process_1";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:bpm_business_process_type_1;
+    
     d2rq:column "bpm.business_process_type_1";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:bpm_type_1;
+    
     d2rq:column "bpm.type_1";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:bpm_enterprise_domain_1;
+    
     d2rq:column "bpm.enterprise_domain_1";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:bpm_business_process_sequence_1;
+    
     d2rq:column "bpm.business_process_sequence_1";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:bpm_business_process_description_1;
+    
     d2rq:column "bpm.business_process_description_1";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:bpm_business_process_id_2;
+    
     d2rq:column "bpm.business_process_id_2";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:bpm_based_on_2;
+    
     d2rq:column "bpm.based_on_2";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:bpm_business_process_2;
+    
     d2rq:column "bpm.business_process_2";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:bpm_business_process_type_2;
+    
     d2rq:column "bpm.business_process_type_2";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:bpm_type_2;
+    
     d2rq:column "bpm.type_2";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:bpm_enterprise_domain_2;
+    
     d2rq:column "bpm.enterprise_domain_2";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:bpm_business_process_sequence_2;
+    
     d2rq:column "bpm.business_process_sequence_2";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:bpm_object_id_business_activity;
+    
     d2rq:column "bpm.object_id_business_activity";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:bpm_based_on_3;
+    
     d2rq:column "bpm.based_on_3";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:bpm_reference_to_bar_id;
+    
     d2rq:column "bpm.reference_to_bar_id";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:bpm_business_activity;
+    
     d2rq:column "bpm.business_activity";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:bpm_ba_sequence;
+    
     d2rq:column "bpm.ba_sequence";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:bpm_description;
+    
     d2rq:column "bpm.description";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:bpm_apqc_reference;
+    
     d2rq:column "bpm.apqc_reference";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:bpm_object_id_fp;
+    
     d2rq:column "bpm.object_id_fp";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:bpm_forward_pointer;
+    
     d2rq:column "bpm.forward_pointer";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:bpm_fp_object_type;
+    
     d2rq:column "bpm.fp_object_type";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:bpm_master_id_bc;
+    
     d2rq:column "bpm.master_id_bc";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:bpm_business_capability;
+    
     d2rq:column "bpm.business_capability";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:bpm_bc_type;
+    
     d2rq:column "bpm.bc_type";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:bpm_business_capability_description;
+    
     d2rq:column "bpm.business_capability_description";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:ind_industry_id;
+    
     d2rq:column "ind.industry_id";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:ind_industry_name;
+    
     d2rq:column "ind.industry_name";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:scm_id;
+    
     d2rq:column "scm.id";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:scm_hierarchy_id;
+    
     d2rq:column "scm.hierarchy_id";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:scm_enterprise_domain;
+    
     d2rq:column "scm.enterprise_domain";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:scm_master_id_domain;
+    
     d2rq:column "scm.master_id_domain";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:scm_business_domain;
+    
     d2rq:column "scm.business_domain";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:scm_business_domain_seq_id;
+    
     d2rq:column "scm.business_domain_seq_id";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:scm_master_id_bd;
+    
     d2rq:column "scm.master_id_bd";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:scm_business_area;
+    
     d2rq:column "scm.business_area";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:scm_barea_seq_id;
+    
     d2rq:column "scm.barea_seq_id";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:scm_master_id_barea;
+    
     d2rq:column "scm.master_id_barea";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:scm_business_capability;
+    
     d2rq:column "scm.business_capability";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:scm_master_id_bc;
+    
     d2rq:column "scm.master_id_bc";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:scm_business_capability_description;
+    
     d2rq:column "scm.business_capability_description";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:scm_bc_relevant_for_cross_industry;
+    
     d2rq:column "scm.bc_relevant_for_cross_industry";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:scm_bc_relevant_for_retail_industry;
+    
     d2rq:column "scm.bc_relevant_for_retail_industry";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:scm_bc_relevant_for_autmotive_industry;
+    
     d2rq:column "scm.bc_relevant_for_autmotive_industry";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:scm_bc_relevant_for_professional_services_industry;
+    
     d2rq:column "scm.bc_relevant_for_professional_services_industry";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:scm_bc_relevant_for_industrial_machinery_and_components;
+    
     d2rq:column "scm.bc_relevant_for_industrial_machinery_and_components";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:scm_bc_relevant_for_oil_and_gas;
+    
     d2rq:column "scm.bc_relevant_for_oil_and_gas";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:scm_bc_relevant_for_utilities;
+    
     d2rq:column "scm.bc_relevant_for_utilities";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:scm_object_id_sc;
+    
     d2rq:column "scm.object_id_sc";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:scm_solution_capability;
+    
     d2rq:column "scm.solution_capability";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:scm_solution_capability_reference_architecture_hybrid;
+    
     d2rq:column "scm.solution_capability_reference_architecture_hybrid";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:scm_solution_capability_reference_architecture_cloud;
+    
     d2rq:column "scm.solution_capability_reference_architecture_cloud";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:scm_type;
+    
     d2rq:column "scm.type";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:scm_ppms_product_id;
+    
     d2rq:column "scm.ppms_product_id";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:scm_line_item_type;
+    
     d2rq:column "scm.line_item_type";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:scm_ppms_product_name;
+    
     d2rq:column "scm.ppms_product_name";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:scm_solution_component_reference_architecture_hybrid;
+    
     d2rq:column "scm.solution_component_reference_architecture_hybrid";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:scm_solution_component_reference_architecture_cloud;
+    
     d2rq:column "scm.solution_component_reference_architecture_cloud";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:scm_deployment_type;
+    
     d2rq:column "scm.deployment_type";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:scm_platform;
+    
     d2rq:column "scm.platform";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:scm_unnamed%3A_32;
+    
     d2rq:column "scm.unnamed:_32";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:spm_solution_process_id;
+    
     d2rq:column "spm.solution_process_id";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:spm_based_on;
+    
     d2rq:column "spm.based_on";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:spm_business_process_id;
+    
     d2rq:column "spm.business_process_id";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:spm_solution_process;
+    
     d2rq:column "spm.solution_process";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:spm_sp_relevant_for_cross_industry;
+    
     d2rq:column "spm.sp_relevant_for_cross_industry";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:spm_sp_relevant_for_retail_industry;
+    
     d2rq:column "spm.sp_relevant_for_retail_industry";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:spm_sp_relevant_for_automotive;
+    
     d2rq:column "spm.sp_relevant_for_automotive";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:spm_sp_relevant_for_professional_services;
+    
     d2rq:column "spm.sp_relevant_for_professional_services";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:spm_sp_relevant_for_industrial_machinery_and_components;
+    
     d2rq:column "spm.sp_relevant_for_industrial_machinery_and_components";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:spm_sp_relevant_for_oil_and_gas;
+    
     d2rq:column "spm.sp_relevant_for_oil_and_gas";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:spm_sp_relevant_for_utilities;
+    
     d2rq:column "spm.sp_relevant_for_utilities";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:spm_type;
+    
     d2rq:column "spm.type";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:spm_enterprise_domain;
+    
     d2rq:column "spm.enterprise_domain";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:spm_sp_description;
+    
     d2rq:column "spm.sp_description";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:spm_reference_architecture_type;
+    
     d2rq:column "spm.reference_architecture_type";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:spm_solution_process_id_1;
+    
     d2rq:column "spm.solution_process_id_1";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:spm_based_on_1;
+    
     d2rq:column "spm.based_on_1";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:spm_business_process_id_1;
+    
     d2rq:column "spm.business_process_id_1";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:spm_solution_process_1;
+    
     d2rq:column "spm.solution_process_1";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:spm_type_1;
+    
     d2rq:column "spm.type_1";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:spm_solution_process_sequence_1;
+    
     d2rq:column "spm.solution_process_sequence_1";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:spm_enterprise_domain_1;
+    
     d2rq:column "spm.enterprise_domain_1";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:spm_solution_process_description_1;
+    
     d2rq:column "spm.solution_process_description_1";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:spm_solution_process_id_2;
+    
     d2rq:column "spm.solution_process_id_2";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:spm_based_on_2;
+    
     d2rq:column "spm.based_on_2";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:spm_business_process_id_2;
+    
     d2rq:column "spm.business_process_id_2";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:spm_solution_process_2;
+    
     d2rq:column "spm.solution_process_2";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:spm_type_2;
+    
     d2rq:column "spm.type_2";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:spm_solution_process_sequence_2;
+    
     d2rq:column "spm.solution_process_sequence_2";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:spm_enterprise_domain_2;
+    
     d2rq:column "spm.enterprise_domain_2";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:spm_object_id_business_activity_in_solution_process;
+    
     d2rq:column "spm.object_id_business_activity_in_solution_process";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:spm_ba_in_sp_reference_to_rba;
+    
     d2rq:column "spm.ba_in_sp_reference_to_rba";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:spm_business_activity_in_solution_process;
+    
     d2rq:column "spm.business_activity_in_solution_process";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:spm_ba_in_sp_sequence;
+    
     d2rq:column "spm.ba_in_sp_sequence";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:spm_description;
+    
     d2rq:column "spm.description";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:spm_apqc_reference;
+    
     d2rq:column "spm.apqc_reference";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:spm_object_id_fp;
+    
     d2rq:column "spm.object_id_fp";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:spm_forward_pointer;
+    
     d2rq:column "spm.forward_pointer";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:spm_fp_object_type;
+    
     d2rq:column "spm.fp_object_type";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:spm_object_id_sc;
+    
     d2rq:column "spm.object_id_sc";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:spm_solution_capability;
+    
     d2rq:column "spm.solution_capability";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:spm_ppms_product_id;
+    
     d2rq:column "spm.ppms_product_id";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:spm_line_item_type;
+    
     d2rq:column "spm.line_item_type";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:spm_ppms_product_name;
+    
     d2rq:column "spm.ppms_product_name";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:spm_deployment_type;
+    
     d2rq:column "spm.deployment_type";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:spm_platform;
+    
     d2rq:column "spm.platform";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:whitespaces_object_id_sc;
+    
     d2rq:column "whitespaces.object_id_sc";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:whitespaces_master_id_bc;
+    
     d2rq:column "whitespaces.master_id_bc";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:whitespaces_solution_capability;
+    
     d2rq:column "whitespaces.solution_capability";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:whitespaces_reference_architecture_hybrid;
+    
     d2rq:column "whitespaces.reference_architecture_hybrid";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:whitespaces_reference_architecture_cloud;
+    
     d2rq:column "whitespaces.reference_architecture_cloud";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:whitespaces_type;
+    
     d2rq:column "whitespaces.type";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:whitespaces_future_status;
+    
     d2rq:column "whitespaces.future_status";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:whitespaces_ppms_product_id;
+    
     d2rq:column "whitespaces.ppms_product_id";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:whitespaces_ppms_product_name;
+    
     d2rq:column "whitespaces.ppms_product_name";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:whitespaces_reference_architecture_hybrid_1;
+    
     d2rq:column "whitespaces.reference_architecture_hybrid_1";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:whitespaces_reference_architecture_cloud_1;
+    
     d2rq:column "whitespaces.reference_architecture_cloud_1";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:whitespaces_deployment_type;
+    
     d2rq:column "whitespaces.deployment_type";
     .
 
 map:mapping.ttl a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:mapping.ttl;
     d2rq:property base:whitespaces_whitespace_type;
+    
     d2rq:column "whitespaces.whitespace_type";
     .
 

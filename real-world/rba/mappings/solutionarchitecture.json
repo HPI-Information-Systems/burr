@@ -1,79 +1,23 @@
 {
     "classes": [
         {
-            "id": "@@SCM.Solution_Capability_Reference_Architecture_Hybrid@@",
+            "id": "Hybrid",
             "prefix": "SCM",
             "class": "SolutionArchitecture",
-            "name": "SolutionArchitecture_Hybrid_SAR",
-            "condition": ["SCM.Solution_Capability_Reference_Architecture_Hybrid = 'TRUE'"],
-            "translateWith": "SolutionArchitectureHybridSARConversion"
+            "name": "SolutionArchitecture_Hybrid",
+            "condition": ["SCM.Solution_Capability_Reference_Architecture_Hybrid = 'True'"]
         },
         {
-            "id": "@@SCM.Solution_Capability_Reference_Architecture_Cloud@@",
+            "id": "Cloud",
             "prefix": "SCM",
             "class": "SolutionArchitecture",
-            "name": "SolutionArchitecture_Cloud_SAR",
-            "condition": ["SCM.Solution_Capability_Reference_Architecture_Cloud = 'TRUE'"],
-            "translateWith": "SolutionArchitectureCloudSARConversion"
-        },
-        {
-            "id": "@@Whitespaces.Reference_Architecture_Hybrid_1@@",
-            "prefix": "SCM",
-            "class": "SolutionArchitecture",
-            "name": "SolutionArchitecture_Hybrid_Whitespaces",
-            "condition": ["Whitespaces.Reference_Architecture_Hybrid_1 = 'TRUE'"],
-            "translateWith": "SolutionArchitectureHybridWhitespacesConversion"
-        },
-        {
-            "id": "@@Whitespaces.Reference_Architecture_Cloud_1@@",
-            "prefix": "SCM",
-            "class": "SolutionArchitecture",
-            "name": "SolutionArchitecture_Cloud_Whitespaces",
-            "condition": ["Whitespaces.Reference_Architecture_Cloud_1 = 'TRUE'"],
-            "translateWith": "SolutionArchitectureCloudWhitespacesConversion"
+            "name": "SolutionArchitecture_Cloud",
+            "condition": ["SCM.Solution_Capability_Reference_Architecture_Cloud = 'True'"]
         }
     ],
     "object_properties": [
     ],
     "data_properties": [
        
-    ],
-    "translation_tables": [
-        {
-            "name": "SolutionArchitectureHybridSARConversion",
-            "translations": [
-                {
-                    "databaseValue": "TRUE",
-                    "targetValue": "Reference Architecture Hybrid"
-                }
-            ]
-        },
-        {
-            "name": "SolutionArchitectureCloudSARConversion",
-            "translations": [
-                {
-                    "databaseValue": "TRUE",
-                    "targetValue": "Reference Architecture Cloud"
-                }
-            ]
-        },
-        {
-            "name": "SolutionArchitectureHybridWhitespacesConversion",
-            "translations": [
-                {
-                    "databaseValue": "TRUE",
-                    "targetValue": "Whitespaces - Reference Architecture Hybrid"
-                }
-            ]
-        },
-        {
-            "name": "SolutionArchitectureCloudWhitespacesConversion",
-            "translations": [
-                {
-                    "databaseValue": "TRUE",
-                    "targetValue": "Whitespaces - Reference Architecture Cloud"
-                }
-            ]
-        }
-        ]
+    ]
 }

@@ -110,13 +110,13 @@
         {
             "property": "hasGranularity",
             "belongsToClassMap": "SolutionProcess_0",
-            "refersToClassMap": "SolutionArchitecture_Hybrid_SAR",
+            "refersToClassMap": "SolutionArchitecture_Hybrid",
             "condition": ["SPM.Reference_Architecture_Type = 'Hybrid'"]
         },
         {
             "property": "hasGranularity",
             "belongsToClassMap": "SolutionProcess_0",
-            "refersToClassMap": "SolutionArchitecture_Cloud_SAR",
+            "refersToClassMap": "SolutionArchitecture_Cloud",
             "condition": ["SPM.Reference_Architecture_Type = 'Cloud'"]
         }
     ],

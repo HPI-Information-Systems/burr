@@ -7,6 +7,7 @@ map:{{ mapping_name }} a d2rq:PropertyBridge;
     d2rq:constantValue {{ prefix }}:{{ constant_value }};
     {%- endif %}
     d2rq:property {{ prefix }}:{{ property }};
+    {% if translate_with %}d2rq:translateWith map:{{ translate_with }};{%- endif %}
     {%- if joins -%}
     {%- for join in joins %}
     d2rq:join "{{ join }}";

@@ -53,7 +53,7 @@ class BaseMapping(ABC):
         for attr in self.get_attributes():
             output += attr.get_d2rq_mapping()
         for translation_table in self.translation_tables:
-            print("TRANSLATION TABLE", translation_table)
+            #print("TRANSLATION TABLE", translation_table)
             output += str(translation_table)
         return output
 

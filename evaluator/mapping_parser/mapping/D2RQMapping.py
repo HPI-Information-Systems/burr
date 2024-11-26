@@ -3,6 +3,7 @@ from typing import List
 import os
 from evaluator.mapping_parser.classmap import ClassMap
 from evaluator.mapping_parser.relation import Relation
+from evaluator.mapping_parser.translationtable import TranslationTable
 from evaluator.mapping_parser.mapping.BaseMapping import BaseMapping
 import logging
 
@@ -20,6 +21,7 @@ class D2RQMapping(BaseMapping):
         self.classes = self.parse_classes()
         self.relations = self.parse_relations()
         self.translation_tables = []
+        self.parse_translation_tables()
         for class_ in self.get_classes():
             self.convert_subclass_to_relations(class_) 
     
@@ -62,7 +64,7 @@ class D2RQMapping(BaseMapping):
     
     def parse_classes(self) -> List[str]:
         classes = []
-        properties = ["d2rq:uriPattern", "d2rq:class", "d2rq:additionalClassDefinitionProperty", "d2rq:condition"]
+        properties = ["d2rq:uriPattern", "d2rq:class", "d2rq:additionalClassDefinitionProperty", "d2rq:condition", "d2rq:translateWith"]
         class_maps = self.query_properties("ClassMap", properties)
         for class_map in class_maps:
             parent_classes = []
@@ -77,7 +79,7 @@ class D2RQMapping(BaseMapping):
                         #fix first three
                         prefix="base",
                         datastorage="database",
-                        translate_with=None,
+                        translate_with=self.shorten_uri(class_map["d2rq:translateWith"]) if "d2rq:translateWith" in class_map.keys() else None,
                         mapping_id=self.shorten_uri(class_map["mapping_id"]),
                         uriPattern=class_map["d2rq:uriPattern"] if "d2rq:uriPattern" in class_map.keys() else None,
                         class_uri=self.shorten_uri(class_map["d2rq:class"]) if "d2rq:class" in class_map.keys() else None,
@@ -90,6 +92,34 @@ class D2RQMapping(BaseMapping):
                         
         return classes    
 
+    def parse_translation_tables(self):
+        sparql_query = """
+        SELECT ?table ?databaseValue ?rdfValue
+        WHERE {
+            ?table a d2rq:TranslationTable ;
+                d2rq:translation ?translation .
+            ?translation d2rq:databaseValue ?databaseValue ;
+                        d2rq:rdfValue ?rdfValue .
+        }
+        """
+        results = self.graph.query(sparql_query)
+        translation_tables = []
+        table_data = {}
+        for row in results:
+            table_name = self.shorten_uri(row.table)
+            translation_entry = {
+                "databaseValue": str(row.databaseValue),
+                "targetValue": str(row.rdfValue)
+            }
+            if table_name not in table_data:
+                table_data[table_name] = {
+                    "name": table_name,
+                    "translations": []
+                }
+            table_data[table_name]["translations"].append(translation_entry)
+        for table in table_data.values():
+            self.translation_tables.append(TranslationTable(table["name"], table["translations"]))
+        return table_data
 
     def parse_additionalClassDefinitionProperty(self, uri):
         query = f"""             
@@ -101,19 +131,21 @@ class D2RQMapping(BaseMapping):
 
     def parse_relations(self):
         relations = []
-        properties = ["d2rq:property", "d2rq:belongsToClassMap", "d2rq:refersToClassMap", "d2rq:join", "d2rq:column", "d2rq:sqlExpression", "d2rq:constantValue"]
+        properties = ["d2rq:property", "d2rq:belongsToClassMap", "d2rq:translateWith", "d2rq:refersToClassMap", "d2rq:join", "d2rq:column", "d2rq:sqlExpression", "d2rq:constantValue", "d2rq:condition"]
         property_bridges = self.query_properties("PropertyBridge", properties)
         for property_bridge in property_bridges:
             relations.append(Relation(
                     prefix="base",
                     mapping_id=self.shorten_uri(property_bridge["mapping_id"]),
                     property=self.shorten_uri(property_bridge["d2rq:property"]) if "d2rq:property" in property_bridge.keys() else None,
+                    translate_with=self.shorten_uri(property_bridge["d2rq:translateWith"]) if "d2rq:translateWith" in property_bridge.keys() else None,
                     belongsToClassMap=self.__mapping_id_to_class(self.shorten_uri(property_bridge["d2rq:belongsToClassMap"])) if "d2rq:belongsToClassMap" in property_bridge.keys() else None,
                     refersToClassMap=self.__mapping_id_to_class(self.shorten_uri(property_bridge["d2rq:refersToClassMap"])) if "d2rq:refersToClassMap" in property_bridge.keys() else None,
                     constantValue=self.shorten_uri(property_bridge["d2rq:constantValue"]) if "d2rq:constantValue" in property_bridge.keys() else None,
                     sqlExpression=property_bridge["d2rq:sqlExpression"] if "d2rq:sqlExpression" in property_bridge.keys() else None,
                     join=property_bridge["d2rq:join"] if "d2rq:join" in property_bridge.keys() else None,
                     column=property_bridge["d2rq:column"] if "d2rq:column" in property_bridge.keys() else None,
+                    condition=property_bridge["d2rq:condition"] if "d2rq:condition" in property_bridge.keys() else None,
                 ))
         return relations
 
