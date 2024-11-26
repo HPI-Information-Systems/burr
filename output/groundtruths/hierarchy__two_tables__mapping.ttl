@@ -15,28 +15,28 @@ map:database a d2rq:Database;
 map:AuthorPerson a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:Person;
-    d2rq:uriPattern "/@@author.aid@@/";
+    d2rq:uriPattern "author_@@author.aid@@";
     
     
     .
 map:ReviewerPerson a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:Person;
-    d2rq:uriPattern "/@@reviewer.rid@@/";
+    d2rq:uriPattern "reviewer_@@reviewer.rid@@";
     
     
     .
 map:Author a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:Author;
-    d2rq:uriPattern "/@@author.aid@@/";
+    d2rq:uriPattern "@@author.aid@@";
     
     
     .
 map:Reviewer a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:Reviewer;
-    d2rq:uriPattern "/@@reviewer.rid@@/";
+    d2rq:uriPattern "@@reviewer.rid@@";
     
     
     .

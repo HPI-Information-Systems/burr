@@ -1,5 +1,7 @@
 from abc import ABC, abstractmethod
 from rdflib import URIRef
+from urllib.parse import urlparse
+
 
 from evaluator.utils.get_jinja_env import get_jinja_env
 
@@ -21,15 +23,19 @@ class BaseMapping(ABC):
     def get_classes(self):
         return self.classes
     
-    
-    
     def shorten_uri(self, uri):
         uri = str(URIRef(uri)).replace("<", "").replace(">", "").replace(" ", "")#.replace("#", "")
-        if "EnterpriseDomainLevel" in uri:
-            print("DHAJKSHDA")
+        most_specific_namespace = ""
         for _, namespace in self.graph.namespaces():
-            if str(uri).startswith(namespace):
-                return str(uri)[len(namespace):]
+            namespace_parsed = "/".join(urlparse(namespace).path.strip("/").split("/")[:-1])
+            uri_parsed = "/".join(urlparse(uri).path.strip("/").split("/")[:-1])
+            if namespace_parsed == uri_parsed:
+                return urlparse(uri).path.strip("/").split("/")[-1]
+            # if str(uri).startswith(namespace):
+            #     if len(namespace.split("/")) > len(most_specific_namespace.split("/")):
+            #         most_specific_namespace = namespace
+        # if most_specific_namespace != "":
+        #     return str(uri)[len(namespace):]
         print("WARNING - URI could not be shortened: ", uri, " - returning last part of URI, divided by / or #")
         if "#" in uri:
             uri = uri.split("#")[-1]

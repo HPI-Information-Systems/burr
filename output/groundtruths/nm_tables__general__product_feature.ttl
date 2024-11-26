@@ -15,14 +15,14 @@ map:database a d2rq:Database;
 map:Product a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:Product;
-    d2rq:uriPattern "/@@product.id@@/";
+    d2rq:uriPattern "@@product.id@@";
     
     
     .
 map:Feature a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:Feature;
-    d2rq:uriPattern "/@@feature.id@@/";
+    d2rq:uriPattern "@@feature.id@@";
     
     
     .

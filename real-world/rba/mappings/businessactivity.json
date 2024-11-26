@@ -7,7 +7,7 @@
             "name": "BusinessActivity_BA"
         },
         {
-            "id": "@@BPM.Based_On.3@@",
+            "id": "@@BPM.Based_On_3@@",
             "namespace": "RBA",
             "prefix": "RBA",
             "class": "BusinessActivity",

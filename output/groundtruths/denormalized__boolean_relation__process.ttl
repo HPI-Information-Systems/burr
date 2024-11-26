@@ -15,61 +15,70 @@ map:database a d2rq:Database;
 map:Service a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:Service;
-    d2rq:uriPattern "/@@service.id@@/";
+    d2rq:uriPattern "@@service.id@@";
     
     
     .
 map:IndustryOilGas a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:Industry;
+    d2rq:uriPattern "oilandgas";
     
     
     .
 map:IndustryAutomotive a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:Industry;
+    d2rq:uriPattern "automotive";
     
     
     .
 map:IndustryChemical a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:Industry;
+    d2rq:uriPattern "chemical";
     
     
     .
 map:IndustryPharma a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:Industry;
+    d2rq:uriPattern "pharma";
     
     
     .
 map:IndustryFood a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:Industry;
+    d2rq:uriPattern "food";
     
     
     .
 map:IndustryRetail a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:Industry;
+    d2rq:uriPattern "retail";
     
     
     .
 map:IndustryLogistics a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:Industry;
+    d2rq:uriPattern "logistics";
     
     
     .
 map:IndustryAviation a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:Industry;
+    d2rq:uriPattern "aviation";
     
     
     .
 map:IndustryEnergy a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:Industry;
+    d2rq:uriPattern "energy";
     
     
     .

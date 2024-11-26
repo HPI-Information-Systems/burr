@@ -1,9 +1,10 @@
 systems = {
         "rdb2onto": {
+            "requires_pks": True,
             "train": {
             },
             "test": {
-                "output_path": "./output/rdb2onto/"
+                "output_path": "./output/rdb2onto/",
             }
         }, 
         "ontogenix": {
@@ -271,11 +272,11 @@ scenarios = {
             },
         },
         # "mondial": {
-        #     # "original": {
-        #     #     "sql_file": "./real-world/mondial/real_world__mondial__original.sql",
-        #     #     "groundtruth_mapping": "./real-world/mondial/mappings",
-        #     #     "meta_file_path": "./real-world/mondial/mappings/meta.json"
-        #     # },
+        #     "original": {
+        #         "sql_file": "./real-world/mondial/real_world__mondial__original.sql",
+        #         "groundtruth_mapping": "./real-world/mondial/mappings",
+        #         "meta_file_path": "./real-world/mondial/mappings/meta.json"
+        #     },
         #     "fk": {
         #         "sql_file": "./real-world/mondial/real_world__mondial__fk.sql",
         #         "groundtruth_mapping": "./real-world/mondial/mappings",
@@ -296,14 +297,14 @@ scenarios = {
 experiment_config = {
     "scenarios": scenarios,
     "systems": [
-        {
-            "name": "rdb2onto",
-            "config": systems["rdb2onto"]
-        }, 
         # {
-        #     "name": "d2rmapper",
-        #     "config": systems["d2rmapper"]
-        # },
+        #     "name": "rdb2onto",
+        #     "config": systems["rdb2onto"]
+        # }, 
+        {
+            "name": "d2rmapper",
+            "config": systems["d2rmapper"]
+        },
         # {
         #     "name": "ontogenix",
         #     "config": systems["ontogenix"]

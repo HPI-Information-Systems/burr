@@ -7,8 +7,8 @@
 @prefix scm: </SAP/RSA/SCM/> .
 @prefix spm: </SAP/RSA/SPM/> .
 @prefix bar: </SAP/RBA/BAR/> .
-@prefix sap: </SAP/> .
 @prefix bcm: </SAP/RBA/BCM/> .
+@prefix sap: </SAP/> .
 @prefix base: </base/> .
 
 map:database a d2rq:Database;
@@ -21,63 +21,63 @@ map:database a d2rq:Database;
 map:Industry a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:Industry;
-    d2rq:uriPattern "/@@ind.industry_id@@/";
+    d2rq:uriPattern "@@ind.industry_id@@";
     
     
     .
 map:BusinessProcessType_Main a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:BusinessProcessType;
-    d2rq:uriPattern "/@@bpm.fp_object_type@@/";
+    d2rq:uriPattern "@@bpm.fp_object_type@@";
     
     
     .
 map:BusinessProcessType_0 a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:BusinessProcessType;
-    d2rq:uriPattern "/@@bpm.business_process_type@@/";
+    d2rq:uriPattern "@@bpm.business_process_type@@";
     
     
     .
 map:BusinessProcessType_1 a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:BusinessProcessType;
-    d2rq:uriPattern "/@@bpm.business_process_type_1@@/";
+    d2rq:uriPattern "@@bpm.business_process_type_1@@";
     
     
     .
 map:BusinessProcessType_2 a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:BusinessProcessType;
-    d2rq:uriPattern "/@@bpm.business_process_type_2@@/";
+    d2rq:uriPattern "@@bpm.business_process_type_2@@";
     
     
     .
 map:BusinessProcessCategory_0 a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:BusinessProcessCategory;
-    d2rq:uriPattern "/@@bpm.type@@/";
+    d2rq:uriPattern "@@bpm.type@@";
     
     
     .
 map:BusinessProcessCategory_1 a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:BusinessProcessCategory;
-    d2rq:uriPattern "/@@bpm.type_1@@/";
+    d2rq:uriPattern "@@bpm.type_1@@";
     
     
     .
 map:BusinessProcessCategory_2 a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:BusinessProcessCategory;
-    d2rq:uriPattern "/@@bpm.type_2@@/";
+    d2rq:uriPattern "@@bpm.type_2@@";
     
     
     .
 map:SolutionArchitecture_Hybrid_SAR a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:SolutionArchitecture;
-    d2rq:uriPattern "/@@scm.solution_capability_reference_architecture_hybrid@@/";
+    d2rq:uriPattern "@@scm.solution_capability_reference_architecture_hybrid@@";
     
     d2rq:condition "scm.solution_capability_reference_architecture_hybrid = 'TRUE'";
     
@@ -85,7 +85,7 @@ map:SolutionArchitecture_Hybrid_SAR a d2rq:ClassMap;
 map:SolutionArchitecture_Cloud_SAR a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:SolutionArchitecture;
-    d2rq:uriPattern "/@@scm.solution_capability_reference_architecture_cloud@@/";
+    d2rq:uriPattern "@@scm.solution_capability_reference_architecture_cloud@@";
     
     d2rq:condition "scm.solution_capability_reference_architecture_cloud = 'TRUE'";
     
@@ -93,7 +93,7 @@ map:SolutionArchitecture_Cloud_SAR a d2rq:ClassMap;
 map:SolutionArchitecture_Hybrid_Whitespaces a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:SolutionArchitecture;
-    d2rq:uriPattern "/@@whitespaces.reference_architecture_hybrid_1@@/";
+    d2rq:uriPattern "@@whitespaces.reference_architecture_hybrid_1@@";
     
     d2rq:condition "whitespaces.reference_architecture_hybrid_1 = 'TRUE'";
     
@@ -101,7 +101,7 @@ map:SolutionArchitecture_Hybrid_Whitespaces a d2rq:ClassMap;
 map:SolutionArchitecture_Cloud_Whitespaces a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:SolutionArchitecture;
-    d2rq:uriPattern "/@@whitespaces.reference_architecture_cloud_1@@/";
+    d2rq:uriPattern "@@whitespaces.reference_architecture_cloud_1@@";
     
     d2rq:condition "whitespaces.reference_architecture_cloud_1 = 'TRUE'";
     
@@ -109,336 +109,336 @@ map:SolutionArchitecture_Cloud_Whitespaces a d2rq:ClassMap;
 map:BusinessActivity_BAR a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:BusinessActivity;
-    d2rq:uriPattern "/@@bar.business_activity_code@@/";
+    d2rq:uriPattern "@@bar.business_activity_code@@";
     
     
     .
 map:BusinessProcessSequence_1 a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:BusinessProcessSequence;
-    d2rq:uriPattern "/@@bpm.business_process_sequence_1@@/@@bpm.business_process_1@@/@@bpm.business_process_id_1@@/";
+    d2rq:uriPattern "@@bpm.business_process_sequence_1@@/@@bpm.business_process_1@@/@@bpm.business_process_id_1@@";
     
     
     .
 map:BusinessProcessSequence_2 a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:BusinessProcessSequence;
-    d2rq:uriPattern "/@@bpm.business_process_sequence_2@@/@@bpm.business_process_2@@/@@bpm.business_process_id_2@@/";
+    d2rq:uriPattern "@@bpm.business_process_sequence_2@@/@@bpm.business_process_2@@/@@bpm.business_process_id_2@@";
     
     
     .
 map:Platform a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:Platform;
-    d2rq:uriPattern "/@@scm.platform@@/";
+    d2rq:uriPattern "@@scm.platform@@";
     
     
     .
 map:DeploymentType a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:DeploymentType;
-    d2rq:uriPattern "/@@scm.deployment_type@@/";
+    d2rq:uriPattern "@@scm.deployment_type@@";
     
     
     .
 map:BusinessProcess_0 a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:BusinessProcess;
-    d2rq:uriPattern "/@@bpm.business_process_id@@/";
+    d2rq:uriPattern "@@bpm.business_process_id@@";
     
     
     .
 map:BusinessProcess_1 a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:BusinessProcess;
-    d2rq:uriPattern "/@@bpm.business_process_id_1@@/";
+    d2rq:uriPattern "@@bpm.business_process_id_1@@";
     
     
     .
 map:BusinessProcess_2 a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:BusinessProcess;
-    d2rq:uriPattern "/@@bpm.business_process_id_2@@/";
+    d2rq:uriPattern "@@bpm.business_process_id_2@@";
     
     
     .
 map:BusinessProcess_fp a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:BusinessProcess;
-    d2rq:uriPattern "/@@bpm.object_id_fp@@/";
+    d2rq:uriPattern "@@bpm.object_id_fp@@";
     
     
     .
 map:BusinessProcess_BasedOn_0 a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:BusinessProcess;
-    d2rq:uriPattern "/@@bpm.based_on@@/";
+    d2rq:uriPattern "@@bpm.based_on@@";
     
     
     .
 map:BusinessProcess_BasedOn_1 a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:BusinessProcess;
-    d2rq:uriPattern "/@@bpm.based_on_1@@/";
+    d2rq:uriPattern "@@bpm.based_on_1@@";
     
     
     .
 map:BusinessProcess_BasedOn_2 a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:BusinessProcess;
-    d2rq:uriPattern "/@@bpm.based_on_2@@/";
+    d2rq:uriPattern "@@bpm.based_on_2@@";
     
     
     .
 map:SolutionCapability_SCM a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:SolutionCapability;
-    d2rq:uriPattern "/@@scm.object_id_sc@@/";
+    d2rq:uriPattern "@@scm.object_id_sc@@";
     
     
     .
 map:SolutionCapability_Whitespaces a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:SolutionCapability;
-    d2rq:uriPattern "/@@whitespaces.object_id_sc@@/";
+    d2rq:uriPattern "@@whitespaces.object_id_sc@@";
     
     
     .
 map:BusinessCapabilityFromDomain a d2rq:ClassMap;
     d2rq:dataStorage map:database;
-    d2rq:class base:RBA/BCM/BusinessCapability;
-    d2rq:uriPattern "/@@bcm.business_domain@@/@@bcm.master_id_bd@@/";
+    d2rq:class base:BusinessCapability;
+    d2rq:uriPattern "@@bcm.business_domain@@/@@bcm.master_id_bd@@";
     
     
     .
 map:BusinessCapabilityFromArea a d2rq:ClassMap;
     d2rq:dataStorage map:database;
-    d2rq:class base:RBA/BCM/BusinessCapability;
-    d2rq:uriPattern "/@@bcm.business_area@@/@@bcm.master_id_barea@@/";
+    d2rq:class base:BusinessCapability;
+    d2rq:uriPattern "@@bcm.business_area@@/@@bcm.master_id_barea@@";
     
     
     .
 map:BusinessCapabilityFromCapability a d2rq:ClassMap;
     d2rq:dataStorage map:database;
-    d2rq:class base:RBA/BCM/BusinessCapability;
-    d2rq:uriPattern "/@@bcm.business_capability@@/@@bcm.master_id_bc@@/";
+    d2rq:class base:BusinessCapability;
+    d2rq:uriPattern "@@bcm.business_capability@@/@@bcm.master_id_bc@@";
     
     
     .
 map:BusinessCapabilityTypeDomain a d2rq:ClassMap;
     d2rq:dataStorage map:database;
-    d2rq:class base:RBA/BCM/BusinessCapabilityType;
-    d2rq:uriPattern "/@@bcm.object_type@@/";
+    d2rq:class base:BusinessCapabilityType;
+    d2rq:uriPattern "@@bcm.object_type@@";
     
     
     .
 map:BusinessCapabilityTypeArea a d2rq:ClassMap;
     d2rq:dataStorage map:database;
-    d2rq:class base:RBA/BCM/BusinessCapabilityType;
-    d2rq:uriPattern "/@@bcm.object_type_2@@/";
+    d2rq:class base:BusinessCapabilityType;
+    d2rq:uriPattern "@@bcm.object_type_2@@";
     
     
     .
 map:BusinessCapabilityTypeCapability a d2rq:ClassMap;
     d2rq:dataStorage map:database;
-    d2rq:class base:RBA/BCM/BusinessCapabilityType;
-    d2rq:uriPattern "/@@bcm.object_type_3@@/";
+    d2rq:class base:BusinessCapabilityType;
+    d2rq:uriPattern "@@bcm.object_type_3@@";
     
     
     .
 map:SolutionProcessSequence_1 a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:SolutionProcessSequence;
-    d2rq:uriPattern "/@@spm.solution_process_sequence_1@@/@@spm.solution_process_1@@/@@spm.solution_process_id_1@@/";
+    d2rq:uriPattern "@@spm.solution_process_sequence_1@@/@@spm.solution_process_1@@/@@spm.solution_process_id_1@@";
     
     
     .
 map:SolutionProcessSequence_2 a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:SolutionProcessSequence;
-    d2rq:uriPattern "/@@spm.solution_process_sequence_2@@/@@spm.solution_process_2@@/@@spm.solution_process_id_2@@/";
+    d2rq:uriPattern "@@spm.solution_process_sequence_2@@/@@spm.solution_process_2@@/@@spm.solution_process_id_2@@";
     
     
     .
 map:EnterpriseDomainLevel_1_BCM a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:EnterpriseDomainLevel;
-    d2rq:uriPattern "/@@bcm.enterprise_domain@@/";
+    d2rq:uriPattern "@@bcm.enterprise_domain@@-l1";
     
     
     .
 map:EnterpriseDomainLevel_2_BCM a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:EnterpriseDomainLevel;
-    d2rq:uriPattern "/@@bcm.enterprise_domain@@/";
+    d2rq:uriPattern "@@bcm.enterprise_domain@@-l2";
     
     
     .
 map:EnterpriseDomainLevel_3_BCM a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:EnterpriseDomainLevel;
-    d2rq:uriPattern "/@@bcm.enterprise_domain@@/";
+    d2rq:uriPattern "@@bcm.enterprise_domain@@-l3";
     
     
     .
 map:EnterpriseDomainLevel_4_BCM a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:EnterpriseDomainLevel;
-    d2rq:uriPattern "/@@bcm.enterprise_domain@@/";
+    d2rq:uriPattern "@@bcm.enterprise_domain@@-l4";
     
     
     .
 map:EnterpriseDomainLevel_5_BCM a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:EnterpriseDomainLevel;
-    d2rq:uriPattern "/@@bcm.enterprise_domain@@/";
+    d2rq:uriPattern "@@bcm.enterprise_domain@@-sc";
     
     
     .
 map:EnterpriseDomainLevel_1_SCM a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:EnterpriseDomainLevel;
-    d2rq:uriPattern "/@@scm.enterprise_domain@@/";
+    d2rq:uriPattern "@@scm.enterprise_domain@@-l1";
     
     
     .
 map:EnterpriseDomainLevel_2_SCM a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:EnterpriseDomainLevel;
-    d2rq:uriPattern "/@@scm.enterprise_domain@@/";
+    d2rq:uriPattern "@@scm.enterprise_domain@@-l2";
     
     
     .
 map:EnterpriseDomainLevel_3_SCM a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:EnterpriseDomainLevel;
-    d2rq:uriPattern "/@@scm.enterprise_domain@@/";
+    d2rq:uriPattern "@@scm.enterprise_domain@@-l3";
     
     
     .
 map:EnterpriseDomainLevel_4_SCM a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:EnterpriseDomainLevel;
-    d2rq:uriPattern "/@@scm.enterprise_domain@@/";
+    d2rq:uriPattern "@@scm.enterprise_domain@@-l4";
     
     
     .
 map:EnterpriseDomainLevel_5_SCM a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:EnterpriseDomainLevel;
-    d2rq:uriPattern "/@@scm.enterprise_domain@@/";
+    d2rq:uriPattern "@@scm.enterprise_domain@@-sc";
     
     
     .
 map:BusinessActivity_BA a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:BusinessActivity;
-    d2rq:uriPattern "/@@bpm.object_id_business_activity@@/";
+    d2rq:uriPattern "@@bpm.object_id_business_activity@@";
     
     
     .
 map:BusinessActivity_BasedOn a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:BusinessActivity;
-    d2rq:uriPattern "/@@bpm.based_on@@/";
+    d2rq:uriPattern "@@bpm.based_on_3@@";
     
     
     .
 map:SolutionActivity a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:SolutionActivity;
-    d2rq:uriPattern "/@@spm.object_id_business_activity_in_solution_process@@/";
+    d2rq:uriPattern "@@spm.object_id_business_activity_in_solution_process@@";
     
     
     .
 map:Product a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:Product;
-    d2rq:uriPattern "/@@scm.ppms_product_id@@/";
+    d2rq:uriPattern "@@scm.ppms_product_id@@";
     
     
     .
 map:SolutionArchitectureComponentTypeMap a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:SolutionArchitectureComponentType;
-    d2rq:uriPattern "/@@scm.line_item_type@@/";
+    d2rq:uriPattern "@@scm.line_item_type@@";
     
     
     .
 map:SolutionProcess_0 a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:SolutionProcess;
-    d2rq:uriPattern "/@@spm.solution_process_id@@/";
+    d2rq:uriPattern "@@spm.solution_process_id@@";
     
     
     .
 map:SolutionProcess_1 a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:SolutionProcess;
-    d2rq:uriPattern "/@@spm.solution_process_id_1@@/";
+    d2rq:uriPattern "@@spm.solution_process_id_1@@";
     
     
     .
 map:SolutionProcess_2 a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:SolutionProcess;
-    d2rq:uriPattern "/@@spm.solution_process_id_2@@/";
+    d2rq:uriPattern "@@spm.solution_process_id_2@@";
     
     
     .
 map:SolutionProcess_BasedOn_0 a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:SolutionProcess;
-    d2rq:uriPattern "/@@spm.based_on@@/";
+    d2rq:uriPattern "@@spm.based_on@@";
     
     
     .
 map:SolutionProcess_BasedOn_1 a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:SolutionProcess;
-    d2rq:uriPattern "/@@spm.based_on_1@@/";
+    d2rq:uriPattern "@@spm.based_on_1@@";
     
     
     .
 map:SolutionProcess_BasedOn_2 a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:SolutionProcess;
-    d2rq:uriPattern "/@@spm.based_on_2@@/";
+    d2rq:uriPattern "@@spm.based_on_2@@";
     
     
     .
 map:SolutionProcessCategory_0 a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:SolutionProcessCategory;
-    d2rq:uriPattern "/@@spm.type@@/";
+    d2rq:uriPattern "@@spm.type@@";
     
     
     .
 map:SolutionProcessCategory_1 a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:SolutionProcessCategory;
-    d2rq:uriPattern "/@@spm.type_1@@/";
+    d2rq:uriPattern "@@spm.type_1@@";
     
     
     .
 map:SolutionProcessCategory_2 a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:SolutionProcessCategory;
-    d2rq:uriPattern "/@@spm.type_2@@/";
+    d2rq:uriPattern "@@spm.type_2@@";
     
     
     .
 map:EnterpriseDomain a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:EnterpriseDomain;
-    d2rq:uriPattern "/@@bcm.master_id_domain@@/";
+    d2rq:uriPattern "@@bcm.master_id_domain@@";
     
     
     .
 map:SolutionArchitectureComponentMap a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:SolutionArchitectureComponent;
-    d2rq:uriPattern "/@@scm.ppms_product_name@@/@@scm.solution_component_reference_architecture_cloud@@/@@scm.solution_component_reference_architecture_hybrid@@/";
+    d2rq:uriPattern "@@scm.ppms_product_name@@/@@scm.solution_component_reference_architecture_cloud@@/@@scm.solution_component_reference_architecture_hybrid@@";
     
     
     .
@@ -1324,16 +1324,19 @@ map:Name_SolutionProcess_0_None a d2rq:PropertyBridge;
 
 map:isElementOfType_SolutionProcess_0_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:SolutionProcess_0;
+    d2rq:constantValue base:E2E_Solution_Process;
     d2rq:property base:isElementOfType;
     .
 
 map:isElementOfType_SolutionProcess_1_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:SolutionProcess_1;
+    d2rq:constantValue base:Solution_Process_Module;
     d2rq:property base:isElementOfType;
     .
 
 map:isElementOfType_SolutionProcess_2_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:SolutionProcess_2;
+    d2rq:constantValue base:Solution_Process_Segment;
     d2rq:property base:isElementOfType;
     .
 

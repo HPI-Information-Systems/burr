@@ -2,7 +2,7 @@ map:{% if mapping_name %}{{ mapping_name }}{% else %}{{ class_name }} {% endif %
     d2rq:dataStorage map:database;
     d2rq:class {{ prefix }}:{{ class_name }};
     {%- if uri_patterns %}
-    d2rq:uriPattern "{% if parent_class is not none %}{{ parent_class }}{% else %}{{ class_name }}{% endif %}/{%- for pattern in uri_patterns %}@@{{pattern}}@@/{%- endfor %}";
+    d2rq:uriPattern "{% if parent_class is not none %}{{ parent_class }}{% else %}{{ class_name }}{% endif %}{{uri_patterns}}";
     {%- endif %}
     {%- if uri_column %}d2rq:uriColumn "{{ uri_column }}";{%- endif %}
     {% if translate_with %}d2rq:translateWith map:{{ translate_with }};{%- endif %}

@@ -15,24 +15,24 @@ map:database a d2rq:Database;
 map:Person a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:Person;
-    d2rq:uriPattern "/@@person.pid@@/";
+    d2rq:uriPattern "@@person.pid@@";
     
     
     .
 map:Author a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:Author;
-    d2rq:uriPattern "/@@person.pid@@/";
+    d2rq:uriPattern "@@person.pid@@";
     
-    d2rq:condition "@@person.type@@ = author";
+    d2rq:condition "@@person.type@@ = 'author'";
     
     .
 map:Reviewer a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:Reviewer;
-    d2rq:uriPattern "/@@person.pid@@/";
+    d2rq:uriPattern "@@person.pid@@";
     
-    d2rq:condition "@@person.type@@ = reviewer";
+    d2rq:condition "@@person.type@@ = 'reviewer'";
     
     .
 map:name_Person_None a d2rq:PropertyBridge;

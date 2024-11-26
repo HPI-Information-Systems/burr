@@ -1,55 +1,55 @@
 {
   "classes" : [ {
-    "id" : "",
+    "id" : "@@spm.artificial_id@@/",
     "name" : "ClassMap_spm",
     "prefix" : "base",
     "subClassOf" : null,
     "join" : null,
     "class" : "spm"
   }, {
-    "id" : "",
+    "id" : "@@bar.artificial_id@@/",
     "name" : "ClassMap_bar",
     "prefix" : "base",
     "subClassOf" : null,
     "join" : null,
     "class" : "bar"
   }, {
-    "id" : "",
+    "id" : "@@bc_to_sc.artificial_id@@/",
     "name" : "ClassMap_bc_to_sc",
     "prefix" : "base",
     "subClassOf" : null,
     "join" : null,
     "class" : "bc_to_sc"
   }, {
-    "id" : "",
+    "id" : "@@scm.artificial_id@@/",
     "name" : "ClassMap_scm",
     "prefix" : "base",
     "subClassOf" : null,
     "join" : null,
     "class" : "scm"
   }, {
-    "id" : "",
+    "id" : "@@bcm.artificial_id@@/",
     "name" : "ClassMap_bcm",
     "prefix" : "base",
     "subClassOf" : null,
     "join" : null,
     "class" : "bcm"
   }, {
-    "id" : "",
+    "id" : "@@bpm.artificial_id@@/",
     "name" : "ClassMap_bpm",
     "prefix" : "base",
     "subClassOf" : null,
     "join" : null,
     "class" : "bpm"
   }, {
-    "id" : "",
+    "id" : "@@ind.artificial_id@@/",
     "name" : "ClassMap_ind",
     "prefix" : "base",
     "subClassOf" : null,
     "join" : null,
     "class" : "ind"
   }, {
-    "id" : "",
+    "id" : "@@whitespaces.artificial_id@@/",
     "name" : "ClassMap_whitespaces",
     "prefix" : "base",
     "subClassOf" : null,
@@ -197,6 +197,11 @@
     "column" : "spm.Sp_relevant_for_utilities",
     "belongsToClassMap" : "ClassMap_spm"
   }, {
+    "property" : "hasArtificial_id",
+    "type" : "xsd:integer",
+    "column" : "bar.Artificial_id",
+    "belongsToClassMap" : "ClassMap_bar"
+  }, {
     "property" : "hasBusiness_capability_description",
     "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
     "column" : "bcm.Business_capability_description",
@@ -216,6 +221,11 @@
     "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
     "column" : "bpm.Enterprise_domain_2",
     "belongsToClassMap" : "ClassMap_bpm"
+  }, {
+    "property" : "hasArtificial_id",
+    "type" : "xsd:integer",
+    "column" : "whitespaces.Artificial_id",
+    "belongsToClassMap" : "ClassMap_whitespaces"
   }, {
     "property" : "hasFp_object_type",
     "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
@@ -427,6 +437,11 @@
     "column" : "bpm.Business_activity",
     "belongsToClassMap" : "ClassMap_bpm"
   }, {
+    "property" : "hasArtificial_id",
+    "type" : "xsd:integer",
+    "column" : "scm.Artificial_id",
+    "belongsToClassMap" : "ClassMap_scm"
+  }, {
     "property" : "hasMaster_id_barea",
     "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
     "column" : "bcm.Master_id_barea",
@@ -481,6 +496,11 @@
     "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
     "column" : "bpm.Based_on_1",
     "belongsToClassMap" : "ClassMap_bpm"
+  }, {
+    "property" : "hasArtificial_id",
+    "type" : "xsd:integer",
+    "column" : "ind.Artificial_id",
+    "belongsToClassMap" : "ClassMap_ind"
   }, {
     "property" : "hasFuture_status",
     "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
@@ -556,6 +576,11 @@
     "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
     "column" : "scm.Bc_relevant_for_autmotive_industry",
     "belongsToClassMap" : "ClassMap_scm"
+  }, {
+    "property" : "hasArtificial_id",
+    "type" : "xsd:integer",
+    "column" : "bcm.Artificial_id",
+    "belongsToClassMap" : "ClassMap_bcm"
   }, {
     "property" : "hasBusiness_process_description_1",
     "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
@@ -672,6 +697,11 @@
     "column" : "bpm.Reference_to_bar_id",
     "belongsToClassMap" : "ClassMap_bpm"
   }, {
+    "property" : "hasArtificial_id",
+    "type" : "xsd:integer",
+    "column" : "bc_to_sc.Artificial_id",
+    "belongsToClassMap" : "ClassMap_bc_to_sc"
+  }, {
     "property" : "hasSp_relevant_for_professional_services",
     "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
     "column" : "spm.Sp_relevant_for_professional_services",
@@ -706,6 +736,11 @@
     "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
     "column" : "bcm.Bc_relevant_for_professional_services_industry",
     "belongsToClassMap" : "ClassMap_bcm"
+  }, {
+    "property" : "hasArtificial_id",
+    "type" : "xsd:integer",
+    "column" : "bpm.Artificial_id",
+    "belongsToClassMap" : "ClassMap_bpm"
   }, {
     "property" : "hasReference_architecture_hybrid",
     "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
@@ -795,6 +830,11 @@
     "property" : "hasSolution_process_id",
     "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
     "column" : "spm.Solution_process_id",
+    "belongsToClassMap" : "ClassMap_spm"
+  }, {
+    "property" : "hasArtificial_id",
+    "type" : "xsd:integer",
+    "column" : "spm.Artificial_id",
     "belongsToClassMap" : "ClassMap_spm"
   }, {
     "property" : "hasReference_architecture_cloud",

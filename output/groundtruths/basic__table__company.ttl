@@ -15,7 +15,7 @@ map:database a d2rq:Database;
 map:Company a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:Company;
-    d2rq:uriPattern "/@@company.id@@/";
+    d2rq:uriPattern "@@company.id@@";
     
     
     .

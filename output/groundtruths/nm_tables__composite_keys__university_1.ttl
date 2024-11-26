@@ -15,14 +15,14 @@ map:database a d2rq:Database;
 map:Student a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:Student;
-    d2rq:uriPattern "/@@student.first_name@@/@@student.last_name@@/@@student.planned_graduation_year@@/";
+    d2rq:uriPattern "@@student.first_name@@_@@student.last_name@@_@@student.planned_graduation_year@@";
     
     
     .
 map:Course a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:Course;
-    d2rq:uriPattern "/@@course.semester@@/@@course.course_name@@/";
+    d2rq:uriPattern "@@course.semester@@_@@course.course_name@@";
     
     
     .

@@ -16,126 +16,126 @@ map:database a d2rq:Database;
 map:Lake a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:Lake;
-    d2rq:uriPattern "/@@lake.name@@/";
+    d2rq:uriPattern "@@lake.name@@";
     
     
     .
 map:Religion a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:Religion;
-    d2rq:uriPattern "/@@religion.name@@/";
+    d2rq:uriPattern "@@religion.name@@";
     
     
     .
 map:BelievedBy a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:BelievedBy;
-    d2rq:uriPattern "/@@religion.name@@/@@religion.country@@/";
+    d2rq:uriPattern "@@religion.name@@/@@religion.country@@";
     
     
     .
 map:Sea a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:Sea;
-    d2rq:uriPattern "/@@sea.name@@/";
+    d2rq:uriPattern "@@sea.name@@";
     
     
     .
 map:Language a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:Language;
-    d2rq:uriPattern "/@@language.name@@/";
+    d2rq:uriPattern "@@language.name@@";
     
     
     .
 map:SpokenBy a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:SpokenBy;
-    d2rq:uriPattern "/@@spoken.language@@/@@spoken.country@@/";
+    d2rq:uriPattern "s@@spoken.language@@/@@spoken.country@@";
     
     
     .
 map:Source a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:Source;
-    d2rq:uriPattern "/@@river.name@@/";
+    d2rq:uriPattern "@@river.name@@";
     
     
     .
 map:City a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:City;
-    d2rq:uriPattern "/@@city.country@@/@@city.province@@/@@city.name@@/";
+    d2rq:uriPattern "@@city.country@@/@@city.province@@/@@city.name@@";
     
     
     .
 map:Province a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:Province;
-    d2rq:uriPattern "/@@province.country@@/@@province.name@@/";
+    d2rq:uriPattern "@@province.country@@/@@province.name@@";
     
     
     .
 map:Estuary a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:Estuary;
-    d2rq:uriPattern "/@@river.name@@/";
+    d2rq:uriPattern "@@river.name@@";
     
     
     .
 map:PopulationCountCountry a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:PopulationCount;
-    d2rq:uriPattern "/@@countrypops.country@@/@@countrypops.year@@/";
+    d2rq:uriPattern "@@countrypops.country@@/@@countrypops.year@@";
     
     
     .
 map:PopulationCountProvince a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:PopulationCount;
-    d2rq:uriPattern "/@@provpops.country@@/@@provpops.province@@/@@provpops.year@@/";
+    d2rq:uriPattern "@@provpops.country@@/@@provpops.province@@/@@provpops.year@@";
     
     
     .
 map:PopulationCountCity a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:PopulationCount;
-    d2rq:uriPattern "/@@citypops.country@@/@@citypops.province@@/@@citypops.city@@/@@provpops.year@@/";
+    d2rq:uriPattern "@@citypops.country@@/@@citypops.province@@/@@citypops.city@@/@@provpops.year@@";
     
     
     .
 map:Island a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:Island;
-    d2rq:uriPattern "/@@island.name@@/";
+    d2rq:uriPattern "@@island.name@@";
     
     
     .
 map:Archipelago a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:Archipelago;
-    d2rq:uriPattern "/@@island.islands@@/";
+    d2rq:uriPattern "@@island.islands@@";
     
     
     .
 map:Continent a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:Continent;
-    d2rq:uriPattern "/@@continent.name@@/";
+    d2rq:uriPattern "@@continent.name@@";
     
     
     .
 map:Encompassed a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:Encompassed;
-    d2rq:uriPattern "/@@encompasses.continent@@/@@encompasses.country@@/";
+    d2rq:uriPattern "@@encompasses.continent@@/@@encompasses.country@@";
     
     
     .
 map:Mountain a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:Mountain;
-    d2rq:uriPattern "/@@mountain.name@@/";
+    d2rq:uriPattern "@@mountain.name@@";
     
     
     .
@@ -146,9 +146,9 @@ map:Volcano1_SubClassOf_Mountain a d2rq:AdditionalProperty;
 map:Volcano1 a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:Volcano;
-    d2rq:uriPattern "/@@mountain.name@@/";
+    d2rq:uriPattern "@@mountain.name@@";
     
-    d2rq:condition "mountain.type = volcano";
+    d2rq:condition "mountain.type = 'volcano'";
     
     d2rq:additionalClassDefinitionProperty map:Volcano1_SubClassOf_Mountain;
     .
@@ -159,100 +159,100 @@ map:Volcano2_SubClassOf_Mountain a d2rq:AdditionalProperty;
 map:Volcano2 a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:Volcano;
-    d2rq:uriPattern "/@@mountain.name@@/";
+    d2rq:uriPattern "@@mountain.name@@";
     
-    d2rq:condition "mountain.type = volcanic";
+    d2rq:condition "mountain.type = 'volcanic'";
     
     d2rq:additionalClassDefinitionProperty map:Volcano2_SubClassOf_Mountain;
     .
 map:MountainRange a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:MountainRange;
-    d2rq:uriPattern "/@@mountain.mountains@@/";
+    d2rq:uriPattern "@@mountain.mountains@@";
     
     
     .
 map:Organization a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:Organization;
-    d2rq:uriPattern "/@@organization.abbreviation@@/";
+    d2rq:uriPattern "@@organization.abbreviation@@";
     
     
     .
 map:Membership a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:Membership;
-    d2rq:uriPattern "/@@ismember.country@@/@@ismember.organization@@/";
+    d2rq:uriPattern "@@ismember.country@@/@@ismember.organization@@";
     
     
     .
 map:River1 a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:River;
-    d2rq:uriPattern "/@@river.name@@/";
+    d2rq:uriPattern "@@river.name@@";
     
     
     .
 map:River2 a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:River;
-    d2rq:uriPattern "/@@river.river@@/";
+    d2rq:uriPattern "@@river.river@@";
     
     
     .
 map:Border a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:Border;
-    d2rq:uriPattern "/@@borders.country1@@/@@borders.country2@@/";
+    d2rq:uriPattern "/@@borders.country1@@/@@borders.country2@@";
     
     
     .
 map:Desert a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:Desert;
-    d2rq:uriPattern "/@@desert.name@@/";
+    d2rq:uriPattern "@@desert.name@@";
     
     
     .
 map:EthnicGroup a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:EthnicGroup;
-    d2rq:uriPattern "/@@ethnicgroup.name@@/";
+    d2rq:uriPattern "@@ethnicgroup.name@@";
     
     
     .
 map:EthnicProportion a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:EthnicProportion;
-    d2rq:uriPattern "/@@ethnicgroup.name@@/@@ethnicgroup.country@@/";
+    d2rq:uriPattern "@@ethnicgroup.name@@/@@ethnicgroup.country@@";
     
     
     .
 map:CountryFull a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:Country;
-    d2rq:uriPattern "/@@country.code@@/";
+    d2rq:uriPattern "@@country.code@@";
     
     
     .
 map:CountryPolitics a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:Country;
-    d2rq:uriPattern "/@@politics.country@@/";
+    d2rq:uriPattern "@@politics.country@@";
     
     
     .
 map:CountryDependent a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:Country;
-    d2rq:uriPattern "/@@politics.dependent@@/";
+    d2rq:uriPattern "@@politics.dependent@@";
     
     
     .
 map:PoliticalBody a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:PoliticalBody;
-    d2rq:uriPattern "/@@politics.wasdependent@@/";
+    d2rq:uriPattern "@@politics.wasdependent@@";
     
     
     .

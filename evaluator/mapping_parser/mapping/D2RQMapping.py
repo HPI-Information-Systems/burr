@@ -101,7 +101,7 @@ class D2RQMapping(BaseMapping):
 
     def parse_relations(self):
         relations = []
-        properties = ["d2rq:property", "d2rq:belongsToClassMap", "d2rq:refersToClassMap", "d2rq:join", "d2rq:column", "d2rq:sqlExpression"]
+        properties = ["d2rq:property", "d2rq:belongsToClassMap", "d2rq:refersToClassMap", "d2rq:join", "d2rq:column", "d2rq:sqlExpression", "d2rq:constantValue"]
         property_bridges = self.query_properties("PropertyBridge", properties)
         for property_bridge in property_bridges:
             relations.append(Relation(
@@ -110,6 +110,7 @@ class D2RQMapping(BaseMapping):
                     property=self.shorten_uri(property_bridge["d2rq:property"]) if "d2rq:property" in property_bridge.keys() else None,
                     belongsToClassMap=self.__mapping_id_to_class(self.shorten_uri(property_bridge["d2rq:belongsToClassMap"])) if "d2rq:belongsToClassMap" in property_bridge.keys() else None,
                     refersToClassMap=self.__mapping_id_to_class(self.shorten_uri(property_bridge["d2rq:refersToClassMap"])) if "d2rq:refersToClassMap" in property_bridge.keys() else None,
+                    constantValue=self.shorten_uri(property_bridge["d2rq:constantValue"]) if "d2rq:constantValue" in property_bridge.keys() else None,
                     sqlExpression=property_bridge["d2rq:sqlExpression"] if "d2rq:sqlExpression" in property_bridge.keys() else None,
                     join=property_bridge["d2rq:join"] if "d2rq:join" in property_bridge.keys() else None,
                     column=property_bridge["d2rq:column"] if "d2rq:column" in property_bridge.keys() else None,

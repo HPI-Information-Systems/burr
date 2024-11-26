@@ -15,14 +15,14 @@ map:database a d2rq:Database;
 map:Employee a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:Employee;
-    d2rq:uriPattern "/@@employee.id@@/";
+    d2rq:uriPattern "@@employee.id@@";
     
     
     .
 map:Skill a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:Skill;
-    d2rq:uriPattern "/@@skill.id@@/";
+    d2rq:uriPattern "@@skill.id@@";
     
     
     .

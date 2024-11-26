@@ -18,12 +18,12 @@
             "uri": "/SAP/RBA/BAR/"
         },
         {
-            "prefix": "sap",
-            "uri": "/SAP/"
-        },
-        {
             "prefix": "bcm",
             "uri": "/SAP/RBA/BCM/"
+        },
+        {
+            "prefix": "sap",
+            "uri": "/SAP/"
         },
         {
             "prefix": "base",

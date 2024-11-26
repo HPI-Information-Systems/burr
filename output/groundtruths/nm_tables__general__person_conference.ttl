@@ -15,14 +15,14 @@ map:database a d2rq:Database;
 map:Person a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:Person;
-    d2rq:uriPattern "/@@person.id@@/";
+    d2rq:uriPattern "@@person.id@@";
     
     
     .
 map:Conference a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:Conference;
-    d2rq:uriPattern "/@@conference.id@@/";
+    d2rq:uriPattern "@@conference.id@@";
     
     
     .

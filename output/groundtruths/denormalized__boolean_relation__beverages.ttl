@@ -15,43 +15,49 @@ map:database a d2rq:Database;
 map:Beverage a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:Beverage;
-    d2rq:uriPattern "/@@beverage.id@@/";
+    d2rq:uriPattern "@@beverage.id@@";
     
     
     .
 map:IngredientCaffeine a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:Ingredient;
+    d2rq:uriPattern "caffeine";
     
     
     .
 map:IngredientSugar a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:Ingredient;
+    d2rq:uriPattern "sugar";
     
     
     .
 map:IngredientAlcohol a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:Ingredient;
+    d2rq:uriPattern "alcohol";
     
     
     .
 map:IngredientDairy a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:Ingredient;
+    d2rq:uriPattern "dairy";
     
     
     .
 map:IngredientGluten a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:Ingredient;
+    d2rq:uriPattern "gluten";
     
     
     .
 map:IngredientNuts a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:Ingredient;
+    d2rq:uriPattern "nuts";
     
     
     .

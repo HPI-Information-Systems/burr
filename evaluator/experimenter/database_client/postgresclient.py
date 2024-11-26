@@ -29,7 +29,7 @@ class PostgresClient:
             print(f"Error creating SQLAlchemy engine: {e}")
             return None
 
-    def update_database(self, script_path):
+    def update_database(self, script_path, add_primary_keys=False):
         """Runs an SQL script file using psql command line."""
         wandb.save(script_path, base_path=os.path.dirname(script_path))
         command = ['psql', '-f', script_path, '-U', self.user, '-d', self.database, '-h', self.host]
@@ -41,7 +41,8 @@ class PostgresClient:
             print("Database update failed with return code:", result.returncode)
             print("Error output:", result.stderr)
             raise ValueError("Database update failed")
-        self.add_primary_keys()
+        if add_primary_keys:
+            self.add_primary_keys()
 
     def add_primary_keys(self):
         query = """
@@ -71,9 +72,27 @@ class PostgresClient:
             # Add an `id` column as a primary key for each table without one
             with engine.connect() as connection:
                 for table in tables:
-                    alter_query = f"ALTER TABLE {table} ADD COLUMN artificial_id SERIAL PRIMARY KEY;"
                     try:
-                        connection.execute(text(alter_query))
+                        #verify_query = text(f'ALTER SCHEMA public OWNER TO lukaslaskowski;')
+                        #result = connection.execute(verify_query)
+                        alter_query = f"ALTER TABLE {table} ADD COLUMN artificial_id SERIAL PRIMARY KEY;"
+                        res = connection.execute(text(alter_query))
+                        connection.commit()
+                        print(res)
+                        verify_query = text(f"""
+                            SELECT column_name, data_type
+                            FROM information_schema.columns
+                            WHERE table_name = '{table}'
+                            AND column_name = 'artificial_id';
+                        """)
+                        result = connection.execute(verify_query)
+                        row = result.fetchone()
+                        print(row)
+                        if row:
+                            print("Column added successfully:", row)
+                        else:
+                            print("The column was not added.")
+                        print(text(alter_query))
                         print(f"Primary key added to {table} successfully.")
                     except SQLAlchemyError as e:
                         connection.rollback()

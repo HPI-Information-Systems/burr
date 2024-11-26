@@ -15,51 +15,52 @@ map:database a d2rq:Database;
 map:PersonInstructor a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:Person;
-    d2rq:uriPattern "/@@instructor.id@@/";
+    d2rq:uriPattern "@@instructor.id@@";
     
     
     .
 map:PersonStudent a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:Person;
-    d2rq:uriPattern "/@@student.id@@/";
+    d2rq:uriPattern "@@student.id@@";
     
     
     .
 map:Student a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:Student;
-    d2rq:uriPattern "/@@student.id@@/";
+    d2rq:uriPattern "@@student.id@@";
     
     
     .
 map:Instructor a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:Instructor;
-    d2rq:uriPattern "/@@instructor.id@@/";
+    d2rq:uriPattern "@@instructor.id@@";
     
     
     .
 map:Course a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:Course;
-    d2rq:uriPattern "/@@course.id@@/";
+    d2rq:uriPattern "@@course.id@@";
     
     
     .
-map:teaches_Instructor_Student a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:Instructor;
-    d2rq:refersToClassMap map:Student;
-    d2rq:property base:teaches;
-    d2rq:join "student.id = student_course_instructor.sid";
-    d2rq:join "instructor.id = student_course_instructor.iid";
-    .
-
 map:teaches_Instructor_Course a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:Instructor;
     d2rq:refersToClassMap map:Course;
     d2rq:property base:teaches;
+    d2rq:join "student.id = student_course_instructor.sid";
     d2rq:join "instructor.id = student_course_instructor.iid";
+    d2rq:join "course.id = student_course_instructor.cid";
+    .
+
+map:participates_Student_Course a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Student;
+    d2rq:refersToClassMap map:Course;
+    d2rq:property base:participates;
+    d2rq:join "student.id = student_course_instructor.sid";
     d2rq:join "course.id = student_course_instructor.cid";
     .
 

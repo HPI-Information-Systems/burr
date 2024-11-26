@@ -45,6 +45,7 @@ class ClassMap:
         uri_patterns = re.findall('@@(.*?)@@', uri_pattern)#.group(1).split(".") #!TODO This does not work when having more than one database access
         # replace |urlify with ""
         uri_patterns = [pattern.replace("|urlify", "") for pattern in uri_patterns]
+        uri_patterns = [pattern.replace("|encode", "") for pattern in uri_patterns]
         return [SQLAttribute(table=pattern.split(".")[0].lower(), attribute=pattern.split(".")[1].lower()) for pattern in uri_patterns]
 
     def parse_join(self, join):
@@ -70,7 +71,7 @@ class ClassMap:
                 .render(
                     class_name=self.class_uri,
                     mapping_name = self.mapping_id,
-                    uri_patterns=self.sql_uri_pattern,
+                    uri_patterns=self.uri_pattern,
                     #additional_property=self.additional_property,
                     conditions=self.sql_condition,
                     parent_classes=self.parent_classes,

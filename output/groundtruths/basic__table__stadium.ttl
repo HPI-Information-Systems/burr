@@ -15,7 +15,7 @@ map:database a d2rq:Database;
 map:Stadium a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:Stadium;
-    d2rq:uriPattern "/@@stadium.id@@/";
+    d2rq:uriPattern "@@stadium.id@@";
     
     
     .

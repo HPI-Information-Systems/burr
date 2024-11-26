@@ -15,14 +15,14 @@ map:database a d2rq:Database;
 map:Course a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:Course;
-    d2rq:uriPattern "/@@course.id@@/";
+    d2rq:uriPattern "@@course.id@@";
     
     
     .
 map:Requirement a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:Requirement;
-    d2rq:uriPattern "/@@requirement.id@@/";
+    d2rq:uriPattern "@@requirement.id@@";
     
     
     .

@@ -15,14 +15,14 @@ map:database a d2rq:Database;
 map:BookA a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:Book;
-    d2rq:uriPattern "/@@book.isbn@@/";
+    d2rq:uriPattern "@@book.isbn@@";
     
     
     .
 map:BookB a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:Book;
-    d2rq:uriPattern "/@@book_2.isbn@@/";
+    d2rq:uriPattern "@@book_2.isbn@@";
     
     
     .

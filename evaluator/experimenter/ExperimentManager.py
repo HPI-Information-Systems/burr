@@ -52,7 +52,7 @@ class ExperimentManager():
             raise ValueError("System not found")
         print("configuration", self.config)
         system = system(**self.config[system.solution_name] if system.solution_name in self.config else {})
-        experiment = Experiment(experiment_name, database_name=database_name , scenario_id=scenario_id, database=self.database, group=group, base_scenario=base_scenario, scenario=scenario, solution=system, sql_file_path=sql_file_path, meta_file_path=meta_file_path, groundtruth_mapping_path=groundtruth_mapping_path, tag=self.tag, use_wandb=self.use_wandb)
+        experiment = Experiment(experiment_name, database_name=database_name, scenario_id=scenario_id, database=self.database, group=group, base_scenario=base_scenario, scenario=scenario, solution=system, sql_file_path=sql_file_path, meta_file_path=meta_file_path, groundtruth_mapping_path=groundtruth_mapping_path, tag=self.tag, use_wandb=self.use_wandb)
         try:
             output = experiment.run(system_config)
         except Exception:

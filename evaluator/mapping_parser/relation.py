@@ -115,16 +115,13 @@ class Relation:
         return f"Relation(property={self.property}, belongsToClassMap={self.belongsToClassMap}, refersToClassMap={self.refersToClassMap}, eq_strategy={self._eq_strategy}, joins={self.sql_join}, column={self.sql_column}, condition={self.sql_condition}, sql_expression={self.sql_expression})"
 
 def equality_by_property_name(edge1: Relation, edge2: Relation) -> bool:
-    print("Checking equality for ", edge1.property, edge2.property)
     def clean_property_name(property):
         fillers = [" ", "_", "-", "has", "is", "of", "the"]
         #work with fillers "a" or "an" only when they follow a capital letter
-        
         for filler in fillers:
             property = property.replace(filler, "")
         property = re.sub(r"\b(a|an)\s+(?=[A-Z])", "", property)
         return property.strip().lower()
-    print(clean_property_name(edge1.property), clean_property_name(edge2.property))
     cleaned_equality = clean_property_name(edge1.property) == clean_property_name(edge2.property)
     regular_equality = edge1.property.strip().lower() == edge2.property.strip().lower()
     return cleaned_equality or regular_equality
@@ -144,6 +141,8 @@ def equality_by_edge_query(edge1: Relation, edge2: Relation) -> bool:
     sql_expressions_none = edge1.sql_sql_expression is None and edge2.sql_sql_expression is None
     columns_not_none = edge1.sql_column is not None and edge2.sql_column is not None
     columns_none = edge1.sql_column is None and edge2.sql_column is None
+    constant_values_not_none = edge1.constantValue is not None and edge2.constantValue is not None
+    constant_values_none = edge1.constantValue is None and edge2.constantValue is None
     if joins_not_none:
         joins_equal = set(edge1.sql_join) == set(edge2.sql_join)
     elif joins_none:
@@ -159,7 +158,16 @@ def equality_by_edge_query(edge1: Relation, edge2: Relation) -> bool:
         columns_equal = True
     else:
         return False
-    return joins_equal and columns_equal
+    
+    if constant_values_not_none:
+        constant_values_equal = edge1.constantValue == edge2.constantValue
+    elif constant_values_none:
+        constant_values_equal = True
+    else:
+        return False
+    
+    #here check für constantbalue einbae
+    return joins_equal and columns_equal and constant_values_equal
 
 def hash_by_edge_query(edge: Relation) -> int:
     joins_hash = hash(frozenset(edge.sql_join)) if edge.sql_join is not None else 0

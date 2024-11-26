@@ -34,7 +34,7 @@ class Experiment:
                 self.meta = json.load(json_file)
         self.solution = solution
 
-    def setup(self):
+    def setup(self, requires_pks=False):
         print("Setting up experiment")
         file_ending_is_json =  self.groundtruth_mapping_path.endswith(".json")
         print("Loading groundtruth mapping")
@@ -85,11 +85,13 @@ class Experiment:
             f.write(self.groundtruth_mapping.create_ttl_string(self.database_name))
         wandb.save(f"/Users/lukaslaskowski/Documents/HPI/KG/ontology_mappings/rdb2ontology/output/groundtruths/{self.scenario_id}.ttl")
         print("Rewriting database")
-        self.database.update_database(self.sql_file_path)        
+        print("Requires PKs", requires_pks)
+        self.database.update_database(self.sql_file_path, add_primary_keys=requires_pks)        
         print("Experiment setup complete")
     
     def run(self, solution_config):
-        self.setup()
+        requires_pks = solution_config["requires_pks"] if "requires_pks" in solution_config else False
+        self.setup(requires_pks=requires_pks)
         train_config = solution_config["train"]
         test_config = solution_config["test"]
         trained_model, training_time = self.solution.train(**train_config)

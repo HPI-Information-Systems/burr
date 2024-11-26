@@ -15,25 +15,28 @@ map:database a d2rq:Database;
 map:Software a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:Software;
-    d2rq:uriPattern "/@@software.id@@/";
+    d2rq:uriPattern "@@software.id@@";
     
     
     .
 map:OperatingSystemWindows a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:OperatingSystem;
+    d2rq:uriPattern "windows";
     
     
     .
 map:OperatingSystemMacOS a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:OperatingSystem;
+    d2rq:uriPattern "macos";
     
     
     .
 map:OperatingSystemLinux a d2rq:ClassMap;
     d2rq:dataStorage map:database;
     d2rq:class base:OperatingSystem;
+    d2rq:uriPattern "linux";
     
     
     .
