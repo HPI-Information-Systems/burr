@@ -63,6 +63,7 @@ class JsonMapping(BaseMapping):
     def parse_class_entry(self, entry):
         mapping_name = entry["name"] if "name" in entry else entry["class"]
         cls_ = entry["class"]
+        bNodeIdColumns = entry["bNodeIdColumns"] if "bNodeIdColumns" in entry else None
         uri_pattern = entry["id"].lower()
         prefix = entry["prefix"].lower() if "prefix" in entry else "base"
         conditions = entry["condition"] if "condition" in entry else None
@@ -70,7 +71,7 @@ class JsonMapping(BaseMapping):
         translate_with = entry["translateWith"] if "translateWith" in entry else None
         parent_classes = entry["subclassOf"] if "subclassOf" in entry else None
         datastorage = "database"
-        return ClassMap(mapping_id=mapping_name, prefix=prefix, class_uri=cls_, uriPattern=uri_pattern, condition=conditions, join=joins, datastorage=datastorage, parent_classes=parent_classes, translate_with=translate_with)
+        return ClassMap(mapping_id=mapping_name, prefix=prefix, bNodeIdColumns=bNodeIdColumns, class_uri=cls_, uriPattern=uri_pattern, condition=conditions, join=joins, datastorage=datastorage, parent_classes=parent_classes, translate_with=translate_with)
 
     def parse_property_bridge_entry(self, entry, prefix):
         refers_to_class_map = None
@@ -81,6 +82,7 @@ class JsonMapping(BaseMapping):
         mapping_name = f"{entry['property']}_{belongs_to_class_map}_{refers_to_class_map}" + (f"_{index}" if index else "")
         property = entry["property"]
         joins = entry["join"] if "join" in entry else None
+        pattern = entry["pattern"] if "pattern" in entry else None
         conditions = entry["condition"] if "condition" in entry else None
         column = entry["column"].lower() if "column" in entry else None
         datatype = entry["datatype"] if "datatype" in entry else None
@@ -88,7 +90,7 @@ class JsonMapping(BaseMapping):
         sqlExpression = entry["sqlExpression"] if "sqlExpression" in entry else None
         translate_with = entry["translateWith"] if "translateWith" in entry else None
         constant_value = entry["constantValue"] if "constantValue" in entry else None#
-        return Relation(prefix=prefix, mapping_id=mapping_name, property=property, constantValue=constant_value,belongsToClassMap=belongs_to_class_map, refersToClassMap=refers_to_class_map, join=joins, condition=conditions, column=column, datatype=datatype, inverse_of=inverse_of, translate_with=translate_with, sqlExpression=sqlExpression)#.get_d2rq_mapping()
+        return Relation(prefix=prefix, mapping_id=mapping_name, property=property, pattern=pattern, constantValue=constant_value,belongsToClassMap=belongs_to_class_map, refersToClassMap=refers_to_class_map, join=joins, condition=conditions, column=column, datatype=datatype, inverse_of=inverse_of, translate_with=translate_with, sqlExpression=sqlExpression)#.get_d2rq_mapping()
 
 
 # parse_mapping_file("/Users/lukaslaskowski/Documents/HPI/KG/ontology_mappings/rdb2ontology/real-world/mondial/mappings", "sap", "sap")

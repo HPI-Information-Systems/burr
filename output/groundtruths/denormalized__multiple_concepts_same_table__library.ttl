@@ -30,53 +30,62 @@ map:writtenBy_Book_Author a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:Book;
     d2rq:refersToClassMap map:Author;
     d2rq:property base:writtenBy;
+    
     .
 
 map:name_Book_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:Book;
     d2rq:property base:name;
+    
     d2rq:column "book.name";
     .
 
 map:publicationYear_Book_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:Book;
     d2rq:property base:publicationYear;
+    
     d2rq:column "book.publication_year";
     .
 
 map:copiesAvailable_Book_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:Book;
     d2rq:property base:copiesAvailable;
+    
     d2rq:column "book.copies_available";
     .
 
 map:isbn_Book_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:Book;
     d2rq:property base:isbn;
+    
     d2rq:column "book.isbn";
     .
 
 map:name_Author_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:Author;
     d2rq:property base:name;
+    
     d2rq:column "book.author";
     .
 
 map:birthYear_Author_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:Author;
     d2rq:property base:birthYear;
+    
     d2rq:column "book.birth_year";
     .
 
 map:nationality_Author_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:Author;
     d2rq:property base:nationality;
+    
     d2rq:column "book.nationality";
     .
 
 map:address_Author_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:Author;
     d2rq:property base:address;
+    
     d2rq:column "book.address";
     .
 

@@ -22,12 +22,14 @@ map:Adult a d2rq:ClassMap;
 map:name_Adult_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:Adult;
     d2rq:property base:name;
+    
     d2rq:column "adult.name";
     .
 
 map:age_Adult_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:Adult;
     d2rq:property base:age;
+    
     d2rq:column "adult.age";
     .
 

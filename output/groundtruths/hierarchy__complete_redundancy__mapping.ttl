@@ -36,18 +36,21 @@ map:Reviewer a d2rq:ClassMap;
 map:name_PersonMap_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:PersonMap;
     d2rq:property base:name;
+    
     d2rq:column "person.name";
     .
 
 map:email_Author_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:Author;
     d2rq:property base:email;
+    
     d2rq:column "author.email";
     .
 
 map:area_Reviewer_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:Reviewer;
     d2rq:property base:area;
+    
     d2rq:column "reviewer.area";
     .
 

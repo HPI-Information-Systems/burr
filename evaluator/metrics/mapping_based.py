@@ -13,6 +13,8 @@ class MappingBasedPrecision(Metric):
         el1 = list(set(el1))
         el2 = list(set(el2))
         shared_elements = [x for x in el2 if x in el1]
+        if len(el1) == 0 and len(el2) == 0:
+            return 1.0
         return len(shared_elements) / len(el2) if len(el2) > 0 else 0.0
 
     def __str__(self):
@@ -31,6 +33,9 @@ class MappingBasedRecall(Metric):
         el1 = list(set(el1))
         el2 = list(set(el2))
         shared_elements = [x for x in el2 if x in el1]
+        if len(el1) == 0 and len(el2) == 0:
+            return 1.0
+        # print("SHARED ELEMENTS", shared_elements)
         return len(shared_elements) / len(el1) if len(el1) > 0 else 0.0
 
     def __str__(self):

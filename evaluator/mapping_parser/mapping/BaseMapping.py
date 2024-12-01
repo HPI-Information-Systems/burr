@@ -27,21 +27,23 @@ class BaseMapping(ABC):
         uri = str(URIRef(uri)).replace("<", "").replace(">", "").replace(" ", "")#.replace("#", "")
         most_specific_namespace = ""
         for _, namespace in self.graph.namespaces():
-            namespace_parsed = "/".join(urlparse(namespace).path.strip("/").split("/")[:-1])
-            uri_parsed = "/".join(urlparse(uri).path.strip("/").split("/")[:-1])
-            if namespace_parsed == uri_parsed:
-                return urlparse(uri).path.strip("/").split("/")[-1]
-            # if str(uri).startswith(namespace):
-            #     if len(namespace.split("/")) > len(most_specific_namespace.split("/")):
-            #         most_specific_namespace = namespace
-        # if most_specific_namespace != "":
-        #     return str(uri)[len(namespace):]
-        print("WARNING - URI could not be shortened: ", uri, " - returning last part of URI, divided by / or #")
+            # if urlparse(uri).path.strip("/") == "":
+            #     continue
+            # namespace_parsed = "/".join(urlparse(namespace).path.strip("/").split("/")[:-1])
+            # uri_parsed = "/".join(urlparse(uri).path.strip("/").split("/")[:-1])
+            # if namespace_parsed == uri_parsed:
+            #     return urlparse(uri).path.strip("/").split("/")[-1]
+            if str(uri).startswith(namespace):
+                if len(namespace.split("/")) > len(most_specific_namespace.split("/")):
+                    most_specific_namespace = namespace
+        if most_specific_namespace != "":
+            return str(uri)[len(most_specific_namespace):]
         if "#" in uri:
-            uri = uri.split("#")[-1]
+            short_uri = uri.split("#")[-1]
         else:
-            uri = uri.split("/")[-1]
-        return uri
+            short_uri = uri.split("/")[-1]
+        print("WARNING - URI could not be shortened: ", uri, " - returning last part of URI, divided by / or #: ", short_uri)
+        return short_uri
     
     def create_ttl_string(self, database):
         output = ""

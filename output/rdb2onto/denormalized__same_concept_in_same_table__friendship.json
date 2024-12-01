@@ -1,6 +1,6 @@
 {
   "classes" : [ {
-    "id" : "",
+    "id" : "@@friendship.artificial_id@@/",
     "name" : "ClassMap_friendship",
     "prefix" : "base",
     "subClassOf" : null,
@@ -11,6 +11,11 @@
     "property" : "hasPerson_id_a",
     "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
     "column" : "friendship.Person_id_a",
+    "belongsToClassMap" : "ClassMap_friendship"
+  }, {
+    "property" : "hasArtificial_id",
+    "type" : "xsd:integer",
+    "column" : "friendship.Artificial_id",
     "belongsToClassMap" : "ClassMap_friendship"
   }, {
     "property" : "hasPerson_id_b",

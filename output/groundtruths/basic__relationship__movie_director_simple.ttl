@@ -30,5 +30,6 @@ map:directed_Director_Movie a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:Director;
     d2rq:refersToClassMap map:Movie;
     d2rq:property base:directed;
+    
     .
 

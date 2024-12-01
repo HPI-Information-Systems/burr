@@ -30,6 +30,7 @@ map:has_preference_Customer_Preference a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:Customer;
     d2rq:refersToClassMap map:Preference;
     d2rq:property base:has_preference;
+    
     d2rq:join "customer.id = customer_preference.customer_id";
     d2rq:join "preference.id = customer_preference.preference_id";
     .
@@ -37,12 +38,14 @@ map:has_preference_Customer_Preference a d2rq:PropertyBridge;
 map:name_Customer_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:Customer;
     d2rq:property base:name;
+    
     d2rq:column "customer.name";
     .
 
 map:name_Preference_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:Preference;
     d2rq:property base:name;
+    
     d2rq:column "preference.name";
     .
 

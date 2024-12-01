@@ -1,82 +1,53 @@
 @prefix rr: <http://www.w3.org/ns/r2rml#> .
-@prefix base: <https://base_ontology.com#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix base: <https://base_ontology.com#> .
 
 <#TriplesMapCourse> a rr:TriplesMap;
     rr:logicalTable [ rr:tableName "Course" ];
     rr:subjectMap [
-        rr:template "https://base_ontology.com/Course/{id}";
+        rr:template "https://base_ontology.com/Course/{courseId}";
         rr:class base:Course;
     ];
     rr:predicateObjectMap [
-        rr:predicate base:id;
-        rr:objectMap [ rr:column "id" ];
+        rr:predicate base:courseId;
+        rr:objectMap [ rr:column "courseId" ];
     ];
     rr:predicateObjectMap [
-        rr:predicate base:name;
-        rr:objectMap [ rr:column "name" ];
+        rr:predicate base:courseName;
+        rr:objectMap [ rr:column "courseName" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasRequirement;
+        rr:objectMap [ rr:parentTriplesMap <#TriplesMapRequirement> ];
     ].
 
 <#TriplesMapRequirement> a rr:TriplesMap;
     rr:logicalTable [ rr:tableName "Requirement" ];
     rr:subjectMap [
-        rr:template "https://base_ontology.com/Requirement/{id}";
+        rr:template "https://base_ontology.com/Requirement/{requirementId}";
         rr:class base:Requirement;
     ];
     rr:predicateObjectMap [
-        rr:predicate base:id;
-        rr:objectMap [ rr:column "id" ];
+        rr:predicate base:requirementId;
+        rr:objectMap [ rr:column "requirementId" ];
     ];
     rr:predicateObjectMap [
-        rr:predicate base:name;
-        rr:objectMap [ rr:column "name" ];
+        rr:predicate base:requirementName;
+        rr:objectMap [ rr:column "requirementName" ];
     ].
 
 <#TriplesMapCourseRequirement> a rr:TriplesMap;
     rr:logicalTable [ rr:tableName "CourseRequirement" ];
     rr:subjectMap [
-        rr:template "https://base_ontology.com/CourseRequirement/{course_id}_{requirement_id}";
+        rr:template "https://base_ontology.com/CourseRequirement/{courseId}/{requirementId}";
         rr:class base:CourseRequirement;
     ];
     rr:predicateObjectMap [
-        rr:predicate base:course_id;
-        rr:objectMap [ rr:column "course_id" ];
-    ];
-    rr:predicateObjectMap [
-        rr:predicate base:requirement_id;
-        rr:objectMap [ rr:column "requirement_id" ];
-    ].
-
-<#TriplesMapCourse_hasRequirement> a rr:TriplesMap;
-    rr:logicalTable [ rr:tableName "CourseRequirement" ];
-    rr:subjectMap [
-        rr:template "https://base_ontology.com/Course/{course_id}";
-        rr:class base:Course;
-    ];
-    rr:predicateObjectMap [
-        rr:predicate base:hasRequirement;
-        rr:objectMap [
-            rr:parentTriplesMap <#TriplesMapRequirement>;
-            rr:joinCondition [
-                rr:child "requirement_id";
-                rr:parent "id";
-            ]
-        ]
-    ].
-
-<#TriplesMapRequirement_isRequirementOf> a rr:TriplesMap;
-    rr:logicalTable [ rr:tableName "CourseRequirement" ];
-    rr:subjectMap [
-        rr:template "https://base_ontology.com/Requirement/{requirement_id}";
-        rr:class base:Requirement;
-    ];
-    rr:predicateObjectMap [
-        rr:predicate base:isRequirementOf;
-        rr:objectMap [
-            rr:parentTriplesMap <#TriplesMapCourse>;
-            rr:joinCondition [
-                rr:child "course_id";
-                rr:parent "id";
-            ]
-        ]
+        rr:predicate base:conformsTo;
+        rr:objectMap [ rr:parentTriplesMap <#TriplesMapRequirement> ];
     ].

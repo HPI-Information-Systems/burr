@@ -30,6 +30,7 @@ map:enrolled_in_Student_Course a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:Student;
     d2rq:refersToClassMap map:Course;
     d2rq:property base:enrolled_in;
+    
     d2rq:join "student.planned_graduation_year = enrollment.planned_graduation_year";
     d2rq:join "student.first_name = enrollment.first_name";
     d2rq:join "student.last_name = enrollment.last_name";
@@ -40,6 +41,7 @@ map:enrolled_in_Student_Course a d2rq:PropertyBridge;
 map:credits_Course_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:Course;
     d2rq:property base:credits;
+    
     d2rq:column "course.credits";
     .
 

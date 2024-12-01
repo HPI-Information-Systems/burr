@@ -30,29 +30,34 @@ map:hasComponent_BusinessArea_BusinessCapability a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:BusinessArea;
     d2rq:refersToClassMap map:BusinessCapability;
     d2rq:property base:hasComponent;
+    
     .
 
 map:name_BusinessArea_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:BusinessArea;
     d2rq:property base:name;
+    
     d2rq:column "process.area_name";
     .
 
 map:description_BusinessArea_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:BusinessArea;
     d2rq:property base:description;
+    
     d2rq:column "process.area_description";
     .
 
 map:name_BusinessCapability_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:BusinessCapability;
     d2rq:property base:name;
+    
     d2rq:column "process.capability_name";
     .
 
 map:description_BusinessCapability_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:BusinessCapability;
     d2rq:property base:description;
+    
     d2rq:column "process.capability_description";
     .
 

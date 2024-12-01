@@ -30,30 +30,35 @@ map:receivedBy_Receipt_Person a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:Receipt;
     d2rq:refersToClassMap map:Person;
     d2rq:property base:receivedBy;
+    
     d2rq:join "person.name = receipt.received_by";
     .
 
 map:name_Person_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:Person;
     d2rq:property base:name;
+    
     d2rq:column "person.name";
     .
 
 map:email_Person_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:Person;
     d2rq:property base:email;
+    
     d2rq:column "person.email";
     .
 
 map:date_Receipt_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:Receipt;
     d2rq:property base:date;
+    
     d2rq:column "receipt.date";
     .
 
 map:item_Receipt_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:Receipt;
     d2rq:property base:item;
+    
     d2rq:column "receipt.item";
     .
 

@@ -22,30 +22,35 @@ map:Person a d2rq:ClassMap;
 map:name_Person_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:Person;
     d2rq:property base:name;
+    
     d2rq:column "person.name";
     .
 
 map:address_Person_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:Person;
     d2rq:property base:address;
+    
     d2rq:sqlExpression "split_part(person.address, ,, 1)";
     .
 
 map:city_Person_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:Person;
     d2rq:property base:city;
+    
     d2rq:sqlExpression "split_part(person.address, ,, 2)";
     .
 
 map:state_Person_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:Person;
     d2rq:property base:state;
+    
     d2rq:sqlExpression "split_part(person.address, ,, 3)";
     .
 
 map:country_Person_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:Person;
     d2rq:property base:country;
+    
     d2rq:sqlExpression "split_part(person.address, ,, 4)";
     .
 

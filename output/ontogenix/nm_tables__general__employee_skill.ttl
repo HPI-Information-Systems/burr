@@ -1,6 +1,7 @@
 @prefix rr: <http://www.w3.org/ns/r2rml#> .
-@prefix base: <https://base_ontology.com#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix base: <https://base_ontology.com#> .
 
 <#TriplesMapEmployee> a rr:TriplesMap;
     rr:logicalTable [ rr:tableName "Employee" ];
@@ -15,6 +16,10 @@
     rr:predicateObjectMap [
         rr:predicate base:name;
         rr:objectMap [ rr:column "name" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasSkill;
+        rr:objectMap [ rr:parentTriplesMap <#TriplesMapSkill> ];
     ].
 
 <#TriplesMapSkill> a rr:TriplesMap;
@@ -30,53 +35,23 @@
     rr:predicateObjectMap [
         rr:predicate base:name;
         rr:objectMap [ rr:column "name" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:isSkillOf;
+        rr:objectMap [ rr:parentTriplesMap <#TriplesMapEmployee> ];
     ].
 
 <#TriplesMapEmployeeSkill> a rr:TriplesMap;
     rr:logicalTable [ rr:tableName "EmployeeSkill" ];
     rr:subjectMap [
-        rr:template "https://base_ontology.com#EmployeeSkill/{employee_id}/{skill_id}";
+        rr:template "https://base_ontology.com#EmployeeSkill/{employeeId}/{skillId}";
         rr:class base:EmployeeSkill;
     ];
     rr:predicateObjectMap [
-        rr:predicate base:employee_id;
-        rr:objectMap [ rr:column "employee_id" ];
-    ];
-    rr:predicateObjectMap [
-        rr:predicate base:skill_id;
-        rr:objectMap [ rr:column "skill_id" ];
-    ].
-
-<#TriplesMapEmployeeHasSkill> a rr:TriplesMap;
-    rr:logicalTable [ rr:tableName "EmployeeSkill" ];
-    rr:subjectMap [
-        rr:template "https://base_ontology.com#Employee/{employee_id}";
-        rr:class base:Employee;
-    ];
-    rr:predicateObjectMap [
         rr:predicate base:hasSkill;
-        rr:objectMap [
-            rr:parentTriplesMap <#TriplesMapSkill>;
-            rr:joinCondition [
-                rr:child "skill_id";
-                rr:parent "id";
-            ];
-        ];
-    ].
-
-<#TriplesMapSkillIsSkillOf> a rr:TriplesMap;
-    rr:logicalTable [ rr:tableName "EmployeeSkill" ];
-    rr:subjectMap [
-        rr:template "https://base_ontology.com#Skill/{skill_id}";
-        rr:class base:Skill;
+        rr:objectMap [ rr:parentTriplesMap <#TriplesMapSkill> ];
     ];
     rr:predicateObjectMap [
         rr:predicate base:isSkillOf;
-        rr:objectMap [
-            rr:parentTriplesMap <#TriplesMapEmployee>;
-            rr:joinCondition [
-                rr:child "employee_id";
-                rr:parent "id";
-            ];
-        ];
+        rr:objectMap [ rr:parentTriplesMap <#TriplesMapEmployee> ];
     ].

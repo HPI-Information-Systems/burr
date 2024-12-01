@@ -1,42 +1,44 @@
 @prefix rr: <http://www.w3.org/ns/r2rml#> .
-@prefix base: <https://base_ontology.com#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix base: <https://base_ontology.com#> .
 @prefix schema: <http://schema.org/> .
 
 <#TriplesMapService> a rr:TriplesMap;
-    rr:logicalTable [ rr:tableName "ServiceTable" ];
+    rr:logicalTable [ rr:tableName "Service" ];
     rr:subjectMap [
-        rr:template "https://base_ontology.com#Service/{id}";
+        rr:template "https://base_ontology.com#Service/{ServiceID}";
         rr:class base:Service;
     ];
     rr:predicateObjectMap [
-        rr:predicate base:id;
-        rr:objectMap [ rr:column "id" ];
+        rr:predicate base:count;
+        rr:objectMap [ rr:column "count" ];
     ];
     rr:predicateObjectMap [
-        rr:predicate base:name;
-        rr:objectMap [ rr:column "name" ];
-    ].
-
-<#TriplesMapID> a rr:TriplesMap;
-    rr:logicalTable [ rr:tableName "ServiceTable" ];
-    rr:subjectMap [
-        rr:template "https://base_ontology.com#Service/{id}";
-        rr:class base:Service;
+        rr:predicate base:max;
+        rr:objectMap [ rr:column "max" ];
     ];
     rr:predicateObjectMap [
-        rr:predicate dcterms:identifier;
-        rr:objectMap [ rr:column "id" ];
-    ].
-
-<#TriplesMapName> a rr:TriplesMap;
-    rr:logicalTable [ rr:tableName "ServiceTable" ];
-    rr:subjectMap [
-        rr:template "https://base_ontology.com#Service/{id}";
-        rr:class base:Service;
+        rr:predicate base:mean;
+        rr:objectMap [ rr:column "mean" ];
     ];
     rr:predicateObjectMap [
-        rr:predicate schema:name;
-        rr:objectMap [ rr:column "name" ];
+        rr:predicate base:min;
+        rr:objectMap [ rr:column "min" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:non_null_count;
+        rr:objectMap [ rr:column "non_null_count" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:std;
+        rr:objectMap [ rr:column "std" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:type;
+        rr:objectMap [ rr:column "type" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:unique_count;
+        rr:objectMap [ rr:column "unique_count" ];
     ].

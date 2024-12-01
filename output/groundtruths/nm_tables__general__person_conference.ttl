@@ -30,6 +30,7 @@ map:enable_virtual_meeting_Person_Conference a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:Person;
     d2rq:refersToClassMap map:Conference;
     d2rq:property base:enable_virtual_meeting;
+    
     d2rq:join "person.id = enable_virtual_meeting.pid";
     d2rq:join "conference.id = enable_virtual_meeting.cid";
     .

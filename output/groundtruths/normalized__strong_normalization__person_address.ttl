@@ -22,6 +22,7 @@ map:Person a d2rq:ClassMap;
 map:street_Person_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:Person;
     d2rq:property base:street;
+    
     d2rq:join "person.id = address.person_id";
     d2rq:column "address.street";
     .
@@ -29,6 +30,7 @@ map:street_Person_None a d2rq:PropertyBridge;
 map:city_Person_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:Person;
     d2rq:property base:city;
+    
     d2rq:join "person.id = address.person_id";
     d2rq:column "address.city";
     .
@@ -36,6 +38,7 @@ map:city_Person_None a d2rq:PropertyBridge;
 map:state_Person_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:Person;
     d2rq:property base:state;
+    
     d2rq:join "person.id = address.person_id";
     d2rq:column "address.state";
     .
@@ -43,6 +46,7 @@ map:state_Person_None a d2rq:PropertyBridge;
 map:zip_Person_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:Person;
     d2rq:property base:zip;
+    
     d2rq:join "person.id = address.person_id";
     d2rq:column "address.zip";
     .

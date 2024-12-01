@@ -210,7 +210,7 @@
     "join" : null,
     "class" : "island"
   }, {
-    "id" : "",
+    "id" : "@@islandin.artificial_id@@/",
     "name" : "ClassMap_islandin",
     "prefix" : "base",
     "subClassOf" : null,
@@ -266,7 +266,7 @@
     "join" : null,
     "class" : "geo_lake"
   }, {
-    "id" : "",
+    "id" : "@@located.artificial_id@@/",
     "name" : "ClassMap_located",
     "prefix" : "base",
     "subClassOf" : null,
@@ -402,6 +402,11 @@
     "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
     "column" : "province.Capital",
     "belongsToClassMap" : "ClassMap_province"
+  }, {
+    "property" : "hasArtificial_id",
+    "type" : "xsd:integer",
+    "column" : "located.Artificial_id",
+    "belongsToClassMap" : "ClassMap_located"
   }, {
     "property" : "hasCountry",
     "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
@@ -1192,6 +1197,11 @@
     "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
     "column" : "cityothername.Province",
     "belongsToClassMap" : "ClassMap_cityothername"
+  }, {
+    "property" : "hasArtificial_id",
+    "type" : "xsd:integer",
+    "column" : "islandin.Artificial_id",
+    "belongsToClassMap" : "ClassMap_islandin"
   }, {
     "property" : "hasIsland",
     "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",

@@ -1,120 +1,74 @@
 @prefix rr: <http://www.w3.org/ns/r2rml#> .
-@prefix base: <https://base_ontology.com#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix base: <https://base_ontology.com#> .
 
 <#TriplesMapSoftware> a rr:TriplesMap;
-    rr:logicalTable [ rr:tableName "software" ];
+    rr:logicalTable [ rr:tableName "SoftwareTable" ];
     rr:subjectMap [
-        rr:template "https://base_ontology.com/software/{id}";
-        rr:class base:software;
+        rr:template "https://base_ontology.com#Software/{SoftwareID}";
+        rr:class base:Software;
     ];
     rr:predicateObjectMap [
-        rr:predicate base:count;
-        rr:objectMap [ rr:column "count" ];
+        rr:predicate base:hasAttribute;
+        rr:objectMap [
+            rr:parentTriplesMap <#TriplesMapAttribute>;
+            rr:joinCondition [
+                rr:child "SoftwareID";
+                rr:parent "SoftwareID"
+            ]
+        ]
+    ].
+
+<#TriplesMapAttribute> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "AttributeTable" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com#Attribute/{AttributeID}";
+        rr:class base:Attribute;
     ];
     rr:predicateObjectMap [
-        rr:predicate base:max;
-        rr:objectMap [ rr:column "max" ];
+        rr:predicate base:hasCount;
+        rr:objectMap [ rr:column "Count" ]
     ];
     rr:predicateObjectMap [
-        rr:predicate base:mean;
-        rr:objectMap [ rr:column "mean" ];
+        rr:predicate base:hasMax;
+        rr:objectMap [ rr:column "Max" ]
     ];
     rr:predicateObjectMap [
-        rr:predicate base:min;
-        rr:objectMap [ rr:column "min" ];
+        rr:predicate base:hasMean;
+        rr:objectMap [ rr:column "Mean" ]
     ];
     rr:predicateObjectMap [
-        rr:predicate base:non_null_count;
-        rr:objectMap [ rr:column "non_null_count" ];
+        rr:predicate base:hasMin;
+        rr:objectMap [ rr:column "Min" ]
     ];
     rr:predicateObjectMap [
-        rr:predicate base:std;
-        rr:objectMap [ rr:column "std" ];
+        rr:predicate base:hasNonNullCount;
+        rr:objectMap [ rr:column "NonNullCount" ]
     ];
     rr:predicateObjectMap [
-        rr:predicate base:type;
-        rr:objectMap [ rr:column "type" ];
+        rr:predicate base:hasStd;
+        rr:objectMap [ rr:column "Std" ]
     ];
     rr:predicateObjectMap [
-        rr:predicate base:unique_count;
-        rr:objectMap [ rr:column "unique_count" ];
+        rr:predicate base:hasType;
+        rr:objectMap [ rr:column "Type" ]
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasUniqueCount;
+        rr:objectMap [ rr:column "UniqueCount" ]
     ].
 
 <#TriplesMapID> a rr:TriplesMap;
-    rr:logicalTable [ rr:tableName "id" ];
+    rr:logicalTable [ rr:tableName "IDTable" ];
     rr:subjectMap [
-        rr:template "https://base_ontology.com/id/{id}";
-        rr:class base:id;
-    ];
-    rr:predicateObjectMap [
-        rr:predicate base:count;
-        rr:objectMap [ rr:column "count" ];
-    ];
-    rr:predicateObjectMap [
-        rr:predicate base:max;
-        rr:objectMap [ rr:column "max" ];
-    ];
-    rr:predicateObjectMap [
-        rr:predicate base:mean;
-        rr:objectMap [ rr:column "mean" ];
-    ];
-    rr:predicateObjectMap [
-        rr:predicate base:min;
-        rr:objectMap [ rr:column "min" ];
-    ];
-    rr:predicateObjectMap [
-        rr:predicate base:non_null_count;
-        rr:objectMap [ rr:column "non_null_count" ];
-    ];
-    rr:predicateObjectMap [
-        rr:predicate base:std;
-        rr:objectMap [ rr:column "std" ];
-    ];
-    rr:predicateObjectMap [
-        rr:predicate base:type;
-        rr:objectMap [ rr:column "type" ];
-    ];
-    rr:predicateObjectMap [
-        rr:predicate base:unique_count;
-        rr:objectMap [ rr:column "unique_count" ];
+        rr:template "https://base_ontology.com#ID/{ID}";
+        rr:class base:ID;
     ].
 
 <#TriplesMapName> a rr:TriplesMap;
-    rr:logicalTable [ rr:tableName "name" ];
+    rr:logicalTable [ rr:tableName "NameTable" ];
     rr:subjectMap [
-        rr:template "https://base_ontology.com/name/{id}";
-        rr:class base:name;
-    ];
-    rr:predicateObjectMap [
-        rr:predicate base:count;
-        rr:objectMap [ rr:column "count" ];
-    ];
-    rr:predicateObjectMap [
-        rr:predicate base:max;
-        rr:objectMap [ rr:column "max" ];
-    ];
-    rr:predicateObjectMap [
-        rr:predicate base:mean;
-        rr:objectMap [ rr:column "mean" ];
-    ];
-    rr:predicateObjectMap [
-        rr:predicate base:min;
-        rr:objectMap [ rr:column "min" ];
-    ];
-    rr:predicateObjectMap [
-        rr:predicate base:non_null_count;
-        rr:objectMap [ rr:column "non_null_count" ];
-    ];
-    rr:predicateObjectMap [
-        rr:predicate base:std;
-        rr:objectMap [ rr:column "std" ];
-    ];
-    rr:predicateObjectMap [
-        rr:predicate base:type;
-        rr:objectMap [ rr:column "type" ];
-    ];
-    rr:predicateObjectMap [
-        rr:predicate base:unique_count;
-        rr:objectMap [ rr:column "unique_count" ];
+        rr:template "https://base_ontology.com#Name/{NameID}";
+        rr:class base:Name;
     ].

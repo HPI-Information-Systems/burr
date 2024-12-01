@@ -76,7 +76,7 @@ CREATE TABLE papers (
   URI varchar(200) default NULL,
   Year int default NULL,
   Conference int default NULL,
-  Publish smallint default NULL,
+  Publish int default NULL,
   PRIMARY KEY  (PaperID)
 ) ;
 

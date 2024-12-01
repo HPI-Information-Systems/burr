@@ -7,1190 +7,394 @@
 @prefix d2rq: <http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#> .
 @prefix jdbc: <http://d2rq.org/terms/jdbc/> .
 
+map:Configuration a d2rq:Configuration;
+	d2rq:serveVocabulary false.
+
 map:database a d2rq:Database;
 	d2rq:jdbcDriver "org.postgresql.Driver";
-	d2rq:jdbcDSN "jdbc:postgresql://localhost:5432/real_world__rba__original";
+	d2rq:jdbcDSN "jdbc:postgresql://localhost:5432/real_world__iswc__original";
 	d2rq:username "lukaslaskowski";
 	d2rq:password "password";
 	.
 
-# Table bar
-map:bar a d2rq:ClassMap;
+# Table conferences
+map:conferences a d2rq:ClassMap;
 	d2rq:dataStorage map:database;
-	# Sorry, I don't know which columns to put into the uriPattern
-	#     for "bar" because the table doesn't have a primary key.
-	#     Please specify it manually.
-	d2rq:uriPattern "bar";
-	d2rq:class vocab:bar;
-	d2rq:classDefinitionLabel "bar";
+	d2rq:uriPattern "conferences/confid=@@conferences.confid@@";
+	d2rq:class <conferences>;
 	.
-map:bar_enterprise_domain a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:bar;
-	d2rq:property vocab:bar_enterprise_domain;
-	d2rq:propertyDefinitionLabel "bar enterprise_domain";
-	d2rq:column "bar.enterprise_domain";
+map:conferences_confid a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:conferences;
+	d2rq:property <conferences#confid>;
+	d2rq:column "conferences.confid";
+	d2rq:datatype xsd:integer;
 	.
-map:bar_business_activity a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:bar;
-	d2rq:property vocab:bar_business_activity;
-	d2rq:propertyDefinitionLabel "bar business_activity";
-	d2rq:column "bar.business_activity";
+map:conferences_name a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:conferences;
+	d2rq:property <conferences#name>;
+	d2rq:column "conferences.name";
 	.
-map:bar_business_activity_code a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:bar;
-	d2rq:property vocab:bar_business_activity_code;
-	d2rq:propertyDefinitionLabel "bar business_activity_code";
-	d2rq:column "bar.business_activity_code";
+map:conferences_uri a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:conferences;
+	d2rq:property <conferences#uri>;
+	d2rq:column "conferences.uri";
 	.
-map:bar_apqc_reference a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:bar;
-	d2rq:property vocab:bar_apqc_reference;
-	d2rq:propertyDefinitionLabel "bar apqc_reference";
-	d2rq:column "bar.apqc_reference";
+map:conferences_date a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:conferences;
+	d2rq:property <conferences#date>;
+	d2rq:column "conferences.date";
 	.
-map:bar_business_activity_description a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:bar;
-	d2rq:property vocab:bar_business_activity_description;
-	d2rq:propertyDefinitionLabel "bar business_activity_description";
-	d2rq:column "bar.business_activity_description";
+map:conferences_location a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:conferences;
+	d2rq:property <conferences#location>;
+	d2rq:column "conferences.location";
 	.
-map:bar_annotation a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:bar;
-	d2rq:property vocab:bar_annotation;
-	d2rq:propertyDefinitionLabel "bar annotation";
-	d2rq:column "bar.annotation";
+map:conferences_datum a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:conferences;
+	d2rq:property <conferences#datum>;
+	d2rq:column "conferences.datum";
+	d2rq:datatype xsd:dateTime;
 	.
 
-# Table bc_to_sc
-map:bc_to_sc a d2rq:ClassMap;
+# Table organizations
+map:organizations a d2rq:ClassMap;
 	d2rq:dataStorage map:database;
-	# Sorry, I don't know which columns to put into the uriPattern
-	#     for "bc_to_sc" because the table doesn't have a primary key.
-	#     Please specify it manually.
-	d2rq:uriPattern "bc_to_sc";
-	d2rq:class vocab:bc_to_sc;
-	d2rq:classDefinitionLabel "bc_to_sc";
+	d2rq:uriPattern "organizations/orgid=@@organizations.orgid@@";
+	d2rq:class <organizations>;
 	.
-map:bc_to_sc_object_id_sc a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:bc_to_sc;
-	d2rq:property vocab:bc_to_sc_object_id_sc;
-	d2rq:propertyDefinitionLabel "bc_to_sc object_id_sc";
-	d2rq:column "bc_to_sc.object_id_sc";
+map:organizations_orgid a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:organizations;
+	d2rq:property <organizations#orgid>;
+	d2rq:column "organizations.orgid";
+	d2rq:datatype xsd:integer;
 	.
-map:bc_to_sc_master_id_bc a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:bc_to_sc;
-	d2rq:property vocab:bc_to_sc_master_id_bc;
-	d2rq:propertyDefinitionLabel "bc_to_sc master_id_bc";
-	d2rq:column "bc_to_sc.master_id_bc";
+map:organizations_type a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:organizations;
+	d2rq:property <organizations#type>;
+	d2rq:column "organizations.type";
 	.
-map:bc_to_sc_solution_capability a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:bc_to_sc;
-	d2rq:property vocab:bc_to_sc_solution_capability;
-	d2rq:propertyDefinitionLabel "bc_to_sc solution_capability";
-	d2rq:column "bc_to_sc.solution_capability";
+map:organizations_name a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:organizations;
+	d2rq:property <organizations#name>;
+	d2rq:column "organizations.name";
 	.
-map:bc_to_sc_reference_architecture_hybrid a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:bc_to_sc;
-	d2rq:property vocab:bc_to_sc_reference_architecture_hybrid;
-	d2rq:propertyDefinitionLabel "bc_to_sc reference_architecture_hybrid";
-	d2rq:column "bc_to_sc.reference_architecture_hybrid";
+map:organizations_address a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:organizations;
+	d2rq:property <organizations#address>;
+	d2rq:column "organizations.address";
 	.
-map:bc_to_sc_reference_architecture_cloud a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:bc_to_sc;
-	d2rq:property vocab:bc_to_sc_reference_architecture_cloud;
-	d2rq:propertyDefinitionLabel "bc_to_sc reference_architecture_cloud";
-	d2rq:column "bc_to_sc.reference_architecture_cloud";
+map:organizations_location a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:organizations;
+	d2rq:property <organizations#location>;
+	d2rq:column "organizations.location";
 	.
-map:bc_to_sc_type a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:bc_to_sc;
-	d2rq:property vocab:bc_to_sc_type;
-	d2rq:propertyDefinitionLabel "bc_to_sc type";
-	d2rq:column "bc_to_sc.type";
+map:organizations_postcode a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:organizations;
+	d2rq:property <organizations#postcode>;
+	d2rq:column "organizations.postcode";
 	.
-map:bc_to_sc_ppms_product_id a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:bc_to_sc;
-	d2rq:property vocab:bc_to_sc_ppms_product_id;
-	d2rq:propertyDefinitionLabel "bc_to_sc ppms_product_id";
-	d2rq:column "bc_to_sc.ppms_product_id";
+map:organizations_country a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:organizations;
+	d2rq:property <organizations#country>;
+	d2rq:column "organizations.country";
 	.
-map:bc_to_sc_line_item_type a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:bc_to_sc;
-	d2rq:property vocab:bc_to_sc_line_item_type;
-	d2rq:propertyDefinitionLabel "bc_to_sc line_item_type";
-	d2rq:column "bc_to_sc.line_item_type";
+map:organizations_uri a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:organizations;
+	d2rq:property <organizations#uri>;
+	d2rq:column "organizations.uri";
 	.
-map:bc_to_sc_reference_architecture_hybrid_1 a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:bc_to_sc;
-	d2rq:property vocab:bc_to_sc_reference_architecture_hybrid_1;
-	d2rq:propertyDefinitionLabel "bc_to_sc reference_architecture_hybrid_1";
-	d2rq:column "bc_to_sc.reference_architecture_hybrid_1";
+map:organizations_belongsto a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:organizations;
+	d2rq:property <organizations#belongsto>;
+	d2rq:column "organizations.belongsto";
+	d2rq:datatype xsd:integer;
 	.
-map:bc_to_sc_reference_architecture_cloud_1 a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:bc_to_sc;
-	d2rq:property vocab:bc_to_sc_reference_architecture_cloud_1;
-	d2rq:propertyDefinitionLabel "bc_to_sc reference_architecture_cloud_1";
-	d2rq:column "bc_to_sc.reference_architecture_cloud_1";
+map:organizations_homepage a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:organizations;
+	d2rq:property <organizations#homepage>;
+	d2rq:column "organizations.homepage";
 	.
-map:bc_to_sc_ppms_product_name a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:bc_to_sc;
-	d2rq:property vocab:bc_to_sc_ppms_product_name;
-	d2rq:propertyDefinitionLabel "bc_to_sc ppms_product_name";
-	d2rq:column "bc_to_sc.ppms_product_name";
-	.
-map:bc_to_sc_deployment_type a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:bc_to_sc;
-	d2rq:property vocab:bc_to_sc_deployment_type;
-	d2rq:propertyDefinitionLabel "bc_to_sc deployment_type";
-	d2rq:column "bc_to_sc.deployment_type";
-	.
-map:bc_to_sc_platform a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:bc_to_sc;
-	d2rq:property vocab:bc_to_sc_platform;
-	d2rq:propertyDefinitionLabel "bc_to_sc platform";
-	d2rq:column "bc_to_sc.platform";
-	.
-map:bc_to_sc_alternative_hybrid a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:bc_to_sc;
-	d2rq:property vocab:bc_to_sc_alternative_hybrid;
-	d2rq:propertyDefinitionLabel "bc_to_sc alternative_hybrid";
-	d2rq:column "bc_to_sc.alternative_hybrid";
-	.
-map:bc_to_sc_alternative_cloud a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:bc_to_sc;
-	d2rq:property vocab:bc_to_sc_alternative_cloud;
-	d2rq:propertyDefinitionLabel "bc_to_sc alternative_cloud";
-	d2rq:column "bc_to_sc.alternative_cloud";
+map:organizations_belongsto__ref a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:organizations;
+	d2rq:property <organizations#ref-belongsto>;
+	d2rq:refersToClassMap map:organizations;
+	d2rq:alias "organizations AS organizations__alias";
+	d2rq:join "organizations.belongsto => organizations__alias.orgid";
 	.
 
-# Table bcm
-map:bcm a d2rq:ClassMap;
+# Table papers
+map:papers a d2rq:ClassMap;
 	d2rq:dataStorage map:database;
-	# Sorry, I don't know which columns to put into the uriPattern
-	#     for "bcm" because the table doesn't have a primary key.
-	#     Please specify it manually.
-	d2rq:uriPattern "bcm";
-	d2rq:class vocab:bcm;
-	d2rq:classDefinitionLabel "bcm";
+	d2rq:uriPattern "papers/paperid=@@papers.paperid@@";
+	d2rq:class <papers>;
 	.
-map:bcm_hierarchy_id a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:bcm;
-	d2rq:property vocab:bcm_hierarchy_id;
-	d2rq:propertyDefinitionLabel "bcm hierarchy_id";
-	d2rq:column "bcm.hierarchy_id";
+map:papers_paperid a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:papers;
+	d2rq:property <papers#paperid>;
+	d2rq:column "papers.paperid";
+	d2rq:datatype xsd:integer;
 	.
-map:bcm_enterprise_domain a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:bcm;
-	d2rq:property vocab:bcm_enterprise_domain;
-	d2rq:propertyDefinitionLabel "bcm enterprise_domain";
-	d2rq:column "bcm.enterprise_domain";
+map:papers_title a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:papers;
+	d2rq:property <papers#title>;
+	d2rq:column "papers.title";
 	.
-map:bcm_enterprise_domain_seq_id a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:bcm;
-	d2rq:property vocab:bcm_enterprise_domain_seq_id;
-	d2rq:propertyDefinitionLabel "bcm enterprise_domain_seq_id";
-	d2rq:column "bcm.enterprise_domain_seq_id";
+map:papers_abstract a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:papers;
+	d2rq:property <papers#abstract>;
+	d2rq:column "papers.abstract";
 	.
-map:bcm_master_id_domain a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:bcm;
-	d2rq:property vocab:bcm_master_id_domain;
-	d2rq:propertyDefinitionLabel "bcm master_id_domain";
-	d2rq:column "bcm.master_id_domain";
+map:papers_uri a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:papers;
+	d2rq:property <papers#uri>;
+	d2rq:column "papers.uri";
 	.
-map:bcm_business_domain a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:bcm;
-	d2rq:property vocab:bcm_business_domain;
-	d2rq:propertyDefinitionLabel "bcm business_domain";
-	d2rq:column "bcm.business_domain";
+map:papers_year a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:papers;
+	d2rq:property <papers#year>;
+	d2rq:column "papers.year";
+	d2rq:datatype xsd:integer;
 	.
-map:bcm_object_type a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:bcm;
-	d2rq:property vocab:bcm_object_type;
-	d2rq:propertyDefinitionLabel "bcm object_type";
-	d2rq:column "bcm.object_type";
+map:papers_conference a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:papers;
+	d2rq:property <papers#conference>;
+	d2rq:column "papers.conference";
+	d2rq:datatype xsd:integer;
 	.
-map:bcm_business_domain_seq_id a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:bcm;
-	d2rq:property vocab:bcm_business_domain_seq_id;
-	d2rq:propertyDefinitionLabel "bcm business_domain_seq_id";
-	d2rq:column "bcm.business_domain_seq_id";
+map:papers_publish a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:papers;
+	d2rq:property <papers#publish>;
+	d2rq:column "papers.publish";
+	d2rq:datatype xsd:integer;
 	.
-map:bcm_master_id_bd a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:bcm;
-	d2rq:property vocab:bcm_master_id_bd;
-	d2rq:propertyDefinitionLabel "bcm master_id_bd";
-	d2rq:column "bcm.master_id_bd";
-	.
-map:bcm_business_area a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:bcm;
-	d2rq:property vocab:bcm_business_area;
-	d2rq:propertyDefinitionLabel "bcm business_area";
-	d2rq:column "bcm.business_area";
-	.
-map:bcm_object_type_2 a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:bcm;
-	d2rq:property vocab:bcm_object_type_2;
-	d2rq:propertyDefinitionLabel "bcm object_type_2";
-	d2rq:column "bcm.object_type_2";
-	.
-map:bcm_barea_seq_id a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:bcm;
-	d2rq:property vocab:bcm_barea_seq_id;
-	d2rq:propertyDefinitionLabel "bcm barea_seq_id";
-	d2rq:column "bcm.barea_seq_id";
-	.
-map:bcm_master_id_barea a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:bcm;
-	d2rq:property vocab:bcm_master_id_barea;
-	d2rq:propertyDefinitionLabel "bcm master_id_barea";
-	d2rq:column "bcm.master_id_barea";
-	.
-map:bcm_business_capability a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:bcm;
-	d2rq:property vocab:bcm_business_capability;
-	d2rq:propertyDefinitionLabel "bcm business_capability";
-	d2rq:column "bcm.business_capability";
-	.
-map:bcm_object_type_3 a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:bcm;
-	d2rq:property vocab:bcm_object_type_3;
-	d2rq:propertyDefinitionLabel "bcm object_type_3";
-	d2rq:column "bcm.object_type_3";
-	.
-map:bcm_master_id_bc a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:bcm;
-	d2rq:property vocab:bcm_master_id_bc;
-	d2rq:propertyDefinitionLabel "bcm master_id_bc";
-	d2rq:column "bcm.master_id_bc";
-	.
-map:bcm_business_capability_description a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:bcm;
-	d2rq:property vocab:bcm_business_capability_description;
-	d2rq:propertyDefinitionLabel "bcm business_capability_description";
-	d2rq:column "bcm.business_capability_description";
-	.
-map:bcm_bc_relevant_for_cross_industry a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:bcm;
-	d2rq:property vocab:bcm_bc_relevant_for_cross_industry;
-	d2rq:propertyDefinitionLabel "bcm bc_relevant_for_cross_industry";
-	d2rq:column "bcm.bc_relevant_for_cross_industry";
-	.
-map:bcm_bc_relevant_for_retail_industry a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:bcm;
-	d2rq:property vocab:bcm_bc_relevant_for_retail_industry;
-	d2rq:propertyDefinitionLabel "bcm bc_relevant_for_retail_industry";
-	d2rq:column "bcm.bc_relevant_for_retail_industry";
-	.
-map:bcm_bc_relevant_for_autmotive_industry a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:bcm;
-	d2rq:property vocab:bcm_bc_relevant_for_autmotive_industry;
-	d2rq:propertyDefinitionLabel "bcm bc_relevant_for_autmotive_industry";
-	d2rq:column "bcm.bc_relevant_for_autmotive_industry";
-	.
-map:bcm_bc_relevant_for_professional_services_industry a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:bcm;
-	d2rq:property vocab:bcm_bc_relevant_for_professional_services_industry;
-	d2rq:propertyDefinitionLabel "bcm bc_relevant_for_professional_services_industry";
-	d2rq:column "bcm.bc_relevant_for_professional_services_industry";
-	.
-map:bcm_bc_relevant_for_industrial_machinery_and_components a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:bcm;
-	d2rq:property vocab:bcm_bc_relevant_for_industrial_machinery_and_components;
-	d2rq:propertyDefinitionLabel "bcm bc_relevant_for_industrial_machinery_and_components";
-	d2rq:column "bcm.bc_relevant_for_industrial_machinery_and_components";
-	.
-map:bcm_bc_relevant_for_oil_and_gas a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:bcm;
-	d2rq:property vocab:bcm_bc_relevant_for_oil_and_gas;
-	d2rq:propertyDefinitionLabel "bcm bc_relevant_for_oil_and_gas";
-	d2rq:column "bcm.bc_relevant_for_oil_and_gas";
-	.
-map:bcm_bc_relevant_for_utilities a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:bcm;
-	d2rq:property vocab:bcm_bc_relevant_for_utilities;
-	d2rq:propertyDefinitionLabel "bcm bc_relevant_for_utilities";
-	d2rq:column "bcm.bc_relevant_for_utilities";
-	.
-map:bcm_bc_seq_id a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:bcm;
-	d2rq:property vocab:bcm_bc_seq_id;
-	d2rq:propertyDefinitionLabel "bcm bc_seq_id";
-	d2rq:column "bcm.bc_seq_id";
+map:papers_conference__ref a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:papers;
+	d2rq:property <papers#ref-conference>;
+	d2rq:refersToClassMap map:conferences;
+	d2rq:join "papers.conference => conferences.confid";
 	.
 
-# Table bpm
-map:bpm a d2rq:ClassMap;
+# Table persons
+map:persons a d2rq:ClassMap;
 	d2rq:dataStorage map:database;
-	# Sorry, I don't know which columns to put into the uriPattern
-	#     for "bpm" because the table doesn't have a primary key.
-	#     Please specify it manually.
-	d2rq:uriPattern "bpm";
-	d2rq:class vocab:bpm;
-	d2rq:classDefinitionLabel "bpm";
+	d2rq:uriPattern "persons/perid=@@persons.perid@@";
+	d2rq:class <persons>;
 	.
-map:bpm_business_process_id a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:bpm;
-	d2rq:property vocab:bpm_business_process_id;
-	d2rq:propertyDefinitionLabel "bpm business_process_id";
-	d2rq:column "bpm.business_process_id";
+map:persons_perid a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:persons;
+	d2rq:property <persons#perid>;
+	d2rq:column "persons.perid";
+	d2rq:datatype xsd:integer;
 	.
-map:bpm_based_on a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:bpm;
-	d2rq:property vocab:bpm_based_on;
-	d2rq:propertyDefinitionLabel "bpm based_on";
-	d2rq:column "bpm.based_on";
+map:persons_type a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:persons;
+	d2rq:property <persons#type>;
+	d2rq:column "persons.type";
 	.
-map:bpm_business_process a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:bpm;
-	d2rq:property vocab:bpm_business_process;
-	d2rq:propertyDefinitionLabel "bpm business_process";
-	d2rq:column "bpm.business_process";
+map:persons_firstname a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:persons;
+	d2rq:property <persons#firstname>;
+	d2rq:column "persons.firstname";
 	.
-map:bpm_bp_relevant_for_cross_industry a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:bpm;
-	d2rq:property vocab:bpm_bp_relevant_for_cross_industry;
-	d2rq:propertyDefinitionLabel "bpm bp_relevant_for_cross_industry";
-	d2rq:column "bpm.bp_relevant_for_cross_industry";
+map:persons_lastname a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:persons;
+	d2rq:property <persons#lastname>;
+	d2rq:column "persons.lastname";
 	.
-map:bpm_bp_relevant_for_retail_industry a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:bpm;
-	d2rq:property vocab:bpm_bp_relevant_for_retail_industry;
-	d2rq:propertyDefinitionLabel "bpm bp_relevant_for_retail_industry";
-	d2rq:column "bpm.bp_relevant_for_retail_industry";
+map:persons_address a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:persons;
+	d2rq:property <persons#address>;
+	d2rq:column "persons.address";
 	.
-map:bpm_bp_relevant_for_automotive a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:bpm;
-	d2rq:property vocab:bpm_bp_relevant_for_automotive;
-	d2rq:propertyDefinitionLabel "bpm bp_relevant_for_automotive";
-	d2rq:column "bpm.bp_relevant_for_automotive";
+map:persons_email a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:persons;
+	d2rq:property <persons#email>;
+	d2rq:column "persons.email";
 	.
-map:bpm_bp_relevant_for_professional_services a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:bpm;
-	d2rq:property vocab:bpm_bp_relevant_for_professional_services;
-	d2rq:propertyDefinitionLabel "bpm bp_relevant_for_professional_services";
-	d2rq:column "bpm.bp_relevant_for_professional_services";
+map:persons_homepage a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:persons;
+	d2rq:property <persons#homepage>;
+	d2rq:column "persons.homepage";
 	.
-map:bpm_bp_relevant_for_industrial_machinery_and_components a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:bpm;
-	d2rq:property vocab:bpm_bp_relevant_for_industrial_machinery_and_components;
-	d2rq:propertyDefinitionLabel "bpm bp_relevant_for_industrial_machinery_and_components";
-	d2rq:column "bpm.bp_relevant_for_industrial_machinery_and_components";
+map:persons_phone a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:persons;
+	d2rq:property <persons#phone>;
+	d2rq:column "persons.phone";
 	.
-map:bpm_bp_relevant_for_oil_and_gas a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:bpm;
-	d2rq:property vocab:bpm_bp_relevant_for_oil_and_gas;
-	d2rq:propertyDefinitionLabel "bpm bp_relevant_for_oil_and_gas";
-	d2rq:column "bpm.bp_relevant_for_oil_and_gas";
+map:persons_uri a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:persons;
+	d2rq:property <persons#uri>;
+	d2rq:column "persons.uri";
 	.
-map:bpm_bp_relevant_for_utilities a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:bpm;
-	d2rq:property vocab:bpm_bp_relevant_for_utilities;
-	d2rq:propertyDefinitionLabel "bpm bp_relevant_for_utilities";
-	d2rq:column "bpm.bp_relevant_for_utilities";
-	.
-map:bpm_business_process_type a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:bpm;
-	d2rq:property vocab:bpm_business_process_type;
-	d2rq:propertyDefinitionLabel "bpm business_process_type";
-	d2rq:column "bpm.business_process_type";
-	.
-map:bpm_type a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:bpm;
-	d2rq:property vocab:bpm_type;
-	d2rq:propertyDefinitionLabel "bpm type";
-	d2rq:column "bpm.type";
-	.
-map:bpm_enterprise_domain a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:bpm;
-	d2rq:property vocab:bpm_enterprise_domain;
-	d2rq:propertyDefinitionLabel "bpm enterprise_domain";
-	d2rq:column "bpm.enterprise_domain";
-	.
-map:bpm_bp_description a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:bpm;
-	d2rq:property vocab:bpm_bp_description;
-	d2rq:propertyDefinitionLabel "bpm bp_description";
-	d2rq:column "bpm.bp_description";
-	.
-map:bpm_business_process_id_1 a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:bpm;
-	d2rq:property vocab:bpm_business_process_id_1;
-	d2rq:propertyDefinitionLabel "bpm business_process_id_1";
-	d2rq:column "bpm.business_process_id_1";
-	.
-map:bpm_based_on_1 a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:bpm;
-	d2rq:property vocab:bpm_based_on_1;
-	d2rq:propertyDefinitionLabel "bpm based_on_1";
-	d2rq:column "bpm.based_on_1";
-	.
-map:bpm_business_process_1 a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:bpm;
-	d2rq:property vocab:bpm_business_process_1;
-	d2rq:propertyDefinitionLabel "bpm business_process_1";
-	d2rq:column "bpm.business_process_1";
-	.
-map:bpm_business_process_type_1 a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:bpm;
-	d2rq:property vocab:bpm_business_process_type_1;
-	d2rq:propertyDefinitionLabel "bpm business_process_type_1";
-	d2rq:column "bpm.business_process_type_1";
-	.
-map:bpm_type_1 a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:bpm;
-	d2rq:property vocab:bpm_type_1;
-	d2rq:propertyDefinitionLabel "bpm type_1";
-	d2rq:column "bpm.type_1";
-	.
-map:bpm_enterprise_domain_1 a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:bpm;
-	d2rq:property vocab:bpm_enterprise_domain_1;
-	d2rq:propertyDefinitionLabel "bpm enterprise_domain_1";
-	d2rq:column "bpm.enterprise_domain_1";
-	.
-map:bpm_business_process_sequence_1 a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:bpm;
-	d2rq:property vocab:bpm_business_process_sequence_1;
-	d2rq:propertyDefinitionLabel "bpm business_process_sequence_1";
-	d2rq:column "bpm.business_process_sequence_1";
-	.
-map:bpm_business_process_description_1 a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:bpm;
-	d2rq:property vocab:bpm_business_process_description_1;
-	d2rq:propertyDefinitionLabel "bpm business_process_description_1";
-	d2rq:column "bpm.business_process_description_1";
-	.
-map:bpm_business_process_id_2 a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:bpm;
-	d2rq:property vocab:bpm_business_process_id_2;
-	d2rq:propertyDefinitionLabel "bpm business_process_id_2";
-	d2rq:column "bpm.business_process_id_2";
-	.
-map:bpm_based_on_2 a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:bpm;
-	d2rq:property vocab:bpm_based_on_2;
-	d2rq:propertyDefinitionLabel "bpm based_on_2";
-	d2rq:column "bpm.based_on_2";
-	.
-map:bpm_business_process_2 a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:bpm;
-	d2rq:property vocab:bpm_business_process_2;
-	d2rq:propertyDefinitionLabel "bpm business_process_2";
-	d2rq:column "bpm.business_process_2";
-	.
-map:bpm_business_process_type_2 a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:bpm;
-	d2rq:property vocab:bpm_business_process_type_2;
-	d2rq:propertyDefinitionLabel "bpm business_process_type_2";
-	d2rq:column "bpm.business_process_type_2";
-	.
-map:bpm_type_2 a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:bpm;
-	d2rq:property vocab:bpm_type_2;
-	d2rq:propertyDefinitionLabel "bpm type_2";
-	d2rq:column "bpm.type_2";
-	.
-map:bpm_enterprise_domain_2 a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:bpm;
-	d2rq:property vocab:bpm_enterprise_domain_2;
-	d2rq:propertyDefinitionLabel "bpm enterprise_domain_2";
-	d2rq:column "bpm.enterprise_domain_2";
-	.
-map:bpm_business_process_sequence_2 a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:bpm;
-	d2rq:property vocab:bpm_business_process_sequence_2;
-	d2rq:propertyDefinitionLabel "bpm business_process_sequence_2";
-	d2rq:column "bpm.business_process_sequence_2";
-	.
-map:bpm_object_id_business_activity a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:bpm;
-	d2rq:property vocab:bpm_object_id_business_activity;
-	d2rq:propertyDefinitionLabel "bpm object_id_business_activity";
-	d2rq:column "bpm.object_id_business_activity";
-	.
-map:bpm_based_on_3 a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:bpm;
-	d2rq:property vocab:bpm_based_on_3;
-	d2rq:propertyDefinitionLabel "bpm based_on_3";
-	d2rq:column "bpm.based_on_3";
-	.
-map:bpm_reference_to_bar_id a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:bpm;
-	d2rq:property vocab:bpm_reference_to_bar_id;
-	d2rq:propertyDefinitionLabel "bpm reference_to_bar_id";
-	d2rq:column "bpm.reference_to_bar_id";
-	.
-map:bpm_business_activity a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:bpm;
-	d2rq:property vocab:bpm_business_activity;
-	d2rq:propertyDefinitionLabel "bpm business_activity";
-	d2rq:column "bpm.business_activity";
-	.
-map:bpm_ba_sequence a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:bpm;
-	d2rq:property vocab:bpm_ba_sequence;
-	d2rq:propertyDefinitionLabel "bpm ba_sequence";
-	d2rq:column "bpm.ba_sequence";
-	.
-map:bpm_description a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:bpm;
-	d2rq:property vocab:bpm_description;
-	d2rq:propertyDefinitionLabel "bpm description";
-	d2rq:column "bpm.description";
-	.
-map:bpm_apqc_reference a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:bpm;
-	d2rq:property vocab:bpm_apqc_reference;
-	d2rq:propertyDefinitionLabel "bpm apqc_reference";
-	d2rq:column "bpm.apqc_reference";
-	.
-map:bpm_object_id_fp a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:bpm;
-	d2rq:property vocab:bpm_object_id_fp;
-	d2rq:propertyDefinitionLabel "bpm object_id_fp";
-	d2rq:column "bpm.object_id_fp";
-	.
-map:bpm_forward_pointer a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:bpm;
-	d2rq:property vocab:bpm_forward_pointer;
-	d2rq:propertyDefinitionLabel "bpm forward_pointer";
-	d2rq:column "bpm.forward_pointer";
-	.
-map:bpm_fp_object_type a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:bpm;
-	d2rq:property vocab:bpm_fp_object_type;
-	d2rq:propertyDefinitionLabel "bpm fp_object_type";
-	d2rq:column "bpm.fp_object_type";
-	.
-map:bpm_master_id_bc a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:bpm;
-	d2rq:property vocab:bpm_master_id_bc;
-	d2rq:propertyDefinitionLabel "bpm master_id_bc";
-	d2rq:column "bpm.master_id_bc";
-	.
-map:bpm_business_capability a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:bpm;
-	d2rq:property vocab:bpm_business_capability;
-	d2rq:propertyDefinitionLabel "bpm business_capability";
-	d2rq:column "bpm.business_capability";
-	.
-map:bpm_bc_type a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:bpm;
-	d2rq:property vocab:bpm_bc_type;
-	d2rq:propertyDefinitionLabel "bpm bc_type";
-	d2rq:column "bpm.bc_type";
-	.
-map:bpm_business_capability_description a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:bpm;
-	d2rq:property vocab:bpm_business_capability_description;
-	d2rq:propertyDefinitionLabel "bpm business_capability_description";
-	d2rq:column "bpm.business_capability_description";
+map:persons_photo a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:persons;
+	d2rq:property <persons#photo>;
+	d2rq:column "persons.photo";
 	.
 
-# Table ind
-map:ind a d2rq:ClassMap;
+# Table rel_paper_topic
+map:rel_paper_topic a d2rq:ClassMap;
 	d2rq:dataStorage map:database;
-	# Sorry, I don't know which columns to put into the uriPattern
-	#     for "ind" because the table doesn't have a primary key.
-	#     Please specify it manually.
-	d2rq:uriPattern "ind";
-	d2rq:class vocab:ind;
-	d2rq:classDefinitionLabel "ind";
+	d2rq:uriPattern "rel_paper_topic/paperid=@@rel_paper_topic.paperid@@;topicid=@@rel_paper_topic.topicid@@";
+	d2rq:class <rel_paper_topic>;
 	.
-map:ind_industry_id a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:ind;
-	d2rq:property vocab:ind_industry_id;
-	d2rq:propertyDefinitionLabel "ind industry_id";
-	d2rq:column "ind.industry_id";
+map:rel_paper_topic_paperid a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:rel_paper_topic;
+	d2rq:property <rel_paper_topic#paperid>;
+	d2rq:column "rel_paper_topic.paperid";
+	d2rq:datatype xsd:integer;
 	.
-map:ind_industry_name a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:ind;
-	d2rq:property vocab:ind_industry_name;
-	d2rq:propertyDefinitionLabel "ind industry_name";
-	d2rq:column "ind.industry_name";
+map:rel_paper_topic_topicid a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:rel_paper_topic;
+	d2rq:property <rel_paper_topic#topicid>;
+	d2rq:column "rel_paper_topic.topicid";
+	d2rq:datatype xsd:integer;
+	.
+map:rel_paper_topic_relationtype a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:rel_paper_topic;
+	d2rq:property <rel_paper_topic#relationtype>;
+	d2rq:column "rel_paper_topic.relationtype";
+	d2rq:datatype xsd:integer;
+	.
+map:rel_paper_topic_paperid__ref a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:rel_paper_topic;
+	d2rq:property <rel_paper_topic#ref-paperid>;
+	d2rq:refersToClassMap map:papers;
+	d2rq:join "rel_paper_topic.paperid => papers.paperid";
+	.
+map:rel_paper_topic_topicid__ref a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:rel_paper_topic;
+	d2rq:property <rel_paper_topic#ref-topicid>;
+	d2rq:refersToClassMap map:topics;
+	d2rq:join "rel_paper_topic.topicid => topics.topicid";
 	.
 
-# Table scm
-map:scm a d2rq:ClassMap;
+# Table rel_person_organization
+map:rel_person_organization a d2rq:ClassMap;
 	d2rq:dataStorage map:database;
-	# Sorry, I don't know which columns to put into the uriPattern
-	#     for "scm" because the table doesn't have a primary key.
-	#     Please specify it manually.
-	d2rq:uriPattern "scm";
-	d2rq:class vocab:scm;
-	d2rq:classDefinitionLabel "scm";
+	d2rq:uriPattern "rel_person_organization/personid=@@rel_person_organization.personid@@;organizationid=@@rel_person_organization.organizationid@@";
+	d2rq:class <rel_person_organization>;
 	.
-map:scm_id a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:scm;
-	d2rq:property vocab:scm_id;
-	d2rq:propertyDefinitionLabel "scm id";
-	d2rq:column "scm.id";
+map:rel_person_organization_personid a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:rel_person_organization;
+	d2rq:property <rel_person_organization#personid>;
+	d2rq:column "rel_person_organization.personid";
+	d2rq:datatype xsd:integer;
 	.
-map:scm_hierarchy_id a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:scm;
-	d2rq:property vocab:scm_hierarchy_id;
-	d2rq:propertyDefinitionLabel "scm hierarchy_id";
-	d2rq:column "scm.hierarchy_id";
+map:rel_person_organization_organizationid a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:rel_person_organization;
+	d2rq:property <rel_person_organization#organizationid>;
+	d2rq:column "rel_person_organization.organizationid";
+	d2rq:datatype xsd:integer;
 	.
-map:scm_enterprise_domain a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:scm;
-	d2rq:property vocab:scm_enterprise_domain;
-	d2rq:propertyDefinitionLabel "scm enterprise_domain";
-	d2rq:column "scm.enterprise_domain";
+map:rel_person_organization_personid__ref a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:rel_person_organization;
+	d2rq:property <rel_person_organization#ref-personid>;
+	d2rq:refersToClassMap map:persons;
+	d2rq:join "rel_person_organization.personid => persons.perid";
 	.
-map:scm_master_id_domain a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:scm;
-	d2rq:property vocab:scm_master_id_domain;
-	d2rq:propertyDefinitionLabel "scm master_id_domain";
-	d2rq:column "scm.master_id_domain";
-	.
-map:scm_business_domain a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:scm;
-	d2rq:property vocab:scm_business_domain;
-	d2rq:propertyDefinitionLabel "scm business_domain";
-	d2rq:column "scm.business_domain";
-	.
-map:scm_business_domain_seq_id a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:scm;
-	d2rq:property vocab:scm_business_domain_seq_id;
-	d2rq:propertyDefinitionLabel "scm business_domain_seq_id";
-	d2rq:column "scm.business_domain_seq_id";
-	.
-map:scm_master_id_bd a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:scm;
-	d2rq:property vocab:scm_master_id_bd;
-	d2rq:propertyDefinitionLabel "scm master_id_bd";
-	d2rq:column "scm.master_id_bd";
-	.
-map:scm_business_area a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:scm;
-	d2rq:property vocab:scm_business_area;
-	d2rq:propertyDefinitionLabel "scm business_area";
-	d2rq:column "scm.business_area";
-	.
-map:scm_barea_seq_id a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:scm;
-	d2rq:property vocab:scm_barea_seq_id;
-	d2rq:propertyDefinitionLabel "scm barea_seq_id";
-	d2rq:column "scm.barea_seq_id";
-	.
-map:scm_master_id_barea a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:scm;
-	d2rq:property vocab:scm_master_id_barea;
-	d2rq:propertyDefinitionLabel "scm master_id_barea";
-	d2rq:column "scm.master_id_barea";
-	.
-map:scm_business_capability a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:scm;
-	d2rq:property vocab:scm_business_capability;
-	d2rq:propertyDefinitionLabel "scm business_capability";
-	d2rq:column "scm.business_capability";
-	.
-map:scm_master_id_bc a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:scm;
-	d2rq:property vocab:scm_master_id_bc;
-	d2rq:propertyDefinitionLabel "scm master_id_bc";
-	d2rq:column "scm.master_id_bc";
-	.
-map:scm_business_capability_description a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:scm;
-	d2rq:property vocab:scm_business_capability_description;
-	d2rq:propertyDefinitionLabel "scm business_capability_description";
-	d2rq:column "scm.business_capability_description";
-	.
-map:scm_bc_relevant_for_cross_industry a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:scm;
-	d2rq:property vocab:scm_bc_relevant_for_cross_industry;
-	d2rq:propertyDefinitionLabel "scm bc_relevant_for_cross_industry";
-	d2rq:column "scm.bc_relevant_for_cross_industry";
-	.
-map:scm_bc_relevant_for_retail_industry a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:scm;
-	d2rq:property vocab:scm_bc_relevant_for_retail_industry;
-	d2rq:propertyDefinitionLabel "scm bc_relevant_for_retail_industry";
-	d2rq:column "scm.bc_relevant_for_retail_industry";
-	.
-map:scm_bc_relevant_for_autmotive_industry a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:scm;
-	d2rq:property vocab:scm_bc_relevant_for_autmotive_industry;
-	d2rq:propertyDefinitionLabel "scm bc_relevant_for_autmotive_industry";
-	d2rq:column "scm.bc_relevant_for_autmotive_industry";
-	.
-map:scm_bc_relevant_for_professional_services_industry a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:scm;
-	d2rq:property vocab:scm_bc_relevant_for_professional_services_industry;
-	d2rq:propertyDefinitionLabel "scm bc_relevant_for_professional_services_industry";
-	d2rq:column "scm.bc_relevant_for_professional_services_industry";
-	.
-map:scm_bc_relevant_for_industrial_machinery_and_components a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:scm;
-	d2rq:property vocab:scm_bc_relevant_for_industrial_machinery_and_components;
-	d2rq:propertyDefinitionLabel "scm bc_relevant_for_industrial_machinery_and_components";
-	d2rq:column "scm.bc_relevant_for_industrial_machinery_and_components";
-	.
-map:scm_bc_relevant_for_oil_and_gas a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:scm;
-	d2rq:property vocab:scm_bc_relevant_for_oil_and_gas;
-	d2rq:propertyDefinitionLabel "scm bc_relevant_for_oil_and_gas";
-	d2rq:column "scm.bc_relevant_for_oil_and_gas";
-	.
-map:scm_bc_relevant_for_utilities a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:scm;
-	d2rq:property vocab:scm_bc_relevant_for_utilities;
-	d2rq:propertyDefinitionLabel "scm bc_relevant_for_utilities";
-	d2rq:column "scm.bc_relevant_for_utilities";
-	.
-map:scm_object_id_sc a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:scm;
-	d2rq:property vocab:scm_object_id_sc;
-	d2rq:propertyDefinitionLabel "scm object_id_sc";
-	d2rq:column "scm.object_id_sc";
-	.
-map:scm_solution_capability a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:scm;
-	d2rq:property vocab:scm_solution_capability;
-	d2rq:propertyDefinitionLabel "scm solution_capability";
-	d2rq:column "scm.solution_capability";
-	.
-map:scm_solution_capability_reference_architecture_hybrid a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:scm;
-	d2rq:property vocab:scm_solution_capability_reference_architecture_hybrid;
-	d2rq:propertyDefinitionLabel "scm solution_capability_reference_architecture_hybrid";
-	d2rq:column "scm.solution_capability_reference_architecture_hybrid";
-	.
-map:scm_solution_capability_reference_architecture_cloud a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:scm;
-	d2rq:property vocab:scm_solution_capability_reference_architecture_cloud;
-	d2rq:propertyDefinitionLabel "scm solution_capability_reference_architecture_cloud";
-	d2rq:column "scm.solution_capability_reference_architecture_cloud";
-	.
-map:scm_type a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:scm;
-	d2rq:property vocab:scm_type;
-	d2rq:propertyDefinitionLabel "scm type";
-	d2rq:column "scm.type";
-	.
-map:scm_ppms_product_id a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:scm;
-	d2rq:property vocab:scm_ppms_product_id;
-	d2rq:propertyDefinitionLabel "scm ppms_product_id";
-	d2rq:column "scm.ppms_product_id";
-	.
-map:scm_line_item_type a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:scm;
-	d2rq:property vocab:scm_line_item_type;
-	d2rq:propertyDefinitionLabel "scm line_item_type";
-	d2rq:column "scm.line_item_type";
-	.
-map:scm_ppms_product_name a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:scm;
-	d2rq:property vocab:scm_ppms_product_name;
-	d2rq:propertyDefinitionLabel "scm ppms_product_name";
-	d2rq:column "scm.ppms_product_name";
-	.
-map:scm_solution_component_reference_architecture_hybrid a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:scm;
-	d2rq:property vocab:scm_solution_component_reference_architecture_hybrid;
-	d2rq:propertyDefinitionLabel "scm solution_component_reference_architecture_hybrid";
-	d2rq:column "scm.solution_component_reference_architecture_hybrid";
-	.
-map:scm_solution_component_reference_architecture_cloud a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:scm;
-	d2rq:property vocab:scm_solution_component_reference_architecture_cloud;
-	d2rq:propertyDefinitionLabel "scm solution_component_reference_architecture_cloud";
-	d2rq:column "scm.solution_component_reference_architecture_cloud";
-	.
-map:scm_deployment_type a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:scm;
-	d2rq:property vocab:scm_deployment_type;
-	d2rq:propertyDefinitionLabel "scm deployment_type";
-	d2rq:column "scm.deployment_type";
-	.
-map:scm_platform a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:scm;
-	d2rq:property vocab:scm_platform;
-	d2rq:propertyDefinitionLabel "scm platform";
-	d2rq:column "scm.platform";
-	.
-<#scm_unnamed%3A_32> a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:scm;
-	d2rq:property <vocab/scm_unnamed%3A_32>;
-	d2rq:propertyDefinitionLabel "scm unnamed:_32";
-	d2rq:column "scm.unnamed:_32";
+map:rel_person_organization_organizationid__ref a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:rel_person_organization;
+	d2rq:property <rel_person_organization#ref-organizationid>;
+	d2rq:refersToClassMap map:organizations;
+	d2rq:join "rel_person_organization.organizationid => organizations.orgid";
 	.
 
-# Table spm
-map:spm a d2rq:ClassMap;
+# Table rel_person_paper
+map:rel_person_paper a d2rq:ClassMap;
 	d2rq:dataStorage map:database;
-	# Sorry, I don't know which columns to put into the uriPattern
-	#     for "spm" because the table doesn't have a primary key.
-	#     Please specify it manually.
-	d2rq:uriPattern "spm";
-	d2rq:class vocab:spm;
-	d2rq:classDefinitionLabel "spm";
+	d2rq:uriPattern "rel_person_paper/personid=@@rel_person_paper.personid@@;paperid=@@rel_person_paper.paperid@@";
+	d2rq:class <rel_person_paper>;
 	.
-map:spm_solution_process_id a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:spm;
-	d2rq:property vocab:spm_solution_process_id;
-	d2rq:propertyDefinitionLabel "spm solution_process_id";
-	d2rq:column "spm.solution_process_id";
+map:rel_person_paper_personid a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:rel_person_paper;
+	d2rq:property <rel_person_paper#personid>;
+	d2rq:column "rel_person_paper.personid";
+	d2rq:datatype xsd:integer;
 	.
-map:spm_based_on a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:spm;
-	d2rq:property vocab:spm_based_on;
-	d2rq:propertyDefinitionLabel "spm based_on";
-	d2rq:column "spm.based_on";
+map:rel_person_paper_paperid a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:rel_person_paper;
+	d2rq:property <rel_person_paper#paperid>;
+	d2rq:column "rel_person_paper.paperid";
+	d2rq:datatype xsd:integer;
 	.
-map:spm_business_process_id a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:spm;
-	d2rq:property vocab:spm_business_process_id;
-	d2rq:propertyDefinitionLabel "spm business_process_id";
-	d2rq:column "spm.business_process_id";
+map:rel_person_paper_paperid__ref a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:rel_person_paper;
+	d2rq:property <rel_person_paper#ref-paperid>;
+	d2rq:refersToClassMap map:papers;
+	d2rq:join "rel_person_paper.paperid => papers.paperid";
 	.
-map:spm_solution_process a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:spm;
-	d2rq:property vocab:spm_solution_process;
-	d2rq:propertyDefinitionLabel "spm solution_process";
-	d2rq:column "spm.solution_process";
-	.
-map:spm_sp_relevant_for_cross_industry a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:spm;
-	d2rq:property vocab:spm_sp_relevant_for_cross_industry;
-	d2rq:propertyDefinitionLabel "spm sp_relevant_for_cross_industry";
-	d2rq:column "spm.sp_relevant_for_cross_industry";
-	.
-map:spm_sp_relevant_for_retail_industry a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:spm;
-	d2rq:property vocab:spm_sp_relevant_for_retail_industry;
-	d2rq:propertyDefinitionLabel "spm sp_relevant_for_retail_industry";
-	d2rq:column "spm.sp_relevant_for_retail_industry";
-	.
-map:spm_sp_relevant_for_automotive a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:spm;
-	d2rq:property vocab:spm_sp_relevant_for_automotive;
-	d2rq:propertyDefinitionLabel "spm sp_relevant_for_automotive";
-	d2rq:column "spm.sp_relevant_for_automotive";
-	.
-map:spm_sp_relevant_for_professional_services a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:spm;
-	d2rq:property vocab:spm_sp_relevant_for_professional_services;
-	d2rq:propertyDefinitionLabel "spm sp_relevant_for_professional_services";
-	d2rq:column "spm.sp_relevant_for_professional_services";
-	.
-map:spm_sp_relevant_for_industrial_machinery_and_components a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:spm;
-	d2rq:property vocab:spm_sp_relevant_for_industrial_machinery_and_components;
-	d2rq:propertyDefinitionLabel "spm sp_relevant_for_industrial_machinery_and_components";
-	d2rq:column "spm.sp_relevant_for_industrial_machinery_and_components";
-	.
-map:spm_sp_relevant_for_oil_and_gas a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:spm;
-	d2rq:property vocab:spm_sp_relevant_for_oil_and_gas;
-	d2rq:propertyDefinitionLabel "spm sp_relevant_for_oil_and_gas";
-	d2rq:column "spm.sp_relevant_for_oil_and_gas";
-	.
-map:spm_sp_relevant_for_utilities a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:spm;
-	d2rq:property vocab:spm_sp_relevant_for_utilities;
-	d2rq:propertyDefinitionLabel "spm sp_relevant_for_utilities";
-	d2rq:column "spm.sp_relevant_for_utilities";
-	.
-map:spm_type a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:spm;
-	d2rq:property vocab:spm_type;
-	d2rq:propertyDefinitionLabel "spm type";
-	d2rq:column "spm.type";
-	.
-map:spm_enterprise_domain a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:spm;
-	d2rq:property vocab:spm_enterprise_domain;
-	d2rq:propertyDefinitionLabel "spm enterprise_domain";
-	d2rq:column "spm.enterprise_domain";
-	.
-map:spm_sp_description a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:spm;
-	d2rq:property vocab:spm_sp_description;
-	d2rq:propertyDefinitionLabel "spm sp_description";
-	d2rq:column "spm.sp_description";
-	.
-map:spm_reference_architecture_type a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:spm;
-	d2rq:property vocab:spm_reference_architecture_type;
-	d2rq:propertyDefinitionLabel "spm reference_architecture_type";
-	d2rq:column "spm.reference_architecture_type";
-	.
-map:spm_solution_process_id_1 a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:spm;
-	d2rq:property vocab:spm_solution_process_id_1;
-	d2rq:propertyDefinitionLabel "spm solution_process_id_1";
-	d2rq:column "spm.solution_process_id_1";
-	.
-map:spm_based_on_1 a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:spm;
-	d2rq:property vocab:spm_based_on_1;
-	d2rq:propertyDefinitionLabel "spm based_on_1";
-	d2rq:column "spm.based_on_1";
-	.
-map:spm_business_process_id_1 a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:spm;
-	d2rq:property vocab:spm_business_process_id_1;
-	d2rq:propertyDefinitionLabel "spm business_process_id_1";
-	d2rq:column "spm.business_process_id_1";
-	.
-map:spm_solution_process_1 a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:spm;
-	d2rq:property vocab:spm_solution_process_1;
-	d2rq:propertyDefinitionLabel "spm solution_process_1";
-	d2rq:column "spm.solution_process_1";
-	.
-map:spm_type_1 a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:spm;
-	d2rq:property vocab:spm_type_1;
-	d2rq:propertyDefinitionLabel "spm type_1";
-	d2rq:column "spm.type_1";
-	.
-map:spm_solution_process_sequence_1 a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:spm;
-	d2rq:property vocab:spm_solution_process_sequence_1;
-	d2rq:propertyDefinitionLabel "spm solution_process_sequence_1";
-	d2rq:column "spm.solution_process_sequence_1";
-	.
-map:spm_enterprise_domain_1 a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:spm;
-	d2rq:property vocab:spm_enterprise_domain_1;
-	d2rq:propertyDefinitionLabel "spm enterprise_domain_1";
-	d2rq:column "spm.enterprise_domain_1";
-	.
-map:spm_solution_process_description_1 a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:spm;
-	d2rq:property vocab:spm_solution_process_description_1;
-	d2rq:propertyDefinitionLabel "spm solution_process_description_1";
-	d2rq:column "spm.solution_process_description_1";
-	.
-map:spm_solution_process_id_2 a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:spm;
-	d2rq:property vocab:spm_solution_process_id_2;
-	d2rq:propertyDefinitionLabel "spm solution_process_id_2";
-	d2rq:column "spm.solution_process_id_2";
-	.
-map:spm_based_on_2 a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:spm;
-	d2rq:property vocab:spm_based_on_2;
-	d2rq:propertyDefinitionLabel "spm based_on_2";
-	d2rq:column "spm.based_on_2";
-	.
-map:spm_business_process_id_2 a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:spm;
-	d2rq:property vocab:spm_business_process_id_2;
-	d2rq:propertyDefinitionLabel "spm business_process_id_2";
-	d2rq:column "spm.business_process_id_2";
-	.
-map:spm_solution_process_2 a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:spm;
-	d2rq:property vocab:spm_solution_process_2;
-	d2rq:propertyDefinitionLabel "spm solution_process_2";
-	d2rq:column "spm.solution_process_2";
-	.
-map:spm_type_2 a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:spm;
-	d2rq:property vocab:spm_type_2;
-	d2rq:propertyDefinitionLabel "spm type_2";
-	d2rq:column "spm.type_2";
-	.
-map:spm_solution_process_sequence_2 a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:spm;
-	d2rq:property vocab:spm_solution_process_sequence_2;
-	d2rq:propertyDefinitionLabel "spm solution_process_sequence_2";
-	d2rq:column "spm.solution_process_sequence_2";
-	.
-map:spm_enterprise_domain_2 a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:spm;
-	d2rq:property vocab:spm_enterprise_domain_2;
-	d2rq:propertyDefinitionLabel "spm enterprise_domain_2";
-	d2rq:column "spm.enterprise_domain_2";
-	.
-map:spm_object_id_business_activity_in_solution_process a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:spm;
-	d2rq:property vocab:spm_object_id_business_activity_in_solution_process;
-	d2rq:propertyDefinitionLabel "spm object_id_business_activity_in_solution_process";
-	d2rq:column "spm.object_id_business_activity_in_solution_process";
-	.
-map:spm_ba_in_sp_reference_to_rba a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:spm;
-	d2rq:property vocab:spm_ba_in_sp_reference_to_rba;
-	d2rq:propertyDefinitionLabel "spm ba_in_sp_reference_to_rba";
-	d2rq:column "spm.ba_in_sp_reference_to_rba";
-	.
-map:spm_business_activity_in_solution_process a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:spm;
-	d2rq:property vocab:spm_business_activity_in_solution_process;
-	d2rq:propertyDefinitionLabel "spm business_activity_in_solution_process";
-	d2rq:column "spm.business_activity_in_solution_process";
-	.
-map:spm_ba_in_sp_sequence a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:spm;
-	d2rq:property vocab:spm_ba_in_sp_sequence;
-	d2rq:propertyDefinitionLabel "spm ba_in_sp_sequence";
-	d2rq:column "spm.ba_in_sp_sequence";
-	.
-map:spm_description a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:spm;
-	d2rq:property vocab:spm_description;
-	d2rq:propertyDefinitionLabel "spm description";
-	d2rq:column "spm.description";
-	.
-map:spm_apqc_reference a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:spm;
-	d2rq:property vocab:spm_apqc_reference;
-	d2rq:propertyDefinitionLabel "spm apqc_reference";
-	d2rq:column "spm.apqc_reference";
-	.
-map:spm_object_id_fp a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:spm;
-	d2rq:property vocab:spm_object_id_fp;
-	d2rq:propertyDefinitionLabel "spm object_id_fp";
-	d2rq:column "spm.object_id_fp";
-	.
-map:spm_forward_pointer a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:spm;
-	d2rq:property vocab:spm_forward_pointer;
-	d2rq:propertyDefinitionLabel "spm forward_pointer";
-	d2rq:column "spm.forward_pointer";
-	.
-map:spm_fp_object_type a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:spm;
-	d2rq:property vocab:spm_fp_object_type;
-	d2rq:propertyDefinitionLabel "spm fp_object_type";
-	d2rq:column "spm.fp_object_type";
-	.
-map:spm_object_id_sc a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:spm;
-	d2rq:property vocab:spm_object_id_sc;
-	d2rq:propertyDefinitionLabel "spm object_id_sc";
-	d2rq:column "spm.object_id_sc";
-	.
-map:spm_solution_capability a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:spm;
-	d2rq:property vocab:spm_solution_capability;
-	d2rq:propertyDefinitionLabel "spm solution_capability";
-	d2rq:column "spm.solution_capability";
-	.
-map:spm_ppms_product_id a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:spm;
-	d2rq:property vocab:spm_ppms_product_id;
-	d2rq:propertyDefinitionLabel "spm ppms_product_id";
-	d2rq:column "spm.ppms_product_id";
-	.
-map:spm_line_item_type a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:spm;
-	d2rq:property vocab:spm_line_item_type;
-	d2rq:propertyDefinitionLabel "spm line_item_type";
-	d2rq:column "spm.line_item_type";
-	.
-map:spm_ppms_product_name a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:spm;
-	d2rq:property vocab:spm_ppms_product_name;
-	d2rq:propertyDefinitionLabel "spm ppms_product_name";
-	d2rq:column "spm.ppms_product_name";
-	.
-map:spm_deployment_type a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:spm;
-	d2rq:property vocab:spm_deployment_type;
-	d2rq:propertyDefinitionLabel "spm deployment_type";
-	d2rq:column "spm.deployment_type";
-	.
-map:spm_platform a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:spm;
-	d2rq:property vocab:spm_platform;
-	d2rq:propertyDefinitionLabel "spm platform";
-	d2rq:column "spm.platform";
+map:rel_person_paper_personid__ref a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:rel_person_paper;
+	d2rq:property <rel_person_paper#ref-personid>;
+	d2rq:refersToClassMap map:persons;
+	d2rq:join "rel_person_paper.personid => persons.perid";
 	.
 
-# Table whitespaces
-map:whitespaces a d2rq:ClassMap;
+# Table rel_person_topic
+map:rel_person_topic a d2rq:ClassMap;
 	d2rq:dataStorage map:database;
-	# Sorry, I don't know which columns to put into the uriPattern
-	#     for "whitespaces" because the table doesn't have a primary key.
-	#     Please specify it manually.
-	d2rq:uriPattern "whitespaces";
-	d2rq:class vocab:whitespaces;
-	d2rq:classDefinitionLabel "whitespaces";
+	d2rq:uriPattern "rel_person_topic/personid=@@rel_person_topic.personid@@;topicid=@@rel_person_topic.topicid@@";
+	d2rq:class <rel_person_topic>;
 	.
-map:whitespaces_object_id_sc a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:whitespaces;
-	d2rq:property vocab:whitespaces_object_id_sc;
-	d2rq:propertyDefinitionLabel "whitespaces object_id_sc";
-	d2rq:column "whitespaces.object_id_sc";
+map:rel_person_topic_personid a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:rel_person_topic;
+	d2rq:property <rel_person_topic#personid>;
+	d2rq:column "rel_person_topic.personid";
+	d2rq:datatype xsd:integer;
 	.
-map:whitespaces_master_id_bc a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:whitespaces;
-	d2rq:property vocab:whitespaces_master_id_bc;
-	d2rq:propertyDefinitionLabel "whitespaces master_id_bc";
-	d2rq:column "whitespaces.master_id_bc";
+map:rel_person_topic_topicid a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:rel_person_topic;
+	d2rq:property <rel_person_topic#topicid>;
+	d2rq:column "rel_person_topic.topicid";
+	d2rq:datatype xsd:integer;
 	.
-map:whitespaces_solution_capability a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:whitespaces;
-	d2rq:property vocab:whitespaces_solution_capability;
-	d2rq:propertyDefinitionLabel "whitespaces solution_capability";
-	d2rq:column "whitespaces.solution_capability";
+map:rel_person_topic_personid__ref a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:rel_person_topic;
+	d2rq:property <rel_person_topic#ref-personid>;
+	d2rq:refersToClassMap map:persons;
+	d2rq:join "rel_person_topic.personid => persons.perid";
 	.
-map:whitespaces_reference_architecture_hybrid a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:whitespaces;
-	d2rq:property vocab:whitespaces_reference_architecture_hybrid;
-	d2rq:propertyDefinitionLabel "whitespaces reference_architecture_hybrid";
-	d2rq:column "whitespaces.reference_architecture_hybrid";
+map:rel_person_topic_topicid__ref a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:rel_person_topic;
+	d2rq:property <rel_person_topic#ref-topicid>;
+	d2rq:refersToClassMap map:topics;
+	d2rq:join "rel_person_topic.topicid => topics.topicid";
 	.
-map:whitespaces_reference_architecture_cloud a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:whitespaces;
-	d2rq:property vocab:whitespaces_reference_architecture_cloud;
-	d2rq:propertyDefinitionLabel "whitespaces reference_architecture_cloud";
-	d2rq:column "whitespaces.reference_architecture_cloud";
+
+# Table topics
+map:topics a d2rq:ClassMap;
+	d2rq:dataStorage map:database;
+	d2rq:uriPattern "topics/topicid=@@topics.topicid@@";
+	d2rq:class <topics>;
 	.
-map:whitespaces_type a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:whitespaces;
-	d2rq:property vocab:whitespaces_type;
-	d2rq:propertyDefinitionLabel "whitespaces type";
-	d2rq:column "whitespaces.type";
+map:topics_topicid a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:topics;
+	d2rq:property <topics#topicid>;
+	d2rq:column "topics.topicid";
+	d2rq:datatype xsd:integer;
 	.
-map:whitespaces_future_status a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:whitespaces;
-	d2rq:property vocab:whitespaces_future_status;
-	d2rq:propertyDefinitionLabel "whitespaces future_status";
-	d2rq:column "whitespaces.future_status";
+map:topics_topicname a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:topics;
+	d2rq:property <topics#topicname>;
+	d2rq:column "topics.topicname";
 	.
-map:whitespaces_ppms_product_id a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:whitespaces;
-	d2rq:property vocab:whitespaces_ppms_product_id;
-	d2rq:propertyDefinitionLabel "whitespaces ppms_product_id";
-	d2rq:column "whitespaces.ppms_product_id";
+map:topics_uri a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:topics;
+	d2rq:property <topics#uri>;
+	d2rq:column "topics.uri";
 	.
-map:whitespaces_ppms_product_name a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:whitespaces;
-	d2rq:property vocab:whitespaces_ppms_product_name;
-	d2rq:propertyDefinitionLabel "whitespaces ppms_product_name";
-	d2rq:column "whitespaces.ppms_product_name";
+map:topics_parentid a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:topics;
+	d2rq:property <topics#parentid>;
+	d2rq:column "topics.parentid";
+	d2rq:datatype xsd:integer;
 	.
-map:whitespaces_reference_architecture_hybrid_1 a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:whitespaces;
-	d2rq:property vocab:whitespaces_reference_architecture_hybrid_1;
-	d2rq:propertyDefinitionLabel "whitespaces reference_architecture_hybrid_1";
-	d2rq:column "whitespaces.reference_architecture_hybrid_1";
-	.
-map:whitespaces_reference_architecture_cloud_1 a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:whitespaces;
-	d2rq:property vocab:whitespaces_reference_architecture_cloud_1;
-	d2rq:propertyDefinitionLabel "whitespaces reference_architecture_cloud_1";
-	d2rq:column "whitespaces.reference_architecture_cloud_1";
-	.
-map:whitespaces_deployment_type a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:whitespaces;
-	d2rq:property vocab:whitespaces_deployment_type;
-	d2rq:propertyDefinitionLabel "whitespaces deployment_type";
-	d2rq:column "whitespaces.deployment_type";
-	.
-map:whitespaces_whitespace_type a d2rq:PropertyBridge;
-	d2rq:belongsToClassMap map:whitespaces;
-	d2rq:property vocab:whitespaces_whitespace_type;
-	d2rq:propertyDefinitionLabel "whitespaces whitespace_type";
-	d2rq:column "whitespaces.whitespace_type";
+map:topics_parentid__ref a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:topics;
+	d2rq:property <topics#ref-parentid>;
+	d2rq:refersToClassMap map:topics;
+	d2rq:alias "topics AS topics__alias";
+	d2rq:join "topics.parentid => topics__alias.topicid";
 	.
 

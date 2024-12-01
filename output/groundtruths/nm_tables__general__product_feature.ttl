@@ -30,6 +30,7 @@ map:has_feature_Product_Feature a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:Product;
     d2rq:refersToClassMap map:Feature;
     d2rq:property base:has_feature;
+    
     d2rq:join "product.id = product_feature.product_id";
     d2rq:join "feature.id = product_feature.feature_id";
     .
@@ -37,12 +38,14 @@ map:has_feature_Product_Feature a d2rq:PropertyBridge;
 map:name_Product_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:Product;
     d2rq:property base:name;
+    
     d2rq:column "product.name";
     .
 
 map:name_Feature_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:Feature;
     d2rq:property base:name;
+    
     d2rq:column "feature.name";
     .
 

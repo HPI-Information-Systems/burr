@@ -1,75 +1,29 @@
 @prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix base: <https://base_ontology.com#> .
 @prefix schema: <http://schema.org/> .
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
 
 <#TriplesMapBook> a rr:TriplesMap;
     rr:logicalTable [ rr:tableName "Books" ];
     rr:subjectMap [
-        rr:template "https://base_ontology.com#Book/{BookID}";
+        rr:template "https://base_ontology.com#Book/{ISBN}";
         rr:class schema:Book;
     ];
     rr:predicateObjectMap [
-        rr:predicate base:count;
-        rr:objectMap [ rr:column "count" ];
-    ];
-    rr:predicateObjectMap [
-        rr:predicate base:max;
-        rr:objectMap [ rr:column "max" ];
-    ];
-    rr:predicateObjectMap [
-        rr:predicate base:mean;
-        rr:objectMap [ rr:column "mean" ];
-    ];
-    rr:predicateObjectMap [
-        rr:predicate base:min;
-        rr:objectMap [ rr:column "min" ];
-    ];
-    rr:predicateObjectMap [
-        rr:predicate base:non_null_count;
-        rr:objectMap [ rr:column "non_null_count" ];
-    ];
-    rr:predicateObjectMap [
-        rr:predicate base:std;
-        rr:objectMap [ rr:column "std" ];
-    ];
-    rr:predicateObjectMap [
-        rr:predicate base:type;
-        rr:objectMap [ rr:column "type" ];
-    ];
-    rr:predicateObjectMap [
-        rr:predicate base:unique_count;
-        rr:objectMap [ rr:column "unique_count" ];
-    ];
-    rr:predicateObjectMap [
-        rr:predicate base:hasCopiesAvailable;
-        rr:objectMap [ rr:column "copiesAvailable" ];
-    ];
-    rr:predicateObjectMap [
-        rr:predicate base:hasPublicationYear;
-        rr:objectMap [ rr:column "publicationYear" ];
-    ];
-    rr:predicateObjectMap [
-        rr:predicate base:hasISBN;
-        rr:objectMap [ rr:column "ISBN" ];
-    ];
-    rr:predicateObjectMap [
-        rr:predicate base:hasName;
+        rr:predicate schema:name;
         rr:objectMap [ rr:column "name" ];
     ];
     rr:predicateObjectMap [
-        rr:predicate base:hasCopiesAvailable_2;
-        rr:objectMap [ rr:column "copiesAvailable_2" ];
+        rr:predicate schema:isbn;
+        rr:objectMap [ rr:column "ISBN" ];
     ];
     rr:predicateObjectMap [
-        rr:predicate base:hasPublicationYear_2;
-        rr:objectMap [ rr:column "publicationYear_2" ];
+        rr:predicate dcterms:issued;
+        rr:objectMap [ rr:column "publicationYear" ];
     ];
     rr:predicateObjectMap [
-        rr:predicate base:hasISBN_2;
-        rr:objectMap [ rr:column "ISBN_2" ];
-    ];
-    rr:predicateObjectMap [
-        rr:predicate base:hasName_2;
-        rr:objectMap [ rr:column "name_2" ];
+        rr:predicate base:copiesAvailable;
+        rr:objectMap [ rr:column "copiesAvailable" ];
     ].

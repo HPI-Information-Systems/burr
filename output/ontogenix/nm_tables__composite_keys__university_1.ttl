@@ -1,6 +1,7 @@
 @prefix rr: <http://www.w3.org/ns/r2rml#> .
-@prefix base: <https://base_ontology.com#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix base: <https://base_ontology.com#> .
 
 <#TriplesMapCourse> a rr:TriplesMap;
     rr:logicalTable [ rr:tableName "Course" ];
@@ -9,7 +10,7 @@
         rr:class base:Course;
     ];
     rr:predicateObjectMap [
-        rr:predicate base:course_name;
+        rr:predicate base:courseName;
         rr:objectMap [ rr:column "course_name" ];
     ];
     rr:predicateObjectMap [
@@ -28,15 +29,15 @@
         rr:class base:Student;
     ];
     rr:predicateObjectMap [
-        rr:predicate base:first_name;
+        rr:predicate base:firstName;
         rr:objectMap [ rr:column "first_name" ];
     ];
     rr:predicateObjectMap [
-        rr:predicate base:last_name;
+        rr:predicate base:lastName;
         rr:objectMap [ rr:column "last_name" ];
     ];
     rr:predicateObjectMap [
-        rr:predicate base:planned_graduation_year;
+        rr:predicate base:plannedGraduationYear;
         rr:objectMap [ rr:column "planned_graduation_year" ];
     ].
 
@@ -47,31 +48,12 @@
         rr:class base:Enrollment;
     ];
     rr:predicateObjectMap [
-        rr:predicate base:course_name;
-        rr:objectMap [ rr:column "course_name" ];
-    ];
-    rr:predicateObjectMap [
-        rr:predicate base:first_name;
-        rr:objectMap [ rr:column "first_name" ];
-    ];
-    rr:predicateObjectMap [
-        rr:predicate base:last_name;
-        rr:objectMap [ rr:column "last_name" ];
-    ];
-    rr:predicateObjectMap [
-        rr:predicate base:planned_graduation_year;
-        rr:objectMap [ rr:column "planned_graduation_year" ];
-    ];
-    rr:predicateObjectMap [
         rr:predicate base:semester;
         rr:objectMap [ rr:column "semester" ];
-    ].
-
-<#TriplesMapStudentEnrollment> a rr:TriplesMap;
-    rr:logicalTable [ rr:tableName "Enrollment" ];
-    rr:subjectMap [
-        rr:template "https://base_ontology.com/Student/{student_id}";
-        rr:class base:Student;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:plannedGraduationYear;
+        rr:objectMap [ rr:column "planned_graduation_year" ];
     ];
     rr:predicateObjectMap [
         rr:predicate base:enrolledIn;
@@ -79,24 +61,17 @@
             rr:parentTriplesMap <#TriplesMapCourse>;
             rr:joinCondition [
                 rr:child "course_id";
-                rr:parent "course_id";
-            ];
-        ];
-    ].
-
-<#TriplesMapCourseEnrollment> a rr:TriplesMap;
-    rr:logicalTable [ rr:tableName "Enrollment" ];
-    rr:subjectMap [
-        rr:template "https://base_ontology.com/Course/{course_id}";
-        rr:class base:Course;
+                rr:parent "course_id"
+            ]
+        ]
     ];
     rr:predicateObjectMap [
-        rr:predicate base:hasEnrollment;
+        rr:predicate base:hasStudent;
         rr:objectMap [
-            rr:parentTriplesMap <#TriplesMapEnrollment>;
+            rr:parentTriplesMap <#TriplesMapStudent>;
             rr:joinCondition [
-                rr:child "enrollment_id";
-                rr:parent "enrollment_id";
-            ];
-        ];
+                rr:child "student_id";
+                rr:parent "student_id"
+            ]
+        ]
     ].

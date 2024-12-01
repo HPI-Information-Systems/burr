@@ -17,6 +17,7 @@ class D2RQMapping(BaseMapping):
         if os.path.isfile(mapping_content):
             self.graph.parse(mapping_content)
         else:
+            print(mapping_content)
             self.graph.parse(data=mapping_content, format="turtle")
         self.classes = self.parse_classes()
         self.relations = self.parse_relations()
@@ -64,7 +65,7 @@ class D2RQMapping(BaseMapping):
     
     def parse_classes(self) -> List[str]:
         classes = []
-        properties = ["d2rq:uriPattern", "d2rq:class", "d2rq:additionalClassDefinitionProperty", "d2rq:condition", "d2rq:translateWith"]
+        properties = ["d2rq:uriPattern", "d2rq:class", "d2rq:bNodeIdColumns", "d2rq:additionalClassDefinitionProperty", "d2rq:condition", "d2rq:translateWith"]
         class_maps = self.query_properties("ClassMap", properties)
         for class_map in class_maps:
             parent_classes = []
@@ -74,13 +75,14 @@ class D2RQMapping(BaseMapping):
                         parent_classes.append(self.shorten_uri(self.parse_additionalClassDefinitionProperty(el)))
                 else:
                     parent_classes = [self.shorten_uri(self.parse_additionalClassDefinitionProperty(class_map["d2rq:additionalClassDefinitionProperty"]))]
-            self.shorten_uri(class_map["d2rq:class"])
+            #self.shorten_uri(class_map["d2rq:class"])
             classes.append(ClassMap(
                         #fix first three
                         prefix="base",
                         datastorage="database",
                         translate_with=self.shorten_uri(class_map["d2rq:translateWith"]) if "d2rq:translateWith" in class_map.keys() else None,
                         mapping_id=self.shorten_uri(class_map["mapping_id"]),
+                        bNodeIdColumns=class_map["d2rq:bNodeIdColumns"] if "d2rq:bNodeIdColumns" in class_map.keys() else None,
                         uriPattern=class_map["d2rq:uriPattern"] if "d2rq:uriPattern" in class_map.keys() else None,
                         class_uri=self.shorten_uri(class_map["d2rq:class"]) if "d2rq:class" in class_map.keys() else None,
                         #additionalClassDefinitionProperty=class_map["d2rq:additionalClassDefinitionProperty"] if "d2rq:additionalClassDefinitionProperty" in class_map.keys() else None,
@@ -131,13 +133,14 @@ class D2RQMapping(BaseMapping):
 
     def parse_relations(self):
         relations = []
-        properties = ["d2rq:property", "d2rq:belongsToClassMap", "d2rq:translateWith", "d2rq:refersToClassMap", "d2rq:join", "d2rq:column", "d2rq:sqlExpression", "d2rq:constantValue", "d2rq:condition"]
+        properties = ["d2rq:property", "d2rq:belongsToClassMap", "d2rq:pattern", "d2rq:translateWith", "d2rq:refersToClassMap", "d2rq:join", "d2rq:column", "d2rq:sqlExpression", "d2rq:constantValue", "d2rq:condition"]
         property_bridges = self.query_properties("PropertyBridge", properties)
         for property_bridge in property_bridges:
             relations.append(Relation(
                     prefix="base",
                     mapping_id=self.shorten_uri(property_bridge["mapping_id"]),
                     property=self.shorten_uri(property_bridge["d2rq:property"]) if "d2rq:property" in property_bridge.keys() else None,
+                    pattern = property_bridge["d2rq:pattern"] if "d2rq:pattern" in property_bridge.keys() else None,
                     translate_with=self.shorten_uri(property_bridge["d2rq:translateWith"]) if "d2rq:translateWith" in property_bridge.keys() else None,
                     belongsToClassMap=self.__mapping_id_to_class(self.shorten_uri(property_bridge["d2rq:belongsToClassMap"])) if "d2rq:belongsToClassMap" in property_bridge.keys() else None,
                     refersToClassMap=self.__mapping_id_to_class(self.shorten_uri(property_bridge["d2rq:refersToClassMap"])) if "d2rq:refersToClassMap" in property_bridge.keys() else None,
@@ -150,18 +153,15 @@ class D2RQMapping(BaseMapping):
         return relations
 
     def convert_subclass_to_relations(self, class_: ClassMap):
-        for idx, parent_class in enumerate(class_.parent_classes) if class_.parent_classes is not None else []:
-            parent_class = self.__mapping_id_to_class(self.shorten_uri(parent_class), "class_uri")
-            # print(parent_class)
-            # print(class_)
-            # print("\n")
+        for idx, parent_map in enumerate(class_.parent_classes) if class_.parent_classes is not None else []:
+            parent_class = self.__mapping_id_to_class(self.shorten_uri(parent_map), "class_uri")
             self.relations.append(
                 Relation(
                     prefix="base",
-                    mapping_id=f"{parent_class.mapping_id}_{class_.mapping_id}_{idx}",
+                    mapping_id=f"{parent_class.mapping_id}_{class_.mapping_id}_{idx}" if parent_class is not None else self.shorten_uri(parent_map),
                     property="subclassOf",
                     belongsToClassMap=class_,
-                    refersToClassMap=parent_class,
+                    refersToClassMap=parent_class if parent_class is not None else self.shorten_uri(parent_map),
                     join=None,
                     column=None,
                 )

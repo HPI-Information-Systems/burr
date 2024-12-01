@@ -16,6 +16,7 @@ class R2RMLMapping(BaseMapping):
         print("mappingcontent",mapping_content)
         self.graph.parse(data=mapping_content, format="ttl")
         self.classes = self.parse_classes()
+        print(self.classes)
         self.relations = self.parse_relations()
         self.translation_tables = []
         # for class_ in self.get_classes():
@@ -39,9 +40,12 @@ class R2RMLMapping(BaseMapping):
         triples = self.graph.subjects(RDF.type, RR.TriplesMap)
         for idx, triples_map in enumerate(triples):
             print("triples_map", triples_map)
-            mapping_id = f"{idx}{str(triples_map).split('/')[-1].replace('#', '')}"
+            mapping_id = f"{idx}{str(triples_map).split('/')[-1].replace('#', '')}_CLS"
             logicalTable = self.graph.value(subject=triples_map, predicate=RR.logicalTable)
             subject_map = self.graph.value(subject=triples_map, predicate=RR.subjectMap)
+            if self.graph.value(subject=subject_map, predicate=RR["class"]) is None:
+                print("WARNING - Class not found for triples map: ", triples_map, " - skipping")
+                continue
             template = self.graph.value(subject=subject_map, predicate=RR.template)
             class_uri = self.shorten_uri(str(self.graph.value(subject=subject_map, predicate=RR["class"])))
             table_name = self.graph.value(subject=logicalTable, predicate=RR.tableName)
@@ -57,7 +61,8 @@ class R2RMLMapping(BaseMapping):
                 class_uri=class_uri,
                 join=None,
                 condition=None,
-                parent_classes=None
+                parent_classes=None,
+                bNodeIdColumns=None
             )) 
         return classes
     
@@ -72,28 +77,46 @@ class R2RMLMapping(BaseMapping):
         x = self.create_ttl_string(self.database)
         print(x)
         return D2RQMapping(x, self.database, self.meta)
+    
     def get_class_uri_for_mapping_id(self, mapping_id):
         for triples_map in self.graph.subjects(RDF.type, RR.TriplesMap):
             subject_map = self.graph.value(subject=triples_map, predicate=RR.subjectMap)
             class_uri = self.shorten_uri(str(self.graph.value(subject=subject_map, predicate=RR["class"])))
             if str(triples_map) == mapping_id:
                 return class_uri
+    
+    def get_mapping_id_from_class_uri(self, class_uri):    
+        for cls in self.classes:
+            if cls.class_uri == class_uri:
+                return cls.mapping_id
+    def match_class_uri_by_uri(self, uri):
+        for cls in self.classes:
+            if cls.uriPattern == uri:
+                return cls
+        return None
 
     def parse_relations(self):
         relations = []
         triples = self.graph.subjects(RDF.type, RR.TriplesMap)
-        print("TRIPLES", triples)
         for triples_map in triples:
-            print(triples_map)
             logicalTable = self.graph.value(subject=triples_map, predicate=RR.logicalTable)
             subject_map = self.graph.value(subject=triples_map, predicate=RR.subjectMap)
-            class_uri = self.shorten_uri(self.graph.value(subject=subject_map, predicate=RR["class"]))
             table_name = self.graph.value(subject=logicalTable, predicate=RR.tableName)
+            if self.graph.value(subject=subject_map, predicate=RR["class"]) is None:
+                print("WARNING - Class not found for triples map: ", triples_map, " - Trying to match by URI")
+                template = self.graph.value(subject=subject_map, predicate=RR.template)
+                uri_pattern = template.replace("{", f"@@{table_name}.").replace("}", "@@")
+                class_uri = self.match_class_uri_by_uri(uri_pattern)
+                if class_uri is None:
+                    print("WARNING - Class not found for triples map: ", triples_map, " - skipping")
+                    continue
+            else:
+                class_uri = self.shorten_uri(self.graph.value(subject=subject_map, predicate=RR["class"]))
             for idx, pred_obj_map in enumerate(self.graph.objects(subject=triples_map, predicate=RR.predicateObjectMap)):
-                mapping_id = f"{idx}{str(triples_map).split('/')[-1].replace('#', '')}"
+                mapping_id = f"{idx}{str(triples_map).split('/')[-1].replace('#', '')}_REL"
                 predicate = self.graph.value(subject=pred_obj_map, predicate=RR.predicate)
                 property = self.shorten_uri(predicate) if predicate else None
-                belongs_to_class_map = self.shorten_uri(class_uri)
+                belongs_to_class_map = self.get_mapping_id_from_class_uri(self.shorten_uri(class_uri))
                 object_map = self.graph.value(subject=pred_obj_map, predicate=RR.objectMap)
                 column = self.graph.value(subject=object_map, predicate=RR.column)
                 if column:
@@ -103,7 +126,7 @@ class R2RMLMapping(BaseMapping):
                 parentTriplesMap = self.graph.value(subject=object_map, predicate=RR.parentTriplesMap)
                 joinCondition = self.graph.objects(subject=object_map, predicate=RR.joinCondition)
                 
-                refers_to_class_map = self.shorten_uri(self.get_class_uri_for_mapping_id(str(parentTriplesMap))) if parentTriplesMap else None
+                refers_to_class_map = self.get_mapping_id_from_class_uri(self.shorten_uri(self.get_class_uri_for_mapping_id(str(parentTriplesMap)))) if parentTriplesMap else None
                 if joinCondition:
                     join = []
                     for j in joinCondition:

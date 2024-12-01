@@ -22,18 +22,21 @@ map:Person a d2rq:ClassMap;
 map:name_Person_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:Person;
     d2rq:property base:name;
+    
     d2rq:column "person.name";
     .
 
 map:address_Person_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:Person;
     d2rq:property base:address;
+    
     d2rq:column "person.address";
     .
 
 map:phone_number_Person_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:Person;
     d2rq:property base:phone_number;
+    
     d2rq:column "person.phone";
     .
 

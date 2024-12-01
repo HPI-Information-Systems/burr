@@ -14,20 +14,22 @@ def format_time(seconds):
     milliseconds = int((seconds - int(seconds)) * 1000)
     return f"{minutes}:{seconds_remainder:02},{milliseconds:03}"
 
-df = pd.read_csv("./experimental_evaluation/experimental_results/runs_w3c_no_pk.csv")
+df = pd.read_csv("./experimental_evaluation/experimental_results/runs_paperrun_0112.csv")
 df['inference_time'].apply(lambda x: x/60)
-# df = df[df['group'] == 'real_world']
-results = df.groupby(["group", "system"]).agg({
-    "m_cls_f1": ["mean"],
-    "m_rel_f1": ["mean" ],
-    "m_attr_f1": ["mean" ],
-    "n_cls_f1": ["mean"],
-    "n_rel_f1": ["mean"              ],
-    "n_attr_f1": ["mean"],
+df = df[df['group'] == 'real_world']
+results = df.groupby(["group", "base_scenario", "scenario", "system"]).agg({
+    # "m_cls_f1": ["mean"],
+    # "m_rel_f1": ["mean" ],
+    # "m_attr_f1": ["mean" ],
+    # "n_cls_f1": ["mean"],
+    # "n_rel_f1": ["mean"],
+    # "n_attr_f1": ["mean"],
     "inference_time": ["mean"],
-    })
+}).applymap(lambda x: round(x, 2))
 results = results.reset_index()
 results[("inference_time", "mean")] = results[("inference_time", "mean")].apply(format_time)
+
+
     
 print(results)
 print("\n\n")

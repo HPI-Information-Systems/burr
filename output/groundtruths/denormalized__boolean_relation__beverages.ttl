@@ -65,41 +65,54 @@ map:contains_Beverage_IngredientAlcohol a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:Beverage;
     d2rq:refersToClassMap map:IngredientAlcohol;
     d2rq:property base:contains;
+    
+    d2rq:condition "@@beverage.contains_alcohol@@ = 'True'";
     .
 
 map:contains_Beverage_IngredientCaffeine a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:Beverage;
     d2rq:refersToClassMap map:IngredientCaffeine;
     d2rq:property base:contains;
+    
+    d2rq:condition "@@beverage.contains_caffeine@@ = 'True'";
     .
 
 map:contains_Beverage_IngredientSugar a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:Beverage;
     d2rq:refersToClassMap map:IngredientSugar;
     d2rq:property base:contains;
+    
+    d2rq:condition "@@beverage.contains_sugar@@ = 'True'";
     .
 
 map:contains_Beverage_IngredientDairy a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:Beverage;
     d2rq:refersToClassMap map:IngredientDairy;
     d2rq:property base:contains;
+    
+    d2rq:condition "@@beverage.contains_dairy@@ = 'True'";
     .
 
 map:contains_Beverage_IngredientGluten a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:Beverage;
     d2rq:refersToClassMap map:IngredientGluten;
     d2rq:property base:contains;
+    
+    d2rq:condition "@@beverage.contains_gluten@@ = 'True'";
     .
 
 map:contains_Beverage_IngredientNuts a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:Beverage;
     d2rq:refersToClassMap map:IngredientNuts;
     d2rq:property base:contains;
+    
+    d2rq:condition "@@beverage.contains_nuts@@ = 'True'";
     .
 
 map:name_Beverage_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:Beverage;
     d2rq:property base:name;
+    
     d2rq:column "beverage.name";
     .
 

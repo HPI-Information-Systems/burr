@@ -1,308 +1,247 @@
-@prefix base: <https://base_ontology.com#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
-@prefix dbpedia: <http://dbpedia.org/resource/> .
-@prefix geonames: <http://www.geonames.org/ontology#> .
-@prefix wikidata: <http://www.wikidata.org/entity/> .
+@prefix base: <https://base_ontology.com#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix schema: <http://schema.org/> .
 
-base:area a owl:DatatypeProperty ;
-    rdfs:domain [ a owl:Class ;
-            owl:unionOf ( base:Country base:Province base:Continent base:Desert base:Island base:Lake base:Sea base:River ) ] ;
-    rdfs:range xsd:float ;
-    rdfs:label "area" ;
-    skos:definition "The area of the geographical entity." .
+base:hasAddress a owl:DatatypeProperty ;
+    rdfs:domain foaf:Organization, foaf:Person ;
+    rdfs:range xsd:string ;
+    rdfs:label "has address" ;
+    skos:definition "The address associated with a person or organization." .
 
-base:population a owl:DatatypeProperty ;
-    rdfs:domain [ a owl:Class ;
-            owl:unionOf ( base:Country base:City base:Province base:Population ) ] ;
-    rdfs:range xsd:integer ;
-    rdfs:label "population" ;
-    skos:definition "The population of the geographical entity." .
+base:hasEmail a owl:DatatypeProperty ;
+    rdfs:domain foaf:Person ;
+    rdfs:range xsd:string ;
+    rdfs:label "has email" ;
+    skos:definition "The email address of a person." .
 
-base:elevation a owl:DatatypeProperty ;
-    rdfs:domain [ a owl:Class ;
-            owl:unionOf ( base:City base:Mountain base:Island base:Lake ) ] ;
-    rdfs:range xsd:float ;
-    rdfs:label "elevation" ;
-    skos:definition "The elevation of the geographical entity." .
+base:hasFirstName a owl:DatatypeProperty ;
+    rdfs:domain foaf:Person ;
+    rdfs:range xsd:string ;
+    rdfs:label "has first name" ;
+    skos:definition "The first name of a person." .
 
-base:latitude a owl:DatatypeProperty ;
-    rdfs:domain [ a owl:Class ;
-            owl:unionOf ( base:City base:Mountain base:Island base:Lake base:Desert base:River ) ] ;
-    rdfs:range xsd:float ;
-    rdfs:label "latitude" ;
-    skos:definition "The latitude of the geographical entity." .
+base:hasLastName a owl:DatatypeProperty ;
+    rdfs:domain foaf:Person ;
+    rdfs:range xsd:string ;
+    rdfs:label "has last name" ;
+    skos:definition "The last name of a person." .
 
-base:longitude a owl:DatatypeProperty ;
-    rdfs:domain [ a owl:Class ;
-            owl:unionOf ( base:City base:Mountain base:Island base:Lake base:Desert base:River ) ] ;
-    rdfs:range xsd:float ;
-    rdfs:label "longitude" ;
-    skos:definition "The longitude of the geographical entity." .
+base:hasPhone a owl:DatatypeProperty ;
+    rdfs:domain foaf:Person ;
+    rdfs:range xsd:string ;
+    rdfs:label "has phone" ;
+    skos:definition "The phone number of a person." .
 
-base:percentage a owl:DatatypeProperty ;
-    rdfs:domain [ a owl:Class ;
-            owl:unionOf ( base:Religion base:EthnicGroup base:Encompasses ) ] ;
-    rdfs:range xsd:float ;
-    rdfs:label "percentage" ;
-    skos:definition "The percentage value associated with the entity." .
+base:hasPhoto a owl:DatatypeProperty ;
+    rdfs:domain foaf:Person ;
+    rdfs:range xsd:string ;
+    rdfs:label "has photo" ;
+    skos:definition "The photo of a person." .
 
-base:depth a owl:DatatypeProperty ;
-    rdfs:domain [ a owl:Class ;
-            owl:unionOf ( base:Lake base:Sea ) ] ;
-    rdfs:range xsd:float ;
-    rdfs:label "depth" ;
-    skos:definition "The depth of the water body." .
+base:hasHomepage a owl:DatatypeProperty ;
+    rdfs:domain foaf:Organization, foaf:Person ;
+    rdfs:range xsd:string ;
+    rdfs:label "has homepage" ;
+    skos:definition "The homepage URL of a person or organization." .
 
-base:length a owl:DatatypeProperty ;
-    rdfs:domain base:Border ;
-    rdfs:range xsd:float ;
-    rdfs:label "length" ;
-    skos:definition "The length of the border." .
+base:hasPostcode a owl:DatatypeProperty ;
+    rdfs:domain foaf:Organization ;
+    rdfs:range xsd:string ;
+    rdfs:label "has postcode" ;
+    skos:definition "The postcode of an organization's address." .
 
-base:established a owl:DatatypeProperty ;
-    rdfs:domain base:Organization ;
+base:hasType a owl:DatatypeProperty ;
+    rdfs:domain foaf:Organization, foaf:Person ;
+    rdfs:range xsd:string ;
+    rdfs:label "has type" ;
+    skos:definition "The type or category of a person or organization." .
+
+base:hasURI a owl:DatatypeProperty ;
+    rdfs:domain foaf:Organization, foaf:Person, dcterms:BibliographicResource, schema:Event, skos:Concept ;
+    rdfs:range xsd:anyURI ;
+    rdfs:label "has URI" ;
+    skos:definition "The URI associated with an entity." .
+
+base:hasAbstract a owl:DatatypeProperty ;
+    rdfs:domain dcterms:BibliographicResource ;
+    rdfs:range xsd:string ;
+    rdfs:label "has abstract" ;
+    skos:definition "The abstract of a paper." .
+
+base:hasTitle a owl:DatatypeProperty ;
+    rdfs:domain dcterms:BibliographicResource ;
+    rdfs:range xsd:string ;
+    rdfs:label "has title" ;
+    skos:definition "The title of a paper." .
+
+base:hasYear a owl:DatatypeProperty ;
+    rdfs:domain dcterms:BibliographicResource ;
+    rdfs:range xsd:gYear ;
+    rdfs:label "has year" ;
+    skos:definition "The year a paper was published." .
+
+base:hasName a owl:DatatypeProperty ;
+    rdfs:domain foaf:Organization, schema:Event ;
+    rdfs:range xsd:string ;
+    rdfs:label "has name" ;
+    skos:definition "The name of an organization or conference." .
+
+base:hasLocation a owl:DatatypeProperty ;
+    rdfs:domain foaf:Organization, schema:Event ;
+    rdfs:range xsd:string ;
+    rdfs:label "has location" ;
+    skos:definition "The location of an organization or conference." .
+
+base:hasCountry a owl:DatatypeProperty ;
+    rdfs:domain foaf:Organization ;
+    rdfs:range xsd:string ;
+    rdfs:label "has country" ;
+    skos:definition "The country where an organization is located." .
+
+base:hasBelongsTo a owl:DatatypeProperty ;
+    rdfs:domain foaf:Organization ;
+    rdfs:range xsd:string ;
+    rdfs:label "belongs to" ;
+    skos:definition "The parent organization to which an organization belongs." .
+
+base:hasPublishStatus a owl:DatatypeProperty ;
+    rdfs:domain dcterms:BibliographicResource ;
+    rdfs:range xsd:boolean ;
+    rdfs:label "has publish status" ;
+    skos:definition "The publish status of a paper." .
+
+base:hasDate a owl:DatatypeProperty ;
+    rdfs:domain schema:Event ;
     rdfs:range xsd:date ;
-    rdfs:label "established" ;
-    skos:definition "The date when the organization was established." .
+    rdfs:label "has date" ;
+    skos:definition "The date of a conference." .
 
-base:country a owl:ObjectProperty ;
-    rdfs:domain [ a owl:Class ;
-            owl:unionOf ( base:City base:Province base:Population base:Economy base:Politics base:Religion base:EthnicGroup base:Language base:GeoDesert base:GeoMountain base:GeoIsland base:GeoRiver base:GeoSea base:GeoLake base:GeoSource base:GeoEstuary base:Located base:LocatedOn base:IslandIn base:MountainOnIsland base:LakeOnIsland base:RiverOnIsland ) ] ;
-    rdfs:range base:Country ;
-    rdfs:label "country" ;
-    skos:definition "The country associated with the entity." .
+base:hasParentID a owl:DatatypeProperty ;
+    rdfs:domain skos:Concept ;
+    rdfs:range xsd:integer ;
+    rdfs:label "has parent ID" ;
+    skos:definition "The parent ID of a topic." .
 
-base:province a owl:ObjectProperty ;
-    rdfs:domain [ a owl:Class ;
-            owl:unionOf ( base:City base:Population base:GeoDesert base:GeoMountain base:GeoIsland base:GeoRiver base:GeoSea base:GeoLake base:GeoSource base:GeoEstuary base:Located base:LocatedOn base:IslandIn base:MountainOnIsland base:LakeOnIsland base:RiverOnIsland ) ] ;
-    rdfs:range base:Province ;
-    rdfs:label "province" ;
-    skos:definition "The province associated with the entity." .
+base:hasTopicName a owl:DatatypeProperty ;
+    rdfs:domain skos:Concept ;
+    rdfs:range xsd:string ;
+    rdfs:label "has topic name" ;
+    skos:definition "The name of a topic." .
 
-base:city a owl:ObjectProperty ;
-    rdfs:domain [ a owl:Class ;
-            owl:unionOf ( base:Located base:LocatedOn ) ] ;
-    rdfs:range base:City ;
-    rdfs:label "city" ;
-    skos:definition "The city associated with the entity." .
+base:hasRelationType a owl:DatatypeProperty ;
+    rdfs:domain base:PaperTopicRelation ;
+    rdfs:range xsd:string ;
+    rdfs:label "has relation type" ;
+    skos:definition "The type of relation between a paper and a topic." .
 
-base:lake a owl:ObjectProperty ;
-    rdfs:domain [ a owl:Class ;
-            owl:unionOf ( base:River base:Located base:IslandIn base:RiverThrough ) ] ;
-    rdfs:range base:Lake ;
-    rdfs:label "lake" ;
-    skos:definition "The lake associated with the entity." .
+base:hasPersonID a owl:DatatypeProperty ;
+    rdfs:domain foaf:Person ;
+    rdfs:range xsd:integer ;
+    rdfs:label "has person ID" ;
+    skos:definition "The unique identifier for a person." .
 
-base:river a owl:ObjectProperty ;
-    rdfs:domain [ a owl:Class ;
-            owl:unionOf ( base:Located base:IslandIn base:RiverThrough ) ] ;
-    rdfs:range base:River ;
-    rdfs:label "river" ;
-    skos:definition "The river associated with the entity." .
+base:hasOrganizationID a owl:DatatypeProperty ;
+    rdfs:domain foaf:Organization ;
+    rdfs:range xsd:integer ;
+    rdfs:label "has organization ID" ;
+    skos:definition "The unique identifier for an organization." .
 
-base:sea a owl:ObjectProperty ;
-    rdfs:domain [ a owl:Class ;
-            owl:unionOf ( base:Located base:IslandIn base:MergesWith ) ] ;
-    rdfs:range base:Sea ;
-    rdfs:label "sea" ;
-    skos:definition "The sea associated with the entity." .
+base:hasPaperID a owl:DatatypeProperty ;
+    rdfs:domain dcterms:BibliographicResource ;
+    rdfs:range xsd:integer ;
+    rdfs:label "has paper ID" ;
+    skos:definition "The unique identifier for a paper." .
 
-base:island a owl:ObjectProperty ;
-    rdfs:domain [ a owl:Class ;
-            owl:unionOf ( base:LocatedOn base:IslandIn base:MountainOnIsland base:LakeOnIsland base:RiverOnIsland ) ] ;
-    rdfs:range base:Island ;
-    rdfs:label "island" ;
-    skos:definition "The island associated with the entity." .
+base:hasConferenceID a owl:DatatypeProperty ;
+    rdfs:domain schema:Event ;
+    rdfs:range xsd:integer ;
+    rdfs:label "has conference ID" ;
+    skos:definition "The unique identifier for a conference." .
 
-base:continent a owl:ObjectProperty ;
-    rdfs:domain base:Encompasses ;
-    rdfs:range base:Continent ;
-    rdfs:label "continent" ;
-    skos:definition "The continent associated with the entity." .
+base:hasTopicID a owl:DatatypeProperty ;
+    rdfs:domain skos:Concept ;
+    rdfs:range xsd:integer ;
+    rdfs:label "has topic ID" ;
+    skos:definition "The unique identifier for a topic." .
 
-base:organization a owl:ObjectProperty ;
-    rdfs:domain base:IsMember ;
-    rdfs:range base:Organization ;
-    rdfs:label "organization" ;
-    skos:definition "The organization associated with the entity." .
+base:relatedToOrganization a owl:ObjectProperty ;
+    rdfs:domain foaf:Person ;
+    rdfs:range foaf:Organization ;
+    rdfs:label "related to organization" ;
+    skos:definition "The relationship between a person and an organization." .
 
-base:dependent a owl:ObjectProperty ;
-    rdfs:domain base:Politics ;
-    rdfs:range base:Country ;
-    rdfs:label "dependent" ;
-    skos:definition "The dependent country associated with the entity." .
+base:relatedToPaper a owl:ObjectProperty ;
+    rdfs:domain foaf:Person ;
+    rdfs:range dcterms:BibliographicResource ;
+    rdfs:label "related to paper" ;
+    skos:definition "The relationship between a person and a paper." .
 
-base:wasdependent a owl:ObjectProperty ;
-    rdfs:domain base:Politics ;
-    rdfs:range base:Country ;
-    rdfs:label "was dependent" ;
-    skos:definition "The country that was dependent associated with the entity." .
+base:relatedToTopic a owl:ObjectProperty ;
+    rdfs:domain foaf:Person ;
+    rdfs:range skos:Concept ;
+    rdfs:label "related to topic" ;
+    skos:definition "The relationship between a person and a topic." .
 
-base:Country a owl:Class ;
-    rdfs:label "Country" ;
-    skos:definition "A country entity." ;
-    owl:equivalentClass dbpedia:Country .
+base:paperHasTopic a owl:ObjectProperty ;
+    rdfs:domain dcterms:BibliographicResource ;
+    rdfs:range skos:Concept ;
+    rdfs:label "paper has topic" ;
+    skos:definition "The relationship between a paper and a topic." .
 
-base:City a owl:Class ;
-    rdfs:label "City" ;
-    skos:definition "A city entity." ;
-    owl:equivalentClass dbpedia:City .
+base:presentedAt a owl:ObjectProperty ;
+    rdfs:domain dcterms:BibliographicResource ;
+    rdfs:range schema:Event ;
+    rdfs:label "presented at" ;
+    skos:definition "The relationship between a paper and a conference." .
 
-base:Province a owl:Class ;
-    rdfs:label "Province" ;
-    skos:definition "A province entity." ;
-    owl:equivalentClass dbpedia:Administrative_division .
+foaf:Person a owl:Class ;
+    rdfs:label "Person" ;
+    skos:definition "An individual human being." ;
+    rdf:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty base:relatedToOrganization ;
+        owl:someValuesFrom foaf:Organization
+    ], [
+        a owl:Restriction ;
+        owl:onProperty base:relatedToPaper ;
+        owl:someValuesFrom dcterms:BibliographicResource
+    ], [
+        a owl:Restriction ;
+        owl:onProperty base:relatedToTopic ;
+        owl:someValuesFrom skos:Concept
+    ] .
 
-base:Population a owl:Class ;
-    rdfs:label "Population" ;
-    skos:definition "A population entity." ;
-    owl:equivalentClass dbpedia:Demographics .
-
-base:Economy a owl:Class ;
-    rdfs:label "Economy" ;
-    skos:definition "An economy entity." ;
-    owl:equivalentClass dbpedia:Economy .
-
-base:Politics a owl:Class ;
-    rdfs:label "Politics" ;
-    skos:definition "A politics entity." ;
-    owl:equivalentClass dbpedia:Politics .
-
-base:Religion a owl:Class ;
-    rdfs:label "Religion" ;
-    skos:definition "A religion entity." ;
-    owl:equivalentClass dbpedia:Religion .
-
-base:EthnicGroup a owl:Class ;
-    rdfs:label "Ethnic Group" ;
-    skos:definition "An ethnic group entity." ;
-    owl:equivalentClass dbpedia:Ethnic_group .
-
-base:Language a owl:Class ;
-    rdfs:label "Language" ;
-    skos:definition "A language entity." ;
-    owl:equivalentClass dbpedia:Language .
-
-base:Continent a owl:Class ;
-    rdfs:label "Continent" ;
-    skos:definition "A continent entity." ;
-    owl:equivalentClass dbpedia:Continent .
-
-base:Border a owl:Class ;
-    rdfs:label "Border" ;
-    skos:definition "A border entity." ;
-    owl:equivalentClass dbpedia:Border .
-
-base:Organization a owl:Class ;
+foaf:Organization a owl:Class ;
     rdfs:label "Organization" ;
-    skos:definition "An organization entity." ;
-    owl:equivalentClass dbpedia:Organization .
+    skos:definition "An organized group of people with a particular purpose." .
 
-base:IsMember a owl:Class ;
-    rdfs:label "Membership" ;
-    skos:definition "A membership entity." ;
-    owl:equivalentClass dbpedia:Membership .
+dcterms:BibliographicResource a owl:Class ;
+    rdfs:label "Paper" ;
+    skos:definition "A written work published in a print or electronic medium." ;
+    rdf:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty base:paperHasTopic ;
+        owl:someValuesFrom skos:Concept
+    ], [
+        a owl:Restriction ;
+        owl:onProperty base:presentedAt ;
+        owl:someValuesFrom schema:Event
+    ] .
 
-base:Mountain a owl:Class ;
-    rdfs:label "Mountain" ;
-    skos:definition "A mountain entity." ;
-    owl:equivalentClass dbpedia:Mountain .
+schema:Event a owl:Class ;
+    rdfs:label "Conference" ;
+    skos:definition "An event where individuals gather to discuss a particular topic." .
 
-base:Desert a owl:Class ;
-    rdfs:label "Desert" ;
-    skos:definition "A desert entity." ;
-    owl:equivalentClass dbpedia:Desert .
+skos:Concept a owl:Class ;
+    rdfs:label "Topic" ;
+    skos:definition "A subject or theme of a paper or discussion." .
 
-base:Island a owl:Class ;
-    rdfs:label "Island" ;
-    skos:definition "An island entity." ;
-    owl:equivalentClass dbpedia:Island .
-
-base:Lake a owl:Class ;
-    rdfs:label "Lake" ;
-    skos:definition "A lake entity." ;
-    owl:equivalentClass dbpedia:Lake .
-
-base:Sea a owl:Class ;
-    rdfs:label "Sea" ;
-    skos:definition "A sea entity." ;
-    owl:equivalentClass dbpedia:Sea .
-
-base:River a owl:Class ;
-    rdfs:label "River" ;
-    skos:definition "A river entity." ;
-    owl:equivalentClass dbpedia:River .
-
-base:GeoDesert a owl:Class ;
-    rdfs:label "GeoDesert" ;
-    skos:definition "A geographical desert entity." ;
-    owl:equivalentClass geonames:Desert .
-
-base:GeoMountain a owl:Class ;
-    rdfs:label "GeoMountain" ;
-    skos:definition "A geographical mountain entity." ;
-    owl:equivalentClass geonames:Mountain .
-
-base:GeoIsland a owl:Class ;
-    rdfs:label "GeoIsland" ;
-    skos:definition "A geographical island entity." ;
-    owl:equivalentClass geonames:Island .
-
-base:GeoRiver a owl:Class ;
-    rdfs:label "GeoRiver" ;
-    skos:definition "A geographical river entity." ;
-    owl:equivalentClass geonames:River .
-
-base:GeoSea a owl:Class ;
-    rdfs:label "GeoSea" ;
-    skos:definition "A geographical sea entity." ;
-    owl:equivalentClass geonames:Sea .
-
-base:GeoLake a owl:Class ;
-    rdfs:label "GeoLake" ;
-    skos:definition "A geographical lake entity." ;
-    owl:equivalentClass geonames:Lake .
-
-base:GeoSource a owl:Class ;
-    rdfs:label "GeoSource" ;
-    skos:definition "A geographical river source entity." ;
-    owl:equivalentClass geonames:River .
-
-base:GeoEstuary a owl:Class ;
-    rdfs:label "GeoEstuary" ;
-    skos:definition "A geographical river estuary entity." ;
-    owl:equivalentClass geonames:River .
-
-base:Located a owl:Class ;
-    rdfs:label "Located" ;
-    skos:definition "A located entity." ;
-    owl:equivalentClass geonames:Feature .
-
-base:LocatedOn a owl:Class ;
-    rdfs:label "LocatedOn" ;
-    skos:definition "A located on entity." ;
-    owl:equivalentClass geonames:Feature .
-
-base:IslandIn a owl:Class ;
-    rdfs:label "IslandIn" ;
-    skos:definition "An island in entity." ;
-    owl:equivalentClass geonames:Feature .
-
-base:MountainOnIsland a owl:Class ;
-    rdfs:label "MountainOnIsland" ;
-    skos:definition "A mountain on island entity." ;
-    owl:equivalentClass geonames:Feature .
-
-base:LakeOnIsland a owl:Class ;
-    rdfs:label "LakeOnIsland" ;
-    skos:definition "A lake on island entity." ;
-    owl:equivalentClass geonames:Feature .
-
-base:RiverOnIsland a owl:Class ;
-    rdfs:label "RiverOnIsland" ;
-    skos:definition "A river on island entity." ;
-    owl:equivalentClass geonames:Feature .
+base:PaperTopicRelation a owl:Class ;
+    rdfs:label "Paper-Topic Relation" ;
+    skos:definition "A relationship between a paper and a topic." .

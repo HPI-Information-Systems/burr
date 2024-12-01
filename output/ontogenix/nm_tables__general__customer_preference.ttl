@@ -1,80 +1,42 @@
 @prefix rr: <http://www.w3.org/ns/r2rml#> .
-@prefix base: <https://base_ontology.com#> .
-@prefix foaf: <http://xmlns.com/foaf/0.1/> .
-@prefix schema: <http://schema.org/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix base: <https://base_ontology.com#> .
 
-<#TriplesMapPerson> a rr:TriplesMap;
-    rr:logicalTable [ rr:tableName "Person" ];
+<#TriplesMapCustomer> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "Customer" ];
     rr:subjectMap [
-        rr:template "https://base_ontology.com#Person/{id}";
-        rr:class foaf:Person;
+        rr:template "https://base_ontology.com#Customer/{customerId}";
+        rr:class base:Customer;
     ];
     rr:predicateObjectMap [
-        rr:predicate base:id;
-        rr:objectMap [ rr:column "id" ];
+        rr:predicate base:customerId;
+        rr:objectMap [ rr:column "customerId" ];
     ];
     rr:predicateObjectMap [
-        rr:predicate base:name;
-        rr:objectMap [ rr:column "name" ];
+        rr:predicate base:customerName;
+        rr:objectMap [ rr:column "customerName" ];
     ];
     rr:predicateObjectMap [
         rr:predicate base:hasPreference;
-        rr:objectMap [
-            rr:parentTriplesMap <#TriplesMapCustomerPreference>;
-            rr:joinCondition [
-                rr:child "id";
-                rr:parent "customer_id";
-            ]
-        ]
+        rr:objectMap [ rr:parentTriplesMap <#TriplesMapPreference> ];
     ].
 
-<#TriplesMapCustomerPreference> a rr:TriplesMap;
-    rr:logicalTable [ rr:tableName "CustomerPreference" ];
+<#TriplesMapPreference> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "Preference" ];
     rr:subjectMap [
-        rr:template "https://base_ontology.com#CustomerPreference/{customer_id}/{preference_id}";
-        rr:class base:CustomerPreference;
+        rr:template "https://base_ontology.com#Preference/{preferenceId}";
+        rr:class base:Preference;
     ];
     rr:predicateObjectMap [
-        rr:predicate base:customer_id;
-        rr:objectMap [ rr:column "customer_id" ];
+        rr:predicate base:preferenceId;
+        rr:objectMap [ rr:column "preferenceId" ];
     ];
     rr:predicateObjectMap [
-        rr:predicate base:preference_id;
-        rr:objectMap [ rr:column "preference_id" ];
+        rr:predicate base:preferenceName;
+        rr:objectMap [ rr:column "preferenceName" ];
     ];
     rr:predicateObjectMap [
-        rr:predicate base:isPreferredBy;
-        rr:objectMap [
-            rr:parentTriplesMap <#TriplesMapIntangible>;
-            rr:joinCondition [
-                rr:child "preference_id";
-                rr:parent "id";
-            ]
-        ]
-    ].
-
-<#TriplesMapIntangible> a rr:TriplesMap;
-    rr:logicalTable [ rr:tableName "Intangible" ];
-    rr:subjectMap [
-        rr:template "https://base_ontology.com#Intangible/{id}";
-        rr:class schema:Intangible;
-    ];
-    rr:predicateObjectMap [
-        rr:predicate base:id;
-        rr:objectMap [ rr:column "id" ];
-    ];
-    rr:predicateObjectMap [
-        rr:predicate base:name;
-        rr:objectMap [ rr:column "name" ];
-    ];
-    rr:predicateObjectMap [
-        rr:predicate base:isPreferredBy;
-        rr:objectMap [
-            rr:parentTriplesMap <#TriplesMapPerson>;
-            rr:joinCondition [
-                rr:child "id";
-                rr:parent "preference_id";
-            ]
-        ]
+        rr:predicate base:isPreferenceOf;
+        rr:objectMap [ rr:parentTriplesMap <#TriplesMapCustomer> ];
     ].

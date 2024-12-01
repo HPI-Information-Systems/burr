@@ -15,9 +15,9 @@ Structure your output in the following format:
 <Generate the R2RML content here:
     Ensure that when creating the URIs of the instances, integrate all columns that are required to uniquely identify instances of the concept.
     Ensure you add all the necessary prefixes at the beginning of the R2RML-file.
-    Ensure you correctly add the references to the prefixes in each triple definition block.
+    Ensure you correctly add the references to the prefixes in each triple definition block. Add all object and data properties to the correct TriplesMap. Do not create an additional TriplesMap for object properties, but add them directly to the first.
+    Ensure you also include the object proprties that connect to classes. Consider the correct join partners.
     IMPORTANT! The R2RML mapping will reference database tables not a JSON.
-
     Follow this example's format (if present) for the definition of classes mappings:
     {example_extension}
 
@@ -26,6 +26,7 @@ Structure your output in the following format:
     Create a mapping for each class. Generate appropriate URIs and taking into account the real name of the input file's column names.
     Please consider joins to model complex relationships between classes.
     Do not use "http://example.org" or "http://example.com" instead make use of the base prefix. Otherwise, do not use the prefix `base`.
+    Include all necessary prefixes in the beginning.
     Do not shorten your answer, finish completely the mapping definition!
     Do not shorten your answer with notes like this: "# Additional mappings for entities...would follow the same pattern as above."
     Do not explain your answer, just write the R2RML code.

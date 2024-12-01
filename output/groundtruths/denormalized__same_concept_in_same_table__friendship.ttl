@@ -30,29 +30,34 @@ map:is_friend_PersonA_PersonB a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:PersonA;
     d2rq:refersToClassMap map:PersonB;
     d2rq:property base:is_friend;
+    
     .
 
 map:name_PersonA_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:PersonA;
     d2rq:property base:name;
+    
     d2rq:column "friendship.name_a";
     .
 
 map:name_PersonB_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:PersonB;
     d2rq:property base:name;
+    
     d2rq:column "friendship.name_b";
     .
 
 map:address_PersonA_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:PersonA;
     d2rq:property base:address;
+    
     d2rq:column "friendship.address_a";
     .
 
 map:address_PersonB_None a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:PersonB;
     d2rq:property base:address;
+    
     d2rq:column "friendship.address_b";
     .
 

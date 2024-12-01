@@ -18,6 +18,9 @@ map:{{ mapping_name }} a d2rq:PropertyBridge;
     d2rq:condition "{{ condition }}";
     {%- endfor %}
     {%- endif -%}
+    {%- if pattern -%}
+    d2rq:pattern "{{ pattern }}";
+    {%- endif %}
     {%- if sqlExpression %}
     d2rq:sqlExpression "{{ sqlExpression }}";
     {%- endif %}

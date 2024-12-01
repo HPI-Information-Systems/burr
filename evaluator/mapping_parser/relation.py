@@ -1,6 +1,6 @@
 from evaluator.mapping_parser.sql_elements import SQLAttribute, Join, Condition
-from evaluator.mapping_parser.classmap import ClassMap
-from evaluator.mapping_parser.utils import parse_condition
+from evaluator.mapping_parser.classmap import ClassMap, name_based_equality
+from evaluator.mapping_parser.utils import parse_condition, parse_pattern
 from evaluator.utils.get_jinja_env import get_jinja_env
 import re
 class Relation:
@@ -11,7 +11,7 @@ class Relation:
     join: str
     column: str
 
-    def __init__(self, prefix, mapping_id, property, belongsToClassMap, constantValue=None, sqlExpression=None, column=None, join=None, condition=None, datatype=None,refersToClassMap=None, inverse_of=None, translate_with=None) -> None:
+    def __init__(self, prefix, mapping_id, property, belongsToClassMap, pattern=None, constantValue=None, sqlExpression=None, column=None, join=None, condition=None, datatype=None,refersToClassMap=None, inverse_of=None, translate_with=None) -> None:
         #print(constantValue, sqlExpression, column)
         #assert (constantValue is None and sqlExpression is None and column is not None) or (constantValue is not None and sqlExpression is None and column is None) or (constantValue is None and sqlExpression is not None and column is None)
         self.mapping_id = mapping_id
@@ -19,6 +19,8 @@ class Relation:
         self.belongsToClassMap = belongsToClassMap
         self.refersToClassMap = refersToClassMap
         self.join = join
+        self.pattern = pattern
+        self.sql_pattern = self.parse_pattern(pattern) if pattern is not None else None
         self.column = column
         self.condition = condition
         self.datatype = datatype
@@ -39,6 +41,9 @@ class Relation:
         else:
             self.sql_condition = [self.parse_condition(condition)] if self.condition is not None else None    
         self.sql_column = self.parse_column(column) if self.column is not None else None
+
+    def parse_pattern(self, pattern):
+        return parse_pattern(pattern)
 
     def parse_sql_expression(self,sqlExpression):
         match = re.search(r'\((.*)\)', sqlExpression)
@@ -79,6 +84,7 @@ class Relation:
                 conditions=self.sql_condition,
                 translate_with=self.translate_with,
                 column=self.column,
+                pattern = self.pattern,
                 sqlExpression = self.sql_expression.lower() if self.sql_expression is not None else None,
 
                 datatype=self.datatype,
@@ -96,8 +102,8 @@ class Relation:
             self._eq_strategy = equality_by_edge_query_and_classes
             self._hash_strategy = hash_by_edge_query_and_classes
         elif name_based:
-            self._eq_strategy = equality_by_property_name
-            self._hash_strategy = hash
+            self._eq_strategy = equality_by_property_name_and_classes
+            self._hash_strategy = hash_by_property_name
         elif distinct:
             self._eq_strategy = equality_by_property_name_and_classes
             self._hash_strategy = hash
@@ -107,6 +113,7 @@ class Relation:
         #self._eq_strategy = equality_by_edge_query_and_classes if classes else equality_by_edge_query
 
     def __hash__(self) -> int:
+        return self._hash_strategy(self)
         joins_hash = hash(frozenset(self.sql_join)) if self.sql_join is not None else 0
         columns_hash = hash(self.sql_column) if self.sql_column is not None else 0
         return hash((joins_hash, columns_hash))
@@ -130,9 +137,14 @@ def equality_by_property_name(edge1: Relation, edge2: Relation) -> bool:
     return cleaned_equality or regular_equality
 
 def equality_by_property_name_and_classes(edge1: Relation, edge2: Relation) -> bool:
-    same_property = edge1.property == edge2.property
-    ingoing_class_equal = edge1.belongsToClassMap == edge2.belongsToClassMap
-    outgoing_class_equal = edge1.refersToClassMap == edge2.refersToClassMap if edge1.refersToClassMap is not None and edge2.refersToClassMap is not None else True
+    same_property = equality_by_property_name(edge1, edge2)
+    ingoing_class_equal = name_based_equality(edge1.belongsToClassMap, edge2.belongsToClassMap)
+    if edge1.refersToClassMap is not None and edge2.refersToClassMap is not None:
+        outgoing_class_equal = name_based_equality(edge1.refersToClassMap, edge2.refersToClassMap) 
+    elif edge1.refersToClassMap is not None and edge2.refersToClassMap is None or edge1.refersToClassMap is None and edge2.refersToClassMap is not None:
+        outgoing_class_equal = False
+    else:
+        outgoing_class_equal = True
     return same_property and outgoing_class_equal and ingoing_class_equal
 
 def equality_by_edge_query(edge1: Relation, edge2: Relation) -> bool:
@@ -146,6 +158,8 @@ def equality_by_edge_query(edge1: Relation, edge2: Relation) -> bool:
     columns_none = edge1.sql_column is None and edge2.sql_column is None
     constant_values_not_none = edge1.constantValue is not None and edge2.constantValue is not None
     constant_values_none = edge1.constantValue is None and edge2.constantValue is None
+    pattern_not_none = edge1.pattern is not None and edge2.pattern is not None
+    pattern_none = edge1.pattern is None and edge2.pattern is None
     if joins_not_none:
         joins_equal = set(edge1.sql_join) == set(edge2.sql_join)
     elif joins_none:
@@ -169,13 +183,26 @@ def equality_by_edge_query(edge1: Relation, edge2: Relation) -> bool:
     else:
         return False
     
+    if pattern_not_none:
+        pattern_equal = set(edge1.sql_pattern) == set(edge2.sql_pattern)
+    elif pattern_none:
+        pattern_equal = True
+    else:
+        return False
+    
     #here check für constantbalue einbae
-    return joins_equal and columns_equal and constant_values_equal
+    return joins_equal and columns_equal and constant_values_equal and pattern_equal
 
 def hash_by_edge_query(edge: Relation) -> int:
     joins_hash = hash(frozenset(edge.sql_join)) if edge.sql_join is not None else 0
     columns_hash = hash(edge.sql_column) if edge.sql_column is not None else 0
     return hash((joins_hash, columns_hash))
+
+def hash_by_property_name(edge: Relation) -> int:
+    property_hash = hash(edge.property)
+    belongs_to_class_map_hash = hash(edge.belongsToClassMap)
+    refers_to_class_map_hash = hash(edge.refersToClassMap) if edge.refersToClassMap is not None else 0
+    return hash((property_hash, belongs_to_class_map_hash, refers_to_class_map_hash))
 
 def equality_by_edge_query_and_classes(edge1: Relation, edge2: Relation) -> bool:
     ingoing_class_equal = edge1.belongsToClassMap == edge2.belongsToClassMap

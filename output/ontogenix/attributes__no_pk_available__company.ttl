@@ -1,0 +1,55 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix base: <https://base_ontology.com#> .
+@prefix schema: <http://schema.org/> .
+
+<#TriplesMapOrganization> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "Organization" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com/Organization/{OrgID}";
+        rr:class schema:Organization;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasStatistic;
+        rr:objectMap [ rr:parentTriplesMap <#TriplesMapStatistic> ];
+    ].
+
+<#TriplesMapStatistic> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "Statistic" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com/Statistic/{StatID}";
+        rr:class base:Statistic;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:count;
+        rr:objectMap [ rr:column "count" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:max;
+        rr:objectMap [ rr:column "max" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:mean;
+        rr:objectMap [ rr:column "mean" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:min;
+        rr:objectMap [ rr:column "min" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:nonNullCount;
+        rr:objectMap [ rr:column "nonNullCount" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:std;
+        rr:objectMap [ rr:column "std" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:type;
+        rr:objectMap [ rr:column "type" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:uniqueCount;
+        rr:objectMap [ rr:column "uniqueCount" ];
+    ].

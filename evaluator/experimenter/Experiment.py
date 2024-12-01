@@ -67,8 +67,8 @@ class Experiment:
             #calculate distinct attributes by having attributes that have the same name and belong to same class
         else:
             raise ValueError("File ending not supported")
-        # all_attributes = self.groundtruth_mapping.get_attributes()
-        # for relation in self.groundtruth_mapping.relations:
+        # all_attributes = self.groundtruth_mapping.get_relations()
+        # for relation in self.groundtruth_mapping.get_relations():
         #     relation.set_eq_strategy(distinct=True)
         # distinct_attributes = []
         # for attribute in all_attributes:
@@ -80,6 +80,7 @@ class Experiment:
         # #print(distinct_attributes)
         # print("AMOUNT OF all RELATIONS", len(all_attributes))
         # print("AMOUNT OF DISTINCT RELATIONS", len(distinct_attributes))
+        # raise Exception("STOP")
 
         with open(f"/Users/lukaslaskowski/Documents/HPI/KG/ontology_mappings/rdb2ontology/output/groundtruths/{self.scenario_id}.ttl", "w") as f:
             f.write(self.groundtruth_mapping.create_ttl_string(self.database_name))

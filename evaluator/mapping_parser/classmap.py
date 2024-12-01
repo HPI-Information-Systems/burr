@@ -1,6 +1,6 @@
 from evaluator.mapping_parser.sql_elements import SQLAttribute, Join
 from evaluator.utils.get_jinja_env import get_jinja_env
-from evaluator.mapping_parser.utils import parse_condition
+from evaluator.mapping_parser.utils import parse_condition, parse_pattern
 
 import re
 
@@ -10,13 +10,14 @@ class ClassMap:
     join: str
     class_uri: str
     condition: str
-    def __init__(self, mapping_id, uriPattern, class_uri, join, parent_classes, condition, prefix, datastorage, translate_with) -> None:
+    def __init__(self, mapping_id, uriPattern, class_uri, join, parent_classes, condition, prefix, bNodeIdColumns, datastorage, translate_with) -> None:
         self.uriPattern = uriPattern
         self.mapping_id = mapping_id
         self.class_uri = class_uri
         self.prefix = prefix
         self.datastorage = datastorage
         self.condition = condition
+        self.sql_bNodeIdColumns = self.parse_bNodeIdColumns(bNodeIdColumns)
         self.join = join
         self.set_eq_strategy()
         self.parent_classes = parent_classes
@@ -37,16 +38,14 @@ class ClassMap:
     def parse_condition(self, condition):
         return parse_condition(condition)
 
+    def parse_bNodeIdColumns(self, bNodeIdColumns):
+        if isinstance(bNodeIdColumns, list):
+            return [SQLAttribute(table=pattern.split(".")[0].lower(), attribute=pattern.split(".")[1].lower()) for pattern in bNodeIdColumns]
+        else:
+            return [SQLAttribute(table=bNodeIdColumns.split(".")[0].lower(), attribute=bNodeIdColumns.split(".")[1].lower())] if bNodeIdColumns is not None else None
+
     def parse_uri_pattern(self, uri_pattern):
-        # print(uri_pattern)
-        if uri_pattern is None:
-            return None
-        uri_pattern = uri_pattern[0] if isinstance(uri_pattern, list) else uri_pattern # !TODO This is quickfix for the book scenario
-        uri_patterns = re.findall('@@(.*?)@@', uri_pattern)#.group(1).split(".") #!TODO This does not work when having more than one database access
-        # replace |urlify with ""
-        uri_patterns = [pattern.replace("|urlify", "") for pattern in uri_patterns]
-        uri_patterns = [pattern.replace("|encode", "") for pattern in uri_patterns]
-        return [SQLAttribute(table=pattern.split(".")[0].lower(), attribute=pattern.split(".")[1].lower()) for pattern in uri_patterns]
+        return parse_pattern(uri_pattern)
 
     def parse_join(self, join):
         join = join.split("=")
@@ -72,6 +71,7 @@ class ClassMap:
                     class_name=self.class_uri,
                     mapping_name = self.mapping_id,
                     uri_patterns=self.uri_pattern,
+                    bNodeIdColumns = self.sql_bNodeIdColumns,
                     #additional_property=self.additional_property,
                     conditions=self.sql_condition,
                     parent_classes=self.parent_classes,
@@ -89,6 +89,7 @@ class ClassMap:
     
     def __hash__(self) -> int:
         # print(self.sql_uri_pattern, self.sql_join)
+        return self._hash_strategy(self)
         return hash((
             tuple(self.sql_condition) if isinstance(self.sql_condition, list) else self.sql_condition,
             tuple(self.sql_uri_pattern) if isinstance(self.sql_uri_pattern, list) else self.sql_uri_pattern,
@@ -96,6 +97,7 @@ class ClassMap:
         #return hash((self.sql_condition, self.sql_uri_pattern, self.sql_join))
     
     def set_eq_strategy(self, name_based=False):
+        self._hash_strategy = hash_by_property_name if name_based else hash_by_edge_query_and_classes
         self._eq_strategy = name_based_equality if name_based else concept_based_equality
 
     # def __str__(self):
@@ -116,5 +118,17 @@ def concept_based_equality(concept1: ClassMap, concept2: ClassMap) -> bool:
     return  same_condition and same_pattern and same_join
 
 def name_based_equality(concept1: ClassMap, concept2: ClassMap) -> bool:
+    if type(concept1) != ClassMap or type(concept2) != ClassMap:
+        print("WARNING - At least one concept is not of type ClassMap", concept1, concept2)
+        return concept1 == concept2
     same_name = concept1.class_uri.strip().lower() == concept2.class_uri.strip().lower()
     return same_name
+
+def hash_by_edge_query_and_classes(concept: ClassMap) -> int:
+    return hash((
+        tuple(concept.sql_condition) if isinstance(concept.sql_condition, list) else concept.sql_condition,
+        tuple(concept.sql_uri_pattern) if isinstance(concept.sql_uri_pattern, list) else concept.sql_uri_pattern,
+        concept.sql_join))
+
+def hash_by_property_name(concept: ClassMap) -> int:
+    return hash(concept.class_uri.strip().lower())

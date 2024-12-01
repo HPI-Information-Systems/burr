@@ -34,7 +34,7 @@ class D2RMapper(BaseSolution):
         try:
             start_time = time.time()
             result = subprocess.run(
-                [script_path, "-o", output_path, "-u", os.getenv("POSTGRES_USER"), "--debug", "-p", os.getenv("POSTGRES_PASSWORD"), database_url],
+                [script_path, "-o", output_path, "-u", os.getenv("POSTGRES_USER"), "--debug", "--w3c", "-p", os.getenv("POSTGRES_PASSWORD"), database_url],
                 check=True,
                 stdout=subprocess.PIPE,
                 stderr=subprocess.PIPE,

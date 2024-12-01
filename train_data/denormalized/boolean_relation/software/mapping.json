@@ -41,11 +41,5 @@
         }
     ],
     "data_properties": [
-        {
-            "property": "name",
-            "belongsToClass": "Software",
-            "type": "string",
-            "column": "software.name"
-        }
     ]
 }

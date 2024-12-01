@@ -1,82 +1,71 @@
 @prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix base: <https://base_ontology.com#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix foaf: <http://xmlns.com/foaf/0.1/> .
-
-<#TriplesMapOrganization> a rr:TriplesMap;
-    rr:logicalTable [ rr:tableName "organization" ];
-    rr:subjectMap [
-        rr:template "https://base_ontology.com/organization/{organization_id}";
-        rr:class base:organization;
-    ];
-    rr:predicateObjectMap [
-        rr:predicate base:organization_address;
-        rr:objectMap [ rr:column "organization_address" ];
-    ];
-    rr:predicateObjectMap [
-        rr:predicate base:organization_id;
-        rr:objectMap [ rr:column "organization_id" ];
-    ];
-    rr:predicateObjectMap [
-        rr:predicate base:organization_name;
-        rr:objectMap [ rr:column "organization_name" ];
-    ];
-    rr:predicateObjectMap [
-        rr:predicate base:organization_phone_number;
-        rr:objectMap [ rr:column "organization_phone_number" ];
-    ].
 
 <#TriplesMapPerson> a rr:TriplesMap;
-    rr:logicalTable [ rr:tableName "person" ];
+    rr:logicalTable [ rr:tableName "PersonTable" ];
     rr:subjectMap [
-        rr:template "https://base_ontology.com/person/{person_id}";
-        rr:class base:person;
+        rr:template "https://base_ontology.com#Person/{personID}";
+        rr:class foaf:Person;
     ];
     rr:predicateObjectMap [
-        rr:predicate base:person_address;
-        rr:objectMap [ rr:column "person_address" ];
+        rr:predicate base:personID;
+        rr:objectMap [ rr:column "personID" ];
     ];
     rr:predicateObjectMap [
-        rr:predicate base:person_id;
-        rr:objectMap [ rr:column "person_id" ];
+        rr:predicate base:personRole;
+        rr:objectMap [ rr:column "personRole" ];
     ];
     rr:predicateObjectMap [
-        rr:predicate base:person_name;
-        rr:objectMap [ rr:column "person_name" ];
+        rr:predicate vcard:hasAddress;
+        rr:objectMap [ rr:column "addressID" ];
     ];
     rr:predicateObjectMap [
-        rr:predicate base:person_phone_number;
-        rr:objectMap [ rr:column "person_phone_number" ];
+        rr:predicate vcard:hasTelephone;
+        rr:objectMap [ rr:column "telephoneID" ];
     ];
     rr:predicateObjectMap [
-        rr:predicate base:person_role;
-        rr:objectMap [ rr:column "person_role" ];
+        rr:predicate dcterms:relation;
+        rr:objectMap [ rr:parentTriplesMap <#TriplesMapOrganization> ];
     ].
 
-<#TriplesMapPersonOrganization> a rr:TriplesMap;
-    rr:logicalTable [ rr:tableName "person_organization" ];
+<#TriplesMapOrganization> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "OrganizationTable" ];
     rr:subjectMap [
-        rr:template "https://base_ontology.com/person_organization/{person_id}_{organization_id}";
-        rr:class base:person_organization;
+        rr:template "https://base_ontology.com#Organization/{organizationID}";
+        rr:class foaf:Organization;
     ];
     rr:predicateObjectMap [
-        rr:predicate base:hasPerson;
-        rr:objectMap [
-            rr:parentTriplesMap <#TriplesMapPerson>;
-            rr:joinCondition [
-                rr:child "person_id";
-                rr:parent "person_id";
-            ];
-        ];
+        rr:predicate base:organizationID;
+        rr:objectMap [ rr:column "organizationID" ];
     ];
     rr:predicateObjectMap [
-        rr:predicate base:hasOrganization;
-        rr:objectMap [
-            rr:parentTriplesMap <#TriplesMapOrganization>;
-            rr:joinCondition [
-                rr:child "organization_id";
-                rr:parent "organization_id";
-            ];
-        ];
+        rr:predicate vcard:hasAddress;
+        rr:objectMap [ rr:column "addressID" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate vcard:hasTelephone;
+        rr:objectMap [ rr:column "telephoneID" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate dcterms:relation;
+        rr:objectMap [ rr:parentTriplesMap <#TriplesMapPerson> ];
+    ].
+
+<#TriplesMapAddress> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "AddressTable" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com#Address/{addressID}";
+        rr:class vcard:Address;
+    ].
+
+<#TriplesMapTelephone> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "TelephoneTable" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com#Telephone/{telephoneID}";
+        rr:class vcard:Telephone;
     ].

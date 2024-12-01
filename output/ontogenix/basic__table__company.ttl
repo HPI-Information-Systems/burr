@@ -1,14 +1,88 @@
 @prefix rr: <http://www.w3.org/ns/r2rml#> .
-@prefix base: <https://base_ontology.com#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix base: <https://base_ontology.com#> .
 
-<#TriplesMapCompany> a rr:TriplesMap;
-    rr:logicalTable [ rr:tableName "company" ];
+<#TriplesMapStatisticalMeasure> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "StatisticalMeasureTable" ];
     rr:subjectMap [
-        rr:template "https://base_ontology.com#company/{id}";
-        rr:class base:company;
+        rr:template "https://base_ontology.com#StatisticalMeasure/{ID}";
+        rr:class base:StatisticalMeasure;
     ];
     rr:predicateObjectMap [
-        rr:predicate base:id;
-        rr:objectMap [ rr:column "id" ];
+        rr:predicate base:count;
+        rr:objectMap [ rr:column "count" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:max;
+        rr:objectMap [ rr:column "max" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:mean;
+        rr:objectMap [ rr:column "mean" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:min;
+        rr:objectMap [ rr:column "min" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:non_null_count;
+        rr:objectMap [ rr:column "non_null_count" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:std;
+        rr:objectMap [ rr:column "std" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:type;
+        rr:objectMap [ rr:column "type" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:unique_count;
+        rr:objectMap [ rr:column "unique_count" ];
+    ].
+
+<#TriplesMapOrganization> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "OrganizationTable" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com#Organization/{OrgID}";
+        rr:class foaf:Organization;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasIdentifier;
+        rr:objectMap [
+            rr:parentTriplesMap <#TriplesMapIdentifier>;
+            rr:joinCondition [
+                rr:child "IdentifierID";
+                rr:parent "ID";
+            ]
+        ]
+    ].
+
+<#TriplesMapIdentifier> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "IdentifierTable" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com#Identifier/{ID}";
+        rr:class dcterms:identifier;
+    ].
+
+<#TriplesMapCompany> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "CompanyTable" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com#Company/{CompanyID}";
+        rr:class base:Company;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasIdentifier;
+        rr:objectMap [
+            rr:parentTriplesMap <#TriplesMapIdentifier>;
+            rr:joinCondition [
+                rr:child "IdentifierID";
+                rr:parent "ID";
+            ]
+        ]
     ].

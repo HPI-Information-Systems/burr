@@ -1,39 +1,41 @@
 @prefix rr: <http://www.w3.org/ns/r2rml#> .
-@prefix base: <https://base_ontology.com#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-
-<#TriplesMapDirector> a rr:TriplesMap;
-    rr:logicalTable [ rr:tableName "DirectorTable" ];
-    rr:subjectMap [
-        rr:template "https://base_ontology.com#Director/{id}";
-        rr:class base:Director;
-    ];
-    rr:predicateObjectMap [
-        rr:predicate base:id;
-        rr:objectMap [ rr:column "id" ];
-    ].
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix schema: <http://schema.org/> .
+@prefix : <https://base_ontology.com#> .
 
 <#TriplesMapMovie> a rr:TriplesMap;
     rr:logicalTable [ rr:tableName "MovieTable" ];
     rr:subjectMap [
-        rr:template "https://base_ontology.com#Movie/{id}";
-        rr:class base:Movie;
+        rr:template "https://base_ontology.com/Movie/{MovieID}";
+        rr:class :Movie;
     ];
     rr:predicateObjectMap [
-        rr:predicate base:id;
-        rr:objectMap [ rr:column "id" ];
+        rr:predicate :hasMovieID;
+        rr:objectMap [ rr:column "MovieID" ];
     ];
     rr:predicateObjectMap [
-        rr:predicate base:director;
-        rr:objectMap [ rr:column "director" ];
-    ];
-    rr:predicateObjectMap [
-        rr:predicate base:hasDirector;
+        rr:predicate :hasDirector;
         rr:objectMap [
             rr:parentTriplesMap <#TriplesMapDirector>;
             rr:joinCondition [
-                rr:child "director";
-                rr:parent "id";
+                rr:child "DirectorID";
+                rr:parent "DirectorID";
             ]
         ]
+    ].
+
+<#TriplesMapDirector> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "DirectorTable" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com/Director/{DirectorID}";
+        rr:class :Director;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate :hasDirectorID;
+        rr:objectMap [ rr:column "DirectorID" ];
     ].

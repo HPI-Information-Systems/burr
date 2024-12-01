@@ -1,27 +1,39 @@
 @prefix rr: <http://www.w3.org/ns/r2rml#> .
-@prefix base: <https://base_ontology.com#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix base: <https://base_ontology.com#> .
 
 <#TriplesMapUser> a rr:TriplesMap;
     rr:logicalTable [ rr:tableName "User" ];
     rr:subjectMap [
-        rr:template "https://base_ontology.com#User/{id}";
+        rr:template "https://base_ontology.com/User/{id}";
         rr:class base:User;
     ];
     rr:predicateObjectMap [
         rr:predicate base:id;
         rr:objectMap [ rr:column "id" ];
+    ].
+
+<#TriplesMapGroup> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "Group" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com/Group/{id}";
+        rr:class base:Group;
     ];
     rr:predicateObjectMap [
-        rr:predicate base:hasUserGroup;
-        rr:objectMap [ rr:parentTriplesMap <#TriplesMapUserGroup> ];
+        rr:predicate base:id;
+        rr:objectMap [ rr:column "id" ];
     ].
 
 <#TriplesMapUserGroup> a rr:TriplesMap;
     rr:logicalTable [ rr:tableName "UserGroup" ];
     rr:subjectMap [
-        rr:template "https://base_ontology.com#UserGroup/{gid}";
+        rr:template "https://base_ontology.com/UserGroup/{gid}";
         rr:class base:UserGroup;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:gid;
+        rr:objectMap [ rr:column "gid" ];
     ];
     rr:predicateObjectMap [
         rr:predicate base:access_rights;
@@ -32,10 +44,6 @@
         rr:objectMap [ rr:column "expiration_duration" ];
     ];
     rr:predicateObjectMap [
-        rr:predicate base:gid;
-        rr:objectMap [ rr:column "gid" ];
-    ];
-    rr:predicateObjectMap [
         rr:predicate base:registration_date;
         rr:objectMap [ rr:column "registration_date" ];
     ];
@@ -44,17 +52,22 @@
         rr:objectMap [ rr:column "uid" ];
     ];
     rr:predicateObjectMap [
-        rr:predicate base:belongsToGroup;
-        rr:objectMap [ rr:parentTriplesMap <#TriplesMapGroup> ];
-    ].
-
-<#TriplesMapGroup> a rr:TriplesMap;
-    rr:logicalTable [ rr:tableName "Group" ];
-    rr:subjectMap [
-        rr:template "https://base_ontology.com#Group/{id}";
-        rr:class base:Group;
+        rr:predicate base:hasUser;
+        rr:objectMap [
+            rr:parentTriplesMap <#TriplesMapUser>;
+            rr:joinCondition [
+                rr:child "uid";
+                rr:parent "id";
+            ]
+        ]
     ];
     rr:predicateObjectMap [
-        rr:predicate base:id;
-        rr:objectMap [ rr:column "id" ];
+        rr:predicate base:hasGroup;
+        rr:objectMap [
+            rr:parentTriplesMap <#TriplesMapGroup>;
+            rr:joinCondition [
+                rr:child "gid";
+                rr:parent "id";
+            ]
+        ]
     ].

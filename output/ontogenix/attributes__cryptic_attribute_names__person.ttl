@@ -1,0 +1,84 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix base: <https://base_ontology.com#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+
+<#TriplesMapPerson> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "PersonTable" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com#Person/{PersonID}";
+        rr:class foaf:Person;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:MFSGI4TFONZQ;
+        rr:objectMap [
+            rr:parentTriplesMap <#TriplesMapCount>;
+            rr:joinCondition [
+                rr:child "MFSGI4TFONZQ_ID";
+                rr:parent "CountID";
+            ];
+        ]
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:MVWWC2LM;
+        rr:objectMap [
+            rr:parentTriplesMap <#TriplesMapCount>;
+            rr:joinCondition [
+                rr:child "MVWWC2LM_ID";
+                rr:parent "CountID";
+            ];
+        ]
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:NFSA;
+        rr:objectMap [
+            rr:parentTriplesMap <#TriplesMapCount>;
+            rr:joinCondition [
+                rr:child "NFSA_ID";
+                rr:parent "CountID";
+            ];
+        ]
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:NZQW2ZI;
+        rr:objectMap [
+            rr:parentTriplesMap <#TriplesMapCount>;
+            rr:joinCondition [
+                rr:child "NZQW2ZI_ID";
+                rr:parent "CountID";
+            ];
+        ]
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:OBUG63TFL5XHK3LCMVZA;
+        rr:objectMap [
+            rr:parentTriplesMap <#TriplesMapCount>;
+            rr:joinCondition [
+                rr:child "OBUG63TFL5XHK3LCMVZA_ID";
+                rr:parent "CountID";
+            ];
+        ]
+    ].
+
+<#TriplesMapCount> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "CountTable" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com#Count/{CountID}";
+        rr:class base:Count;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasCount;
+        rr:objectMap [ rr:column "CountValue"; rr:datatype xsd:integer ];
+    ].
+
+<#TriplesMapUnique> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "UniqueTable" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com#Unique/{UniqueID}";
+        rr:class base:Unique;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasUnique;
+        rr:objectMap [ rr:column "UniqueValue"; rr:datatype xsd:integer ];
+    ].

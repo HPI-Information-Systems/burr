@@ -1,91 +1,103 @@
 @prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix base: <https://base_ontology.com#> .
-@prefix schema: <http://schema.org/> .
-@prefix dcterms: <http://purl.org/dc/terms/> .
 
-<#TriplesMapDataset> a rr:TriplesMap;
-    rr:logicalTable [ rr:tableName "Dataset" ];
+<#TriplesMapBusinessActivity> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "BusinessActivity" ];
     rr:subjectMap [
-        rr:template "https://base_ontology.com/Dataset/{id}";
-        rr:class schema:Dataset;
-    ];
-    rr:predicateObjectMap [
-        rr:predicate base:non_null_count;
-        rr:objectMap [ rr:column "non_null_count" ];
-    ];
-    rr:predicateObjectMap [
-        rr:predicate base:type;
-        rr:objectMap [ rr:column "type" ];
-    ];
-    rr:predicateObjectMap [
-        rr:predicate base:unique_count;
-        rr:objectMap [ rr:column "unique_count" ];
-    ];
-    rr:predicateObjectMap [
-        rr:predicate base:annotation;
-        rr:objectMap [ rr:column "annotation" ];
-    ];
-    rr:predicateObjectMap [
-        rr:predicate base:apqc_reference;
-        rr:objectMap [ rr:column "apqc_reference" ];
-    ];
-    rr:predicateObjectMap [
-        rr:predicate base:business_activity;
-        rr:objectMap [ rr:column "business_activity" ];
-    ];
-    rr:predicateObjectMap [
-        rr:predicate base:business_activity_code;
-        rr:objectMap [ rr:column "business_activity_code" ];
-    ];
-    rr:predicateObjectMap [
-        rr:predicate base:business_activity_description;
-        rr:objectMap [ rr:column "business_activity_description" ];
-    ];
-    rr:predicateObjectMap [
-        rr:predicate base:enterprise_domain;
-        rr:objectMap [ rr:column "enterprise_domain" ];
-    ];
-    rr:predicateObjectMap [
-        rr:predicate base:count;
-        rr:objectMap [ rr:column "count" ];
-    ];
-    rr:predicateObjectMap [
-        rr:predicate base:freq;
-        rr:objectMap [ rr:column "freq" ];
-    ];
-    rr:predicateObjectMap [
-        rr:predicate base:top;
-        rr:objectMap [ rr:column "top" ];
-    ];
-    rr:predicateObjectMap [
-        rr:predicate base:unique;
-        rr:objectMap [ rr:column "unique" ];
+        rr:template "https://base_ontology.com#BusinessActivity/{ActivityID}";
+        rr:class base:BusinessActivity;
     ].
 
-<#TriplesMapBusinessFunction> a rr:TriplesMap;
-    rr:logicalTable [ rr:tableName "BusinessFunction" ];
+<#TriplesMapBusinessCapability> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "BusinessCapability" ];
     rr:subjectMap [
-        rr:template "https://base_ontology.com/BusinessFunction/{id}";
-        rr:class base:BusinessFunction;
+        rr:template "https://base_ontology.com#BusinessCapability/{CapabilityID}";
+        rr:class base:BusinessCapability;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasBusinessActivity;
+        rr:objectMap [
+            rr:parentTriplesMap <#TriplesMapBusinessActivity>;
+            rr:joinCondition [
+                rr:child "ActivityID";
+                rr:parent "ActivityID"
+            ]
+        ]
     ].
 
-<#TriplesMapOrganization> a rr:TriplesMap;
-    rr:logicalTable [ rr:tableName "Organization" ];
+<#TriplesMapBusinessProcess> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "BusinessProcess" ];
     rr:subjectMap [
-        rr:template "https://base_ontology.com/Organization/{id}";
-        rr:class base:Organization;
+        rr:template "https://base_ontology.com#BusinessProcess/{ProcessID}";
+        rr:class base:BusinessProcess;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasBusinessCapability;
+        rr:objectMap [
+            rr:parentTriplesMap <#TriplesMapBusinessCapability>;
+            rr:joinCondition [
+                rr:child "CapabilityID";
+                rr:parent "CapabilityID"
+            ]
+        ]
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasIndustry;
+        rr:objectMap [
+            rr:parentTriplesMap <#TriplesMapIndustry>;
+            rr:joinCondition [
+                rr:child "IndustryID";
+                rr:parent "IndustryID"
+            ]
+        ]
     ].
 
-<#TriplesMapText> a rr:TriplesMap;
-    rr:logicalTable [ rr:tableName "Text" ];
+<#TriplesMapIndustry> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "Industry" ];
     rr:subjectMap [
-        rr:template "https://base_ontology.com/Text/{id}";
-        rr:class base:Text;
+        rr:template "https://base_ontology.com#Industry/{IndustryID}";
+        rr:class base:Industry;
     ].
 
-<#TriplesMapInteger> a rr:TriplesMap;
-    rr:logicalTable [ rr:tableName "Integer" ];
+<#TriplesMapSolutionCapability> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "SolutionCapability" ];
     rr:subjectMap [
-        rr:template "https://base_ontology.com/Integer/{id}";
-        rr:class base:Integer;
+        rr:template "https://base_ontology.com#SolutionCapability/{SolutionCapabilityID}";
+        rr:class base:SolutionCapability;
+    ].
+
+<#TriplesMapSolutionProcess> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "SolutionProcess" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com#SolutionProcess/{SolutionProcessID}";
+        rr:class base:SolutionProcess;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasSolutionCapability;
+        rr:objectMap [
+            rr:parentTriplesMap <#TriplesMapSolutionCapability>;
+            rr:joinCondition [
+                rr:child "SolutionCapabilityID";
+                rr:parent "SolutionCapabilityID"
+            ]
+        ]
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasWhitespace;
+        rr:objectMap [
+            rr:parentTriplesMap <#TriplesMapWhitespace>;
+            rr:joinCondition [
+                rr:child "WhitespaceID";
+                rr:parent "WhitespaceID"
+            ]
+        ]
+    ].
+
+<#TriplesMapWhitespace> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "Whitespace" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com#Whitespace/{WhitespaceID}";
+        rr:class base:Whitespace;
     ].

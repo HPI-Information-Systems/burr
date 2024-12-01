@@ -68,7 +68,7 @@ class GuiBehavior():
         wandb.save("json_data.json")
         self._start_manage_action("Let's generate the high-level structure for the provided data")
         self._start_manage_action("Let's generate the ontology from the high-level structure")
-        # self._start_manage_action("Let's define the entity for the ontology with extra data")
+        #self._start_manage_action("Let's define the entity for the ontology with extra data")
         self._start_manage_action("Let's generate the mappings from the ontology")
         return self.ontology_mapper.get_rml_codeblock()
 

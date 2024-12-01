@@ -44,23 +44,23 @@ map:operates_on_Software_OperatingSystemWindows a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:Software;
     d2rq:refersToClassMap map:OperatingSystemWindows;
     d2rq:property base:operates_on;
+    
+    d2rq:condition "@@software.supports_windows@@ = 'True'";
     .
 
 map:operates_on_Software_OperatingSystemMacOS a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:Software;
     d2rq:refersToClassMap map:OperatingSystemMacOS;
     d2rq:property base:operates_on;
+    
+    d2rq:condition "@@software.supports_macos@@ = 'True'";
     .
 
 map:operates_on_Software_OperatingSystemLinux a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:Software;
     d2rq:refersToClassMap map:OperatingSystemLinux;
     d2rq:property base:operates_on;
-    .
-
-map:name_Software_None a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:Software;
-    d2rq:property base:name;
-    d2rq:column "software.name";
+    
+    d2rq:condition "@@software.supports_linux@@ = 'True'";
     .
 

@@ -1,0 +1,74 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix base: <https://base_ontology.com#> .
+
+<#TriplesMapEntity> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "Entity" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com/Entity/{Id}";
+        rr:class base:Entity;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasId;
+        rr:objectMap [ rr:column "Id" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasName;
+        rr:objectMap [ rr:column "Name" ];
+    ].
+
+<#TriplesMapCourse> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "Course" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com/Course/{Id}";
+        rr:class base:Course;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasId;
+        rr:objectMap [ rr:column "Id" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasName;
+        rr:objectMap [ rr:column "Name" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasRequirement;
+        rr:objectMap [
+            rr:parentTriplesMap <#TriplesMapRequirement>;
+            rr:joinCondition [
+                rr:child "RequirementId";
+                rr:parent "Id";
+            ]
+        ]
+    ].
+
+<#TriplesMapRequirement> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "Requirement" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com/Requirement/{Id}";
+        rr:class base:Requirement;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasId;
+        rr:objectMap [ rr:column "Id" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasName;
+        rr:objectMap [ rr:column "Name" ];
+    ].
+
+<#TriplesMapCourseRequirement> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "CourseRequirement" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com/CourseRequirement/{CourseId}/{RequirementId}";
+        rr:class base:CourseRequirement;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasCourseId;
+        rr:objectMap [ rr:column "CourseId" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasRequirementId;
+        rr:objectMap [ rr:column "RequirementId" ];
+    ].

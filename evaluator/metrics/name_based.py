@@ -32,6 +32,7 @@ class NameBasedRecall(Metric):
             el.set_eq_strategy(name_based=True)
         el1 = list(set(el1))
         el2 = list(set(el2))
+
         shared_elements = [x for x in el2 if x in el1]
         if len(el1) == 0 and len(el2) == 0:
             return 1.0

@@ -1,7 +1,7 @@
 {
     "classes": [
         {
-            "id": "@@person.NFSA====@@",
+            "id": "@@person.NFSA@@",
             "class": "Person",
             "name": "Person",
             "prefix": "base"
@@ -13,25 +13,19 @@
             "property": "name",
             "belongsToClassMap": "Person",
             "type": "string",
-            "column": "person.NZQW2ZI="
-        },
-        {
-            "property": "age",
-            "belongsToClassMap": "Person",
-            "type": "int",
-            "column": "Person.MFTWK==="
+            "column": "person.NZQW2ZI"
         },
         {
             "property": "address",
             "belongsToClass": "Person",
             "type": "string",
-            "column": "person.MFSGI4TFONZQ===="
+            "column": "person.MFSGI4TFONZQ"
         },
         {
             "property": "phone_number",
             "belongsToClass": "Person",
             "type": "int",
-            "column": "person.OBUG63TFL5XHK3LCMVZA===="
+            "column": "person.OBUG63TFL5XHK3LCMVZA"
         },
         {
             "property": "email",

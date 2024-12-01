@@ -1,67 +1,56 @@
 @prefix rr: <http://www.w3.org/ns/r2rml#> .
-@prefix base: <https://base_ontology.com#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix base: <https://base_ontology.com#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
 
 <#TriplesMapPerson> a rr:TriplesMap;
     rr:logicalTable [ rr:tableName "Person" ];
     rr:subjectMap [
-        rr:template "https://base_ontology.com#Person/{id}";
-        rr:class base:Person;
+        rr:template "https://base_ontology.com#Person/{PersonID}";
+        rr:class foaf:Person;
     ];
     rr:predicateObjectMap [
-        rr:predicate base:id;
-        rr:objectMap [ rr:column "id" ]
+        rr:predicate base:firstName;
+        rr:objectMap [ rr:column "FirstName" ];
     ];
     rr:predicateObjectMap [
-        rr:predicate base:first_name;
-        rr:objectMap [ rr:column "first_name" ]
-    ];
-    rr:predicateObjectMap [
-        rr:predicate base:last_name;
-        rr:objectMap [ rr:column "last_name" ]
+        rr:predicate base:lastName;
+        rr:objectMap [ rr:column "LastName" ];
     ];
     rr:predicateObjectMap [
         rr:predicate base:email;
-        rr:objectMap [ rr:column "email" ]
+        rr:objectMap [ rr:column "Email" ];
     ];
     rr:predicateObjectMap [
         rr:predicate base:hasAddress;
-        rr:objectMap [
-            rr:parentTriplesMap <#TriplesMapAddress>;
-            rr:joinCondition [
-                rr:child "id";
-                rr:parent "person_id"
-            ]
-        ]
+        rr:objectMap [ rr:parentTriplesMap <#TriplesMapAddress> ];
     ].
 
 <#TriplesMapAddress> a rr:TriplesMap;
     rr:logicalTable [ rr:tableName "Address" ];
     rr:subjectMap [
-        rr:template "https://base_ontology.com#Address/{address_id}";
-        rr:class base:Address;
-    ];
-    rr:predicateObjectMap [
-        rr:predicate base:address_id;
-        rr:objectMap [ rr:column "address_id" ]
-    ];
-    rr:predicateObjectMap [
-        rr:predicate base:person_id;
-        rr:objectMap [ rr:column "person_id" ]
-    ];
-    rr:predicateObjectMap [
-        rr:predicate base:city;
-        rr:objectMap [ rr:column "city" ]
-    ];
-    rr:predicateObjectMap [
-        rr:predicate base:state;
-        rr:objectMap [ rr:column "state" ]
+        rr:template "https://base_ontology.com#Address/{AddressID}";
+        rr:class vcard:Address;
     ];
     rr:predicateObjectMap [
         rr:predicate base:street;
-        rr:objectMap [ rr:column "street" ]
+        rr:objectMap [ rr:column "Street" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:city;
+        rr:objectMap [ rr:column "City" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:state;
+        rr:objectMap [ rr:column "State" ];
     ];
     rr:predicateObjectMap [
         rr:predicate base:zip;
-        rr:objectMap [ rr:column "zip" ]
+        rr:objectMap [ rr:column "Zip" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:addressOf;
+        rr:objectMap [ rr:parentTriplesMap <#TriplesMapPerson> ];
     ].
