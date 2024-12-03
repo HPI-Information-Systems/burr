@@ -3,286 +3,198 @@
 @prefix map: <http://mapping/> .
 @prefix jdbc: <http://d2rq.org/terms/jdbc/> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix iswc: </iswc/> .
 @prefix base: </base/> .
 
 map:database a d2rq:Database;
 	d2rq:jdbcDriver "org.postgresql.Driver";
-	d2rq:jdbcDSN "jdbc:postgresql://localhost:5432/real_world__iswc__original";
+	d2rq:jdbcDSN "jdbc:postgresql://localhost:5432/normalized__strong_normalization__person_address";
 	d2rq:username "lukaslaskowski";
 	jdbc:keepAlive "3600";				# sends noop-query every 3600 seconds
 	.
 
-map:0TriplesMapPerson_CLS a d2rq:ClassMap;
+map:ClassMap_address a d2rq:ClassMap;
     d2rq:dataStorage map:database;
-    d2rq:class base:Person;
-    d2rq:uriPattern "https://base_ontology.com#Person/@@Person.PersonID@@";
+    d2rq:class base:address;
+    d2rq:uriPattern "@@address.id@@/";
     
     
     .
-map:1TriplesMapOrganization_CLS a d2rq:ClassMap;
+map:ClassMap_person a d2rq:ClassMap;
     d2rq:dataStorage map:database;
-    d2rq:class base:Organization;
-    d2rq:uriPattern "https://base_ontology.com#Organization/@@Organization.OrganizationID@@";
+    d2rq:class base:person;
+    d2rq:uriPattern "@@person.id@@/";
     
     
     .
-map:2TriplesMapPaper_CLS a d2rq:ClassMap;
+map:ClassMap_location a d2rq:ClassMap;
     d2rq:dataStorage map:database;
-    d2rq:class base:BibliographicResource;
-    d2rq:uriPattern "https://base_ontology.com#Paper/@@Paper.PaperID@@";
+    d2rq:class base:location;
+    d2rq:uriPattern "@@location.zip@@/";
     
     
     .
-map:3TriplesMapConference_CLS a d2rq:ClassMap;
+map:ClassMap_person_department a d2rq:ClassMap;
     d2rq:dataStorage map:database;
-    d2rq:class base:Event;
-    d2rq:uriPattern "https://base_ontology.com#Conference/@@Conference.ConferenceID@@";
+    d2rq:class base:person_department;
+    d2rq:uriPattern "@@person_department.artificial_id@@/";
     
     
     .
-map:4TriplesMapTopic_CLS a d2rq:ClassMap;
+map:ClassMap_department a d2rq:ClassMap;
     d2rq:dataStorage map:database;
-    d2rq:class base:Concept;
-    d2rq:uriPattern "https://base_ontology.com#Topic/@@Topic.TopicID@@";
+    d2rq:class base:department;
+    d2rq:uriPattern "@@department.id@@/";
     
     
     .
-map:0TriplesMapPerson_REL a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:0TriplesMapPerson_CLS;
-    d2rq:property base:hasFirstName;
+map:hasZip_ClassMap_address_ClassMap_location a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_address;
+    d2rq:refersToClassMap map:ClassMap_location;
+    d2rq:property base:hasZip;
     
-    d2rq:column "Person.FirstName";
+    d2rq:join "location.zip = address.zip";
     .
 
-map:1TriplesMapPerson_REL a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:0TriplesMapPerson_CLS;
-    d2rq:property base:hasLastName;
+map:hasDepartment_id_ClassMap_person_department_ClassMap_department a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_person_department;
+    d2rq:refersToClassMap map:ClassMap_department;
+    d2rq:property base:hasDepartment_id;
     
-    d2rq:column "Person.LastName";
+    d2rq:join "department.id = person_department.department_id";
     .
 
-map:2TriplesMapPerson_REL a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:0TriplesMapPerson_CLS;
+map:hasPerson_id_ClassMap_person_department_ClassMap_person a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_person_department;
+    d2rq:refersToClassMap map:ClassMap_person;
+    d2rq:property base:hasPerson_id;
+    
+    d2rq:join "person.id = person_department.person_id";
+    .
+
+map:hasAddress_id_ClassMap_person_ClassMap_address a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_person;
+    d2rq:refersToClassMap map:ClassMap_address;
+    d2rq:property base:hasAddress_id;
+    
+    d2rq:join "address.id = person.address_id";
+    .
+
+map:hasArtificial_id_ClassMap_person_department_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_person_department;
+    d2rq:property base:hasArtificial_id;
+    
+    d2rq:column "person_department.artificial_id";
+    .
+
+map:hasAddress_id_ClassMap_person_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_person;
+    d2rq:property base:hasAddress_id;
+    
+    d2rq:column "person.address_id";
+    .
+
+map:hasName_ClassMap_department_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_department;
+    d2rq:property base:hasName;
+    
+    d2rq:column "department.name";
+    .
+
+map:hasId_ClassMap_address_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_address;
+    d2rq:property base:hasId;
+    
+    d2rq:column "address.id";
+    .
+
+map:hasId_ClassMap_person_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_person;
+    d2rq:property base:hasId;
+    
+    d2rq:column "person.id";
+    .
+
+map:hasEmail_ClassMap_person_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_person;
     d2rq:property base:hasEmail;
     
-    d2rq:column "Person.Email";
+    d2rq:column "person.email";
     .
 
-map:3TriplesMapPerson_REL a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:0TriplesMapPerson_CLS;
-    d2rq:property base:hasPhone;
+map:hasStreet_ClassMap_address_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_address;
+    d2rq:property base:hasStreet;
     
-    d2rq:column "Person.Phone";
+    d2rq:column "address.street";
     .
 
-map:4TriplesMapPerson_REL a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:0TriplesMapPerson_CLS;
-    d2rq:property base:hasPhoto;
+map:hasZip_ClassMap_location_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_location;
+    d2rq:property base:hasZip;
     
-    d2rq:column "Person.Photo";
+    d2rq:column "location.zip";
     .
 
-map:5TriplesMapPerson_REL a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:0TriplesMapPerson_CLS;
-    d2rq:property base:hasAddress;
+map:hasLast_name_ClassMap_person_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_person;
+    d2rq:property base:hasLast_name;
     
-    d2rq:column "Person.Address";
+    d2rq:column "person.last_name";
     .
 
-map:6TriplesMapPerson_REL a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:0TriplesMapPerson_CLS;
-    d2rq:property base:hasHomepage;
+map:hasPerson_id_ClassMap_person_department_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_person_department;
+    d2rq:property base:hasPerson_id;
     
-    d2rq:column "Person.Homepage";
+    d2rq:column "person_department.person_id";
     .
 
-map:7TriplesMapPerson_REL a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:0TriplesMapPerson_CLS;
-    d2rq:property base:hasType;
+map:hasFirst_name_ClassMap_person_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_person;
+    d2rq:property base:hasFirst_name;
     
-    d2rq:column "Person.Type";
+    d2rq:column "person.first_name";
     .
 
-map:8TriplesMapPerson_REL a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:0TriplesMapPerson_CLS;
-    d2rq:property base:hasURI;
+map:hasZip_ClassMap_address_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_address;
+    d2rq:property base:hasZip;
     
-    d2rq:column "Person.URI";
+    d2rq:column "address.zip";
     .
 
-map:9TriplesMapPerson_REL a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:0TriplesMapPerson_CLS;
-    d2rq:property base:relatedToOrganization;
+map:hasId_ClassMap_department_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_department;
+    d2rq:property base:hasId;
     
-    d2rq:column "Person.OrganizationID";
+    d2rq:column "department.id";
     .
 
-map:10TriplesMapPerson_REL a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:0TriplesMapPerson_CLS;
-    d2rq:property base:relatedToPaper;
+map:hasState_ClassMap_location_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_location;
+    d2rq:property base:hasState;
     
-    d2rq:column "Person.PaperID";
+    d2rq:column "location.state";
     .
 
-map:11TriplesMapPerson_REL a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:0TriplesMapPerson_CLS;
-    d2rq:property base:relatedToTopic;
+map:hasHouse_number_ClassMap_address_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_address;
+    d2rq:property base:hasHouse_number;
     
-    d2rq:column "Person.TopicID";
+    d2rq:column "address.house_number";
     .
 
-map:0TriplesMapOrganization_REL a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:1TriplesMapOrganization_CLS;
-    d2rq:property base:hasName;
+map:hasDepartment_id_ClassMap_person_department_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_person_department;
+    d2rq:property base:hasDepartment_id;
     
-    d2rq:column "Organization.Name";
+    d2rq:column "person_department.department_id";
     .
 
-map:1TriplesMapOrganization_REL a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:1TriplesMapOrganization_CLS;
-    d2rq:property base:hasLocation;
+map:hasCity_ClassMap_location_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_location;
+    d2rq:property base:hasCity;
     
-    d2rq:column "Organization.Location";
-    .
-
-map:2TriplesMapOrganization_REL a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:1TriplesMapOrganization_CLS;
-    d2rq:property base:hasCountry;
-    
-    d2rq:column "Organization.Country";
-    .
-
-map:3TriplesMapOrganization_REL a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:1TriplesMapOrganization_CLS;
-    d2rq:property base:hasPostcode;
-    
-    d2rq:column "Organization.Postcode";
-    .
-
-map:4TriplesMapOrganization_REL a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:1TriplesMapOrganization_CLS;
-    d2rq:property base:hasBelongsTo;
-    
-    d2rq:column "Organization.BelongsTo";
-    .
-
-map:5TriplesMapOrganization_REL a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:1TriplesMapOrganization_CLS;
-    d2rq:property base:hasHomepage;
-    
-    d2rq:column "Organization.Homepage";
-    .
-
-map:6TriplesMapOrganization_REL a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:1TriplesMapOrganization_CLS;
-    d2rq:property base:hasType;
-    
-    d2rq:column "Organization.Type";
-    .
-
-map:7TriplesMapOrganization_REL a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:1TriplesMapOrganization_CLS;
-    d2rq:property base:hasURI;
-    
-    d2rq:column "Organization.URI";
-    .
-
-map:0TriplesMapPaper_REL a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:2TriplesMapPaper_CLS;
-    d2rq:property base:hasTitle;
-    
-    d2rq:column "Paper.Title";
-    .
-
-map:1TriplesMapPaper_REL a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:2TriplesMapPaper_CLS;
-    d2rq:property base:hasAbstract;
-    
-    d2rq:column "Paper.Abstract";
-    .
-
-map:2TriplesMapPaper_REL a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:2TriplesMapPaper_CLS;
-    d2rq:property base:hasYear;
-    
-    d2rq:column "Paper.Year";
-    .
-
-map:3TriplesMapPaper_REL a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:2TriplesMapPaper_CLS;
-    d2rq:property base:hasPublishStatus;
-    
-    d2rq:column "Paper.PublishStatus";
-    .
-
-map:4TriplesMapPaper_REL a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:2TriplesMapPaper_CLS;
-    d2rq:property base:hasURI;
-    
-    d2rq:column "Paper.URI";
-    .
-
-map:5TriplesMapPaper_REL a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:2TriplesMapPaper_CLS;
-    d2rq:property base:paperHasTopic;
-    
-    d2rq:column "Paper.TopicID";
-    .
-
-map:6TriplesMapPaper_REL a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:2TriplesMapPaper_CLS;
-    d2rq:property base:presentedAt;
-    
-    d2rq:column "Paper.ConferenceID";
-    .
-
-map:0TriplesMapConference_REL a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:3TriplesMapConference_CLS;
-    d2rq:property base:hasName;
-    
-    d2rq:column "Conference.Name";
-    .
-
-map:1TriplesMapConference_REL a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:3TriplesMapConference_CLS;
-    d2rq:property base:hasLocation;
-    
-    d2rq:column "Conference.Location";
-    .
-
-map:2TriplesMapConference_REL a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:3TriplesMapConference_CLS;
-    d2rq:property base:hasDate;
-    
-    d2rq:column "Conference.Date";
-    .
-
-map:3TriplesMapConference_REL a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:3TriplesMapConference_CLS;
-    d2rq:property base:hasURI;
-    
-    d2rq:column "Conference.URI";
-    .
-
-map:0TriplesMapTopic_REL a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:4TriplesMapTopic_CLS;
-    d2rq:property base:hasTopicName;
-    
-    d2rq:column "Topic.TopicName";
-    .
-
-map:1TriplesMapTopic_REL a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:4TriplesMapTopic_CLS;
-    d2rq:property base:hasParentID;
-    
-    d2rq:column "Topic.ParentID";
-    .
-
-map:2TriplesMapTopic_REL a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:4TriplesMapTopic_CLS;
-    d2rq:property base:hasURI;
-    
-    d2rq:column "Topic.URI";
+    d2rq:column "location.city";
     .
 
