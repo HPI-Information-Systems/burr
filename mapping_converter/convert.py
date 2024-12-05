@@ -9,4 +9,4 @@ maps = list(map(lambda x: os.path.basename(x), filter(lambda x: x.endswith('.jso
 maps = [os.path.basename(mapping_file) for mapping_file in os.listdir(folder_to_mapping_files)]
 
 
-maps = list(map(lambda x:))
+# maps = list(map(lambda x:))
