@@ -19,10 +19,10 @@ CREATE TABLE person (
 
 ALTER TABLE person ADD CONSTRAINT person_primary_key PRIMARY KEY ("NFSA");
 
-COPY person ("NFSA", "NZQW2ZI", "MFTWK", "MFSGI4TFONZQ", "MVWWC2LM", "OBUG63TFL5XHK3LCMVZA")
+COPY person ("NFSA", "NZQW2ZI", "MFSGI4TFONZQ", "MVWWC2LM", "OBUG63TFL5XHK3LCMVZA")
 FROM stdin
 WITH (FORMAT csv, DELIMITER ',');
 1,John Doe,Applestreet 2,john.doe@gmail.com,+49132456789
 2,Jane Doe,Orangestreet 3,jane.doe@gmail.com, +49132426789
-3,Jim Doe,Cherrystreet 4,jim.doe@gmail.com, +1 132456729
+3,Jim Doe,Cherrystreet 4,jim.doe@gmail.com, +1132456729
 \.

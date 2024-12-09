@@ -30,7 +30,7 @@ class D2RMapper(BaseSolution):
         if (not os.path.exists(os.path.dirname(output_path))):
             os.mkdir(os.path.dirname(output_path))
         load_dotenv('./evaluator/experimenter/database_client/.env')
-        database_url = "jdbc:postgresql://{host}:{port}/{database_name}".format(host=os.getenv("POSTGRES_HOST"), port=os.getenv("POSTGRES_PORT"), database_name=database_name)
+        database_url = f'jdbc:postgresql://{os.getenv("POSTGRES_HOST")}:{os.getenv("POSTGRES_PORT")}/{database_name}'
         try:
             start_time = time.time()
             result = subprocess.run(
@@ -43,6 +43,7 @@ class D2RMapper(BaseSolution):
             print("Script output:", result.stdout.decode())
         except subprocess.CalledProcessError as e:
             print("An error occurred:", e.stderr.decode())
+            print(e)
             wandb.log({"error": str(e)})
             wandb.finish(exit_code=1)
         print("D2RMapper finished")

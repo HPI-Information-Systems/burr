@@ -21,6 +21,7 @@ class ExperimentManager():
         self.tag = tag
 
     def start_experiments(self, experiment_name):
+        print(experiment_name)
         self.experiment_config = self.experiment_config[experiment_name]
         for group, base_scenarios in self.experiment_config["scenarios"].items(): #that attrbutes
             for base_scenario, scenarios in base_scenarios.items():

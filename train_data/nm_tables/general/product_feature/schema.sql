@@ -80,5 +80,5 @@ WITH (FORMAT csv, DELIMITER ',');
 5,1
 5,2
 5,3
-6,NULL
+6,3
 \.

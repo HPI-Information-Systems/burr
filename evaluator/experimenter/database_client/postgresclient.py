@@ -32,7 +32,7 @@ class PostgresClient:
     def update_database(self, script_path, add_primary_keys=False):
         """Runs an SQL script file using psql command line."""
         wandb.save(script_path, base_path=os.path.dirname(script_path))
-        command = ['psql', '-f', script_path, '-U', self.user, '-d', self.database, '-h', self.host,  '-v', 'ON_ERROR_STOP=1']
+        command = ['psql', '-f', script_path, '-U', self.user, '-d', 'postgres', '-h', self.host, '-v', 'ON_ERROR_STOP=1']
         print(command)
         result = subprocess.run(command, capture_output=True, text=True)
         print(result.stdout)

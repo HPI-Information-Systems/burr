@@ -17,7 +17,7 @@ CREATE TABLE friendship (
     "address_b" VARCHAR(50)
 );
 
-ALTER TABLE ONLY friendship ADD CONSTRAINT "friendship_primary_key" PRIMARY KEY ("person_id_a", "person_id_a");
+ALTER TABLE ONLY friendship ADD CONSTRAINT "friendship_primary_key" PRIMARY KEY ("person_id_a", "person_id_b");
 
 COPY friendship ("person_id_a", "name_a", "address_a", "person_id_b", "name_b", "address_b")
 FROM stdin

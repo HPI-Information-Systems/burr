@@ -10,6 +10,7 @@ class RDB2Onto(BaseSolution):
     solution_name = "rdb2onto"
     def __init__(self, jar_path):
         super(RDB2Onto, self).__init__()
+        print("jar_path", jar_path)
         self.jar_path = jar_path
 
     def run(self, database_name, output_path="/Users/lukaslaskowski/Documents/HPI/KG/ontology_mappings/rdb2ontology/output/rdb2onto/") -> D2RQMapping:
@@ -21,7 +22,10 @@ class RDB2Onto(BaseSolution):
         return None, 0
 
     def test(self, database_name, output_path, meta, model):
-        command = ['java', '-jar', self.jar_path, database_name, output_path]
+        if not os.path.isfile(self.jar_path):
+            raise ValueError(f"JAR file not found at {self.jar_path}")
+        print("HOST", os.getenv("POSTGRES_HOST"))
+        command = ['java', '-jar', self.jar_path, database_name, output_path, os.getenv("POSTGRES_USER"), os.getenv("POSTGRES_PASSWORD"), os.getenv("POSTGRES_HOST")]
         print("Running RDB2Onto: ", command)
 
         start_time = time.time()

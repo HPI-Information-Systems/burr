@@ -52,24 +52,32 @@ ALTER TABLE ONLY student_course_instructor
 ALTER TABLE ONLY student_course_instructor
     ADD CONSTRAINT "FKstudent_course_instructorCourse" FOREIGN KEY (cid) REFERENCES course(id) ON DELETE CASCADE;
 
-COPY instructor (id, name) FROM stdin;
+COPY instructor (id, name) 
+FROM stdin
+WITH (FORMAT csv, DELIMITER ',');
 1, Schmidt
 2, Wolff
 \.
 
-COPY student (id, name) FROM stdin;
+COPY student (id, name) 
+FROM stdin
+WITH (FORMAT csv, DELIMITER ',');
 1, Peter
 2, Franz
 \.
 
-COPY course (id, name, credits, max_students) FROM stdin;
+COPY course (id, name, credits, max_students) 
+FROM stdin
+WITH (FORMAT csv, DELIMITER ',');
 1, Computer Science, 6, 120
 2, French, 9, 12
 3, Mathematics, 6, 15
 4, Psychology, 3, 50
 \.
 
-COPY student_course_instructor (sid, iid, cid) FROM stdin;
+COPY student_course_instructor (sid, iid, cid) 
+FROM stdin
+WITH (FORMAT csv, DELIMITER ',');
 1,2,1
 2,2,1
 1,1,3

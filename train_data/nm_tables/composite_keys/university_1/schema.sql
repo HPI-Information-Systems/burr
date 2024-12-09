@@ -9,7 +9,7 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 CREATE TABLE student (
-    planned_graduation_year integer,
+    planned_graduation_year INT,
     first_name VARCHAR(50),
     last_name VARCHAR(50)
 );
@@ -42,23 +42,29 @@ ALTER TABLE ONLY enrollment
     ADD CONSTRAINT "FKenrollmentStudent" FOREIGN KEY (planned_graduation_year, first_name, last_name) REFERENCES student(planned_graduation_year, first_name, last_name) ON DELETE CASCADE;
 
 ALTER TABLE ONLY enrollment
-    ADD CONSTRAINT "FKenrollmentCourse" FOREIGN KEY (semester, course_name) REFERENCES instructor(semester, course_name) ON DELETE CASCADE;
+    ADD CONSTRAINT "FKenrollmentCourse" FOREIGN KEY (semester, course_name) REFERENCES course(semester, course_name) ON DELETE CASCADE;
 
-COPY student (planned_graduation_year, first_name, last_name) FROM stdin;
-2016, Franz, Koenig
-2021, Peter, Dylan 
+COPY student (planned_graduation_year, first_name, last_name)
+FROM stdin
+WITH (FORMAT csv, DELIMITER ',');
+2016,Franz,Koenig
+2021,Peter,Dylan
 \.
 
-COPY course (semester, course_name, credits) FROM stdin;
-2023, Computer Science, 6
-2016, French, 9
-2017, Mathematics, 6
-2019, Psychology, 3
+COPY course (semester, course_name, credits)
+FROM stdin
+WITH (FORMAT csv, DELIMITER ',');
+2023,Computer Science,6
+2016,French,9
+2017,Mathematics,6
+2019,Psychology,3
 \.
 
-COPY enrollment (planned_graduation_year, first_name, last_name, semester, course_name) FROM stdin;
-2016, Franz, Koenig, 2023, Computer Science
-2016, Franz, Koenig, 2019, Psychology
-2021, Peter, Dylan, 2023, Computer Science
-2021, Peter, Dylan, 2017, Mathematics
+COPY enrollment (planned_graduation_year, first_name, last_name, semester, course_name)
+FROM stdin
+WITH (FORMAT csv, DELIMITER ',');
+2016,Franz,Koenig,2023,Computer Science
+2016,Franz,Koenig,2019,Psychology
+2021,Peter,Dylan,2023,Computer Science
+2021,Peter,Dylan,2017,Mathematics
 \.

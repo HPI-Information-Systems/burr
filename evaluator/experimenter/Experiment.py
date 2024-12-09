@@ -82,9 +82,9 @@ class Experiment:
         # print("AMOUNT OF DISTINCT RELATIONS", len(distinct_attributes))
         # raise Exception("STOP")
 
-        with open(f"/Users/lukaslaskowski/Documents/HPI/KG/ontology_mappings/rdb2ontology/output/groundtruths/{self.scenario_id}.ttl", "w") as f:
+        with open(f"./output/groundtruths/{self.scenario_id}.ttl", "w") as f:
             f.write(self.groundtruth_mapping.create_ttl_string(self.database_name))
-        wandb.save(f"/Users/lukaslaskowski/Documents/HPI/KG/ontology_mappings/rdb2ontology/output/groundtruths/{self.scenario_id}.ttl")
+        wandb.save(f"./output/groundtruths/{self.scenario_id}.ttl")
         print("Rewriting database")
         print("Requires PKs", requires_pks)
         self.database.update_database(self.sql_file_path, add_primary_keys=requires_pks)        
