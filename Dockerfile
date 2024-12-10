@@ -23,6 +23,8 @@ RUN sed -i 's|source="1.5"|source="1.8"|g' /experiment/d2rq/build.xml
 RUN sed -i 's|target="1.5"|target="1.8"|g' /experiment/d2rq/build.xml
 RUN cd ./d2rq && ant jar && cd ..
 
-COPY ./ /experiment
+#COPY ./ /experiment
+ADD ./ /experiment
+
 
 RUN pip3 install -e .
