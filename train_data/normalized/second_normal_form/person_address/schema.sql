@@ -40,11 +40,11 @@ ALTER TABLE Only person
 ALTER TABLE Only address
     ADD CONSTRAINT address_primary_key PRIMARY KEY (id);
 
-ALTER TABLE Only location
-    ADD CONSTRAINT location_primary_key PRIMARY KEY (zip);
-
 ALTER TABLE Only department
     ADD CONSTRAINT department_primary_key PRIMARY KEY (id);
+
+ALTER TABLE Only person_department
+    ADD CONSTRAINT person_department_primary_key PRIMARY KEY (person_id, department_id);
 
 
 ALTER TABLE ONLY person
@@ -55,9 +55,6 @@ ALTER TABLE ONLY person_department
 
 ALTER TABLE ONLY person_department
     ADD CONSTRAINT "FKpersonDepartmentDepartment" FOREIGN KEY (department_id) REFERENCES department(id) ON DELETE CASCADE;
-
-ALTER TABLE ONLY address
-    ADD CONSTRAINT "FKaddressLocation" FOREIGN KEY (zip) REFERENCES location(zip) ON DELETE CASCADE;
 
 
 COPY department (id, name)
@@ -73,7 +70,7 @@ FROM stdin
 WITH (FORMAT csv, DELIMITER ',');
 1,Main Street,1,12345,New York,NY
 2,Second Street,2,23456,Los Angeles,CA
-3,Third Street,3,34567,Chicago,IL,
+3,Third Street,3,34567,Chicago,IL
 4,Fourth Street,4,12345,New York,NY
 \.
 

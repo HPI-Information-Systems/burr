@@ -13,7 +13,7 @@ CREATE TABLE person (
     name VARCHAR(50),
     sex VARCHAR(1),
     spouse_id INT
-)
+);
 
 ALTER TABLE person ADD CONSTRAINT person_primary_key PRIMARY KEY (id);
 ALTER TABLE person ADD CONSTRAINT person_spouse_id_fkey FOREIGN KEY (spouse_id) REFERENCES person(id) ON DELETE CASCADE;

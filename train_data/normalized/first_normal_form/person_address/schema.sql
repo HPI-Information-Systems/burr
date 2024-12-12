@@ -14,6 +14,7 @@ CREATE TABLE person (
     email VARCHAR(50),
     department VARCHAR(50),
     department_id int,
+    address_id int,
     street VARCHAR(50),
     house_number VARCHAR(50),
     zip VARCHAR(50),
@@ -25,11 +26,11 @@ ALTER TABLE Only person
     ADD CONSTRAINT person_primary_key PRIMARY KEY (id);
 
 
-\copy person (id, first_name, last_name, email, department,department_id, street, house_number, zip, city, state)
+copy person (id, first_name, last_name, email, department,department_id, address_id, street, house_number, zip, city, state)
 FROM stdin
 WITH (FORMAT csv, DELIMITER ',');
-1,John,Doe,'john.doe@gmail.com',IT,1,Main Street,1,12345,New York,NY
-2,Jane,Doe,'jane.doe@mail.de',HR,2,Second Street,2,23456,Los Angeles,CA
-3,Jim,Doe,'jimdoe@mail.com',Marketing,3,Third Street,3,34567,Chicago,IL
-4,Jack,Doe,'jackdoe@hotmail.en',HR,2,Main Street,1,12345,New York,NY
+1,John,Doe,'john.doe@gmail.com',IT,1,1,Main Street,1,12345,New York,NY
+2,Jane,Doe,'jane.doe@mail.de',HR,2,2,Second Street,2,23456,Los Angeles,CA
+3,Jim,Doe,'jimdoe@mail.com',Marketing,3,3,Third Street,3,34567,Chicago,IL
+4,Jack,Doe,'jackdoe@hotmail.en',HR,2,1,Main Street,1,12345,New York,NY
 \.

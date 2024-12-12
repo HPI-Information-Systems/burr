@@ -1,5 +1,5 @@
 \c postgres
-\set database_name attributes__weak_entity__house
+\set database_name attributes__weak_entity__hotel
 SELECT pg_terminate_backend(pg_stat_activity.pid) FROM pg_stat_activity WHERE pg_stat_activity.datname = :'database_name' AND pid <> pg_backend_pid();
 DROP DATABASE IF EXISTS :database_name;
 CREATE DATABASE :database_name;
@@ -32,7 +32,7 @@ WITH (FORMAT csv, DELIMITER ',');
 3,Hotel3
 \.
 
-COPY room (id, bed_number, room_number, hotel_id)
+COPY room (bed_number, room_number, hotel_id)
 FROM stdin
 WITH (FORMAT csv, DELIMITER ',');
 1,101,1

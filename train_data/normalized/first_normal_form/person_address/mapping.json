@@ -11,7 +11,7 @@
             "name": "Department"
         },
         {
-            "id": "@@person.zip@@",
+            "id": "@@person.address_id@@",
             "class": "Location",
             "name": "Location"
         }

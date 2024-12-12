@@ -12,12 +12,12 @@ CREATE TABLE person (
     id INT,
     name VARCHAR(50),
     sex VARCHAR(1)
-)
+);
 
 CREATE TABLE marriage (
     pers_id INT,
     spouse_id INT
-)
+);
 
 ALTER TABLE person ADD CONSTRAINT person_primary_key PRIMARY KEY (id);
 ALTER TABLE marriage ADD CONSTRAINT marriage_primary_key PRIMARY KEY (pers_id);
@@ -25,7 +25,7 @@ ALTER TABLE marriage ADD CONSTRAINT marriage_primary_key PRIMARY KEY (pers_id);
 ALTER TABLE marriage ADD CONSTRAINT FKmarriagePerson FOREIGN KEY (pers_id) REFERENCES person(id) ON DELETE CASCADE;
 ALTER TABLE marriage ADD CONSTRAINT FKmarriageSpouse FOREIGN KEY (spouse_id) REFERENCES person(id) ON DELETE CASCADE;
 
-COPY person
+COPY person (id, name,sex)
 FROM stdin
 WITH (FORMAT csv, DELIMITER ',');
 1,John Doe,M
@@ -34,7 +34,7 @@ WITH (FORMAT csv, DELIMITER ',');
 4,Jill Doe,F
 \.
 
-COPY marriage
+COPY marriage(pers_id, spouse_id)
 FROM stdin
 WITH (FORMAT csv, DELIMITER ',');
 1,2

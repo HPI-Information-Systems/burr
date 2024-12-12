@@ -1,5 +1,5 @@
 \c postgres
-\set database_name denormalized__boolean_relation__software
+\set database_name attributes__boolean_relation__software
 SELECT pg_terminate_backend(pg_stat_activity.pid) FROM pg_stat_activity WHERE pg_stat_activity.datname = :'database_name' AND pid <> pg_backend_pid();
 DROP DATABASE IF EXISTS :database_name;
 CREATE DATABASE :database_name;

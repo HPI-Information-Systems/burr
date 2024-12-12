@@ -19,9 +19,9 @@ ALTER TABLE ONLY "employee" ADD CONSTRAINT "FKemployeeBoss" FOREIGN KEY (boss_id
 
 COPY employee (id, name, boss_id)
 FROM stdin
-WITH (FORMAT csv, DELIMITER ',');
-1,John Doe,Null
+WITH (FORMAT csv, DELIMITER ',', NULL 'NULL');
+1,John Doe,NULL
 2,Jane Doe,1
-3,Jim Doe,2,
+3,Jim Doe,2
 4,Jack Doe,2
 \.

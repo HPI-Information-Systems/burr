@@ -23,7 +23,7 @@ CREATE TABLE product (
 CREATE TABLE orders (
     client_id INT,
     product_id INT
-)
+);
 
 ALTER TABLE client ADD CONSTRAINT client_primary_key PRIMARY KEY (id);
 ALTER TABLE product ADD CONSTRAINT product_primary_key PRIMARY KEY (id);

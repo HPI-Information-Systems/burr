@@ -1,7 +1,7 @@
 {
     "classes": [
         {
-            "id": "@@order.product_name@@",
+            "id": "@@product.id@@",
             "class": "Product",
             "name": "Product"
         },
@@ -22,8 +22,8 @@
             "belongsToClassMap": "Client",
             "refersToClassMap": "Product",
             "join": [
-                "client.id = client_order.client_id",
-                "order.id = client_order.order_id"
+                "client.id = orders.client_id",
+                "product.id = orders.product_id"
             ]
         }
     ],
@@ -44,19 +44,19 @@
             "property": "name",
             "belongsToClassMap": "Product",
             "type": "string",
-            "column": "order.product_name"
+            "column": "product.name"
         },
         {
             "property": "price",
             "belongsToClassMap": "Product",
             "type": "integer",
-            "column": "order.price"
+            "column": "product.price"
         },
         {
             "property": "order_date",
             "belongsToClassMap": "Order",
             "type": "date",
-            "column": "order.date"
+            "column": "orders.date"
         }
     ]
 }

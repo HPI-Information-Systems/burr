@@ -22,9 +22,9 @@ CREATE TABLE product (
 );
 
 ALTER TABLE client ADD CONSTRAINT client_primary_key PRIMARY KEY (id);
-ALTER TABLE order ADD CONSTRAINT order_primary_key PRIMARY KEY (id);
+ALTER TABLE product ADD CONSTRAINT order_primary_key PRIMARY KEY (id);
 
-ALTER TABLE order ADD CONSTRAINT FKorderClient FOREIGN KEY (client_id) REFERENCES client(id) ON DELETE CASCADE;
+ALTER TABLE product ADD CONSTRAINT FKorderClient FOREIGN KEY (client_id) REFERENCES client(id) ON DELETE CASCADE;
 
 COPY client (id, name, address)
 FROM stdin
