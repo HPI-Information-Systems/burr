@@ -1,14 +1,18 @@
+-- Start by connecting to the 'postgres' database
 \c postgres
+
 \set database_name attributes__cryptic_attribute_names__person
 SELECT pg_terminate_backend(pg_stat_activity.pid) FROM pg_stat_activity WHERE pg_stat_activity.datname = :'database_name' AND pid <> pg_backend_pid();
 DROP DATABASE IF EXISTS :database_name;
 CREATE DATABASE :database_name;
 \c :database_name;
+
 SET default_tablespace = '';
 SET default_with_oids = false;
 
+-- Log: Creating the person table
+DO $$ BEGIN RAISE NOTICE 'Creating table "person".'; END $$;
 
---base32 encoded column names
 CREATE TABLE person (
     "NFSA" int, --id
     "NZQW2ZI" VARCHAR(50), --name
@@ -16,6 +20,9 @@ CREATE TABLE person (
     "MVWWC2LM" VARCHAR(50), --email
     "OBUG63TFL5XHK3LCMVZA" VARCHAR(50) --phone_number
 );
+
+-- Log: Adding primary key to the person table
+DO $$ BEGIN RAISE NOTICE 'Adding primary key to table "person".'; END $$;
 
 ALTER TABLE person ADD CONSTRAINT person_primary_key PRIMARY KEY ("NFSA");
 
@@ -26,3 +33,6 @@ WITH (FORMAT csv, DELIMITER ',');
 2,Jane Doe,Orangestreet 3,jane.doe@gmail.com, +49132426789
 3,Jim Doe,Cherrystreet 4,jim.doe@gmail.com, +1132456729
 \.
+
+-- Log: Script execution completed
+DO $$ BEGIN RAISE NOTICE 'Database setup script completed successfully.'; END $$;

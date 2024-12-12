@@ -7,194 +7,43 @@
 
 map:database a d2rq:Database;
 	d2rq:jdbcDriver "org.postgresql.Driver";
-	d2rq:jdbcDSN "jdbc:postgresql://localhost:5432/normalized__strong_normalization__person_address";
+	d2rq:jdbcDSN "jdbc:postgresql://localhost:5432/attributes__cryptic_attribute_names__person";
 	d2rq:username "lukaslaskowski";
 	jdbc:keepAlive "3600";				# sends noop-query every 3600 seconds
 	.
 
-map:ClassMap_address a d2rq:ClassMap;
+map:Person a d2rq:ClassMap;
     d2rq:dataStorage map:database;
-    d2rq:class base:address;
-    d2rq:uriPattern "@@address.id@@/";
+    d2rq:class base:Person;
+    d2rq:uriPattern "@@person.nfsa@@";
     
     
     .
-map:ClassMap_person a d2rq:ClassMap;
-    d2rq:dataStorage map:database;
-    d2rq:class base:person;
-    d2rq:uriPattern "@@person.id@@/";
+map:name_Person_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Person;
+    d2rq:property base:name;
     
-    
-    .
-map:ClassMap_location a d2rq:ClassMap;
-    d2rq:dataStorage map:database;
-    d2rq:class base:location;
-    d2rq:uriPattern "@@location.zip@@/";
-    
-    
-    .
-map:ClassMap_person_department a d2rq:ClassMap;
-    d2rq:dataStorage map:database;
-    d2rq:class base:person_department;
-    d2rq:uriPattern "@@person_department.artificial_id@@/";
-    
-    
-    .
-map:ClassMap_department a d2rq:ClassMap;
-    d2rq:dataStorage map:database;
-    d2rq:class base:department;
-    d2rq:uriPattern "@@department.id@@/";
-    
-    
-    .
-map:hasZip_ClassMap_address_ClassMap_location a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:ClassMap_address;
-    d2rq:refersToClassMap map:ClassMap_location;
-    d2rq:property base:hasZip;
-    
-    d2rq:join "location.zip = address.zip";
+    d2rq:column "person.nzqw2zi";
     .
 
-map:hasDepartment_id_ClassMap_person_department_ClassMap_department a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:ClassMap_person_department;
-    d2rq:refersToClassMap map:ClassMap_department;
-    d2rq:property base:hasDepartment_id;
+map:address_Person_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Person;
+    d2rq:property base:address;
     
-    d2rq:join "department.id = person_department.department_id";
+    d2rq:column "person.mfsgi4tfonzq";
     .
 
-map:hasPerson_id_ClassMap_person_department_ClassMap_person a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:ClassMap_person_department;
-    d2rq:refersToClassMap map:ClassMap_person;
-    d2rq:property base:hasPerson_id;
+map:phone_number_Person_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Person;
+    d2rq:property base:phone_number;
     
-    d2rq:join "person.id = person_department.person_id";
+    d2rq:column "person.obug63tfl5xhk3lcmvza";
     .
 
-map:hasAddress_id_ClassMap_person_ClassMap_address a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:ClassMap_person;
-    d2rq:refersToClassMap map:ClassMap_address;
-    d2rq:property base:hasAddress_id;
+map:email_Person_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Person;
+    d2rq:property base:email;
     
-    d2rq:join "address.id = person.address_id";
-    .
-
-map:hasArtificial_id_ClassMap_person_department_None a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:ClassMap_person_department;
-    d2rq:property base:hasArtificial_id;
-    
-    d2rq:column "person_department.artificial_id";
-    .
-
-map:hasAddress_id_ClassMap_person_None a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:ClassMap_person;
-    d2rq:property base:hasAddress_id;
-    
-    d2rq:column "person.address_id";
-    .
-
-map:hasName_ClassMap_department_None a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:ClassMap_department;
-    d2rq:property base:hasName;
-    
-    d2rq:column "department.name";
-    .
-
-map:hasId_ClassMap_address_None a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:ClassMap_address;
-    d2rq:property base:hasId;
-    
-    d2rq:column "address.id";
-    .
-
-map:hasId_ClassMap_person_None a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:ClassMap_person;
-    d2rq:property base:hasId;
-    
-    d2rq:column "person.id";
-    .
-
-map:hasEmail_ClassMap_person_None a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:ClassMap_person;
-    d2rq:property base:hasEmail;
-    
-    d2rq:column "person.email";
-    .
-
-map:hasStreet_ClassMap_address_None a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:ClassMap_address;
-    d2rq:property base:hasStreet;
-    
-    d2rq:column "address.street";
-    .
-
-map:hasZip_ClassMap_location_None a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:ClassMap_location;
-    d2rq:property base:hasZip;
-    
-    d2rq:column "location.zip";
-    .
-
-map:hasLast_name_ClassMap_person_None a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:ClassMap_person;
-    d2rq:property base:hasLast_name;
-    
-    d2rq:column "person.last_name";
-    .
-
-map:hasPerson_id_ClassMap_person_department_None a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:ClassMap_person_department;
-    d2rq:property base:hasPerson_id;
-    
-    d2rq:column "person_department.person_id";
-    .
-
-map:hasFirst_name_ClassMap_person_None a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:ClassMap_person;
-    d2rq:property base:hasFirst_name;
-    
-    d2rq:column "person.first_name";
-    .
-
-map:hasZip_ClassMap_address_None a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:ClassMap_address;
-    d2rq:property base:hasZip;
-    
-    d2rq:column "address.zip";
-    .
-
-map:hasId_ClassMap_department_None a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:ClassMap_department;
-    d2rq:property base:hasId;
-    
-    d2rq:column "department.id";
-    .
-
-map:hasState_ClassMap_location_None a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:ClassMap_location;
-    d2rq:property base:hasState;
-    
-    d2rq:column "location.state";
-    .
-
-map:hasHouse_number_ClassMap_address_None a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:ClassMap_address;
-    d2rq:property base:hasHouse_number;
-    
-    d2rq:column "address.house_number";
-    .
-
-map:hasDepartment_id_ClassMap_person_department_None a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:ClassMap_person_department;
-    d2rq:property base:hasDepartment_id;
-    
-    d2rq:column "person_department.department_id";
-    .
-
-map:hasCity_ClassMap_location_None a d2rq:PropertyBridge;
-    d2rq:belongsToClassMap map:ClassMap_location;
-    d2rq:property base:hasCity;
-    
-    d2rq:column "location.city";
+    d2rq:column "person.mvwwc2lm";
     .
 

@@ -1,0 +1,28 @@
+{
+    "classes": [
+        {
+            "id": "@@person.id@@",
+            "class": "Person",
+            "name": "Person"
+        }
+    ],
+    "object_properties": [
+    ],
+    "data_properties": [
+        {
+            "property": "name",
+            "belongsToClassMap": "Person",
+            "type": "string",
+            "column": "person.name"
+        },
+        {
+            "property": "hobby",
+            "belongsToClassMap": "Person",
+            "type": "string",
+            "column": "hobby.name",
+            "join": [
+                "person.id = hobby.person_id"
+            ]
+        }
+    ]
+}
