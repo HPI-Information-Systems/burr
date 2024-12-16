@@ -16,14 +16,14 @@ CREATE TABLE person (
 
 CREATE TABLE hobbies (
     person_id INT,
-    hobby VARCHAR(50)
+    name VARCHAR(50)
 );
 
 ALTER TABLE Only person
     ADD CONSTRAINT person_primary_key PRIMARY KEY (id);
 
 ALTER TABLE Only hobbies
-    ADD CONSTRAINT hobbies_primary_key PRIMARY KEY (person_id, hobby);
+    ADD CONSTRAINT hobbies_primary_key PRIMARY KEY (person_id, name);
 
 ALTER TABLE ONLY hobbies
     ADD CONSTRAINT "FKpersonID" FOREIGN KEY (person_id) REFERENCES person(id) ON DELETE CASCADE;
@@ -36,7 +36,7 @@ WITH (FORMAT csv, DELIMITER ',');
 3,Jim Doe
 \.
 
-COPY hobbies (person_id, hobby)
+COPY hobbies (person_id, name)
 FROM stdin
 WITH (FORMAT csv, DELIMITER ',');
 1,reading

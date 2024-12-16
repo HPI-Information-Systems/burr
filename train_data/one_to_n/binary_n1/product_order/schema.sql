@@ -1,5 +1,5 @@
 \c postgres
-\set database_name relationships__binary_n1_with_extra_table__extra_attribute
+\set database_name one_to_n__binary_n1__product_order
 SELECT pg_terminate_backend(pg_stat_activity.pid) FROM pg_stat_activity WHERE pg_stat_activity.datname = :'database_name' AND pid <> pg_backend_pid();
 DROP DATABASE IF EXISTS :database_name;
 CREATE DATABASE :database_name;
@@ -17,21 +17,14 @@ CREATE TABLE client (
 CREATE TABLE product (
     id INT,
     name VARCHAR(50),
+    client_id INT,
     price INT
 );
 
-CREATE TABLE orders (
-    client_id INT,
-    product_id INT,
-    date DATE
-);
-
 ALTER TABLE client ADD CONSTRAINT client_primary_key PRIMARY KEY (id);
-ALTER TABLE product ADD CONSTRAINT product_primary_key PRIMARY KEY (id);
-ALTER TABLE orders ADD CONSTRAINT orders_primary_key PRIMARY KEY (client_id, product_id);
+ALTER TABLE product ADD CONSTRAINT order_primary_key PRIMARY KEY (id);
 
-ALTER TABLE orders ADD CONSTRAINT FKclient_orderClient FOREIGN KEY (client_id) REFERENCES client(id) ON DELETE CASCADE;
-ALTER TABLE orders ADD CONSTRAINT FKclient_orderOrder FOREIGN KEY (product_id) REFERENCES product(id) ON DELETE CASCADE;
+ALTER TABLE product ADD CONSTRAINT FKorderClient FOREIGN KEY (client_id) REFERENCES client(id) ON DELETE CASCADE;
 
 COPY client (id, name, address)
 FROM stdin
@@ -41,18 +34,14 @@ WITH (FORMAT csv, DELIMITER ',');
 3,Jim Doe,Cherrystreet 4
 \.
 
-COPY product (id, name, price)
+COPY product (id, name, client_id, price)
 FROM stdin
 WITH (FORMAT csv, DELIMITER ',');
-1,Apple,1
-2,Orange,2
-3,Cherry,3
-\.
-
-COPY orders (client_id, product_id, date)
-FROM stdin
-WITH (FORMAT csv, DELIMITER ',');
-1,1,2020-01-01
-2,2,2020-01-02
-3,3,2020-01-03
+1,Apple,1,1
+2,Orange,2,2
+3,Cherry,3,3
+4,Olive,1,10
+5,Apple,2,1
+6,Orange,3,2
+7,Cherry,1,3
 \.

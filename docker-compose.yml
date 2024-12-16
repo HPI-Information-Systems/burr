@@ -7,9 +7,11 @@ services:
     volumes:
       - ./result:/results
     command: >
-      python3 /experiment/evaluator/experimenter/experiment_script.py --scenario base_experiment --tag test
+      python3 /experiment/evaluator/experimenter/experiment_script.py --scenario base_experiment --tag docker-run-8 --wandb
     depends_on:
       - db
+    env_file:
+      - ./.env
     environment:
       POSTGRES_HOST: db
       POSTGRES_PORT: 5432

@@ -69,7 +69,7 @@ class JsonMapping(BaseMapping):
         conditions = entry["condition"] if "condition" in entry else None
         joins = entry["join"] if "join" in entry else None
         translate_with = entry["translateWith"] if "translateWith" in entry else None
-        parent_classes = entry["subclassOf"] if "subclassOf" in entry else None
+        parent_classes = entry["subClassOf"] if "subClassOf" in entry else None
         datastorage = "database"
         return ClassMap(mapping_id=mapping_name, prefix=prefix, bNodeIdColumns=bNodeIdColumns, class_uri=cls_, uriPattern=uri_pattern, condition=conditions, join=joins, datastorage=datastorage, parent_classes=parent_classes, translate_with=translate_with)
 

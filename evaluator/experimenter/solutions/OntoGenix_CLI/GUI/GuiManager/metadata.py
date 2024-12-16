@@ -172,6 +172,7 @@ class MetadataManager:
         self.ssl_cert : str = None
         self.client : str = "openai" # Parameter for OntoGenix's client
         self.api_model : str = 'gpt-3.5-turbo'
+        print("BASEPATH", self.base_path)
         self.api_key_path : str = OS_SEPARATOR.join([self.base_path, ".env"])
         # Read arguments from command line
         # TODO: change this to other method

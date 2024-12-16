@@ -9,7 +9,7 @@
             "id": "@@mountain.name@@",
             "class": "Volcano",
             "name": "Volcano1",
-            "subclassOf": [
+            "subClassOf": [
                 "Mountain"
             ],
             "condition": [
@@ -21,7 +21,7 @@
             "id": "@@mountain.name@@",
             "class": "Volcano",
             "name": "Volcano2",
-            "subclassOf": [
+            "subClassOf": [
                 "Mountain"
             ],
             "condition": [

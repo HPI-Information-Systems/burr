@@ -26,7 +26,7 @@ Structure your output in the following format:
     Create a mapping for each class. Generate appropriate URIs and taking into account the real name of the input file's column names.
     Please consider joins to model complex relationships between classes.
     Do not use "http://example.org" or "http://example.com" instead make use of the base prefix. Otherwise, do not use the prefix `base`.
-    Include all necessary prefixes in the beginning.
+    Include all necessary prefixes in the beginning. Use all prefixes that were defined in the ontology before and include all that you are using in the mapping.
     Do not shorten your answer, finish completely the mapping definition!
     Do not shorten your answer with notes like this: "# Additional mappings for entities...would follow the same pattern as above."
     Do not explain your answer, just write the R2RML code.

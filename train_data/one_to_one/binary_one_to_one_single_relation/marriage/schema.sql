@@ -1,5 +1,5 @@
 \c postgres
-\set database_name relationships__binary_one_to_one_single_relation__marriage
+\set database_name one_to_one__binary_one_to_one_single_relation__marriage
 SELECT pg_terminate_backend(pg_stat_activity.pid) FROM pg_stat_activity WHERE pg_stat_activity.datname = :'database_name' AND pid <> pg_backend_pid();
 DROP DATABASE IF EXISTS :database_name;
 CREATE DATABASE :database_name;
