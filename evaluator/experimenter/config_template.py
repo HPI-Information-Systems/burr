@@ -369,31 +369,38 @@ scenarios = {
     #         }
     #     },
     "real_world": {
-        "rba": {
+        # "rba": {
+        #     "original": {
+        #         "sql_file": "./real-world/rba/create.sql",
+        #         "groundtruth_mapping": "./real-world/rba/mappings",
+        #         "meta_file_path": "./real-world/rba/mappings/meta.json"
+        #     },
+        # },
+        # "mondial": {
+        #     "original": {
+        #         "sql_file": "./real-world/mondial/real_world__mondial__original.sql",
+        #         "groundtruth_mapping": "./real-world/mondial/mappings",
+        #         "meta_file_path": "./real-world/mondial/mappings/meta.json"
+        #     },
+        #     "fk": {
+        #         "sql_file": "./real-world/mondial/real_world__mondial__fk.sql",
+        #         "groundtruth_mapping": "./real-world/mondial/mappings",
+        #         "meta_file_path": "./real-world/mondial/mappings/meta.json"
+        #     }
+        # },
+        # "iswc": {
+        #     "original": {
+        #         "sql_file": "./real-world/iswc/real_world__iswc__original.sql",
+        #         "groundtruth_mapping": "./real-world/iswc/groundtruth.ttl",
+        #         "meta_file_path": "./real-world/iswc/meta.json"
+        #     }
+        # },
+        "apqc": {
             "original": {
-                "sql_file": "./real-world/rba/create.sql",
-                "groundtruth_mapping": "./real-world/rba/mappings",
-                "meta_file_path": "./real-world/rba/mappings/meta.json"
+                "sql_file": "./real-world/apqc/apqc.sql",
+                "groundtruth_mapping": "./real-world/apqc/mappings",
+                "meta_file_path": "./real-world/apqc/mappings/meta.json"
             },
-        },
-        "mondial": {
-            "original": {
-                "sql_file": "./real-world/mondial/real_world__mondial__original.sql",
-                "groundtruth_mapping": "./real-world/mondial/mappings",
-                "meta_file_path": "./real-world/mondial/mappings/meta.json"
-            },
-            "fk": {
-                "sql_file": "./real-world/mondial/real_world__mondial__fk.sql",
-                "groundtruth_mapping": "./real-world/mondial/mappings",
-                "meta_file_path": "./real-world/mondial/mappings/meta.json"
-            }
-        },
-        "iswc": {
-            "original": {
-                "sql_file": "./real-world/iswc/real_world__iswc__original.sql",
-                "groundtruth_mapping": "./real-world/iswc/groundtruth.ttl",
-                "meta_file_path": "./real-world/iswc/meta.json"
-            }
         }
     }
     
@@ -406,14 +413,14 @@ experiment_config = {
             "name": "d2rmapper",
             "config": systems["d2rmapper"]
         },
-        {
-            "name": "rdb2onto",
-            "config": systems["rdb2onto"]
-        }, 
-        {
-            "name": "ontogenix",
-            "config": systems["ontogenix"]
-        }
+        # {
+        #     "name": "rdb2onto",
+        #     "config": systems["rdb2onto"]
+        # }, 
+        # {
+        #     "name": "ontogenix",
+        #     "config": systems["ontogenix"]
+        # }
     ]
 }
 

@@ -99,6 +99,7 @@ class Experiment:
         print(test_config)
         output_mapping, inference_time = self.solution.test(**test_config, model=trained_model, meta=self.meta, database_name=self.database_name)
         d2rq = output_mapping.create_ttl_string(self.database_name)
+        print(d2rq)
         output_path = os.path.join("./output", self.solution.solution_name, f"{self.scenario_id}.ttl")
         print(output_path)
         with open(output_path, "w") as f:

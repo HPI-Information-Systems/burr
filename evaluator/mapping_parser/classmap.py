@@ -42,7 +42,11 @@ class ClassMap:
         if isinstance(bNodeIdColumns, list):
             return [SQLAttribute(table=pattern.split(".")[0].lower(), attribute=pattern.split(".")[1].lower()) for pattern in bNodeIdColumns]
         else:
-            return [SQLAttribute(table=bNodeIdColumns.split(".")[0].lower(), attribute=bNodeIdColumns.split(".")[1].lower())] if bNodeIdColumns is not None else None
+            if bNodeIdColumns is not None:
+                bNodeIdColumns = bNodeIdColumns.split(",")
+                print(bNodeIdColumns)
+                return [SQLAttribute(table=pattern.split(".")[0].lower(), attribute=pattern.split(".")[1].lower()) for pattern in bNodeIdColumns] if bNodeIdColumns is not None else None
+            # return [SQLAttribute(table=bNodeIdColumns.split(".")[0].lower(), attribute=bNodeIdColumns.split(".")[1].lower())] if bNodeIdColumns is not None else None
 
     def parse_uri_pattern(self, uri_pattern):
         return parse_pattern(uri_pattern)
@@ -65,13 +69,15 @@ class ClassMap:
                         class_name = self.mapping_id,
                         prefix = self.prefix
                     ))
+                
+        bNodeIdColumns = process_bNodeIdColumns(self.sql_bNodeIdColumns) if self.sql_bNodeIdColumns is not None else None
         classmap_render = get_jinja_env() \
                 .get_template('classmap.j2') \
                 .render(
                     class_name=self.class_uri,
                     mapping_name = self.mapping_id,
                     uri_patterns=self.uri_pattern,
-                    bNodeIdColumns = self.sql_bNodeIdColumns,
+                    bNodeIdColumns = bNodeIdColumns,
                     #additional_property=self.additional_property,
                     conditions=self.sql_condition,
                     parent_classes=self.parent_classes,
@@ -132,3 +138,11 @@ def hash_by_edge_query_and_classes(concept: ClassMap) -> int:
 
 def hash_by_property_name(concept: ClassMap) -> int:
     return hash(concept.class_uri.strip().lower())
+
+def process_bNodeIdColumns(columns):
+    res = ""
+    for col in columns:
+        res += f"{col},"
+    #remove whitespaces
+    res = re.sub(r'\s+', '', res)
+    return res[:-1]

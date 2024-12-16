@@ -39,6 +39,7 @@ class D2RMapper(BaseSolution):
                 stdout=subprocess.PIPE,
                 stderr=subprocess.PIPE,
             )
+            print(script_path, "-o", output_path, "-u", os.getenv("POSTGRES_USER"), "--debug", "--w3c", "-p", os.getenv("POSTGRES_PASSWORD"), database_url)
             end_time = time.time()
             print("Script output:", result.stdout.decode())
         except subprocess.CalledProcessError as e:
@@ -47,4 +48,5 @@ class D2RMapper(BaseSolution):
             wandb.log({"error": str(e)})
             wandb.finish(exit_code=1)
         print("D2RMapper finished")
-        return D2RQMapping(output_path, database_name, meta), end_time - start_time
+        m = D2RQMapping(output_path, database_name, meta)
+        return m, end_time - start_time

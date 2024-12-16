@@ -12,7 +12,7 @@ map:{% if mapping_name %}{{ mapping_name }}{% else %}{{ class_name }} {% endif %
     {%- endfor %}
     {%- endif -%}
     {% if bNodeIdColumns %}
-    d2rq:bNodeIdColumns {%- for bNodeIdColumn in bNodeIdColumns %} "{{ bNodeIdColumn }}," {%- endfor %};
+    d2rq:bNodeIdColumns "{{bNodeIdColumns}}";
     {%- endif -%}
     {%- if joins -%}
     {%- for join in joins %}
