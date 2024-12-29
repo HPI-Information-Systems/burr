@@ -131,10 +131,10 @@ def name_based_equality(concept1: ClassMap, concept2: ClassMap) -> bool:
     return same_name
 
 def hash_by_edge_query_and_classes(concept: ClassMap) -> int:
-    return hash((
-        tuple(concept.sql_condition) if isinstance(concept.sql_condition, list) else concept.sql_condition,
-        tuple(concept.sql_uri_pattern) if isinstance(concept.sql_uri_pattern, list) else concept.sql_uri_pattern,
-        concept.sql_join))
+    condition_part = tuple(concept.sql_condition) if isinstance(concept.sql_condition, list) else concept.sql_condition
+    pattern_part = tuple(concept.sql_uri_pattern) if isinstance(concept.sql_uri_pattern, list) else concept.sql_uri_pattern
+    join_part = tuple(concept.sql_join) if isinstance(concept.sql_join, list) else concept.sql_join
+    return hash((condition_part, pattern_part, join_part))
 
 def hash_by_property_name(concept: ClassMap) -> int:
     return hash(concept.class_uri.strip().lower())

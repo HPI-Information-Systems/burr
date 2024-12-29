@@ -1,5 +1,6 @@
 from evaluator.metrics.metric import Metric
 from evaluator.mapping_parser.mapping import D2RQMapping
+from collections import Counter
 
 class MappingBasedPrecision(Metric):
     def __init__(self):
@@ -10,15 +11,23 @@ class MappingBasedPrecision(Metric):
             el.set_eq_strategy(name_based=False)
         for el in el2:
             el.set_eq_strategy(name_based=False)
-        el1 = list(set(el1))
-        el2 = list(set(el2))
-        shared_elements = [x for x in el2 if x in el1]
-        if len(el1) == 0 and len(el2) == 0:
-            return 1.0
-        return len(shared_elements) / len(el2) if len(el2) > 0 else 0.0
+        
+        c1 = Counter(el1) 
+        c2 = Counter(el2)  
+
+        print("calculating bag-based precision")
+
+        intersection_sum = sum(min(c1[x], c2[x]) for x in (c1.keys() & c2.keys()))
+
+        total_pred = sum(c2.values())
+        if total_pred == 0:
+            return 1.0 if len(c1) == 0 else 0.0
+        
+        precision = intersection_sum / total_pred
+        return precision
 
     def __str__(self):
-        return "MappingBasedPrecision"
+        return "MappingBasedPrecision (Bag-based)"
 
 
 class MappingBasedRecall(Metric):
@@ -30,13 +39,20 @@ class MappingBasedRecall(Metric):
             el.set_eq_strategy(name_based=False)
         for el in el2:
             el.set_eq_strategy(name_based=False)
-        el1 = list(set(el1))
-        el2 = list(set(el2))
-        shared_elements = [x for x in el2 if x in el1]
-        if len(el1) == 0 and len(el2) == 0:
-            return 1.0
-        # print("SHARED ELEMENTS", shared_elements)
-        return len(shared_elements) / len(el1) if len(el1) > 0 else 0.0
+        
+        c1 = Counter(el1)
+        c2 = Counter(el2)
+
+        print("calculating bag-based recall")
+
+        intersection_sum = sum(min(c1[x], c2[x]) for x in (c1.keys() & c2.keys()))
+
+        total_true = sum(c1.values())
+        if total_true == 0:
+            return 1.0 if len(c2) == 0 else 0.0
+
+        recall = intersection_sum / total_true
+        return recall
 
     def __str__(self):
-        return "MappingBasedRecall"
+        return "MappingBasedRecall (Bag-based)"

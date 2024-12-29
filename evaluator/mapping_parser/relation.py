@@ -114,9 +114,6 @@ class Relation:
 
     def __hash__(self) -> int:
         return self._hash_strategy(self)
-        joins_hash = hash(frozenset(self.sql_join)) if self.sql_join is not None else 0
-        columns_hash = hash(self.sql_column) if self.sql_column is not None else 0
-        return hash((joins_hash, columns_hash))
     
     def __str__(self):
         return self.get_d2rq_mapping()
@@ -148,6 +145,10 @@ def equality_by_property_name_and_classes(edge1: Relation, edge2: Relation) -> b
     return same_property and outgoing_class_equal and ingoing_class_equal
 
 def equality_by_edge_query(edge1: Relation, edge2: Relation) -> bool:
+    print(edge1)
+    print(edge2)
+    print(edge1.sql_sql_expression)
+    print(edge2.sql_sql_expression)
     if not isinstance(edge2, Relation):
         return False
     joins_not_none = edge1.sql_join is not None and edge2.sql_join is not None
@@ -194,9 +195,13 @@ def equality_by_edge_query(edge1: Relation, edge2: Relation) -> bool:
     return joins_equal and columns_equal and constant_values_equal and pattern_equal
 
 def hash_by_edge_query(edge: Relation) -> int:
-    joins_hash = hash(frozenset(edge.sql_join)) if edge.sql_join is not None else 0
-    columns_hash = hash(edge.sql_column) if edge.sql_column is not None else 0
-    return hash((joins_hash, columns_hash))
+    joins_part = frozenset(edge.sql_join) if edge.sql_join else frozenset()
+    column_part = edge.sql_column
+    sql_expr_part = frozenset(edge.sql_sql_expression) if edge.sql_sql_expression else frozenset()
+    pattern_part = frozenset(edge.sql_pattern) if edge.sql_pattern else frozenset()
+    constant_part = edge.constantValue
+    return hash((joins_part, column_part, sql_expr_part, pattern_part, constant_part))
+
 
 def hash_by_property_name(edge: Relation) -> int:
     property_hash = hash(edge.property)
@@ -210,8 +215,23 @@ def equality_by_edge_query_and_classes(edge1: Relation, edge2: Relation) -> bool
     return equality_by_edge_query(edge1, edge2) and outgoing_class_equal and ingoing_class_equal
 
 def hash_by_edge_query_and_classes(edge: Relation) -> int:
-    joins_hash = hash(frozenset(edge.sql_join)) if edge.sql_join is not None else 0
-    columns_hash = hash(edge.sql_column) if edge.sql_column is not None else 0
-    belongs_to_class_map_hash = hash(edge.belongsToClassMap)
-    refers_to_class_map_hash = hash(edge.refersToClassMap)
-    return hash((joins_hash, columns_hash, belongs_to_class_map_hash, refers_to_class_map_hash))
+    # The same parts from hash_by_edge_query:
+    joins_part = frozenset(edge.sql_join) if edge.sql_join else frozenset()
+    column_part = edge.sql_column
+    sql_expr_part = frozenset(edge.sql_sql_expression) if edge.sql_sql_expression else frozenset()
+    sql_pattern_part = frozenset(edge.sql_pattern) if edge.sql_pattern else frozenset()
+    const_part = edge.constantValue
+
+    # Plus class maps:
+    belongs_to_hash = hash(edge.belongsToClassMap)
+    refers_to_hash = hash(edge.refersToClassMap) if edge.refersToClassMap else 0
+
+    return hash(
+        (joins_part,
+         column_part,
+         sql_expr_part,
+         sql_pattern_part,
+         const_part,
+         belongs_to_hash,
+         refers_to_hash)
+    )

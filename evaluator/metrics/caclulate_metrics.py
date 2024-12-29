@@ -4,6 +4,9 @@ from evaluator.metrics.taxonomy_mapping_based import TaxonomyMappingBasedPrecisi
 from evaluator.metrics.metric import F1Score
 
 def calculate_metrics(reference_mapping, learned_mapping):
+    print("REFERENCE MAPPING", reference_mapping.get_attributes())
+
+    print("LEARNED MAPPING", learned_mapping)
     metrics = {
         "mapping_based": {"precision": MappingBasedPrecision, "recall": MappingBasedRecall},
         "name_based": {"precision": NameBasedPrecision, "recall": NameBasedRecall},

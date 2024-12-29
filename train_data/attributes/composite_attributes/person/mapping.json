@@ -14,7 +14,7 @@
             "column": "person.name"
         },
         {
-            "property": "address",
+            "property": "street",
             "belongsToClass": "Person",
             "type": "string",
             "sqlExpression": "split_part(person.address, ',', 1)"
