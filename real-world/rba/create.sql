@@ -265,6 +265,3 @@ CREATE TABLE public.spm (
     deployment_type character varying,
     platform character varying
 );
-
-
-
