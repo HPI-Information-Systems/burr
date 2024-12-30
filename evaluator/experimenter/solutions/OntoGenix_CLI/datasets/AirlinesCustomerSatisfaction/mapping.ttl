@@ -1,0 +1,186 @@
+@prefix base: <https://base_ontology.com#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix schema: <http://schema.org/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix rml: <http://semweb.mmlab.be/ns/rml#> .
+@prefix ql: <http://semweb.mmlab.be/ns/ql#> .
+
+<#TriplesMapCustomer> a rr:TriplesMap;
+    rml:logicalSource [
+        rml:source "/Users/lukaslaskowski/Documents/HPI/KG/ontology_mappings/OntoGenix_Tools/OntoGenix_CLI/datasets/AirlinesCustomerSatisfaction/base/Chunk_AirlinesCustomerSatisfaction.csv";
+        rml:referenceFormulation ql:CSV
+    ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com#Customer/{FAIR_URI}";
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:age;
+        rr:objectMap [
+            rml:reference "age"
+        ]
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:gender;
+        rr:objectMap [
+            rml:reference "gender"
+        ]
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:customerType;
+        rr:objectMap [
+            rml:reference "customerType"
+        ]
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:customerSatisfaction;
+        rr:objectMap [
+            rml:reference "customerSatisfaction"
+        ]
+    ].
+
+<#TriplesMapFlight> a rr:TriplesMap;
+    rml:logicalSource [
+        rml:source "/Users/lukaslaskowski/Documents/HPI/KG/ontology_mappings/OntoGenix_Tools/OntoGenix_CLI/datasets/AirlinesCustomerSatisfaction/base/Chunk_AirlinesCustomerSatisfaction.csv";
+        rml:referenceFormulation ql:CSV
+    ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com#Flight/{FAIR_URI}";
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:tripType;
+        rr:objectMap [
+            rml:reference "tripType"
+        ]
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:distance;
+        rr:objectMap [
+            rml:reference "distance"
+        ]
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:departureDelay;
+        rr:objectMap [
+            rml:reference "departureDelay"
+        ]
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:arrivalDelay;
+        rr:objectMap [
+            rml:reference "arrivalDelay"
+        ]
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:flightClass;
+        rr:objectMap [
+            rml:reference "flightClass"
+        ]
+    ].
+
+<#TriplesMapService> a rr:TriplesMap;
+    rml:logicalSource [
+        rml:source "/Users/lukaslaskowski/Documents/HPI/KG/ontology_mappings/OntoGenix_Tools/OntoGenix_CLI/datasets/AirlinesCustomerSatisfaction/base/Chunk_AirlinesCustomerSatisfaction.csv";
+        rml:referenceFormulation ql:CSV
+    ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com#Service/{FAIR_URI}";
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:baggage;
+        rr:objectMap [
+            rml:reference "baggage"
+        ]
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:checkinService;
+        rr:objectMap [
+            rml:reference "checkinService"
+        ]
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:cleanliness;
+        rr:objectMap [
+            rml:reference "cleanliness"
+        ]
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:departureArrivalTime;
+        rr:objectMap [
+            rml:reference "departureArrivalTime"
+        ]
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:booking;
+        rr:objectMap [
+            rml:reference "booking"
+        ]
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:foodService;
+        rr:objectMap [
+            rml:reference "foodService"
+        ]
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:gate;
+        rr:objectMap [
+            rml:reference "gate"
+        ]
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:entertainment;
+        rr:objectMap [
+            rml:reference "entertainment"
+        ]
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:wifi;
+        rr:objectMap [
+            rml:reference "wifi"
+        ]
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:legRoom;
+        rr:objectMap [
+            rml:reference "legRoom"
+        ]
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:onBoardService;
+        rr:objectMap [
+            rml:reference "onBoardService"
+        ]
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:onlineBoarding;
+        rr:objectMap [
+            rml:reference "onlineBoarding"
+        ]
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:onlineSupport;
+        rr:objectMap [
+            rml:reference "onlineSupport"
+        ]
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:seatComfort;
+        rr:objectMap [
+            rml:reference "seatComfort"
+        ]
+    ].
+
+<#TriplesMapRating> a rr:TriplesMap;
+    rml:logicalSource [
+        rml:source "/Users/lukaslaskowski/Documents/HPI/KG/ontology_mappings/OntoGenix_Tools/OntoGenix_CLI/datasets/AirlinesCustomerSatisfaction/base/Chunk_AirlinesCustomerSatisfaction.csv";
+        rml:referenceFormulation ql:CSV
+    ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com#Rating/{FAIR_URI}";
+    ].

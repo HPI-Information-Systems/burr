@@ -1,0 +1,40 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix schema: <http://schema.org/> .
+@prefix base: <https://base_ontology.com#> .
+
+<#TriplesMapPerson> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "Person" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com#Person/{personID}";
+        rr:class foaf:Person;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:personID;
+        rr:objectMap [ rr:column "personID" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate foaf:name;
+        rr:objectMap [ rr:column "name" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasFriend;
+        rr:objectMap [ rr:parentTriplesMap <#TriplesMapPerson>; rr:joinCondition [ rr:child "friendID"; rr:parent "personID" ] ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:residesAt;
+        rr:objectMap [ rr:parentTriplesMap <#TriplesMapPostalAddress>; rr:joinCondition [ rr:child "addressID"; rr:parent "addressID" ] ];
+    ].
+
+<#TriplesMapPostalAddress> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "PostalAddress" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com#PostalAddress/{addressID}";
+        rr:class schema:PostalAddress;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate schema:streetAddress;
+        rr:objectMap [ rr:column "streetAddress" ];
+    ].

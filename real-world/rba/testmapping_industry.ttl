@@ -1,0 +1,63 @@
+@prefix d2rq: <http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#> .
+@prefix cmt: <http://cmt/> .
+@prefix map: <http://mapping/> .
+@prefix jdbc: <http://d2rq.org/terms/jdbc/> .
+@prefix rdfs: <http://rdfs/> .
+@prefix cmt: <http://cmt#> .
+
+map:database a d2rq:Database;
+	d2rq:jdbcDriver "org.postgresql.Driver";
+	d2rq:jdbcDSN "jdbc:postgresql://localhost:5432/industrytest";
+	d2rq:username "lukaslaskowski";
+	jdbc:keepAlive "3600";				# sends noop-query every 3600 seconds
+#	jdbc:keepAliveQuery "SELECT 1";		# optional custom noop-query
+	.
+
+map:BusinessCapability a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:uriPattern "#businesscapability/@@businesscapability.object_id_bc@@";
+    d2rq:class cmt:BusinessCapability;
+    .
+
+map:BusinessCapability2 a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:uriPattern "#businesscapability/@@businesscapability.based_on@@";
+    d2rq:class cmt:BusinessCapability;
+    .
+
+map:Industry a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:uriPattern "#industry/@@industry.industry_id@@";
+    d2rq:class cmt:Industry;
+    .
+
+map:nameBC a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:BusinessCapability;
+	d2rq:property rdfs:name;
+    d2rq:column "businesscapability.name";
+    .
+
+map:nameI a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Industry;
+    d2rq:property rdfs:name;
+    d2rq:column "industry.name";
+    .
+
+map:hasBCCrossIndustry a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:BusinessCapability;
+    d2rq:refersToClassMap map:Industry;
+    d2rq:property cmt:hasBC;
+    d2rq:condition "businesscapability.relevant_for_cross_industry = 'Relevant'";
+    d2rq:condition "industry.industry_id = 'Ind026'";
+    .
+
+map:hasBCRetail a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:BusinessCapability;
+    d2rq:refersToClassMap map:Industry;
+    d2rq:property cmt:hasBC;
+    d2rq:condition "businesscapability.relevant_for_retail = 'Relevant'";
+    d2rq:condition "industry.industry_id = 'Ind001'";
+    .
+
+
+

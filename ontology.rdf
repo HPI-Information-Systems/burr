@@ -1,0 +1,111 @@
+@prefix base: <https://base_ontology.com#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+### Datatype Properties
+base:hasId rdf:type owl:DatatypeProperty ;
+    rdfs:domain base:student, base:instructor, base:student_course_instructor, base:course ;
+    rdfs:range xsd:integer .
+
+base:hasName rdf:type owl:DatatypeProperty ;
+    rdfs:domain base:student, base:instructor, base:student_course_instructor, base:course ;
+    rdfs:range xsd:string .
+
+base:hasCredits rdf:type owl:DatatypeProperty ;
+    rdfs:domain base:course ;
+    rdfs:range xsd:integer .
+
+base:hasMaxStudents rdf:type owl:DatatypeProperty ;
+    rdfs:domain base:course ;
+    rdfs:range xsd:integer .
+
+### Object Properties
+base:teaches rdf:type owl:ObjectProperty ;
+    rdfs:domain base:instructor ;
+    rdfs:range base:course .
+
+base:enrolledIn rdf:type owl:ObjectProperty ;
+    rdfs:domain base:student ;
+    rdfs:range base:course .
+
+base:enrolledFor rdf:type owl:ObjectProperty ;
+    rdfs:domain base:student ;
+    rdfs:range base:student_course_instructor .
+
+base:belongsTo rdf:type owl:ObjectProperty ;
+    rdfs:domain base:student_course_instructor ;
+    rdfs:range base:course .
+
+base:hasInstructor rdf:type owl:ObjectProperty ;
+    rdfs:domain base:student_course_instructor ;
+    rdfs:range base:instructor .
+
+### Classes
+base:student rdf:type owl:Class ;
+    rdfs:label "Student" ;
+    rdfs:comment "Class representing a student."@skos:definition ;
+    rdfs:subClassOf [
+        rdf:type owl:Restriction ;
+        owl:onProperty base:hasId ;
+        owl:minCardinality "1"^^xsd:nonNegativeInteger
+    ] ;
+    rdfs:subClassOf [
+        rdf:type owl:Restriction ;
+        owl:onProperty base:hasName ;
+        owl:minCardinality "1"^^xsd:nonNegativeInteger
+    ] .
+
+base:instructor rdf:type owl:Class ;
+    rdfs:label "Instructor" ;
+    rdfs:comment "Class representing an instructor."@skos:definition ;
+    rdfs:subClassOf [
+        rdf:type owl:Restriction ;
+        owl:onProperty base:hasId ;
+        owl:minCardinality "1"^^xsd:nonNegativeInteger
+    ] ;
+    rdfs:subClassOf [
+        rdf:type owl:Restriction ;
+        owl:onProperty base:hasName ;
+        owl:minCardinality "1"^^xsd:nonNegativeInteger
+    ] .
+
+base:student_course_instructor rdf:type owl:Class ;
+    rdfs:label "StudentCourseInstructor" ;
+    rdfs:comment "Class representing the relationship between student, course, and instructor."@skos:definition ;
+    rdfs:subClassOf [
+        rdf:type owl:Restriction ;
+        owl:onProperty base:hasId ;
+        owl:minCardinality "1"^^xsd:nonNegativeInteger
+    ] ;
+    rdfs:subClassOf [
+        rdf:type owl:Restriction ;
+        owl:onProperty base:hasName ;
+        owl:minCardinality "1"^^xsd:nonNegativeInteger
+    ] .
+
+base:course rdf:type owl:Class ;
+    rdfs:label "Course" ;
+    rdfs:comment "Class representing a course."@skos:definition ;
+    rdfs:subClassOf [
+        rdf:type owl:Restriction ;
+        owl:onProperty base:hasId ;
+        owl:minCardinality "1"^^xsd:nonNegativeInteger
+    ] ;
+    rdfs:subClassOf [
+        rdf:type owl:Restriction ;
+        owl:onProperty base:hasName ;
+        owl:minCardinality "1"^^xsd:nonNegativeInteger
+    ] ;
+    rdfs:subClassOf [
+        rdf:type owl:Restriction ;
+        owl:onProperty base:hasCredits ;
+        owl:minCardinality "1"^^xsd:nonNegativeInteger
+    ] ;
+    rdfs:subClassOf [
+        rdf:type owl:Restriction ;
+        owl:onProperty base:hasMaxStudents ;
+        owl:minCardinality "1"^^xsd:nonNegativeInteger
+    ] .

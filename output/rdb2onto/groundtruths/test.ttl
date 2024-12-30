@@ -1,0 +1,71 @@
+
+@prefix d2rq: <http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#> .
+@prefix cmt: <http://cmt/> .
+@prefix map: <http://mapping/> .
+@prefix jdbc: <http://d2rq.org/terms/jdbc/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix base: </base/> .
+@prefix mondial: </base/> .
+
+map:database a d2rq:Database;
+    d2rq:jdbcDriver "org.postgresql.Driver";
+    d2rq:jdbcDSN "jdbc:postgresql://localhost:5432/attributes__fk_pk_descriptive__receipt";
+    d2rq:username "lukaslaskowski";
+    jdbc:keepAlive "3600";                          # sends noop-query every 3600 seconds
+    .
+
+map:ClassMap_person a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class mondial:person;
+    d2rq:uriPattern "/@@person.name@@/";
+    .
+
+map:<http://mapping/ClassMap_receipt> a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class mondial:<file:///base/receipt>;
+    d2rq:uriPattern "/@@receipt.id@@/";
+    
+    
+    .
+map:<http://mapping/hasItem_ClassMap_receipt_None> a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:<http://mapping/ClassMap_receipt>;
+    d2rq:property mondial:<file:///base/hasItem>;
+    d2rq:column "receipt.item";
+    .
+
+map:<http://mapping/hasName_ClassMap_person_None> a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:<http://mapping/ClassMap_person>;
+    d2rq:property mondial:<file:///base/hasName>;
+    d2rq:column "person.name";
+    .
+
+map:<http://mapping/hasDate_ClassMap_receipt_None> a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:<http://mapping/ClassMap_receipt>;
+    d2rq:property mondial:<file:///base/hasDate>;
+    d2rq:column "receipt.date";
+    .
+
+map:<http://mapping/hasId_ClassMap_receipt_None> a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:<http://mapping/ClassMap_receipt>;
+    d2rq:property mondial:<file:///base/hasId>;
+    d2rq:column "receipt.id";
+    .
+
+map:<http://mapping/hasEmail_ClassMap_person_None> a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:<http://mapping/ClassMap_person>;
+    d2rq:property mondial:<file:///base/hasEmail>;
+    d2rq:column "person.email";
+    .
+
+map:<http://mapping/hasReceived_by_ClassMap_receipt_None> a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:<http://mapping/ClassMap_receipt>;
+    d2rq:property mondial:<file:///base/hasReceived_by>;
+    d2rq:column "receipt.received_by";
+    .
+
+map:<http://mapping/hasReceived_by_ClassMap_receipt_ClassMap_person> a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:<http://mapping/ClassMap_receipt>;
+    d2rq:refersToClassMap map:<http://mapping/ClassMap_person>;
+    d2rq:property mondial:<file:///base/hasReceived_by>;
+    d2rq:join "person.name   =   receipt.received_by";
+    .

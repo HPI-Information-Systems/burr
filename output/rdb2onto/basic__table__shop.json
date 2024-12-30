@@ -1,0 +1,17 @@
+{
+  "classes" : [ {
+    "id" : "@@shop.id@@/",
+    "name" : "ClassMap_shop",
+    "prefix" : "base",
+    "subClassOf" : null,
+    "join" : null,
+    "class" : "shop"
+  } ],
+  "data_properties" : [ {
+    "property" : "hasId",
+    "type" : "xsd:integer",
+    "column" : "shop.Id",
+    "belongsToClassMap" : "ClassMap_shop"
+  } ],
+  "object_properties" : [ ]
+}

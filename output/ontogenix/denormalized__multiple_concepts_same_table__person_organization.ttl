@@ -1,0 +1,71 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix base: <https://base_ontology.com#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+
+<#TriplesMapPerson> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "PersonTable" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com#Person/{personID}";
+        rr:class foaf:Person;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:personID;
+        rr:objectMap [ rr:column "personID" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:personRole;
+        rr:objectMap [ rr:column "personRole" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate vcard:hasAddress;
+        rr:objectMap [ rr:column "addressID" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate vcard:hasTelephone;
+        rr:objectMap [ rr:column "telephoneID" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate dcterms:relation;
+        rr:objectMap [ rr:parentTriplesMap <#TriplesMapOrganization> ];
+    ].
+
+<#TriplesMapOrganization> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "OrganizationTable" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com#Organization/{organizationID}";
+        rr:class foaf:Organization;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:organizationID;
+        rr:objectMap [ rr:column "organizationID" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate vcard:hasAddress;
+        rr:objectMap [ rr:column "addressID" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate vcard:hasTelephone;
+        rr:objectMap [ rr:column "telephoneID" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate dcterms:relation;
+        rr:objectMap [ rr:parentTriplesMap <#TriplesMapPerson> ];
+    ].
+
+<#TriplesMapAddress> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "AddressTable" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com#Address/{addressID}";
+        rr:class vcard:Address;
+    ].
+
+<#TriplesMapTelephone> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "TelephoneTable" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com#Telephone/{telephoneID}";
+        rr:class vcard:Telephone;
+    ].

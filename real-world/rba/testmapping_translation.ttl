@@ -1,0 +1,46 @@
+@prefix d2rq: <http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#> .
+@prefix cmt: <http://cmt/> .
+@prefix map: <http://mapping/> .
+@prefix jdbc: <http://d2rq.org/terms/jdbc/> .
+@prefix rdfs: <http://rdfs/> .
+@prefix cmt: <http://cmt#> .
+@prefix ex: <http://example.com/namespace#>.
+@prefix : <http://example.org/> .
+
+
+map:database a d2rq:Database;
+	d2rq:jdbcDriver "org.postgresql.Driver";
+	d2rq:jdbcDSN "jdbc:postgresql://localhost:5432/translation";
+	d2rq:username "lukaslaskowski";
+	jdbc:keepAlive "3600";				# sends noop-query every 3600 seconds
+#	jdbc:keepAliveQuery "SELECT 1";		# optional custom noop-query
+	.
+
+:red a :Color.
+:green a :Color.
+:blue a :Color.
+:yellow a :Color.
+:black a :Color.
+:white a :Color.
+
+map:ShinyObjectMap a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:uriPattern "#shinyobject/@@shinyobject.id@@";
+    d2rq:class cmt:ShinyObject;
+    .
+
+map:ColorBridge a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ShinyObjectMap;
+    d2rq:property :color;
+    d2rq:uriColumn "shinyobject.color";
+    d2rq:translateWith map:ColorTable;
+    .
+
+map:ColorTable a d2rq:TranslationTable;
+    d2rq:translation [ d2rq:databaseValue "R"; d2rq:rdfValue :red; ];
+    d2rq:translation [ d2rq:databaseValue "G"; d2rq:rdfValue :green; ];
+    d2rq:translation [ d2rq:databaseValue "B"; d2rq:rdfValue :blue; ];
+    d2rq:translation [ d2rq:databaseValue "Y"; d2rq:rdfValue :yellow; ];
+    d2rq:translation [ d2rq:databaseValue "K"; d2rq:rdfValue :black; ];
+    d2rq:translation [ d2rq:databaseValue "W"; d2rq:rdfValue :white; ];
+    .

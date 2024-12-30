@@ -1,0 +1,42 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix base: <https://base_ontology.com#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix schema: <http://schema.org/> .
+
+<#TriplesMapPerson> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "PersonTable" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com#Person/{PersonID}";
+        rr:class foaf:Person;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasName;
+        rr:objectMap [ rr:column "Name" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasIdentifier;
+        rr:objectMap [ rr:column "Identifier" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasTelephone;
+        rr:objectMap [ rr:column "Telephone" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasAddress;
+        rr:objectMap [
+            rr:parentTriplesMap <#TriplesMapAddress>;
+            rr:joinCondition [
+                rr:child "AddressID";
+                rr:parent "AddressID"
+            ]
+        ]
+    ].
+
+<#TriplesMapAddress> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "AddressTable" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com#Address/{AddressID}";
+        rr:class schema:address;
+    ].

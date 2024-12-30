@@ -1,0 +1,55 @@
+{
+  "classes" : [ {
+    "id" : "@@person.name@@/",
+    "name" : "ClassMap_person",
+    "prefix" : "base",
+    "subClassOf" : null,
+    "join" : null,
+    "class" : "person"
+  }, {
+    "id" : "@@receipt.id@@/",
+    "name" : "ClassMap_receipt",
+    "prefix" : "base",
+    "subClassOf" : null,
+    "join" : null,
+    "class" : "receipt"
+  } ],
+  "data_properties" : [ {
+    "property" : "hasItem",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "receipt.Item",
+    "belongsToClassMap" : "ClassMap_receipt"
+  }, {
+    "property" : "hasName",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "person.Name",
+    "belongsToClassMap" : "ClassMap_person"
+  }, {
+    "property" : "hasDate",
+    "type" : "xsd:dateTime",
+    "column" : "receipt.Date",
+    "belongsToClassMap" : "ClassMap_receipt"
+  }, {
+    "property" : "hasId",
+    "type" : "xsd:integer",
+    "column" : "receipt.Id",
+    "belongsToClassMap" : "ClassMap_receipt"
+  }, {
+    "property" : "hasEmail",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "person.Email",
+    "belongsToClassMap" : "ClassMap_person"
+  }, {
+    "property" : "hasReceived_by",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "receipt.Received_by",
+    "belongsToClassMap" : "ClassMap_receipt"
+  } ],
+  "object_properties" : [ {
+    "property" : "hasReceived_by",
+    "join" : [ "person.name = receipt.received_by" ],
+    "inverseOf" : null,
+    "belongsToClassMap" : "ClassMap_receipt",
+    "refersToClassMap" : "ClassMap_person"
+  } ]
+}

@@ -1,0 +1,40 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix dbpedia: <http://dbpedia.org/resource/> .
+@prefix wikidata: <http://www.wikidata.org/entity/> .
+@prefix base: <https://base_ontology.com#> .
+
+<#TriplesMapBeverage> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "BeverageTable" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com/Beverage/{id}";
+        rr:class base:Beverage;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:id;
+        rr:objectMap [ rr:column "id" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:name;
+        rr:objectMap [ rr:column "name" ];
+    ].
+
+<#TriplesMapHasBeverage> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "EntityTable" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com/Entity/{entityId}";
+        rr:class owl:Thing;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasBeverage;
+        rr:objectMap [
+            rr:parentTriplesMap <#TriplesMapBeverage>;
+            rr:joinCondition [
+                rr:child "beverageId";
+                rr:parent "id";
+            ]
+        ];
+    ].

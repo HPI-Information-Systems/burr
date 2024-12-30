@@ -1,0 +1,43 @@
+@prefix base: <file:///base/> .
+@prefix d2rq: <http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#> .
+@prefix jdbc: <http://d2rq.org/terms/jdbc/> .
+@prefix map: <http://mapping/> .
+
+map:area_Reviewer_None a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Reviewer ;
+    d2rq:column "reviewer.area" ;
+    d2rq:join "person.pid   =   reviewer.pid" ;
+    d2rq:property base:area .
+
+map:email_Author_None a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Author ;
+    d2rq:column "author.email" ;
+    d2rq:join "person.pid   =   author.pid" ;
+    d2rq:property base:email .
+
+map:name_Person_None a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Person ;
+    d2rq:column "person.name" ;
+    d2rq:property base:name .
+
+map:Author a d2rq:ClassMap ;
+    d2rq:class base:Author ;
+    d2rq:dataStorage map:database ;
+    d2rq:uriPattern "/@@person.pid@@/" .
+
+map:Person a d2rq:ClassMap ;
+    d2rq:class base:Person ;
+    d2rq:dataStorage map:database ;
+    d2rq:uriPattern "/@@person.pid@@/" .
+
+map:Reviewer a d2rq:ClassMap ;
+    d2rq:class base:Reviewer ;
+    d2rq:dataStorage map:database ;
+    d2rq:uriPattern "/@@person.pid@@/" .
+
+map:database a d2rq:Database ;
+    jdbc:keepAlive "3600" ;
+    d2rq:jdbcDSN "jdbc:postgresql://localhost:5432/hierarchy__normalized__reviewer_1" ;
+    d2rq:jdbcDriver "org.postgresql.Driver" ;
+    d2rq:username "lukaslaskowski" .
+

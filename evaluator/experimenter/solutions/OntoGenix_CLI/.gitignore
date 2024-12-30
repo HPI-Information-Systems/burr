@@ -1,0 +1,13 @@
+.idea/
+GUI/.env
+datasets/**/*.csv
+datasets/**/*.nt
+testing_prompts/
+.venv/
+**/__pycache__/
+IDEAS.pptx
+testing/
+papers/
+.DS_Store
+.venv/
+*.ignore

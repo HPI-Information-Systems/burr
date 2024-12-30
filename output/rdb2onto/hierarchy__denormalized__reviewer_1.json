@@ -1,0 +1,37 @@
+{
+  "classes" : [ {
+    "id" : "@@person.pid@@/",
+    "name" : "ClassMap_person",
+    "prefix" : "base",
+    "subClassOf" : null,
+    "join" : null,
+    "class" : "person"
+  } ],
+  "data_properties" : [ {
+    "property" : "hasName",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "person.Name",
+    "belongsToClassMap" : "ClassMap_person"
+  }, {
+    "property" : "hasArea",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "person.Area",
+    "belongsToClassMap" : "ClassMap_person"
+  }, {
+    "property" : "hasPid",
+    "type" : "xsd:integer",
+    "column" : "person.Pid",
+    "belongsToClassMap" : "ClassMap_person"
+  }, {
+    "property" : "hasEmail",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "person.Email",
+    "belongsToClassMap" : "ClassMap_person"
+  }, {
+    "property" : "hasType",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "person.Type",
+    "belongsToClassMap" : "ClassMap_person"
+  } ],
+  "object_properties" : [ ]
+}

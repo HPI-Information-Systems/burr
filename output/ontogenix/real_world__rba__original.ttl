@@ -1,0 +1,103 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix base: <https://base_ontology.com#> .
+
+<#TriplesMapBusinessActivity> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "BusinessActivity" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com#BusinessActivity/{ActivityID}";
+        rr:class base:BusinessActivity;
+    ].
+
+<#TriplesMapBusinessCapability> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "BusinessCapability" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com#BusinessCapability/{CapabilityID}";
+        rr:class base:BusinessCapability;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasBusinessActivity;
+        rr:objectMap [
+            rr:parentTriplesMap <#TriplesMapBusinessActivity>;
+            rr:joinCondition [
+                rr:child "ActivityID";
+                rr:parent "ActivityID"
+            ]
+        ]
+    ].
+
+<#TriplesMapBusinessProcess> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "BusinessProcess" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com#BusinessProcess/{ProcessID}";
+        rr:class base:BusinessProcess;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasBusinessCapability;
+        rr:objectMap [
+            rr:parentTriplesMap <#TriplesMapBusinessCapability>;
+            rr:joinCondition [
+                rr:child "CapabilityID";
+                rr:parent "CapabilityID"
+            ]
+        ]
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasIndustry;
+        rr:objectMap [
+            rr:parentTriplesMap <#TriplesMapIndustry>;
+            rr:joinCondition [
+                rr:child "IndustryID";
+                rr:parent "IndustryID"
+            ]
+        ]
+    ].
+
+<#TriplesMapIndustry> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "Industry" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com#Industry/{IndustryID}";
+        rr:class base:Industry;
+    ].
+
+<#TriplesMapSolutionCapability> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "SolutionCapability" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com#SolutionCapability/{SolutionCapabilityID}";
+        rr:class base:SolutionCapability;
+    ].
+
+<#TriplesMapSolutionProcess> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "SolutionProcess" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com#SolutionProcess/{SolutionProcessID}";
+        rr:class base:SolutionProcess;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasSolutionCapability;
+        rr:objectMap [
+            rr:parentTriplesMap <#TriplesMapSolutionCapability>;
+            rr:joinCondition [
+                rr:child "SolutionCapabilityID";
+                rr:parent "SolutionCapabilityID"
+            ]
+        ]
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasWhitespace;
+        rr:objectMap [
+            rr:parentTriplesMap <#TriplesMapWhitespace>;
+            rr:joinCondition [
+                rr:child "WhitespaceID";
+                rr:parent "WhitespaceID"
+            ]
+        ]
+    ].
+
+<#TriplesMapWhitespace> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "Whitespace" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com#Whitespace/{WhitespaceID}";
+        rr:class base:Whitespace;
+    ].

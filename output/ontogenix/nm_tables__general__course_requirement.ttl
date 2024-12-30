@@ -1,0 +1,53 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix base: <https://base_ontology.com#> .
+
+<#TriplesMapCourse> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "Course" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com/Course/{courseId}";
+        rr:class base:Course;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:courseId;
+        rr:objectMap [ rr:column "courseId" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:courseName;
+        rr:objectMap [ rr:column "courseName" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasRequirement;
+        rr:objectMap [ rr:parentTriplesMap <#TriplesMapRequirement> ];
+    ].
+
+<#TriplesMapRequirement> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "Requirement" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com/Requirement/{requirementId}";
+        rr:class base:Requirement;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:requirementId;
+        rr:objectMap [ rr:column "requirementId" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:requirementName;
+        rr:objectMap [ rr:column "requirementName" ];
+    ].
+
+<#TriplesMapCourseRequirement> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "CourseRequirement" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com/CourseRequirement/{courseId}/{requirementId}";
+        rr:class base:CourseRequirement;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:conformsTo;
+        rr:objectMap [ rr:parentTriplesMap <#TriplesMapRequirement> ];
+    ].

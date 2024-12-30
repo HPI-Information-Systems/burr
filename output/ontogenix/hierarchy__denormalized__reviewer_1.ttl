@@ -1,0 +1,74 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix base: <https://base_ontology.com#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+
+<#TriplesMapPerson> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "Person" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com/Person/{pid}";
+        rr:class foaf:Person;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasCount;
+        rr:objectMap [ rr:parentTriplesMap <#TriplesMapCount> ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasUnique;
+        rr:objectMap [ rr:parentTriplesMap <#TriplesMapUnique> ];
+    ].
+
+<#TriplesMapCount> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "Count" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com/Count/{pid}";
+        rr:class base:Count;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:area;
+        rr:objectMap [ rr:column "area" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:email;
+        rr:objectMap [ rr:column "email" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:name;
+        rr:objectMap [ rr:column "name" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:pid;
+        rr:objectMap [ rr:column "pid" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:type;
+        rr:objectMap [ rr:column "type" ];
+    ].
+
+<#TriplesMapUnique> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "Unique" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com/Unique/{pid}";
+        rr:class base:Unique;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:area;
+        rr:objectMap [ rr:column "area" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:email;
+        rr:objectMap [ rr:column "email" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:name;
+        rr:objectMap [ rr:column "name" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:pid;
+        rr:objectMap [ rr:column "pid" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:type;
+        rr:objectMap [ rr:column "type" ];
+    ].

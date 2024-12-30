@@ -1,0 +1,225 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix base: <https://base_ontology.com#> .
+
+<#TriplesMapCountry> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "Country" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com/Country/{CountryID}";
+        rr:class base:Country;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasGDP;
+        rr:objectMap [ rr:column "GDP" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasInfantMortality;
+        rr:objectMap [ rr:column "InfantMortality" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasPopulationGrowth;
+        rr:objectMap [ rr:column "PopulationGrowth" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasUnemploymentRate;
+        rr:objectMap [ rr:column "UnemploymentRate" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasInflationRate;
+        rr:objectMap [ rr:column "InflationRate" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasCapital;
+        rr:objectMap [
+            rr:parentTriplesMap <#TriplesMapCity>;
+            rr:joinCondition [
+                rr:child "CapitalID";
+                rr:parent "CityID";
+            ];
+        ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasProvince;
+        rr:objectMap [
+            rr:parentTriplesMap <#TriplesMapProvince>;
+            rr:joinCondition [
+                rr:child "ProvinceID";
+                rr:parent "ProvinceID";
+            ];
+        ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasLanguage;
+        rr:objectMap [
+            rr:parentTriplesMap <#TriplesMapLanguage>;
+            rr:joinCondition [
+                rr:child "LanguageID";
+                rr:parent "LanguageID";
+            ];
+        ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasEthnicGroup;
+        rr:objectMap [
+            rr:parentTriplesMap <#TriplesMapEthnicGroup>;
+            rr:joinCondition [
+                rr:child "EthnicGroupID";
+                rr:parent "EthnicGroupID";
+            ];
+        ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasReligion;
+        rr:objectMap [
+            rr:parentTriplesMap <#TriplesMapReligion>;
+            rr:joinCondition [
+                rr:child "ReligionID";
+                rr:parent "ReligionID";
+            ];
+        ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasGovernment;
+        rr:objectMap [
+            rr:parentTriplesMap <#TriplesMapPolitics>;
+            rr:joinCondition [
+                rr:child "GovernmentID";
+                rr:parent "PoliticsID";
+            ];
+        ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasEconomy;
+        rr:objectMap [
+            rr:parentTriplesMap <#TriplesMapEconomy>;
+            rr:joinCondition [
+                rr:child "EconomyID";
+                rr:parent "EconomyID";
+            ];
+        ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasBorderWith;
+        rr:objectMap [
+            rr:parentTriplesMap <#TriplesMapCountry>;
+            rr:joinCondition [
+                rr:child "BorderCountryID";
+                rr:parent "CountryID";
+            ];
+        ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:isMemberOf;
+        rr:objectMap [
+            rr:parentTriplesMap <#TriplesMapOrganization>;
+            rr:joinCondition [
+                rr:child "OrganizationID";
+                rr:parent "OrganizationID";
+            ];
+        ];
+    ].
+
+<#TriplesMapCity> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "City" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com/City/{CityID}";
+        rr:class base:City;
+    ].
+
+<#TriplesMapProvince> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "Province" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com/Province/{ProvinceID}";
+        rr:class base:Province;
+    ].
+
+<#TriplesMapEconomy> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "Economy" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com/Economy/{EconomyID}";
+        rr:class base:Economy;
+    ].
+
+<#TriplesMapPolitics> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "Politics" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com/Politics/{PoliticsID}";
+        rr:class base:Politics;
+    ].
+
+<#TriplesMapReligion> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "Religion" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com/Religion/{ReligionID}";
+        rr:class base:Religion;
+    ].
+
+<#TriplesMapEthnicGroup> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "EthnicGroup" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com/EthnicGroup/{EthnicGroupID}";
+        rr:class base:EthnicGroup;
+    ].
+
+<#TriplesMapLanguage> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "Language" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com/Language/{LanguageID}";
+        rr:class base:Language;
+    ].
+
+<#TriplesMapOrganization> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "Organization" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com/Organization/{OrganizationID}";
+        rr:class base:Organization;
+    ].
+
+<#TriplesMapGeographicalEntity> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "GeographicalEntity" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com/GeographicalEntity/{GeographicalEntityID}";
+        rr:class base:GeographicalEntity;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasArea;
+        rr:objectMap [ rr:column "Area" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasPopulation;
+        rr:objectMap [ rr:column "Population" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasLatitude;
+        rr:objectMap [ rr:column "Latitude" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasLongitude;
+        rr:objectMap [ rr:column "Longitude" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasElevation;
+        rr:objectMap [ rr:column "Elevation" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:locatedIn;
+        rr:objectMap [
+            rr:parentTriplesMap <#TriplesMapGeographicalEntity>;
+            rr:joinCondition [
+                rr:child "LocatedInID";
+                rr:parent "GeographicalEntityID";
+            ];
+        ];
+    ].
+
+<#TriplesMapDemographicEntity> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "DemographicEntity" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com/DemographicEntity/{DemographicEntityID}";
+        rr:class base:DemographicEntity;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasPercentage;
+        rr:objectMap [ rr:column "Percentage" ];
+    ].

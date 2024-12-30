@@ -1,0 +1,1482 @@
+{
+  "classes" : [ {
+    "id" : "@@continent.name@@/",
+    "name" : "ClassMap_continent",
+    "prefix" : "base",
+    "subClassOf" : null,
+    "join" : null,
+    "class" : "continent"
+  }, {
+    "id" : "@@country.code@@/",
+    "name" : "ClassMap_country",
+    "prefix" : "base",
+    "subClassOf" : "ClassMap_city",
+    "join" : [ "city.country = country.code" ],
+    "class" : "country"
+  }, {
+    "id" : "@@politics.country@@/",
+    "name" : "ClassMap_politics",
+    "prefix" : "base",
+    "subClassOf" : "ClassMap_country",
+    "join" : [ "country.code = politics.country" ],
+    "class" : "politics"
+  }, {
+    "id" : "@@borders.country1@@/@@borders.country2@@/",
+    "name" : "ClassMap_borders",
+    "prefix" : "base",
+    "subClassOf" : null,
+    "join" : null,
+    "class" : "borders"
+  }, {
+    "id" : "@@city.name@@/@@city.country@@/@@city.province@@/",
+    "name" : "ClassMap_city",
+    "prefix" : "base",
+    "subClassOf" : null,
+    "join" : null,
+    "class" : "city"
+  }, {
+    "id" : "@@language.name@@/",
+    "name" : "ClassMap_language",
+    "prefix" : "base",
+    "subClassOf" : null,
+    "join" : null,
+    "class" : "language"
+  }, {
+    "id" : "@@geo_desert.province@@/@@geo_desert.country@@/@@geo_desert.desert@@/",
+    "name" : "ClassMap_geo_desert",
+    "prefix" : "base",
+    "subClassOf" : null,
+    "join" : null,
+    "class" : "geo_desert"
+  }, {
+    "id" : "@@lakeonisland.lake@@/@@lakeonisland.island@@/",
+    "name" : "ClassMap_lakeonisland",
+    "prefix" : "base",
+    "subClassOf" : null,
+    "join" : null,
+    "class" : "lakeonisland"
+  }, {
+    "id" : "@@provpops.country@@/@@provpops.province@@/@@provpops.year@@/",
+    "name" : "ClassMap_provpops",
+    "prefix" : "base",
+    "subClassOf" : null,
+    "join" : null,
+    "class" : "provpops"
+  }, {
+    "id" : "@@geo_estuary.province@@/@@geo_estuary.country@@/@@geo_estuary.river@@/",
+    "name" : "ClassMap_geo_estuary",
+    "prefix" : "base",
+    "subClassOf" : null,
+    "join" : null,
+    "class" : "geo_estuary"
+  }, {
+    "id" : "@@ismember.country@@/@@ismember.organization@@/",
+    "name" : "ClassMap_ismember",
+    "prefix" : "base",
+    "subClassOf" : null,
+    "join" : null,
+    "class" : "ismember"
+  }, {
+    "id" : "@@sea.name@@/",
+    "name" : "ClassMap_sea",
+    "prefix" : "base",
+    "subClassOf" : null,
+    "join" : null,
+    "class" : "sea"
+  }, {
+    "id" : "@@geo_island.province@@/@@geo_island.country@@/@@geo_island.island@@/",
+    "name" : "ClassMap_geo_island",
+    "prefix" : "base",
+    "subClassOf" : null,
+    "join" : null,
+    "class" : "geo_island"
+  }, {
+    "id" : "@@provincelocalname.country@@/@@provincelocalname.province@@/",
+    "name" : "ClassMap_provincelocalname",
+    "prefix" : "base",
+    "subClassOf" : null,
+    "join" : null,
+    "class" : "provincelocalname"
+  }, {
+    "id" : "@@countrypops.country@@/@@countrypops.year@@/",
+    "name" : "ClassMap_countrypops",
+    "prefix" : "base",
+    "subClassOf" : null,
+    "join" : null,
+    "class" : "countrypops"
+  }, {
+    "id" : "@@mountain.name@@/",
+    "name" : "ClassMap_mountain",
+    "prefix" : "base",
+    "subClassOf" : null,
+    "join" : null,
+    "class" : "mountain"
+  }, {
+    "id" : "@@locatedon.city@@/@@locatedon.province@@/@@locatedon.country@@/@@locatedon.island@@/",
+    "name" : "ClassMap_locatedon",
+    "prefix" : "base",
+    "subClassOf" : null,
+    "join" : null,
+    "class" : "locatedon"
+  }, {
+    "id" : "@@mergeswith.sea1@@/@@mergeswith.sea2@@/",
+    "name" : "ClassMap_mergeswith",
+    "prefix" : "base",
+    "subClassOf" : null,
+    "join" : null,
+    "class" : "mergeswith"
+  }, {
+    "id" : "@@province.name@@/@@province.country@@/",
+    "name" : "ClassMap_province",
+    "prefix" : "base",
+    "subClassOf" : null,
+    "join" : null,
+    "class" : "province"
+  }, {
+    "id" : "@@countryothername.country@@/@@countryothername.othername@@/",
+    "name" : "ClassMap_countryothername",
+    "prefix" : "base",
+    "subClassOf" : null,
+    "join" : null,
+    "class" : "countryothername"
+  }, {
+    "id" : "@@riveronisland.river@@/@@riveronisland.island@@/",
+    "name" : "ClassMap_riveronisland",
+    "prefix" : "base",
+    "subClassOf" : null,
+    "join" : null,
+    "class" : "riveronisland"
+  }, {
+    "id" : "@@countrylocalname.country@@/",
+    "name" : "ClassMap_countrylocalname",
+    "prefix" : "base",
+    "subClassOf" : null,
+    "join" : null,
+    "class" : "countrylocalname"
+  }, {
+    "id" : "@@geo_river.province@@/@@geo_river.country@@/@@geo_river.river@@/",
+    "name" : "ClassMap_geo_river",
+    "prefix" : "base",
+    "subClassOf" : null,
+    "join" : null,
+    "class" : "geo_river"
+  }, {
+    "id" : "@@provinceothername.country@@/@@provinceothername.province@@/@@provinceothername.othername@@/",
+    "name" : "ClassMap_provinceothername",
+    "prefix" : "base",
+    "subClassOf" : null,
+    "join" : null,
+    "class" : "provinceothername"
+  }, {
+    "id" : "@@mountainonisland.mountain@@/@@mountainonisland.island@@/",
+    "name" : "ClassMap_mountainonisland",
+    "prefix" : "base",
+    "subClassOf" : null,
+    "join" : null,
+    "class" : "mountainonisland"
+  }, {
+    "id" : "@@ethnicgroup.name@@/@@ethnicgroup.country@@/",
+    "name" : "ClassMap_ethnicgroup",
+    "prefix" : "base",
+    "subClassOf" : null,
+    "join" : null,
+    "class" : "ethnicgroup"
+  }, {
+    "id" : "@@encompasses.country@@/@@encompasses.continent@@/",
+    "name" : "ClassMap_encompasses",
+    "prefix" : "base",
+    "subClassOf" : null,
+    "join" : null,
+    "class" : "encompasses"
+  }, {
+    "id" : "@@geo_sea.province@@/@@geo_sea.country@@/@@geo_sea.sea@@/",
+    "name" : "ClassMap_geo_sea",
+    "prefix" : "base",
+    "subClassOf" : null,
+    "join" : null,
+    "class" : "geo_sea"
+  }, {
+    "id" : "@@geo_source.province@@/@@geo_source.country@@/@@geo_source.river@@/",
+    "name" : "ClassMap_geo_source",
+    "prefix" : "base",
+    "subClassOf" : null,
+    "join" : null,
+    "class" : "geo_source"
+  }, {
+    "id" : "@@island.name@@/",
+    "name" : "ClassMap_island",
+    "prefix" : "base",
+    "subClassOf" : null,
+    "join" : null,
+    "class" : "island"
+  }, {
+    "id" : "@@islandin.artificial_id@@/",
+    "name" : "ClassMap_islandin",
+    "prefix" : "base",
+    "subClassOf" : null,
+    "join" : null,
+    "class" : "islandin"
+  }, {
+    "id" : "@@economy.country@@/",
+    "name" : "ClassMap_economy",
+    "prefix" : "base",
+    "subClassOf" : "ClassMap_country",
+    "join" : [ "country.code = economy.country" ],
+    "class" : "economy"
+  }, {
+    "id" : "@@geo_mountain.province@@/@@geo_mountain.country@@/@@geo_mountain.mountain@@/",
+    "name" : "ClassMap_geo_mountain",
+    "prefix" : "base",
+    "subClassOf" : null,
+    "join" : null,
+    "class" : "geo_mountain"
+  }, {
+    "id" : "@@population.country@@/",
+    "name" : "ClassMap_population",
+    "prefix" : "base",
+    "subClassOf" : "ClassMap_country",
+    "join" : [ "country.code = population.country" ],
+    "class" : "population"
+  }, {
+    "id" : "@@religion.name@@/@@religion.country@@/",
+    "name" : "ClassMap_religion",
+    "prefix" : "base",
+    "subClassOf" : null,
+    "join" : null,
+    "class" : "religion"
+  }, {
+    "id" : "@@organization.abbreviation@@/",
+    "name" : "ClassMap_organization",
+    "prefix" : "base",
+    "subClassOf" : null,
+    "join" : null,
+    "class" : "organization"
+  }, {
+    "id" : "@@geo_lake.province@@/@@geo_lake.country@@/@@geo_lake.lake@@/",
+    "name" : "ClassMap_geo_lake",
+    "prefix" : "base",
+    "subClassOf" : null,
+    "join" : null,
+    "class" : "geo_lake"
+  }, {
+    "id" : "@@located.artificial_id@@/",
+    "name" : "ClassMap_located",
+    "prefix" : "base",
+    "subClassOf" : null,
+    "join" : null,
+    "class" : "located"
+  }, {
+    "id" : "@@spoken.country@@/@@spoken.language@@/",
+    "name" : "ClassMap_spoken",
+    "prefix" : "base",
+    "subClassOf" : null,
+    "join" : null,
+    "class" : "spoken"
+  }, {
+    "id" : "@@river.name@@/",
+    "name" : "ClassMap_river",
+    "prefix" : "base",
+    "subClassOf" : null,
+    "join" : null,
+    "class" : "river"
+  }, {
+    "id" : "@@desert.name@@/",
+    "name" : "ClassMap_desert",
+    "prefix" : "base",
+    "subClassOf" : null,
+    "join" : null,
+    "class" : "desert"
+  }, {
+    "id" : "@@lake.name@@/",
+    "name" : "ClassMap_lake",
+    "prefix" : "base",
+    "subClassOf" : null,
+    "join" : null,
+    "class" : "lake"
+  }, {
+    "id" : "@@citylocalname.country@@/@@citylocalname.province@@/@@citylocalname.city@@/",
+    "name" : "ClassMap_citylocalname",
+    "prefix" : "base",
+    "subClassOf" : null,
+    "join" : null,
+    "class" : "citylocalname"
+  }, {
+    "id" : "@@cityothername.country@@/@@cityothername.province@@/@@cityothername.city@@/@@cityothername.othername@@/",
+    "name" : "ClassMap_cityothername",
+    "prefix" : "base",
+    "subClassOf" : null,
+    "join" : null,
+    "class" : "cityothername"
+  }, {
+    "id" : "@@citypops.country@@/@@citypops.province@@/@@citypops.city@@/@@citypops.year@@/",
+    "name" : "ClassMap_citypops",
+    "prefix" : "base",
+    "subClassOf" : null,
+    "join" : null,
+    "class" : "citypops"
+  } ],
+  "data_properties" : [ {
+    "property" : "hasSea2",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "mergeswith.Sea2",
+    "belongsToClassMap" : "ClassMap_mergeswith"
+  }, {
+    "property" : "hasdesert",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "geo_desert.desert",
+    "belongsToClassMap" : "ClassMap_geo_desert"
+  }, {
+    "property" : "hasPopulation",
+    "type" : "xsd:decimal",
+    "column" : "provpops.Population",
+    "belongsToClassMap" : "ClassMap_provpops"
+  }, {
+    "property" : "hasProvince",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "geo_river.Province",
+    "belongsToClassMap" : "ClassMap_geo_river"
+  }, {
+    "property" : "hasCountry",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "locatedon.Country",
+    "belongsToClassMap" : "ClassMap_locatedon"
+  }, {
+    "property" : "hasGovernment",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "politics.Government",
+    "belongsToClassMap" : "ClassMap_politics"
+  }, {
+    "property" : "hasCountry",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "countrylocalname.Country",
+    "belongsToClassMap" : "ClassMap_countrylocalname"
+  }, {
+    "property" : "hasPopulation",
+    "type" : "xsd:decimal",
+    "column" : "province.Population",
+    "belongsToClassMap" : "ClassMap_province"
+  }, {
+    "property" : "hasProvince",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "geo_desert.Province",
+    "belongsToClassMap" : "ClassMap_geo_desert"
+  }, {
+    "property" : "hasriver",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "geo_source.river",
+    "belongsToClassMap" : "ClassMap_geo_source"
+  }, {
+    "property" : "hasSea",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "located.Sea",
+    "belongsToClassMap" : "ClassMap_located"
+  }, {
+    "property" : "hasProvince",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "locatedon.Province",
+    "belongsToClassMap" : "ClassMap_locatedon"
+  }, {
+    "property" : "hasProvince",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "geo_mountain.Province",
+    "belongsToClassMap" : "ClassMap_geo_mountain"
+  }, {
+    "property" : "hasYear",
+    "type" : "xsd:decimal",
+    "column" : "citypops.Year",
+    "belongsToClassMap" : "ClassMap_citypops"
+  }, {
+    "property" : "hasProvince",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "geo_lake.Province",
+    "belongsToClassMap" : "ClassMap_geo_lake"
+  }, {
+    "property" : "hasprovince",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "geo_mountain.province",
+    "belongsToClassMap" : "ClassMap_geo_mountain"
+  }, {
+    "property" : "hasEstuarylatitude",
+    "type" : "xsd:decimal",
+    "column" : "river.Estuarylatitude",
+    "belongsToClassMap" : "ClassMap_river"
+  }, {
+    "property" : "hasCapital",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "country.Capital",
+    "belongsToClassMap" : "ClassMap_country"
+  }, {
+    "property" : "hasDesert",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "geo_desert.Desert",
+    "belongsToClassMap" : "ClassMap_geo_desert"
+  }, {
+    "property" : "hasriver",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "geo_river.river",
+    "belongsToClassMap" : "ClassMap_geo_river"
+  }, {
+    "property" : "hasIsland",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "lakeonisland.Island",
+    "belongsToClassMap" : "ClassMap_lakeonisland"
+  }, {
+    "property" : "hasCode",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "country.Code",
+    "belongsToClassMap" : "ClassMap_country"
+  }, {
+    "property" : "hasCity",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "located.City",
+    "belongsToClassMap" : "ClassMap_located"
+  }, {
+    "property" : "hasAgriculture",
+    "type" : "xsd:decimal",
+    "column" : "economy.Agriculture",
+    "belongsToClassMap" : "ClassMap_economy"
+  }, {
+    "property" : "hasLongitude",
+    "type" : "xsd:decimal",
+    "column" : "desert.Longitude",
+    "belongsToClassMap" : "ClassMap_desert"
+  }, {
+    "property" : "hasisland",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "lakeonisland.island",
+    "belongsToClassMap" : "ClassMap_lakeonisland"
+  }, {
+    "property" : "hasService",
+    "type" : "xsd:decimal",
+    "column" : "economy.Service",
+    "belongsToClassMap" : "ClassMap_economy"
+  }, {
+    "property" : "hasName",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "religion.Name",
+    "belongsToClassMap" : "ClassMap_religion"
+  }, {
+    "property" : "hasName",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "mountain.Name",
+    "belongsToClassMap" : "ClassMap_mountain"
+  }, {
+    "property" : "hasEstuarylongitude",
+    "type" : "xsd:decimal",
+    "column" : "river.Estuarylongitude",
+    "belongsToClassMap" : "ClassMap_river"
+  }, {
+    "property" : "hasLake",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "islandin.Lake",
+    "belongsToClassMap" : "ClassMap_islandin"
+  }, {
+    "property" : "hassea1",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "mergeswith.sea1",
+    "belongsToClassMap" : "ClassMap_mergeswith"
+  }, {
+    "property" : "hasCapital",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "province.Capital",
+    "belongsToClassMap" : "ClassMap_province"
+  }, {
+    "property" : "hasArtificial_id",
+    "type" : "xsd:integer",
+    "column" : "located.Artificial_id",
+    "belongsToClassMap" : "ClassMap_located"
+  }, {
+    "property" : "hasLength",
+    "type" : "xsd:decimal",
+    "column" : "river.Length",
+    "belongsToClassMap" : "ClassMap_river"
+  }, {
+    "property" : "hasCountry",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "located.Country",
+    "belongsToClassMap" : "ClassMap_located"
+  }, {
+    "property" : "hasCountry",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "population.Country",
+    "belongsToClassMap" : "ClassMap_population"
+  }, {
+    "property" : "hasProvince",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "geo_source.Province",
+    "belongsToClassMap" : "ClassMap_geo_source"
+  }, {
+    "property" : "hasName",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "continent.Name",
+    "belongsToClassMap" : "ClassMap_continent"
+  }, {
+    "property" : "hasSea",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "islandin.Sea",
+    "belongsToClassMap" : "ClassMap_islandin"
+  }, {
+    "property" : "hasElevation",
+    "type" : "xsd:decimal",
+    "column" : "mountain.Elevation",
+    "belongsToClassMap" : "ClassMap_mountain"
+  }, {
+    "property" : "hasLongitude",
+    "type" : "xsd:decimal",
+    "column" : "lake.Longitude",
+    "belongsToClassMap" : "ClassMap_lake"
+  }, {
+    "property" : "hasPopulation",
+    "type" : "xsd:decimal",
+    "column" : "country.Population",
+    "belongsToClassMap" : "ClassMap_country"
+  }, {
+    "property" : "hasPercentage",
+    "type" : "xsd:decimal",
+    "column" : "encompasses.Percentage",
+    "belongsToClassMap" : "ClassMap_encompasses"
+  }, {
+    "property" : "hasArea",
+    "type" : "xsd:decimal",
+    "column" : "island.Area",
+    "belongsToClassMap" : "ClassMap_island"
+  }, {
+    "property" : "hasOthername",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "countryothername.Othername",
+    "belongsToClassMap" : "ClassMap_countryothername"
+  }, {
+    "property" : "hascountry",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "geo_river.country",
+    "belongsToClassMap" : "ClassMap_geo_river"
+  }, {
+    "property" : "hasName",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "island.Name",
+    "belongsToClassMap" : "ClassMap_island"
+  }, {
+    "property" : "hascity",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "locatedon.city",
+    "belongsToClassMap" : "ClassMap_locatedon"
+  }, {
+    "property" : "hascountry",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "geo_desert.country",
+    "belongsToClassMap" : "ClassMap_geo_desert"
+  }, {
+    "property" : "hasLatitude",
+    "type" : "xsd:decimal",
+    "column" : "island.Latitude",
+    "belongsToClassMap" : "ClassMap_island"
+  }, {
+    "property" : "hasArea",
+    "type" : "xsd:decimal",
+    "column" : "province.Area",
+    "belongsToClassMap" : "ClassMap_province"
+  }, {
+    "property" : "hasLongitude",
+    "type" : "xsd:decimal",
+    "column" : "island.Longitude",
+    "belongsToClassMap" : "ClassMap_island"
+  }, {
+    "property" : "hasArtificial_id",
+    "type" : "xsd:integer",
+    "column" : "islandin.Artificial_id",
+    "belongsToClassMap" : "ClassMap_islandin"
+  }, {
+    "property" : "hasriver",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "riveronisland.river",
+    "belongsToClassMap" : "ClassMap_riveronisland"
+  }, {
+    "property" : "hasIsland",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "mountainonisland.Island",
+    "belongsToClassMap" : "ClassMap_mountainonisland"
+  }, {
+    "property" : "hasYear",
+    "type" : "xsd:decimal",
+    "column" : "provpops.Year",
+    "belongsToClassMap" : "ClassMap_provpops"
+  }, {
+    "property" : "hasCountry",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "politics.Country",
+    "belongsToClassMap" : "ClassMap_politics"
+  }, {
+    "property" : "hasArea",
+    "type" : "xsd:decimal",
+    "column" : "desert.Area",
+    "belongsToClassMap" : "ClassMap_desert"
+  }, {
+    "property" : "hasisland",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "riveronisland.island",
+    "belongsToClassMap" : "ClassMap_riveronisland"
+  }, {
+    "property" : "hassea",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "geo_sea.sea",
+    "belongsToClassMap" : "ClassMap_geo_sea"
+  }, {
+    "property" : "hasPercentage",
+    "type" : "xsd:decimal",
+    "column" : "religion.Percentage",
+    "belongsToClassMap" : "ClassMap_religion"
+  }, {
+    "property" : "hasArea",
+    "type" : "xsd:decimal",
+    "column" : "country.Area",
+    "belongsToClassMap" : "ClassMap_country"
+  }, {
+    "property" : "hasArea",
+    "type" : "xsd:decimal",
+    "column" : "river.Area",
+    "belongsToClassMap" : "ClassMap_river"
+  }, {
+    "property" : "hasRiver",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "river.River",
+    "belongsToClassMap" : "ClassMap_river"
+  }, {
+    "property" : "hasLatitude",
+    "type" : "xsd:decimal",
+    "column" : "desert.Latitude",
+    "belongsToClassMap" : "ClassMap_desert"
+  }, {
+    "property" : "hasArea",
+    "type" : "xsd:decimal",
+    "column" : "lake.Area",
+    "belongsToClassMap" : "ClassMap_lake"
+  }, {
+    "property" : "hasInflation",
+    "type" : "xsd:decimal",
+    "column" : "economy.Inflation",
+    "belongsToClassMap" : "ClassMap_economy"
+  }, {
+    "property" : "hasCountry",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "geo_desert.Country",
+    "belongsToClassMap" : "ClassMap_geo_desert"
+  }, {
+    "property" : "hasOthername",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "provinceothername.Othername",
+    "belongsToClassMap" : "ClassMap_provinceothername"
+  }, {
+    "property" : "hasisland",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "mountainonisland.island",
+    "belongsToClassMap" : "ClassMap_mountainonisland"
+  }, {
+    "property" : "hasRiver",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "islandin.River",
+    "belongsToClassMap" : "ClassMap_islandin"
+  }, {
+    "property" : "hasRiver",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "riveronisland.River",
+    "belongsToClassMap" : "ClassMap_riveronisland"
+  }, {
+    "property" : "hasLocalname",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "citylocalname.Localname",
+    "belongsToClassMap" : "ClassMap_citylocalname"
+  }, {
+    "property" : "hasDependent",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "politics.Dependent",
+    "belongsToClassMap" : "ClassMap_politics"
+  }, {
+    "property" : "hasLongitude",
+    "type" : "xsd:decimal",
+    "column" : "city.Longitude",
+    "belongsToClassMap" : "ClassMap_city"
+  }, {
+    "property" : "hascountry",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "countryothername.country",
+    "belongsToClassMap" : "ClassMap_countryothername"
+  }, {
+    "property" : "hasName",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "ethnicgroup.Name",
+    "belongsToClassMap" : "ClassMap_ethnicgroup"
+  }, {
+    "property" : "hasOthername",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "cityothername.Othername",
+    "belongsToClassMap" : "ClassMap_cityothername"
+  }, {
+    "property" : "hasLocalname",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "countrylocalname.Localname",
+    "belongsToClassMap" : "ClassMap_countrylocalname"
+  }, {
+    "property" : "hasYear",
+    "type" : "xsd:decimal",
+    "column" : "countrypops.Year",
+    "belongsToClassMap" : "ClassMap_countrypops"
+  }, {
+    "property" : "hasLatitude",
+    "type" : "xsd:decimal",
+    "column" : "city.Latitude",
+    "belongsToClassMap" : "ClassMap_city"
+  }, {
+    "property" : "hasCountry",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "economy.Country",
+    "belongsToClassMap" : "ClassMap_economy"
+  }, {
+    "property" : "hasprovince",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "geo_river.province",
+    "belongsToClassMap" : "ClassMap_geo_river"
+  }, {
+    "property" : "hasIsland",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "islandin.Island",
+    "belongsToClassMap" : "ClassMap_islandin"
+  }, {
+    "property" : "hasName",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "language.Name",
+    "belongsToClassMap" : "ClassMap_language"
+  }, {
+    "property" : "hasElevation",
+    "type" : "xsd:decimal",
+    "column" : "city.Elevation",
+    "belongsToClassMap" : "ClassMap_city"
+  }, {
+    "property" : "hasprovince",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "geo_island.province",
+    "belongsToClassMap" : "ClassMap_geo_island"
+  }, {
+    "property" : "hasCountry",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "organization.Country",
+    "belongsToClassMap" : "ClassMap_organization"
+  }, {
+    "property" : "hasSourceelevation",
+    "type" : "xsd:decimal",
+    "column" : "river.Sourceelevation",
+    "belongsToClassMap" : "ClassMap_river"
+  }, {
+    "property" : "hasLatitude",
+    "type" : "xsd:decimal",
+    "column" : "mountain.Latitude",
+    "belongsToClassMap" : "ClassMap_mountain"
+  }, {
+    "property" : "hasCity",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "organization.City",
+    "belongsToClassMap" : "ClassMap_organization"
+  }, {
+    "property" : "hasProvince",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "geo_island.Province",
+    "belongsToClassMap" : "ClassMap_geo_island"
+  }, {
+    "property" : "hasCountry",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "geo_sea.Country",
+    "belongsToClassMap" : "ClassMap_geo_sea"
+  }, {
+    "property" : "hascountry",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "geo_mountain.country",
+    "belongsToClassMap" : "ClassMap_geo_mountain"
+  }, {
+    "property" : "hasLongitude",
+    "type" : "xsd:decimal",
+    "column" : "mountain.Longitude",
+    "belongsToClassMap" : "ClassMap_mountain"
+  }, {
+    "property" : "hascountry",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "geo_source.country",
+    "belongsToClassMap" : "ClassMap_geo_source"
+  }, {
+    "property" : "hasCountry",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "geo_lake.Country",
+    "belongsToClassMap" : "ClassMap_geo_lake"
+  }, {
+    "property" : "hasIsland",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "geo_island.Island",
+    "belongsToClassMap" : "ClassMap_geo_island"
+  }, {
+    "property" : "hasSourcelatitude",
+    "type" : "xsd:decimal",
+    "column" : "river.Sourcelatitude",
+    "belongsToClassMap" : "ClassMap_river"
+  }, {
+    "property" : "hasPopulation",
+    "type" : "xsd:decimal",
+    "column" : "citypops.Population",
+    "belongsToClassMap" : "ClassMap_citypops"
+  }, {
+    "property" : "hascountry",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "geo_lake.country",
+    "belongsToClassMap" : "ClassMap_geo_lake"
+  }, {
+    "property" : "hasType",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "island.Type",
+    "belongsToClassMap" : "ClassMap_island"
+  }, {
+    "property" : "hasPopulation",
+    "type" : "xsd:decimal",
+    "column" : "countrypops.Population",
+    "belongsToClassMap" : "ClassMap_countrypops"
+  }, {
+    "property" : "hasProvince",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "organization.Province",
+    "belongsToClassMap" : "ClassMap_organization"
+  }, {
+    "property" : "hasName",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "desert.Name",
+    "belongsToClassMap" : "ClassMap_desert"
+  }, {
+    "property" : "hasName",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "lake.Name",
+    "belongsToClassMap" : "ClassMap_lake"
+  }, {
+    "property" : "hasCapprov",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "province.Capprov",
+    "belongsToClassMap" : "ClassMap_province"
+  }, {
+    "property" : "hasName",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "sea.Name",
+    "belongsToClassMap" : "ClassMap_sea"
+  }, {
+    "property" : "hasCountry",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "geo_mountain.Country",
+    "belongsToClassMap" : "ClassMap_geo_mountain"
+  }, {
+    "property" : "hasPercentage",
+    "type" : "xsd:decimal",
+    "column" : "spoken.Percentage",
+    "belongsToClassMap" : "ClassMap_spoken"
+  }, {
+    "property" : "hasRiver",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "geo_estuary.River",
+    "belongsToClassMap" : "ClassMap_geo_estuary"
+  }, {
+    "property" : "hasType",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "ismember.Type",
+    "belongsToClassMap" : "ClassMap_ismember"
+  }, {
+    "property" : "hassea2",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "mergeswith.sea2",
+    "belongsToClassMap" : "ClassMap_mergeswith"
+  }, {
+    "property" : "hasprovince",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "geo_desert.province",
+    "belongsToClassMap" : "ClassMap_geo_desert"
+  }, {
+    "property" : "hasProvince",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "geo_estuary.Province",
+    "belongsToClassMap" : "ClassMap_geo_estuary"
+  }, {
+    "property" : "hasElevation",
+    "type" : "xsd:decimal",
+    "column" : "island.Elevation",
+    "belongsToClassMap" : "ClassMap_island"
+  }, {
+    "property" : "hasProvince",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "located.Province",
+    "belongsToClassMap" : "ClassMap_located"
+  }, {
+    "property" : "hasRiver",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "geo_source.River",
+    "belongsToClassMap" : "ClassMap_geo_source"
+  }, {
+    "property" : "hasMountain",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "geo_mountain.Mountain",
+    "belongsToClassMap" : "ClassMap_geo_mountain"
+  }, {
+    "property" : "hasLake",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "river.Lake",
+    "belongsToClassMap" : "ClassMap_river"
+  }, {
+    "property" : "hasUnemployment",
+    "type" : "xsd:decimal",
+    "column" : "economy.Unemployment",
+    "belongsToClassMap" : "ClassMap_economy"
+  }, {
+    "property" : "hasIndustry",
+    "type" : "xsd:decimal",
+    "column" : "economy.Industry",
+    "belongsToClassMap" : "ClassMap_economy"
+  }, {
+    "property" : "hasPercentage",
+    "type" : "xsd:decimal",
+    "column" : "ethnicgroup.Percentage",
+    "belongsToClassMap" : "ClassMap_ethnicgroup"
+  }, {
+    "property" : "hasprovince",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "geo_sea.province",
+    "belongsToClassMap" : "ClassMap_geo_sea"
+  }, {
+    "property" : "hasName",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "city.Name",
+    "belongsToClassMap" : "ClassMap_city"
+  }, {
+    "property" : "hasprovince",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "geo_lake.province",
+    "belongsToClassMap" : "ClassMap_geo_lake"
+  }, {
+    "property" : "hasPopulation",
+    "type" : "xsd:decimal",
+    "column" : "city.Population",
+    "belongsToClassMap" : "ClassMap_city"
+  }, {
+    "property" : "hasmountain",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "geo_mountain.mountain",
+    "belongsToClassMap" : "ClassMap_geo_mountain"
+  }, {
+    "property" : "hasCountry",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "geo_river.Country",
+    "belongsToClassMap" : "ClassMap_geo_river"
+  }, {
+    "property" : "hasRiver",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "located.River",
+    "belongsToClassMap" : "ClassMap_located"
+  }, {
+    "property" : "hasSea1",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "mergeswith.Sea1",
+    "belongsToClassMap" : "ClassMap_mergeswith"
+  }, {
+    "property" : "hasLake",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "lakeonisland.Lake",
+    "belongsToClassMap" : "ClassMap_lakeonisland"
+  }, {
+    "property" : "hasisland",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "geo_island.island",
+    "belongsToClassMap" : "ClassMap_geo_island"
+  }, {
+    "property" : "hasIsland",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "riveronisland.Island",
+    "belongsToClassMap" : "ClassMap_riveronisland"
+  }, {
+    "property" : "hasothername",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "countryothername.othername",
+    "belongsToClassMap" : "ClassMap_countryothername"
+  }, {
+    "property" : "hasCountry",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "countryothername.Country",
+    "belongsToClassMap" : "ClassMap_countryothername"
+  }, {
+    "property" : "hascountry",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "geo_sea.country",
+    "belongsToClassMap" : "ClassMap_geo_sea"
+  }, {
+    "property" : "haslake",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "lakeonisland.lake",
+    "belongsToClassMap" : "ClassMap_lakeonisland"
+  }, {
+    "property" : "hasInfant_mortality",
+    "type" : "xsd:decimal",
+    "column" : "population.Infant_mortality",
+    "belongsToClassMap" : "ClassMap_population"
+  }, {
+    "property" : "hasCountry",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "geo_source.Country",
+    "belongsToClassMap" : "ClassMap_geo_source"
+  }, {
+    "property" : "hasPopulation_growth",
+    "type" : "xsd:decimal",
+    "column" : "population.Population_growth",
+    "belongsToClassMap" : "ClassMap_population"
+  }, {
+    "property" : "hasprovince",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "geo_source.province",
+    "belongsToClassMap" : "ClassMap_geo_source"
+  }, {
+    "property" : "hascountry",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "locatedon.country",
+    "belongsToClassMap" : "ClassMap_locatedon"
+  }, {
+    "property" : "hasLocalname",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "provincelocalname.Localname",
+    "belongsToClassMap" : "ClassMap_provincelocalname"
+  }, {
+    "property" : "hasMountains",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "mountain.Mountains",
+    "belongsToClassMap" : "ClassMap_mountain"
+  }, {
+    "property" : "hasRiver",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "geo_river.River",
+    "belongsToClassMap" : "ClassMap_geo_river"
+  }, {
+    "property" : "hasAbbreviation",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "organization.Abbreviation",
+    "belongsToClassMap" : "ClassMap_organization"
+  }, {
+    "property" : "hasElevation",
+    "type" : "xsd:decimal",
+    "column" : "lake.Elevation",
+    "belongsToClassMap" : "ClassMap_lake"
+  }, {
+    "property" : "hasArea",
+    "type" : "xsd:decimal",
+    "column" : "continent.Area",
+    "belongsToClassMap" : "ClassMap_continent"
+  }, {
+    "property" : "hasIndependence",
+    "type" : "xsd:dateTime",
+    "column" : "politics.Independence",
+    "belongsToClassMap" : "ClassMap_politics"
+  }, {
+    "property" : "hasSea",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "river.Sea",
+    "belongsToClassMap" : "ClassMap_river"
+  }, {
+    "property" : "hasisland",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "locatedon.island",
+    "belongsToClassMap" : "ClassMap_locatedon"
+  }, {
+    "property" : "hasEstablished",
+    "type" : "xsd:dateTime",
+    "column" : "organization.Established",
+    "belongsToClassMap" : "ClassMap_organization"
+  }, {
+    "property" : "hasCountry",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "geo_estuary.Country",
+    "belongsToClassMap" : "ClassMap_geo_estuary"
+  }, {
+    "property" : "hasProvince",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "geo_sea.Province",
+    "belongsToClassMap" : "ClassMap_geo_sea"
+  }, {
+    "property" : "hasGdp",
+    "type" : "xsd:decimal",
+    "column" : "economy.Gdp",
+    "belongsToClassMap" : "ClassMap_economy"
+  }, {
+    "property" : "hasmountain",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "mountainonisland.mountain",
+    "belongsToClassMap" : "ClassMap_mountainonisland"
+  }, {
+    "property" : "hasProvince",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "country.Province",
+    "belongsToClassMap" : "ClassMap_country"
+  }, {
+    "property" : "hasprovince",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "locatedon.province",
+    "belongsToClassMap" : "ClassMap_locatedon"
+  }, {
+    "property" : "hasLatitude",
+    "type" : "xsd:decimal",
+    "column" : "lake.Latitude",
+    "belongsToClassMap" : "ClassMap_lake"
+  }, {
+    "property" : "hasArea",
+    "type" : "xsd:decimal",
+    "column" : "sea.Area",
+    "belongsToClassMap" : "ClassMap_sea"
+  }, {
+    "property" : "hasHeight",
+    "type" : "xsd:decimal",
+    "column" : "lake.Height",
+    "belongsToClassMap" : "ClassMap_lake"
+  }, {
+    "property" : "hasName",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "river.Name",
+    "belongsToClassMap" : "ClassMap_river"
+  }, {
+    "property" : "hascountry",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "geo_island.country",
+    "belongsToClassMap" : "ClassMap_geo_island"
+  }, {
+    "property" : "hasriver",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "geo_estuary.river",
+    "belongsToClassMap" : "ClassMap_geo_estuary"
+  }, {
+    "property" : "hasLake",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "geo_lake.Lake",
+    "belongsToClassMap" : "ClassMap_geo_lake"
+  }, {
+    "property" : "hasRiver",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "lake.River",
+    "belongsToClassMap" : "ClassMap_lake"
+  }, {
+    "property" : "hasDepth",
+    "type" : "xsd:decimal",
+    "column" : "sea.Depth",
+    "belongsToClassMap" : "ClassMap_sea"
+  }, {
+    "property" : "hasLength",
+    "type" : "xsd:decimal",
+    "column" : "borders.Length",
+    "belongsToClassMap" : "ClassMap_borders"
+  }, {
+    "property" : "hasSuperlanguage",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "language.Superlanguage",
+    "belongsToClassMap" : "ClassMap_language"
+  }, {
+    "property" : "hasCity",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "locatedon.City",
+    "belongsToClassMap" : "ClassMap_locatedon"
+  }, {
+    "property" : "hasEstuaryelevation",
+    "type" : "xsd:decimal",
+    "column" : "river.Estuaryelevation",
+    "belongsToClassMap" : "ClassMap_river"
+  }, {
+    "property" : "hasDepth",
+    "type" : "xsd:decimal",
+    "column" : "lake.Depth",
+    "belongsToClassMap" : "ClassMap_lake"
+  }, {
+    "property" : "hasSea",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "geo_sea.Sea",
+    "belongsToClassMap" : "ClassMap_geo_sea"
+  }, {
+    "property" : "hasMountains",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "river.Mountains",
+    "belongsToClassMap" : "ClassMap_river"
+  }, {
+    "property" : "hasWasdependent",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "politics.Wasdependent",
+    "belongsToClassMap" : "ClassMap_politics"
+  }, {
+    "property" : "hasType",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "mountain.Type",
+    "belongsToClassMap" : "ClassMap_mountain"
+  }, {
+    "property" : "hasCountry",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "geo_island.Country",
+    "belongsToClassMap" : "ClassMap_geo_island"
+  }, {
+    "property" : "hasSourcelongitude",
+    "type" : "xsd:decimal",
+    "column" : "river.Sourcelongitude",
+    "belongsToClassMap" : "ClassMap_river"
+  }, {
+    "property" : "hasIslands",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "island.Islands",
+    "belongsToClassMap" : "ClassMap_island"
+  }, {
+    "property" : "hasType",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "lake.Type",
+    "belongsToClassMap" : "ClassMap_lake"
+  }, {
+    "property" : "hasLake",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "located.Lake",
+    "belongsToClassMap" : "ClassMap_located"
+  }, {
+    "property" : "hascountry",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "geo_estuary.country",
+    "belongsToClassMap" : "ClassMap_geo_estuary"
+  }, {
+    "property" : "haslake",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "geo_lake.lake",
+    "belongsToClassMap" : "ClassMap_geo_lake"
+  }, {
+    "property" : "hasprovince",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "geo_estuary.province",
+    "belongsToClassMap" : "ClassMap_geo_estuary"
+  }, {
+    "property" : "hasIsland",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "locatedon.Island",
+    "belongsToClassMap" : "ClassMap_locatedon"
+  }, {
+    "property" : "hasMountain",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "mountainonisland.Mountain",
+    "belongsToClassMap" : "ClassMap_mountainonisland"
+  } ],
+  "object_properties" : [ {
+    "property" : "hasProvince",
+    "join" : [ "province.name = city.province" ],
+    "inverseOf" : null,
+    "belongsToClassMap" : "ClassMap_city",
+    "refersToClassMap" : "ClassMap_province"
+  }, {
+    "property" : "hasCountry",
+    "join" : [ "city.country = cityothername.country" ],
+    "inverseOf" : null,
+    "belongsToClassMap" : "ClassMap_cityothername",
+    "refersToClassMap" : "ClassMap_city"
+  }, {
+    "property" : "hasSuperlanguage",
+    "join" : [ "language.name = language.superlanguage" ],
+    "inverseOf" : null,
+    "belongsToClassMap" : "ClassMap_language",
+    "refersToClassMap" : "ClassMap_language"
+  }, {
+    "property" : "hasProvince",
+    "join" : [ "city.province = organization.province" ],
+    "inverseOf" : null,
+    "belongsToClassMap" : "ClassMap_organization",
+    "refersToClassMap" : "ClassMap_city"
+  }, {
+    "property" : "hasCity",
+    "join" : [ "city.name = organization.city" ],
+    "inverseOf" : null,
+    "belongsToClassMap" : "ClassMap_organization",
+    "refersToClassMap" : "ClassMap_city"
+  }, {
+    "property" : "hasCountry",
+    "join" : [ "country.code = religion.country" ],
+    "inverseOf" : null,
+    "belongsToClassMap" : "ClassMap_religion",
+    "refersToClassMap" : "ClassMap_country"
+  }, {
+    "property" : "hasCountry",
+    "join" : [ "city.country = organization.country" ],
+    "inverseOf" : null,
+    "belongsToClassMap" : "ClassMap_organization",
+    "refersToClassMap" : "ClassMap_city"
+  }, {
+    "property" : "hasCountry",
+    "join" : [ "city.country = citypops.country" ],
+    "inverseOf" : null,
+    "belongsToClassMap" : "ClassMap_citypops",
+    "refersToClassMap" : "ClassMap_city"
+  }, {
+    "property" : "hasCapital",
+    "join" : [ "city.name = country.capital" ],
+    "inverseOf" : null,
+    "belongsToClassMap" : "ClassMap_country",
+    "refersToClassMap" : "ClassMap_city"
+  }, {
+    "property" : "hasSea",
+    "join" : [ "sea.name = river.sea" ],
+    "inverseOf" : null,
+    "belongsToClassMap" : "ClassMap_river",
+    "refersToClassMap" : "ClassMap_sea"
+  }, {
+    "property" : "hasCountry2",
+    "join" : [ "country.code = borders.country2" ],
+    "inverseOf" : null,
+    "belongsToClassMap" : "ClassMap_borders",
+    "refersToClassMap" : "ClassMap_country"
+  }, {
+    "property" : "hasCountry",
+    "join" : [ "province.country = provpops.country" ],
+    "inverseOf" : null,
+    "belongsToClassMap" : "ClassMap_provpops",
+    "refersToClassMap" : "ClassMap_province"
+  }, {
+    "property" : "hasLakeRiver",
+    "join" : [ "lake.name = riverthrough.lake", "river.name = riverthrough.river" ],
+    "inverseOf" : "hasRiverLake",
+    "belongsToClassMap" : "ClassMap_river",
+    "refersToClassMap" : "ClassMap_lake"
+  }, {
+    "property" : "hasCity",
+    "join" : [ "city.name = cityothername.city" ],
+    "inverseOf" : null,
+    "belongsToClassMap" : "ClassMap_cityothername",
+    "refersToClassMap" : "ClassMap_city"
+  }, {
+    "property" : "hasOrganization",
+    "join" : [ "organization.abbreviation = ismember.organization" ],
+    "inverseOf" : null,
+    "belongsToClassMap" : "ClassMap_ismember",
+    "refersToClassMap" : "ClassMap_organization"
+  }, {
+    "property" : "hasProvince",
+    "join" : [ "city.province = country.province" ],
+    "inverseOf" : null,
+    "belongsToClassMap" : "ClassMap_country",
+    "refersToClassMap" : "ClassMap_city"
+  }, {
+    "property" : "hasCountry",
+    "join" : [ "country.code = countrypops.country" ],
+    "inverseOf" : null,
+    "belongsToClassMap" : "ClassMap_countrypops",
+    "refersToClassMap" : "ClassMap_country"
+  }, {
+    "property" : "hasProvince",
+    "join" : [ "city.province = citypops.province" ],
+    "inverseOf" : null,
+    "belongsToClassMap" : "ClassMap_citypops",
+    "refersToClassMap" : "ClassMap_city"
+  }, {
+    "property" : "hasCountry",
+    "join" : [ "province.country = provincelocalname.country" ],
+    "inverseOf" : null,
+    "belongsToClassMap" : "ClassMap_provincelocalname",
+    "refersToClassMap" : "ClassMap_province"
+  }, {
+    "property" : "hasCountry",
+    "join" : [ "province.country = provinceothername.country" ],
+    "inverseOf" : null,
+    "belongsToClassMap" : "ClassMap_provinceothername",
+    "refersToClassMap" : "ClassMap_province"
+  }, {
+    "property" : "hasRiver",
+    "join" : [ "river.name = lake.river" ],
+    "inverseOf" : null,
+    "belongsToClassMap" : "ClassMap_lake",
+    "refersToClassMap" : "ClassMap_river"
+  }, {
+    "property" : "hasDependent",
+    "join" : [ "country.code = politics.dependent" ],
+    "inverseOf" : null,
+    "belongsToClassMap" : "ClassMap_politics",
+    "refersToClassMap" : "ClassMap_country"
+  }, {
+    "property" : "hasCity",
+    "join" : [ "city.name = citypops.city" ],
+    "inverseOf" : null,
+    "belongsToClassMap" : "ClassMap_citypops",
+    "refersToClassMap" : "ClassMap_city"
+  }, {
+    "property" : "hasLake",
+    "join" : [ "lake.name = river.lake" ],
+    "inverseOf" : null,
+    "belongsToClassMap" : "ClassMap_river",
+    "refersToClassMap" : "ClassMap_lake"
+  }, {
+    "property" : "hasProvince",
+    "join" : [ "city.province = cityothername.province" ],
+    "inverseOf" : null,
+    "belongsToClassMap" : "ClassMap_cityothername",
+    "refersToClassMap" : "ClassMap_city"
+  }, {
+    "property" : "hasCountry",
+    "join" : [ "country.code = encompasses.country" ],
+    "inverseOf" : null,
+    "belongsToClassMap" : "ClassMap_encompasses",
+    "refersToClassMap" : "ClassMap_country"
+  }, {
+    "property" : "hasCountry",
+    "join" : [ "country.code = ismember.country" ],
+    "inverseOf" : null,
+    "belongsToClassMap" : "ClassMap_ismember",
+    "refersToClassMap" : "ClassMap_country"
+  }, {
+    "property" : "hasCountry",
+    "join" : [ "country.code = spoken.country" ],
+    "inverseOf" : null,
+    "belongsToClassMap" : "ClassMap_spoken",
+    "refersToClassMap" : "ClassMap_country"
+  }, {
+    "property" : "hasCountry",
+    "join" : [ "province.country = city.country" ],
+    "inverseOf" : null,
+    "belongsToClassMap" : "ClassMap_city",
+    "refersToClassMap" : "ClassMap_province"
+  }, {
+    "property" : "hasCountry",
+    "join" : [ "country.code = ethnicgroup.country" ],
+    "inverseOf" : null,
+    "belongsToClassMap" : "ClassMap_ethnicgroup",
+    "refersToClassMap" : "ClassMap_country"
+  }, {
+    "property" : "hasRiver",
+    "join" : [ "river.name = river.river" ],
+    "inverseOf" : null,
+    "belongsToClassMap" : "ClassMap_river",
+    "refersToClassMap" : "ClassMap_river"
+  }, {
+    "property" : "hasCountry1",
+    "join" : [ "country.code = borders.country1" ],
+    "inverseOf" : null,
+    "belongsToClassMap" : "ClassMap_borders",
+    "refersToClassMap" : "ClassMap_country"
+  }, {
+    "property" : "hasLanguage",
+    "join" : [ "language.name = spoken.language" ],
+    "inverseOf" : null,
+    "belongsToClassMap" : "ClassMap_spoken",
+    "refersToClassMap" : "ClassMap_language"
+  }, {
+    "property" : "hasProvince",
+    "join" : [ "province.name = provinceothername.province" ],
+    "inverseOf" : null,
+    "belongsToClassMap" : "ClassMap_provinceothername",
+    "refersToClassMap" : "ClassMap_province"
+  }, {
+    "property" : "hasProvince",
+    "join" : [ "province.name = provincelocalname.province" ],
+    "inverseOf" : null,
+    "belongsToClassMap" : "ClassMap_provincelocalname",
+    "refersToClassMap" : "ClassMap_province"
+  }, {
+    "property" : "hasContinent",
+    "join" : [ "continent.name = encompasses.continent" ],
+    "inverseOf" : null,
+    "belongsToClassMap" : "ClassMap_encompasses",
+    "refersToClassMap" : "ClassMap_continent"
+  }, {
+    "property" : "hasProvince",
+    "join" : [ "province.name = provpops.province" ],
+    "inverseOf" : null,
+    "belongsToClassMap" : "ClassMap_provpops",
+    "refersToClassMap" : "ClassMap_province"
+  } ]
+}

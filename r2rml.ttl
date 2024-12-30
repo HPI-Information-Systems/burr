@@ -1,0 +1,180 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix base: <https://base_ontology.com#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix schema: <http://schema.org/> .
+
+<#TriplesMapPerson> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "Person" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com#Person/{PersonID}";
+        rr:class foaf:Person;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasFirstName;
+        rr:objectMap [ rr:column "FirstName" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasLastName;
+        rr:objectMap [ rr:column "LastName" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasEmail;
+        rr:objectMap [ rr:column "Email" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasPhone;
+        rr:objectMap [ rr:column "Phone" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasPhoto;
+        rr:objectMap [ rr:column "Photo" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasAddress;
+        rr:objectMap [ rr:column "Address" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasHomepage;
+        rr:objectMap [ rr:column "Homepage" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasType;
+        rr:objectMap [ rr:column "Type" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasURI;
+        rr:objectMap [ rr:column "URI" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:relatedToOrganization;
+        rr:objectMap [ rr:column "OrganizationID" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:relatedToPaper;
+        rr:objectMap [ rr:column "PaperID" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:relatedToTopic;
+        rr:objectMap [ rr:column "TopicID" ];
+    ].
+
+<#TriplesMapOrganization> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "Organization" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com#Organization/{OrganizationID}";
+        rr:class foaf:Organization;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasName;
+        rr:objectMap [ rr:column "Name" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasLocation;
+        rr:objectMap [ rr:column "Location" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasCountry;
+        rr:objectMap [ rr:column "Country" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasPostcode;
+        rr:objectMap [ rr:column "Postcode" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasBelongsTo;
+        rr:objectMap [ rr:column "BelongsTo" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasHomepage;
+        rr:objectMap [ rr:column "Homepage" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasType;
+        rr:objectMap [ rr:column "Type" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasURI;
+        rr:objectMap [ rr:column "URI" ];
+    ].
+
+<#TriplesMapPaper> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "Paper" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com#Paper/{PaperID}";
+        rr:class dcterms:BibliographicResource;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasTitle;
+        rr:objectMap [ rr:column "Title" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasAbstract;
+        rr:objectMap [ rr:column "Abstract" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasYear;
+        rr:objectMap [ rr:column "Year" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasPublishStatus;
+        rr:objectMap [ rr:column "PublishStatus" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasURI;
+        rr:objectMap [ rr:column "URI" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:paperHasTopic;
+        rr:objectMap [ rr:column "TopicID" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:presentedAt;
+        rr:objectMap [ rr:column "ConferenceID" ];
+    ].
+
+<#TriplesMapConference> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "Conference" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com#Conference/{ConferenceID}";
+        rr:class schema:Event;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasName;
+        rr:objectMap [ rr:column "Name" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasLocation;
+        rr:objectMap [ rr:column "Location" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasDate;
+        rr:objectMap [ rr:column "Date" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasURI;
+        rr:objectMap [ rr:column "URI" ];
+    ].
+
+<#TriplesMapTopic> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "Topic" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com#Topic/{TopicID}";
+        rr:class skos:Concept;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasTopicName;
+        rr:objectMap [ rr:column "TopicName" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasParentID;
+        rr:objectMap [ rr:column "ParentID" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasURI;
+        rr:objectMap [ rr:column "URI" ];
+    ].

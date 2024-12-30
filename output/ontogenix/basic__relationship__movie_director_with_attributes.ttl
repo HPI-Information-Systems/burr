@@ -1,0 +1,52 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix base: <https://base_ontology.com#> .
+
+<#TriplesMapDirector> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "Director" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com#Director/{name}";
+        rr:class base:Director;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:name;
+        rr:objectMap [ rr:column "name" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:birthYear;
+        rr:objectMap [ rr:column "birthYear" ];
+    ].
+
+<#TriplesMapMovie> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "Movie" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com#Movie/{id}";
+        rr:class base:Movie;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:id;
+        rr:objectMap [ rr:column "id" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:title;
+        rr:objectMap [ rr:column "title" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:year;
+        rr:objectMap [ rr:column "year" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:director;
+        rr:objectMap [ rr:column "director" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasDirector;
+        rr:objectMap [
+            rr:parentTriplesMap <#TriplesMapDirector>;
+            rr:joinCondition [
+                rr:child "director";
+                rr:parent "name"
+            ]
+        ]
+    ].

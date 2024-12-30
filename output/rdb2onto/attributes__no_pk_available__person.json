@@ -1,0 +1,22 @@
+{
+  "classes" : [ {
+    "id" : "@@person.artificial_id@@/",
+    "name" : "ClassMap_person",
+    "prefix" : "base",
+    "subClassOf" : null,
+    "join" : null,
+    "class" : "person"
+  } ],
+  "data_properties" : [ {
+    "property" : "hasArtificial_id",
+    "type" : "xsd:integer",
+    "column" : "person.Artificial_id",
+    "belongsToClassMap" : "ClassMap_person"
+  }, {
+    "property" : "hasId",
+    "type" : "xsd:integer",
+    "column" : "person.Id",
+    "belongsToClassMap" : "ClassMap_person"
+  } ],
+  "object_properties" : [ ]
+}

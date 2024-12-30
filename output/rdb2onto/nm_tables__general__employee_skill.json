@@ -1,0 +1,45 @@
+{
+  "classes" : [ {
+    "id" : "@@skill.id@@/",
+    "name" : "ClassMap_skill",
+    "prefix" : "base",
+    "subClassOf" : null,
+    "join" : null,
+    "class" : "skill"
+  }, {
+    "id" : "@@employee.id@@/",
+    "name" : "ClassMap_employee",
+    "prefix" : "base",
+    "subClassOf" : null,
+    "join" : null,
+    "class" : "employee"
+  } ],
+  "data_properties" : [ {
+    "property" : "hasName",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "skill.Name",
+    "belongsToClassMap" : "ClassMap_skill"
+  }, {
+    "property" : "hasId",
+    "type" : "xsd:integer",
+    "column" : "skill.Id",
+    "belongsToClassMap" : "ClassMap_skill"
+  }, {
+    "property" : "hasId",
+    "type" : "xsd:integer",
+    "column" : "employee.Id",
+    "belongsToClassMap" : "ClassMap_employee"
+  }, {
+    "property" : "hasName",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "employee.Name",
+    "belongsToClassMap" : "ClassMap_employee"
+  } ],
+  "object_properties" : [ {
+    "property" : "hasEmployeeSkill",
+    "join" : [ "employee.id = employee_skill.employee_id", "skill.id = employee_skill.skill_id" ],
+    "inverseOf" : "hasSkillEmployee",
+    "belongsToClassMap" : "ClassMap_skill",
+    "refersToClassMap" : "ClassMap_employee"
+  } ]
+}

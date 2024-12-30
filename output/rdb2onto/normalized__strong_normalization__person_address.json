@@ -1,0 +1,149 @@
+{
+  "classes" : [ {
+    "id" : "@@address.id@@/",
+    "name" : "ClassMap_address",
+    "prefix" : "base",
+    "subClassOf" : null,
+    "join" : null,
+    "class" : "address"
+  }, {
+    "id" : "@@person.id@@/",
+    "name" : "ClassMap_person",
+    "prefix" : "base",
+    "subClassOf" : null,
+    "join" : null,
+    "class" : "person"
+  }, {
+    "id" : "@@location.zip@@/",
+    "name" : "ClassMap_location",
+    "prefix" : "base",
+    "subClassOf" : null,
+    "join" : null,
+    "class" : "location"
+  }, {
+    "id" : "@@person_department.artificial_id@@/",
+    "name" : "ClassMap_person_department",
+    "prefix" : "base",
+    "subClassOf" : null,
+    "join" : null,
+    "class" : "person_department"
+  }, {
+    "id" : "@@department.id@@/",
+    "name" : "ClassMap_department",
+    "prefix" : "base",
+    "subClassOf" : null,
+    "join" : null,
+    "class" : "department"
+  } ],
+  "data_properties" : [ {
+    "property" : "hasArtificial_id",
+    "type" : "xsd:integer",
+    "column" : "person_department.Artificial_id",
+    "belongsToClassMap" : "ClassMap_person_department"
+  }, {
+    "property" : "hasAddress_id",
+    "type" : "xsd:integer",
+    "column" : "person.Address_id",
+    "belongsToClassMap" : "ClassMap_person"
+  }, {
+    "property" : "hasName",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "department.Name",
+    "belongsToClassMap" : "ClassMap_department"
+  }, {
+    "property" : "hasId",
+    "type" : "xsd:integer",
+    "column" : "address.Id",
+    "belongsToClassMap" : "ClassMap_address"
+  }, {
+    "property" : "hasId",
+    "type" : "xsd:integer",
+    "column" : "person.Id",
+    "belongsToClassMap" : "ClassMap_person"
+  }, {
+    "property" : "hasEmail",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "person.Email",
+    "belongsToClassMap" : "ClassMap_person"
+  }, {
+    "property" : "hasStreet",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "address.Street",
+    "belongsToClassMap" : "ClassMap_address"
+  }, {
+    "property" : "hasZip",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "location.Zip",
+    "belongsToClassMap" : "ClassMap_location"
+  }, {
+    "property" : "hasLast_name",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "person.Last_name",
+    "belongsToClassMap" : "ClassMap_person"
+  }, {
+    "property" : "hasPerson_id",
+    "type" : "xsd:integer",
+    "column" : "person_department.Person_id",
+    "belongsToClassMap" : "ClassMap_person_department"
+  }, {
+    "property" : "hasFirst_name",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "person.First_name",
+    "belongsToClassMap" : "ClassMap_person"
+  }, {
+    "property" : "hasZip",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "address.Zip",
+    "belongsToClassMap" : "ClassMap_address"
+  }, {
+    "property" : "hasId",
+    "type" : "xsd:integer",
+    "column" : "department.Id",
+    "belongsToClassMap" : "ClassMap_department"
+  }, {
+    "property" : "hasState",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "location.State",
+    "belongsToClassMap" : "ClassMap_location"
+  }, {
+    "property" : "hasHouse_number",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "address.House_number",
+    "belongsToClassMap" : "ClassMap_address"
+  }, {
+    "property" : "hasDepartment_id",
+    "type" : "xsd:integer",
+    "column" : "person_department.Department_id",
+    "belongsToClassMap" : "ClassMap_person_department"
+  }, {
+    "property" : "hasCity",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "location.City",
+    "belongsToClassMap" : "ClassMap_location"
+  } ],
+  "object_properties" : [ {
+    "property" : "hasZip",
+    "join" : [ "location.zip = address.zip" ],
+    "inverseOf" : null,
+    "belongsToClassMap" : "ClassMap_address",
+    "refersToClassMap" : "ClassMap_location"
+  }, {
+    "property" : "hasDepartment_id",
+    "join" : [ "department.id = person_department.department_id" ],
+    "inverseOf" : null,
+    "belongsToClassMap" : "ClassMap_person_department",
+    "refersToClassMap" : "ClassMap_department"
+  }, {
+    "property" : "hasPerson_id",
+    "join" : [ "person.id = person_department.person_id" ],
+    "inverseOf" : null,
+    "belongsToClassMap" : "ClassMap_person_department",
+    "refersToClassMap" : "ClassMap_person"
+  }, {
+    "property" : "hasAddress_id",
+    "join" : [ "address.id = person.address_id" ],
+    "inverseOf" : null,
+    "belongsToClassMap" : "ClassMap_person",
+    "refersToClassMap" : "ClassMap_address"
+  } ]
+}

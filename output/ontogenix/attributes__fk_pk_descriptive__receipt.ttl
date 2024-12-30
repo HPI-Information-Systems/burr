@@ -1,0 +1,74 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix base: <https://base_ontology.com#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix schema: <http://schema.org/> .
+
+<#TriplesMapPerson> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "PersonTable" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com#Person/{PersonID}";
+        rr:class base:Person;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasEmail;
+        rr:objectMap [ rr:column "Email" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasName;
+        rr:objectMap [ rr:column "Name" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:emailCount;
+        rr:objectMap [ rr:column "EmailCount" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:nameCount;
+        rr:objectMap [ rr:column "NameCount" ];
+    ].
+
+<#TriplesMapReceipt> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "ReceiptTable" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com#Receipt/{ReceiptID}";
+        rr:class base:Receipt;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasDate;
+        rr:objectMap [ rr:column "DateIssued" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasId;
+        rr:objectMap [ rr:column "Identifier" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasItem;
+        rr:objectMap [ rr:column "Item" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:receivedBy;
+        rr:objectMap [
+            rr:parentTriplesMap <#TriplesMapPerson>;
+            rr:joinCondition [
+                rr:child "RecipientID";
+                rr:parent "PersonID";
+            ]
+        ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:mean;
+        rr:objectMap [ rr:column "Mean" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:std;
+        rr:objectMap [ rr:column "StandardDeviation" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:max;
+        rr:objectMap [ rr:column "Maximum" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:min;
+        rr:objectMap [ rr:column "Minimum" ];
+    ].

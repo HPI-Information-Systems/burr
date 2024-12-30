@@ -1,0 +1,74 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix base: <https://base_ontology.com#> .
+
+<#TriplesMapSoftware> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "SoftwareTable" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com#Software/{SoftwareID}";
+        rr:class base:Software;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasAttribute;
+        rr:objectMap [
+            rr:parentTriplesMap <#TriplesMapAttribute>;
+            rr:joinCondition [
+                rr:child "SoftwareID";
+                rr:parent "SoftwareID"
+            ]
+        ]
+    ].
+
+<#TriplesMapAttribute> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "AttributeTable" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com#Attribute/{AttributeID}";
+        rr:class base:Attribute;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasCount;
+        rr:objectMap [ rr:column "Count" ]
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasMax;
+        rr:objectMap [ rr:column "Max" ]
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasMean;
+        rr:objectMap [ rr:column "Mean" ]
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasMin;
+        rr:objectMap [ rr:column "Min" ]
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasNonNullCount;
+        rr:objectMap [ rr:column "NonNullCount" ]
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasStd;
+        rr:objectMap [ rr:column "Std" ]
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasType;
+        rr:objectMap [ rr:column "Type" ]
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasUniqueCount;
+        rr:objectMap [ rr:column "UniqueCount" ]
+    ].
+
+<#TriplesMapID> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "IDTable" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com#ID/{ID}";
+        rr:class base:ID;
+    ].
+
+<#TriplesMapName> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "NameTable" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com#Name/{NameID}";
+        rr:class base:Name;
+    ].

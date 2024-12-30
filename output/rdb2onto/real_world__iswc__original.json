@@ -1,0 +1,285 @@
+{
+  "classes" : [ {
+    "id" : "@@persons.perid@@/",
+    "name" : "ClassMap_persons",
+    "prefix" : "base",
+    "subClassOf" : null,
+    "join" : null,
+    "class" : "persons"
+  }, {
+    "id" : "@@topics.topicid@@/",
+    "name" : "ClassMap_topics",
+    "prefix" : "base",
+    "subClassOf" : null,
+    "join" : null,
+    "class" : "topics"
+  }, {
+    "id" : "@@organizations.orgid@@/",
+    "name" : "ClassMap_organizations",
+    "prefix" : "base",
+    "subClassOf" : null,
+    "join" : null,
+    "class" : "organizations"
+  }, {
+    "id" : "@@papers.paperid@@/",
+    "name" : "ClassMap_papers",
+    "prefix" : "base",
+    "subClassOf" : null,
+    "join" : null,
+    "class" : "papers"
+  }, {
+    "id" : "@@rel_paper_topic.paperid@@/@@rel_paper_topic.topicid@@/",
+    "name" : "ClassMap_rel_paper_topic",
+    "prefix" : "base",
+    "subClassOf" : null,
+    "join" : null,
+    "class" : "rel_paper_topic"
+  }, {
+    "id" : "@@conferences.confid@@/",
+    "name" : "ClassMap_conferences",
+    "prefix" : "base",
+    "subClassOf" : null,
+    "join" : null,
+    "class" : "conferences"
+  } ],
+  "data_properties" : [ {
+    "property" : "hasUri",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "conferences.Uri",
+    "belongsToClassMap" : "ClassMap_conferences"
+  }, {
+    "property" : "hasPublish",
+    "type" : "xsd:integer",
+    "column" : "papers.Publish",
+    "belongsToClassMap" : "ClassMap_papers"
+  }, {
+    "property" : "hasOrgid",
+    "type" : "xsd:integer",
+    "column" : "organizations.Orgid",
+    "belongsToClassMap" : "ClassMap_organizations"
+  }, {
+    "property" : "hasEmail",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "persons.Email",
+    "belongsToClassMap" : "ClassMap_persons"
+  }, {
+    "property" : "hasAddress",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "organizations.Address",
+    "belongsToClassMap" : "ClassMap_organizations"
+  }, {
+    "property" : "hasUri",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "persons.Uri",
+    "belongsToClassMap" : "ClassMap_persons"
+  }, {
+    "property" : "hasPhoto",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "persons.Photo",
+    "belongsToClassMap" : "ClassMap_persons"
+  }, {
+    "property" : "hasDatum",
+    "type" : "xsd:dateTimeStamp",
+    "column" : "conferences.Datum",
+    "belongsToClassMap" : "ClassMap_conferences"
+  }, {
+    "property" : "hasPerid",
+    "type" : "xsd:integer",
+    "column" : "persons.Perid",
+    "belongsToClassMap" : "ClassMap_persons"
+  }, {
+    "property" : "hasLastname",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "persons.Lastname",
+    "belongsToClassMap" : "ClassMap_persons"
+  }, {
+    "property" : "hasConfid",
+    "type" : "xsd:integer",
+    "column" : "conferences.Confid",
+    "belongsToClassMap" : "ClassMap_conferences"
+  }, {
+    "property" : "hasDate",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "conferences.Date",
+    "belongsToClassMap" : "ClassMap_conferences"
+  }, {
+    "property" : "hasUri",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "papers.Uri",
+    "belongsToClassMap" : "ClassMap_papers"
+  }, {
+    "property" : "hasRelationtype",
+    "type" : "xsd:integer",
+    "column" : "rel_paper_topic.Relationtype",
+    "belongsToClassMap" : "ClassMap_rel_paper_topic"
+  }, {
+    "property" : "hasName",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "conferences.Name",
+    "belongsToClassMap" : "ClassMap_conferences"
+  }, {
+    "property" : "hasCountry",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "organizations.Country",
+    "belongsToClassMap" : "ClassMap_organizations"
+  }, {
+    "property" : "hasName",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "organizations.Name",
+    "belongsToClassMap" : "ClassMap_organizations"
+  }, {
+    "property" : "hasFirstname",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "persons.Firstname",
+    "belongsToClassMap" : "ClassMap_persons"
+  }, {
+    "property" : "hasAddress",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "persons.Address",
+    "belongsToClassMap" : "ClassMap_persons"
+  }, {
+    "property" : "hasAbstract",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "papers.Abstract",
+    "belongsToClassMap" : "ClassMap_papers"
+  }, {
+    "property" : "hasUri",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "topics.Uri",
+    "belongsToClassMap" : "ClassMap_topics"
+  }, {
+    "property" : "hasBelongsto",
+    "type" : "xsd:integer",
+    "column" : "organizations.Belongsto",
+    "belongsToClassMap" : "ClassMap_organizations"
+  }, {
+    "property" : "hasTitle",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "papers.Title",
+    "belongsToClassMap" : "ClassMap_papers"
+  }, {
+    "property" : "hasUri",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "organizations.Uri",
+    "belongsToClassMap" : "ClassMap_organizations"
+  }, {
+    "property" : "hasTopicname",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "topics.Topicname",
+    "belongsToClassMap" : "ClassMap_topics"
+  }, {
+    "property" : "hasLocation",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "conferences.Location",
+    "belongsToClassMap" : "ClassMap_conferences"
+  }, {
+    "property" : "hasPostcode",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "organizations.Postcode",
+    "belongsToClassMap" : "ClassMap_organizations"
+  }, {
+    "property" : "hasTopicid",
+    "type" : "xsd:integer",
+    "column" : "topics.Topicid",
+    "belongsToClassMap" : "ClassMap_topics"
+  }, {
+    "property" : "hasParentid",
+    "type" : "xsd:integer",
+    "column" : "topics.Parentid",
+    "belongsToClassMap" : "ClassMap_topics"
+  }, {
+    "property" : "hasPhone",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "persons.Phone",
+    "belongsToClassMap" : "ClassMap_persons"
+  }, {
+    "property" : "hasType",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "persons.Type",
+    "belongsToClassMap" : "ClassMap_persons"
+  }, {
+    "property" : "hasConference",
+    "type" : "xsd:integer",
+    "column" : "papers.Conference",
+    "belongsToClassMap" : "ClassMap_papers"
+  }, {
+    "property" : "hasPaperid",
+    "type" : "xsd:integer",
+    "column" : "papers.Paperid",
+    "belongsToClassMap" : "ClassMap_papers"
+  }, {
+    "property" : "hasType",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "organizations.Type",
+    "belongsToClassMap" : "ClassMap_organizations"
+  }, {
+    "property" : "hasHomepage",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "organizations.Homepage",
+    "belongsToClassMap" : "ClassMap_organizations"
+  }, {
+    "property" : "hasLocation",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "organizations.Location",
+    "belongsToClassMap" : "ClassMap_organizations"
+  }, {
+    "property" : "hasYear",
+    "type" : "xsd:integer",
+    "column" : "papers.Year",
+    "belongsToClassMap" : "ClassMap_papers"
+  }, {
+    "property" : "hasHomepage",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "persons.Homepage",
+    "belongsToClassMap" : "ClassMap_persons"
+  } ],
+  "object_properties" : [ {
+    "property" : "hasTopicid",
+    "join" : [ "topics.topicid = rel_paper_topic.topicid" ],
+    "inverseOf" : null,
+    "belongsToClassMap" : "ClassMap_rel_paper_topic",
+    "refersToClassMap" : "ClassMap_topics"
+  }, {
+    "property" : "hasPaperid",
+    "join" : [ "papers.paperid = rel_paper_topic.paperid" ],
+    "inverseOf" : null,
+    "belongsToClassMap" : "ClassMap_rel_paper_topic",
+    "refersToClassMap" : "ClassMap_papers"
+  }, {
+    "property" : "hasPersonsTopics",
+    "join" : [ "persons.perid = rel_person_topic.personid", "topics.topicid = rel_person_topic.topicid" ],
+    "inverseOf" : "hasTopicsPersons",
+    "belongsToClassMap" : "ClassMap_topics",
+    "refersToClassMap" : "ClassMap_persons"
+  }, {
+    "property" : "hasParentid",
+    "join" : [ "topics.topicid = topics.parentid" ],
+    "inverseOf" : null,
+    "belongsToClassMap" : "ClassMap_topics",
+    "refersToClassMap" : "ClassMap_topics"
+  }, {
+    "property" : "hasOrganizationsPersons",
+    "join" : [ "organizations.orgid = rel_person_organization.organizationid", "persons.perid = rel_person_organization.personid" ],
+    "inverseOf" : "hasPersonsOrganizations",
+    "belongsToClassMap" : "ClassMap_persons",
+    "refersToClassMap" : "ClassMap_organizations"
+  }, {
+    "property" : "hasConference",
+    "join" : [ "conferences.confid = papers.conference" ],
+    "inverseOf" : null,
+    "belongsToClassMap" : "ClassMap_papers",
+    "refersToClassMap" : "ClassMap_conferences"
+  }, {
+    "property" : "hasBelongsto",
+    "join" : [ "organizations.orgid = organizations.belongsto" ],
+    "inverseOf" : null,
+    "belongsToClassMap" : "ClassMap_organizations",
+    "refersToClassMap" : "ClassMap_organizations"
+  }, {
+    "property" : "hasPapersPersons",
+    "join" : [ "papers.paperid = rel_person_paper.paperid", "persons.perid = rel_person_paper.personid" ],
+    "inverseOf" : "hasPersonsPapers",
+    "belongsToClassMap" : "ClassMap_persons",
+    "refersToClassMap" : "ClassMap_papers"
+  } ]
+}

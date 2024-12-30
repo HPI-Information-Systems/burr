@@ -1,0 +1,75 @@
+@prefix d2rq: <http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#> .
+@prefix cmt: <http://cmt/> .
+@prefix map: <http://mapping/> .
+@prefix jdbc: <http://d2rq.org/terms/jdbc/> .
+@prefix base: </base/> .
+
+map:database a d2rq:Database;
+	d2rq:jdbcDriver "org.postgresql.Driver";
+	d2rq:jdbcDSN "jdbc:postgresql://localhost:5432/denormalized__same_concept_multiple_tables__library";
+	d2rq:username "lukaslaskowski";
+	jdbc:keepAlive "3600";				# sends noop-query every 3600 seconds
+	.
+
+map:Book a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:Book;
+    d2rq:uriPattern "Book/@@book.isbn@@/";
+    
+    
+    .
+map:Book a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:Book;
+    d2rq:uriPattern "Book/@@book_2.isbn@@/";
+    
+    
+    .
+map:name_Book_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Book;
+    d2rq:property base:name;
+    d2rq:column "book.name";
+    .
+
+map:publicationYear_Book_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Book;
+    d2rq:property base:publicationYear;
+    d2rq:column "book.publication_year";
+    .
+
+map:copiesAvailable_Book_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Book;
+    d2rq:property base:copiesAvailable;
+    d2rq:column "book.copies_available";
+    .
+
+map:isbn_Book_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Book;
+    d2rq:property base:isbn;
+    d2rq:column "book.isbn";
+    .
+
+map:name_Book_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Book;
+    d2rq:property base:name;
+    d2rq:column "book_2.name";
+    .
+
+map:publicationYear_Book_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Book;
+    d2rq:property base:publicationYear;
+    d2rq:column "book_2.publication_year";
+    .
+
+map:copiesAvailable_Book_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Book;
+    d2rq:property base:copiesAvailable;
+    d2rq:column "book_2.copies_available";
+    .
+
+map:isbn_Book_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Book;
+    d2rq:property base:isbn;
+    d2rq:column "book_2.isbn";
+    .
+

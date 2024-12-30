@@ -1,0 +1,57 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix base: <https://base_ontology.com#> .
+
+<#TriplesMapEmployee> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "Employee" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com#Employee/{id}";
+        rr:class base:Employee;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:id;
+        rr:objectMap [ rr:column "id" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:name;
+        rr:objectMap [ rr:column "name" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasSkill;
+        rr:objectMap [ rr:parentTriplesMap <#TriplesMapSkill> ];
+    ].
+
+<#TriplesMapSkill> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "Skill" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com#Skill/{id}";
+        rr:class base:Skill;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:id;
+        rr:objectMap [ rr:column "id" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:name;
+        rr:objectMap [ rr:column "name" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:isSkillOf;
+        rr:objectMap [ rr:parentTriplesMap <#TriplesMapEmployee> ];
+    ].
+
+<#TriplesMapEmployeeSkill> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "EmployeeSkill" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com#EmployeeSkill/{employeeId}/{skillId}";
+        rr:class base:EmployeeSkill;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasSkill;
+        rr:objectMap [ rr:parentTriplesMap <#TriplesMapSkill> ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:isSkillOf;
+        rr:objectMap [ rr:parentTriplesMap <#TriplesMapEmployee> ];
+    ].

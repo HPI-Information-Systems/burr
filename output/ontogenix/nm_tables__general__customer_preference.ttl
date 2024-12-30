@@ -1,0 +1,42 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix base: <https://base_ontology.com#> .
+
+<#TriplesMapCustomer> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "Customer" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com#Customer/{customerId}";
+        rr:class base:Customer;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:customerId;
+        rr:objectMap [ rr:column "customerId" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:customerName;
+        rr:objectMap [ rr:column "customerName" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasPreference;
+        rr:objectMap [ rr:parentTriplesMap <#TriplesMapPreference> ];
+    ].
+
+<#TriplesMapPreference> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "Preference" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com#Preference/{preferenceId}";
+        rr:class base:Preference;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:preferenceId;
+        rr:objectMap [ rr:column "preferenceId" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:preferenceName;
+        rr:objectMap [ rr:column "preferenceName" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:isPreferenceOf;
+        rr:objectMap [ rr:parentTriplesMap <#TriplesMapCustomer> ];
+    ].

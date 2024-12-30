@@ -1,0 +1,62 @@
+@prefix d2rq: <http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#> .
+@prefix cmt: <http://cmt/> .
+@prefix map: <http://mapping/> .
+@prefix jdbc: <http://d2rq.org/terms/jdbc/> .
+@prefix base: </base/> .
+
+map:database a d2rq:Database;
+	d2rq:jdbcDriver "org.postgresql.Driver";
+	d2rq:jdbcDSN "jdbc:postgresql://localhost:5432/denormalized__relation_of_concepts_in_same_table__process";
+	d2rq:username "lukaslaskowski";
+	jdbc:keepAlive "3600";				# sends noop-query every 3600 seconds
+	.
+
+map:ClassMap_process a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:process;
+    d2rq:uriPattern "process/@@process.process_id@@/";
+    
+    
+    .
+map:hasProcess_id_ClassMap_process_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_process;
+    d2rq:property base:hasProcess_id;
+    d2rq:column "process.process_id";
+    .
+
+map:hasArea_description_ClassMap_process_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_process;
+    d2rq:property base:hasArea_description;
+    d2rq:column "process.area_description";
+    .
+
+map:hasBusiness_capability_id_ClassMap_process_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_process;
+    d2rq:property base:hasBusiness_capability_id;
+    d2rq:column "process.business_capability_id";
+    .
+
+map:hasArea_name_ClassMap_process_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_process;
+    d2rq:property base:hasArea_name;
+    d2rq:column "process.area_name";
+    .
+
+map:hasCapability_description_ClassMap_process_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_process;
+    d2rq:property base:hasCapability_description;
+    d2rq:column "process.capability_description";
+    .
+
+map:hasCapability_name_ClassMap_process_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_process;
+    d2rq:property base:hasCapability_name;
+    d2rq:column "process.capability_name";
+    .
+
+map:hasBusiness_area_id_ClassMap_process_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_process;
+    d2rq:property base:hasBusiness_area_id;
+    d2rq:column "process.business_area_id";
+    .
+

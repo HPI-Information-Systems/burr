@@ -1,0 +1,71 @@
+{
+  "classes" : [ {
+    "id" : "@@course_requirement.artificial_id@@/",
+    "name" : "ClassMap_course_requirement",
+    "prefix" : "base",
+    "subClassOf" : null,
+    "join" : null,
+    "class" : "course_requirement"
+  }, {
+    "id" : "@@course.artificial_id@@/",
+    "name" : "ClassMap_course",
+    "prefix" : "base",
+    "subClassOf" : null,
+    "join" : null,
+    "class" : "course"
+  }, {
+    "id" : "@@requirement.artificial_id@@/",
+    "name" : "ClassMap_requirement",
+    "prefix" : "base",
+    "subClassOf" : null,
+    "join" : null,
+    "class" : "requirement"
+  } ],
+  "data_properties" : [ {
+    "property" : "hasArtificial_id",
+    "type" : "xsd:integer",
+    "column" : "requirement.Artificial_id",
+    "belongsToClassMap" : "ClassMap_requirement"
+  }, {
+    "property" : "hasId",
+    "type" : "xsd:integer",
+    "column" : "course.Id",
+    "belongsToClassMap" : "ClassMap_course"
+  }, {
+    "property" : "hasName",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "requirement.Name",
+    "belongsToClassMap" : "ClassMap_requirement"
+  }, {
+    "property" : "hasName",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "course.Name",
+    "belongsToClassMap" : "ClassMap_course"
+  }, {
+    "property" : "hasId",
+    "type" : "xsd:integer",
+    "column" : "requirement.Id",
+    "belongsToClassMap" : "ClassMap_requirement"
+  }, {
+    "property" : "hasCourse_id",
+    "type" : "xsd:integer",
+    "column" : "course_requirement.Course_id",
+    "belongsToClassMap" : "ClassMap_course_requirement"
+  }, {
+    "property" : "hasArtificial_id",
+    "type" : "xsd:integer",
+    "column" : "course_requirement.Artificial_id",
+    "belongsToClassMap" : "ClassMap_course_requirement"
+  }, {
+    "property" : "hasArtificial_id",
+    "type" : "xsd:integer",
+    "column" : "course.Artificial_id",
+    "belongsToClassMap" : "ClassMap_course"
+  }, {
+    "property" : "hasRequirement_id",
+    "type" : "xsd:integer",
+    "column" : "course_requirement.Requirement_id",
+    "belongsToClassMap" : "ClassMap_course_requirement"
+  } ],
+  "object_properties" : [ ]
+}

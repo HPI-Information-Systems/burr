@@ -1,0 +1,227 @@
+ @prefix base: <https://base_ontology.com#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix dbpedia: <http://dbpedia.org/ontology/> .
+@prefix geonames: <http://www.geonames.org/ontology#> .
+@prefix wikidata: <http://www.wikidata.org/entity/> .
+### Datatype Properties
+base:area a owl:DatatypeProperty ;
+    rdfs:label "area"@en ;
+    rdfs:comment "The area of a geographical entity."@en ;
+    rdfs:domain [
+        rdf:type owl:Class ;
+        owl:unionOf (base:Country base:Province base:Continent base:Desert base:Island base:Lake base:Sea)
+    ] ;
+    rdfs:range xsd:double .
+base:population a owl:DatatypeProperty ;
+    rdfs:label "population"@en ;
+    rdfs:comment "The population of a geographical entity."@en ;
+    rdfs:domain [
+        rdf:type owl:Class ;
+        owl:unionOf (base:Country base:Province base:City)
+    ] ;
+    rdfs:range xsd:double .
+base:elevation a owl:DatatypeProperty ;
+    rdfs:label "elevation"@en ;
+    rdfs:comment "The elevation of a geographical entity."@en ;
+    rdfs:domain [
+        rdf:type owl:Class ;
+        owl:unionOf (base:City base:Mountain base:Island base:Lake)
+    ] ;
+    rdfs:range xsd:double .
+base:latitude a owl:DatatypeProperty ;
+    rdfs:label "latitude"@en ;
+    rdfs:comment "The latitude of a geographical entity."@en ;
+    rdfs:domain [
+        rdf:type owl:Class ;
+        owl:unionOf (base:City base:Mountain base:Island base:Lake base:Desert base:River)
+    ] ;
+    rdfs:range xsd:double .
+base:longitude a owl:DatatypeProperty ;
+    rdfs:label "longitude"@en ;
+    rdfs:comment "The longitude of a geographical entity."@en ;
+    rdfs:domain [
+        rdf:type owl:Class ;
+        owl:unionOf (base:City base:Mountain base:Island base:Lake base:Desert base:River)
+    ] ;
+    rdfs:range xsd:double .
+base:depth a owl:DatatypeProperty ;
+    rdfs:label "depth"@en ;
+    rdfs:comment "The depth of a water body."@en ;
+    rdfs:domain [
+        rdf:type owl:Class ;
+        owl:unionOf (base:Lake base:Sea)
+    ] ;
+    rdfs:range xsd:double .
+base:percentage a owl:DatatypeProperty ;
+    rdfs:label "percentage"@en ;
+    rdfs:comment "The percentage value associated with a geographical entity."@en ;
+    rdfs:domain [
+        rdf:type owl:Class ;
+        owl:unionOf (base:Religion base:EthnicGroup base:Encompasses)
+    ] ;
+    rdfs:range xsd:double .
+base:year a owl:DatatypeProperty ;
+    rdfs:label "year"@en ;
+    rdfs:comment "The year associated with a population record."@en ;
+    rdfs:domain [
+        rdf:type owl:Class ;
+        owl:unionOf (base:CountryPops base:ProvPops base:CityPops)
+    ] ;
+    rdfs:range xsd:gYear .
+### Object Properties
+base:hasCapital a owl:ObjectProperty ;
+    rdfs:label "has capital"@en ;
+    rdfs:comment "Relates a country or province to its capital city."@en ;
+    rdfs:domain [
+        rdf:type owl:Class ;
+        owl:unionOf (base:Country base:Province)
+    ] ;
+    rdfs:range base:City .
+base:hasProvince a owl:ObjectProperty ;
+    rdfs:label "has province"@en ;
+    rdfs:comment "Relates a country to its provinces."@en ;
+    rdfs:domain base:Country ;
+    rdfs:range base:Province .
+base:hasCity a owl:ObjectProperty ;
+    rdfs:label "has city"@en ;
+    rdfs:comment "Relates a province to its cities."@en ;
+    rdfs:domain base:Province ;
+    rdfs:range base:City .
+base:locatedIn a owl:ObjectProperty ;
+    rdfs:label "located in"@en ;
+    rdfs:comment "Relates a geographical entity to the country it is located in."@en ;
+    rdfs:domain [
+        rdf:type owl:Class ;
+        owl:unionOf (base:City base:Province base:Mountain base:Desert base:Island base:Lake base:River base:Sea)
+    ] ;
+    rdfs:range base:Country .
+base:locatedOn a owl:ObjectProperty ;
+    rdfs:label "located on"@en ;
+    rdfs:comment "Relates a geographical entity to the island it is located on."@en ;
+    rdfs:domain [
+        rdf:type owl:Class ;
+        owl:unionOf (base:City base:Mountain base:Lake base:River)
+    ] ;
+    rdfs:range base:Island .
+base:mergesWith a owl:ObjectProperty ;
+    rdfs:label "merges with"@en ;
+    rdfs:comment "Relates two seas that merge with each other."@en ;
+    rdfs:domain base:Sea ;
+    rdfs:range base:Sea .
+base:hasBorder a owl:ObjectProperty ;
+    rdfs:label "has border"@en ;
+    rdfs:comment "Relates two countries that share a border."@en ;
+    rdfs:domain base:Country ;
+    rdfs:range base:Country .
+base:hasLanguage a owl:ObjectProperty ;
+    rdfs:label "has language"@en ;
+    rdfs:comment "Relates a country to the languages spoken in it."@en ;
+    rdfs:domain base:Country ;
+    rdfs:range base:Language .
+base:hasEthnicGroup a owl:ObjectProperty ;
+    rdfs:label "has ethnic group"@en ;
+    rdfs:comment "Relates a country to the ethnic groups present in it."@en ;
+    rdfs:domain base:Country ;
+    rdfs:range base:EthnicGroup .
+base:hasReligion a owl:ObjectProperty ;
+    rdfs:label "has religion"@en ;
+    rdfs:comment "Relates a country to the religions practiced in it."@en ;
+    rdfs:domain base:Country ;
+    rdfs:range base:Religion .
+base:hasEconomy a owl:ObjectProperty ;
+    rdfs:label "has economy"@en ;
+    rdfs:comment "Relates a country to its economic data."@en ;
+    rdfs:domain base:Country ;
+    rdfs:range base:Economy .
+base:hasPolitics a owl:ObjectProperty ;
+    rdfs:label "has politics"@en ;
+    rdfs:comment "Relates a country to its political data."@en ;
+    rdfs:domain base:Country ;
+    rdfs:range base:Politics .
+base:hasOrganization a owl:ObjectProperty ;
+    rdfs:label "has organization"@en ;
+    rdfs:comment "Relates a country to the organizations it is a member of."@en ;
+    rdfs:domain base:Country ;
+    rdfs:range base:Organization .
+base:encompasses a owl:ObjectProperty ;
+    rdfs:label "encompasses"@en ;
+    rdfs:comment "Relates a continent to the countries it encompasses."@en ;
+    rdfs:domain base:Continent ;
+    rdfs:range base:Country .
+### Classes
+base:Country a owl:Class ;
+    rdfs:label "Country"@en ;
+    skos:definition "A nation with its own government, occupying a particular territory."@en ;
+    rdfs:subClassOf dbpedia:Country .
+base:Province a owl:Class ;
+    rdfs:label "Province"@en ;
+    skos:definition "A principal administrative division of certain countries."@en ;
+    rdfs:subClassOf geonames:Province .
+base:City a owl:Class ;
+    rdfs:label "City"@en ;
+    skos:definition "A large town."@en ;
+    rdfs:subClassOf geonames:City .
+base:Population a owl:Class ;
+    rdfs:label "Population"@en ;
+    skos:definition "The number of inhabitants in a particular place."@en ;
+    rdfs:subClassOf dbpedia:Population .
+base:Economy a owl:Class ;
+    rdfs:label "Economy"@en ;
+    skos:definition "The wealth and resources of a country or region."@en ;
+    rdfs:subClassOf dbpedia:Economy .
+base:Politics a owl:Class ;
+    rdfs:label "Politics"@en ;
+    skos:definition "The activities associated with the governance of a country or area."@en ;
+    rdfs:subClassOf dbpedia:Politics .
+base:Religion a owl:Class ;
+    rdfs:label "Religion"@en ;
+    skos:definition "The belief in and worship of a superhuman controlling power."@en ;
+    rdfs:subClassOf dbpedia:Religion .
+base:EthnicGroup a owl:Class ;
+    rdfs:label "Ethnic Group"@en ;
+    skos:definition "A community or population made up of people who share a common cultural background or descent."@en ;
+    rdfs:subClassOf dbpedia:EthnicGroup .
+base:Language a owl:Class ;
+    rdfs:label "Language"@en ;
+    skos:definition "The method of human communication, either spoken or written."@en ;
+    rdfs:subClassOf dbpedia:Language .
+base:Organization a owl:Class ;
+    rdfs:label "Organization"@en ;
+    skos:definition "An organized group of people with a particular purpose."@en ;
+    rdfs:subClassOf dbpedia:Organisation .
+base:Border a owl:Class ;
+    rdfs:label "Border"@en ;
+    skos:definition "A line separating two political or geographical areas."@en ;
+    rdfs:subClassOf dbpedia:Border .
+base:Continent a owl:Class ;
+    rdfs:label "Continent"@en ;
+    skos:definition "Any of the world's main continuous expanses of land."@en ;
+    rdfs:subClassOf dbpedia:Continent .
+base:Sea a owl:Class ;
+    rdfs:label "Sea"@en ;
+    skos:definition "A large body of salt water that is surrounded in whole or in part by land."@en ;
+    rdfs:subClassOf dbpedia:Sea .
+base:Lake a owl:Class ;
+    rdfs:label "Lake"@en ;
+    skos:definition "A large body of water surrounded by land."@en ;
+    rdfs:subClassOf dbpedia:Lake .
+base:River a owl:Class ;
+    rdfs:label "River"@en ;
+    skos:definition "A large natural stream of water flowing in a channel to the sea, a lake, or another river."@en ;
+    rdfs:subClassOf dbpedia:River .
+base:Mountain a owl:Class ;
+    rdfs:label "Mountain"@en ;
+    skos:definition "A large natural elevation of the earth's surface rising abruptly from the surrounding level."@en ;
+    rdfs:subClassOf dbpedia:Mountain .
+base:Desert a owl:Class ;
+    rdfs:label "Desert"@en ;
+    skos:definition "A barren area of landscape where little precipitation occurs and consequently living conditions are hostile for plant and animal life."@en ;
+    rdfs:subClassOf dbpedia:Desert .
+base:Island a owl:Class ;
+    rdfs:label "Island"@en ;
+    skos:definition "A piece of land surrounded by water."@en ;
+    rdfs:subClassOf dbpedia:Island .

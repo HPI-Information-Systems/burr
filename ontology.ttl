@@ -1,0 +1,247 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix base: <https://base_ontology.com#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix schema: <http://schema.org/> .
+
+base:hasAddress a owl:DatatypeProperty ;
+    rdfs:domain foaf:Organization, foaf:Person ;
+    rdfs:range xsd:string ;
+    rdfs:label "has address" ;
+    skos:definition "The address associated with a person or organization." .
+
+base:hasEmail a owl:DatatypeProperty ;
+    rdfs:domain foaf:Person ;
+    rdfs:range xsd:string ;
+    rdfs:label "has email" ;
+    skos:definition "The email address of a person." .
+
+base:hasFirstName a owl:DatatypeProperty ;
+    rdfs:domain foaf:Person ;
+    rdfs:range xsd:string ;
+    rdfs:label "has first name" ;
+    skos:definition "The first name of a person." .
+
+base:hasLastName a owl:DatatypeProperty ;
+    rdfs:domain foaf:Person ;
+    rdfs:range xsd:string ;
+    rdfs:label "has last name" ;
+    skos:definition "The last name of a person." .
+
+base:hasPhone a owl:DatatypeProperty ;
+    rdfs:domain foaf:Person ;
+    rdfs:range xsd:string ;
+    rdfs:label "has phone" ;
+    skos:definition "The phone number of a person." .
+
+base:hasPhoto a owl:DatatypeProperty ;
+    rdfs:domain foaf:Person ;
+    rdfs:range xsd:string ;
+    rdfs:label "has photo" ;
+    skos:definition "The photo of a person." .
+
+base:hasHomepage a owl:DatatypeProperty ;
+    rdfs:domain foaf:Organization, foaf:Person ;
+    rdfs:range xsd:string ;
+    rdfs:label "has homepage" ;
+    skos:definition "The homepage URL of a person or organization." .
+
+base:hasPostcode a owl:DatatypeProperty ;
+    rdfs:domain foaf:Organization ;
+    rdfs:range xsd:string ;
+    rdfs:label "has postcode" ;
+    skos:definition "The postcode of an organization's address." .
+
+base:hasType a owl:DatatypeProperty ;
+    rdfs:domain foaf:Organization, foaf:Person ;
+    rdfs:range xsd:string ;
+    rdfs:label "has type" ;
+    skos:definition "The type or category of a person or organization." .
+
+base:hasURI a owl:DatatypeProperty ;
+    rdfs:domain foaf:Organization, foaf:Person, dcterms:BibliographicResource, schema:Event, skos:Concept ;
+    rdfs:range xsd:anyURI ;
+    rdfs:label "has URI" ;
+    skos:definition "The URI associated with an entity." .
+
+base:hasAbstract a owl:DatatypeProperty ;
+    rdfs:domain dcterms:BibliographicResource ;
+    rdfs:range xsd:string ;
+    rdfs:label "has abstract" ;
+    skos:definition "The abstract of a paper." .
+
+base:hasTitle a owl:DatatypeProperty ;
+    rdfs:domain dcterms:BibliographicResource ;
+    rdfs:range xsd:string ;
+    rdfs:label "has title" ;
+    skos:definition "The title of a paper." .
+
+base:hasYear a owl:DatatypeProperty ;
+    rdfs:domain dcterms:BibliographicResource ;
+    rdfs:range xsd:gYear ;
+    rdfs:label "has year" ;
+    skos:definition "The year a paper was published." .
+
+base:hasName a owl:DatatypeProperty ;
+    rdfs:domain foaf:Organization, schema:Event ;
+    rdfs:range xsd:string ;
+    rdfs:label "has name" ;
+    skos:definition "The name of an organization or conference." .
+
+base:hasLocation a owl:DatatypeProperty ;
+    rdfs:domain foaf:Organization, schema:Event ;
+    rdfs:range xsd:string ;
+    rdfs:label "has location" ;
+    skos:definition "The location of an organization or conference." .
+
+base:hasCountry a owl:DatatypeProperty ;
+    rdfs:domain foaf:Organization ;
+    rdfs:range xsd:string ;
+    rdfs:label "has country" ;
+    skos:definition "The country where an organization is located." .
+
+base:hasBelongsTo a owl:DatatypeProperty ;
+    rdfs:domain foaf:Organization ;
+    rdfs:range xsd:string ;
+    rdfs:label "belongs to" ;
+    skos:definition "The parent organization to which an organization belongs." .
+
+base:hasPublishStatus a owl:DatatypeProperty ;
+    rdfs:domain dcterms:BibliographicResource ;
+    rdfs:range xsd:boolean ;
+    rdfs:label "has publish status" ;
+    skos:definition "The publish status of a paper." .
+
+base:hasDate a owl:DatatypeProperty ;
+    rdfs:domain schema:Event ;
+    rdfs:range xsd:date ;
+    rdfs:label "has date" ;
+    skos:definition "The date of a conference." .
+
+base:hasParentID a owl:DatatypeProperty ;
+    rdfs:domain skos:Concept ;
+    rdfs:range xsd:integer ;
+    rdfs:label "has parent ID" ;
+    skos:definition "The parent ID of a topic." .
+
+base:hasTopicName a owl:DatatypeProperty ;
+    rdfs:domain skos:Concept ;
+    rdfs:range xsd:string ;
+    rdfs:label "has topic name" ;
+    skos:definition "The name of a topic." .
+
+base:hasRelationType a owl:DatatypeProperty ;
+    rdfs:domain base:PaperTopicRelation ;
+    rdfs:range xsd:string ;
+    rdfs:label "has relation type" ;
+    skos:definition "The type of relation between a paper and a topic." .
+
+base:hasPersonID a owl:DatatypeProperty ;
+    rdfs:domain foaf:Person ;
+    rdfs:range xsd:integer ;
+    rdfs:label "has person ID" ;
+    skos:definition "The unique identifier for a person." .
+
+base:hasOrganizationID a owl:DatatypeProperty ;
+    rdfs:domain foaf:Organization ;
+    rdfs:range xsd:integer ;
+    rdfs:label "has organization ID" ;
+    skos:definition "The unique identifier for an organization." .
+
+base:hasPaperID a owl:DatatypeProperty ;
+    rdfs:domain dcterms:BibliographicResource ;
+    rdfs:range xsd:integer ;
+    rdfs:label "has paper ID" ;
+    skos:definition "The unique identifier for a paper." .
+
+base:hasConferenceID a owl:DatatypeProperty ;
+    rdfs:domain schema:Event ;
+    rdfs:range xsd:integer ;
+    rdfs:label "has conference ID" ;
+    skos:definition "The unique identifier for a conference." .
+
+base:hasTopicID a owl:DatatypeProperty ;
+    rdfs:domain skos:Concept ;
+    rdfs:range xsd:integer ;
+    rdfs:label "has topic ID" ;
+    skos:definition "The unique identifier for a topic." .
+
+base:relatedToOrganization a owl:ObjectProperty ;
+    rdfs:domain foaf:Person ;
+    rdfs:range foaf:Organization ;
+    rdfs:label "related to organization" ;
+    skos:definition "The relationship between a person and an organization." .
+
+base:relatedToPaper a owl:ObjectProperty ;
+    rdfs:domain foaf:Person ;
+    rdfs:range dcterms:BibliographicResource ;
+    rdfs:label "related to paper" ;
+    skos:definition "The relationship between a person and a paper." .
+
+base:relatedToTopic a owl:ObjectProperty ;
+    rdfs:domain foaf:Person ;
+    rdfs:range skos:Concept ;
+    rdfs:label "related to topic" ;
+    skos:definition "The relationship between a person and a topic." .
+
+base:paperHasTopic a owl:ObjectProperty ;
+    rdfs:domain dcterms:BibliographicResource ;
+    rdfs:range skos:Concept ;
+    rdfs:label "paper has topic" ;
+    skos:definition "The relationship between a paper and a topic." .
+
+base:presentedAt a owl:ObjectProperty ;
+    rdfs:domain dcterms:BibliographicResource ;
+    rdfs:range schema:Event ;
+    rdfs:label "presented at" ;
+    skos:definition "The relationship between a paper and a conference." .
+
+foaf:Person a owl:Class ;
+    rdfs:label "Person" ;
+    skos:definition "An individual human being." ;
+    rdf:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty base:relatedToOrganization ;
+        owl:someValuesFrom foaf:Organization
+    ], [
+        a owl:Restriction ;
+        owl:onProperty base:relatedToPaper ;
+        owl:someValuesFrom dcterms:BibliographicResource
+    ], [
+        a owl:Restriction ;
+        owl:onProperty base:relatedToTopic ;
+        owl:someValuesFrom skos:Concept
+    ] .
+
+foaf:Organization a owl:Class ;
+    rdfs:label "Organization" ;
+    skos:definition "An organized group of people with a particular purpose." .
+
+dcterms:BibliographicResource a owl:Class ;
+    rdfs:label "Paper" ;
+    skos:definition "A written work published in a print or electronic medium." ;
+    rdf:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty base:paperHasTopic ;
+        owl:someValuesFrom skos:Concept
+    ], [
+        a owl:Restriction ;
+        owl:onProperty base:presentedAt ;
+        owl:someValuesFrom schema:Event
+    ] .
+
+schema:Event a owl:Class ;
+    rdfs:label "Conference" ;
+    skos:definition "An event where individuals gather to discuss a particular topic." .
+
+skos:Concept a owl:Class ;
+    rdfs:label "Topic" ;
+    skos:definition "A subject or theme of a paper or discussion." .
+
+base:PaperTopicRelation a owl:Class ;
+    rdfs:label "Paper-Topic Relation" ;
+    skos:definition "A relationship between a paper and a topic." .

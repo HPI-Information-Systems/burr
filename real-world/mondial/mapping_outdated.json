@@ -1,0 +1,127 @@
+{
+    "classes": [
+        {
+            "id": "countries/@@Country.Code@@",
+            "class": "Country"
+        },
+        {
+            "id": "countries/@@City.Country@@/provinces/@@City.Province@@/cities/@@City.Name@@",
+            "class": "City"
+        },
+        {
+            "id": "countries/@@Province.Country@@/provinces/@@Province.Name@@",
+            "class": "Province"
+        }
+    ],
+    "object_properties": [],
+    "data_properties": [
+        {
+            "property": "carCode",
+            "belongsToClass": "Country",
+            "type": "string",
+            "column": "Country.Code"
+        },
+        {
+            "property": "name",
+            "belongsToClass": "Country",
+            "type": "string",
+            "column": "Country.Name"
+        },
+        {
+            "property": "area",
+            "belongsToClass": "Country",
+            "type": "decimal",
+            "column": "Country.Area"
+        },
+        {
+            "property": "population",
+            "belongsToClass": "Country",
+            "type": "integer",
+            "column": "Country.Population"
+        },
+        {
+            "property": "gdpTotal",
+            "belongsToClass": "Country",
+            "type": "decimal",
+            "column": "economy.gdp",
+            "join": [
+                "country.code = economy.country"
+            ]
+        },
+        {
+            "property": "gdpAgri",
+            "belongsToClass": "Country",
+            "type": "decimal",
+            "column": "economy.agriculture",
+            "join": [
+                "country.code = economy.country"
+            ]
+        },
+        {
+            "property": "gdpInd",
+            "belongsToClass": "Country",
+            "type": "decimal",
+            "column": "economy.industry",
+            "join": [
+                "country.code = economy.country"
+            ]
+        },
+        {
+            "property": "gdpServ",
+            "belongsToClass": "Country",
+            "type": "decimal",
+            "column": "economy.service",
+            "join": [
+                "country.code = economy.country"
+            ]
+        },
+        {
+            "property": "name",
+            "belongsToClass": "City",
+            "type": "integer",
+            "column": "City.Name"
+        },
+        {
+            "property": "population",
+            "belongsToClass": "City",
+            "type": "integer",
+            "column": "City.Population"
+        },
+        {
+            "property": "longitude",
+            "belongsToClass": "City",
+            "type": "decimal",
+            "column": "City.Longitude"
+        },
+        {
+            "property": "latitude",
+            "belongsToClass": "City",
+            "type": "decimal",
+            "column": "City.Latitude"
+        },
+        {
+            "property": "elevation",
+            "belongsToClass": "City",
+            "type": "decimal",
+            "column": "City.Elevation"
+        },
+        {
+            "property": "name",
+            "belongsToClass": "Province",
+            "type": "string",
+            "column": "Province.Name"
+        },
+        {
+            "property": "area",
+            "belongsToClass": "Province",
+            "type": "decimal",
+            "column": "Province.Area"
+        },
+        {
+            "property": "population",
+            "belongsToClass": "Province",
+            "type": "integer",
+            "column": "Province.Population"
+        }
+    ]
+}

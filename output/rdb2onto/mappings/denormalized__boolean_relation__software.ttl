@@ -1,0 +1,50 @@
+@prefix d2rq: <http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#> .
+@prefix cmt: <http://cmt/> .
+@prefix map: <http://mapping/> .
+@prefix jdbc: <http://d2rq.org/terms/jdbc/> .
+@prefix base: </base/> .
+
+map:database a d2rq:Database;
+	d2rq:jdbcDriver "org.postgresql.Driver";
+	d2rq:jdbcDSN "jdbc:postgresql://localhost:5432/denormalized__boolean_relation__software";
+	d2rq:username "lukaslaskowski";
+	jdbc:keepAlive "3600";				# sends noop-query every 3600 seconds
+	.
+
+map:ClassMap_software a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:software;
+    d2rq:uriPattern "software/@@software.id@@/";
+    
+    
+    .
+map:hasSupports_windows_ClassMap_software_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_software;
+    d2rq:property base:hasSupports_windows;
+    d2rq:column "software.supports_windows";
+    .
+
+map:hasSupports_linux_ClassMap_software_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_software;
+    d2rq:property base:hasSupports_linux;
+    d2rq:column "software.supports_linux";
+    .
+
+map:hasSupports_mac_ClassMap_software_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_software;
+    d2rq:property base:hasSupports_mac;
+    d2rq:column "software.supports_mac";
+    .
+
+map:hasName_ClassMap_software_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_software;
+    d2rq:property base:hasName;
+    d2rq:column "software.name";
+    .
+
+map:hasId_ClassMap_software_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_software;
+    d2rq:property base:hasId;
+    d2rq:column "software.id";
+    .
+

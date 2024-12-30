@@ -1,0 +1,57 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix base: <https://base_ontology.com#> .
+
+<#TriplesMapAuthor> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "Author" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com#Author/{aid}";
+        rr:class base:Author;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:aid;
+        rr:objectMap [ rr:column "aid" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:email;
+        rr:objectMap [ rr:column "email" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:name;
+        rr:objectMap [ rr:column "name" ];
+    ].
+
+<#TriplesMapReviewer> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "Reviewer" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com#Reviewer/{rid}";
+        rr:class base:Reviewer;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:rid;
+        rr:objectMap [ rr:column "rid" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:area;
+        rr:objectMap [ rr:column "area" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:name;
+        rr:objectMap [ rr:column "name" ];
+    ].
+
+<#TriplesMapPerson> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "Person" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com#Person/{pid}";
+        rr:class base:Person;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:pid;
+        rr:objectMap [ rr:column "pid" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:name;
+        rr:objectMap [ rr:column "name" ];
+    ].

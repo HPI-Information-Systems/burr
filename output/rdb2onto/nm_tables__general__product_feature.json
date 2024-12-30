@@ -1,0 +1,45 @@
+{
+  "classes" : [ {
+    "id" : "@@product.id@@/",
+    "name" : "ClassMap_product",
+    "prefix" : "base",
+    "subClassOf" : null,
+    "join" : null,
+    "class" : "product"
+  }, {
+    "id" : "@@feature.id@@/",
+    "name" : "ClassMap_feature",
+    "prefix" : "base",
+    "subClassOf" : null,
+    "join" : null,
+    "class" : "feature"
+  } ],
+  "data_properties" : [ {
+    "property" : "hasName",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "feature.Name",
+    "belongsToClassMap" : "ClassMap_feature"
+  }, {
+    "property" : "hasId",
+    "type" : "xsd:integer",
+    "column" : "product.Id",
+    "belongsToClassMap" : "ClassMap_product"
+  }, {
+    "property" : "hasId",
+    "type" : "xsd:integer",
+    "column" : "feature.Id",
+    "belongsToClassMap" : "ClassMap_feature"
+  }, {
+    "property" : "hasName",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "product.Name",
+    "belongsToClassMap" : "ClassMap_product"
+  } ],
+  "object_properties" : [ {
+    "property" : "hasFeatureProduct",
+    "join" : [ "feature.id = product_feature.feature_id", "product.id = product_feature.product_id" ],
+    "inverseOf" : "hasProductFeature",
+    "belongsToClassMap" : "ClassMap_product",
+    "refersToClassMap" : "ClassMap_feature"
+  } ]
+}

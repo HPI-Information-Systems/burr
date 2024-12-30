@@ -1,0 +1,63 @@
+{
+  "classes" : [ {
+    "id" : "@@user_.id@@/",
+    "name" : "ClassMap_user_",
+    "prefix" : "base",
+    "subClassOf" : null,
+    "join" : null,
+    "class" : "user_"
+  }, {
+    "id" : "@@user_group.uid@@/@@user_group.gid@@/",
+    "name" : "ClassMap_user_group",
+    "prefix" : "base",
+    "subClassOf" : null,
+    "join" : null,
+    "class" : "user_group"
+  }, {
+    "id" : "@@group_.id@@/",
+    "name" : "ClassMap_group_",
+    "prefix" : "base",
+    "subClassOf" : null,
+    "join" : null,
+    "class" : "group_"
+  } ],
+  "data_properties" : [ {
+    "property" : "hasId",
+    "type" : "xsd:integer",
+    "column" : "user_.Id",
+    "belongsToClassMap" : "ClassMap_user_"
+  }, {
+    "property" : "hasRegistration_date",
+    "type" : "xsd:integer",
+    "column" : "user_group.Registration_date",
+    "belongsToClassMap" : "ClassMap_user_group"
+  }, {
+    "property" : "hasId",
+    "type" : "xsd:integer",
+    "column" : "group_.Id",
+    "belongsToClassMap" : "ClassMap_group_"
+  }, {
+    "property" : "hasExpiration_duration",
+    "type" : "xsd:integer",
+    "column" : "user_group.Expiration_duration",
+    "belongsToClassMap" : "ClassMap_user_group"
+  }, {
+    "property" : "hasAccess_rights",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "user_group.Access_rights",
+    "belongsToClassMap" : "ClassMap_user_group"
+  } ],
+  "object_properties" : [ {
+    "property" : "hasGid",
+    "join" : [ "group_.id = user_group.gid" ],
+    "inverseOf" : null,
+    "belongsToClassMap" : "ClassMap_user_group",
+    "refersToClassMap" : "ClassMap_group_"
+  }, {
+    "property" : "hasUid",
+    "join" : [ "user_.id = user_group.uid" ],
+    "inverseOf" : null,
+    "belongsToClassMap" : "ClassMap_user_group",
+    "refersToClassMap" : "ClassMap_user_"
+  } ]
+}

@@ -1,0 +1,105 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix base: <https://base_ontology.com#> .
+@prefix dbpedia: <http://dbpedia.org/resource/> .
+@prefix geonames: <http://sws.geonames.org/> .
+
+<#TriplesMapGeographicalEntity> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "GeographicalEntity" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com/GeographicalEntity/{ID}";
+        rr:class base:GeographicalEntity;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasArea;
+        rr:objectMap [ rr:column "Area" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasPopulation;
+        rr:objectMap [ rr:column "Population" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasLatitude;
+        rr:objectMap [ rr:column "Latitude" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasLongitude;
+        rr:objectMap [ rr:column "Longitude" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:locatedIn;
+        rr:objectMap [ rr:column "LocatedIn" ];
+    ].
+
+<#TriplesMapCountry> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "Country" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com/Country/{ID}";
+        rr:class base:Country;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasCapital;
+        rr:objectMap [ rr:column "Capital" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasProvince;
+        rr:objectMap [ rr:column "Province" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasLanguage;
+        rr:objectMap [ rr:column "Language" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasReligion;
+        rr:objectMap [ rr:column "Religion" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasEthnicGroup;
+        rr:objectMap [ rr:column "EthnicGroup" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasEconomy;
+        rr:objectMap [ rr:column "Economy" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasPolitics;
+        rr:objectMap [ rr:column "Politics" ];
+    ].
+
+<#TriplesMapEconomy> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "Economy" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com/Economy/{ID}";
+        rr:class base:Economy;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasGDP;
+        rr:objectMap [ rr:column "GDP" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasInflation;
+        rr:objectMap [ rr:column "Inflation" ];
+    ].
+
+<#TriplesMapMountain> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "Mountain" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com/Mountain/{ID}";
+        rr:class base:Mountain;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasElevation;
+        rr:objectMap [ rr:column "Elevation" ];
+    ].
+
+<#TriplesMapSea> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "Sea" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com/Sea/{ID}";
+        rr:class base:Sea;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasDepth;
+        rr:objectMap [ rr:column "Depth" ];
+    ].

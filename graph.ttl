@@ -1,0 +1,105 @@
+@prefix base: <file:///base/> .
+@prefix d2rq: <http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#> .
+@prefix jdbc: <http://d2rq.org/terms/jdbc/> .
+@prefix map: <http://mapping/> .
+
+map:course__label a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:course ;
+    d2rq:property base:rdf-schemalabel .
+
+map:course_credits a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:course ;
+    d2rq:column "course.credits" ;
+    d2rq:property base:course_credits .
+
+map:course_id a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:course ;
+    d2rq:column "course.id" ;
+    d2rq:property base:course_id .
+
+map:course_max_students a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:course ;
+    d2rq:column "course.max_students" ;
+    d2rq:property base:course_max_students .
+
+map:course_name a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:course ;
+    d2rq:column "course.name" ;
+    d2rq:property base:course_name .
+
+map:instructor__label a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:instructor ;
+    d2rq:property base:rdf-schemalabel .
+
+map:instructor_id a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:instructor ;
+    d2rq:column "instructor.id" ;
+    d2rq:property base:instructor_id .
+
+map:instructor_name a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:instructor ;
+    d2rq:column "instructor.name" ;
+    d2rq:property base:instructor_name .
+
+map:student__label a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:student ;
+    d2rq:property base:rdf-schemalabel .
+
+map:student_course_instructor__label a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:student_course_instructor ;
+    d2rq:property base:rdf-schemalabel .
+
+map:student_course_instructor_cid__ref a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:student_course_instructor ;
+    d2rq:join "student_course_instructor.cid  = > course.id" ;
+    d2rq:property base:student_course_instructor_cid ;
+    d2rq:refersToClassMap map:course .
+
+map:student_course_instructor_iid__ref a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:student_course_instructor ;
+    d2rq:join "student_course_instructor.iid  = > instructor.id" ;
+    d2rq:property base:student_course_instructor_iid ;
+    d2rq:refersToClassMap map:instructor .
+
+map:student_course_instructor_sid__ref a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:student_course_instructor ;
+    d2rq:join "student_course_instructor.sid  = > student.id" ;
+    d2rq:property base:student_course_instructor_sid ;
+    d2rq:refersToClassMap map:student .
+
+map:student_id a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:student ;
+    d2rq:column "student.id" ;
+    d2rq:property base:student_id .
+
+map:student_name a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:student ;
+    d2rq:column "student.name" ;
+    d2rq:property base:student_name .
+
+map:database a d2rq:Database ;
+    jdbc:keepAlive "3600" ;
+    d2rq:jdbcDSN "jdbc:postgresql://localhost:5432/nm_tables__trinary_relation__student_instructor_1" ;
+    d2rq:jdbcDriver "org.postgresql.Driver" ;
+    d2rq:username "lukaslaskowski" .
+
+map:instructor a d2rq:ClassMap ;
+    d2rq:class base:instructor ;
+    d2rq:dataStorage map:database ;
+    d2rq:uriPattern "/@@instructor.id@@/" .
+
+map:student a d2rq:ClassMap ;
+    d2rq:class base:student ;
+    d2rq:dataStorage map:database ;
+    d2rq:uriPattern "/@@student.id@@/" .
+
+map:student_course_instructor a d2rq:ClassMap ;
+    d2rq:class base:student_course_instructor ;
+    d2rq:dataStorage map:database ;
+    d2rq:uriPattern "/@@student_course_instructor.sid@@/@@student_course_instructor.iid@@/@@student_course_instructor.cid@@/" .
+
+map:course a d2rq:ClassMap ;
+    d2rq:class base:course ;
+    d2rq:dataStorage map:database ;
+    d2rq:uriPattern "/@@course.id@@/" .
+

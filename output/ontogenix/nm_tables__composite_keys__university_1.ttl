@@ -1,0 +1,77 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix base: <https://base_ontology.com#> .
+
+<#TriplesMapCourse> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "Course" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com/Course/{course_id}";
+        rr:class base:Course;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:courseName;
+        rr:objectMap [ rr:column "course_name" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:credits;
+        rr:objectMap [ rr:column "credits" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:semester;
+        rr:objectMap [ rr:column "semester" ];
+    ].
+
+<#TriplesMapStudent> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "Student" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com/Student/{student_id}";
+        rr:class base:Student;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:firstName;
+        rr:objectMap [ rr:column "first_name" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:lastName;
+        rr:objectMap [ rr:column "last_name" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:plannedGraduationYear;
+        rr:objectMap [ rr:column "planned_graduation_year" ];
+    ].
+
+<#TriplesMapEnrollment> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "Enrollment" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com/Enrollment/{enrollment_id}";
+        rr:class base:Enrollment;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:semester;
+        rr:objectMap [ rr:column "semester" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:plannedGraduationYear;
+        rr:objectMap [ rr:column "planned_graduation_year" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:enrolledIn;
+        rr:objectMap [
+            rr:parentTriplesMap <#TriplesMapCourse>;
+            rr:joinCondition [
+                rr:child "course_id";
+                rr:parent "course_id"
+            ]
+        ]
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasStudent;
+        rr:objectMap [
+            rr:parentTriplesMap <#TriplesMapStudent>;
+            rr:joinCondition [
+                rr:child "student_id";
+                rr:parent "student_id"
+            ]
+        ]
+    ].

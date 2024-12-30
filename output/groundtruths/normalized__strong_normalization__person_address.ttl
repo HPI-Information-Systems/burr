@@ -1,0 +1,118 @@
+@prefix d2rq: <http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#> .
+@prefix cmt: <http://cmt/> .
+@prefix map: <http://mapping/> .
+@prefix jdbc: <http://d2rq.org/terms/jdbc/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix base: </base/> .
+
+map:database a d2rq:Database;
+	d2rq:jdbcDriver "org.postgresql.Driver";
+	d2rq:jdbcDSN "jdbc:postgresql://localhost:5432/normalized__strong_normalization__person_address";
+	d2rq:username "lukaslaskowski";
+	jdbc:keepAlive "3600";				# sends noop-query every 3600 seconds
+	.
+
+map:Person a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:Person;
+    d2rq:uriPattern "@@person.id@@";
+    
+    
+    .
+map:Department a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:Department;
+    d2rq:uriPattern "@@department.id@@";
+    
+    
+    .
+map:City a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:City;
+    d2rq:uriPattern "@@location.zip@@";
+    
+    
+    .
+map:worksIn_Person_Department a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Person;
+    d2rq:refersToClassMap map:Department;
+    d2rq:property base:worksIn;
+    
+    d2rq:join "person_department.person_id = person.id";
+    d2rq:join "person_department.department_id = department.id";
+    .
+
+map:livesIn_Person_City a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Person;
+    d2rq:refersToClassMap map:City;
+    d2rq:property base:livesIn;
+    
+    d2rq:join "person.address_id = address.id";
+    d2rq:join "address.zip = location.zip";
+    .
+
+map:first_name_Person_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Person;
+    d2rq:property base:first_name;
+    
+    d2rq:column "person.first_name";
+    .
+
+map:last_name_Person_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Person;
+    d2rq:property base:last_name;
+    
+    d2rq:column "person.last_name";
+    .
+
+map:email_Person_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Person;
+    d2rq:property base:email;
+    
+    d2rq:column "person.email";
+    .
+
+map:name_Department_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Department;
+    d2rq:property base:name;
+    
+    d2rq:column "department.name";
+    .
+
+map:street_Person_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Person;
+    d2rq:property base:street;
+    
+    d2rq:join "person.address_id = address.id";
+    d2rq:column "address.street";
+    .
+
+map:house_number_Person_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Person;
+    d2rq:property base:house_number;
+    
+    d2rq:join "person.address_id = address.id";
+    d2rq:column "address.house_number";
+    .
+
+map:zip_code_City_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:City;
+    d2rq:property base:zip_code;
+    
+    d2rq:column "location.zip";
+    .
+
+map:name_City_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:City;
+    d2rq:property base:name;
+    
+    d2rq:column "location.city";
+    .
+
+map:state_City_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:City;
+    d2rq:property base:state;
+    
+    d2rq:column "location.state";
+    .
+

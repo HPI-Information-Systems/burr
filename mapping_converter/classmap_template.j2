@@ -1,0 +1,8 @@
+map:{{ class_name }} a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:uriPattern "{{ uri_pattern }}";
+    d2rq:class vocab:{{ class_name }};
+    d2rq:classDefinitionLabel "{{ class_name }}";
+    {% if primary_key %}
+    d2rq:primaryKey "{{ table }}.{{ primary_key }}".
+    {% endif %}

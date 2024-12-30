@@ -1,0 +1,56 @@
+@prefix d2rq: <http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#> .
+@prefix cmt: <http://cmt/> .
+@prefix map: <http://mapping/> .
+@prefix jdbc: <http://d2rq.org/terms/jdbc/> .
+@prefix base: </base/> .
+
+map:database a d2rq:Database;
+	d2rq:jdbcDriver "org.postgresql.Driver";
+	d2rq:jdbcDSN "jdbc:postgresql://localhost:5432/attributes__cryptic_attribute_name__person";
+	d2rq:username "lukaslaskowski";
+	jdbc:keepAlive "3600";				# sends noop-query every 3600 seconds
+	.
+
+map:ClassMap_person a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:person;
+    d2rq:uriPattern "person/@@person.nfsa====@@/";
+    
+    
+    .
+map:hasNZQW2ZI=_ClassMap_person_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_person;
+    d2rq:property base:hasNZQW2ZI=;
+    d2rq:column "person.nzqw2zi=";
+    .
+
+map:hasNFSA====_ClassMap_person_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_person;
+    d2rq:property base:hasNFSA====;
+    d2rq:column "person.nfsa====";
+    .
+
+map:hasMFSGI4TFONZQ====_ClassMap_person_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_person;
+    d2rq:property base:hasMFSGI4TFONZQ====;
+    d2rq:column "person.mfsgi4tfonzq====";
+    .
+
+map:hasMVWWC2LM_ClassMap_person_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_person;
+    d2rq:property base:hasMVWWC2LM;
+    d2rq:column "person.mvwwc2lm";
+    .
+
+map:hasOBUG63TFL5XHK3LCMVZA====_ClassMap_person_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_person;
+    d2rq:property base:hasOBUG63TFL5XHK3LCMVZA====;
+    d2rq:column "person.obug63tfl5xhk3lcmvza====";
+    .
+
+map:hasMFTWK===_ClassMap_person_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_person;
+    d2rq:property base:hasMFTWK===;
+    d2rq:column "person.mftwk===";
+    .
+

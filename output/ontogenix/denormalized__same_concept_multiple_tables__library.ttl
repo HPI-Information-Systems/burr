@@ -1,0 +1,29 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix base: <https://base_ontology.com#> .
+@prefix schema: <http://schema.org/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+
+<#TriplesMapBook> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "Books" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com#Book/{ISBN}";
+        rr:class schema:Book;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate schema:name;
+        rr:objectMap [ rr:column "name" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate schema:isbn;
+        rr:objectMap [ rr:column "ISBN" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate dcterms:issued;
+        rr:objectMap [ rr:column "publicationYear" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:copiesAvailable;
+        rr:objectMap [ rr:column "copiesAvailable" ];
+    ].

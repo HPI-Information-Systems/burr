@@ -1,0 +1,17 @@
+{
+  "classes" : [ {
+    "id" : "@@stadium.id@@/",
+    "name" : "ClassMap_stadium",
+    "prefix" : "base",
+    "subClassOf" : null,
+    "join" : null,
+    "class" : "stadium"
+  } ],
+  "data_properties" : [ {
+    "property" : "hasId",
+    "type" : "xsd:integer",
+    "column" : "stadium.Id",
+    "belongsToClassMap" : "ClassMap_stadium"
+  } ],
+  "object_properties" : [ ]
+}

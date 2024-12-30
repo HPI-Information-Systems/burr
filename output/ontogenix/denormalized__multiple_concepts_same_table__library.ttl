@@ -1,0 +1,61 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix base: <https://base_ontology.com#> .
+
+<#TriplesMapBook> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "Book" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com#Book/{BookID}";
+        rr:class base:Book;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:copiesAvailable;
+        rr:objectMap [ rr:column "CopiesAvailable" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasISBN;
+        rr:objectMap [ rr:column "ISBN" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasPublicationYear;
+        rr:objectMap [ rr:column "PublicationYear" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:name;
+        rr:objectMap [ rr:column "Name" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasAuthor;
+        rr:objectMap [ rr:parentTriplesMap <#TriplesMapAuthor> ];
+    ].
+
+<#TriplesMapAuthor> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "Author" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com#Author/{AuthorID}";
+        rr:class base:Author;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasBirthYear;
+        rr:objectMap [ rr:column "BirthYear" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:authorName;
+        rr:objectMap [ rr:column "AuthorName" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasNationality;
+        rr:objectMap [ rr:column "Nationality" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasAddress;
+        rr:objectMap [ rr:parentTriplesMap <#TriplesMapAddress> ];
+    ].
+
+<#TriplesMapAddress> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "Address" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com#Address/{AddressID}";
+        rr:class base:Address;
+    ].

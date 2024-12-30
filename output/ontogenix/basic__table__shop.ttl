@@ -1,0 +1,47 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix schema: <http://schema.org/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix base: <https://base_ontology.com#> .
+
+<#TriplesMapShop> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "Shop" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com#Shop/{ShopID}";
+        rr:class base:Shop;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:count;
+        rr:objectMap [ rr:column "count" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:maxValue;
+        rr:objectMap [ rr:column "maxValue" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:meanValue;
+        rr:objectMap [ rr:column "meanValue" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:minValue;
+        rr:objectMap [ rr:column "minValue" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:nonNullCount;
+        rr:objectMap [ rr:column "nonNullCount" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:standardDeviation;
+        rr:objectMap [ rr:column "standardDeviation" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:uniqueCount;
+        rr:objectMap [ rr:column "uniqueCount" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasType;
+        rr:objectMap [ rr:column "hasType" ];
+    ].

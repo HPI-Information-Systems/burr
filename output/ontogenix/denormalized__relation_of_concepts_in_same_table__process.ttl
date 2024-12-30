@@ -1,0 +1,72 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix base: <https://base_ontology.com#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix schema: <http://schema.org/> .
+
+<#TriplesMapBusinessArea> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "BusinessArea" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com#BusinessArea/{business_area_id}";
+        rr:class base:BusinessArea;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:area_name;
+        rr:objectMap [ rr:column "area_name" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:area_description;
+        rr:objectMap [ rr:column "area_description" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:business_area_id;
+        rr:objectMap [ rr:column "business_area_id" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasCapability;
+        rr:objectMap [ rr:parentTriplesMap <#TriplesMapBusinessCapability> ];
+    ].
+
+<#TriplesMapBusinessCapability> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "BusinessCapability" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com#BusinessCapability/{business_capability_id}";
+        rr:class base:BusinessCapability;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:capability_name;
+        rr:objectMap [ rr:column "capability_name" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:capability_description;
+        rr:objectMap [ rr:column "capability_description" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:business_capability_id;
+        rr:objectMap [ rr:column "business_capability_id" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:belongsToArea;
+        rr:objectMap [ rr:parentTriplesMap <#TriplesMapBusinessArea> ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:involvesCapability;
+        rr:objectMap [ rr:parentTriplesMap <#TriplesMapProcess> ];
+    ].
+
+<#TriplesMapProcess> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "Process" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com#Process/{process_id}";
+        rr:class base:Process;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:process_id;
+        rr:objectMap [ rr:column "process_id" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:involvesCapability;
+        rr:objectMap [ rr:parentTriplesMap <#TriplesMapBusinessCapability> ];
+    ].

@@ -1,0 +1,331 @@
+@prefix map: <file:/path/to/your/mapping#> .
+@prefix db: <jdbc:postgresql://localhost/cmt_mixed#> .
+@prefix d2rq: <http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#> .
+@prefix vocab: <http://example.org/ontology#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+map:database a d2rq:Database;
+    d2rq:jdbcDriver "org.postgresql.Driver";
+    d2rq:jdbcDSN "jdbc:postgresql://localhost:5432/cmt_mixed";
+    d2rq:username "yourusername";
+    d2rq:password "yourpassword" .
+
+map:Acceptance a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class vocab:Acceptance;
+    d2rq:uriPattern "acceptances/@@acceptances.id@@" .
+
+map:acceptance_id a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Acceptance;
+    d2rq:property vocab:id;
+    d2rq:column "acceptances.id";
+    d2rq:datatype xsd:integer .
+
+map:acceptance_type a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Acceptance;
+    d2rq:property vocab:type;
+    d2rq:column "acceptances.type";
+    d2rq:datatype xsd:integer .
+
+map:Administrator a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class vocab:Administrator;
+    d2rq:uriPattern "administrators/@@administrators.id@@" .
+
+map:administrator_id a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Administrator;
+    d2rq:property vocab:id;
+    d2rq:column "administrators.id";
+    d2rq:datatype xsd:integer .
+
+map:accept_paper a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Administrator;
+    d2rq:property vocab:accept_paper;
+    d2rq:column "administrators.accept_paper";
+    d2rq:datatype xsd:integer .
+
+map:Bid a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class vocab:Bid;
+    d2rq:uriPattern "bids/@@bids.id@@" .
+
+map:bid_id a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Bid;
+    d2rq:property vocab:id;
+    d2rq:column "bids.id";
+    d2rq:datatype xsd:integer .
+
+map:adjusted a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Bid;
+    d2rq:property vocab:adjusted;
+    d2rq:column "bids.adjusted";
+    d2rq:datatype xsd:integer .
+
+map:bid_value a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Bid;
+    d2rq:property vocab:bid;
+    d2rq:column "bids.bid";
+    d2rq:datatype xsd:integer .
+
+map:CoWritePaper a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class vocab:CoWritePaper;
+    d2rq:uriPattern "co_write_paper/@@co_write_paper.co_author@@_@@co_write_paper.paper@@" .
+
+map:co_author a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:CoWritePaper;
+    d2rq:property vocab:co_author;
+    d2rq:column "co_write_paper.co_author";
+    d2rq:datatype xsd:integer .
+
+map:co_write_paper_paper a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:CoWritePaper;
+    d2rq:property vocab:paper;
+    d2rq:column "co_write_paper.paper";
+    d2rq:datatype xsd:integer .
+
+map:ConferenceAdministrator a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class vocab:ConferenceAdministrator;
+    d2rq:uriPattern "conference_administrator/@@conference_administrator.cid@@_@@conference_administrator.aid@@" .
+
+map:conference_administrator_cid a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ConferenceAdministrator;
+    d2rq:property vocab:cid;
+    d2rq:column "conference_administrator.cid";
+    d2rq:datatype xsd:integer .
+
+map:conference_administrator_aid a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ConferenceAdministrator;
+    d2rq:property vocab:aid;
+    d2rq:column "conference_administrator.aid";
+    d2rq:datatype xsd:integer .
+
+map:Conference a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class vocab:Conference;
+    d2rq:uriPattern "conferences/@@conferences.id@@" .
+
+map:conference_id a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Conference;
+    d2rq:property vocab:id;
+    d2rq:column "conferences.id";
+    d2rq:datatype xsd:integer .
+
+map:site_url a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Conference;
+    d2rq:property vocab:site_url;
+    d2rq:column "conferences.site_url";
+    d2rq:datatype xsd:string .
+
+map:accepts_hardcopy_submissions a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Conference;
+    d2rq:property vocab:accepts_hardcopy_submissions;
+    d2rq:column "conferences.accepts_hardcopy_submissions";
+    d2rq:datatype xsd:string .
+
+map:logo_url a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Conference;
+    d2rq:property vocab:logo_url;
+    d2rq:column "conferences.logo_url";
+    d2rq:datatype xsd:string .
+
+map:date a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Conference;
+    d2rq:property vocab:date;
+    d2rq:column "conferences.date";
+    d2rq:datatype xsd:date .
+
+map:name a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Conference;
+    d2rq:property vocab:name;
+    d2rq:column "conferences.name";
+    d2rq:datatype xsd:string .
+
+map:reviews_per_paper a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Conference;
+    d2rq:property vocab:reviews_per_paper;
+    d2rq:column "conferences.reviews_per_paper";
+    d2rq:datatype xsd:integer .
+
+map:DetailsEntered a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class vocab:DetailsEntered;
+    d2rq:uriPattern "details_entered/@@details_entered.cid@@_@@details_entered.aid@@" .
+
+map:details_entered_cid a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:DetailsEntered;
+    d2rq:property vocab:cid;
+    d2rq:column "details_entered.cid";
+    d2rq:datatype xsd:integer .
+
+map:details_entered_aid a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:DetailsEntered;
+    d2rq:property vocab:aid;
+    d2rq:column "details_entered.aid";
+    d2rq:datatype xsd:integer .
+
+map:Document a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class vocab:Document;
+    d2rq:uriPattern "documents/@@documents.id@@" .
+
+map:document_id a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Document;
+    d2rq:property vocab:id;
+    d2rq:column "documents.id";
+    d2rq:datatype xsd:integer .
+
+map:EnableVirtualMeeting a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class vocab:EnableVirtualMeeting;
+    d2rq:uriPattern "enable_virtual_meeting/@@enable_virtual_meeting.aid@@_@@enable_virtual_meeting.cid@@" .
+
+map:enable_virtual_meeting_aid a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:EnableVirtualMeeting;
+    d2rq:property vocab:aid;
+    d2rq:column "enable_virtual_meeting.aid";
+    d2rq:datatype xsd:integer .
+
+map:enable_virtual_meeting_cid a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:EnableVirtualMeeting;
+    d2rq:property vocab:cid;
+    d2rq:column "enable_virtual_meeting.cid";
+    d2rq:datatype xsd:integer .
+
+map:EnterReviewCriteria a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class vocab:EnterReviewCriteria;
+    d2rq:uriPattern "enter_review_criteria/@@enter_review_criteria.aid@@_@@enter_review_criteria.cid@@" .
+
+map:enter_review_criteria_aid a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:EnterReviewCriteria;
+    d2rq:property vocab:aid;
+    d2rq:column "enter_review_criteria.aid";
+    d2rq:datatype xsd:integer .
+
+map:enter_review_criteria_cid a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:EnterReviewCriteria;
+    d2rq:property vocab:cid;
+    d2rq:column "enter_review_criteria.cid";
+    d2rq:datatype xsd:integer .
+
+map:FinalizePaperAssignment a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class vocab:FinalizePaperAssignment;
+    d2rq:uriPattern "finalize_paper_assignment/@@finalize_paper_assignment.aid@@_@@finalize_paper_assignment.cid@@" .
+
+map:finalize_paper_assignment_aid a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:FinalizePaperAssignment;
+    d2rq:property vocab:aid;
+    d2rq:column "finalize_paper_assignment.aid";
+    d2rq:datatype xsd:integer .
+
+map:finalize_paper_assignment_cid a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:FinalizePaperAssignment;
+    d2rq:property vocab:cid;
+    d2rq:column "finalize_paper_assignment.cid";
+    d2rq:datatype xsd:integer .
+
+map:HardcopyMailingManifest a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class vocab:HardcopyMailingManifest;
+    d2rq:uriPattern "hardcopy_mailing_manifests_p/@@hardcopy_mailing_manifests_p.cid@@_@@hardcopy_mailing_manifests_p.aid@@" .
+
+map:hardcopy_mailing_manifests_p_cid a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:HardcopyMailingManifest;
+    d2rq:property vocab:cid;
+    d2rq:column "hardcopy_mailing_manifests_p.cid";
+    d2rq:datatype xsd:integer .
+
+map:hardcopy_mailing_manifests_p_aid a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:HardcopyMailingManifest;
+    d2rq:property vocab:aid;
+    d2rq:column "hardcopy_mailing_manifests_p.aid";
+    d2rq:datatype xsd:integer .
+
+map:MarkConflictInterest a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class vocab:MarkConflictInterest;
+    d2rq:uriPattern "mark_conflict_interests/@@mark_conflict_interests.conference_member@@_@@mark_conflict_interests.paper@@" .
+
+map:conference_member a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:MarkConflictInterest;
+    d2rq:property vocab:conference_member;
+    d2rq:column "mark_conflict_interests.conference_member";
+    d2rq:datatype xsd:integer .
+
+map:mark_conflict_interests_paper a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:MarkConflictInterest;
+    d2rq:property vocab:paper;
+    d2rq:column "mark_conflict_interests.paper";
+    d2rq:datatype xsd:integer .
+
+map:PaperPerson a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class vocab:PaperPerson;
+    d2rq:uriPattern "paper_person/@@paper_person.paper@@_@@paper_person.reviewer@@" .
+
+map:paper_person_paper a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:PaperPerson;
+    d2rq:property vocab:paper;
+    d2rq:column "paper_person.paper";
+    d2rq:datatype xsd:integer .
+
+map:reviewer a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:PaperPerson;
+    d2rq:property vocab:reviewer;
+    d2rq:column "paper_person.reviewer";
+    d2rq:datatype xsd:integer .
+
+map:PaperSubjectArea a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class vocab:PaperSubjectArea;
+    d2rq:uriPattern "paper_subject_area/@@paper_subject_area.pid@@_@@paper_subject_area.sid@@" .
+
+map:paper_subject_area_pid a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:PaperSubjectArea;
+    d2rq:property vocab:pid;
+    d2rq:column "paper_subject_area.pid";
+    d2rq:datatype xsd:integer .
+
+map:paper_subject_area_sid a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:PaperSubjectArea;
+    d2rq:property vocab:sid;
+    d2rq:column "paper_subject_area.sid";
+    d2rq:datatype xsd:integer .
+
+map:Paper a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class vocab:Paper;
+    d2rq:uriPattern "papers/@@papers.id@@" .
+
+map:paper_id a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Paper;
+    d2rq:property vocab:id;
+    d2rq:column "papers.id";
+    d2rq:datatype xsd:integer .
+
+map:paper_paper_id a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Paper;
+    d2rq:property vocab:paper_id;
+    d2rq:column "papers.paper_id";
+    d2rq:datatype xsd:integer .
+
+map:rejected a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Paper;
+    d2rq:property vocab:rejected;
+    d2rq:column "papers.rejected";
+    d2rq:datatype xsd:integer .
+
+map:read_by_meta_reviewer a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Paper;
+    d2rq:property vocab:read_by_meta_reviewer;
+    d2rq:column "papers.read_by_meta_reviewer";
+    d2rq:datatype xsd:integer .
+
+map:meta_review_passed a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Paper;
+    d2rq:property vocab:meta_review_passed;
+    d2rq:column "papers.meta_review_passed";
+    d2rq:datatype xsd:integer .

@@ -1,0 +1,55 @@
+{
+  "classes" : [ {
+    "id" : "@@movie.id@@/",
+    "name" : "ClassMap_movie",
+    "prefix" : "base",
+    "subClassOf" : null,
+    "join" : null,
+    "class" : "movie"
+  }, {
+    "id" : "@@director.name@@/",
+    "name" : "ClassMap_director",
+    "prefix" : "base",
+    "subClassOf" : null,
+    "join" : null,
+    "class" : "director"
+  } ],
+  "data_properties" : [ {
+    "property" : "hasDirector",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "movie.Director",
+    "belongsToClassMap" : "ClassMap_movie"
+  }, {
+    "property" : "hasYear",
+    "type" : "xsd:integer",
+    "column" : "movie.Year",
+    "belongsToClassMap" : "ClassMap_movie"
+  }, {
+    "property" : "hasName",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "director.Name",
+    "belongsToClassMap" : "ClassMap_director"
+  }, {
+    "property" : "hasBirth_year",
+    "type" : "xsd:integer",
+    "column" : "director.Birth_year",
+    "belongsToClassMap" : "ClassMap_director"
+  }, {
+    "property" : "hasId",
+    "type" : "xsd:integer",
+    "column" : "movie.Id",
+    "belongsToClassMap" : "ClassMap_movie"
+  }, {
+    "property" : "hasTitle",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "movie.Title",
+    "belongsToClassMap" : "ClassMap_movie"
+  } ],
+  "object_properties" : [ {
+    "property" : "hasDirector",
+    "join" : [ "director.name = movie.director" ],
+    "inverseOf" : null,
+    "belongsToClassMap" : "ClassMap_movie",
+    "refersToClassMap" : "ClassMap_director"
+  } ]
+}

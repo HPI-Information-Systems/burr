@@ -1,0 +1,1153 @@
+@prefix d2rq: <http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#> .
+@prefix cmt: <http://cmt/> .
+@prefix map: <http://mapping/> .
+@prefix jdbc: <http://d2rq.org/terms/jdbc/> .
+@prefix base: </base/> .
+
+map:database a d2rq:Database;
+	d2rq:jdbcDriver "org.postgresql.Driver";
+	d2rq:jdbcDSN "jdbc:postgresql://localhost:5432/sap";
+	d2rq:username "lukaslaskowski";
+	jdbc:keepAlive "3600";				# sends noop-query every 3600 seconds
+	.
+
+map:ClassMap_spm a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:spm;
+    
+    
+    .
+map:ClassMap_bar a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:bar;
+    
+    
+    .
+map:ClassMap_bc_to_sc a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:bc_to_sc;
+    
+    
+    .
+map:ClassMap_scm a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:scm;
+    
+    
+    .
+map:ClassMap_bcm a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:bcm;
+    
+    
+    .
+map:ClassMap_bpm a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:bpm;
+    
+    
+    .
+map:ClassMap_ind a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:ind;
+    
+    
+    .
+map:ClassMap_whitespaces a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:whitespaces;
+    
+    
+    .
+map:hasBusiness_process_ClassMap_bpm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_bpm;
+    d2rq:property base:hasBusiness_process;
+    d2rq:column "bpm.business_process";
+    .
+
+map:hasType_ClassMap_bc_to_sc_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_bc_to_sc;
+    d2rq:property base:hasType;
+    d2rq:column "bc_to_sc.type";
+    .
+
+map:hasBusiness_domain_seq_id_ClassMap_bcm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_bcm;
+    d2rq:property base:hasBusiness_domain_seq_id;
+    d2rq:column "bcm.business_domain_seq_id";
+    .
+
+map:hasBusiness_process_id_ClassMap_bpm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_bpm;
+    d2rq:property base:hasBusiness_process_id;
+    d2rq:column "bpm.business_process_id";
+    .
+
+map:hasBusiness_process_1_ClassMap_bpm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_bpm;
+    d2rq:property base:hasBusiness_process_1;
+    d2rq:column "bpm.business_process_1";
+    .
+
+map:hasBa_in_sp_reference_to_rba_ClassMap_spm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_spm;
+    d2rq:property base:hasBa_in_sp_reference_to_rba;
+    d2rq:column "spm.ba_in_sp_reference_to_rba";
+    .
+
+map:hasDeployment_type_ClassMap_spm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_spm;
+    d2rq:property base:hasDeployment_type;
+    d2rq:column "spm.deployment_type";
+    .
+
+map:hasReference_architecture_hybrid_1_ClassMap_whitespaces_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_whitespaces;
+    d2rq:property base:hasReference_architecture_hybrid_1;
+    d2rq:column "whitespaces.reference_architecture_hybrid_1";
+    .
+
+map:hasBc_relevant_for_oil_and_gas_ClassMap_scm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_scm;
+    d2rq:property base:hasBc_relevant_for_oil_and_gas;
+    d2rq:column "scm.bc_relevant_for_oil_and_gas";
+    .
+
+map:hasBusiness_process_id_ClassMap_spm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_spm;
+    d2rq:property base:hasBusiness_process_id;
+    d2rq:column "spm.business_process_id";
+    .
+
+map:hasBp_relevant_for_utilities_ClassMap_bpm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_bpm;
+    d2rq:property base:hasBp_relevant_for_utilities;
+    d2rq:column "bpm.bp_relevant_for_utilities";
+    .
+
+map:hasApqc_reference_ClassMap_bpm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_bpm;
+    d2rq:property base:hasApqc_reference;
+    d2rq:column "bpm.apqc_reference";
+    .
+
+map:hasObject_id_fp_ClassMap_spm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_spm;
+    d2rq:property base:hasObject_id_fp;
+    d2rq:column "spm.object_id_fp";
+    .
+
+map:hasBusiness_capability_ClassMap_scm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_scm;
+    d2rq:property base:hasBusiness_capability;
+    d2rq:column "scm.business_capability";
+    .
+
+map:hasLine_item_type_ClassMap_scm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_scm;
+    d2rq:property base:hasLine_item_type;
+    d2rq:column "scm.line_item_type";
+    .
+
+map:hasPlatform_ClassMap_spm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_spm;
+    d2rq:property base:hasPlatform;
+    d2rq:column "spm.platform";
+    .
+
+map:hasEnterprise_domain_ClassMap_spm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_spm;
+    d2rq:property base:hasEnterprise_domain;
+    d2rq:column "spm.enterprise_domain";
+    .
+
+map:hasBusiness_area_ClassMap_scm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_scm;
+    d2rq:property base:hasBusiness_area;
+    d2rq:column "scm.business_area";
+    .
+
+map:hasEnterprise_domain_ClassMap_bcm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_bcm;
+    d2rq:property base:hasEnterprise_domain;
+    d2rq:column "bcm.enterprise_domain";
+    .
+
+map:hasBc_relevant_for_utilities_ClassMap_bcm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_bcm;
+    d2rq:property base:hasBc_relevant_for_utilities;
+    d2rq:column "bcm.bc_relevant_for_utilities";
+    .
+
+map:hasSolution_process_id_2_ClassMap_spm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_spm;
+    d2rq:property base:hasSolution_process_id_2;
+    d2rq:column "spm.solution_process_id_2";
+    .
+
+map:hasBusiness_process_sequence_1_ClassMap_bpm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_bpm;
+    d2rq:property base:hasBusiness_process_sequence_1;
+    d2rq:column "bpm.business_process_sequence_1";
+    .
+
+map:hasPpms_product_id_ClassMap_whitespaces_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_whitespaces;
+    d2rq:property base:hasPpms_product_id;
+    d2rq:column "whitespaces.ppms_product_id";
+    .
+
+map:hasBusiness_activity_code_ClassMap_bar_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_bar;
+    d2rq:property base:hasBusiness_activity_code;
+    d2rq:column "bar.business_activity_code";
+    .
+
+map:hasBc_seq_id_ClassMap_bcm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_bcm;
+    d2rq:property base:hasBc_seq_id;
+    d2rq:column "bcm.bc_seq_id";
+    .
+
+map:hasBusiness_process_2_ClassMap_bpm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_bpm;
+    d2rq:property base:hasBusiness_process_2;
+    d2rq:column "bpm.business_process_2";
+    .
+
+map:hasObject_id_business_activity_ClassMap_bpm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_bpm;
+    d2rq:property base:hasObject_id_business_activity;
+    d2rq:column "bpm.object_id_business_activity";
+    .
+
+map:hasSp_relevant_for_utilities_ClassMap_spm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_spm;
+    d2rq:property base:hasSp_relevant_for_utilities;
+    d2rq:column "spm.sp_relevant_for_utilities";
+    .
+
+map:hasBusiness_capability_description_ClassMap_bcm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_bcm;
+    d2rq:property base:hasBusiness_capability_description;
+    d2rq:column "bcm.business_capability_description";
+    .
+
+map:hasBc_relevant_for_retail_industry_ClassMap_scm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_scm;
+    d2rq:property base:hasBc_relevant_for_retail_industry;
+    d2rq:column "scm.bc_relevant_for_retail_industry";
+    .
+
+map:hasDescription_ClassMap_spm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_spm;
+    d2rq:property base:hasDescription;
+    d2rq:column "spm.description";
+    .
+
+map:hasEnterprise_domain_2_ClassMap_bpm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_bpm;
+    d2rq:property base:hasEnterprise_domain_2;
+    d2rq:column "bpm.enterprise_domain_2";
+    .
+
+map:hasFp_object_type_ClassMap_bpm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_bpm;
+    d2rq:property base:hasFp_object_type;
+    d2rq:column "bpm.fp_object_type";
+    .
+
+map:hasType_1_ClassMap_spm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_spm;
+    d2rq:property base:hasType_1;
+    d2rq:column "spm.type_1";
+    .
+
+map:hasLine_item_type_ClassMap_bc_to_sc_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_bc_to_sc;
+    d2rq:property base:hasLine_item_type;
+    d2rq:column "bc_to_sc.line_item_type";
+    .
+
+map:hasSp_description_ClassMap_spm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_spm;
+    d2rq:property base:hasSp_description;
+    d2rq:column "spm.sp_description";
+    .
+
+map:hasObject_id_sc_ClassMap_bc_to_sc_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_bc_to_sc;
+    d2rq:property base:hasObject_id_sc;
+    d2rq:column "bc_to_sc.object_id_sc";
+    .
+
+map:hasSolution_component_reference_architecture_cloud_ClassMap_scm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_scm;
+    d2rq:property base:hasSolution_component_reference_architecture_cloud;
+    d2rq:column "scm.solution_component_reference_architecture_cloud";
+    .
+
+map:hasSolution_capability_reference_architecture_hybrid_ClassMap_scm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_scm;
+    d2rq:property base:hasSolution_capability_reference_architecture_hybrid;
+    d2rq:column "scm.solution_capability_reference_architecture_hybrid";
+    .
+
+map:hasReference_architecture_type_ClassMap_spm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_spm;
+    d2rq:property base:hasReference_architecture_type;
+    d2rq:column "spm.reference_architecture_type";
+    .
+
+map:hasBusiness_activity_description_ClassMap_bar_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_bar;
+    d2rq:property base:hasBusiness_activity_description;
+    d2rq:column "bar.business_activity_description";
+    .
+
+map:hasBp_relevant_for_professional_services_ClassMap_bpm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_bpm;
+    d2rq:property base:hasBp_relevant_for_professional_services;
+    d2rq:column "bpm.bp_relevant_for_professional_services";
+    .
+
+map:hasBa_sequence_ClassMap_bpm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_bpm;
+    d2rq:property base:hasBa_sequence;
+    d2rq:column "bpm.ba_sequence";
+    .
+
+map:hasMaster_id_bd_ClassMap_bcm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_bcm;
+    d2rq:property base:hasMaster_id_bd;
+    d2rq:column "bcm.master_id_bd";
+    .
+
+map:hasBp_description_ClassMap_bpm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_bpm;
+    d2rq:property base:hasBp_description;
+    d2rq:column "bpm.bp_description";
+    .
+
+map:hasMaster_id_bd_ClassMap_scm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_scm;
+    d2rq:property base:hasMaster_id_bd;
+    d2rq:column "scm.master_id_bd";
+    .
+
+map:hasBarea_seq_id_ClassMap_scm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_scm;
+    d2rq:property base:hasBarea_seq_id;
+    d2rq:column "scm.barea_seq_id";
+    .
+
+map:hasType_ClassMap_spm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_spm;
+    d2rq:property base:hasType;
+    d2rq:column "spm.type";
+    .
+
+map:hasBusiness_process_id_2_ClassMap_spm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_spm;
+    d2rq:property base:hasBusiness_process_id_2;
+    d2rq:column "spm.business_process_id_2";
+    .
+
+map:hasSolution_capability_ClassMap_bc_to_sc_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_bc_to_sc;
+    d2rq:property base:hasSolution_capability;
+    d2rq:column "bc_to_sc.solution_capability";
+    .
+
+map:hasBc_relevant_for_utilities_ClassMap_scm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_scm;
+    d2rq:property base:hasBc_relevant_for_utilities;
+    d2rq:column "scm.bc_relevant_for_utilities";
+    .
+
+map:hasSp_relevant_for_retail_industry_ClassMap_spm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_spm;
+    d2rq:property base:hasSp_relevant_for_retail_industry;
+    d2rq:column "spm.sp_relevant_for_retail_industry";
+    .
+
+map:hasEnterprise_domain_2_ClassMap_spm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_spm;
+    d2rq:property base:hasEnterprise_domain_2;
+    d2rq:column "spm.enterprise_domain_2";
+    .
+
+map:hasEnterprise_domain_ClassMap_bar_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_bar;
+    d2rq:property base:hasEnterprise_domain;
+    d2rq:column "bar.enterprise_domain";
+    .
+
+map:hasPlatform_ClassMap_bc_to_sc_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_bc_to_sc;
+    d2rq:property base:hasPlatform;
+    d2rq:column "bc_to_sc.platform";
+    .
+
+map:hasObject_type_ClassMap_bcm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_bcm;
+    d2rq:property base:hasObject_type;
+    d2rq:column "bcm.object_type";
+    .
+
+map:hasType_ClassMap_scm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_scm;
+    d2rq:property base:hasType;
+    d2rq:column "scm.type";
+    .
+
+map:hasSolution_process_sequence_1_ClassMap_spm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_spm;
+    d2rq:property base:hasSolution_process_sequence_1;
+    d2rq:column "spm.solution_process_sequence_1";
+    .
+
+map:hasBc_relevant_for_cross_industry_ClassMap_bcm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_bcm;
+    d2rq:property base:hasBc_relevant_for_cross_industry;
+    d2rq:column "bcm.bc_relevant_for_cross_industry";
+    .
+
+map:hasBusiness_process_id_1_ClassMap_bpm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_bpm;
+    d2rq:property base:hasBusiness_process_id_1;
+    d2rq:column "bpm.business_process_id_1";
+    .
+
+map:hasPlatform_ClassMap_scm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_scm;
+    d2rq:property base:hasPlatform;
+    d2rq:column "scm.platform";
+    .
+
+map:hasBased_on_2_ClassMap_spm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_spm;
+    d2rq:property base:hasBased_on_2;
+    d2rq:column "spm.based_on_2";
+    .
+
+map:hasObject_type_2_ClassMap_bcm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_bcm;
+    d2rq:property base:hasObject_type_2;
+    d2rq:column "bcm.object_type_2";
+    .
+
+map:hasObject_id_sc_ClassMap_whitespaces_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_whitespaces;
+    d2rq:property base:hasObject_id_sc;
+    d2rq:column "whitespaces.object_id_sc";
+    .
+
+map:hasBusiness_process_sequence_2_ClassMap_bpm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_bpm;
+    d2rq:property base:hasBusiness_process_sequence_2;
+    d2rq:column "bpm.business_process_sequence_2";
+    .
+
+map:hasBased_on_3_ClassMap_bpm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_bpm;
+    d2rq:property base:hasBased_on_3;
+    d2rq:column "bpm.based_on_3";
+    .
+
+map:hasMaster_id_bc_ClassMap_bcm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_bcm;
+    d2rq:property base:hasMaster_id_bc;
+    d2rq:column "bcm.master_id_bc";
+    .
+
+map:hasId_ClassMap_scm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_scm;
+    d2rq:property base:hasId;
+    d2rq:column "scm.id";
+    .
+
+map:hasBa_in_sp_sequence_ClassMap_spm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_spm;
+    d2rq:property base:hasBa_in_sp_sequence;
+    d2rq:column "spm.ba_in_sp_sequence";
+    .
+
+map:hasIndustry_id_ClassMap_ind_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_ind;
+    d2rq:property base:hasIndustry_id;
+    d2rq:column "ind.industry_id";
+    .
+
+map:hasDeployment_type_ClassMap_scm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_scm;
+    d2rq:property base:hasDeployment_type;
+    d2rq:column "scm.deployment_type";
+    .
+
+map:hasReference_architecture_hybrid_ClassMap_bc_to_sc_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_bc_to_sc;
+    d2rq:property base:hasReference_architecture_hybrid;
+    d2rq:column "bc_to_sc.reference_architecture_hybrid";
+    .
+
+map:hasBusiness_domain_ClassMap_scm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_scm;
+    d2rq:property base:hasBusiness_domain;
+    d2rq:column "scm.business_domain";
+    .
+
+map:hasBusiness_activity_ClassMap_bpm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_bpm;
+    d2rq:property base:hasBusiness_activity;
+    d2rq:column "bpm.business_activity";
+    .
+
+map:hasMaster_id_barea_ClassMap_bcm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_bcm;
+    d2rq:property base:hasMaster_id_barea;
+    d2rq:column "bcm.master_id_barea";
+    .
+
+map:hasBased_on_ClassMap_bpm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_bpm;
+    d2rq:property base:hasBased_on;
+    d2rq:column "bpm.based_on";
+    .
+
+map:hasApqc_reference_ClassMap_bar_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_bar;
+    d2rq:property base:hasApqc_reference;
+    d2rq:column "bar.apqc_reference";
+    .
+
+map:hasReference_architecture_hybrid_1_ClassMap_bc_to_sc_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_bc_to_sc;
+    d2rq:property base:hasReference_architecture_hybrid_1;
+    d2rq:column "bc_to_sc.reference_architecture_hybrid_1";
+    .
+
+map:hasSolution_capability_ClassMap_scm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_scm;
+    d2rq:property base:hasSolution_capability;
+    d2rq:column "scm.solution_capability";
+    .
+
+map:hasBp_relevant_for_retail_industry_ClassMap_bpm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_bpm;
+    d2rq:property base:hasBp_relevant_for_retail_industry;
+    d2rq:column "bpm.bp_relevant_for_retail_industry";
+    .
+
+map:hasSolution_capability_ClassMap_spm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_spm;
+    d2rq:property base:hasSolution_capability;
+    d2rq:column "spm.solution_capability";
+    .
+
+map:hasSp_relevant_for_oil_and_gas_ClassMap_spm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_spm;
+    d2rq:property base:hasSp_relevant_for_oil_and_gas;
+    d2rq:column "spm.sp_relevant_for_oil_and_gas";
+    .
+
+map:hasAnnotation_ClassMap_bar_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_bar;
+    d2rq:property base:hasAnnotation;
+    d2rq:column "bar.annotation";
+    .
+
+map:hasSolution_process_sequence_2_ClassMap_spm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_spm;
+    d2rq:property base:hasSolution_process_sequence_2;
+    d2rq:column "spm.solution_process_sequence_2";
+    .
+
+map:hasBased_on_1_ClassMap_bpm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_bpm;
+    d2rq:property base:hasBased_on_1;
+    d2rq:column "bpm.based_on_1";
+    .
+
+map:hasFuture_status_ClassMap_whitespaces_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_whitespaces;
+    d2rq:property base:hasFuture_status;
+    d2rq:column "whitespaces.future_status";
+    .
+
+map:hasEnterprise_domain_1_ClassMap_bpm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_bpm;
+    d2rq:property base:hasEnterprise_domain_1;
+    d2rq:column "bpm.enterprise_domain_1";
+    .
+
+map:hasSolution_capability_ClassMap_whitespaces_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_whitespaces;
+    d2rq:property base:hasSolution_capability;
+    d2rq:column "whitespaces.solution_capability";
+    .
+
+map:hasBc_relevant_for_oil_and_gas_ClassMap_bcm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_bcm;
+    d2rq:property base:hasBc_relevant_for_oil_and_gas;
+    d2rq:column "bcm.bc_relevant_for_oil_and_gas";
+    .
+
+map:hasBased_on_ClassMap_spm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_spm;
+    d2rq:property base:hasBased_on;
+    d2rq:column "spm.based_on";
+    .
+
+map:hasBusiness_process_id_2_ClassMap_bpm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_bpm;
+    d2rq:property base:hasBusiness_process_id_2;
+    d2rq:column "bpm.business_process_id_2";
+    .
+
+map:hasBc_relevant_for_cross_industry_ClassMap_scm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_scm;
+    d2rq:property base:hasBc_relevant_for_cross_industry;
+    d2rq:column "scm.bc_relevant_for_cross_industry";
+    .
+
+map:hasDeployment_type_ClassMap_bc_to_sc_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_bc_to_sc;
+    d2rq:property base:hasDeployment_type;
+    d2rq:column "bc_to_sc.deployment_type";
+    .
+
+map:hasMaster_id_barea_ClassMap_scm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_scm;
+    d2rq:property base:hasMaster_id_barea;
+    d2rq:column "scm.master_id_barea";
+    .
+
+map:hasReference_architecture_cloud_1_ClassMap_bc_to_sc_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_bc_to_sc;
+    d2rq:property base:hasReference_architecture_cloud_1;
+    d2rq:column "bc_to_sc.reference_architecture_cloud_1";
+    .
+
+map:hasBusiness_process_type_ClassMap_bpm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_bpm;
+    d2rq:property base:hasBusiness_process_type;
+    d2rq:column "bpm.business_process_type";
+    .
+
+map:hasPpms_product_id_ClassMap_bc_to_sc_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_bc_to_sc;
+    d2rq:property base:hasPpms_product_id;
+    d2rq:column "bc_to_sc.ppms_product_id";
+    .
+
+map:hasSp_relevant_for_automotive_ClassMap_spm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_spm;
+    d2rq:property base:hasSp_relevant_for_automotive;
+    d2rq:column "spm.sp_relevant_for_automotive";
+    .
+
+map:hasLine_item_type_ClassMap_spm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_spm;
+    d2rq:property base:hasLine_item_type;
+    d2rq:column "spm.line_item_type";
+    .
+
+map:hasBc_relevant_for_autmotive_industry_ClassMap_scm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_scm;
+    d2rq:property base:hasBc_relevant_for_autmotive_industry;
+    d2rq:column "scm.bc_relevant_for_autmotive_industry";
+    .
+
+map:hasBusiness_process_description_1_ClassMap_bpm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_bpm;
+    d2rq:property base:hasBusiness_process_description_1;
+    d2rq:column "bpm.business_process_description_1";
+    .
+
+map:hasSolution_process_description_1_ClassMap_spm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_spm;
+    d2rq:property base:hasSolution_process_description_1;
+    d2rq:column "spm.solution_process_description_1";
+    .
+
+map:hasObject_id_sc_ClassMap_spm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_spm;
+    d2rq:property base:hasObject_id_sc;
+    d2rq:column "spm.object_id_sc";
+    .
+
+map:hasPpms_product_name_ClassMap_whitespaces_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_whitespaces;
+    d2rq:property base:hasPpms_product_name;
+    d2rq:column "whitespaces.ppms_product_name";
+    .
+
+map:hasEnterprise_domain_ClassMap_bpm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_bpm;
+    d2rq:property base:hasEnterprise_domain;
+    d2rq:column "bpm.enterprise_domain";
+    .
+
+map:hasPpms_product_id_ClassMap_spm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_spm;
+    d2rq:property base:hasPpms_product_id;
+    d2rq:column "spm.ppms_product_id";
+    .
+
+map:hasBc_relevant_for_retail_industry_ClassMap_bcm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_bcm;
+    d2rq:property base:hasBc_relevant_for_retail_industry;
+    d2rq:column "bcm.bc_relevant_for_retail_industry";
+    .
+
+map:hasReference_architecture_cloud_ClassMap_whitespaces_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_whitespaces;
+    d2rq:property base:hasReference_architecture_cloud;
+    d2rq:column "whitespaces.reference_architecture_cloud";
+    .
+
+map:hasDeployment_type_ClassMap_whitespaces_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_whitespaces;
+    d2rq:property base:hasDeployment_type;
+    d2rq:column "whitespaces.deployment_type";
+    .
+
+map:hasBusiness_capability_description_ClassMap_scm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_scm;
+    d2rq:property base:hasBusiness_capability_description;
+    d2rq:column "scm.business_capability_description";
+    .
+
+map:hasBc_relevant_for_autmotive_industry_ClassMap_bcm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_bcm;
+    d2rq:property base:hasBc_relevant_for_autmotive_industry;
+    d2rq:column "bcm.bc_relevant_for_autmotive_industry";
+    .
+
+map:hasBp_relevant_for_automotive_ClassMap_bpm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_bpm;
+    d2rq:property base:hasBp_relevant_for_automotive;
+    d2rq:column "bpm.bp_relevant_for_automotive";
+    .
+
+map:hasPpms_product_name_ClassMap_spm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_spm;
+    d2rq:property base:hasPpms_product_name;
+    d2rq:column "spm.ppms_product_name";
+    .
+
+map:hasBusiness_process_type_1_ClassMap_bpm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_bpm;
+    d2rq:property base:hasBusiness_process_type_1;
+    d2rq:column "bpm.business_process_type_1";
+    .
+
+map:hasBp_relevant_for_oil_and_gas_ClassMap_bpm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_bpm;
+    d2rq:property base:hasBp_relevant_for_oil_and_gas;
+    d2rq:column "bpm.bp_relevant_for_oil_and_gas";
+    .
+
+map:hasBased_on_1_ClassMap_spm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_spm;
+    d2rq:property base:hasBased_on_1;
+    d2rq:column "spm.based_on_1";
+    .
+
+map:hasMaster_id_bc_ClassMap_bc_to_sc_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_bc_to_sc;
+    d2rq:property base:hasMaster_id_bc;
+    d2rq:column "bc_to_sc.master_id_bc";
+    .
+
+map:hasBc_relevant_for_industrial_machinery_and_components_ClassMap_bcm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_bcm;
+    d2rq:property base:hasBc_relevant_for_industrial_machinery_and_components;
+    d2rq:column "bcm.bc_relevant_for_industrial_machinery_and_components";
+    .
+
+map:hasType_2_ClassMap_bpm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_bpm;
+    d2rq:property base:hasType_2;
+    d2rq:column "bpm.type_2";
+    .
+
+map:hasForward_pointer_ClassMap_spm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_spm;
+    d2rq:property base:hasForward_pointer;
+    d2rq:column "spm.forward_pointer";
+    .
+
+map:hasDescription_ClassMap_bpm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_bpm;
+    d2rq:property base:hasDescription;
+    d2rq:column "bpm.description";
+    .
+
+map:hasIndustry_name_ClassMap_ind_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_ind;
+    d2rq:property base:hasIndustry_name;
+    d2rq:column "ind.industry_name";
+    .
+
+map:hasReference_to_bar_id_ClassMap_bpm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_bpm;
+    d2rq:property base:hasReference_to_bar_id;
+    d2rq:column "bpm.reference_to_bar_id";
+    .
+
+map:hasSp_relevant_for_professional_services_ClassMap_spm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_spm;
+    d2rq:property base:hasSp_relevant_for_professional_services;
+    d2rq:column "spm.sp_relevant_for_professional_services";
+    .
+
+map:hasBusiness_process_id_1_ClassMap_spm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_spm;
+    d2rq:property base:hasBusiness_process_id_1;
+    d2rq:column "spm.business_process_id_1";
+    .
+
+map:hasBusiness_activity_ClassMap_bar_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_bar;
+    d2rq:property base:hasBusiness_activity;
+    d2rq:column "bar.business_activity";
+    .
+
+map:hasType_1_ClassMap_bpm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_bpm;
+    d2rq:property base:hasType_1;
+    d2rq:column "bpm.type_1";
+    .
+
+map:hasHierarchy_id_ClassMap_bcm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_bcm;
+    d2rq:property base:hasHierarchy_id;
+    d2rq:column "bcm.hierarchy_id";
+    .
+
+map:hasHierarchy_id_ClassMap_scm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_scm;
+    d2rq:property base:hasHierarchy_id;
+    d2rq:column "scm.hierarchy_id";
+    .
+
+map:hasBc_relevant_for_professional_services_industry_ClassMap_bcm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_bcm;
+    d2rq:property base:hasBc_relevant_for_professional_services_industry;
+    d2rq:column "bcm.bc_relevant_for_professional_services_industry";
+    .
+
+map:hasReference_architecture_hybrid_ClassMap_whitespaces_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_whitespaces;
+    d2rq:property base:hasReference_architecture_hybrid;
+    d2rq:column "whitespaces.reference_architecture_hybrid";
+    .
+
+map:hasSolution_capability_reference_architecture_cloud_ClassMap_scm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_scm;
+    d2rq:property base:hasSolution_capability_reference_architecture_cloud;
+    d2rq:column "scm.solution_capability_reference_architecture_cloud";
+    .
+
+map:hasSp_relevant_for_industrial_machinery_and_components_ClassMap_spm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_spm;
+    d2rq:property base:hasSp_relevant_for_industrial_machinery_and_components;
+    d2rq:column "spm.sp_relevant_for_industrial_machinery_and_components";
+    .
+
+map:hasType_2_ClassMap_spm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_spm;
+    d2rq:property base:hasType_2;
+    d2rq:column "spm.type_2";
+    .
+
+map:hasSolution_process_id_1_ClassMap_spm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_spm;
+    d2rq:property base:hasSolution_process_id_1;
+    d2rq:column "spm.solution_process_id_1";
+    .
+
+map:hasBusiness_domain_ClassMap_bcm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_bcm;
+    d2rq:property base:hasBusiness_domain;
+    d2rq:column "bcm.business_domain";
+    .
+
+map:hasBc_relevant_for_industrial_machinery_and_components_ClassMap_scm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_scm;
+    d2rq:property base:hasBc_relevant_for_industrial_machinery_and_components;
+    d2rq:column "scm.bc_relevant_for_industrial_machinery_and_components";
+    .
+
+map:hasBp_relevant_for_cross_industry_ClassMap_bpm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_bpm;
+    d2rq:property base:hasBp_relevant_for_cross_industry;
+    d2rq:column "bpm.bp_relevant_for_cross_industry";
+    .
+
+map:hasFp_object_type_ClassMap_spm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_spm;
+    d2rq:property base:hasFp_object_type;
+    d2rq:column "spm.fp_object_type";
+    .
+
+map:hasUnnamed:_32_ClassMap_scm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_scm;
+    d2rq:property base:hasUnnamed:_32;
+    d2rq:column "scm.unnamed:_32";
+    .
+
+map:hasBarea_seq_id_ClassMap_bcm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_bcm;
+    d2rq:property base:hasBarea_seq_id;
+    d2rq:column "bcm.barea_seq_id";
+    .
+
+map:hasSolution_process_2_ClassMap_spm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_spm;
+    d2rq:property base:hasSolution_process_2;
+    d2rq:column "spm.solution_process_2";
+    .
+
+map:hasPpms_product_id_ClassMap_scm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_scm;
+    d2rq:property base:hasPpms_product_id;
+    d2rq:column "scm.ppms_product_id";
+    .
+
+map:hasType_ClassMap_whitespaces_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_whitespaces;
+    d2rq:property base:hasType;
+    d2rq:column "whitespaces.type";
+    .
+
+map:hasBp_relevant_for_industrial_machinery_and_components_ClassMap_bpm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_bpm;
+    d2rq:property base:hasBp_relevant_for_industrial_machinery_and_components;
+    d2rq:column "bpm.bp_relevant_for_industrial_machinery_and_components";
+    .
+
+map:hasObject_id_sc_ClassMap_scm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_scm;
+    d2rq:property base:hasObject_id_sc;
+    d2rq:column "scm.object_id_sc";
+    .
+
+map:hasBusiness_capability_ClassMap_bpm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_bpm;
+    d2rq:property base:hasBusiness_capability;
+    d2rq:column "bpm.business_capability";
+    .
+
+map:hasSolution_process_id_ClassMap_spm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_spm;
+    d2rq:property base:hasSolution_process_id;
+    d2rq:column "spm.solution_process_id";
+    .
+
+map:hasReference_architecture_cloud_ClassMap_bc_to_sc_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_bc_to_sc;
+    d2rq:property base:hasReference_architecture_cloud;
+    d2rq:column "bc_to_sc.reference_architecture_cloud";
+    .
+
+map:hasBc_type_ClassMap_bpm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_bpm;
+    d2rq:property base:hasBc_type;
+    d2rq:column "bpm.bc_type";
+    .
+
+map:hasSp_relevant_for_cross_industry_ClassMap_spm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_spm;
+    d2rq:property base:hasSp_relevant_for_cross_industry;
+    d2rq:column "spm.sp_relevant_for_cross_industry";
+    .
+
+map:hasEnterprise_domain_ClassMap_scm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_scm;
+    d2rq:property base:hasEnterprise_domain;
+    d2rq:column "scm.enterprise_domain";
+    .
+
+map:hasObject_id_business_activity_in_solution_process_ClassMap_spm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_spm;
+    d2rq:property base:hasObject_id_business_activity_in_solution_process;
+    d2rq:column "spm.object_id_business_activity_in_solution_process";
+    .
+
+map:hasAlternative_hybrid_ClassMap_bc_to_sc_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_bc_to_sc;
+    d2rq:property base:hasAlternative_hybrid;
+    d2rq:column "bc_to_sc.alternative_hybrid";
+    .
+
+map:hasObject_type_3_ClassMap_bcm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_bcm;
+    d2rq:property base:hasObject_type_3;
+    d2rq:column "bcm.object_type_3";
+    .
+
+map:hasPpms_product_name_ClassMap_bc_to_sc_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_bc_to_sc;
+    d2rq:property base:hasPpms_product_name;
+    d2rq:column "bc_to_sc.ppms_product_name";
+    .
+
+map:hasForward_pointer_ClassMap_bpm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_bpm;
+    d2rq:property base:hasForward_pointer;
+    d2rq:column "bpm.forward_pointer";
+    .
+
+map:hasWhitespace_type_ClassMap_whitespaces_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_whitespaces;
+    d2rq:property base:hasWhitespace_type;
+    d2rq:column "whitespaces.whitespace_type";
+    .
+
+map:hasMaster_id_domain_ClassMap_bcm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_bcm;
+    d2rq:property base:hasMaster_id_domain;
+    d2rq:column "bcm.master_id_domain";
+    .
+
+map:hasMaster_id_bc_ClassMap_bpm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_bpm;
+    d2rq:property base:hasMaster_id_bc;
+    d2rq:column "bpm.master_id_bc";
+    .
+
+map:hasBusiness_capability_description_ClassMap_bpm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_bpm;
+    d2rq:property base:hasBusiness_capability_description;
+    d2rq:column "bpm.business_capability_description";
+    .
+
+map:hasObject_id_fp_ClassMap_bpm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_bpm;
+    d2rq:property base:hasObject_id_fp;
+    d2rq:column "bpm.object_id_fp";
+    .
+
+map:hasApqc_reference_ClassMap_spm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_spm;
+    d2rq:property base:hasApqc_reference;
+    d2rq:column "spm.apqc_reference";
+    .
+
+map:hasMaster_id_bc_ClassMap_whitespaces_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_whitespaces;
+    d2rq:property base:hasMaster_id_bc;
+    d2rq:column "whitespaces.master_id_bc";
+    .
+
+map:hasMaster_id_bc_ClassMap_scm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_scm;
+    d2rq:property base:hasMaster_id_bc;
+    d2rq:column "scm.master_id_bc";
+    .
+
+map:hasSolution_process_1_ClassMap_spm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_spm;
+    d2rq:property base:hasSolution_process_1;
+    d2rq:column "spm.solution_process_1";
+    .
+
+map:hasBusiness_area_ClassMap_bcm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_bcm;
+    d2rq:property base:hasBusiness_area;
+    d2rq:column "bcm.business_area";
+    .
+
+map:hasBc_relevant_for_professional_services_industry_ClassMap_scm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_scm;
+    d2rq:property base:hasBc_relevant_for_professional_services_industry;
+    d2rq:column "scm.bc_relevant_for_professional_services_industry";
+    .
+
+map:hasEnterprise_domain_1_ClassMap_spm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_spm;
+    d2rq:property base:hasEnterprise_domain_1;
+    d2rq:column "spm.enterprise_domain_1";
+    .
+
+map:hasType_ClassMap_bpm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_bpm;
+    d2rq:property base:hasType;
+    d2rq:column "bpm.type";
+    .
+
+map:hasPpms_product_name_ClassMap_scm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_scm;
+    d2rq:property base:hasPpms_product_name;
+    d2rq:column "scm.ppms_product_name";
+    .
+
+map:hasSolution_component_reference_architecture_hybrid_ClassMap_scm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_scm;
+    d2rq:property base:hasSolution_component_reference_architecture_hybrid;
+    d2rq:column "scm.solution_component_reference_architecture_hybrid";
+    .
+
+map:hasAlternative_cloud_ClassMap_bc_to_sc_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_bc_to_sc;
+    d2rq:property base:hasAlternative_cloud;
+    d2rq:column "bc_to_sc.alternative_cloud";
+    .
+
+map:hasBusiness_activity_in_solution_process_ClassMap_spm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_spm;
+    d2rq:property base:hasBusiness_activity_in_solution_process;
+    d2rq:column "spm.business_activity_in_solution_process";
+    .
+
+map:hasMaster_id_domain_ClassMap_scm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_scm;
+    d2rq:property base:hasMaster_id_domain;
+    d2rq:column "scm.master_id_domain";
+    .
+
+map:hasReference_architecture_cloud_1_ClassMap_whitespaces_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_whitespaces;
+    d2rq:property base:hasReference_architecture_cloud_1;
+    d2rq:column "whitespaces.reference_architecture_cloud_1";
+    .
+
+map:hasBased_on_2_ClassMap_bpm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_bpm;
+    d2rq:property base:hasBased_on_2;
+    d2rq:column "bpm.based_on_2";
+    .
+
+map:hasBusiness_capability_ClassMap_bcm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_bcm;
+    d2rq:property base:hasBusiness_capability;
+    d2rq:column "bcm.business_capability";
+    .
+
+map:hasBusiness_domain_seq_id_ClassMap_scm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_scm;
+    d2rq:property base:hasBusiness_domain_seq_id;
+    d2rq:column "scm.business_domain_seq_id";
+    .
+
+map:hasSolution_process_ClassMap_spm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_spm;
+    d2rq:property base:hasSolution_process;
+    d2rq:column "spm.solution_process";
+    .
+
+map:hasBusiness_process_type_2_ClassMap_bpm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_bpm;
+    d2rq:property base:hasBusiness_process_type_2;
+    d2rq:column "bpm.business_process_type_2";
+    .
+
+map:hasEnterprise_domain_seq_id_ClassMap_bcm_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:ClassMap_bcm;
+    d2rq:property base:hasEnterprise_domain_seq_id;
+    d2rq:column "bcm.enterprise_domain_seq_id";
+    .
+

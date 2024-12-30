@@ -1,0 +1,297 @@
+@prefix d2rq: <http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#> .
+@prefix cmt: <http://cmt/> .
+@prefix map: <http://mapping/> .
+@prefix jdbc: <http://d2rq.org/terms/jdbc/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix iswc: </iswc/> .
+@prefix base: </base/> .
+
+map:database a d2rq:Database;
+	d2rq:jdbcDriver "org.postgresql.Driver";
+	d2rq:jdbcDSN "jdbc:postgresql://localhost:5432/real_world__iswc__original";
+	d2rq:username "lukaslaskowski";
+	jdbc:keepAlive "3600";				# sends noop-query every 3600 seconds
+	.
+
+map:Conferences a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:Conference;
+    d2rq:uriPattern "conferences/@@conferences.confid@@";
+    
+    
+    .
+map:Organizations a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:Organization;
+    d2rq:uriPattern "organizations/@@organizations.orgid@@";
+    
+    
+    .
+map:PostalAddresses a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:Address;
+    
+    d2rq:bNodeIdColumns "organizations.orgid,,";
+    
+    .
+map:Papers a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:InProceedings;
+    d2rq:uriPattern "papers/@@papers.paperid@@";
+    
+    d2rq:condition "papers.publish = '1'";
+    
+    .
+map:Persons a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:Person;
+    d2rq:uriPattern "persons/@@persons.perid@@";
+    
+    
+    .
+map:Topics a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:Concept;
+    d2rq:uriPattern "topics/@@topics.topicid@@";
+    
+    
+    .
+map:organizations_ADR a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Organizations;
+    d2rq:refersToClassMap map:PostalAddresses;
+    d2rq:property base:ADR;
+    
+    .
+
+map:papers_Conference a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Papers;
+    d2rq:refersToClassMap map:Conferences;
+    d2rq:property base:conference;
+    
+    d2rq:join "papers.conference = conferences.confid";
+    .
+
+map:rel_paper_topic1 a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Papers;
+    d2rq:refersToClassMap map:Topics;
+    d2rq:property base:primarySubject;
+    
+    d2rq:join "rel_paper_topic.paperid = papers.paperid";
+    d2rq:join "rel_paper_topic.topicid = topics.topicid";
+    d2rq:condition "rel_paper_topic.relationtype = '1'";
+    .
+
+map:rel_paper_topic2 a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Papers;
+    d2rq:refersToClassMap map:Topics;
+    d2rq:property base:subject;
+    
+    d2rq:join "rel_paper_topic.paperid = papers.paperid";
+    d2rq:join "rel_paper_topic.topicid = topics.topicid";
+    d2rq:condition "rel_paper_topic.relationtype = '2'";
+    .
+
+map:rel_person_paper a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Papers;
+    d2rq:refersToClassMap map:Persons;
+    d2rq:property base:creator;
+    
+    d2rq:join "persons.perid = rel_person_paper.personid";
+    d2rq:join "rel_person_paper.paperid = papers.paperid";
+    .
+
+map:rel_person_topic a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Persons;
+    d2rq:refersToClassMap map:Topics;
+    d2rq:property base:research_interests;
+    
+    d2rq:join "persons.perid = rel_person_topic.personid";
+    d2rq:join "rel_person_topic.topicid = topics.topicid";
+    .
+
+map:rel_person_organization a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Persons;
+    d2rq:refersToClassMap map:Organizations;
+    d2rq:property base:has_affiliation;
+    
+    d2rq:join "persons.perid = rel_person_organization.personid";
+    d2rq:join "rel_person_organization.organizationid = organizations.orgid";
+    .
+
+map:topics_ParentID a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Topics;
+    d2rq:refersToClassMap map:Topics;
+    d2rq:property base:broader;
+    
+    d2rq:join "topics.parentid = topics.topicid";
+    .
+
+map:conferences_Name a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Conferences;
+    d2rq:property base:label;
+    
+    d2rq:column "conferences.name";
+    .
+
+map:conferences_Date a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Conferences;
+    d2rq:property base:date;
+    
+    d2rq:column "conferences.date";
+    .
+
+map:conferences_Location a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Conferences;
+    d2rq:property base:location;
+    
+    d2rq:column "conferences.location";
+    .
+
+map:conferences_Datum a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Conferences;
+    d2rq:property base:startDate;
+    
+    d2rq:condition "conferences.datum! = '0000'";
+    d2rq:column "conferences.datum";
+    .
+
+map:organizations_Type_U a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Organizations;
+    d2rq:property base:type;
+    
+    d2rq:condition "organizations.type = 'U'";
+    .
+
+map:organizations_Type_D a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Organizations;
+    d2rq:property base:type;
+    
+    d2rq:condition "organizations.type = 'D'";
+    .
+
+map:organizations_Type_I a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Organizations;
+    d2rq:property base:type;
+    
+    d2rq:condition "organizations.type = 'I'";
+    .
+
+map:organizations_Name a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Organizations;
+    d2rq:property base:label;
+    
+    d2rq:column "organizations.name";
+    .
+
+map:organizations_Homepage a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Organizations;
+    d2rq:property base:homepage;
+    
+    .
+
+map:addresses_Address a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:PostalAddresses;
+    d2rq:property base:Street;
+    
+    d2rq:column "organizations.address";
+    .
+
+map:addresses_Location a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:PostalAddresses;
+    d2rq:property base:Locality;
+    
+    d2rq:column "organizations.location";
+    .
+
+map:addresses_Postcode a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:PostalAddresses;
+    d2rq:property base:Pcode;
+    
+    d2rq:column "organizations.postcode";
+    .
+
+map:addresses_Country a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:PostalAddresses;
+    d2rq:property base:Country;
+    
+    d2rq:column "organizations.country";
+    .
+
+map:papers_Title a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Papers;
+    d2rq:property base:title;
+    
+    d2rq:column "papers.title";
+    .
+
+map:papers_Abstract a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Papers;
+    d2rq:property base:abstract;
+    
+    d2rq:column "papers.abstract";
+    .
+
+map:papers_Year a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Papers;
+    d2rq:property base:date;
+    
+    d2rq:column "papers.year";
+    .
+
+map:persons_Type a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Persons;
+    d2rq:property base:type;
+    
+    .
+
+map:persons_Name a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Persons;
+    d2rq:property base:name;
+    d2rq:pattern "@@persons.firstname@@ @@persons.lastname@@";
+    .
+
+map:persons_Address a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Persons;
+    d2rq:property base:address;
+    
+    d2rq:column "persons.address";
+    .
+
+map:persons_Email a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Persons;
+    d2rq:property base:mbox;
+    
+    .
+
+map:persons_Homepage a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Persons;
+    d2rq:property base:homepage;
+    
+    .
+
+map:persons_Phone a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Persons;
+    d2rq:property base:phone;
+    
+    d2rq:column "persons.phone";
+    .
+
+map:persons_Photo a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Persons;
+    d2rq:property base:depiction;
+    
+    .
+
+map:topics_TopicName a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Topics;
+    d2rq:property base:prefLabel;
+    
+    d2rq:column "topics.topicname";
+    .
+
+map:topics_URI a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Topics;
+    d2rq:property base:sameAs;
+    
+    .
+

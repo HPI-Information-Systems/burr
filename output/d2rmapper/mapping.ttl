@@ -1,0 +1,400 @@
+@prefix map: <#> .
+@prefix db: <> .
+@prefix vocab: <vocab/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix d2rq: <http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#> .
+@prefix jdbc: <http://d2rq.org/terms/jdbc/> .
+
+map:Configuration a d2rq:Configuration;
+	d2rq:serveVocabulary false.
+
+map:database a d2rq:Database;
+	d2rq:jdbcDriver "org.postgresql.Driver";
+	d2rq:jdbcDSN "jdbc:postgresql://localhost:5432/real_world__iswc__original";
+	d2rq:username "lukaslaskowski";
+	d2rq:password "password";
+	.
+
+# Table conferences
+map:conferences a d2rq:ClassMap;
+	d2rq:dataStorage map:database;
+	d2rq:uriPattern "conferences/confid=@@conferences.confid@@";
+	d2rq:class <conferences>;
+	.
+map:conferences_confid a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:conferences;
+	d2rq:property <conferences#confid>;
+	d2rq:column "conferences.confid";
+	d2rq:datatype xsd:integer;
+	.
+map:conferences_name a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:conferences;
+	d2rq:property <conferences#name>;
+	d2rq:column "conferences.name";
+	.
+map:conferences_uri a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:conferences;
+	d2rq:property <conferences#uri>;
+	d2rq:column "conferences.uri";
+	.
+map:conferences_date a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:conferences;
+	d2rq:property <conferences#date>;
+	d2rq:column "conferences.date";
+	.
+map:conferences_location a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:conferences;
+	d2rq:property <conferences#location>;
+	d2rq:column "conferences.location";
+	.
+map:conferences_datum a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:conferences;
+	d2rq:property <conferences#datum>;
+	d2rq:column "conferences.datum";
+	d2rq:datatype xsd:dateTime;
+	.
+
+# Table organizations
+map:organizations a d2rq:ClassMap;
+	d2rq:dataStorage map:database;
+	d2rq:uriPattern "organizations/orgid=@@organizations.orgid@@";
+	d2rq:class <organizations>;
+	.
+map:organizations_orgid a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:organizations;
+	d2rq:property <organizations#orgid>;
+	d2rq:column "organizations.orgid";
+	d2rq:datatype xsd:integer;
+	.
+map:organizations_type a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:organizations;
+	d2rq:property <organizations#type>;
+	d2rq:column "organizations.type";
+	.
+map:organizations_name a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:organizations;
+	d2rq:property <organizations#name>;
+	d2rq:column "organizations.name";
+	.
+map:organizations_address a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:organizations;
+	d2rq:property <organizations#address>;
+	d2rq:column "organizations.address";
+	.
+map:organizations_location a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:organizations;
+	d2rq:property <organizations#location>;
+	d2rq:column "organizations.location";
+	.
+map:organizations_postcode a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:organizations;
+	d2rq:property <organizations#postcode>;
+	d2rq:column "organizations.postcode";
+	.
+map:organizations_country a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:organizations;
+	d2rq:property <organizations#country>;
+	d2rq:column "organizations.country";
+	.
+map:organizations_uri a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:organizations;
+	d2rq:property <organizations#uri>;
+	d2rq:column "organizations.uri";
+	.
+map:organizations_belongsto a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:organizations;
+	d2rq:property <organizations#belongsto>;
+	d2rq:column "organizations.belongsto";
+	d2rq:datatype xsd:integer;
+	.
+map:organizations_homepage a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:organizations;
+	d2rq:property <organizations#homepage>;
+	d2rq:column "organizations.homepage";
+	.
+map:organizations_belongsto__ref a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:organizations;
+	d2rq:property <organizations#ref-belongsto>;
+	d2rq:refersToClassMap map:organizations;
+	d2rq:alias "organizations AS organizations__alias";
+	d2rq:join "organizations.belongsto => organizations__alias.orgid";
+	.
+
+# Table papers
+map:papers a d2rq:ClassMap;
+	d2rq:dataStorage map:database;
+	d2rq:uriPattern "papers/paperid=@@papers.paperid@@";
+	d2rq:class <papers>;
+	.
+map:papers_paperid a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:papers;
+	d2rq:property <papers#paperid>;
+	d2rq:column "papers.paperid";
+	d2rq:datatype xsd:integer;
+	.
+map:papers_title a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:papers;
+	d2rq:property <papers#title>;
+	d2rq:column "papers.title";
+	.
+map:papers_abstract a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:papers;
+	d2rq:property <papers#abstract>;
+	d2rq:column "papers.abstract";
+	.
+map:papers_uri a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:papers;
+	d2rq:property <papers#uri>;
+	d2rq:column "papers.uri";
+	.
+map:papers_year a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:papers;
+	d2rq:property <papers#year>;
+	d2rq:column "papers.year";
+	d2rq:datatype xsd:integer;
+	.
+map:papers_conference a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:papers;
+	d2rq:property <papers#conference>;
+	d2rq:column "papers.conference";
+	d2rq:datatype xsd:integer;
+	.
+map:papers_publish a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:papers;
+	d2rq:property <papers#publish>;
+	d2rq:column "papers.publish";
+	d2rq:datatype xsd:integer;
+	.
+map:papers_conference__ref a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:papers;
+	d2rq:property <papers#ref-conference>;
+	d2rq:refersToClassMap map:conferences;
+	d2rq:join "papers.conference => conferences.confid";
+	.
+
+# Table persons
+map:persons a d2rq:ClassMap;
+	d2rq:dataStorage map:database;
+	d2rq:uriPattern "persons/perid=@@persons.perid@@";
+	d2rq:class <persons>;
+	.
+map:persons_perid a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:persons;
+	d2rq:property <persons#perid>;
+	d2rq:column "persons.perid";
+	d2rq:datatype xsd:integer;
+	.
+map:persons_type a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:persons;
+	d2rq:property <persons#type>;
+	d2rq:column "persons.type";
+	.
+map:persons_firstname a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:persons;
+	d2rq:property <persons#firstname>;
+	d2rq:column "persons.firstname";
+	.
+map:persons_lastname a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:persons;
+	d2rq:property <persons#lastname>;
+	d2rq:column "persons.lastname";
+	.
+map:persons_address a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:persons;
+	d2rq:property <persons#address>;
+	d2rq:column "persons.address";
+	.
+map:persons_email a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:persons;
+	d2rq:property <persons#email>;
+	d2rq:column "persons.email";
+	.
+map:persons_homepage a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:persons;
+	d2rq:property <persons#homepage>;
+	d2rq:column "persons.homepage";
+	.
+map:persons_phone a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:persons;
+	d2rq:property <persons#phone>;
+	d2rq:column "persons.phone";
+	.
+map:persons_uri a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:persons;
+	d2rq:property <persons#uri>;
+	d2rq:column "persons.uri";
+	.
+map:persons_photo a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:persons;
+	d2rq:property <persons#photo>;
+	d2rq:column "persons.photo";
+	.
+
+# Table rel_paper_topic
+map:rel_paper_topic a d2rq:ClassMap;
+	d2rq:dataStorage map:database;
+	d2rq:uriPattern "rel_paper_topic/paperid=@@rel_paper_topic.paperid@@;topicid=@@rel_paper_topic.topicid@@";
+	d2rq:class <rel_paper_topic>;
+	.
+map:rel_paper_topic_paperid a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:rel_paper_topic;
+	d2rq:property <rel_paper_topic#paperid>;
+	d2rq:column "rel_paper_topic.paperid";
+	d2rq:datatype xsd:integer;
+	.
+map:rel_paper_topic_topicid a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:rel_paper_topic;
+	d2rq:property <rel_paper_topic#topicid>;
+	d2rq:column "rel_paper_topic.topicid";
+	d2rq:datatype xsd:integer;
+	.
+map:rel_paper_topic_relationtype a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:rel_paper_topic;
+	d2rq:property <rel_paper_topic#relationtype>;
+	d2rq:column "rel_paper_topic.relationtype";
+	d2rq:datatype xsd:integer;
+	.
+map:rel_paper_topic_paperid__ref a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:rel_paper_topic;
+	d2rq:property <rel_paper_topic#ref-paperid>;
+	d2rq:refersToClassMap map:papers;
+	d2rq:join "rel_paper_topic.paperid => papers.paperid";
+	.
+map:rel_paper_topic_topicid__ref a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:rel_paper_topic;
+	d2rq:property <rel_paper_topic#ref-topicid>;
+	d2rq:refersToClassMap map:topics;
+	d2rq:join "rel_paper_topic.topicid => topics.topicid";
+	.
+
+# Table rel_person_organization
+map:rel_person_organization a d2rq:ClassMap;
+	d2rq:dataStorage map:database;
+	d2rq:uriPattern "rel_person_organization/personid=@@rel_person_organization.personid@@;organizationid=@@rel_person_organization.organizationid@@";
+	d2rq:class <rel_person_organization>;
+	.
+map:rel_person_organization_personid a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:rel_person_organization;
+	d2rq:property <rel_person_organization#personid>;
+	d2rq:column "rel_person_organization.personid";
+	d2rq:datatype xsd:integer;
+	.
+map:rel_person_organization_organizationid a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:rel_person_organization;
+	d2rq:property <rel_person_organization#organizationid>;
+	d2rq:column "rel_person_organization.organizationid";
+	d2rq:datatype xsd:integer;
+	.
+map:rel_person_organization_personid__ref a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:rel_person_organization;
+	d2rq:property <rel_person_organization#ref-personid>;
+	d2rq:refersToClassMap map:persons;
+	d2rq:join "rel_person_organization.personid => persons.perid";
+	.
+map:rel_person_organization_organizationid__ref a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:rel_person_organization;
+	d2rq:property <rel_person_organization#ref-organizationid>;
+	d2rq:refersToClassMap map:organizations;
+	d2rq:join "rel_person_organization.organizationid => organizations.orgid";
+	.
+
+# Table rel_person_paper
+map:rel_person_paper a d2rq:ClassMap;
+	d2rq:dataStorage map:database;
+	d2rq:uriPattern "rel_person_paper/personid=@@rel_person_paper.personid@@;paperid=@@rel_person_paper.paperid@@";
+	d2rq:class <rel_person_paper>;
+	.
+map:rel_person_paper_personid a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:rel_person_paper;
+	d2rq:property <rel_person_paper#personid>;
+	d2rq:column "rel_person_paper.personid";
+	d2rq:datatype xsd:integer;
+	.
+map:rel_person_paper_paperid a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:rel_person_paper;
+	d2rq:property <rel_person_paper#paperid>;
+	d2rq:column "rel_person_paper.paperid";
+	d2rq:datatype xsd:integer;
+	.
+map:rel_person_paper_paperid__ref a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:rel_person_paper;
+	d2rq:property <rel_person_paper#ref-paperid>;
+	d2rq:refersToClassMap map:papers;
+	d2rq:join "rel_person_paper.paperid => papers.paperid";
+	.
+map:rel_person_paper_personid__ref a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:rel_person_paper;
+	d2rq:property <rel_person_paper#ref-personid>;
+	d2rq:refersToClassMap map:persons;
+	d2rq:join "rel_person_paper.personid => persons.perid";
+	.
+
+# Table rel_person_topic
+map:rel_person_topic a d2rq:ClassMap;
+	d2rq:dataStorage map:database;
+	d2rq:uriPattern "rel_person_topic/personid=@@rel_person_topic.personid@@;topicid=@@rel_person_topic.topicid@@";
+	d2rq:class <rel_person_topic>;
+	.
+map:rel_person_topic_personid a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:rel_person_topic;
+	d2rq:property <rel_person_topic#personid>;
+	d2rq:column "rel_person_topic.personid";
+	d2rq:datatype xsd:integer;
+	.
+map:rel_person_topic_topicid a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:rel_person_topic;
+	d2rq:property <rel_person_topic#topicid>;
+	d2rq:column "rel_person_topic.topicid";
+	d2rq:datatype xsd:integer;
+	.
+map:rel_person_topic_personid__ref a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:rel_person_topic;
+	d2rq:property <rel_person_topic#ref-personid>;
+	d2rq:refersToClassMap map:persons;
+	d2rq:join "rel_person_topic.personid => persons.perid";
+	.
+map:rel_person_topic_topicid__ref a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:rel_person_topic;
+	d2rq:property <rel_person_topic#ref-topicid>;
+	d2rq:refersToClassMap map:topics;
+	d2rq:join "rel_person_topic.topicid => topics.topicid";
+	.
+
+# Table topics
+map:topics a d2rq:ClassMap;
+	d2rq:dataStorage map:database;
+	d2rq:uriPattern "topics/topicid=@@topics.topicid@@";
+	d2rq:class <topics>;
+	.
+map:topics_topicid a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:topics;
+	d2rq:property <topics#topicid>;
+	d2rq:column "topics.topicid";
+	d2rq:datatype xsd:integer;
+	.
+map:topics_topicname a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:topics;
+	d2rq:property <topics#topicname>;
+	d2rq:column "topics.topicname";
+	.
+map:topics_uri a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:topics;
+	d2rq:property <topics#uri>;
+	d2rq:column "topics.uri";
+	.
+map:topics_parentid a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:topics;
+	d2rq:property <topics#parentid>;
+	d2rq:column "topics.parentid";
+	d2rq:datatype xsd:integer;
+	.
+map:topics_parentid__ref a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:topics;
+	d2rq:property <topics#ref-parentid>;
+	d2rq:refersToClassMap map:topics;
+	d2rq:alias "topics AS topics__alias";
+	d2rq:join "topics.parentid => topics__alias.topicid";
+	.
+

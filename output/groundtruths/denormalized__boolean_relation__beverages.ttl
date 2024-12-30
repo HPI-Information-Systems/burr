@@ -1,0 +1,118 @@
+@prefix d2rq: <http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#> .
+@prefix cmt: <http://cmt/> .
+@prefix map: <http://mapping/> .
+@prefix jdbc: <http://d2rq.org/terms/jdbc/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix base: </base/> .
+
+map:database a d2rq:Database;
+	d2rq:jdbcDriver "org.postgresql.Driver";
+	d2rq:jdbcDSN "jdbc:postgresql://localhost:5432/denormalized__boolean_relation__beverages";
+	d2rq:username "lukaslaskowski";
+	jdbc:keepAlive "3600";				# sends noop-query every 3600 seconds
+	.
+
+map:Beverage a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:Beverage;
+    d2rq:uriPattern "@@beverage.id@@";
+    
+    
+    .
+map:IngredientCaffeine a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:Ingredient;
+    d2rq:uriPattern "caffeine";
+    
+    
+    .
+map:IngredientSugar a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:Ingredient;
+    d2rq:uriPattern "sugar";
+    
+    
+    .
+map:IngredientAlcohol a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:Ingredient;
+    d2rq:uriPattern "alcohol";
+    
+    
+    .
+map:IngredientDairy a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:Ingredient;
+    d2rq:uriPattern "dairy";
+    
+    
+    .
+map:IngredientGluten a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:Ingredient;
+    d2rq:uriPattern "gluten";
+    
+    
+    .
+map:IngredientNuts a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:Ingredient;
+    d2rq:uriPattern "nuts";
+    
+    
+    .
+map:contains_Beverage_IngredientAlcohol a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Beverage;
+    d2rq:refersToClassMap map:IngredientAlcohol;
+    d2rq:property base:contains;
+    
+    d2rq:condition "@@beverage.contains_alcohol@@ = 'True'";
+    .
+
+map:contains_Beverage_IngredientCaffeine a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Beverage;
+    d2rq:refersToClassMap map:IngredientCaffeine;
+    d2rq:property base:contains;
+    
+    d2rq:condition "@@beverage.contains_caffeine@@ = 'True'";
+    .
+
+map:contains_Beverage_IngredientSugar a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Beverage;
+    d2rq:refersToClassMap map:IngredientSugar;
+    d2rq:property base:contains;
+    
+    d2rq:condition "@@beverage.contains_sugar@@ = 'True'";
+    .
+
+map:contains_Beverage_IngredientDairy a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Beverage;
+    d2rq:refersToClassMap map:IngredientDairy;
+    d2rq:property base:contains;
+    
+    d2rq:condition "@@beverage.contains_dairy@@ = 'True'";
+    .
+
+map:contains_Beverage_IngredientGluten a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Beverage;
+    d2rq:refersToClassMap map:IngredientGluten;
+    d2rq:property base:contains;
+    
+    d2rq:condition "@@beverage.contains_gluten@@ = 'True'";
+    .
+
+map:contains_Beverage_IngredientNuts a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Beverage;
+    d2rq:refersToClassMap map:IngredientNuts;
+    d2rq:property base:contains;
+    
+    d2rq:condition "@@beverage.contains_nuts@@ = 'True'";
+    .
+
+map:name_Beverage_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Beverage;
+    d2rq:property base:name;
+    
+    d2rq:column "beverage.name";
+    .
+

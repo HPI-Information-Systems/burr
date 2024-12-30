@@ -1,0 +1,91 @@
+@prefix d2rq: <http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#> .
+@prefix cmt: <http://cmt/> .
+@prefix map: <http://mapping/> .
+@prefix jdbc: <http://d2rq.org/terms/jdbc/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix base: </base/> .
+
+map:database a d2rq:Database;
+	d2rq:jdbcDriver "org.postgresql.Driver";
+	d2rq:jdbcDSN "jdbc:postgresql://localhost:5432/denormalized__multiple_concepts_same_table__library";
+	d2rq:username "lukaslaskowski";
+	jdbc:keepAlive "3600";				# sends noop-query every 3600 seconds
+	.
+
+map:Book a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:Book;
+    d2rq:uriPattern "@@book.isbn@@";
+    
+    
+    .
+map:Author a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:Author;
+    d2rq:uriPattern "@@book.author@@";
+    
+    
+    .
+map:writtenBy_Book_Author a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Book;
+    d2rq:refersToClassMap map:Author;
+    d2rq:property base:writtenBy;
+    
+    .
+
+map:name_Book_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Book;
+    d2rq:property base:name;
+    
+    d2rq:column "book.name";
+    .
+
+map:publicationYear_Book_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Book;
+    d2rq:property base:publicationYear;
+    
+    d2rq:column "book.publication_year";
+    .
+
+map:copiesAvailable_Book_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Book;
+    d2rq:property base:copiesAvailable;
+    
+    d2rq:column "book.copies_available";
+    .
+
+map:isbn_Book_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Book;
+    d2rq:property base:isbn;
+    
+    d2rq:column "book.isbn";
+    .
+
+map:name_Author_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Author;
+    d2rq:property base:name;
+    
+    d2rq:column "book.author";
+    .
+
+map:birthYear_Author_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Author;
+    d2rq:property base:birthYear;
+    
+    d2rq:column "book.birth_year";
+    .
+
+map:nationality_Author_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Author;
+    d2rq:property base:nationality;
+    
+    d2rq:column "book.nationality";
+    .
+
+map:address_Author_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Author;
+    d2rq:property base:address;
+    
+    d2rq:column "book.address";
+    .
+

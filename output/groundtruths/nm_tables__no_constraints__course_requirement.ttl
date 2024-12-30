@@ -1,0 +1,51 @@
+@prefix d2rq: <http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#> .
+@prefix cmt: <http://cmt/> .
+@prefix map: <http://mapping/> .
+@prefix jdbc: <http://d2rq.org/terms/jdbc/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix base: </base/> .
+
+map:database a d2rq:Database;
+	d2rq:jdbcDriver "org.postgresql.Driver";
+	d2rq:jdbcDSN "jdbc:postgresql://localhost:5432/nm_tables__no_constraints__course_requirement";
+	d2rq:username "lukaslaskowski";
+	jdbc:keepAlive "3600";				# sends noop-query every 3600 seconds
+	.
+
+map:Course a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:Course;
+    d2rq:uriPattern "@@course.id@@";
+    
+    
+    .
+map:Requirement a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:Requirement;
+    d2rq:uriPattern "@@requirement.id@@";
+    
+    
+    .
+map:has_requirement_Course_Requirement a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Course;
+    d2rq:refersToClassMap map:Requirement;
+    d2rq:property base:has_requirement;
+    
+    d2rq:join "course.id = course_requirement.course_id";
+    d2rq:join "requirement.id = course_requirement.requirement_id";
+    .
+
+map:name_Course_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Course;
+    d2rq:property base:name;
+    
+    d2rq:column "course.name";
+    .
+
+map:name_Requirement_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Requirement;
+    d2rq:property base:name;
+    
+    d2rq:column "requirement.name";
+    .
+

@@ -1,0 +1,84 @@
+@prefix d2rq: <http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#> .
+@prefix cmt: <http://cmt/> .
+@prefix map: <http://mapping/> .
+@prefix jdbc: <http://d2rq.org/terms/jdbc/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix base: </base/> .
+
+map:database a d2rq:Database;
+	d2rq:jdbcDriver "org.postgresql.Driver";
+	d2rq:jdbcDSN "jdbc:postgresql://localhost:5432/denormalized__same_concept_multiple_tables__library";
+	d2rq:username "lukaslaskowski";
+	jdbc:keepAlive "3600";				# sends noop-query every 3600 seconds
+	.
+
+map:BookA a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:Book;
+    d2rq:uriPattern "@@book.isbn@@";
+    
+    
+    .
+map:BookB a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:Book;
+    d2rq:uriPattern "@@book_2.isbn@@";
+    
+    
+    .
+map:name_BookA_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:BookA;
+    d2rq:property base:name;
+    
+    d2rq:column "book.name";
+    .
+
+map:publicationYear_BookA_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:BookA;
+    d2rq:property base:publicationYear;
+    
+    d2rq:column "book.publication_year";
+    .
+
+map:copiesAvailable_BookA_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:BookA;
+    d2rq:property base:copiesAvailable;
+    
+    d2rq:column "book.copies_available";
+    .
+
+map:isbn_BookA_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:BookA;
+    d2rq:property base:isbn;
+    
+    d2rq:column "book.isbn";
+    .
+
+map:name_BookB_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:BookB;
+    d2rq:property base:name;
+    
+    d2rq:column "book_2.name";
+    .
+
+map:publicationYear_BookB_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:BookB;
+    d2rq:property base:publicationYear;
+    
+    d2rq:column "book_2.publication_year";
+    .
+
+map:copiesAvailable_BookB_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:BookB;
+    d2rq:property base:copiesAvailable;
+    
+    d2rq:column "book_2.copies_available";
+    .
+
+map:isbn_BookB_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:BookB;
+    d2rq:property base:isbn;
+    
+    d2rq:column "book_2.isbn";
+    .
+

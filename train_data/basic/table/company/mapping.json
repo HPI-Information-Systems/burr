@@ -1,0 +1,10 @@
+{
+    "classes": [
+        {
+            "id": "@@company.id@@",
+            "class": "Company"
+        }
+    ],
+    "object_properties": [],
+    "data_properties": []
+}

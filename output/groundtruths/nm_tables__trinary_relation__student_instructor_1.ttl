@@ -1,0 +1,103 @@
+@prefix d2rq: <http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#> .
+@prefix cmt: <http://cmt/> .
+@prefix map: <http://mapping/> .
+@prefix jdbc: <http://d2rq.org/terms/jdbc/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix base: </base/> .
+
+map:database a d2rq:Database;
+	d2rq:jdbcDriver "org.postgresql.Driver";
+	d2rq:jdbcDSN "jdbc:postgresql://localhost:5432/nm_tables__trinary_relation__student_instructor_1";
+	d2rq:username "lukaslaskowski";
+	jdbc:keepAlive "3600";				# sends noop-query every 3600 seconds
+	.
+
+map:PersonInstructor a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:Person;
+    d2rq:uriPattern "@@instructor.id@@";
+    
+    
+    .
+map:PersonStudent a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:Person;
+    d2rq:uriPattern "@@student.id@@";
+    
+    
+    .
+map:Student a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:Student;
+    d2rq:uriPattern "@@student.id@@";
+    
+    
+    .
+map:Instructor a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:Instructor;
+    d2rq:uriPattern "@@instructor.id@@";
+    
+    
+    .
+map:Course a d2rq:ClassMap;
+    d2rq:dataStorage map:database;
+    d2rq:class base:Course;
+    d2rq:uriPattern "@@course.id@@";
+    
+    
+    .
+map:teaches_Instructor_Course a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Instructor;
+    d2rq:refersToClassMap map:Course;
+    d2rq:property base:teaches;
+    
+    d2rq:join "student.id = student_course_instructor.sid";
+    d2rq:join "instructor.id = student_course_instructor.iid";
+    d2rq:join "course.id = student_course_instructor.cid";
+    .
+
+map:participates_Student_Course a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Student;
+    d2rq:refersToClassMap map:Course;
+    d2rq:property base:participates;
+    
+    d2rq:join "student.id = student_course_instructor.sid";
+    d2rq:join "course.id = student_course_instructor.cid";
+    .
+
+map:name_Student_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Student;
+    d2rq:property base:name;
+    
+    d2rq:column "student.name";
+    .
+
+map:name_Instructor_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Instructor;
+    d2rq:property base:name;
+    
+    d2rq:column "instructor.name";
+    .
+
+map:name_Course_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Course;
+    d2rq:property base:name;
+    
+    d2rq:column "course.name";
+    .
+
+map:credits_Course_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Course;
+    d2rq:property base:credits;
+    
+    d2rq:column "course.credits";
+    .
+
+map:max_students_Course_None a d2rq:PropertyBridge;
+    d2rq:belongsToClassMap map:Course;
+    d2rq:property base:max_students;
+    
+    d2rq:column "course.max_students";
+    .
+

@@ -1,0 +1,43 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix base: <https://base_ontology.com#> .
+@prefix schema: <http://schema.org/> .
+
+<#TriplesMapProduct> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "Product" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com/Product/{productId}";
+        rr:class schema:Product;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:productId;
+        rr:objectMap [ rr:column "productId" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:productName;
+        rr:objectMap [ rr:column "productName" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasFeature;
+        rr:objectMap [ rr:parentTriplesMap <#TriplesMapFeature> ];
+    ].
+
+<#TriplesMapFeature> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "Feature" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com/Feature/{featureId}";
+        rr:class schema:PropertyValue;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:featureId;
+        rr:objectMap [ rr:column "featureId" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:featureName;
+        rr:objectMap [ rr:column "featureName" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:isFeatureOf;
+        rr:objectMap [ rr:parentTriplesMap <#TriplesMapProduct> ];
+    ].

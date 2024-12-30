@@ -1,0 +1,45 @@
+{
+  "classes" : [ {
+    "id" : "@@course.id@@/",
+    "name" : "ClassMap_course",
+    "prefix" : "base",
+    "subClassOf" : null,
+    "join" : null,
+    "class" : "course"
+  }, {
+    "id" : "@@requirement.id@@/",
+    "name" : "ClassMap_requirement",
+    "prefix" : "base",
+    "subClassOf" : null,
+    "join" : null,
+    "class" : "requirement"
+  } ],
+  "data_properties" : [ {
+    "property" : "hasId",
+    "type" : "xsd:integer",
+    "column" : "course.Id",
+    "belongsToClassMap" : "ClassMap_course"
+  }, {
+    "property" : "hasName",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "requirement.Name",
+    "belongsToClassMap" : "ClassMap_requirement"
+  }, {
+    "property" : "hasName",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "course.Name",
+    "belongsToClassMap" : "ClassMap_course"
+  }, {
+    "property" : "hasId",
+    "type" : "xsd:integer",
+    "column" : "requirement.Id",
+    "belongsToClassMap" : "ClassMap_requirement"
+  } ],
+  "object_properties" : [ {
+    "property" : "hasCourseRequirement",
+    "join" : [ "course.id = course_requirement.course_id", "requirement.id = course_requirement.requirement_id" ],
+    "inverseOf" : "hasRequirementCourse",
+    "belongsToClassMap" : "ClassMap_requirement",
+    "refersToClassMap" : "ClassMap_course"
+  } ]
+}

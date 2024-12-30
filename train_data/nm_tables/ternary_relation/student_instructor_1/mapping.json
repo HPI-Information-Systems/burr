@@ -1,0 +1,94 @@
+{
+    "classes": [
+        {
+            "id": "@@instructor.id@@",
+            "class": "Person",
+            "name": "PersonInstructor"
+        },
+        {
+            "id": "@@student.id@@",
+            "class": "Person",
+            "name": "PersonStudent"
+        },
+        {
+            "id": "@@student.id@@",
+            "class": "Student",
+            "name": "Student",
+            "subClassOf": [
+                "Person"
+            ]
+        },
+        {
+            "id": "@@instructor.id@@",
+            "class": "Instructor",
+            "name": "Instructor",
+            "subClassOf": [
+                "Person"
+            ]
+        },
+        {
+            "id": "@@course.id@@",
+            "class": "Course",
+            "name": "Course"
+        }
+    ],
+    "object_properties": [
+        {
+            "property": "teaches",
+            "belongsToClassMap": "Instructor",
+            "refersToClassMap": "Course",
+            "join": [
+                "student.id = student_course_instructor.sid",
+                "instructor.id = student_course_instructor.iid"
+            ]
+        },
+        {
+            "property": "participates",
+            "belongsToClassMap": "Student",
+            "refersToClassMap": "Course",
+            "join": [
+                "student.id = student_course_instructor.sid",
+                "course.id = student_course_instructor.cid"
+            ]
+        },
+        {
+            "property": "teaches",
+            "belongsToClassMap": "Instructor",
+            "refersToClassMap": "Course",
+            "join": [
+                "instructor.id = student_course_instructor.iid",
+                "course.id = student_course_instructor.cid"
+            ]
+        }
+    ],
+    "data_properties": [
+        {
+            "property": "name",
+            "belongsToClassMap": "Student",
+            "column": "student.name"
+        },
+        {
+            "property": "name",
+            "belongsToClassMap": "Instructor",
+            "column": "instructor.name"
+        },
+        {
+            "property": "name",
+            "belongsToClassMap": "Course",
+            "column": "course.name",
+            "type": "string"
+        },
+        {
+            "property": "credits",
+            "belongsToClassMap": "Course",
+            "column": "course.credits",
+            "type": "integer"
+        }, 
+        {
+            "property": "max_students",
+            "belongsToClassMap": "Course",
+            "column": "course.max_students",
+            "type": "integer"
+        }
+    ]
+}

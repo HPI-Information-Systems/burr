@@ -1,0 +1,73 @@
+{
+  "classes" : [ {
+    "id" : "@@student_course_instructor.sid@@/@@student_course_instructor.iid@@/@@student_course_instructor.cid@@/",
+    "name" : "ClassMap_student_course_instructor",
+    "prefix" : "base",
+    "subClassOf" : null,
+    "join" : null,
+    "class" : "student_course_instructor"
+  }, {
+    "id" : "@@instructor.id@@/",
+    "name" : "ClassMap_instructor",
+    "prefix" : "base",
+    "subClassOf" : null,
+    "join" : null,
+    "class" : "instructor"
+  }, {
+    "id" : "@@student.id@@/",
+    "name" : "ClassMap_student",
+    "prefix" : "base",
+    "subClassOf" : null,
+    "join" : null,
+    "class" : "student"
+  }, {
+    "id" : "@@course.id@@/",
+    "name" : "ClassMap_course",
+    "prefix" : "base",
+    "subClassOf" : null,
+    "join" : null,
+    "class" : "course"
+  } ],
+  "data_properties" : [ {
+    "property" : "hasId",
+    "type" : "xsd:integer",
+    "column" : "course.Id",
+    "belongsToClassMap" : "ClassMap_course"
+  }, {
+    "property" : "hasName",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "instructor.Name",
+    "belongsToClassMap" : "ClassMap_instructor"
+  }, {
+    "property" : "hasName",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "course.Name",
+    "belongsToClassMap" : "ClassMap_course"
+  }, {
+    "property" : "hasId",
+    "type" : "xsd:integer",
+    "column" : "student.Id",
+    "belongsToClassMap" : "ClassMap_student"
+  }, {
+    "property" : "hasMax_students",
+    "type" : "xsd:integer",
+    "column" : "course.Max_students",
+    "belongsToClassMap" : "ClassMap_course"
+  }, {
+    "property" : "hasCredits",
+    "type" : "xsd:integer",
+    "column" : "course.Credits",
+    "belongsToClassMap" : "ClassMap_course"
+  }, {
+    "property" : "hasId",
+    "type" : "xsd:integer",
+    "column" : "instructor.Id",
+    "belongsToClassMap" : "ClassMap_instructor"
+  }, {
+    "property" : "hasName",
+    "type" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral",
+    "column" : "student.Name",
+    "belongsToClassMap" : "ClassMap_student"
+  } ],
+  "object_properties" : [ ]
+}

@@ -1,0 +1,53 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix base: <https://base_ontology.com#> .
+@prefix schema: <http://schema.org/> .
+
+<#TriplesMapPerson> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "PersonTable" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com#Person/{PersonId}";
+        rr:class base:Person;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasId;
+        rr:objectMap [ rr:column "PersonId" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasName;
+        rr:objectMap [ rr:column "Name" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasPhone;
+        rr:objectMap [ rr:column "Phone" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate base:hasAddress;
+        rr:objectMap [
+            rr:template "https://base_ontology.com#Address/{AddressId}";
+        ];
+    ].
+
+<#TriplesMapAddress> a rr:TriplesMap;
+    rr:logicalTable [ rr:tableName "AddressTable" ];
+    rr:subjectMap [
+        rr:template "https://base_ontology.com#Address/{AddressId}";
+        rr:class schema:address;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate schema:streetAddress;
+        rr:objectMap [ rr:column "StreetAddress" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate schema:postalCode;
+        rr:objectMap [ rr:column "PostalCode" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate schema:addressLocality;
+        rr:objectMap [ rr:column "Locality" ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate schema:addressCountry;
+        rr:objectMap [ rr:column "Country" ];
+    ].
