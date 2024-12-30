@@ -15,8 +15,6 @@ class MappingBasedPrecision(Metric):
         c1 = Counter(el1) 
         c2 = Counter(el2)  
 
-        print("calculating bag-based precision")
-
         intersection_sum = sum(min(c1[x], c2[x]) for x in (c1.keys() & c2.keys()))
 
         total_pred = sum(c2.values())
@@ -43,7 +41,6 @@ class MappingBasedRecall(Metric):
         c1 = Counter(el1)
         c2 = Counter(el2)
 
-        print("calculating bag-based recall")
 
         intersection_sum = sum(min(c1[x], c2[x]) for x in (c1.keys() & c2.keys()))
 

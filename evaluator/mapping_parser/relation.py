@@ -145,10 +145,6 @@ def equality_by_property_name_and_classes(edge1: Relation, edge2: Relation) -> b
     return same_property and outgoing_class_equal and ingoing_class_equal
 
 def equality_by_edge_query(edge1: Relation, edge2: Relation) -> bool:
-    print(edge1)
-    print(edge2)
-    print(edge1.sql_sql_expression)
-    print(edge2.sql_sql_expression)
     if not isinstance(edge2, Relation):
         return False
     joins_not_none = edge1.sql_join is not None and edge2.sql_join is not None

@@ -1,7 +1,7 @@
 {
     "classes": [
         {
-            "id": "@@product.name@@",
+            "id": "@@product.id@@",
             "class": "Product",
             "name": "Product"
         },
