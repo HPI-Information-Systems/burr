@@ -8,7 +8,7 @@ from evaluator.metrics.caclulate_metrics import calculate_metrics
 from evaluator.mapping_parser.mapping import JsonMapping, D2RQMapping
 
 class Experiment:
-    def __init__(self, name, database_name, database, scenario_id, group, base_scenario, scenario, solution, sql_file_path, meta_file_path, groundtruth_mapping_path, tag, use_wandb=False):
+    def __init__(self, name, database_name, database, scenario_id, group, base_scenario, scenario, solution, sql_file_path, meta_file_path, groundtruth_mapping_path, tag, use_wandb=False, schema_path=None):
         run = wandb.init(
             project="rdb2onto",
             mode = "online" if use_wandb else "disabled",
@@ -29,6 +29,7 @@ class Experiment:
         self.scenario_id = scenario_id
         self.database_name = database_name
         self.sql_file_path = sql_file_path
+        self.schema_path = schema_path
         self.groundtruth_mapping_path = groundtruth_mapping_path
         with open(meta_file_path) as json_file:
                 self.meta = json.load(json_file)
@@ -95,9 +96,11 @@ class Experiment:
         self.setup(requires_pks=requires_pks)
         train_config = solution_config["train"]
         test_config = solution_config["test"]
+        print(train_config)
+        print(test_config)
         trained_model, training_time = self.solution.train(**train_config)
         print(test_config)
-        output_mapping, inference_time = self.solution.test(**test_config, model=trained_model, meta=self.meta, database_name=self.database_name)
+        output_mapping, inference_time = self.solution.test(**test_config, model=trained_model, sql_file_path=self.sql_file_path, meta=self.meta, database_name=self.database_name, schema_path=self.schema_path)
         d2rq = output_mapping.create_ttl_string(self.database_name)
         print(d2rq)
         output_path = os.path.join("./output", self.solution.solution_name, f"{self.scenario_id}.ttl")

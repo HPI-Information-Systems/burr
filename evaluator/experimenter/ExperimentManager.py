@@ -33,13 +33,14 @@ class ExperimentManager():
                         system_config = system["config"]
                         system = system["name"]
                         print(f"Running experiment {experiment_name} for scenario {scenario} (Base scenario: {base_scenario}, group: {group}) with system {system}")
-                        metric_result, runtime = self.run_experiment(experiment_name, database_name, system, system_config, scenario_id, group, base_scenario, scenario, scenario_config["sql_file"], scenario_config["meta_file_path"], scenario_config["groundtruth_mapping"])
+                        schema_path = scenario_config["schema_path"] if "schema_path" in scenario_config else None
+                        metric_result, runtime = self.run_experiment(experiment_name, database_name, system, system_config, scenario_id, group, base_scenario, scenario, scenario_config["sql_file"], scenario_config["meta_file_path"], scenario_config["groundtruth_mapping"], schema_path=schema_path)
                         print("Results:", metric_result)
                         wandb.log(metric_result)
                         wandb.log({"training_time": runtime["training"], "inference_time": runtime["inference"]})
                         wandb.finish()
         
-    def run_experiment(self, experiment_name, database_name, system, system_config,scenario_id, group, base_scenario, scenario, sql_file_path, meta_file_path, groundtruth_mapping_path):
+    def run_experiment(self, experiment_name, database_name, system, system_config,scenario_id, group, base_scenario, scenario, sql_file_path, meta_file_path, groundtruth_mapping_path,schema_path=None):
         if system == "rdb2onto":
             module = importlib.import_module("evaluator.experimenter.solutions.rdb2onto")
             system = getattr(module, "RDB2Onto")
@@ -49,11 +50,14 @@ class ExperimentManager():
         elif system == "d2rmapper":
             module = importlib.import_module("evaluator.experimenter.solutions.d2rmapper")
             system = getattr(module, "D2RMapper")
+        elif system == "chatgpt":
+            module = importlib.import_module("evaluator.experimenter.solutions.chatgpt")
+            system = getattr(module, "ChatGPT")
         else:
             raise ValueError("System not found")
         print("configuration", self.config)
         system = system(**self.config[system.solution_name] if system.solution_name in self.config else {})
-        experiment = Experiment(experiment_name, database_name=database_name, scenario_id=scenario_id, database=self.database, group=group, base_scenario=base_scenario, scenario=scenario, solution=system, sql_file_path=sql_file_path, meta_file_path=meta_file_path, groundtruth_mapping_path=groundtruth_mapping_path, tag=self.tag, use_wandb=self.use_wandb)
+        experiment = Experiment(experiment_name, database_name=database_name, scenario_id=scenario_id, database=self.database, group=group, base_scenario=base_scenario, scenario=scenario, solution=system, sql_file_path=sql_file_path, meta_file_path=meta_file_path, groundtruth_mapping_path=groundtruth_mapping_path, tag=self.tag, use_wandb=self.use_wandb, schema_path=schema_path)
         try:
             output = experiment.run(system_config)
         except Exception:

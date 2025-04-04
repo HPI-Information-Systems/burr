@@ -76,6 +76,7 @@ class D2RQMapping(BaseMapping):
                 else:
                     parent_classes = [self.shorten_uri(self.parse_additionalClassDefinitionProperty(class_map["d2rq:additionalClassDefinitionProperty"]))]
             #self.shorten_uri(class_map["d2rq:class"])
+            print("DHAKJD", class_map)
             classes.append(ClassMap(
                         #fix first three
                         prefix="base",

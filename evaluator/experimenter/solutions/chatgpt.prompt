@@ -1,0 +1,11 @@
+Given the following relational database schema:
+${database_schema}
+Generate an R2RML mapping for the above schema. Your response must include nothing else than the complete mapping code. Do not provide any explanations, comments, or additional formatting.
+Just return plain text, also no "```".
+Ensure that when creating the URIs of the instances, integrate all columns that are required to uniquely identify instances of the concept.
+Ensure you add all the necessary prefixes at the beginning of the R2RML-file.
+Ensure you correctly add the references to the prefixes in each triple definition block. Add all object and data properties to the correct TriplesMap. Do not create an additional TriplesMap for object properties, but add them directly to the first.
+Ensure you also include the object proprties that connect to classes. Consider the correct join partners.
+IMPORTANT! The R2RML mapping will reference database tables not a JSON.
+Follow this example's format (if present) for the definition of classes mappings:
+${example_prompt}

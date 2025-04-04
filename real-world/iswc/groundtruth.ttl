@@ -96,7 +96,7 @@ map:organizations_ADR a d2rq:PropertyBridge;
 map:PostalAddresses a d2rq:ClassMap;
     d2rq:dataStorage map:database;
 	d2rq:class vcard:Address;
-    d2rq:bNodeIdColumns "organizations.orgid,";
+    d2rq:bNodeIdColumns "organizations.orgid";
     .
 map:addresses_Address a d2rq:PropertyBridge;
     d2rq:belongsToClassMap map:PostalAddresses;

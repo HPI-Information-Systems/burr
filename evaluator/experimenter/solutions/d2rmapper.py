@@ -24,7 +24,7 @@ class D2RMapper(BaseSolution):
         print("Training not required for D2RMapper")
         return None, 0
 
-    def test(self, database_name, script_path, output_path, meta, model):
+    def test(self, database_name, script_path, sql_file_path, output_path, meta,schema_path, model):
         print("Running d2r_mapper")
         assert os.path.exists(script_path), "Script path does not exist"
         if (not os.path.exists(os.path.dirname(output_path))):

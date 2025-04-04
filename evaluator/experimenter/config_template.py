@@ -23,14 +23,24 @@ systems = {
                 "script_path": "./d2rq/generate-mapping",
                 "output_path": "./output/d2rmapper/mapping.ttl",
             }
-        }   
+        },
+        "chatgpt": {
+            "train": {
+            },
+            "test": {
+                "chatbot": "gpt-4o",
+                "output_path": "./output/chatgpt/mapping.ttl",
+                # "script_path": "./evaluator/experimenter/solutions/chatgpt.py",
+                # "output_path": "./output/chatgpt/mapping.ttl",
+            }
+        }
 }
 
 single_scenario = {
     "nm_tables": {
         "trinary_relation": {
                 "student_instructor_1": {
-                    #"database_name": "hierarchy__two_tables__reviewer_1",
+                    "database_name": "hierarchy__two_tables__reviewer_1",
                     "sql_file": "train_data/nm_tables/trinary_relation/student_instructor_1/schema.sql",
                     "groundtruth_mapping": "train_data/nm_tables/trinary_relation/student_instructor_1/mapping.json",
                     "meta_file_path": "./evaluator/mapping_parser/d2rq_mapping/base_meta.json"
@@ -40,84 +50,84 @@ single_scenario = {
 }
 
 scenarios = {
-    "attributes": {
+    # "attributes": {
         
-        # "cryptic_attribute_names": {
-        #     "person": {
-        #         "sql_file": "train_data/attributes/cryptic_attribute_names/person/schema.sql",
-        #         "groundtruth_mapping": "train_data/attributes/cryptic_attribute_names/person/mapping.json",
-        #         "meta_file_path": "./evaluator/mapping_parser/d2rq_mapping/base_meta.json"
-        #     }
-        # },
-        # "no_pk_available": {
-        #     "person": {
-        #         "sql_file": "train_data/attributes/no_pk_available/person/schema.sql",
-        #         "groundtruth_mapping": "train_data/attributes/no_pk_available/person/mapping.json",
-        #         "meta_file_path": "./evaluator/mapping_parser/d2rq_mapping/base_meta.json"
-        #     },
-        #     "company": {
-        #         "sql_file": "train_data/attributes/no_pk_available/company/schema.sql",
-        #         "groundtruth_mapping": "train_data/attributes/no_pk_available/company/mapping.json",
-        #         "meta_file_path": "./evaluator/mapping_parser/d2rq_mapping/base_meta.json"
-        #     },
-        #     "person_attributes": {
-        #         "sql_file": "train_data/attributes/no_pk_available/person_attributes/schema.sql",
-        #         "groundtruth_mapping": "train_data/attributes/no_pk_available/person_attributes/mapping.json",
-        #         "meta_file_path": "./evaluator/mapping_parser/d2rq_mapping/base_meta.json"
-        #     }
-        # },
-        # "no_fk_available": {
-        #     "movie_director_simple": {
-        #         "sql_file": "train_data/attributes/no_fk_available/movie_director_simple/schema.sql",
-        #         "groundtruth_mapping": "train_data/attributes/no_fk_available/movie_director_simple/mapping.json",
-        #         "meta_file_path": "./evaluator/mapping_parser/d2rq_mapping/base_meta.json"
-        #     },
-        #     "movie_director_with_attributes": {
-        #         "sql_file": "train_data/attributes/no_fk_available/movie_director_with_attributes/schema.sql",
-        #         "groundtruth_mapping": "train_data/attributes/no_fk_available/movie_director_with_attributes/mapping.json",
-        #         "meta_file_path": "./evaluator/mapping_parser/d2rq_mapping/base_meta.json"
-        #     },
-        # },
-        # "boolean_relation": {
-        #     "beverages": {
-        #         "sql_file": "train_data/attributes/boolean_relation/beverages/schema.sql",
-        #         "groundtruth_mapping": "train_data/attributes/boolean_relation/beverages/mapping.json",
-        #         "meta_file_path": "./evaluator/mapping_parser/d2rq_mapping/base_meta.json"
-        #     },
-        #     "process": {
-        #         "sql_file": "train_data/attributes/boolean_relation/process/schema.sql",
-        #         "groundtruth_mapping": "train_data/attributes/boolean_relation/process/mapping.json",
-        #         "meta_file_path": "./evaluator/mapping_parser/d2rq_mapping/base_meta.json"
-        #     },
-        #     "software": {
-        #         "sql_file": "train_data/attributes/boolean_relation/software/schema.sql",
-        #         "groundtruth_mapping": "train_data/attributes/boolean_relation/software/mapping.json",
-        #         "meta_file_path": "./evaluator/mapping_parser/d2rq_mapping/base_meta.json"
-        #     }
-        # },
-        # "composite_attributes": {
-        #     "person": {
-        #         "sql_file": "train_data/attributes/composite_attributes/person/schema.sql",
-        #         "groundtruth_mapping": "train_data/attributes/composite_attributes/person/mapping.json",
-        #         "meta_file_path": "./evaluator/mapping_parser/d2rq_mapping/base_meta.json"
-        #     }
-        # },
-        # "multi_value_attributes": {
-        #     "hobbies": {
-        #         "sql_file": "train_data/attributes/multi_value_attributes/hobbies/schema.sql",
-        #         "groundtruth_mapping": "train_data/attributes/multi_value_attributes/hobbies/mapping.json",
-        #         "meta_file_path": "./evaluator/mapping_parser/d2rq_mapping/base_meta.json"
-        #     }
-        # },
-        # "weak_entity": {
-        #     "hotel": {
-        #         "sql_file": "train_data/attributes/weak_entity/hotel/schema.sql",
-        #         "groundtruth_mapping": "train_data/attributes/weak_entity/hotel/mapping.json",
-        #         "meta_file_path": "./evaluator/mapping_parser/d2rq_mapping/base_meta.json"
-        #     }
-        # },
-    },
-    "one_to_n": {
+    #     "cryptic_attribute_names": {
+    #         "person": {
+    #             "sql_file": "train_data/attributes/cryptic_attribute_names/person/schema.sql",
+    #             "groundtruth_mapping": "train_data/attributes/cryptic_attribute_names/person/mapping.json",
+    #             "meta_file_path": "./evaluator/mapping_parser/d2rq_mapping/base_meta.json"
+    #         }
+    #     },
+    #     "no_pk_available": {
+    #         "person": {
+    #             "sql_file": "train_data/attributes/no_pk_available/person/schema.sql",
+    #             "groundtruth_mapping": "train_data/attributes/no_pk_available/person/mapping.json",
+    #             "meta_file_path": "./evaluator/mapping_parser/d2rq_mapping/base_meta.json"
+    #         },
+    #         "company": {
+    #             "sql_file": "train_data/attributes/no_pk_available/company/schema.sql",
+    #             "groundtruth_mapping": "train_data/attributes/no_pk_available/company/mapping.json",
+    #             "meta_file_path": "./evaluator/mapping_parser/d2rq_mapping/base_meta.json"
+    #         },
+    #         "person_attributes": {
+    #             "sql_file": "train_data/attributes/no_pk_available/person_attributes/schema.sql",
+    #             "groundtruth_mapping": "train_data/attributes/no_pk_available/person_attributes/mapping.json",
+    #             "meta_file_path": "./evaluator/mapping_parser/d2rq_mapping/base_meta.json"
+    #         }
+    #     },
+    #     "no_fk_available": {
+    #         "movie_director_simple": {
+    #             "sql_file": "train_data/attributes/no_fk_available/movie_director_simple/schema.sql",
+    #             "groundtruth_mapping": "train_data/attributes/no_fk_available/movie_director_simple/mapping.json",
+    #             "meta_file_path": "./evaluator/mapping_parser/d2rq_mapping/base_meta.json"
+    #         },
+    #         "movie_director_with_attributes": {
+    #             "sql_file": "train_data/attributes/no_fk_available/movie_director_with_attributes/schema.sql",
+    #             "groundtruth_mapping": "train_data/attributes/no_fk_available/movie_director_with_attributes/mapping.json",
+    #             "meta_file_path": "./evaluator/mapping_parser/d2rq_mapping/base_meta.json"
+    #         },
+    #     },
+    #     "boolean_relation": {
+    #         "beverages": {
+    #             "sql_file": "train_data/attributes/boolean_relation/beverages/schema.sql",
+    #             "groundtruth_mapping": "train_data/attributes/boolean_relation/beverages/mapping.json",
+    #             "meta_file_path": "./evaluator/mapping_parser/d2rq_mapping/base_meta.json"
+    #         },
+    #         "process": {
+    #             "sql_file": "train_data/attributes/boolean_relation/process/schema.sql",
+    #             "groundtruth_mapping": "train_data/attributes/boolean_relation/process/mapping.json",
+    #             "meta_file_path": "./evaluator/mapping_parser/d2rq_mapping/base_meta.json"
+    #         },
+    #         "software": {
+    #             "sql_file": "train_data/attributes/boolean_relation/software/schema.sql",
+    #             "groundtruth_mapping": "train_data/attributes/boolean_relation/software/mapping.json",
+    #             "meta_file_path": "./evaluator/mapping_parser/d2rq_mapping/base_meta.json"
+    #         }
+    #     },
+    #     "composite_attributes": {
+    #         "person": {
+    #             "sql_file": "train_data/attributes/composite_attributes/person/schema.sql",
+    #             "groundtruth_mapping": "train_data/attributes/composite_attributes/person/mapping.json",
+    #             "meta_file_path": "./evaluator/mapping_parser/d2rq_mapping/base_meta.json"
+    #         }
+    #     },
+    #     "multi_value_attributes": {
+    #         "hobbies": {
+    #             "sql_file": "train_data/attributes/multi_value_attributes/hobbies/schema.sql",
+    #             "groundtruth_mapping": "train_data/attributes/multi_value_attributes/hobbies/mapping.json",
+    #             "meta_file_path": "./evaluator/mapping_parser/d2rq_mapping/base_meta.json"
+    #         }
+    #     },
+    #     "weak_entity": {
+    #         "hotel": {
+    #             "sql_file": "train_data/attributes/weak_entity/hotel/schema.sql",
+    #             "groundtruth_mapping": "train_data/attributes/weak_entity/hotel/mapping.json",
+    #             "meta_file_path": "./evaluator/mapping_parser/d2rq_mapping/base_meta.json"
+    #         }
+    #     },
+    # },
+    # "one_to_n": {
     #     "binary_n1": {
     #         "product_order": {
     #             "sql_file": "train_data/one_to_n/binary_n1/product_order/schema.sql",
@@ -125,27 +135,27 @@ scenarios = {
     #             "meta_file_path": "./evaluator/mapping_parser/d2rq_mapping/base_meta.json"
     #         },
     #     },
-        "binary_n1_with_extra_table": {
-            "product_order": {
-                "sql_file": "train_data/one_to_n/binary_n1_with_extra_table/product_order/schema.sql",
-                "groundtruth_mapping": "train_data/one_to_n/binary_n1_with_extra_table/product_order/mapping.json",
-                "meta_file_path": "./evaluator/mapping_parser/d2rq_mapping/base_meta.json"
-            },
-            "extra_attribute": {
-                "sql_file": "train_data/one_to_n/binary_n1_with_extra_table/extra_attribute/schema.sql",
-                "groundtruth_mapping": "train_data/one_to_n/binary_n1_with_extra_table/extra_attribute/mapping.json",
-                "meta_file_path": "./evaluator/mapping_parser/d2rq_mapping/base_meta.json"
-            },
-        },
-        "binary_reflexive_n1": {
-            "boss_employee": {
-                "sql_file": "train_data/one_to_n/binary_reflexive_n1/boss_employee/schema.sql",
-                "groundtruth_mapping": "train_data/one_to_n/binary_reflexive_n1/boss_employee/mapping.json",
-                "meta_file_path": "./evaluator/mapping_parser/d2rq_mapping/base_meta.json"
-            },
-        },
+    #     "binary_n1_with_extra_table": {
+    #         "product_order": {
+    #             "sql_file": "train_data/one_to_n/binary_n1_with_extra_table/product_order/schema.sql",
+    #             "groundtruth_mapping": "train_data/one_to_n/binary_n1_with_extra_table/product_order/mapping.json",
+    #             "meta_file_path": "./evaluator/mapping_parser/d2rq_mapping/base_meta.json"
+    #         },
+    #         "extra_attribute": {
+    #             "sql_file": "train_data/one_to_n/binary_n1_with_extra_table/extra_attribute/schema.sql",
+    #             "groundtruth_mapping": "train_data/one_to_n/binary_n1_with_extra_table/extra_attribute/mapping.json",
+    #             "meta_file_path": "./evaluator/mapping_parser/d2rq_mapping/base_meta.json"
+    #         },
+    #     },
+    #     "binary_reflexive_n1": {
+    #         "boss_employee": {
+    #             "sql_file": "train_data/one_to_n/binary_reflexive_n1/boss_employee/schema.sql",
+    #             "groundtruth_mapping": "train_data/one_to_n/binary_reflexive_n1/boss_employee/mapping.json",
+    #             "meta_file_path": "./evaluator/mapping_parser/d2rq_mapping/base_meta.json"
+    #         },
+    #     },
         
-    },
+    # },
     # "one_to_one": {
         
     #     "binary_one_to_one_single_relation": {
@@ -165,25 +175,25 @@ scenarios = {
         
     # },
     # "basic": {
-    #     # "attributes": {
-    #     #     "person": {
-    #     #         "sql_file": "train_data/basic/attributes/person/schema.sql",
-    #     #         "groundtruth_mapping": "train_data/basic/attributes/person/mapping.json",
-    #     #         "meta_file_path": "./evaluator/mapping_parser/d2rq_mapping/base_meta.json"
-    #     #     }
-    #     # },
-    #     # "relationship": {
-    #     #     "movie_director_simple": {
-    #     #         "sql_file": "train_data/basic/relationship/movie_director_simple/schema.sql",
-    #     #         "groundtruth_mapping": "train_data/basic/relationship/movie_director_simple/mapping.json",
-    #     #         "meta_file_path": "./evaluator/mapping_parser/d2rq_mapping/base_meta.json"
-    #     #     },
-    #     #     "movie_director_with_attributes": {
-    #     #         "sql_file": "train_data/basic/relationship/movie_director_with_attributes/schema.sql",
-    #     #         "groundtruth_mapping": "train_data/basic/relationship/movie_director_with_attributes/mapping.json",
-    #     #         "meta_file_path": "./evaluator/mapping_parser/d2rq_mapping/base_meta.json"
-    #     #     },
-    #     # },
+    #     "attributes": {
+    #         "person": {
+    #             "sql_file": "train_data/basic/attributes/person/schema.sql",
+    #             "groundtruth_mapping": "train_data/basic/attributes/person/mapping.json",
+    #             "meta_file_path": "./evaluator/mapping_parser/d2rq_mapping/base_meta.json"
+    #         }
+    #     },
+    #     "relationship": {
+    #         "movie_director_simple": {
+    #             "sql_file": "train_data/basic/relationship/movie_director_simple/schema.sql",
+    #             "groundtruth_mapping": "train_data/basic/relationship/movie_director_simple/mapping.json",
+    #             "meta_file_path": "./evaluator/mapping_parser/d2rq_mapping/base_meta.json"
+    #         },
+    #         "movie_director_with_attributes": {
+    #             "sql_file": "train_data/basic/relationship/movie_director_with_attributes/schema.sql",
+    #             "groundtruth_mapping": "train_data/basic/relationship/movie_director_with_attributes/mapping.json",
+    #             "meta_file_path": "./evaluator/mapping_parser/d2rq_mapping/base_meta.json"
+    #         },
+    #     },
     #     "table": {
     #         "company": {
     #             "sql_file": "train_data/basic/table/company/schema.sql",
@@ -379,22 +389,24 @@ scenarios = {
         # "mondial": {
         #     "original": {
         #         "sql_file": "./real-world/mondial/real_world__mondial__original.sql",
+        #         "schema_path": "./real-world/mondial/schema_pg.sql",
         #         "groundtruth_mapping": "./real-world/mondial/mappings",
         #         "meta_file_path": "./real-world/mondial/mappings/meta.json"
         #     },
         #     "fk": {
         #         "sql_file": "./real-world/mondial/real_world__mondial__fk.sql",
+        #         "schema_path": "./real-world/mondial/schema_pg_fks.sql",
         #         "groundtruth_mapping": "./real-world/mondial/mappings",
         #         "meta_file_path": "./real-world/mondial/mappings/meta.json"
         #     }
         # },
-        # "iswc": {
-        #     "original": {
-        #         "sql_file": "./real-world/iswc/real_world__iswc__original.sql",
-        #         "groundtruth_mapping": "./real-world/iswc/groundtruth.ttl",
-        #         "meta_file_path": "./real-world/iswc/meta.json"
-        #     }
-        # },
+        "iswc": {
+            "original": {
+                "sql_file": "./real-world/iswc/real_world__iswc__original.sql",
+                "groundtruth_mapping": "./real-world/iswc/groundtruth.ttl",
+                "meta_file_path": "./real-world/iswc/meta.json"
+            }
+        },
         # "apqc": {
         #     "original": {
         #         "sql_file": "./real-world/apqc/apqc.sql",
@@ -413,14 +425,18 @@ experiment_config = {
             "name": "d2rmapper",
             "config": systems["d2rmapper"]
         },
-        # {
-        #     "name": "rdb2onto",
-        #     "config": systems["rdb2onto"]
-        # }, 
-        # {
-        #     "name": "ontogenix",
-        #     "config": systems["ontogenix"]
-        # }
+        {
+            "name": "chatgpt",
+            "config": systems["chatgpt"]
+        },
+        {
+            "name": "rdb2onto",
+            "config": systems["rdb2onto"]
+        }, 
+        {
+            "name": "ontogenix",
+            "config": systems["ontogenix"]
+        }
     ]
 }
 

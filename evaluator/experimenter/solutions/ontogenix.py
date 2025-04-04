@@ -19,7 +19,7 @@ class OntoGenix(BaseSolution):
         print("Training not required for Ontogenix")
         return None, 0
 
-    def test(self, database_name, meta, chatbot, model):
+    def test(self, database_name,sql_file_path, meta, chatbot, schema_path,model):
         print("Running OntoGenix with model: ", chatbot)
         start_time = time.time()
         mapping = OntoGenix_CLI(database_name, api_model=chatbot).run()

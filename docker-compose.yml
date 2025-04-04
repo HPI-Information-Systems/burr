@@ -7,7 +7,7 @@ services:
     volumes:
       - ./result:/results
     command: >
-      python3 /experiment/evaluator/experimenter/experiment_script.py --scenario base_experiment --tag docker-run-8 --wandb
+      python3 /experiment/evaluator/experimenter/experiment_script.py --scenario base_experiment --tag chatgpt_2 --wandb
     depends_on:
       - db
     env_file:

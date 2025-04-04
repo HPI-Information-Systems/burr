@@ -1,0 +1,23 @@
+```ttl
+    <#TriplesMapEntity> a rr:TriplesMap;
+        rr:logicalTable [ rr:tableName "TableName" ];
+        rr:subjectMap [
+            rr:template "EntityURI/{Column}";
+            rr:class ex:{Entity};
+        ];
+        rr:predicateObjectMap [
+            rr:predicate ex:Property;
+            rr:objectMap [
+                rr:parentTriplesMap <#Property>;
+                rr:objectMap [ rr:column "Column" ];
+            ]
+        ].
+
+    <#TriplesMapEntity2> a rr:TriplesMap;
+        rr:logicalTable [ rr:tableName "TableName" ];
+        rr:subjectMap [
+            rr:template "EntityURI/{Entity2}";
+            rr:class ex:{Entity};
+        ].
+    >
+```

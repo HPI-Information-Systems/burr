@@ -21,7 +21,7 @@ class RDB2Onto(BaseSolution):
         print("Training not required for RDB2Onto")
         return None, 0
 
-    def test(self, database_name, output_path, meta, model):
+    def test(self, database_name, sql_file_path, output_path, meta,schema_path,model):
         if not os.path.isfile(self.jar_path):
             raise ValueError(f"JAR file not found at {self.jar_path}")
         print("HOST", os.getenv("POSTGRES_HOST"))

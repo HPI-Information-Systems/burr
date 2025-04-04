@@ -38,6 +38,7 @@ class R2RMLMapping(BaseMapping):
     def parse_classes(self) -> List[str]:
         classes = []
         triples = self.graph.subjects(RDF.type, RR.TriplesMap)
+        print(triples)
         for idx, triples_map in enumerate(triples):
             print("triples_map", triples_map)
             mapping_id = f"{idx}{str(triples_map).split('/')[-1].replace('#', '')}_CLS"
