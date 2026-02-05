@@ -1,0 +1,95 @@
+import wandb
+import importlib
+import configparser
+from evaluator.experimenter.config_template import experiment_configs
+from evaluator.experimenter.database_client.postgresclient import PostgresClient
+from evaluator.experimenter.Experiment import Experiment
+
+class ExperimentManager():
+    def __init__(self, config_file, tag, use_wandb=False) -> None:
+        self.config = configparser.ConfigParser()
+        self.config.read(config_file)
+        print(self.config.sections)
+        print(self.config)
+        
+        self.experiment_config = experiment_configs
+        self.use_wandb = use_wandb
+        self.tag = tag
+
+    def start_experiments(self, experiment_name):
+        print(experiment_name)
+        self.experiment_config = self.experiment_config[experiment_name]
+        self.iterations = self.experiment_config.get("iterations", 1)
+
+        for group, base_scenarios in self.experiment_config["scenarios"].items():
+            for base_scenario, scenarios in base_scenarios.items():
+                for scenario, scenario_config in scenarios.items():
+                    scenario_id = f"{group}__{base_scenario}__{scenario}"
+                    database_name = scenario_config["database_name"] if "database_name" in scenario_config else scenario_id
+                    self.database = PostgresClient(database_name)
+                    for system in self.experiment_config["systems"]:
+                        print(f"Running experiment {experiment_name} for scenario {scenario} (Base scenario: {base_scenario}, group: {group}) with system {system}")
+                        for i in range(self.iterations):
+                            system_config = system["config"]
+                            system_config["rewrite_database"] = self.experiment_config.get("rewrite_database", False)
+                            system_name = system["name"]
+                            print(f"Running experiment {experiment_name} for scenario {scenario} (Base scenario: {base_scenario}, group: {group}) with system {system_name}")
+                            schema_path = scenario_config["schema_path"] if "schema_path" in scenario_config else None
+                            try:
+                                metric_result, runtime, run_output_mapping, run_groundtruth_mapping, _ = self.run_experiment(experiment_name, database_name, system_name, system_config, scenario_id, group, base_scenario, scenario, scenario_config["sql_file"], scenario_config["meta_file_path"], scenario_config["groundtruth_mapping"], schema_path=schema_path, iteration=i)
+                                print("Results:", metric_result)
+                                wandb.log(metric_result)
+                                wandb.log({"training_time": runtime["training"], "inference_time": runtime["inference"]})
+                                            
+                                for concept in run_output_mapping.classes:
+                                    concept.set_eq_strategy(name_based=False)
+                                for concept in run_groundtruth_mapping.classes:
+                                    concept.set_eq_strategy(name_based=False)
+                                
+                                
+                                wandb.finish()
+                            except Exception as e:
+                                import traceback
+                                e = traceback.format_exc()
+                                print("Exception in ExperimentManager", e)
+                                print(traceback.format_exc())
+                                try:
+                                    wandb.finish(exit_code=1)
+                                except:
+                                    pass
+                                continue
+                    try:
+                        if wandb.run is not None:
+                            wandb.finish()
+                    except:
+                        pass
+        
+    def run_experiment(self, experiment_name, database_name, system, system_config,scenario_id, group, base_scenario, scenario, sql_file_path, meta_file_path, groundtruth_mapping_path,schema_path=None, iteration=0):
+        if system == "rdb2onto":
+            module = importlib.import_module("evaluator.experimenter.solutions.rdb2onto")
+            system = getattr(module, "RDB2Onto")
+        elif system == "d2rmapper":
+            module = importlib.import_module("evaluator.experimenter.solutions.d2rmapper")
+            system = getattr(module, "D2RMapper")
+        elif system == "chatgpt":
+            module = importlib.import_module("evaluator.experimenter.solutions.chatgpt")
+            system = getattr(module, "ChatGPT")
+        elif system == "llama":
+            module = importlib.import_module("evaluator.experimenter.solutions.llama")
+            system = getattr(module, "LlamaSolution")
+        else:
+            raise ValueError("System not found")
+        print("configuration", self.config)
+        system = system(**self.config[system.solution_name] if system.solution_name in self.config else {})
+        experiment = Experiment(experiment_name, database_name=database_name, scenario_id=scenario_id, database=self.database, group=group, base_scenario=base_scenario, scenario=scenario, solution=system, sql_file_path=sql_file_path, meta_file_path=meta_file_path, groundtruth_mapping_path=groundtruth_mapping_path, tag=self.tag, use_wandb=self.use_wandb, schema_path=schema_path, iteration=iteration)
+        try:
+            output = experiment.run(system_config)
+        except Exception:
+            print("An error occurred during the experiment!")
+            import traceback
+            e = traceback.format_exc()
+            print(traceback.format_exc())
+            wandb.log({"error": str(e)})
+            wandb.finish(exit_code=1)
+            return None, None, None, None, None
+        return output["metrics"], output["runtime"], output["output_mapping"], output["groundtruth_mapping"], output.get("raw_mapping_json", None)

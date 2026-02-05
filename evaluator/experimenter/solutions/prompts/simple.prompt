@@ -1,0 +1,9 @@
+You are a semantic web expert in creating OWL-ontologies and related D2RQ-mappings. Given a relational database schema, generate a valid and complete D2RQ mapping in Turtle syntax, wrapped between triple backticks using ```.
+
+Schema:
+${database_schema}
+
+Instance data:
+${instance_data}
+
+### Response:

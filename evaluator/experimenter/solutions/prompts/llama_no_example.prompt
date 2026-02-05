@@ -1,0 +1,21 @@
+You are a semantic web expert in creating OWL-ontologies and related D2RQ-mappings. Given a relational database schema, generate a valid and complete R2RML mapping in Turtle syntax.
+
+### Instructions:
+1. **Only output the R2RML code**, wrapped between triple backticks using ```.
+2. **Begin with all necessary prefixes** (e.g., rr:, rdfs:, rdf:, xsd:, ex:).
+3. For each table, define one TriplesMap:
+   - Use `rr:logicalTable` to point to the table.
+   - Use `rr:subjectMap` to generate a unique URI template using all columns needed to uniquely identify an instance (i.e., primary key).
+   - Use `rr:predicateObjectMap` to add:
+     - `rr:predicate` and `rr:objectMap` for each column (as data properties).
+     - Object properties for foreign keys (include join conditions inline with `rr:joinCondition`).
+4. Do **not** generate separate TriplesMaps for object properties — always attach them to the table where the FK resides.
+5. Reuse the prefix URIs in all triple blocks. Ensure consistent and valid Turtle syntax.
+
+Schema:
+${database_schema}
+
+Instance data:
+${instance_data}
+
+### Response:

@@ -1,0 +1,230 @@
+You are a semantic web expert in creating OWL-ontologies and related D2RQ-mappings. Given a relational database schema, generate a valid and complete D2RQ mapping in Turtle syntax.
+
+### Instructions:
+1. **Only output the D2RQ code**, wrapped between triple backticks using ```.
+2. **Begin with all necessary prefixes** (e.g., `map:`, `d2rq:`, `jdbc:`, `ex:`).
+3. Use consistent prefixes and valid Turtle syntax throughout.
+4. Only generate as much content as required to correctly represent the database.
+
+In the following, key concept databases and mappings will be introduced which should be used to orientate. These examples demonstrate best practices when modeling databases from ontologies.
+
+Simple relationship:
+Database schema
+Player (id INT, name VARCHAR(100), position VARCHAR(50), team_id INT), Primary Key: id
+Team (id INT, name VARCHAR(100), stadium VARCHAR(100)), Primary Key: id
+
+Foreign Keys:
+player.team_id(id) REFERENCES team(id)
+
+Resulting Mapping:
+@prefix d2rq:   <http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#> .
+@prefix map:    <http://mapping/> .
+@prefix base:   </base/> .
+@prefix jdbc:   <http://d2rq.org/terms/jdbc/> .
+
+map:database
+    a                d2rq:Database ;
+    d2rq:jdbcDriver  "org.postgresql.Driver" ;
+    d2rq:jdbcDSN     "jdbc:postgresql://localhost:5432/example_mapping" ;
+    d2rq:username    "lukaslaskowski" ;
+    jdbc:keepAlive   "3600" .
+
+map:Player a d2rq:ClassMap ;
+    d2rq:dataStorage   map:database ;
+    d2rq:class         base:Player ;
+    d2rq:uriPattern    "@@player.id@@" .
+
+map:Team a d2rq:ClassMap ;
+    d2rq:dataStorage   map:database ;
+    d2rq:class         base:Team ;
+    d2rq:uriPattern    "@@team.id@@" .
+
+map:playsFor_Player_Team a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap     map:Player ;
+    d2rq:refersToClassMap      map:Team ;
+    d2rq:property              base:playsFor ;
+    d2rq:join                  "player.team_id = team.id" .
+
+map:name_Player_None a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Player ;
+    d2rq:property         base:name ;
+    d2rq:column           "player.name" .
+
+map:position_Player_None a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Player ;
+    d2rq:property         base:position ;
+    d2rq:column           "player.position" .
+
+map:name_Team_None a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Team ;
+    d2rq:property         base:name ;
+    d2rq:column           "team.name" .
+
+map:stadium_Team_None a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Team ;
+    d2rq:property         base:stadium ;
+    d2rq:column           "team.stadium" .
+
+Many-to-many table:
+Database: Soccer
+player (id INT, name VARCHAR(100), position VARCHAR(50), nationality VARCHAR(100)), Primary Key: id
+match (id INT, date DATE, location VARCHAR(100)), Primary Key: id
+player_match (player_id INT, match_id INT), Primary Key: player_id, match_id
+
+Foreign Keys:
+player_match.player_id REFERENCES player(id)
+player_match.match_id REFERENCES match(id)
+
+Resulting Mapping:
+@prefix d2rq:   <http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#> .
+@prefix map:    <http://mapping/> .
+@prefix base:   </base/> .
+@prefix jdbc:   <http://d2rq.org/terms/jdbc/> .
+
+map:database a d2rq:Database ;
+    d2rq:jdbcDriver  "org.postgresql.Driver" ;
+    d2rq:jdbcDSN     "jdbc:postgresql://localhost:5432/example_mapping" ;
+    d2rq:username    "lukaslaskowski" ;
+    jdbc:keepAlive   "3600" .
+
+map:Player a d2rq:ClassMap ;
+    d2rq:dataStorage   map:database ;
+    d2rq:class         base:Player ;
+    d2rq:uriPattern    "@@player.id@@" .
+
+map:Match a d2rq:ClassMap ;
+    d2rq:dataStorage   map:database ;
+    d2rq:class         base:Match ;
+    d2rq:uriPattern    "@@match.id@@" .
+
+map:playedIn_Player_PlayerMatch a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap     map:Player ;
+    d2rq:refersToClassMap      map:Match ;
+    d2rq:property              base:playedIn ;
+    d2rq:join                  "player.id = player_match.player_id" ;
+    d2rq:join                  "match.id  = player_match.match_id" .
+
+map:name_Player_None a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Player ;
+    d2rq:property         base:name ;
+    d2rq:column           "player.name" .
+
+map:position_Player_None a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Player ;
+    d2rq:property         base:position ;
+    d2rq:column           "player.position" .
+
+map:nationality_Player_None a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Player ;
+    d2rq:property         base:nationality ;
+    d2rq:column           "player.nationality" .
+
+map:date_Match_None a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Match ;
+    d2rq:property         base:date ;
+    d2rq:column           "match.date" .
+
+map:location_Match_None a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Match ;
+    d2rq:property         base:location ;
+    d2rq:column           "match.location" .
+
+Vertical Partitioning Hierarchy:
+Database: Soccer
+person (pid INT, name VARCHAR(100)), Primary Key: pid
+player (pid INT, jersey_number INT, position VARCHAR(50)), Primary Key: pid
+referee (pid INT, area VARCHAR(100), certification_year INT), Primary Key: pid
+
+Foreign Keys:
+player.pid REFERENCES person(pid)
+referee.pid REFERENCES person(pid)
+
+Resulting Mapping:
+@prefix d2rq:   <http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#> .
+@prefix map:    <http://mapping/> .
+@prefix base:   </base/> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix jdbc:   <http://d2rq.org/terms/jdbc/> .
+
+map:database a d2rq:Database ;
+    d2rq:jdbcDriver  "org.postgresql.Driver" ;
+    d2rq:jdbcDSN     "jdbc:postgresql://localhost:5432/example_mapping" ;
+    d2rq:username    "lukaslaskowski" ;
+    jdbc:keepAlive   "3600" .
+
+map:Person a d2rq:ClassMap ;
+    d2rq:dataStorage map:database ;
+    d2rq:class       base:Person ;
+    d2rq:uriPattern  "@@person.pid@@" .
+
+map:Player_SubClassOf_Person a d2rq:AdditionalProperty ;
+    d2rq:propertyName  rdfs:subClassOf ;
+    d2rq:propertyValue base:Person .
+
+map:Player a d2rq:ClassMap ;
+    d2rq:dataStorage                  map:database ;
+    d2rq:class                        base:Player ;
+    d2rq:uriPattern                   "@@person.pid@@" ;
+    d2rq:join                         "person.pid = player.pid" ;
+    d2rq:additionalClassDefinitionProperty map:Player_SubClassOf_Person .
+
+map:Referee_SubClassOf_Person a d2rq:AdditionalProperty ;
+    d2rq:propertyName  rdfs:subClassOf ;
+    d2rq:propertyValue base:Person .
+
+map:Referee a d2rq:ClassMap ;
+    d2rq:dataStorage                  map:database ;
+    d2rq:class                        base:Referee ;
+    d2rq:uriPattern                   "@@person.pid@@" ;
+    d2rq:join                         "person.pid = referee.pid" ;
+    d2rq:additionalClassDefinitionProperty map:Referee_SubClassOf_Person .
+
+map:name_Person_None a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Person ;
+    d2rq:property         base:name ;
+    d2rq:column           "person.name" .
+
+map:jerseyNumber_Player_None a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Player ;
+    d2rq:property         base:jerseyNumber ;
+    d2rq:join             "person.pid = player.pid" ;
+    d2rq:column           "player.jersey_number" .
+
+map:position_Player_None a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Player ;
+    d2rq:property         base:position ;
+    d2rq:join             "person.pid = player.pid" ;
+    d2rq:column           "player.position" .
+
+map:area_Referee_None a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Referee ;
+    d2rq:property         base:area ;
+    d2rq:join             "person.pid = referee.pid" ;
+    d2rq:column           "referee.area" .
+
+map:certificationYear_Referee_None a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Referee ;
+    d2rq:property         base:certificationYear ;
+    d2rq:join             "person.pid = referee.pid" ;
+    d2rq:column           "referee.certification_year" .
+
+The following describes the schema of the actual database that needs to be mapped:
+${database_schema}
+
+Instance data:
+${instance_data}
+
+Automated Self‑Check
+
+Before outputting your final mapping, run this checklist to catch common omissions and quality issues:
+
+    1. Prefix Declarations: Ensure every prefix you reference is declared at the top.
+    2. Database Configuration Block: Confirm a single "map:database a d2rq:Database;" section exists and includes required properties (e.g., d2rq:jdbcDriver, d2rq:jdbcDSN, d2rq:username).
+    3. Syntax Validity: Check for missing semicolons or dots, and verify valid Turtle syntax.
+    4. Prefix Consistency: Avoid typos and use identical prefixes uniformly.
+    5. Readability: Maintain consistent indentation and blank lines for clarity.
+    6. Completeness of Content: Remove any placeholder or example code; address all input schema and instance data. Check that you did not miss a relevant table or attribute in your mapping.
+    7. Output Scope Only include the D2RQ mapping code—no explanatory text or comments.
+    8. Join Path Validation: Check multi-step joins or composite foreign keys for correctness.
+
+### Response:

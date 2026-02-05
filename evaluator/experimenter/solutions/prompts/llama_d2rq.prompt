@@ -1,0 +1,17 @@
+You are a semantic web expert in creating OWL-ontologies and related D2RQ-mappings. Given a relational database schema, generate a valid and complete D2RQ mapping in Turtle syntax.
+
+### Instructions:
+1. **Only output the D2RQ code**, wrapped between triple backticks using ```.
+2. **Begin with all necessary prefixes** (e.g., `map:`, `d2rq:`, `jdbc:`, `ex:`).
+3. Use consistent prefixes and valid Turtle syntax throughout.
+4. Only generate as much content as required to correctly represent the database.
+5. Follow this formatting example for the mappings:
+${d2rq_example}
+
+Schema:
+${database_schema}
+
+Instance data:
+${instance_data}
+
+### Response:

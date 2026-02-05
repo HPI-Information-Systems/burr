@@ -1,0 +1,54 @@
+@prefix d2rq:   <http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#> .
+@prefix map:    <http://mapping/> .
+@prefix base:   </base/> .
+@prefix jdbc:   <http://d2rq.org/terms/jdbc/> .
+
+map:database
+    a                d2rq:Database ;
+    d2rq:jdbcDriver  "org.postgresql.Driver" ;
+    d2rq:jdbcDSN     "jdbc:postgresql://localhost:5432/example_mapping" ;
+    d2rq:username    "lukaslaskowski" ;
+    jdbc:keepAlive   "3600" .
+
+map:Author
+    a                  d2rq:ClassMap ;
+    d2rq:dataStorage   map:database ;
+    d2rq:class         base:Author ;
+    d2rq:uriPattern    "@@author.id@@" .
+
+map:Book
+    a                  d2rq:ClassMap ;
+    d2rq:dataStorage   map:database ;
+    d2rq:class         base:Book ;
+    d2rq:uriPattern    "@@book.id@@" .
+
+map:has_book_Author_AuthorBook
+    a                          d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap     map:Author ;
+    d2rq:refersToClassMap      map:Book ;
+    d2rq:property              base:hasWritten ;
+    d2rq:join                  "author.id = author_book.author_id" ;
+    d2rq:join                  "book.id   = author_book.book_id" .
+
+map:birthDate_Author_None
+    a                     d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Author ;
+    d2rq:property         base:birthDate ;
+    d2rq:column           "author.birth_date" .
+
+map:nationality_Author_None
+    a                     d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Author ;
+    d2rq:property         base:nationality ;
+    d2rq:column           "author.nationality" .
+
+map:publicationDate_Book_None
+    a                     d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Book ;
+    d2rq:property         base:publicationDate ;
+    d2rq:column           "book.publication_date" .
+
+map:genre_Book_None a d2rq:PropertyBridge ;
+    d2rq:belongsToClassMap map:Book ;
+    d2rq:property         base:genre ;
+    d2rq:column           "book.genre" .

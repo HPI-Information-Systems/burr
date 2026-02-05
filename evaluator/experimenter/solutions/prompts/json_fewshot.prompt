@@ -1,0 +1,52 @@
+You are a semantic web expert in creating OWL-ontologies and related JSON-mappings. Given a relational database schema, generate a valid and complete json mapping.
+
+### Instructions:
+1. Only generate as much content as required to correctly represent the database.
+2. Follow this formatting example for the mappings:
+
+In the following, key concept databases and mappings will be introduced which should be used to orientate. These examples demonstrate best practices when modeling databases from ontologies.
+
+Simple relationship:
+Database schema
+Player (id INT, name VARCHAR(100), position VARCHAR(50), team_id INT), Primary Key: id
+Team (id INT, name VARCHAR(100), stadium VARCHAR(100)), Primary Key: id
+
+Foreign Keys:
+player.team_id(id) REFERENCES team(id)
+
+Resulting Mapping:
+{"concepts":[{"id_attributes":[{"type":"combination","attributes":[{"table":"player","column":"id"}]}],"attributes":[{"table":"player","column":"id"},{"table":"player","column":"name"},{"table":"player","column":"position"}],"sub_concepts":[],"conditions":[]},{"id_attributes":[{"type":"combination","attributes":[{"table":"team","column":"id"}]}],"attributes":[{"table":"team","column":"id"},{"table":"team","column":"name"},{"table":"team","column":"stadium"}],"sub_concepts":[],"conditions":[]}],"object_properties":[{"concept1":{"id_attributes":[{"type":"combination","attributes":[{"table":"player","column":"id"}]}]},"concept2":{"id_attributes":[{"type":"combination","attributes":[{"table":"team","column":"id"}]}]},"joins":[{"left":{"table":"player","columns":["team_id"]},"right":{"table":"team","columns":["id"]}}]}]}
+
+Many-to-many table:
+Database: Soccer
+player (id INT, name VARCHAR(100), position VARCHAR(50), nationality VARCHAR(100)), Primary Key: id
+match (id INT, date DATE, location VARCHAR(100)), Primary Key: id
+player_match (player_id INT, match_id INT), Primary Key: player_id, match_id
+
+Foreign Keys:
+player_match.player_id REFERENCES player(id)
+player_match.match_id REFERENCES match(id)
+
+Resulting Mapping:
+{"concepts":[{"id_attributes":[{"type":"combination","attributes":[{"table":"player","column":"id"}]}],"attributes":[{"table":"player","column":"id"},{"table":"player","column":"name"},{"table":"player","column":"position"},{"table":"player","column":"nationality"}],"sub_concepts":[],"conditions":[]},{"id_attributes":[{"type":"combination","attributes":[{"table":"match","column":"id"}]}],"attributes":[{"table":"match","column":"id"},{"table":"match","column":"date"},{"table":"match","column":"location"}],"sub_concepts":[],"conditions":[]}],"object_properties":[{"concept1":{"id_attributes":[{"type":"combination","attributes":[{"table":"player","column":"id"}]}]},"concept2":{"id_attributes":[{"type":"combination","attributes":[{"table":"match","column":"id"}]}]},"joins":[{"left":{"table":"player_match","columns":["player_id"]},"right":{"table":"player","columns":["id"]}},{"left":{"table":"player_match","columns":["match_id"]},"right":{"table":"match","columns":["id"]}}]}]}
+
+Vertical Partitioning Hierarchy:
+Database: Soccer
+person (pid INT, name VARCHAR(100)), Primary Key: pid
+player (pid INT, jersey_number INT, position VARCHAR(50)), Primary Key: pid
+referee (pid INT, area VARCHAR(100), certification_year INT), Primary Key: pid
+
+Foreign Keys:
+player.pid REFERENCES person(pid)
+referee.pid REFERENCES person(pid)
+
+Resulting Mapping:
+{"concepts":[{"id_attributes":[{"type":"combination","attributes":[{"table":"person","column":"pid"}]}],"attributes":[{"table":"person","column":"pid"},{"table":"person","column":"name"}],"sub_concepts":[{"id_attributes":[{"type":"combination","attributes":[{"table":"person","column":"pid"}]}],"attributes":[{"table":"player","column":"jersey_number"},{"table":"player","column":"position"}],"sub_concepts":[],"conditions":[],"joins":[{"left":{"table":"player","columns":["pid"]},"right":{"table":"person","columns":["pid"]}}]},{"id_attributes":[{"type":"combination","attributes":[{"table":"person","column":"pid"}]}],"attributes":[{"table":"referee","column":"area"},{"table":"referee","column":"certification_year"}],"sub_concepts":[],"conditions":[],"joins":[{"left":{"table":"referee","columns":["pid"]},"right":{"table":"person","columns":["pid"]}}]}],"conditions":[]}],"object_properties":[]}
+
+The following describes the schema of the actual database that needs to be mapped:
+${database_schema}
+
+Instance data:
+${instance_data}
+
+### Response:

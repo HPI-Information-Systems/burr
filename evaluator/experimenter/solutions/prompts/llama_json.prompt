@@ -1,0 +1,139 @@
+You are an ontology‐engineering expert. Given a relational database schema, produce a **valid JSON** R2RML‐style mapping with the following structure:
+
+1. "classes":  
+   - Each entry must have:
+     - "id": a URI template using placeholders like "@@table.column@@"  
+     - "class": the RDF class name  
+     - Optional "name": a ClassMap identifier (if distinct from the RDF class)  
+     - Optional "subClassOf": an array of parent class names  
+
+2. "object_properties":  
+   - Each entry must have:
+     - "property": the predicate name  
+     - "belongsToClass"/"belongsToClassMap": which subject map it attaches to  
+     - "refersToClass": the target class name  
+     - **"joinCondition"**:  
+       ```json
+       {
+         "childColumn": "<table>.<fk_column>",
+         "parentColumn": "<other_table>.<pk_column>"
+       }
+       ```
+     - (Optional) "condition": any SQL filter on the join  
+
+3. "data_properties":  
+   - Each entry must have:
+     - "property": the predicate name  
+     - "belongsToClass"/"belongsToClassMap"  
+     - "type": one of "string", "int", "float", "boolean", etc.  
+     - "column": "<table>.<column>"  
+
+**Do NOT** output anything except the JSON mapping. No prose, no comments.
+
+---
+
+**Example for this schema**:
+-- movie(id PK, title, year, director_id FK→director.id)
+-- director(id PK, name, birth_year)
+-- author(aid PK, name, email)
+-- reviewer(rid PK, name, area)
+
+The mapping looks like this:
+{
+  "classes": [
+    {
+      "id": "@@movie.id@@",
+      "class": "Movie"
+    },
+    {
+      "id": "@@director.id@@",
+      "class": "Director"
+    },
+    {
+      "id": "author_@@author.aid@@",
+      "class": "Person",
+      "name": "AuthorPerson"
+    },
+    {
+      "id": "reviewer_@@reviewer.rid@@",
+      "class": "Person",
+      "name": "ReviewerPerson"
+    },
+    {
+      "id": "@@author.aid@@",
+      "class": "Author",
+      "subClassOf": ["Person"]
+    },
+    {
+      "id": "@@reviewer.rid@@",
+      "class": "Reviewer",
+      "subClassOf": ["Person"]
+    }
+  ],
+  "object_properties": [
+    {
+      "property": "directedBy",
+      "belongsToClass": "Movie",
+      "refersToClass": "Director",
+      "joinCondition": {
+        "childColumn": "movie.director_id",
+        "parentColumn": "director.id"
+      }
+    }
+  ],
+  "data_properties": [
+    {
+      "property": "title",
+      "belongsToClass": "Movie",
+      "type": "string",
+      "column": "movie.title"
+    },
+    {
+      "property": "year",
+      "belongsToClass": "Movie",
+      "type": "int",
+      "column": "movie.year"
+    },
+    {
+      "property": "name",
+      "belongsToClassMap": "Director",
+      "type": "string",
+      "column": "director.name"
+    },
+    {
+      "property": "birth_year",
+      "belongsToClass": "Director",
+      "type": "int",
+      "column": "director.birth_year"
+    },
+    {
+      "property": "name",
+      "belongsToClassMap": "AuthorPerson",
+      "type": "string",
+      "column": "author.name"
+    },
+    {
+      "property": "email",
+      "belongsToClass": "Author",
+      "type": "string",
+      "column": "author.email"
+    },
+    {
+      "property": "name",
+      "belongsToClassMap": "ReviewerPerson",
+      "type": "string",
+      "column": "reviewer.name"
+    },
+    {
+      "property": "area",
+      "belongsToClass": "Reviewer",
+      "type": "string",
+      "column": "reviewer.area"
+    }
+  ]
+}
+
+The database schema is:
+${database_schema}
+
+### Output:
