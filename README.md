@@ -38,6 +38,8 @@ Values updated after correcting a small number of missing database constraints i
 | NPD     | Ontop     | 0.85        | 0.85        | 0.48        | 0.06        | 0.00        | 0.00        |
 | NPD     | RDB2Onto  | 0.70        | 0.81        | 0.49        | 0.06        | 0.00        | 0.00        |
 
+Additionally, we removed one (empty) table from the enterprise data, reducing the number of tables to seven.
+
 
 # Benchmark files
 This section describes the structure of the benchmark files and how to use them. The micro benchmark is split into multiple parts, each having one folder. The files can be found in folder ``micro_benchmark``.
